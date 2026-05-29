@@ -2174,15 +2174,12 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
               if (!isReq03Pass) missing.push("REQ-03");
               if (!isReq04Pass) missing.push("REQ-04");
               showToast(`\u26A0\uFE0F S2\u5206\u7EA7\u5206\u7C7B\u5DF2\u88AB\u9501\u5B9A\u3002\u8BF7\u5148\u5728S1\u6B65\u9AA4\u4E2D\u5BF9\u9F50\u5E76\u786E\u8BA4\u9700\u6C42\uFF1A${missing.join("\u3001")}\uFF01`);
-              return;
             }
             if (idx === 2 && isLocked) {
               showToast("\u26A0\uFE0F S3\u6570\u636E\u63A5\u5165\u5DF2\u88AB\u9501\u5B9A\u3002\u8BF7\u5148\u5728S1\u6B65\u9AA4\u4E2D\u5BF9\u9F50\u5E76\u786E\u8BA4\u9700\u6C42\uFF1AREQ-01 \u65E5\u5E38\u68C0\u6D4B\u4E0E\u5E74\u62A5\u6869\u53F7\u5BF9\u9F50\uFF01");
-              return;
             }
             if (idx === 5 && isLocked) {
               showToast("\u26A0\uFE0F S6\u8D28\u91CF\u7A3D\u6838\u5DF2\u88AB\u9501\u5B9A\u3002\u8BF7\u5148\u5728S1\u6B65\u9AA4\u4E2D\u5BF9\u9F50\u5E76\u786E\u8BA4\u9700\u6C42\uFF1AREQ-05 CBMS\u6865\u6881\u6570\u636E\u4E00\u81F4\u6027\u6BD4\u5BF9\uFF01");
-              return;
             }
             setActiveStep(idx);
             if (showWizard) {
