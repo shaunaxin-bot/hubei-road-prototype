@@ -1,6 +1,11 @@
 # Deploy script for GitHub Pages
+
+# Copy latest Ningbo prototype to release folder
+Copy-Item -Path "C:\AIprojects\roaddata\ningbo\20260601\20260601-ningbo-prototype.html" -Destination "C:\AIprojects\roaddata\hubei\release\ningbo\index.html" -Force
+
 git add -A
 git commit -m "Update release prototype ($(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'))"
 $env:GIT_TERMINAL_PROMPT=0
 git push origin main
 Write-Host "Deployed successfully to GitHub Pages!" -ForegroundColor Green
+
