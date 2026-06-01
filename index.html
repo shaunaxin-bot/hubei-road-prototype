@@ -998,6 +998,15 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       }
       return INITIAL_REQUIREMENTS;
     });
+    const [hoverChangelog, setHoverChangelog] = useState(false);
+    const handleOpenRequirementsBacklog = () => {
+      const currentPath = window.location.pathname;
+      let targetPath = "./docs/requirements_backlog_preview.html";
+      if (currentPath.includes("/20260529/") || currentPath.includes("\\20260529\\")) {
+        targetPath = "../docs/requirements_backlog_preview.html";
+      }
+      window.open(targetPath, "_blank");
+    };
     useEffect(() => {
       localStorage.setItem("yearly_backlog_reqs", JSON.stringify(requirements));
     }, [requirements]);
@@ -1131,7 +1140,6 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     const [microsegmentMode, setMicrosegmentMode] = useState("annual");
     const [placeNameMatchStatus, setPlaceNameMatchStatus] = useState("idle");
     const [placeNameEntriesConfirmed, setPlaceNameEntriesConfirmed] = useState(false);
-    const [hoverChangelog, setHoverChangelog] = useState(false);
     useEffect(() => {
       let timer;
       if (rectifyStatus === "loading") {
@@ -2281,9 +2289,11 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         )), /* @__PURE__ */ react_shim_default.createElement("div", { className: "relative" }, /* @__PURE__ */ react_shim_default.createElement(
           "button",
           {
+            onClick: handleOpenRequirementsBacklog,
             onMouseEnter: () => setHoverChangelog(true),
             onMouseLeave: () => setHoverChangelog(false),
-            className: "bg-blue-50 hover:bg-blue-105 text-blue-700 font-bold text-[10px] px-2.5 py-1.5 rounded-md border border-blue-200 shadow-sm flex items-center gap-1 transition-all cursor-pointer relative"
+            className: "bg-blue-50 hover:bg-blue-100 text-blue-750 font-bold text-[10px] px-2.5 py-1.5 rounded-md border border-blue-200 shadow-sm flex items-center gap-1 transition-all cursor-pointer relative hover:scale-105 active:scale-95",
+            title: "\u70B9\u51FB\u53EF\u5728\u65B0\u6807\u7B7E\u9875\u4E2D\u6253\u5F00\u8BE6\u7EC6\u9700\u6C42\u89C4\u683C\u4E66"
           },
           "\u{1F4E2} \u539F\u578B\u66F4\u65B0\u6E05\u5355",
           /* @__PURE__ */ react_shim_default.createElement("span", { className: "w-1 h-1 bg-red-500 rounded-full animate-ping" })
