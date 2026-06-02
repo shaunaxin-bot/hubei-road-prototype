@@ -664,7 +664,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       return /* @__PURE__ */ React.createElement("circle", { key: i, cx: x, cy: y, r: "3", fill: "white", stroke: color, strokeWidth: "2" });
     })));
   };
-  var RecordTimelineItem = ({ date, time, type, title, source, statusColor, desc, tags, hasPdf, hasImages, side, lcTag, sparklinePoints, onTrace }) => {
+  var RecordTimelineItem = ({ date, time, type, title, source, statusColor, desc, tags, hasPdf, hasImages, side, lcTag, sparklinePoints, actionContext, onTrace }) => {
     const getStatusStyle = () => {
       switch (statusColor) {
         case "green":
@@ -1055,7 +1055,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           tags: item.tags,
           sparklinePoints: item.sparklinePoints,
           hasPdf: item.hasPdf,
-          hasImages: item.hasImages
+          hasImages: item.hasImages,
+          actionContext: item.actionContext
         }
       )), sortedRecords.length === 0 && /* @__PURE__ */ React.createElement("div", { className: "text-center text-slate-400 py-10" }, "\u6682\u65E0\u76F8\u5173\u6D41\u6C34\u8BB0\u5F55"))));
     };
