@@ -1850,10 +1850,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         label: "\u4E1A\u52A1\u6A21\u578B",
         icon: /* @__PURE__ */ React.createElement(Icon, { name: "Cpu", size: 18 }),
         children: [
-          { id: "model-ai", label: "\u667A\u80FD\u68C0\u6D4B", icon: /* @__PURE__ */ React.createElement(Icon, { name: "ScanLine", size: 14 }) },
-          { id: "model-test", label: "\u8BD5\u9A8C\u5206\u6790", icon: /* @__PURE__ */ React.createElement(Icon, { name: "FlaskConical", size: 14 }) },
-          { id: "model-qc", label: "\u8D28\u91CF\u7BA1\u63A7", icon: /* @__PURE__ */ React.createElement(Icon, { name: "CheckCircle", size: 14 }) },
-          { id: "model-safety", label: "\u5B89\u5168\u8BC4\u4F30", icon: /* @__PURE__ */ React.createElement(Icon, { name: "AlertTriangle", size: 14 }) },
+          { id: "model-hub", label: "\u7B97\u6CD5\u6A21\u578B\u5927\u5385", icon: /* @__PURE__ */ React.createElement(Icon, { name: "Cpu", size: 14 }) },
           { id: "model-report", label: "\u7EDF\u8BA1\u5E74\u62A5\u751F\u6210", icon: /* @__PURE__ */ React.createElement(Icon, { name: "FileText", size: 14 }) }
         ]
       },
@@ -1900,6 +1897,26 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         ]
       }
     ];
+    const ModelsHubView = () => {
+      const [activeTab, setActiveTab] = React.useState("ai");
+      return /* @__PURE__ */ React.createElement("div", { className: "h-full flex flex-col bg-slate-50 text-slate-800" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white border-b border-slate-200 px-4 py-3 shrink-0 flex flex-col sm:flex-row sm:items-center justify-between shadow-sm z-10 gap-3" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center" }, /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center mr-3 text-blue-600 shadow-inner" }, /* @__PURE__ */ React.createElement(Icon, { name: "Cpu", size: 18 })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", { className: "text-lg font-bold text-slate-800 flex items-center gap-2" }, "\u7B97\u6CD5\u6A21\u578B\u5927\u5385 ", /* @__PURE__ */ React.createElement("span", { className: "text-[10px] font-normal bg-slate-100 text-slate-500 px-2 py-0.5 rounded border border-slate-200" }, "Algorithm Models Hub")), /* @__PURE__ */ React.createElement("p", { className: "text-[11px] text-slate-500 mt-0.5" }, "\u8DE8\u9886\u57DF\u7684\u667A\u80FD\u68C0\u6D4B\u4E0E\u8D28\u91CF\u5B89\u5168\u8BC4\u4F30\u805A\u5408\u4E2D\u5FC3"))), /* @__PURE__ */ React.createElement("div", { className: "flex bg-slate-100/50 p-1 rounded-lg border border-slate-200 self-start sm:self-auto" }, /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          className: `px-3 py-1.5 text-xs font-medium rounded-md flex items-center transition-all ${activeTab === "ai" ? "bg-white text-blue-700 shadow-sm border border-slate-200/50" : "text-slate-500 hover:text-slate-700"}`,
+          onClick: () => setActiveTab("ai")
+        },
+        /* @__PURE__ */ React.createElement(Icon, { name: "ScanLine", size: 14, className: "mr-1.5" }),
+        " AI\u4E0E\u667A\u80FD\u68C0\u6D4B\u5F15\u64CE"
+      ), /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          className: `px-3 py-1.5 text-xs font-medium rounded-md flex items-center transition-all ${activeTab === "qc" ? "bg-white text-indigo-700 shadow-sm border border-slate-200/50" : "text-slate-500 hover:text-slate-700"}`,
+          onClick: () => setActiveTab("qc")
+        },
+        /* @__PURE__ */ React.createElement(Icon, { name: "ShieldCheck", size: 14, className: "mr-1.5" }),
+        " \u8D28\u91CF\u5206\u6790\u4E0E\u5B89\u5168\u8BC4\u4F30"
+      ))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 overflow-auto custom-scrollbar relative" }, activeTab === "ai" && /* @__PURE__ */ React.createElement("div", { className: "absolute inset-0 animate-fadeIn bg-white" }, /* @__PURE__ */ React.createElement(ModelAIView, null)), activeTab === "qc" && /* @__PURE__ */ React.createElement("div", { className: "p-4 space-y-6 animate-fadeIn max-w-7xl mx-auto w-full" }, /* @__PURE__ */ React.createElement(ModelTestView, null), /* @__PURE__ */ React.createElement("div", { className: "h-px bg-slate-200 w-full" }), /* @__PURE__ */ React.createElement(ModelQCView, null), /* @__PURE__ */ React.createElement("div", { className: "h-px bg-slate-200 w-full" }), /* @__PURE__ */ React.createElement(ModelSafetyView, null))));
+    };
     const renderContent = () => {
       switch (activeMenuId) {
         case "dashboard-dataops-arch":
@@ -1908,14 +1925,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           return /* @__PURE__ */ React.createElement(DataOpsValue, null);
         case "dashboard-quality":
           return /* @__PURE__ */ React.createElement(QualityDashboardView, null);
-        case "model-ai":
-          return /* @__PURE__ */ React.createElement(ModelAIView, null);
-        case "model-test":
-          return /* @__PURE__ */ React.createElement(ModelTestView, null);
-        case "model-qc":
-          return /* @__PURE__ */ React.createElement(ModelQCView, null);
-        case "model-safety":
-          return /* @__PURE__ */ React.createElement(ModelSafetyView, null);
+        case "model-hub":
+          return /* @__PURE__ */ React.createElement(ModelsHubView, null);
         case "data-products":
           return /* @__PURE__ */ React.createElement(DataProductsView, null);
         case "hq-datasets":
