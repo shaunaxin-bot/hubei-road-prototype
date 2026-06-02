@@ -1,5 +1,9 @@
 # Deploy script for GitHub Pages
 
+# Run build script
+Write-Host "Running build..."
+Start-Process -FilePath "C:\AIprojects\roaddata\ningbo\20260602\build.bat" -Wait -NoNewWindow
+
 # Copy latest Ningbo prototype to release folder
 Copy-Item -Path "C:\AIprojects\roaddata\ningbo\20260602\20260602-ningbo-prototype.html" -Destination "C:\AIprojects\roaddata\hubei\release\ningbo\index.html" -Force
 
