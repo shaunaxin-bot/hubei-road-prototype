@@ -1079,16 +1079,6 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       }
       window.open(targetPath, "_blank");
     };
-    const handleOpenNingboToB = () => {
-      const currentPath = window.location.pathname;
-      let targetPath = "ningbo/index.html";
-      if (currentPath.includes("/20260529/") || currentPath.includes("\\20260529\\")) {
-        targetPath = "../release/ningbo/index.html";
-      } else if (currentPath.includes("-hubei-prototype.html")) {
-        targetPath = "./release/ningbo/index.html";
-      }
-      window.open(targetPath, "_blank");
-    };
     useEffect(() => {
       localStorage.setItem("yearly_backlog_reqs", JSON.stringify(requirements));
     }, [requirements]);
@@ -2368,15 +2358,6 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           },
           /* @__PURE__ */ react_shim_default.createElement(Briefcase, { size: 10 }),
           "\u5B81\u6CE2\u7248 (To-B)"
-        ), /* @__PURE__ */ react_shim_default.createElement(
-          "button",
-          {
-            onClick: handleOpenNingboToB,
-            className: "px-2.5 py-1 rounded-md text-[10px] font-bold transition-all flex items-center gap-1 text-slate-650 hover:text-blue-700 hover:bg-blue-50 cursor-pointer border border-transparent hover:border-blue-200",
-            title: "\u70B9\u51FB\u5728\u65B0\u6807\u7B7E\u9875\u4E2D\u6253\u5F00\u72EC\u7ACB\u7684\u5B8C\u6574\u5B81\u6CE2\u4F01\u4E1A\u4FA7\u539F\u578B"
-          },
-          /* @__PURE__ */ react_shim_default.createElement(Briefcase, { size: 10 }),
-          "\u72EC\u7ACB\u4F01\u4E1A\u7248"
         )), /* @__PURE__ */ react_shim_default.createElement(
           "div",
           {
@@ -2795,6 +2776,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   var TrendingUp = (p) => /* @__PURE__ */ React.createElement(Icon2, { name: "TrendingUp", ...p });
   var MessageSquare = (p) => /* @__PURE__ */ React.createElement(Icon2, { name: "MessageSquare", ...p });
   var Settings2 = (p) => /* @__PURE__ */ React.createElement(Icon2, { name: "Settings", ...p });
+  var ExternalLink = (p) => /* @__PURE__ */ React.createElement(Icon2, { name: "ExternalLink", ...p });
   var Cpu2 = (p) => /* @__PURE__ */ React.createElement(Icon2, { name: "Cpu", ...p });
   var Check2 = (p) => /* @__PURE__ */ React.createElement(Icon2, { name: "Check", ...p });
   var Send2 = (p) => /* @__PURE__ */ React.createElement(Icon2, { name: "Send", ...p });
@@ -4083,7 +4065,14 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         /* @__PURE__ */ React.createElement("span", { className: `w-1.5 h-1.5 rounded-full shrink-0 ${activeMenu === sub.id ? "bg-white" : "bg-slate-300"}` }),
         /* @__PURE__ */ React.createElement("span", { className: "truncate" }, sub.title)
       ))));
-    }))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 flex flex-col h-full overflow-hidden relative" }, /* @__PURE__ */ React.createElement("header", { className: "h-20 bg-white border-b border-slate-200 flex items-center justify-between px-10 shrink-0 shadow-sm z-10" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "w-1.5 h-5 bg-blue-600 rounded" }), /* @__PURE__ */ React.createElement("h1", { className: "text-slate-800 font-black text-lg tracking-wider" }, "\u653F\u5E9C\u4FA7\u539F\u578B")), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-xs font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings2, { size: 14 }), " \u5F53\u524D\u7248\u672C\uFF1AV2026.06.01 (\u66F4\u65B0\u65F6\u95F4: 2026-06-01 14:12)"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 flex flex-col h-full overflow-hidden relative" }, /* @__PURE__ */ React.createElement("header", { className: "h-20 bg-white border-b border-slate-200 flex items-center justify-between px-10 shrink-0 shadow-sm z-10" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "w-1.5 h-5 bg-blue-600 rounded" }), /* @__PURE__ */ React.createElement("h1", { className: "text-slate-800 font-black text-lg tracking-wider" }, "\u653F\u5E9C\u4FA7\u539F\u578B")), /* @__PURE__ */ React.createElement("div", { className: "w-px h-5 bg-slate-300" }), /* @__PURE__ */ React.createElement("button", { onClick: () => {
+      const currentPath = window.location.pathname;
+      let targetPath = "ningbo/index.html";
+      if (currentPath.includes("/20260529/") || currentPath.includes("\\20260529\\") || currentPath.includes("/20260601/") || currentPath.includes("\\20260601\\")) {
+        targetPath = "../release/ningbo/index.html";
+      }
+      window.open(targetPath, "_blank");
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase2, { size: 16 }), "\u4F01\u4E1A\u4FA7\u539F\u578B", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings2, { size: 14 }), "\u653F\u5E9C\u4FA7\u7248\u672C\u66F4\u65B0\u65F6\u95F4: 2026-06-02 10:00", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "\u4F01\u4E1A\u4FA7\u7248\u672C\u66F4\u65B0\u65F6\u95F4: 2026-06-01 23:51"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
