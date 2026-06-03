@@ -490,7 +490,17 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 </head>
 <body>
     <div id="root"></div>
+    
+    <!-- 缓存清理浮层组件：一键重置所有浏览器存储与本地缓存 -->
+    <div id="dev-cache-helper" style="position: fixed; bottom: 8px; left: 8px; z-index: 99999; opacity: 0.6; transition: opacity 0.25s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+        <button onclick="localStorage.clear(); sessionStorage.clear(); window.location.href = window.location.pathname + '?t=' + Date.now();" 
+                style="background: rgb(220, 38, 38); color: white; border: none; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; items-center: center; gap: 4px;">
+            <span>⚡ 清除本地缓存并重置</span>
+        </button>
+    </div>
+
     <script>
+        console.log("%c[Build Timestamp]%c 2026-06-03 16:48:37", "color: white; background: #6366f1; padding: 2px 6px; border-radius: 4px;", "color: #6366f1; font-weight: bold;");
 (() => {
   // src/react-shim.js
   var React2 = window.React;
