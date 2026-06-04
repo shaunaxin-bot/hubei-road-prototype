@@ -3353,31 +3353,58 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         "财务资产板块",
         "农村公路板块"
       ];
+      const DOC_TO_SECTOR_MAP = {
+        "以奖代补预算.xlsx": "规划计划板块",
+        "湖北省公路计划执行评估软件升级改造费用测算-软件功能点估值法-v2.xlsx": "规划计划板块",
+        "软件改造费用测算报告-v2.docx": "规划计划板块",
+        "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx": "建设管理板块",
+        "普通国省道建设项目全流程管理系统架构图.jpg": "建设管理板块",
+        "关于普通国省道智慧管养系统升级的方案0521.doc": "养护管理板块",
+        "普通国省干线养护管理系统功能架构(1).pdf": "养护管理板块",
+        "微信图片_20260520082658.jpg": "养护管理板块",
+        "湖北省CBMS桥隧数字化管养平台升级实施方案.docx": "养护管理板块",
+        "湖北省汛期巡查平台建设实施方案.docx": "养护管理板块",
+        "（转换）高速公路养护综合管理系统建设方案汇报-0521-v4修（使用）.doc": "养护管理板块",
+        "0520-公路路网运行监测与应急指挥调度系统建设方案(3)(1).docx": "安全应急板块",
+        "20260522关于湖北公路服务区管理系统建设方案.docx": "收费运营板块",
+        "湖北公路服务区管理系统功能.pdf": "收费运营板块",
+        "关于湖北省农村公路智慧监管监督系统升级思路的汇报0521.doc": "农村公路板块"
+      };
       const sectorsToRender = selectedBlock === "ALL" ? sectors : [selectedBlock];
       return sectorsToRender.map((sectorName) => {
-        const reqsInSector = filteredReqs.filter((r) => r.block === sectorName);
-        const docMap = {};
-        reqsInSector.forEach((req) => {
-          const actualDocs = req.docs ? req.docs.filter((d) => !d.name.includes("报送模板")) : [];
-          if (actualDocs.length > 0) {
-            actualDocs.forEach((doc) => {
-              if (!docMap[doc.name]) {
-                docMap[doc.name] = {
-                  name: doc.name,
-                  url: doc.url,
-                  time: req.history && req.history.length > 0 ? req.history[0].date : "-",
-                  reqs: []
-                };
-              }
-              if (!docMap[doc.name].reqs.some((r) => r.id === req.id)) {
-                docMap[doc.name].reqs.push(req);
-              }
+        const sectorFileNames = Object.keys(DOC_TO_SECTOR_MAP).filter(
+          (fileName) => DOC_TO_SECTOR_MAP[fileName] === sectorName
+        );
+        const docsList = [];
+        sectorFileNames.forEach((fileName) => {
+          const associatedReqs = requirements.filter((req) => {
+            const matchesDoc = req.docs && req.docs.some((d) => d.name === fileName);
+            const matchesSearch = !searchTerm || req.id.toLowerCase().includes(searchTerm.toLowerCase()) || req.role.toLowerCase().includes(searchTerm.toLowerCase()) || req.desc.toLowerCase().includes(searchTerm.toLowerCase()) || fileName.toLowerCase().includes(searchTerm.toLowerCase());
+            return matchesDoc && matchesSearch;
+          });
+          if (associatedReqs.length > 0) {
+            let url = "#";
+            const reqWithDoc = associatedReqs.find((req) => req.docs && req.docs.some((d) => d.name === fileName));
+            if (reqWithDoc) {
+              const d = reqWithDoc.docs.find((d2) => d2.name === fileName);
+              if (d) url = d.url;
+            }
+            let time = "-";
+            const dates = associatedReqs.map((req) => req.history && req.history.length > 0 ? req.history[0].date : null).filter(Boolean);
+            if (dates.length > 0) {
+              time = dates.sort()[0];
+            }
+            docsList.push({
+              name: fileName,
+              url,
+              time,
+              reqs: associatedReqs
             });
           }
         });
         return {
           sector: sectorName,
-          docs: Object.values(docMap)
+          docs: docsList
         };
       });
     };
@@ -5026,7 +5053,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 11:04", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 11:16", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
