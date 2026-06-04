@@ -3214,8 +3214,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     }
   ];
 
-  // src/components/RoadDigitalRequirementsView.jsx
-  var DEFAULT_SCORE_CONFIG = {
+  // src/readiness_config.json
+  var readiness_config_default = {
     nameA: "部省对齐与部委考核",
     descA: "含上报/报送/CBMS/桥隧安全/巡检路检/交通量等",
     weightA: 70,
@@ -3226,6 +3226,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     descC: "数据集完备与已提交报价材料等",
     weightC: 20
   };
+
+  // src/components/RoadDigitalRequirementsView.jsx
+  var DEFAULT_SCORE_CONFIG = readiness_config_default;
   var getFeasibilityScore = (req, config) => {
     if (!req || req.status === "暂无要求") return 0;
     let wA = DEFAULT_SCORE_CONFIG.weightA;
@@ -3388,6 +3391,19 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         setModalConfig(DEFAULT_SCORE_CONFIG);
         const defaultApprovals = ["REQ-养护管理-05", "REQ-安全应急-03", "REQ-养护管理处-01", "REQ-综合计划处-01"];
         setModalApprovedIds(defaultApprovals);
+      }
+    };
+    const handleExportConfig = () => {
+      try {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(modalConfig, null, 2));
+        const downloadAnchor = document.createElement("a");
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", "readiness_config.json");
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+      } catch (e) {
+        alert("导出配置文件失败：" + e.message);
       }
     };
     const getAgentName = (req) => {
@@ -4060,7 +4076,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         onChange: () => handleToggleModalApproval(req.id),
         className: "w-3.5 h-3.5 rounded text-indigo-600 border-slate-350 focus:ring-indigo-500 cursor-pointer"
       }
-    )), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-2" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "bg-slate-100 text-slate-700 border text-[9px] font-bold px-1 py-0.2 rounded" }, req.block.replace("板块", ""))), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-2 font-mono font-bold text-slate-800" }, req.id), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-2 font-bold text-slate-700", title: req.desc }, req.role), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-2 text-center" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: `font-black ${req.score >= 80 ? "text-emerald-600 font-extrabold" : req.score >= 60 ? "text-indigo-600" : "text-slate-400"}` }, req.score, "分")), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-2 text-center" }, req.isRecommended ? /* @__PURE__ */ react_shim_default.createElement("span", { className: "bg-emerald-50 text-emerald-700 border border-emerald-250 text-[8.5px] font-bold px-1 py-0.2 rounded shadow-sm" }, "推荐") : /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 text-[8.5px] font-bold" }, "-"))))))))), /* @__PURE__ */ react_shim_default.createElement("div", { className: "bg-slate-50 border-t border-slate-200 p-3 flex justify-between shrink-0" }, /* @__PURE__ */ react_shim_default.createElement(
+    )), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-2" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "bg-slate-100 text-slate-700 border text-[9px] font-bold px-1 py-0.2 rounded" }, req.block.replace("板块", ""))), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-2 font-mono font-bold text-slate-800" }, req.id), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-2 font-bold text-slate-700", title: req.desc }, req.role), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-2 text-center" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: `font-black ${req.score >= 80 ? "text-emerald-600 font-extrabold" : req.score >= 60 ? "text-indigo-600" : "text-slate-400"}` }, req.score, "分")), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-2 text-center" }, req.isRecommended ? /* @__PURE__ */ react_shim_default.createElement("span", { className: "bg-emerald-50 text-emerald-700 border border-emerald-250 text-[8.5px] font-bold px-1 py-0.2 rounded shadow-sm" }, "推荐") : /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 text-[8.5px] font-bold" }, "-"))))))))), /* @__PURE__ */ react_shim_default.createElement("div", { className: "bg-slate-50 border-t border-slate-200 p-3 flex justify-between shrink-0" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ react_shim_default.createElement(
       "button",
       {
         onClick: handleResetModalSettings,
@@ -4068,7 +4084,15 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       },
       /* @__PURE__ */ react_shim_default.createElement(Icon, { name: "RefreshCw", size: 12, className: "text-slate-500" }),
       "恢复默认"
-    ), /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ react_shim_default.createElement(
+    ), /* @__PURE__ */ react_shim_default.createElement(
+      "button",
+      {
+        onClick: handleExportConfig,
+        className: "px-3.5 py-1.5 border border-indigo-200 hover:border-indigo-300 text-indigo-700 bg-indigo-50 hover:bg-indigo-100 font-bold text-xs rounded-lg shadow-sm transition flex items-center gap-1.5",
+        title: "将当前修改配置导出为 readiness_config.json，放入 customer 目录打包可永久生效"
+      },
+      "\u{1F4E5} 导出配置 JSON"
+    )), /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ react_shim_default.createElement(
       "button",
       {
         onClick: () => setShowReadinessModal(false),
@@ -5388,7 +5412,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 18:43", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 18:50", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
