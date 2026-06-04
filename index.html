@@ -4442,7 +4442,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         levelText: "桥隧与边坡监测时序及修缮计划",
         mapping: "鄂标 GL205100 ⇄ 部标表 4.5.10",
         pkey: "StructureUUID / RouteCode",
-        depts: "公路养护管理处（工程处）",
+        depts: "工程技术处",
         agents: ["基础设施结构健康监测", "高速公路路网管养"],
         l2: { s: "桥梁/隧道/边坡物理台账、结构设计图纸、传感器点位清册", d: "传感器流式应变温度位移数据、日常养护巡检记录、路面状况检测评定", t: "结构物健康评定报告、安全预警通知单、大中修养护投资计划" },
         securityDesc: "桥隧及边坡结构健康监测数据与病害综合修缮数据，实行省公路中心常规应用层安全审计共享"
@@ -5283,9 +5283,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           { level: "L3", type: "物理结构资产", core: "桥隧结构设计图纸、传感器测点清册、高边坡台账" },
           { level: "L2", type: "健康监测评估", core: "结构物定期评定报告、现场安全巡检记录、预警通知单" }
         ],
-        static: { items: ["桥梁/隧道/边坡物理台账", "结构设计图纸", "传感器点位清册"], depts: ["公路养护管理处（工程处）"] },
-        dynamic: { items: ["传感器流式应变温度位移数据", "日常养护巡检记录", "路面状况检测评定"], depts: ["公路养护管理处（工程处）"] },
-        special: { items: ["结构物健康评定报告", "安全预警通知单", "大中修养护投资计划"], depts: ["公路养护管理处（工程处）"] },
+        static: { items: ["桥梁/隧道/边坡物理台账", "结构设计图纸", "传感器点位清册"], depts: ["工程技术处"] },
+        dynamic: { items: ["传感器流式应变温度位移数据", "日常养护巡检记录", "路面状况检测评定"], depts: ["工程技术处"] },
+        special: { items: ["结构物健康评定报告", "安全预警通知单", "大中修养护投资计划"], depts: ["工程技术处"] },
         pdfs: ["《湖北普通公路基础数据库规范.pdf》"]
       }
     };
@@ -5377,7 +5377,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       },
       "5.8": {
         title: "工程技术板块",
-        role: "公路养护管理处（工程处）、检测中心",
+        role: "工程技术处、检测中心",
         pdfs: ["数据统筹_流程图_26033106.pdf 目录八", "数据统筹_数据流转表汇总_26033103.pdf 中'公路中心与工程技术相关表' (Page 160)"],
         agents: [
           { name: "桥梁结构健康监测智能体", desc: "高频拉取主梁挠度、支座变位、索力及伸缩缝变形物联感知流，对桥梁结构异常进行波形滤波与秒级报警。", steps: ["传感器流式解析", "高频温度耦合消除", "跨度动挠度计算", "超限三级预警派单"], tokens: { tech: "动静态挠度解算算法", biz: "索力变化/支座变位", mgt: "桥梁安全预警通知单" } },
@@ -5594,7 +5594,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 20:50", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 20:55", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
