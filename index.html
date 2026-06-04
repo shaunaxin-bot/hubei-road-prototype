@@ -3281,10 +3281,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       descA: "含上报/报送/CBMS/桥隧安全/巡检路检/交通量等",
       weightA: 70,
       nameB: "跨处室会商价值",
-      descB: "含协同/联动/联合/跨部门/多源对齐等",
+      descB: "含上报/养护统计年报/公路基础数据库/公路电子地图/交调/CBMS/CPMS/桥隧安全等",
       weightB: 10,
-      nameC: "业务提交与佐证材料",
-      descC: "数据集+产品完备度与已提交材料等",
+      nameC: "业务多次要求与提供佐证材料",
+      descC: "数据集完备与已提交报价材料等",
       weightC: 20
     });
     const [modalApprovedIds, setModalApprovedIds] = useState([]);
@@ -3318,13 +3318,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           } else {
             const defaultConfig = {
               nameA: "部省对齐与部委考核",
-              descA: "含上报/报送/CBMS/桥隧安全/巡检路检/交通量等",
+              descA: "含上报/养护统计年报/公路基础数据库/公路电子地图/交调/CBMS/CPMS/桥隧安全等",
               weightA: 70,
               nameB: "跨处室会商价值",
               descB: "含协同/联动/联合/跨部门/多源对齐等",
               weightB: 10,
-              nameC: "业务提交与佐证材料",
-              descC: "数据集+产品完备度与已提交材料等",
+              nameC: "业务多次要求与提供佐证材料",
+              descC: "数据集完备与已提交报价材料等",
               weightC: 20
             };
             setModalConfig(defaultConfig);
@@ -3350,13 +3350,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           localStorage.setItem("readiness_migrated_v2", "true");
           setModalConfig({
             nameA: "部省对齐与部委考核",
-            descA: "含上报/报送/CBMS/桥隧安全/巡检路检/交通量等",
+            descA: "含上报/养护统计年报/公路基础数据库/公路电子地图/交调/CBMS/CPMS/桥隧安全等",
             weightA: 70,
             nameB: "跨处室会商价值",
             descB: "含协同/联动/联合/跨部门/多源对齐等",
             weightB: 10,
-            nameC: "业务提交与佐证材料",
-            descC: "数据集+产品完备度与已提交材料等",
+            nameC: "业务多次要求与提供佐证材料",
+            descC: "数据集完备与已提交报价材料等",
             weightC: 20
           });
           setCalculatedWeights({ weightA: 70, weightB: 10, weightC: 20 });
@@ -3679,9 +3679,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       }
     ), /* @__PURE__ */ react_shim_default.createElement("div", { className: "bg-black border border-slate-700 rounded-xl p-3 mb-4 shrink-0 shadow-lg" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between items-center mb-2 border-b border-slate-800 pb-1.5" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-[10px] text-white font-black tracking-widest uppercase" }, "湖北公路智能体开发标准流程阶段定义"), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-[9px] bg-slate-900 text-slate-100 px-1.5 py-0.5 rounded font-black border border-slate-700" }, "当前阶段：收集业务要求 (可点击)")), /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center justify-between gap-1" }, [
       { step: "1", title: "收集业务要求", desc: "报送业务痛点", active: true, clickable: true },
-      { step: "2", title: "整理应用场景", desc: "对齐应用", active: false },
-      { step: "3", title: "梳理功能需求", desc: "业务流程", active: false },
-      { step: "4", title: "构建业务流程", desc: "原型演练", active: false },
+      { step: "2", title: "整理应用场景", desc: "深入理解业务", active: false },
+      { step: "3", title: "梳理功能需求", desc: "深入理解需求", active: false },
+      { step: "4", title: "构建业务流程", desc: "原型演练达成共识", active: false },
       { step: "5", title: "提出数据需求", desc: "高质量数据集/数据产品建设", active: false },
       { step: "6", title: "研发智能体", desc: "智能体部署落地", active: false }
     ].map((p, idx) => /* @__PURE__ */ react_shim_default.createElement(react_shim_default.Fragment, { key: idx }, /* @__PURE__ */ react_shim_default.createElement(
@@ -3733,7 +3733,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         className: `px-3 py-1 rounded-md text-xs font-black transition-all flex items-center gap-1.5
                             ${viewMode === "requirements" ? "bg-white text-slate-800 shadow-sm border border-slate-200" : "text-slate-500 hover:text-slate-800"}`
       },
-      "\u{1F4CB} 行业业务要求视角"
+      "\u{1F4CB} 业务要求视角"
     ), /* @__PURE__ */ react_shim_default.createElement(
       "button",
       {
@@ -3741,7 +3741,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         className: `px-3 py-1 rounded-md text-xs font-black transition-all flex items-center gap-1.5
                             ${viewMode === "documents" ? "bg-white text-slate-800 shadow-sm border border-slate-200" : "text-slate-500 hover:text-slate-800"}`
       },
-      "\u{1F4C2} 业务板块资料视角"
+      "\u{1F4C2} 业务资料视角"
     )), /* @__PURE__ */ react_shim_default.createElement("div", { className: "text-[10px] text-slate-400 font-bold hidden sm:block" }, "\u{1F4A1} 点击行查看智能体岗位诉求、大模型映射以及综合实施评估")), /* @__PURE__ */ react_shim_default.createElement(react_shim_default.Fragment, null, /* @__PURE__ */ react_shim_default.createElement("div", { className: "mx-3 mt-3 px-3 py-2 bg-indigo-50 border border-indigo-100/80 text-indigo-700 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-sm leading-normal" }, /* @__PURE__ */ react_shim_default.createElement("span", null, "\u{1F4A1} 提示：高质量数据集和数据产品清单均源自于 《10-湖北省交通运输数字底座及数据运营创新示范工程可行性报告-0203.pdf》 报告文件。")), /* @__PURE__ */ react_shim_default.createElement("div", { className: "border-b border-slate-100 p-3 shrink-0 flex flex-col md:flex-row justify-between items-stretch md:items-center gap-3" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center gap-1.5 overflow-x-auto custom-scroll py-0.5" }, blocks.map((b) => /* @__PURE__ */ react_shim_default.createElement(
       "button",
       {
@@ -5460,7 +5460,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 16:59", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 17:32", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
