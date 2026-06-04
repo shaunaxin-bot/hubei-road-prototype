@@ -3676,7 +3676,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         { id: "养护处", name: "养护处" },
         { id: "应急中心", name: "应急中心" },
         { id: "费收处", name: "费收处" },
-        { id: "农路处", name: "农路处" }
+        { id: "农路处", name: "农路处" },
+        { id: "财务资产板块", name: "财务资产板块 (暂无提交资料)" }
       ];
       const filteredFolders = folders.filter((folder) => {
         if (selectedBlock === "ALL") return true;
@@ -3698,6 +3699,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         if (selectedBlock === "农村公路板块") {
           return folder.id === "农路处";
         }
+        if (selectedBlock === "财务资产板块") {
+          return folder.id === "财务资产板块";
+        }
         return false;
       });
       return filteredFolders.map((folder) => {
@@ -3708,11 +3712,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           const allAssociated = requirements.filter((req) => req.docs && req.docs.some((d) => d.name === fileName));
           const filteredAssociated = allAssociated.filter((req) => {
             const matchesSearch = !searchTerm || req.id.toLowerCase().includes(searchTerm.toLowerCase()) || req.role.toLowerCase().includes(searchTerm.toLowerCase()) || req.desc.toLowerCase().includes(searchTerm.toLowerCase()) || fileName.toLowerCase().includes(searchTerm.toLowerCase());
-            const matchesBlock = selectedBlock === "ALL" || req.block === selectedBlock;
-            return matchesSearch && matchesBlock;
+            return matchesSearch;
           });
           const fileMatchesSearch = !searchTerm || fileName.toLowerCase().includes(searchTerm.toLowerCase());
-          const shouldShow = filteredAssociated.length > 0 || allAssociated.length === 0 && selectedBlock === "ALL" && fileMatchesSearch;
+          const shouldShow = fileMatchesSearch;
           if (shouldShow) {
             let url = "#";
             const reqWithDoc = allAssociated.find((req) => req.docs && req.docs.some((d) => d.name === fileName));
@@ -3738,7 +3741,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           folderId: folder.id,
           docs: docsList
         };
-      }).filter((group) => group.docs.length > 0 || selectedBlock === "ALL");
+      }).filter((group) => group.docs.length > 0 || selectedBlock === "ALL" || selectedBlock === "财务资产板块");
     };
     const isSupplement = (reqId) => {
       return [
@@ -3942,7 +3945,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       })())
     )))) : /* @__PURE__ */ react_shim_default.createElement("table", { className: "w-full border-collapse text-left text-xs text-slate-700 relative" }, /* @__PURE__ */ react_shim_default.createElement("thead", { className: "bg-slate-50 sticky top-0 z-10 border-b border-slate-200 text-slate-500 uppercase tracking-wider font-bold" }, /* @__PURE__ */ react_shim_default.createElement("tr", null, /* @__PURE__ */ react_shim_default.createElement("th", { className: "p-3 w-[25%]" }, "要求资料名称及时间"), /* @__PURE__ */ react_shim_default.createElement("th", { className: "p-3 w-[35%]" }, "高质量数据集和数据产品"), /* @__PURE__ */ react_shim_default.createElement("th", { className: "p-3 w-[40%]" }, "关联智能体与开发状态"))), /* @__PURE__ */ react_shim_default.createElement("tbody", { className: "divide-y divide-slate-200 font-medium" }, (() => {
       const groupedData = getSectorDocsData();
-      return groupedData.map((group) => /* @__PURE__ */ react_shim_default.createElement(react_shim_default.Fragment, { key: group.sector }, /* @__PURE__ */ react_shim_default.createElement("tr", { className: "bg-slate-50/80 font-black border-y border-slate-200/80" }, /* @__PURE__ */ react_shim_default.createElement("td", { colSpan: "3", className: "p-2.5 text-slate-800 font-extrabold text-[11px] bg-slate-100/50" }, "\u{1F4CC} ", group.sector)), group.docs.length === 0 ? /* @__PURE__ */ react_shim_default.createElement("tr", { className: "border-b border-slate-150" }, /* @__PURE__ */ react_shim_default.createElement("td", { colSpan: "3", className: "p-4 text-center text-slate-400 font-bold italic bg-slate-50/20" }, "暂无要求资料")) : group.docs.map((doc) => /* @__PURE__ */ react_shim_default.createElement("tr", { key: doc.name, className: "hover:bg-slate-50/50 transition-colors border-b border-slate-100" }, /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-3 font-bold text-slate-800 leading-normal" }, /* @__PURE__ */ react_shim_default.createElement(
+      return groupedData.map((group) => /* @__PURE__ */ react_shim_default.createElement(react_shim_default.Fragment, { key: group.sector }, /* @__PURE__ */ react_shim_default.createElement("tr", { className: "bg-slate-50/80 font-black border-y border-slate-200/80" }, /* @__PURE__ */ react_shim_default.createElement("td", { colSpan: "3", className: "p-2.5 text-slate-800 font-extrabold text-[11px] bg-slate-100/50" }, "\u{1F4CC} ", group.sector)), group.docs.length === 0 ? /* @__PURE__ */ react_shim_default.createElement("tr", { className: "border-b border-slate-150" }, /* @__PURE__ */ react_shim_default.createElement("td", { colSpan: "3", className: "p-4 text-center text-slate-400 font-bold italic bg-slate-50/20" }, "暂无提交资料")) : group.docs.map((doc) => /* @__PURE__ */ react_shim_default.createElement("tr", { key: doc.name, className: "hover:bg-slate-50/50 transition-colors border-b border-slate-100" }, /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-3 font-bold text-slate-800 leading-normal" }, /* @__PURE__ */ react_shim_default.createElement(
         "a",
         {
           href: doc.url,
@@ -5589,7 +5592,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 19:58", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 20:10", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
