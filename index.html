@@ -3528,23 +3528,16 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         "财务资产板块",
         "农村公路板块"
       ];
-      const DOC_TO_SECTOR_MAP = {
-        "以奖代补预算.xlsx": "规划计划板块",
-        "湖北省公路计划执行评估软件升级改造费用测算-软件功能点估值法-v2.xlsx": "规划计划板块",
-        "软件改造费用测算报告-v2.docx": "规划计划板块",
-        "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx": "建设管理板块",
-        "普通国省道建设项目全流程管理系统架构图.jpg": "建设管理板块",
-        "关于普通国省道智慧管养系统升级的方案0521.doc": "养护管理板块",
-        "普通国省干线养护管理系统功能架构(1).pdf": "养护管理板块",
-        "微信图片_20260520082658.jpg": "养护管理板块",
-        "湖北省CBMS桥隧数字化管养平台升级实施方案.docx": "养护管理板块",
-        "湖北省汛期巡查平台建设实施方案.docx": "养护管理板块",
-        "（转换）高速公路养护综合管理系统建设方案汇报-0521-v4修（使用）.doc": "养护管理板块",
-        "0520-公路路网运行监测与应急指挥调度系统建设方案(3)(1).docx": "安全应急板块",
-        "20260522关于湖北公路服务区管理系统建设方案.docx": "收费运营板块",
-        "湖北公路服务区管理系统功能.pdf": "收费运营板块",
-        "关于湖北省农村公路智慧监管监督系统升级思路的汇报0521.doc": "农村公路板块"
-      };
+      const DOC_TO_SECTOR_MAP = {};
+      requirements.forEach((req) => {
+        if (req.docs && req.block) {
+          req.docs.forEach((doc) => {
+            if (doc.name) {
+              DOC_TO_SECTOR_MAP[doc.name] = req.block;
+            }
+          });
+        }
+      });
       const sectorsToRender = selectedBlock === "ALL" ? sectors : [selectedBlock];
       return sectorsToRender.map((sectorName) => {
         const sectorFileNames = Object.keys(DOC_TO_SECTOR_MAP).filter(
@@ -3819,7 +3812,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         return /* @__PURE__ */ react_shim_default.createElement("div", { key: req.id, className: "my-1.5 text-slate-650" }, /* @__PURE__ */ react_shim_default.createElement("p", { className: "font-semibold text-slate-800" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold mr-1 text-[10px]" }, "[数据集]"), req.dataset || "暂无", isCrossSector && /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-600 font-black ml-1.5 text-[10.5px]" }, "(跨板块关联: ", req.block, ")")), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10.5px]" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold mr-1 text-[10px]" }, "[数据产品]"), req.product || "暂无"));
       })), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-3 leading-relaxed" }, doc.reqs.map((req) => {
         const isCrossSector = req.block !== group.sector;
-        return /* @__PURE__ */ react_shim_default.createElement("p", { key: req.id, className: "text-slate-700 my-1.5 font-semibold flex flex-wrap items-center gap-y-1" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 mr-1 text-[10px]" }, "•"), getAgentName(req), " - ", req.role, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold ml-1.5 text-[10.5px]" }, "(", req.status, ")"), isCrossSector && /* @__PURE__ */ react_shim_default.createElement(react_shim_default.Fragment, null, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-600 font-black ml-1.5 text-[10.5px] mr-2" }, "(跨板块关联: ", req.block, ")"), /* @__PURE__ */ react_shim_default.createElement(
+        return /* @__PURE__ */ react_shim_default.createElement("p", { key: req.id, className: "text-slate-700 my-1.5 font-semibold flex flex-wrap items-center gap-y-1" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 mr-1 text-[10px]" }, "•"), getAgentName(req), " - ", req.role, /* @__PURE__ */ react_shim_default.createElement("span", { className: "ml-1.5 bg-slate-100 text-slate-700 border px-1 py-0.5 rounded text-[9px] font-black" }, "就绪度: ", getFeasibilityScore(req), "分"), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold ml-1.5 text-[10.5px]" }, "(", req.status, ")"), isCrossSector && /* @__PURE__ */ react_shim_default.createElement(react_shim_default.Fragment, null, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-600 font-black ml-1.5 text-[10.5px] mr-2" }, "(跨板块关联: ", req.block, ")"), /* @__PURE__ */ react_shim_default.createElement(
           "button",
           {
             onClick: () => handleOpenConsensusCabin(req, group.sector),
@@ -5467,7 +5460,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 16:48", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 16:59", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
