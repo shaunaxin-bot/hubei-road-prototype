@@ -2686,7 +2686,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     // 审批项目 (原 approvalList，与全局合并)
     {
       id: "REQ-工程技术处-01",
-      block: "养护管理板块",
+      block: "工程技术",
       role: "基础设施结构健康监测角色 (新增)",
       desc: "长大桥梁、隧道物理传感器数据接入与三网健康评定预警。",
       level: "L4 级极敏感",
@@ -2705,7 +2705,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     },
     {
       id: "REQ-工程技术处-02",
-      block: "养护管理板块",
+      block: "工程技术",
       role: "高速公路路网管养角色 (新增)",
       desc: "高速公路日常巡检、路况评定及大中修计划集成。",
       level: "L3 级较敏感",
@@ -2722,8 +2722,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     },
     {
       id: "REQ-综合计划处-01",
-      block: "规划计划板块",
-      role: "交调年报与奖补融合角色 (新增)",
+      block: "养护管理板块",
+      role: "养护管理处 - 交调年报与奖补融合角色 (新增)",
       desc: "交调3.0日均交通量与养护统计年报数据勾稽对比，并与以奖代补数据自动核减。",
       level: "L4 级极敏感",
       dataset: "交调日均交通量与统计年报校核对齐数据集",
@@ -3318,6 +3318,38 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     ]
   };
 
+  // src/folder_docs.json
+  var folder_docs_default = {
+    养护处: [
+      "关于普通国省道智慧管养系统升级的方案0521.doc",
+      "普通国省干线养护管理系统功能架构(1).pdf"
+    ],
+    农路处: [
+      "关于湖北省农村公路智慧监管监督系统升级思路的汇报0521.doc"
+    ],
+    工程处: [
+      "微信图片_20260520082658.jpg",
+      "湖北省CBMS桥隧数字化管养平台升级实施方案.docx",
+      "湖北省汛期巡查平台建设实施方案.docx",
+      "（转换）高速公路养护综合管理系统建设方案汇报-0521-v4修（使用）.doc"
+    ],
+    应急中心: [
+      "0520-公路路网运行监测与应急指挥调度系统建设方案(3)(1).docx"
+    ],
+    计划处建设处: [
+      "0528—交调系统修改版.xlsx",
+      "以奖代补预算.xlsx",
+      "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx",
+      "普通国省道建设项目全流程管理系统架构图.jpg",
+      "湖北省公路计划执行评估软件升级改造费用测算-软件功能点估值法-v2.xlsx",
+      "软件改造费用测算报告-v2.docx"
+    ],
+    费收处: [
+      "20260522关于湖北公路服务区管理系统建设方案.docx",
+      "湖北公路服务区管理系统功能.pdf"
+    ]
+  };
+
   // src/readiness_config.json
   var readiness_config_default = {
     nameA: "部省对齐与部委考核",
@@ -3562,6 +3594,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       { id: "ALL", name: "全部板块" },
       { id: "规划计划板块", name: "规划计划" },
       { id: "建设管理板块", name: "建设管理" },
+      { id: "工程技术", name: "工程技术" },
       { id: "养护管理板块", name: "养护管理" },
       { id: "安全应急板块", name: "安全应急" },
       { id: "收费运营板块", name: "收费运营" },
@@ -3616,36 +3649,24 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       return 0;
     });
     const getSectorDocsData = () => {
-      const sectors = [
-        "规划计划板块",
-        "建设管理板块",
-        "养护管理板块",
-        "安全应急板块",
-        "收费运营板块",
-        "财务资产板块",
-        "农村公路板块"
+      const folders = [
+        { id: "计划处建设处", name: "计划处建设处" },
+        { id: "工程处", name: "工程处" },
+        { id: "养护处", name: "养护处" },
+        { id: "应急中心", name: "应急中心" },
+        { id: "费收处", name: "费收处" },
+        { id: "农路处", name: "农路处" }
       ];
-      const DOC_TO_SECTOR_MAP = {};
-      requirements.forEach((req) => {
-        if (req.docs && req.block) {
-          req.docs.forEach((doc) => {
-            if (doc.name) {
-              DOC_TO_SECTOR_MAP[doc.name] = req.block;
-            }
-          });
-        }
-      });
-      const sectorsToRender = selectedBlock === "ALL" ? sectors : [selectedBlock];
-      return sectorsToRender.map((sectorName) => {
-        const sectorFileNames = Object.keys(DOC_TO_SECTOR_MAP).filter(
-          (fileName) => DOC_TO_SECTOR_MAP[fileName] === sectorName
-        );
+      return folders.map((folder) => {
+        const filesInFolder = folder_docs_default[folder.id] || [];
         const docsList = [];
-        sectorFileNames.forEach((fileName) => {
+        filesInFolder.forEach((fileName) => {
+          if (fileName.includes("报送模板")) return;
           const associatedReqs = requirements.filter((req) => {
             const matchesDoc = req.docs && req.docs.some((d) => d.name === fileName);
             const matchesSearch = !searchTerm || req.id.toLowerCase().includes(searchTerm.toLowerCase()) || req.role.toLowerCase().includes(searchTerm.toLowerCase()) || req.desc.toLowerCase().includes(searchTerm.toLowerCase()) || fileName.toLowerCase().includes(searchTerm.toLowerCase());
-            return matchesDoc && matchesSearch;
+            const matchesBlock = selectedBlock === "ALL" || req.block === selectedBlock;
+            return matchesDoc && matchesSearch && matchesBlock;
           });
           if (associatedReqs.length > 0) {
             let url = "#";
@@ -3668,10 +3689,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           }
         });
         return {
-          sector: sectorName,
+          sector: folder.name,
           docs: docsList
         };
-      });
+      }).filter((group) => group.docs.length > 0 || selectedBlock === "ALL");
     };
     const isSupplement = (reqId) => {
       return [
@@ -5522,7 +5543,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 19:10", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 19:38", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
