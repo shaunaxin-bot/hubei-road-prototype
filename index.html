@@ -3343,7 +3343,29 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       { id: "财务资产板块", name: "财务资产" },
       { id: "农村公路板块", name: "农村公路" }
     ];
-    const top4Reqs = [...requirements].filter((r) => r.status !== "暂无要求").sort((a, b) => getFeasibilityScore(b) - getFeasibilityScore(a)).slice(0, 4);
+    const isCommonHighway = (req) => {
+      if (!req) return false;
+      const text = (req.role + " " + req.desc + " " + req.id).toLowerCase();
+      if (text.includes("普通公路") || text.includes("普通国省") || text.includes("国省干线") || text.includes("国省道") || text.includes("农村公路") || text.includes("农路") || text.includes("干线") || text.includes("养护管理处-01") || text.includes("农村公路处")) {
+        return true;
+      }
+      if (text.includes("高速") && !text.includes("普通")) {
+        return false;
+      }
+      return false;
+    };
+    const top4Reqs = [...requirements].filter((r) => r.status !== "暂无要求").sort((a, b) => {
+      const scoreB = getFeasibilityScore(b);
+      const scoreA = getFeasibilityScore(a);
+      if (scoreB !== scoreA) {
+        return scoreB - scoreA;
+      }
+      const isCommonA = isCommonHighway(a);
+      const isCommonB = isCommonHighway(b);
+      if (isCommonA && !isCommonB) return -1;
+      if (!isCommonA && isCommonB) return 1;
+      return 0;
+    }).slice(0, 4);
     const filteredReqs = requirements.filter((req) => {
       const matchesBlock = selectedBlock === "ALL" || req.block === selectedBlock;
       const matchesSearch = req.id.toLowerCase().includes(searchTerm.toLowerCase()) || req.role.toLowerCase().includes(searchTerm.toLowerCase()) || req.desc.toLowerCase().includes(searchTerm.toLowerCase());
@@ -5003,7 +5025,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 09:24", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-04 09:39", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-03 20:21"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
