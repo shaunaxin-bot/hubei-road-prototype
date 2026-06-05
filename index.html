@@ -2694,7 +2694,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       modelValue: "运行监测网 / 安全预警模型",
       improvement: "【提质】结构异动识别准确率提升至 99.8%\n【提效】安全事件感知至应急派单由 2小时 降至 30秒",
       docs: [],
-      status: "待审核",
+      status: "无需审批",
       history: [
         { date: "05-24", msg: "[工程处报送] 拟新增长大桥梁在线结构健康监测及气象联动预警。" }
       ]
@@ -2710,7 +2710,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       modelValue: "运行监测网 / 安全预警模型",
       improvement: "【提质】隧道二衬形变预警准确度达到 99%\n【提效】异常事件感知响应时效降至 1分钟内",
       docs: [],
-      status: "待审核",
+      status: "无需审批",
       history: [
         { date: "05-24", msg: "[工程处报送] 新增隧道洞体结构沉降收敛与环境监测。" }
       ]
@@ -2726,7 +2726,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       modelValue: "运行监测网 / 安全预警模型",
       improvement: "【提质】高边坡失稳坍塌超前预测准确度达 95%\n【提效】突发滑坡预警到应急阻断发布时效由 1小时 降至 2分钟",
       docs: [],
-      status: "待审核",
+      status: "无需审批",
       history: [
         { date: "05-24", msg: "[工程处报送] 新增高边坡雨量及位移监测点。" }
       ]
@@ -2742,7 +2742,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       modelValue: "行业管理网 / 资产评定模型",
       improvement: "【提质】高速公路隐性路面病害漏检率降低 40%\n【提效】年度养护大中修投资计划编制缩短 85%",
       docs: [],
-      status: "待审核",
+      status: "无需审批",
       history: [
         { date: "05-24", msg: "[工程处提出] 需结合定检测算数据自动拟合大中修中长期路网预算。" }
       ]
@@ -2822,7 +2822,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       modelValue: "行业管理网 / 绩效审计模型",
       improvement: "【提质】路长巡查虚假轨迹排查率 98%\n【提效】以奖代补考核测算周期缩短 90% (由3天缩短至3分钟)",
       docs: [],
-      status: "已通过",
+      status: "待审核",
       history: [
         { date: "05-27", msg: "[农路处确认] 已将路长制考核指标并入智慧监管模块。" }
       ]
@@ -2838,7 +2838,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       modelValue: "行业管理网 / 绩效审计模型",
       improvement: "【提质】投诉与违规整改线上闭环核销率 100%\n【提效】暗访打分到整改通知下发时效由 3天 缩短至 1分钟",
       docs: [],
-      status: "已通过",
+      status: "待审核",
       history: [
         { date: "05-27", msg: "[费收处确认] 暗访评价打分及申诉后台开发完成，已上线模拟演练。" }
       ]
@@ -3546,6 +3546,44 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       if (model.includes("拥堵研判")) return "拥堵研判智能体";
       return "数据治理智能体";
     };
+    const EMPOWERMENT_DETAILS = {
+      "AGENT-规划计划-04": {
+        path: "在顶层设计中引入“交调3.0日均交通量 + 统计年报 + 资金以奖代补”三向数据勾稽自动核减机制。",
+        reason: "防范里程虚报套取部省奖补，自动进行穿透式流量核减审计。",
+        plate: "规划计划板块 (归口养护管理)",
+        material: "《(省公路中心)湖北公路数字化转型升级行业业务要求报送模板.docx》"
+      },
+      "AGENT-建设管理-05": {
+        path: "在顶层设计中引入“项目前期要件批文自动抽取与移交接养一站式闭环流程机制”。",
+        reason: "连通建设与管养两阶段，保障项目交竣工确权资产自动无缝结转。",
+        plate: "建设管理板块",
+        material: "《关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx》"
+      },
+      "AGENT-养护管理-06": {
+        path: "在顶层设计中增设“日常巡检路况PCI预测与中长期大中修计划投资预算自动算账预测闭环模型”。",
+        reason: "补齐传统智慧管养缺乏剩余寿命PCI预测与投资预算计划科学编排的断层。",
+        plate: "养护管理板块",
+        material: "《关于普通国省道智慧管养系统升级的方案0521.doc》、《普通国省干线养护管理系统功能架构(1).pdf》"
+      },
+      "AGENT-安全应急-04": {
+        path: "在顶层设计中融入“公路局、市州、路段公司、高速交警、路政企业多方多级联合应急派单与路网流量推演机制”。",
+        reason: "打破单一应急指挥壁垒，多部门联勤协作，将派单响应由15分钟降至2分钟内。",
+        plate: "安全应急板块",
+        material: "《0520-公路路网运行监测与应急指挥调度系统建设方案(3)(1).docx》"
+      },
+      "AGENT-收费运营-04": {
+        path: "在顶层设计中融入“多行业联合信誉考核、服务区实时舆情监控和红黄牌限期整改闭环监督模型”。",
+        reason: "整合服务区内外部综合治理指标，形成一体化信誉评定与整改核销闭环。",
+        plate: "收费运营板块",
+        material: "《20260522关于湖北公路服务区管理系统建设方案.docx》、《湖北公路服务区管理系统功能.pdf》"
+      },
+      "AGENT-农村公路-02": {
+        path: "在顶层设计中增设“农村公路巡检路况质量与以奖代补指标穿透式实时自动核算与挂钩审计模型”。",
+        reason: "促使农路资金精准核发，防范因静态发放造成的财政补助滞留与挪用。",
+        plate: "农村公路板块",
+        material: "《关于湖北省农村公路智慧监管监督系统升级思路的汇报0521.doc》"
+      }
+    };
     const getSpecificAgentName = (reqId) => {
       const names = {
         "AGENT-工程技术-01": "桥梁结构健康监测智能体",
@@ -3654,18 +3692,32 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       });
     });
     const handleApprove = (id, action) => {
+      let actionText = "";
+      let defaultReason = "";
+      let targetStatus = "";
+      if (action === "pass") {
+        actionText = "确认接收并赋能顶层设计";
+        targetStatus = "已接收：赋能顶层设计";
+        defaultReason = "符合多源高维数据协同需要，确认接收该智能体并对顶层设计赋能。";
+      } else {
+        actionText = "退回重新报送";
+        targetStatus = "已退回";
+        defaultReason = "申报的协同业务场景或数据治理方案不够完善，予以退回重新报送。";
+      }
+      const reason = window.prompt(`请输入【${actionText}】的接收/退回理由（源于业务，服务业务）：`, defaultReason);
+      if (reason === null) return;
       setRequirements((prev) => prev.map((item) => {
         if (item.id === id) {
-          return { ...item, status: action === "pass" ? "已通过" : "已退回" };
+          return {
+            ...item,
+            status: targetStatus,
+            approvalReason: reason || "确认接收。"
+          };
         }
         return item;
       }));
     };
     const approvalIds = [
-      "AGENT-工程技术-01",
-      "AGENT-工程技术-02",
-      "AGENT-工程技术-03",
-      "AGENT-工程技术-04",
       "AGENT-规划计划-04",
       "AGENT-安全应急-04",
       "AGENT-养护管理-06",
@@ -3855,9 +3907,14 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       ].includes(reqId) || reqId.includes("工程技术处") || reqId.includes("综合计划处") || reqId.includes("应急中心") || reqId.includes("养护管理处") || reqId.includes("建设管理处") || reqId.includes("农村公路处") || reqId.includes("费收处");
     };
     const getStatusStyle = (status) => {
+      if (status && status.includes("已批准：升级顶层设计")) {
+        return "bg-emerald-50 text-emerald-700 border border-emerald-200";
+      }
       switch (status) {
         case "待审核":
           return "bg-purple-50 text-purple-700 border border-purple-200";
+        case "无需审批":
+          return "bg-slate-50 text-slate-500 border border-slate-200 font-normal";
         case "已通过":
           return "bg-emerald-50 text-emerald-700 border border-emerald-200";
         case "已退回":
@@ -3975,7 +4032,31 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         /* @__PURE__ */ react_shim_default.createElement("h4", { className: "text-slate-800 text-sm font-black mt-2 truncate", title: getSpecificAgentName(req.id) }, getSpecificAgentName(req.id)),
         /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-slate-500 text-[11px] mt-1 leading-normal font-semibold line-clamp-2" }, req.desc)
       );
-    })), /* @__PURE__ */ react_shim_default.createElement("div", { className: "bg-slate-50 border border-slate-200 rounded-xl p-3 mb-4 shrink-0 shadow-inner flex flex-col" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between items-center mb-2" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center gap-1.5 text-xs text-slate-800 font-black" }, /* @__PURE__ */ react_shim_default.createElement(Icon, { name: "Lock", size: 14, className: "text-slate-600" }), /* @__PURE__ */ react_shim_default.createElement("span", null, "数据专班 \xB7 智能体审批工作流"), /* @__PURE__ */ react_shim_default.createElement("span", { className: "bg-slate-200 text-slate-800 font-bold px-1.5 py-0.5 rounded text-[10px]" }, approvalList.filter((x) => x.status === "待审核").length, " 个待审核"))), /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex gap-3 overflow-x-auto custom-scroll py-1" }, approvalList.map((item) => /* @__PURE__ */ react_shim_default.createElement("div", { key: item.id, className: "bg-white border border-slate-200 rounded-lg p-2 flex flex-col justify-between shadow-sm min-w-[280px] max-w-[280px] transition hover:shadow" }, /* @__PURE__ */ react_shim_default.createElement("div", null, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between items-center" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: `px-1.5 py-0.5 rounded text-[9px] font-black ${isSupplement(item.id) ? "bg-slate-100 text-slate-700 border border-slate-300" : "bg-amber-50 text-amber-700 border border-amber-200"}` }, item.id.includes("新增") || isSupplement(item.id) ? "新增" : "升级"), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-[9px] text-slate-400 font-semibold" }, item.block)), /* @__PURE__ */ react_shim_default.createElement("h5", { className: "text-xs text-slate-800 font-black mt-1.5 truncate", title: getSpecificAgentName(item.id) }, getSpecificAgentName(item.id)), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10px] text-slate-500 mt-1 leading-snug line-clamp-2" }, item.desc)), /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between items-center mt-3 pt-2 border-t border-slate-100" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: `text-[10px] font-bold ${item.status === "已通过" ? "text-slate-750" : item.status === "已退回" ? "text-slate-600" : "text-slate-400"}` }, item.status), item.status === "待审核" ? /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex gap-1" }, /* @__PURE__ */ react_shim_default.createElement("button", { onClick: () => handleApprove(item.id, "reject"), className: "px-2 py-0.5 text-[9px] text-slate-655 hover:bg-slate-50 border border-slate-200 rounded transition font-bold" }, "退回"), /* @__PURE__ */ react_shim_default.createElement("button", { onClick: () => handleApprove(item.id, "pass"), className: "px-2 py-0.5 text-[9px] text-white bg-slate-800 hover:bg-slate-900 rounded transition font-bold" }, "通过")) : /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-[9px] text-slate-350 font-bold" }, "已同步至全局")))))), /* @__PURE__ */ react_shim_default.createElement("div", { className: "bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col relative shrink-0" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "border-b border-slate-200 bg-slate-50/50 px-4 py-2 flex justify-between items-center rounded-t-xl shrink-0" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center bg-slate-200/60 p-0.5 rounded-lg border border-slate-300/40 shrink-0" }, /* @__PURE__ */ react_shim_default.createElement(
+    })), /* @__PURE__ */ react_shim_default.createElement("div", { className: "bg-slate-50 border border-slate-200 rounded-xl p-3 mb-4 shrink-0 shadow-inner flex flex-col" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between items-center mb-2" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center gap-1.5 text-xs text-slate-800 font-black" }, /* @__PURE__ */ react_shim_default.createElement(Icon, { name: "Lock", size: 14, className: "text-slate-600" }), /* @__PURE__ */ react_shim_default.createElement("span", null, "数据专班 \xB7 智能体接收工作流 ", /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-500 font-medium ml-1.5 text-[11px]" }, "（源于业务，服务业务）")), /* @__PURE__ */ react_shim_default.createElement("span", { className: "bg-slate-200 text-slate-800 font-bold px-1.5 py-0.5 rounded text-[10px]" }, approvalList.filter((x) => !x.status || x.status === "待审核").length, " 个待接收"))), /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex gap-3 overflow-x-auto custom-scroll py-1" }, approvalList.map((item) => /* @__PURE__ */ react_shim_default.createElement("div", { key: item.id, className: "bg-white border border-slate-200 rounded-lg p-2 flex flex-col justify-between shadow-sm min-w-[320px] max-w-[320px] transition hover:shadow" }, /* @__PURE__ */ react_shim_default.createElement("div", null, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between items-center" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "px-1.5 py-0.5 rounded text-[9px] font-black bg-blue-50 text-blue-700 border border-blue-200" }, "拟定：赋能顶层设计"), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-[9px] text-slate-400 font-semibold" }, item.block)), /* @__PURE__ */ react_shim_default.createElement("h5", { className: "text-xs text-slate-800 font-black mt-1.5 truncate", title: `${item.id} ${getSpecificAgentName(item.id)}` }, item.id, " ", getSpecificAgentName(item.id)), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10px] text-slate-500 mt-1 leading-snug line-clamp-2" }, item.desc), (() => {
+      const details = EMPOWERMENT_DETAILS[item.id];
+      if (details) {
+        return /* @__PURE__ */ react_shim_default.createElement("div", { className: "mt-2.5 p-2 bg-indigo-50/40 rounded border border-indigo-100/60 text-[9px] text-slate-700 space-y-1 leading-relaxed font-semibold" }, /* @__PURE__ */ react_shim_default.createElement("div", null, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-800 font-bold mr-1" }, "【业务板块】"), details.plate), /* @__PURE__ */ react_shim_default.createElement("div", { className: "truncate", title: details.material }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-800 font-bold mr-1" }, "【关联材料】"), details.material), /* @__PURE__ */ react_shim_default.createElement("div", null, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-800 font-bold mr-1" }, "【赋能路径】"), details.path), /* @__PURE__ */ react_shim_default.createElement("div", null, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-800 font-bold mr-1" }, "【提报原因】"), details.reason));
+      }
+      return null;
+    })()), /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex flex-col gap-1.5 mt-3 pt-2 border-t border-slate-100" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between items-center" }, !item.status || item.status === "待审核" ? /* @__PURE__ */ react_shim_default.createElement(react_shim_default.Fragment, null, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-[10px] font-bold text-slate-400" }, "待接收"), /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex gap-1.5" }, /* @__PURE__ */ react_shim_default.createElement("button", { onClick: () => handleApprove(item.id, "reject"), className: "px-2 py-0.5 text-[8.5px] text-rose-650 hover:bg-rose-50 border border-rose-200 rounded transition font-bold" }, "退回重新报送"), /* @__PURE__ */ react_shim_default.createElement("button", { onClick: () => handleApprove(item.id, "pass"), className: "px-2 py-0.5 text-[8.5px] text-white bg-indigo-600 hover:bg-indigo-700 rounded transition font-bold" }, "确认接收并赋能"))) : /* @__PURE__ */ react_shim_default.createElement(react_shim_default.Fragment, null, /* @__PURE__ */ react_shim_default.createElement("span", { className: `text-[10px] font-bold ${item.status.includes("已接收") ? "text-emerald-600" : "text-rose-600"}` }, item.status.includes("已接收") ? "✓ 已确认接收并赋能顶层设计" : "✗ " + item.status), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-[9px] text-slate-350 font-bold" }, "已同步至全局"))), item.approvalReason && /* @__PURE__ */ react_shim_default.createElement("div", { className: "text-[9.5px] bg-slate-50 p-1.5 rounded border border-slate-150 text-slate-600 leading-snug break-all font-medium" }, /* @__PURE__ */ react_shim_default.createElement("strong", null, "接收理由："), item.approvalReason)))))), /* @__PURE__ */ react_shim_default.createElement("div", { className: "bg-white border border-slate-200 rounded-xl p-3.5 mb-4 shadow-sm flex flex-col shrink-0" }, /* @__PURE__ */ react_shim_default.createElement("details", { className: "group", open: false }, /* @__PURE__ */ react_shim_default.createElement("summary", { className: "flex justify-between items-center cursor-pointer font-black text-xs text-slate-800 select-none" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center gap-1.5" }, /* @__PURE__ */ react_shim_default.createElement(Icon, { name: "CheckCircle", size: 14, className: "text-emerald-600" }), /* @__PURE__ */ react_shim_default.createElement("span", null, "基于顶层设计的业务系统新增或升级智能体（已由系统自动接收 16 个）")), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 group-open:rotate-180 transition-transform text-[10px]" }, "▼")), /* @__PURE__ */ react_shim_default.createElement("div", { className: "mt-3 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs pt-3 border-t border-slate-100" }, /* @__PURE__ */ react_shim_default.createElement("div", null, /* @__PURE__ */ react_shim_default.createElement("h5", { className: "font-extrabold text-blue-800 mb-2 flex items-center gap-1" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "w-1.5 h-3 bg-blue-600 rounded-full inline-block" }), "新增开发（符合顶层设计 + 相对于现有系统的全新开发）"), /* @__PURE__ */ react_shim_default.createElement("div", { className: "space-y-1.5 pl-1" }, [
+      { id: "AGENT-工程技术-01", name: "桥梁结构健康监测智能体", file: "《(省公路中心)湖北公路数字化转型升级行业业务要求报送模板.docx》" },
+      { id: "AGENT-工程技术-03", name: "隧道结构健康监测智能体", file: "《湖北省CBMS桥隧数字化管养平台升级实施方案.docx》" },
+      { id: "AGENT-工程技术-04", name: "边坡结构健康监测智能体", file: "《（转换）高速公路养护综合管理系统建设方案汇报-0521-v4修（使用）.doc》" },
+      { id: "AGENT-建设管理-01", name: "招投标管理智能体", file: "《关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx》" },
+      { id: "AGENT-建设管理-02", name: "初步设计审查智能体", file: "《普通国省道建设项目全流程管理系统架构图.jpg》" },
+      { id: "AGENT-建设管理-03", name: "工可编制与报批智能体", file: "《关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx》" }
+    ].map((a) => /* @__PURE__ */ react_shim_default.createElement("div", { key: a.id, className: "p-2 bg-slate-50 rounded border border-slate-150 text-[10px] text-slate-700" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "font-bold text-slate-800" }, a.id, " ", a.name), /* @__PURE__ */ react_shim_default.createElement("div", { className: "text-slate-400 mt-0.5 font-semibold" }, "关联材料：", a.file))))), /* @__PURE__ */ react_shim_default.createElement("div", null, /* @__PURE__ */ react_shim_default.createElement("h5", { className: "font-extrabold text-amber-800 mb-2 flex items-center gap-1" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "w-1.5 h-3 bg-amber-600 rounded-full inline-block" }), "升级现有系统（符合顶层设计 + 相对于现有系统的已有功能升级）"), /* @__PURE__ */ react_shim_default.createElement("div", { className: "space-y-1.5 pl-1" }, [
+      { id: "AGENT-工程技术-02", name: "高速公路路网管养智能体", file: "《（转换）高速公路养护综合管理系统建设方案汇报-0521-v4修（使用）.doc》" },
+      { id: "AGENT-规划计划-01", name: "规划编制与审查智能体", file: "《湖北省公路计划执行评估软件升级改造费用测算-软件功能点估值法-v2.xlsx》" },
+      { id: "AGENT-规划计划-02", name: "计划管理智能体（国省道预安排）", file: "《0528—交调系统修改版.xlsx》" },
+      { id: "AGENT-规划计划-03", name: "项目前期跟踪智能体", file: "《以奖代补预算.xlsx》" },
+      { id: "AGENT-建设管理-04", name: "接养与移交智能体", file: "《关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx》" },
+      { id: "AGENT-养护管理-01", name: "智能巡检智能体", file: "《湖北省汛期巡查平台建设实施方案.docx》" },
+      { id: "AGENT-养护管理-02", name: "日常养护智能体", file: "《普通国省干线养护管理系统功能架构(1).pdf》" },
+      { id: "AGENT-安全应急-01", name: "安全监督管理智能体", file: "《湖北省汛期巡查平台建设实施方案.docx》" },
+      { id: "AGENT-安全应急-02", name: "春运/防汛/防灾指导智能体", file: "《湖北省汛期巡查平台建设实施方案.docx》" },
+      { id: "AGENT-安全应急-03", name: "应急处置与预案管理智能体", file: "《0520-公路路网运行监测与应急指挥调度系统建设方案(3)(1).docx》" }
+    ].map((a) => /* @__PURE__ */ react_shim_default.createElement("div", { key: a.id, className: "p-2 bg-slate-50 rounded border border-slate-150 text-[10px] text-slate-700" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "font-bold text-slate-800" }, a.id, " ", a.name), /* @__PURE__ */ react_shim_default.createElement("div", { className: "text-slate-400 mt-0.5 font-semibold" }, "关联材料：", a.file)))))))), /* @__PURE__ */ react_shim_default.createElement("div", { className: "bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col relative shrink-0" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "border-b border-slate-200 bg-slate-50/50 px-4 py-2 flex justify-between items-center rounded-t-xl shrink-0" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center bg-slate-200/60 p-0.5 rounded-lg border border-slate-300/40 shrink-0" }, /* @__PURE__ */ react_shim_default.createElement(
       "button",
       {
         onClick: () => setViewMode("requirements"),
@@ -5909,7 +5990,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-05 08:34", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-04 22:12"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-05 10:23", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-04 22:12"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
