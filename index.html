@@ -4208,7 +4208,12 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             doc.name
           ), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-semibold ml-2 text-[10px]" }, "(", doc.time, ")")), /* @__PURE__ */ react_shim_default.createElement("td", { colSpan: "2", className: "p-3 text-slate-400 italic text-[11px] font-semibold text-center bg-slate-50/30" }, "暂无直接关联的数据集与智能体"));
         }
-        return doc.reqs.map((req, index) => {
+        const sortedReqs = [...doc.reqs].sort((a, b) => {
+          const keyA = `${a.dataset || ""}-${a.product || ""}`;
+          const keyB = `${b.dataset || ""}-${b.product || ""}`;
+          return keyA.localeCompare(keyB);
+        });
+        return sortedReqs.map((req, index) => {
           const isCrossSector = getIsCrossSector(req.block, group.folderId);
           const impactData = DOC_IMPACT_MAPPING[req.id]?.[doc.name];
           const renderImpactCard = () => {
@@ -4239,7 +4244,28 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             }
             return /* @__PURE__ */ react_shim_default.createElement("div", { className: "mt-3 bg-slate-50 border border-slate-200 rounded-lg p-2 shadow-sm" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center gap-1.5 mb-1.5" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: `px-1.5 py-0.5 rounded text-[10px] font-black border ${tagStyle}` }, icon, " ", tagText), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-[10px] text-slate-500 font-bold bg-white px-1.5 py-0.5 rounded border border-slate-200" }, "\u{1F4C4} 定位: ", impact.pageRef)), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10.5px] text-slate-700 font-medium leading-relaxed" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "font-bold text-slate-900" }, "研判分析："), impact.analysis));
           };
-          return /* @__PURE__ */ react_shim_default.createElement("tr", { key: `${doc.name}-${req.id}`, className: "hover:bg-slate-50/80 transition-colors border-b border-slate-100" }, index === 0 && /* @__PURE__ */ react_shim_default.createElement("td", { rowSpan: doc.reqs.length, className: "p-3 font-bold text-slate-800 leading-normal border-r border-slate-150 align-top bg-white" }, /* @__PURE__ */ react_shim_default.createElement(
+          const currentDatasetKey = `${req.dataset}-${req.product}`;
+          let datasetRowSpan = 1;
+          let isFirstInDatasetGroup = true;
+          if (index > 0) {
+            const prevReq = sortedReqs[index - 1];
+            const prevDatasetKey = `${prevReq.dataset}-${prevReq.product}`;
+            if (currentDatasetKey === prevDatasetKey) {
+              isFirstInDatasetGroup = false;
+            }
+          }
+          if (isFirstInDatasetGroup) {
+            for (let i = index + 1; i < sortedReqs.length; i++) {
+              const nextReq = sortedReqs[i];
+              const nextDatasetKey = `${nextReq.dataset}-${nextReq.product}`;
+              if (nextDatasetKey === currentDatasetKey) {
+                datasetRowSpan++;
+              } else {
+                break;
+              }
+            }
+          }
+          return /* @__PURE__ */ react_shim_default.createElement("tr", { key: `${doc.name}-${req.id}`, className: "hover:bg-slate-50/80 transition-colors border-b border-slate-100" }, index === 0 && /* @__PURE__ */ react_shim_default.createElement("td", { rowSpan: sortedReqs.length, className: "p-3 font-bold text-slate-800 leading-normal border-r border-slate-150 align-top bg-white" }, /* @__PURE__ */ react_shim_default.createElement(
             "a",
             {
               href: doc.url,
@@ -4251,7 +4277,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             },
             "\u{1F4C4} ",
             doc.name
-          ), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-semibold ml-2 text-[10px] block mt-1" }, "(", doc.time, ")")), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-3 leading-relaxed border-r border-slate-100 align-top" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "my-1 text-slate-650" }, /* @__PURE__ */ react_shim_default.createElement("p", { className: "font-semibold text-slate-800 mb-1.5" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[数据集]"), req.dataset || "暂无", isCrossSector && /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-600 font-black ml-1.5 text-[10.5px]" }, "(跨板块: ", req.block, ")")), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10.5px] font-medium text-slate-700" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[数据产品]"), req.product || "暂无"), renderImpactCard())), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-3 leading-relaxed align-top" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "my-1 font-semibold flex flex-wrap items-center gap-y-1.5" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 mr-1.5 text-[10px]" }, "♦"), (() => {
+          ), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-semibold ml-2 text-[10px] block mt-1" }, "(", doc.time, ")")), isFirstInDatasetGroup && /* @__PURE__ */ react_shim_default.createElement("td", { rowSpan: datasetRowSpan, className: "p-3 leading-relaxed border-r border-slate-100 align-top" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "my-1 text-slate-650" }, /* @__PURE__ */ react_shim_default.createElement("p", { className: "font-semibold text-slate-800 mb-1.5" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[数据集]"), req.dataset || "暂无", isCrossSector && /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-600 font-black ml-1.5 text-[10.5px]" }, "(跨板块: ", req.block, ")")), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10.5px] font-medium text-slate-700" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[数据产品]"), req.product || "暂无"), renderImpactCard())), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-3 leading-relaxed align-top" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "my-1 font-semibold flex flex-wrap items-center gap-y-1.5" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 mr-1.5 text-[10px]" }, "♦"), (() => {
             const navTarget = getAgentNavTarget(req.id);
             const displayText = `${req.id} ${getSpecificAgentName(req.id)}`;
             return navTarget ? /* @__PURE__ */ react_shim_default.createElement("span", { onClick: () => onNavigate(navTarget), className: "text-indigo-600 hover:text-indigo-800 hover:underline cursor-pointer font-bold", title: "点击跳转到该智能体业务流转页面" }, displayText) : /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-800 font-bold" }, displayText);
@@ -6154,7 +6180,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-06 17:54", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-04 22:12"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-06 22:19", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-04 22:12"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
