@@ -1039,7 +1039,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     const handleOpenRequirementsBacklog = () => {
       const currentPath = window.location.pathname;
       let targetPath = "./docs/requirements_backlog_preview.html";
-      if (currentPath.includes("/20260529/") || currentPath.includes("\\20260529\\")) {
+      if (currentPath.match(/[\/\\]2026\d{4}[\/\\]/)) {
         targetPath = "../docs/requirements_backlog_preview.html";
       }
       window.open(targetPath, "_blank");
@@ -1049,7 +1049,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       let targetPath = "./release/ningbo/index.html";
       if (currentPath.includes("/release/") || currentPath.includes("\\release\\")) {
         targetPath = "./ningbo/index.html";
-      } else if (currentPath.includes("/20260529/") || currentPath.includes("\\20260529\\")) {
+      } else if (currentPath.match(/[\/\\]2026\d{4}[\/\\]/)) {
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
@@ -3201,11 +3201,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     ],
     "AGENT-农村公路-02": [
       "关于湖北省农村公路智慧监管监督系统升级思路的汇报0521.doc",
-      "关于湖北省农村公路智慧监管监督系统升级思路的汇报0603改(end)-W.wps"
+      "关于湖北省农村公路智慧监管监督系统升级思路的汇报0603改(end)-W.wps",
+      "软件改造费用测算报告-v2.docx"
     ],
     "AGENT-农村公路-01": [
       "关于湖北省农村公路智慧监管监督系统升级思路的汇报0521.doc",
-      "关于湖北省农村公路智慧监管监督系统升级思路的汇报0603改(end)-W.wps"
+      "关于湖北省农村公路智慧监管监督系统升级思路的汇报0603改(end)-W.wps",
+      "软件改造费用测算报告-v2.docx"
     ],
     "AGENT-工程技术-01": [
       "0-关于高速公路养护综合管理等系统建设有关工作情况的汇报20260604-2（修订版）.doc",
@@ -3263,6 +3265,62 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     "AGENT-安全应急-04": [
       "0520-公路路网运行监测与应急指挥调度系统建设方案(3)(1).docx"
     ],
+    "AGENT-建设管理-05": [
+      "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx",
+      "关于在公路综合信息平台实现国省道建设项目全流程管理实施方案的汇报6.2.docx",
+      "普通国省道建设项目全流程管理系统架构图.jpg"
+    ],
+    "AGENT-建设管理-04": [
+      "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx",
+      "关于在公路综合信息平台实现国省道建设项目全流程管理实施方案的汇报6.2.docx",
+      "普通国省道建设项目全流程管理系统架构图.jpg",
+      "软件改造费用测算报告-v2.docx"
+    ],
+    "AGENT-规划计划-03": [
+      "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx",
+      "关于在公路综合信息平台实现国省道建设项目全流程管理实施方案的汇报6.2.docx",
+      "普通国省道建设项目全流程管理系统架构图.jpg",
+      "以奖代补预算.xlsx",
+      "湖北省公路计划执行评估软件升级改造费用测算-软件功能点估值法-v2.xlsx",
+      "软件改造费用测算报告-v2.docx"
+    ],
+    "AGENT-财务资产-01": [
+      "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx"
+    ],
+    "AGENT-财务资产-02": [
+      "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx"
+    ],
+    "AGENT-财务资产-03": [
+      "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx"
+    ],
+    "AGENT-建设管理-01": [
+      "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx",
+      "关于在公路综合信息平台实现国省道建设项目全流程管理实施方案的汇报6.2.docx"
+    ],
+    "AGENT-建设管理-03": [
+      "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx"
+    ],
+    "AGENT-建设管理-02": [
+      "普通国省道建设项目全流程管理系统架构图.jpg"
+    ],
+    "AGENT-规划计划-04": [
+      "0528—交调系统修改版.xlsx",
+      "以奖代补预算.xlsx",
+      "关于公路交通情况调查系统与年报系统.docx",
+      "湖北省公路计划执行评估软件升级改造费用测算-软件功能点估值法-v2.xlsx",
+      "软件改造费用测算报告-v2.docx"
+    ],
+    "AGENT-规划计划-02": [
+      "0528—交调系统修改版.xlsx",
+      "以奖代补预算.xlsx",
+      "关于公路交通情况调查系统与年报系统.docx",
+      "湖北省公路计划执行评估软件升级改造费用测算-软件功能点估值法-v2.xlsx",
+      "软件改造费用测算报告-v2.docx"
+    ],
+    "AGENT-规划计划-01": [
+      "湖北省公路计划执行评估软件升级改造费用测算-软件功能点估值法-v2.xlsx",
+      "软件改造费用测算报告-v2.docx"
+    ],
     "AGENT-收费运营-04": [
       "20260522关于湖北公路服务区管理系统建设方案.docx",
       "湖北公路服务区管理系统功能.pdf"
@@ -3296,6 +3354,18 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     ],
     应急中心: [
       "0520-公路路网运行监测与应急指挥调度系统建设方案(3)(1).docx"
+    ],
+    建设处: [
+      "关于利用综合信息化手段实现项目建设全流程管理有关工作情况的汇报5.21.docx",
+      "关于在公路综合信息平台实现国省道建设项目全流程管理实施方案的汇报6.2.docx",
+      "普通国省道建设项目全流程管理系统架构图.jpg"
+    ],
+    计划处: [
+      "0528—交调系统修改版.xlsx",
+      "以奖代补预算.xlsx",
+      "关于公路交通情况调查系统与年报系统.docx",
+      "湖北省公路计划执行评估软件升级改造费用测算-软件功能点估值法-v2.xlsx",
+      "软件改造费用测算报告-v2.docx"
     ],
     费收处: [
       "20260522关于湖北公路服务区管理系统建设方案.docx",
@@ -3818,7 +3888,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             return matchesSearch;
           });
           const fileMatchesSearch = !searchTerm || fileName.toLowerCase().includes(searchTerm.toLowerCase());
-          const shouldShow = fileMatchesSearch;
+          const shouldShow = fileMatchesSearch || filteredAssociated.length > 0;
           if (shouldShow) {
             let url = "#";
             const reqWithDoc = allAssociated.find((req) => req.docs && req.docs.some((d) => d.name === fileName));
@@ -6000,11 +6070,11 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     }))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 flex flex-col h-full overflow-hidden relative" }, /* @__PURE__ */ React.createElement("header", { className: "h-20 bg-white border-b border-slate-200 flex items-center justify-between px-10 shrink-0 shadow-sm z-10" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "w-1.5 h-5 bg-blue-600 rounded" }), /* @__PURE__ */ React.createElement("h1", { className: "text-slate-800 font-black text-lg tracking-wider" }, "政府侧原型")), /* @__PURE__ */ React.createElement("div", { className: "w-px h-5 bg-slate-300" }), /* @__PURE__ */ React.createElement("button", { onClick: () => {
       const currentPath = window.location.pathname;
       let targetPath = "ningbo/index.html";
-      if (currentPath.includes("/20260529/") || currentPath.includes("\\20260529\\") || currentPath.includes("/20260601/") || currentPath.includes("\\20260601\\") || currentPath.includes("/20260603/") || currentPath.includes("\\20260603\\")) {
+      if (currentPath.match(/[\/\\]2026\d{4}[\/\\]/)) {
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-05 18:33", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-04 22:12"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-06 17:05", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-04 22:12"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
