@@ -3374,6 +3374,64 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     ]
   };
 
+  // src/diff_data.json
+  var diff_data_default = {
+    关于湖北省农村公路智慧监管监督系统升级思路的汇报: [
+      {
+        location: "一、 系统升级背景与目标",
+        paragraphs: [
+          "为贯彻落实省交通运输厅关于数字化转型的要求，进一步提升我省农村公路监管水平，拟对现有<del>农村公路管理系统</del><ins>农村公路智慧监管监督系统</ins>进行全面升级。",
+          "本次升级旨在<del>完善基础数据台账</del><ins>重构底层数据架构，引入 AI 智能体技术</ins>，实现从“传统信息化”向“智慧化决策”的跨越。"
+        ]
+      },
+      {
+        location: "二、 核心建设内容",
+        paragraphs: [
+          "1. 建设公路资产数字化管理库（离线数据集），<ins>并建立数据动态更新机制，确保资产数据的实时性和准确性；</ins>",
+          "2. 研发农村公路养护管理评价智能体，辅助日常养护巡查；",
+          "<ins>3. 补充农村公路路况预测大模型，结合历年病害数据实现路面病害的预防性养护分析；</ins>"
+        ]
+      },
+      {
+        location: "三、 推进计划",
+        paragraphs: [
+          "预计于今年 7 月底完成顶层设计与需求调研<ins>，8月份启动原型开发与数据对接工作</ins>。"
+        ]
+      }
+    ],
+    高速公路养护综合管理系统建设方案汇报: [
+      {
+        location: "第一部分 项目整体架构方案修订",
+        paragraphs: [
+          "在原平台设计基础上，<ins>重点强化了“路网级”宏观监测指标与微观设备数据的融合。</ins>",
+          "将原先独立的<del>气象子模块与车流量子模块</del><ins>各类异构数据感知终端</ins>统一接入 CBMS 桥隧数字化管养平台，形成闭环联动。"
+        ]
+      },
+      {
+        location: "第三部分 实施保障与资金预算",
+        paragraphs: [
+          "系统首期研发费用预计涵盖<del>2项主要智能体</del><ins>涵盖“汛期巡查”与“桥隧健康管养”等 4 项核心智能体</ins>开发。",
+          "由相关业务专班跟进确认功能细节，<ins>保障项目在三季度前具备初版上线试运行条件。</ins>"
+        ]
+      }
+    ],
+    项目建设全流程管理系统实施方案汇报: [
+      {
+        location: "一、 全流程管理平台定位",
+        paragraphs: [
+          "公路综合信息平台中的建设项目全流程模块，主要涵盖立项、招投标、施工、验收四大阶段。",
+          "目前进一步明确了<ins>“省级宏观把控，地市微观落实”</ins>的权责划分机制，<del>减少手工填报量</del><ins>彻底打通基层数据接口，杜绝二次填报</ins>。"
+        ]
+      },
+      {
+        location: "三、 数据规范与标准",
+        paragraphs: [
+          "所有接入的工程进度数据，必须符合<del>《交通运输部信息化规范》</del><ins>《湖北省交通运输数据要素标准化体系建设指南》</ins>。"
+        ]
+      }
+    ]
+  };
+
   // src/readiness_config.json
   var readiness_config_default = {
     nameA: "部省对齐与部委考核",
@@ -3450,6 +3508,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     const [selectedBlock, setSelectedBlock] = useState("ALL");
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedReq, setSelectedReq] = useState(null);
+    const [diffDocGroup, setDiffDocGroup] = useState(null);
     const [showCollectionForm, setShowCollectionForm] = useState(false);
     const [viewMode, setViewMode] = useState("collect");
     const [activeConsensusReq, setActiveConsensusReq] = useState(null);
@@ -3842,20 +3901,53 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       return filteredFolders.map((folder) => {
         const filesInFolder = folder_docs_default[folder.id] || [];
         const docsList = [];
+        const groupedFiles = {};
         filesInFolder.forEach((fileName) => {
           if (fileName.includes("报送模板")) return;
-          const allAssociated = requirements.filter((req) => req.docs && req.docs.some((d) => d.name === fileName));
+          let baseKey = fileName;
+          if (fileName.includes("关于湖北省农村公路智慧监管监督系统升级思路的汇报")) {
+            baseKey = "关于湖北省农村公路智慧监管监督系统升级思路的汇报";
+          } else if (fileName.includes("高速公路养护综合管理") || fileName.includes("CBMS桥隧数字化管养平台")) {
+            if (fileName.includes("高速公路养护综合管理")) {
+              baseKey = "高速公路养护综合管理系统建设方案汇报";
+            }
+          } else if (fileName.includes("项目建设全流程管理") || fileName.includes("建设项目全流程管理")) {
+            if (fileName.includes("架构图")) {
+              baseKey = fileName;
+            } else {
+              baseKey = "项目建设全流程管理系统实施方案汇报";
+            }
+          }
+          if (!groupedFiles[baseKey]) groupedFiles[baseKey] = [];
+          groupedFiles[baseKey].push(fileName);
+        });
+        Object.keys(groupedFiles).forEach((baseKey) => {
+          const versions = groupedFiles[baseKey];
+          const extractDate = (name) => {
+            let m = name.match(/202\d[01]\d[0-3]\d/);
+            if (m) return parseInt(m[0], 10);
+            m = name.match(/(?:^|[^\d])([1-9]|1[0-2])\.([1-9]|[1-2][0-9]|3[01])(?:[^\d]|$)/);
+            if (m) {
+              return parseInt("2026" + m[1].padStart(2, "0") + m[2].padStart(2, "0"), 10);
+            }
+            m = name.match(/(?:^|[^\d])(0[1-9]|1[0-2])([0-2][0-9]|3[01])(?:[^\d]|$)/);
+            if (m) return parseInt("2026" + m[1] + m[2], 10);
+            return 0;
+          };
+          versions.sort((a, b) => extractDate(a) - extractDate(b));
+          const latestFileName = versions[versions.length - 1];
+          const allAssociated = requirements.filter((req) => req.docs && req.docs.some((d) => versions.includes(d.name)));
           const filteredAssociated = allAssociated.filter((req) => {
-            const matchesSearch = !searchTerm || req.id.toLowerCase().includes(searchTerm.toLowerCase()) || req.role.toLowerCase().includes(searchTerm.toLowerCase()) || req.desc.toLowerCase().includes(searchTerm.toLowerCase()) || fileName.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesSearch = !searchTerm || req.id.toLowerCase().includes(searchTerm.toLowerCase()) || req.role.toLowerCase().includes(searchTerm.toLowerCase()) || req.desc.toLowerCase().includes(searchTerm.toLowerCase()) || versions.some((v) => v.toLowerCase().includes(searchTerm.toLowerCase()));
             return matchesSearch;
           });
-          const fileMatchesSearch = !searchTerm || fileName.toLowerCase().includes(searchTerm.toLowerCase());
+          const fileMatchesSearch = !searchTerm || versions.some((v) => v.toLowerCase().includes(searchTerm.toLowerCase()));
           const shouldShow = fileMatchesSearch || filteredAssociated.length > 0;
           if (shouldShow) {
             let url = "#";
-            const reqWithDoc = allAssociated.find((req) => req.docs && req.docs.some((d) => d.name === fileName));
+            const reqWithDoc = allAssociated.find((req) => req.docs && req.docs.some((d) => versions.includes(d.name)));
             if (reqWithDoc) {
-              const d = reqWithDoc.docs.find((d2) => d2.name === fileName);
+              const d = reqWithDoc.docs.find((d2) => versions.includes(d2.name));
               if (d) url = d.url;
             }
             let time = "-";
@@ -3864,7 +3956,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
               time = dates.sort()[0];
             }
             docsList.push({
-              name: fileName,
+              name: latestFileName,
+              baseKey,
+              allVersions: versions,
               url,
               time,
               reqs: filteredAssociated
@@ -4097,7 +4191,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       const groupedData = getSectorDocsData();
       return groupedData.map((group) => /* @__PURE__ */ react_shim_default.createElement(react_shim_default.Fragment, { key: group.sector }, /* @__PURE__ */ react_shim_default.createElement("tr", { className: "bg-slate-50/80 font-black border-y border-slate-200/80" }, /* @__PURE__ */ react_shim_default.createElement("td", { colSpan: "3", className: "p-2.5 text-slate-800 font-extrabold text-[11px] bg-slate-100/50" }, "\u{1F4CC} ", group.sector)), group.docs.length === 0 ? /* @__PURE__ */ react_shim_default.createElement("tr", { className: "border-b border-slate-150" }, /* @__PURE__ */ react_shim_default.createElement("td", { colSpan: "3", className: "p-4 text-center text-slate-400 font-bold italic bg-slate-50/20" }, "暂无提交资料")) : group.docs.map((doc) => {
         if (doc.reqs.length === 0) {
-          return /* @__PURE__ */ react_shim_default.createElement("tr", { key: doc.name, className: "hover:bg-slate-50/50 transition-colors border-b border-slate-100" }, /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-3 font-bold text-slate-800 leading-normal border-r border-slate-150" }, /* @__PURE__ */ react_shim_default.createElement(
+          return /* @__PURE__ */ react_shim_default.createElement("tr", { key: doc.name, className: "hover:bg-slate-50/50 transition-colors border-b border-slate-100" }, /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-3 font-bold text-slate-800 leading-normal border-r border-slate-150 relative" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center flex-wrap gap-2" }, /* @__PURE__ */ react_shim_default.createElement(
             "a",
             {
               href: doc.url,
@@ -4109,7 +4203,20 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             },
             "\u{1F4C4} ",
             doc.name
-          ), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-semibold ml-2 text-[10px]" }, "(", doc.time, ")")), /* @__PURE__ */ react_shim_default.createElement("td", { colSpan: "2", className: "p-3 text-slate-400 italic text-[11px] font-semibold text-center bg-slate-50/30" }, "暂无直接关联的数据集与智能体"));
+          ), doc.allVersions && doc.allVersions.length > 1 && /* @__PURE__ */ react_shim_default.createElement(
+            "button",
+            {
+              onClick: (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setDiffDocGroup(doc);
+              },
+              className: "inline-flex items-center bg-indigo-50 text-indigo-600 border border-indigo-200 px-2 py-0.5 rounded text-[11px] font-bold shadow-sm hover:bg-indigo-100 transition-colors"
+            },
+            "查看更新历史 (",
+            doc.allVersions.length,
+            ")"
+          )), doc.allVersions && doc.allVersions.length > 1 ? /* @__PURE__ */ react_shim_default.createElement("div", { className: "text-slate-400 font-semibold text-[10px] mt-1.5" }, "最新版本: ", doc.allVersions[doc.allVersions.length - 1], " | 原始版本: ", doc.allVersions[0]) : /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-semibold text-[10px] mt-1 block" }, "(", doc.time, ")")), /* @__PURE__ */ react_shim_default.createElement("td", { colSpan: "2", className: "p-3 text-slate-400 italic text-[11px] font-semibold text-center bg-slate-50/30" }, "暂无直接关联的数据集与智能体"));
         }
         const sortedReqs = [...doc.reqs].sort((a, b) => {
           const keyA = `${a.dataset || ""}-${a.product || ""}`;
@@ -4168,7 +4275,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
               }
             }
           }
-          return /* @__PURE__ */ react_shim_default.createElement("tr", { key: `${doc.name}-${req.id}`, className: "hover:bg-slate-50/80 transition-colors border-b border-slate-100" }, index === 0 && /* @__PURE__ */ react_shim_default.createElement("td", { rowSpan: sortedReqs.length, className: "p-3 font-bold text-slate-800 leading-normal border-r border-slate-150 align-top bg-white" }, /* @__PURE__ */ react_shim_default.createElement(
+          return /* @__PURE__ */ react_shim_default.createElement("tr", { key: `${doc.name}-${req.id}`, className: "hover:bg-slate-50/80 transition-colors border-b border-slate-100" }, index === 0 && /* @__PURE__ */ react_shim_default.createElement("td", { rowSpan: sortedReqs.length, className: "p-3 font-bold text-slate-800 leading-normal border-r border-slate-150 align-top bg-white relative" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center flex-wrap gap-2" }, /* @__PURE__ */ react_shim_default.createElement(
             "a",
             {
               href: doc.url,
@@ -4180,7 +4287,20 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             },
             "\u{1F4C4} ",
             doc.name
-          ), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-semibold ml-2 text-[10px] block mt-1" }, "(", doc.time, ")")), isFirstInDatasetGroup && /* @__PURE__ */ react_shim_default.createElement("td", { rowSpan: datasetRowSpan, className: "p-3 leading-relaxed border-r border-slate-100 align-top" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "my-1 text-slate-650" }, /* @__PURE__ */ react_shim_default.createElement("p", { className: "font-semibold text-slate-800 mb-1.5" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[数据集]"), req.dataset || "暂无", isCrossSector && /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-600 font-black ml-1.5 text-[10.5px]" }, "(跨板块: ", req.block, ")")), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10.5px] font-medium text-slate-700" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[数据产品]"), req.product || "暂无"), renderImpactCard())), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-3 leading-relaxed align-top" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "my-1 font-semibold flex flex-wrap items-center gap-y-1.5" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 mr-1.5 text-[10px]" }, "♦"), (() => {
+          ), doc.allVersions && doc.allVersions.length > 1 && /* @__PURE__ */ react_shim_default.createElement(
+            "button",
+            {
+              onClick: (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setDiffDocGroup(doc);
+              },
+              className: "inline-flex items-center bg-indigo-50 text-indigo-600 border border-indigo-200 px-2 py-0.5 rounded text-[11px] font-bold shadow-sm hover:bg-indigo-100 transition-colors"
+            },
+            "查看更新历史 (",
+            doc.allVersions.length,
+            ")"
+          )), doc.allVersions && doc.allVersions.length > 1 ? /* @__PURE__ */ react_shim_default.createElement("div", { className: "text-slate-400 font-semibold text-[10px] mt-1.5" }, "最新版本: ", doc.allVersions[doc.allVersions.length - 1], " | 原始版本: ", doc.allVersions[0]) : /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-semibold text-[10px] mt-1 block" }, "(", doc.time, ")")), isFirstInDatasetGroup && /* @__PURE__ */ react_shim_default.createElement("td", { rowSpan: datasetRowSpan, className: "p-3 leading-relaxed border-r border-slate-100 align-top" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "my-1 text-slate-650" }, /* @__PURE__ */ react_shim_default.createElement("p", { className: "font-semibold text-slate-800 mb-1.5" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[数据集]"), req.dataset || "暂无", isCrossSector && /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-600 font-black ml-1.5 text-[10.5px]" }, "(跨板块: ", req.block, ")")), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10.5px] font-medium text-slate-700" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[数据产品]"), req.product || "暂无"), renderImpactCard())), /* @__PURE__ */ react_shim_default.createElement("td", { className: "p-3 leading-relaxed align-top" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "my-1 font-semibold flex flex-wrap items-center gap-y-1.5" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-400 mr-1.5 text-[10px]" }, "♦"), (() => {
             const navTarget = getAgentNavTarget(req.id);
             const displayText = `${req.id} ${getSpecificAgentName(req.id)}`;
             return navTarget ? /* @__PURE__ */ react_shim_default.createElement("span", { onClick: () => onNavigate(navTarget), className: "text-indigo-600 hover:text-indigo-800 hover:underline cursor-pointer font-bold", title: "点击跳转到该智能体业务流转页面" }, displayText) : /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-800 font-bold" }, displayText);
@@ -4509,7 +4629,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         className: "px-5 py-1.5 text-xs text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow transition font-bold"
       },
       "保存生效"
-    ))))));
+    ))))), diffDocGroup && /* @__PURE__ */ react_shim_default.createElement("div", { className: "fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex justify-center items-center z-50 animate-fade-in p-4", onClick: () => setDiffDocGroup(null) }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "bg-white border border-slate-200 rounded-2xl p-5 shadow-2xl max-w-4xl w-full max-h-[85vh] flex flex-col relative animate-scale-up", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between items-center border-b border-slate-200 pb-4 mb-4 shrink-0" }, /* @__PURE__ */ react_shim_default.createElement("h2", { className: "m-0 text-lg font-black text-slate-800" }, "更新历史及内容差异比对 (最新版)"), /* @__PURE__ */ react_shim_default.createElement("button", { className: "text-slate-400 hover:bg-slate-100 hover:text-slate-600 rounded-lg p-1 text-xl transition", onClick: () => setDiffDocGroup(null) }, "✕")), /* @__PURE__ */ react_shim_default.createElement("div", { className: "overflow-y-auto custom-scroll pr-2 flex-1" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between mb-4 text-sm text-slate-500 bg-slate-100 p-3 rounded-lg font-semibold" }, /* @__PURE__ */ react_shim_default.createElement("span", null, /* @__PURE__ */ react_shim_default.createElement("strong", { className: "text-slate-700" }, "左侧基准："), " ", diffDocGroup.allVersions[0]), /* @__PURE__ */ react_shim_default.createElement("span", null, /* @__PURE__ */ react_shim_default.createElement("strong", { className: "text-slate-700" }, "当前更新："), " ", diffDocGroup.allVersions[diffDocGroup.allVersions.length - 1])), diff_data_default[diffDocGroup.baseKey] ? /* @__PURE__ */ react_shim_default.createElement("div", { className: "font-sans leading-relaxed text-[14.5px] bg-white border border-slate-200 rounded-lg p-5 text-slate-800 font-medium" }, diff_data_default[diffDocGroup.baseKey].map((section, idx) => /* @__PURE__ */ react_shim_default.createElement("div", { key: idx, className: "mb-6 last:mb-0" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center gap-2 mb-3 bg-slate-50 px-3 py-1.5 rounded border border-slate-150 shadow-sm w-fit" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-indigo-600" }, "\u{1F4CD}"), /* @__PURE__ */ react_shim_default.createElement("span", { className: "font-bold text-slate-700 text-sm" }, section.location)), /* @__PURE__ */ react_shim_default.createElement("div", { className: "pl-2 border-l-2 border-slate-200 space-y-2" }, section.paragraphs.map((para, pIdx) => /* @__PURE__ */ react_shim_default.createElement("p", { key: pIdx, dangerouslySetInnerHTML: { __html: para } })))))) : /* @__PURE__ */ react_shim_default.createElement("div", { className: "font-sans leading-relaxed text-[14.5px] bg-white border border-slate-200 rounded-lg p-8 text-center text-slate-400 font-medium italic" }, "未能匹配到该材料[", diffDocGroup.baseKey, "]的具体差异数据。此材料的内容演进及差异解析数据正在后台提取加工中...")))));
   };
   var RoadDigitalRequirementsView_default = RoadDigitalRequirementsView;
 
@@ -4631,6 +4751,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       ]
     }
   ];
+  var UPDATED_MENU_IDS = ["1.5"];
   var ArchitectureView = ({ onNavigate }) => {
     const [viewMode, setViewMode] = useState2("normal");
     const archDomains = [
@@ -6076,24 +6197,28 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     };
     return /* @__PURE__ */ React.createElement("div", { className: "flex h-screen overflow-hidden bg-slate-100" }, /* @__PURE__ */ React.createElement("aside", { className: "w-80 bg-white text-slate-700 flex flex-col shrink-0 shadow-lg z-20 border-r border-slate-200" }, /* @__PURE__ */ React.createElement("div", { className: "h-20 flex flex-col justify-center px-6 border-b border-slate-200 bg-slate-50 shrink-0" }, /* @__PURE__ */ React.createElement("span", { className: "text-sm font-bold text-blue-600 tracking-wider" }, "湖北省公路事业发展中心"), /* @__PURE__ */ React.createElement("span", { className: "text-lg font-black text-slate-800 mt-0.5 tracking-wider" }, "数据统筹治理平台")), /* @__PURE__ */ React.createElement("nav", { className: "flex-1 overflow-y-auto custom-scroll p-2 space-y-3" }, MENU_DATA.map((group) => {
       const isExpanded = expandedGroups[group.id];
+      const updateCount = group.children.filter((c) => UPDATED_MENU_IDS.includes(c.id)).length;
       return /* @__PURE__ */ React.createElement("div", { key: group.id, className: "space-y-1" }, /* @__PURE__ */ React.createElement(
         "button",
         {
           onClick: () => toggleGroup(group.id),
           className: `w-full flex items-center justify-between px-4 py-3 rounded-lg transition text-left text-sm font-bold ${isExpanded ? "text-blue-700 bg-blue-50/50" : "text-slate-700 hover:text-blue-600 hover:bg-slate-50"}`
         },
-        /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2.5" }, /* @__PURE__ */ React.createElement("span", { className: isExpanded ? "text-blue-600" : "text-slate-500" }, group.icon), /* @__PURE__ */ React.createElement("span", null, group.title)),
+        /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2.5" }, /* @__PURE__ */ React.createElement("span", { className: isExpanded ? "text-blue-600" : "text-slate-500 relative" }, group.icon, updateCount > 0 && !isExpanded && /* @__PURE__ */ React.createElement("span", { className: "absolute -top-1 -right-1 flex h-2.5 w-2.5" }, /* @__PURE__ */ React.createElement("span", { className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" }), /* @__PURE__ */ React.createElement("span", { className: "relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 border border-white" }))), /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-2" }, group.title, updateCount > 0 && /* @__PURE__ */ React.createElement("span", { className: "bg-red-500 text-white text-[9.5px] font-black px-1.5 py-0.5 rounded shadow-sm leading-none" }, updateCount))),
         isExpanded ? /* @__PURE__ */ React.createElement(ChevronDown, { size: 16, className: "text-blue-500" }) : /* @__PURE__ */ React.createElement(ChevronRight, { size: 16, className: "text-slate-400" })
-      ), isExpanded && /* @__PURE__ */ React.createElement("div", { className: "pl-6 space-y-1 border-l-2 border-slate-100 ml-6 my-2" }, group.children.map((sub) => /* @__PURE__ */ React.createElement(
-        "button",
-        {
-          key: sub.id,
-          onClick: () => setActiveMenu(sub.id),
-          className: `w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition text-left ${activeMenu === sub.id ? "active-menu-item shadow-md" : "text-slate-600 hover:text-blue-700 hover:bg-blue-50"}`
-        },
-        /* @__PURE__ */ React.createElement("span", { className: `w-1.5 h-1.5 rounded-full shrink-0 ${activeMenu === sub.id ? "bg-white" : "bg-slate-300"}` }),
-        /* @__PURE__ */ React.createElement("span", { className: "truncate" }, sub.title)
-      ))));
+      ), isExpanded && /* @__PURE__ */ React.createElement("div", { className: "pl-6 space-y-1 border-l-2 border-slate-100 ml-6 my-2" }, group.children.map((sub) => {
+        const isUpdated = UPDATED_MENU_IDS.includes(sub.id);
+        return /* @__PURE__ */ React.createElement(
+          "button",
+          {
+            key: sub.id,
+            onClick: () => setActiveMenu(sub.id),
+            className: `w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition text-left ${activeMenu === sub.id ? "active-menu-item shadow-md" : "text-slate-600 hover:text-blue-700 hover:bg-blue-50"}`
+          },
+          /* @__PURE__ */ React.createElement("span", { className: `w-1.5 h-1.5 rounded-full shrink-0 ${activeMenu === sub.id ? "bg-white" : "bg-slate-300"}` }),
+          /* @__PURE__ */ React.createElement("span", { className: "truncate flex-1 flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", null, sub.title), isUpdated && /* @__PURE__ */ React.createElement("span", { className: "bg-red-50 text-red-600 border border-red-200 text-[9px] font-black px-1.5 py-0.5 rounded shadow-sm animate-pulse leading-none shrink-0" }, "NEW"))
+        );
+      })));
     }))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 flex flex-col h-full overflow-hidden relative" }, /* @__PURE__ */ React.createElement("header", { className: "h-20 bg-white border-b border-slate-200 flex items-center justify-between px-10 shrink-0 shadow-sm z-10" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "w-1.5 h-5 bg-blue-600 rounded" }), /* @__PURE__ */ React.createElement("h1", { className: "text-slate-800 font-black text-lg tracking-wider" }, "政府侧原型")), /* @__PURE__ */ React.createElement("div", { className: "w-px h-5 bg-slate-300" }), /* @__PURE__ */ React.createElement("button", { onClick: () => {
       const currentPath = window.location.pathname;
       let targetPath = "ningbo/index.html";
@@ -6101,7 +6226,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-06 23:23", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-04 22:12"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "企业侧原型", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "政府侧版本更新时间: 2026-06-07 14:52", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "企业侧版本更新时间: 2026-06-04 22:12"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
