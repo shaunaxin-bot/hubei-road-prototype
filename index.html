@@ -2682,7 +2682,35 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   var AnnualReportAgentView_default = AnnualReportAgentView;
 
   // src/mockData.js
+  var COMMON_DOCS = [
+    // 示例：
+    // {
+    //     name: '全省智慧公路建设通用指导意见.pdf',
+    //     date: '06-10',
+    //     targets: ['ALL']
+    // }
+  ];
   var INITIAL_REQUIREMENTS = [
+    {
+      role: "\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u5347\u7EA7\u4E13\u5458",
+      id: "AGENT-\u517B\u62A4-99",
+      block: "\u517B\u62A4\u7BA1\u7406\u5904",
+      dataset: "\u3010\u9AD8\u8D28\u91CF\u6570\u636E\u96C6\u3011\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u8D44\u91D1\u5168\u751F\u547D\u5468\u671F\u6D41\u6C34\u8868\u3001\u533A\u57DF\u75C5\u5BB3\u9891\u53D1\u5206\u5E03\u70ED\u529B\u56FE\u96C6",
+      product: "\u3010\u6570\u636E\u4EA7\u54C1\u3011\u5168\u7701\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u8D44\u91D1\u5408\u89C4\u98CE\u63A7\u6A21\u578BAPI\u3001\u517B\u62A4\u8DEF\u6BB5\u75C5\u5BB3\u591A\u7EF4\u611F\u77E5\u770B\u677F",
+      modelValue: "\u5927\u6A21\u578B / \u9884\u6D4B\u7814\u5224",
+      improvement: "\u5B9E\u73B0\u517B\u62A4\u8D44\u91D1\u5408\u89C4\u5BA1\u67E5\u81EA\u52A8\u5316\u7387\u63D0\u5347\u81F3 95%\n\u6838\u5FC3\u75C5\u5BB3\u4E8B\u4EF6(\u8D85\u957F\u5751\u69FD\u7B49)\u7CFB\u7EDF\u9884\u8B66\u63D0\u524D\u91CF\u63D0\u5347 30%",
+      status: "\u5DF2\u63D0\u70BC\u4E1A\u52A1\u9700\u6C42",
+      docs: [
+        "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc",
+        "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc",
+        "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-3\uFF0820260605\u4E0A\u515A\u59D4\u4F1A\u6C47\u62A5-\u4FEE\u8BA2\u7248\uFF09.pdf"
+      ],
+      history: [
+        { date: "05-21", msg: "[V4\u4FEE\u7248] \u786E\u7ACB\u4E86\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u7684\u57FA\u7840\u67B6\u6784\uFF0C\u521D\u6B65\u5F15\u5165\u6570\u5B57\u5316\u5DE1\u67E5\u548C\u5DE5\u5355\u6D41\u8F6C\u6A21\u5757\u3002" },
+        { date: "06-04", msg: "[\u4FEE\u8BA2\u7248] \u6839\u636E\u4E1A\u52A1\u53CD\u9988\uFF0C\u6DF1\u5316\u4E86\u65E5\u5E38\u5DE1\u67E5\u4E2D\u7684\u6570\u636E\u4E0A\u62A5\u89C4\u8303\uFF0C\u589E\u52A0\u4E86\u5BF9\u9AD8\u9891\u75C5\u5BB3\u7279\u5F81\u7684\u6570\u636E\u96C6\u6807\u6CE8\u8981\u6C42\u3002" },
+        { date: "06-05", msg: "[\u4E0A\u4F1A\u6C47\u62A5] \u878D\u5165\u515A\u59D4\u4F1A\u5BA1\u8BAE\u610F\u89C1\uFF1A\u91CD\u70B9\u8981\u6C42\u8FFD\u52A0\u201C\u517B\u62A4\u8D44\u91D1\u5408\u89C4\u98CE\u63A7\u6A21\u578B\u201D\uFF0C\u5F62\u6210\u8D44\u91D1\u5168\u666F\u76D1\u7BA1\u6570\u636E\u4EA7\u54C1\u3002" }
+      ]
+    },
     {
       id: "AGENT-\u5DE5\u7A0B\u6280\u672F-01",
       block: "\u5DE5\u7A0B\u6280\u672F",
@@ -2693,7 +2721,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       product: "27. \u516C\u8DEF\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u6708\u5EA6\u7B80\u62A5 (\u6570\u636E\u62A5\u544A)",
       modelValue: "\u8FD0\u884C\u76D1\u6D4B\u7F51 / \u5B89\u5168\u9884\u8B66\u6A21\u578B",
       improvement: "\u3010\u63D0\u8D28\u3011\u7ED3\u6784\u5F02\u52A8\u8BC6\u522B\u51C6\u786E\u7387\u63D0\u5347\u81F3 99.8%\n\u3010\u63D0\u6548\u3011\u5B89\u5168\u4E8B\u4EF6\u611F\u77E5\u81F3\u5E94\u6025\u6D3E\u5355\u7531 2\u5C0F\u65F6 \u964D\u81F3 30\u79D2",
-      docs: ["0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc", "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg", "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx", "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx", "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc"],
+      docs: ["0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc", "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg", "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx", "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx", "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc", "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-3\uFF0820260605\u4E0A\u515A\u59D4\u4F1A\u6C47\u62A5-\u4FEE\u8BA2\u7248\uFF09.pdf"],
       status: "\u6536\u96C6\u4E1A\u52A1\u8981\u6C42",
       history: [
         { date: "05-24", msg: "[\u5DE5\u7A0B\u5904\u62A5\u9001] \u62DF\u65B0\u589E\u957F\u5927\u6865\u6881\u5728\u7EBF\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B\u53CA\u6C14\u8C61\u8054\u52A8\u9884\u8B66\u3002" }
@@ -2709,7 +2737,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       product: "20. \u667A\u6167\u96A7\u9053\u5E94\u6025\u9003\u751F\u6307\u5F15\u65B9\u6848 (\u6570\u636E\u5E94\u7528\u65B9\u6848)",
       modelValue: "\u8FD0\u884C\u76D1\u6D4B\u7F51 / \u5B89\u5168\u9884\u8B66\u6A21\u578B",
       improvement: "\u3010\u63D0\u8D28\u3011\u96A7\u9053\u4E8C\u886C\u5F62\u53D8\u9884\u8B66\u51C6\u786E\u5EA6\u8FBE\u5230 99%\n\u3010\u63D0\u6548\u3011\u5F02\u5E38\u4E8B\u4EF6\u611F\u77E5\u54CD\u5E94\u65F6\u6548\u964D\u81F3 1\u5206\u949F\u5185",
-      docs: ["0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc", "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg", "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx", "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx", "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc"],
+      docs: ["0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc", "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg", "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx", "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx", "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc", "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-3\uFF0820260605\u4E0A\u515A\u59D4\u4F1A\u6C47\u62A5-\u4FEE\u8BA2\u7248\uFF09.pdf"],
       status: "\u6536\u96C6\u4E1A\u52A1\u8981\u6C42",
       history: [
         { date: "05-24", msg: "[\u5DE5\u7A0B\u5904\u62A5\u9001] \u65B0\u589E\u96A7\u9053\u6D1E\u4F53\u7ED3\u6784\u6C89\u964D\u6536\u655B\u4E0E\u73AF\u5883\u76D1\u6D4B\u3002" }
@@ -2725,7 +2753,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       product: "11. \u6076\u52A3\u5929\u6C14\u884C\u8F66\u5B89\u5168\u9884\u8B66API (\u6570\u636EAPI)",
       modelValue: "\u8FD0\u884C\u76D1\u6D4B\u7F51 / \u5B89\u5168\u9884\u8B66\u6A21\u578B",
       improvement: "\u3010\u63D0\u8D28\u3011\u9AD8\u8FB9\u5761\u5931\u7A33\u574D\u584C\u8D85\u524D\u9884\u6D4B\u51C6\u786E\u5EA6\u8FBE 95%\n\u3010\u63D0\u6548\u3011\u7A81\u53D1\u6ED1\u5761\u9884\u8B66\u5230\u5E94\u6025\u963B\u65AD\u53D1\u5E03\u65F6\u6548\u7531 1\u5C0F\u65F6 \u964D\u81F3 2\u5206\u949F",
-      docs: ["0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc", "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg", "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx", "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx", "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc"],
+      docs: ["0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc", "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg", "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx", "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx", "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc", "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-3\uFF0820260605\u4E0A\u515A\u59D4\u4F1A\u6C47\u62A5-\u4FEE\u8BA2\u7248\uFF09.pdf"],
       status: "\u6536\u96C6\u4E1A\u52A1\u8981\u6C42",
       history: [
         { date: "05-24", msg: "[\u5DE5\u7A0B\u5904\u62A5\u9001] \u65B0\u589E\u9AD8\u8FB9\u5761\u96E8\u91CF\u53CA\u4F4D\u79FB\u76D1\u6D4B\u70B9\u3002" }
@@ -2734,14 +2762,14 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     {
       id: "AGENT-\u5DE5\u7A0B\u6280\u672F-02",
       block: "\u5DE5\u7A0B\u6280\u672F",
-      role: "\u9AD8\u901F\u516C\u8DEF\u8DEF\u7F51\u7BA1\u517B\u89D2\u8272 (\u65B0\u589E)",
-      desc: "\u9AD8\u901F\u516C\u8DEF\u65E5\u5E38\u5DE1\u68C0\u3001\u8DEF\u51B5\u8BC4\u5B9A\u53CA\u5927\u4E2D\u4FEE\u8BA1\u5212\u96C6\u6210\u3002",
+      role: "\u517B\u62A4\u5DE5\u7A0B\u667A\u80FD\u7BA1\u63A7\u667A\u80FD\u4F53",
+      desc: "\u9879\u76EE\u5B9E\u65BD\u8FC7\u7A0B\u4E2D\uFF0C\u6309\u6708\u6C47\u603B\u5DE5\u7A0B\u5F62\u8C61\u8FDB\u5EA6\u548C\u8D44\u91D1\u652F\u4ED8\u60C5\u51B5\uFF0C\u5E76\u53EF\u7ED3\u5408\u56FA\u6295\u7CFB\u7EDF\u6570\u636E\u8FDB\u884C\u5BF9\u6BD4\u5206\u6790\u3002",
       level: "L3 \u7EA7\u8F83\u654F\u611F",
-      dataset: "49. \u516C\u8DEF\u8D44\u4EA7\u6570\u5B57\u5316\u7BA1\u7406\u5E93 (\u79BB\u7EBF\u6570\u636E\u96C6)",
-      product: "15. \u6865\u6881\u5065\u5EB7\u76D1\u6D4B\u6570\u636E\u96C6 (\u53EF\u4E0A\u67B6\u4EA7\u54C1)",
-      modelValue: "\u884C\u4E1A\u7BA1\u7406\u7F51 / \u8D44\u4EA7\u8BC4\u5B9A\u6A21\u578B",
+      dataset: "50. \u5DE5\u7A0B\u5F62\u8C61\u8FDB\u5EA6\u548C\u8D44\u91D1\u652F\u4ED8\u60C5\u51B5\u6570\u636E\u96C6 (\u79BB\u7EBF\u6570\u636E\u96C6)",
+      product: "28. \u5E74\u5EA6\u517B\u62A4\u5DE5\u7A0B\u8BA1\u5212\u5B9E\u65BD\u60C5\u51B5\u8BC4\u4EF7\u62A5\u544A (\u5206\u6790\u62A5\u544A)",
+      modelValue: "\u667A\u80FD\u4F18\u5148\u7EA7\u6392\u5E8F\u548C\u9884\u7B97\u6D4B\u7B97\u6A21\u578B",
       improvement: "\u3010\u63D0\u8D28\u3011\u9AD8\u901F\u516C\u8DEF\u9690\u6027\u8DEF\u9762\u75C5\u5BB3\u6F0F\u68C0\u7387\u964D\u4F4E 40%\n\u3010\u63D0\u6548\u3011\u5E74\u5EA6\u517B\u62A4\u5927\u4E2D\u4FEE\u6295\u8D44\u8BA1\u5212\u7F16\u5236\u7F29\u77ED 85%",
-      docs: ["0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc", "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg", "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx", "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx", "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc"],
+      docs: ["0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc", "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg", "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx", "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx", "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc", "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-3\uFF0820260605\u4E0A\u515A\u59D4\u4F1A\u6C47\u62A5-\u4FEE\u8BA2\u7248\uFF09.pdf"],
       status: "\u6536\u96C6\u4E1A\u52A1\u8981\u6C42",
       history: [
         { date: "05-24", msg: "[\u5DE5\u7A0B\u5904\u63D0\u51FA] \u9700\u7ED3\u5408\u5B9A\u68C0\u6D4B\u7B97\u6570\u636E\u81EA\u52A8\u62DF\u5408\u5927\u4E2D\u4FEE\u4E2D\u957F\u671F\u8DEF\u7F51\u9884\u7B97\u3002" }
@@ -6498,7 +6526,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       score += Math.round(wcDataWeight * 0.5);
     }
     const wcDocWeight = wC - wcDataWeight;
-    const actualDocs = req.docs ? req.docs.filter((d) => !d.name.includes("\u62A5\u9001\u6A21\u677F")) : [];
+    const actualDocs = req.docs ? req.docs.filter((d) => !(d.name || d).includes("\u62A5\u9001\u6A21\u677F")) : [];
     if (actualDocs.length >= 1) {
       score += wcDocWeight;
     }
@@ -6543,6 +6571,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           "\u7CFB\u7EDF\u9996\u671F\u7814\u53D1\u8D39\u7528\u9884\u8BA1\u6DB5\u76D6<del>2\u9879\u4E3B\u8981\u667A\u80FD\u4F53</del><ins>\u6DB5\u76D6\u201C\u6C5B\u671F\u5DE1\u67E5\u201D\u4E0E\u201C\u6865\u96A7\u5065\u5EB7\u7BA1\u517B\u201D\u7B49 4 \u9879\u6838\u5FC3\u667A\u80FD\u4F53</ins>\u5F00\u53D1\u3002",
           "\u7531\u76F8\u5173\u4E1A\u52A1\u4E13\u73ED\u8DDF\u8FDB\u786E\u8BA4\u529F\u80FD\u7EC6\u8282\uFF0C<ins>\u4FDD\u969C\u9879\u76EE\u5728\u4E09\u5B63\u5EA6\u524D\u5177\u5907\u521D\u7248\u4E0A\u7EBF\u8BD5\u8FD0\u884C\u6761\u4EF6\u3002</ins>"
         ]
+      },
+      {
+        location: "\u7B2C\u4E09\u90E8\u5206 \u517B\u62A4\u5DE5\u7A0B\u667A\u80FD\u7BA1\u63A7\u5E94\u7528 (06-05\u4FEE\u8BA2)",
+        paragraphs: [
+          "<ins>\uFF082\uFF09\u667A\u80FD\u8DDF\u8E2A\u8FDB\u5EA6\u8D44\u91D1\uFF1A\u9879\u76EE\u5B9E\u65BD\u8FC7\u7A0B\u4E2D\uFF0C\u7CFB\u7EDF\u6309\u6708\u6C47\u603B\u5DE5\u7A0B\u5F62\u8C61\u8FDB\u5EA6\u548C\u8D44\u91D1\u652F\u4ED8\u60C5\u51B5\uFF0C\u81EA\u52A8\u7EDF\u8BA1\u91CC\u7A0B\u5B8C\u6210\u7387\u3001\u8D44\u91D1\u5B8C\u6210\u7387\uFF0C\u5E76\u53EF\u7ED3\u5408\u56FA\u6295\u7CFB\u7EDF\u6570\u636E\u8FDB\u884C\u5BF9\u6BD4\u5206\u6790\u3002</ins>",
+          "<ins>\uFF083\uFF09\u667A\u80FD\u751F\u6210\u8BC4\u4EF7\u62A5\u544A\uFF1A\u6BCF\u6708\u81EA\u52A8\u751F\u6210\u6708\u5EA6\u5206\u6790\u62A5\u544A\uFF0C\u652F\u6491\u8C03\u5EA6\u7763\u529E\uFF0C\u6307\u5BFC\u4E0B\u6708\u5DE5\u4F5C\u3002\u5E74\u672B\u7CFB\u7EDF\u6839\u636E\u9879\u76EE\u5B8C\u6210\u7387\u3001\u8D44\u91D1\u6267\u884C\u3001\u5DE5\u671F\u8FDB\u5C55\u7B49\u6570\u636E\uFF0C\u81EA\u52A8\u751F\u6210\u5E74\u5EA6\u517B\u62A4\u5DE5\u7A0B\u8BA1\u5212\u5B9E\u65BD\u60C5\u51B5\u8BC4\u4EF7\u62A5\u544A\uFF0C\u4E3A\u4E0B\u4E00\u5E74\u5EA6\u9879\u76EE\u5B89\u6392\u548C\u8BA1\u5212\u4F18\u5316\u63D0\u4F9B\u652F\u6491\u3002</ins>"
+        ]
       }
     ],
     \u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u7CFB\u7EDF\u5B9E\u65BD\u65B9\u6848\u6C47\u62A5: [
@@ -6586,28 +6621,32 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
       "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
       "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-      "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc"
+      "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc",
+      "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-3\uFF0820260605\u4E0A\u515A\u59D4\u4F1A\u6C47\u62A5-\u4FEE\u8BA2\u7248\uFF09.pdf"
     ],
     "AGENT-\u5DE5\u7A0B\u6280\u672F-02": [
       "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc",
       "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
       "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
       "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-      "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc"
+      "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc",
+      "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-3\uFF0820260605\u4E0A\u515A\u59D4\u4F1A\u6C47\u62A5-\u4FEE\u8BA2\u7248\uFF09.pdf"
     ],
     "AGENT-\u5DE5\u7A0B\u6280\u672F-03": [
       "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc",
       "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
       "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
       "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-      "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc"
+      "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc",
+      "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-3\uFF0820260605\u4E0A\u515A\u59D4\u4F1A\u6C47\u62A5-\u4FEE\u8BA2\u7248\uFF09.pdf"
     ],
     "AGENT-\u5DE5\u7A0B\u6280\u672F-04": [
       "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc",
       "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
       "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
       "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-      "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc"
+      "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc",
+      "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-3\uFF0820260605\u4E0A\u515A\u59D4\u4F1A\u6C47\u62A5-\u4FEE\u8BA2\u7248\uFF09.pdf"
     ],
     "AGENT-\u517B\u62A4\u7BA1\u7406-01": [
       "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
@@ -6720,7 +6759,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
       "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
       "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-      "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc"
+      "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc",
+      "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-3\uFF0820260605\u4E0A\u515A\u59D4\u4F1A\u6C47\u62A5-\u4FEE\u8BA2\u7248\uFF09.pdf"
     ],
     \u5E94\u6025\u4E2D\u5FC3: [
       "0520-\u516C\u8DEF\u8DEF\u7F51\u8FD0\u884C\u76D1\u6D4B\u4E0E\u5E94\u6025\u6307\u6325\u8C03\u5EA6\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848(3)(1).docx"
@@ -7174,7 +7214,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           };
           versions.sort((a, b) => extractDate(a) - extractDate(b));
           const latestFileName = versions[versions.length - 1];
-          const allAssociated = requirements2.filter((req) => req.docs && req.docs.some((d) => versions.includes(d.name)));
+          const allAssociated = requirements2.filter((req) => req.docs && req.docs.some((d) => versions.includes(d.name || d)));
           const filteredAssociated = allAssociated.filter((req) => {
             const matchesSearch = !searchTerm || req.id.toLowerCase().includes(searchTerm.toLowerCase()) || req.role.toLowerCase().includes(searchTerm.toLowerCase()) || req.desc.toLowerCase().includes(searchTerm.toLowerCase()) || versions.some((v) => v.toLowerCase().includes(searchTerm.toLowerCase()));
             return matchesSearch;
@@ -7183,7 +7223,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           const shouldShow = fileMatchesSearch || filteredAssociated.length > 0;
           if (shouldShow) {
             let url = "#";
-            const reqWithDoc = allAssociated.find((req) => req.docs && req.docs.some((d) => versions.includes(d.name)));
+            const reqWithDoc = allAssociated.find((req) => req.docs && req.docs.some((d) => versions.includes(d.name || d)));
             if (reqWithDoc) {
               const d = reqWithDoc.docs.find((d2) => versions.includes(d2.name));
               if (d) url = d.url;
@@ -7411,7 +7451,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         /* @__PURE__ */ react_shim_default2.createElement("td", { className: "p-3 text-center" }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex flex-col items-center gap-0.5" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: `text-xs font-black ${getFeasibilityScore(req, scoreConfig) >= 80 ? "text-emerald-600" : getFeasibilityScore(req, scoreConfig) >= 60 ? "text-indigo-600" : "text-slate-400"}` }, getFeasibilityScore(req, scoreConfig) > 0 ? `${getFeasibilityScore(req, scoreConfig)}\u5206` : "\u6682\u65E0"), approvedFirstReleaseIds.includes(req.id) ? /* @__PURE__ */ react_shim_default2.createElement("span", { className: "px-1 py-0.5 bg-indigo-50 text-indigo-700 text-[8px] rounded border border-indigo-200 font-black scale-90" }, "\u5DF2\u6279\u51C6\u9996\u53D1") : getFeasibilityScore(req, scoreConfig) >= 80 ? /* @__PURE__ */ react_shim_default2.createElement("span", { className: "px-1 py-0.5 bg-slate-100 text-slate-700 text-[8px] rounded border border-slate-200 font-black scale-90" }, "\u5EFA\u8BAE\u9996\u53D1") : null)),
         /* @__PURE__ */ react_shim_default2.createElement("td", { className: "p-3 leading-tight" }, req.status === "\u6682\u65E0\u8981\u6C42" ? /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-300" }, "\u6682\u65E0") : /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex flex-col gap-1" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-700 text-[11px] font-bold" }, "\u{1F4C2} ", req.dataset), /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-500 text-[10px]" }, "\u{1F50C} ", req.product))),
         /* @__PURE__ */ react_shim_default2.createElement("td", { className: "p-3", onClick: (e) => e.stopPropagation() }, (() => {
-          const actualDocs = req.docs ? req.docs.filter((d) => !d.name.includes("\u62A5\u9001\u6A21\u677F")) : [];
+          const actualDocs = req.docs ? req.docs.filter((d) => !(d.name || d).includes("\u62A5\u9001\u6A21\u677F")) : [];
           return actualDocs.length > 0 ? /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex flex-col gap-1 max-w-[150px]" }, actualDocs.map((doc, idx) => /* @__PURE__ */ react_shim_default2.createElement(
             "a",
             {
@@ -7443,7 +7483,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
                 className: "text-slate-800 hover:text-slate-900 hover:underline inline-block"
               },
               "\u{1F4C4} ",
-              doc.name
+              doc.name,
+              doc.name.includes("0604-3") ? /* @__PURE__ */ react_shim_default2.createElement("span", { className: "bg-rose-100 text-rose-600 px-1.5 py-0.5 rounded text-[10px] font-bold ml-2 animate-pulse align-middle inline-block" }, "06-10 \u66F4\u65B0") : null
             ), doc.allVersions && doc.allVersions.length > 1 && /* @__PURE__ */ react_shim_default2.createElement(
               "button",
               {
@@ -7457,7 +7498,19 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
               "\u67E5\u770B\u66F4\u65B0\u5386\u53F2 (",
               doc.allVersions.length,
               ")"
-            )), doc.allVersions && doc.allVersions.length > 1 ? /* @__PURE__ */ react_shim_default2.createElement("div", { className: "text-slate-400 font-semibold text-[10px] mt-1.5" }, "\u6700\u65B0\u7248\u672C: ", doc.allVersions[doc.allVersions.length - 1], " | \u539F\u59CB\u7248\u672C: ", doc.allVersions[0]) : /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-400 font-semibold text-[10px] mt-1 block" }, "(", doc.time, ")")), /* @__PURE__ */ react_shim_default2.createElement("td", { colSpan: "2", className: "p-3 text-slate-400 italic text-[11px] font-semibold text-center bg-slate-50/30" }, "\u6682\u65E0\u76F4\u63A5\u5173\u8054\u7684\u6570\u636E\u96C6\u4E0E\u667A\u80FD\u4F53"));
+            )), doc.allVersions && doc.allVersions.length > 1 ? /* @__PURE__ */ react_shim_default2.createElement(
+              "div",
+              { className: "text-slate-400 font-semibold text-[10.5px] mt-2 leading-relaxed" },
+              doc.allVersions.map((v, i) => {
+                let prefix = i === 0 ? "\u539F\u59CB\u7248\u672C: " : i === doc.allVersions.length - 1 ? " | \u6700\u65B0\u7248\u672C: " : " | \u4E2D\u95F4\u7248\u672C: ";
+                return /* @__PURE__ */ react_shim_default2.createElement(
+                  "span",
+                  { key: i },
+                  /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-500" }, prefix),
+                  v
+                );
+              })
+            ) : /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-400 font-semibold text-[10px] mt-1 block" }, "(", doc.time, ")")), /* @__PURE__ */ react_shim_default2.createElement("td", { colSpan: "2", className: "p-3 text-slate-400 italic text-[11px] font-semibold text-center bg-slate-50/30" }, "\u6682\u65E0\u76F4\u63A5\u5173\u8054\u7684\u6570\u636E\u96C6\u4E0E\u667A\u80FD\u4F53"));
           }
           const sortedReqs = [...doc.reqs].sort((a, b) => {
             const keyA = `${a.dataset || ""}-${a.product || ""}`;
@@ -7527,7 +7580,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
                 className: "text-slate-800 hover:text-slate-900 hover:underline inline-block"
               },
               "\u{1F4C4} ",
-              doc.name
+              doc.name,
+              doc.name.includes("0604-3") ? /* @__PURE__ */ react_shim_default2.createElement("span", { className: "bg-rose-100 text-rose-600 px-1.5 py-0.5 rounded text-[10px] font-bold ml-2 animate-pulse align-middle inline-block" }, "06-10 \u66F4\u65B0") : null
             ), doc.allVersions && doc.allVersions.length > 1 && /* @__PURE__ */ react_shim_default2.createElement(
               "button",
               {
@@ -7541,10 +7595,24 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
               "\u67E5\u770B\u66F4\u65B0\u5386\u53F2 (",
               doc.allVersions.length,
               ")"
-            )), doc.allVersions && doc.allVersions.length > 1 ? /* @__PURE__ */ react_shim_default2.createElement("div", { className: "text-slate-400 font-semibold text-[10px] mt-1.5" }, "\u6700\u65B0\u7248\u672C: ", doc.allVersions[doc.allVersions.length - 1], " | \u539F\u59CB\u7248\u672C: ", doc.allVersions[0]) : /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-400 font-semibold text-[10px] mt-1 block" }, "(", doc.time, ")")), isFirstInDatasetGroup && /* @__PURE__ */ react_shim_default2.createElement("td", { rowSpan: datasetRowSpan, className: "p-3 leading-relaxed border-r border-slate-100 align-top" }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "my-1 text-slate-650" }, /* @__PURE__ */ react_shim_default2.createElement("p", { className: "font-semibold text-slate-800 mb-1.5" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[\u6570\u636E\u96C6]"), req.dataset || "\u6682\u65E0", isCrossSector && /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-indigo-600 font-black ml-1.5 text-[10.5px]" }, "(\u8DE8\u677F\u5757: ", req.block, ")")), /* @__PURE__ */ react_shim_default2.createElement("p", { className: "text-[10.5px] font-medium text-slate-700" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[\u6570\u636E\u4EA7\u54C1]"), req.product || "\u6682\u65E0"), renderImpactCard())), /* @__PURE__ */ react_shim_default2.createElement("td", { className: "p-3 leading-relaxed align-top" }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "my-1 font-semibold flex flex-wrap items-center gap-y-1.5" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-400 mr-1.5 text-[10px]" }, "\u2666"), (() => {
+            )), doc.allVersions && doc.allVersions.length > 1 ? /* @__PURE__ */ react_shim_default2.createElement(
+              "div",
+              { className: "text-slate-400 font-semibold text-[10.5px] mt-2 leading-relaxed" },
+              doc.allVersions.map((v, i) => {
+                let prefix = i === 0 ? "\u539F\u59CB\u7248\u672C: " : i === doc.allVersions.length - 1 ? " | \u6700\u65B0\u7248\u672C: " : " | \u4E2D\u95F4\u7248\u672C: ";
+                return /* @__PURE__ */ react_shim_default2.createElement(
+                  "span",
+                  { key: i },
+                  /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-500" }, prefix),
+                  v
+                );
+              })
+            ) : /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-400 font-semibold text-[10px] mt-1 block" }, "(", doc.time, ")")), isFirstInDatasetGroup && /* @__PURE__ */ react_shim_default2.createElement("td", { rowSpan: datasetRowSpan, className: "p-3 leading-relaxed border-r border-slate-100 align-top" }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "my-1 text-slate-650" }, /* @__PURE__ */ react_shim_default2.createElement("p", { className: "font-semibold text-slate-800 mb-1.5" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[\u6570\u636E\u96C6]"), req.dataset || "\u6682\u65E0", isCrossSector && /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-indigo-600 font-black ml-1.5 text-[10.5px]" }, "(\u8DE8\u677F\u5757: ", req.block, ")")), /* @__PURE__ */ react_shim_default2.createElement("p", { className: "text-[10.5px] font-medium text-slate-700" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-400 font-bold mr-1.5 text-[10px] bg-slate-100 px-1 py-0.5 rounded" }, "[\u6570\u636E\u4EA7\u54C1]"), req.product || "\u6682\u65E0"), renderImpactCard())), /* @__PURE__ */ react_shim_default2.createElement("td", { className: "p-3 leading-relaxed align-top" }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "my-1 font-semibold flex flex-wrap items-center gap-y-1.5" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-400 mr-1.5 text-[10px]" }, "\u2666"), (() => {
               const navTarget = getAgentNavTarget(req.id);
               const displayText = `${req.id} ${getSpecificAgentName2(req.id)}`;
-              return navTarget ? /* @__PURE__ */ react_shim_default2.createElement("span", { onClick: () => onNavigate(navTarget), className: "text-indigo-600 hover:text-indigo-800 hover:underline cursor-pointer font-bold", title: "\u70B9\u51FB\u8DF3\u8F6C\u5230\u8BE5\u667A\u80FD\u4F53\u4E1A\u52A1\u6D41\u8F6C\u9875\u9762" }, displayText) : /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-800 font-bold" }, displayText);
+              const badge = req.id === "AGENT-\u5DE5\u7A0B\u6280\u672F-02" ? /* @__PURE__ */ react_shim_default2.createElement("span", { className: "bg-rose-100 text-rose-600 px-1.5 py-0.5 rounded text-[10px] font-bold ml-2 animate-pulse" }, "06-10 \u66F4\u65B0") : null;
+              const element = navTarget ? /* @__PURE__ */ react_shim_default2.createElement("span", { onClick: () => onNavigate(navTarget), className: "text-indigo-600 hover:text-indigo-800 hover:underline cursor-pointer font-bold", title: "\u8DF3\u8F6C" }, displayText) : /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-800 font-bold" }, displayText);
+              return /* @__PURE__ */ react_shim_default2.createElement(react_shim_default2.Fragment, null, element, badge);
             })(), /* @__PURE__ */ react_shim_default2.createElement("span", { className: "ml-2 bg-slate-100 text-slate-700 border px-1.5 py-0.5 rounded text-[9px] font-black shadow-sm" }, "\u5C31\u7EEA\u5EA6: ", getFeasibilityScore(req, scoreConfig), "\u5206"), /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-slate-500 font-bold ml-1.5 text-[10.5px]" }, "(", req.status === "\u6682\u65E0\u8981\u6C42" ? "\u6682\u65E0\u8981\u6C42" : req.id === "AGENT-\u517B\u62A4\u7BA1\u7406-05" ? "\u6784\u5EFA\u4E1A\u52A1\u6D41\u7A0B" : "\u6536\u96C6\u4E1A\u52A1\u8981\u6C42", ")"), /* @__PURE__ */ react_shim_default2.createElement("div", { className: "w-full mt-1.5 flex flex-col gap-1.5" }, req.status !== "\u6682\u65E0\u8981\u6C42" && /* @__PURE__ */ react_shim_default2.createElement("span", { className: "inline-flex w-fit px-1.5 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-150 text-[9px] rounded font-black" }, "\u{1F916} ", getAgentMenuPath(req.id))), isCrossSector && /* @__PURE__ */ react_shim_default2.createElement("div", { className: "w-full mt-1.5" }, /* @__PURE__ */ react_shim_default2.createElement(
               "button",
               {
@@ -7586,11 +7654,11 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         if (hasDataset && hasProduct && isMultiYearReady) dataScore = wcDataWeight;
         else if (hasDataset || hasProduct) dataScore = Math.round(wcDataWeight * 0.5);
         const wcDocWeight = scoreConfig.weightC - wcDataWeight;
-        const actualDocs = selectedReq.docs ? selectedReq.docs.filter((d) => !d.name.includes("\u62A5\u9001\u6A21\u677F")) : [];
+        const actualDocs = selectedReq.docs ? selectedReq.docs.filter((d) => !(d.name || d).includes("\u62A5\u9001\u6A21\u677F")) : [];
         const docScore = actualDocs.length >= 1 ? wcDocWeight : 0;
         return `${dataScore + docScore}\u5206 / ${scoreConfig.weightC}\u5206 (\u6570\u636E:${dataScore}\u5206 + \u6750\u6599:${docScore}\u5206)`;
       })()))), /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex justify-between items-center bg-white/60 rounded px-2 py-1 border border-slate-200 mt-1" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-[9px] text-slate-400 font-bold" }, "\u5C31\u7EEA\u5EA6\u6392\u671F\u68AF\u961F"), /* @__PURE__ */ react_shim_default2.createElement("span", { className: `text-[9.5px] rounded font-black ${approvedFirstReleaseIds.includes(selectedReq.id) ? "text-indigo-700 font-black" : getFeasibilityScore(selectedReq, scoreConfig) >= 80 ? "text-emerald-700" : getFeasibilityScore(selectedReq, scoreConfig) >= 60 ? "text-slate-800 font-extrabold" : "text-slate-500"}` }, approvedFirstReleaseIds.includes(selectedReq.id) ? "\u7B2C\u4E00\u68AF\u961F (\u5DF2\u786E\u8BA4\u9996\u53D1)" : getFeasibilityScore(selectedReq, scoreConfig) >= 80 ? "\u7B2C\u4E00\u68AF\u961F (\u5EFA\u8BAE\u9996\u53D1\u6392\u671F)" : getFeasibilityScore(selectedReq, scoreConfig) >= 60 ? "\u7B2C\u4E8C\u68AF\u961F (\u7A33\u6B65\u63A8\u5E7F\u6392\u671F)" : "\u7B2C\u4E09\u68AF\u961F (\u57F9\u80B2\u8865\u5145\u6392\u671F)"))), (() => {
-        const actualDocs = selectedReq.docs ? selectedReq.docs.filter((d) => !d.name.includes("\u62A5\u9001\u6A21\u677F")) : [];
+        const actualDocs = selectedReq.docs ? selectedReq.docs.filter((d) => !(d.name || d).includes("\u62A5\u9001\u6A21\u677F")) : [];
         return /* @__PURE__ */ react_shim_default2.createElement("div", { className: "bg-slate-50/50 border border-slate-200/80 rounded-xl p-3" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-[10px] text-slate-500 uppercase font-black tracking-wider block mb-2" }, "\u{1F4C2} \u5DF2\u63D0\u4EA4\u7684\u5173\u8054\u8D44\u6599 / \u62A5\u9001\u6587\u4EF6 (", actualDocs.length, " \u4EFD)"), actualDocs.length > 0 ? /* @__PURE__ */ react_shim_default2.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-2" }, actualDocs.map((doc, idx) => /* @__PURE__ */ react_shim_default2.createElement(
           "a",
           {
@@ -7876,7 +7944,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         },
         "\u4FDD\u5B58\u751F\u6548"
       ))))),
-      diffDocGroup && /* @__PURE__ */ react_shim_default2.createElement("div", { className: "fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex justify-center items-center z-50 animate-fade-in p-4", onClick: () => setDiffDocGroup(null) }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "bg-white border border-slate-200 rounded-2xl p-5 shadow-2xl max-w-4xl w-full max-h-[85vh] flex flex-col relative animate-scale-up", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex justify-between items-center border-b border-slate-200 pb-4 mb-4 shrink-0" }, /* @__PURE__ */ react_shim_default2.createElement("h2", { className: "m-0 text-lg font-black text-slate-800" }, "\u66F4\u65B0\u5386\u53F2\u53CA\u5185\u5BB9\u5DEE\u5F02\u6BD4\u5BF9 (\u6700\u65B0\u7248)"), /* @__PURE__ */ react_shim_default2.createElement("button", { className: "text-slate-400 hover:bg-slate-100 hover:text-slate-600 rounded-lg p-1 text-xl transition", onClick: () => setDiffDocGroup(null) }, "\u2715")), /* @__PURE__ */ react_shim_default2.createElement("div", { className: "overflow-y-auto custom-scroll pr-2 flex-1" }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex justify-between mb-4 text-sm text-slate-500 bg-slate-100 p-3 rounded-lg font-semibold" }, /* @__PURE__ */ react_shim_default2.createElement("span", null, /* @__PURE__ */ react_shim_default2.createElement("strong", { className: "text-slate-700" }, "\u5DE6\u4FA7\u57FA\u51C6\uFF1A"), " ", diffDocGroup.allVersions[0]), /* @__PURE__ */ react_shim_default2.createElement("span", null, /* @__PURE__ */ react_shim_default2.createElement("strong", { className: "text-slate-700" }, "\u5F53\u524D\u66F4\u65B0\uFF1A"), " ", diffDocGroup.allVersions[diffDocGroup.allVersions.length - 1])), diff_data_default[diffDocGroup.baseKey] ? /* @__PURE__ */ react_shim_default2.createElement("div", { className: "font-sans leading-relaxed text-[14.5px] bg-white border border-slate-200 rounded-lg p-5 text-slate-800 font-medium" }, diff_data_default[diffDocGroup.baseKey].map((section, idx) => /* @__PURE__ */ react_shim_default2.createElement("div", { key: idx, className: "mb-6 last:mb-0" }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex items-center gap-2 mb-3 bg-slate-50 px-3 py-1.5 rounded border border-slate-150 shadow-sm w-fit" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-indigo-600" }, "\u{1F4CD}"), /* @__PURE__ */ react_shim_default2.createElement("span", { className: "font-bold text-slate-700 text-sm" }, section.location)), /* @__PURE__ */ react_shim_default2.createElement("div", { className: "pl-2 border-l-2 border-slate-200 space-y-2" }, section.paragraphs.map((para, pIdx) => /* @__PURE__ */ react_shim_default2.createElement("p", { key: pIdx, dangerouslySetInnerHTML: { __html: para } })))))) : /* @__PURE__ */ react_shim_default2.createElement("div", { className: "font-sans leading-relaxed text-[14.5px] bg-white border border-slate-200 rounded-lg p-8 text-center text-slate-400 font-medium italic" }, "\u672A\u80FD\u5339\u914D\u5230\u8BE5\u6750\u6599[", diffDocGroup.baseKey, "]\u7684\u5177\u4F53\u5DEE\u5F02\u6570\u636E\u3002\u6B64\u6750\u6599\u7684\u5185\u5BB9\u6F14\u8FDB\u53CA\u5DEE\u5F02\u89E3\u6790\u6570\u636E\u6B63\u5728\u540E\u53F0\u63D0\u53D6\u52A0\u5DE5\u4E2D..."))))
+      diffDocGroup && /* @__PURE__ */ react_shim_default2.createElement("div", { className: "fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex justify-center items-center z-50 animate-fade-in p-4", onClick: () => setDiffDocGroup(null) }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "bg-white border border-slate-200 rounded-2xl p-5 shadow-2xl max-w-4xl w-full max-h-[85vh] flex flex-col relative animate-scale-up", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex justify-between items-center border-b border-slate-200 pb-4 mb-4 shrink-0" }, /* @__PURE__ */ react_shim_default2.createElement("h2", { className: "m-0 text-lg font-black text-slate-800" }, "\u66F4\u65B0\u5386\u53F2\u53CA\u5185\u5BB9\u5DEE\u5F02\u6BD4\u5BF9 (\u6700\u65B0\u7248)"), /* @__PURE__ */ react_shim_default2.createElement("button", { className: "text-slate-400 hover:bg-slate-100 hover:text-slate-600 rounded-lg p-1 text-xl transition", onClick: () => setDiffDocGroup(null) }, "\u2715")), /* @__PURE__ */ react_shim_default2.createElement("div", { className: "overflow-y-auto custom-scroll pr-2 flex-1" }, /* @__PURE__ */ react_shim_default2.createElement(
+        "div",
+        { className: "flex flex-col gap-2 mb-4 text-[13px] text-slate-600 bg-slate-50 p-4 rounded-lg font-medium border border-slate-200" },
+        /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex items-start" }, /* @__PURE__ */ react_shim_default2.createElement("strong", { className: "text-slate-800 w-20 shrink-0" }, "V1 \u57FA\u51C6:"), /* @__PURE__ */ react_shim_default2.createElement("span", null, diffDocGroup.allVersions[0])),
+        diffDocGroup.allVersions.length > 2 ? /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex items-start" }, /* @__PURE__ */ react_shim_default2.createElement("strong", { className: "text-slate-800 w-20 shrink-0" }, "V2 \u8FC7\u6E21:"), /* @__PURE__ */ react_shim_default2.createElement("span", null, diffDocGroup.allVersions[1])) : null,
+        /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex items-start" }, /* @__PURE__ */ react_shim_default2.createElement("strong", { className: "text-indigo-700 w-20 shrink-0" }, "V" + diffDocGroup.allVersions.length + " \u6700\u65B0:"), /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-indigo-600 font-bold" }, diffDocGroup.allVersions[diffDocGroup.allVersions.length - 1]))
+      ), diff_data_default[diffDocGroup.baseKey] ? /* @__PURE__ */ react_shim_default2.createElement("div", { className: "font-sans leading-relaxed text-[14.5px] bg-white border border-slate-200 rounded-lg p-5 text-slate-800 font-medium" }, diff_data_default[diffDocGroup.baseKey].map((section, idx) => /* @__PURE__ */ react_shim_default2.createElement("div", { key: idx, className: "mb-6 last:mb-0" }, /* @__PURE__ */ react_shim_default2.createElement("div", { className: "flex items-center gap-2 mb-3 bg-slate-50 px-3 py-1.5 rounded border border-slate-150 shadow-sm w-fit" }, /* @__PURE__ */ react_shim_default2.createElement("span", { className: "text-indigo-600" }, "\u{1F4CD}"), /* @__PURE__ */ react_shim_default2.createElement("span", { className: "font-bold text-slate-700 text-sm" }, section.location)), /* @__PURE__ */ react_shim_default2.createElement("div", { className: "pl-2 border-l-2 border-slate-200 space-y-2" }, section.paragraphs.map((para, pIdx) => /* @__PURE__ */ react_shim_default2.createElement("p", { key: pIdx, dangerouslySetInnerHTML: { __html: para } })))))) : /* @__PURE__ */ react_shim_default2.createElement("div", { className: "font-sans leading-relaxed text-[14.5px] bg-white border border-slate-200 rounded-lg p-8 text-center text-slate-400 font-medium italic" }, "\u672A\u80FD\u5339\u914D\u5230\u8BE5\u6750\u6599[", diffDocGroup.baseKey, "]\u7684\u5177\u4F53\u5DEE\u5F02\u6570\u636E\u3002\u6B64\u6750\u6599\u7684\u5185\u5BB9\u6F14\u8FDB\u53CA\u5DEE\u5F02\u89E3\u6790\u6570\u636E\u6B63\u5728\u540E\u53F0\u63D0\u53D6\u52A0\u5DE5\u4E2D..."))))
     );
   };
   var RoadDigitalRequirementsView_default = RoadDigitalRequirementsView;
@@ -8048,557 +8122,6 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       req.id + " " + (getSpecificAgentName(req.id) || req.role),
       /* @__PURE__ */ react_shim_default.createElement(Icon, { name: "ExternalLink", size: 14, className: "opacity-0 group-hover:opacity-100 mt-0.5" })
     ), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-slate-500 text-xs mt-1" }, req.desc)), /* @__PURE__ */ react_shim_default.createElement("div", { className: "md:w-2/3 bg-slate-50/50 rounded-lg p-4 border border-slate-100 flex flex-col justify-center" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex items-center justify-between mb-4 pb-3 border-b border-slate-200/60" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-sm font-bold text-slate-700" }, "\u5B9E\u65BD\u5C31\u7EEA\u5EA6\u5F97\u5206"), /* @__PURE__ */ react_shim_default.createElement("span", { className: `text-lg font-black ${req.details.total >= 90 ? "text-emerald-600" : "text-blue-600"}` }, req.details.total, " ", /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-xs font-medium text-slate-500" }, "/ 100"))), /* @__PURE__ */ react_shim_default.createElement("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-4" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex flex-col gap-1" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between text-[11px] font-bold" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-700" }, scoreConfig.nameA), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-900" }, req.details.scoreA, "/", scoreConfig.weightA)), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10px] text-slate-500 bg-white p-1.5 rounded border border-slate-100 shadow-sm leading-relaxed" }, req.details.reasonA)), /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex flex-col gap-1" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between text-[11px] font-bold" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-700" }, scoreConfig.nameB), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-900" }, req.details.scoreB, "/", scoreConfig.weightB)), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10px] text-slate-500 bg-white p-1.5 rounded border border-slate-100 shadow-sm leading-relaxed" }, req.details.reasonB)), /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex flex-col gap-1" }, /* @__PURE__ */ react_shim_default.createElement("div", { className: "flex justify-between text-[11px] font-bold" }, /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-700" }, scoreConfig.nameC), /* @__PURE__ */ react_shim_default.createElement("span", { className: "text-slate-900" }, req.details.scoreC, "/", scoreConfig.weightC)), /* @__PURE__ */ react_shim_default.createElement("p", { className: "text-[10px] text-slate-500 bg-white p-1.5 rounded border border-slate-100 shadow-sm leading-relaxed" }, req.details.reasonC))))))))));
-  };
-
-  // src/agent_docs_meta.json
-  var agent_docs_meta_default = {
-    \u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B\u89D2\u8272: {
-      id: "AGENT-\u5DE5\u7A0B\u6280\u672F-01",
-      block: "\u5DE5\u7A0B\u6280\u672F",
-      rawRole: "\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B\u89D2\u8272 (\u65B0\u589E)",
-      docs: [
-        {
-          name: "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc",
-          date: "06-04"
-        },
-        {
-          name: "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
-          date: "05-20"
-        },
-        {
-          name: "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-24"
-        },
-        {
-          name: "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-24"
-        },
-        {
-          name: "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc",
-          date: "05-24"
-        }
-      ]
-    },
-    \u96A7\u9053\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B\u89D2\u8272: {
-      id: "AGENT-\u5DE5\u7A0B\u6280\u672F-03",
-      block: "\u5DE5\u7A0B\u6280\u672F",
-      rawRole: "\u96A7\u9053\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B\u89D2\u8272 (\u65B0\u589E)",
-      docs: [
-        {
-          name: "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc",
-          date: "06-04"
-        },
-        {
-          name: "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
-          date: "05-20"
-        },
-        {
-          name: "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-24"
-        },
-        {
-          name: "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-24"
-        },
-        {
-          name: "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc",
-          date: "05-24"
-        }
-      ]
-    },
-    \u8FB9\u5761\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B\u89D2\u8272: {
-      id: "AGENT-\u5DE5\u7A0B\u6280\u672F-04",
-      block: "\u5DE5\u7A0B\u6280\u672F",
-      rawRole: "\u8FB9\u5761\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B\u89D2\u8272 (\u65B0\u589E)",
-      docs: [
-        {
-          name: "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc",
-          date: "06-04"
-        },
-        {
-          name: "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
-          date: "05-20"
-        },
-        {
-          name: "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-24"
-        },
-        {
-          name: "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-24"
-        },
-        {
-          name: "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc",
-          date: "05-24"
-        }
-      ]
-    },
-    \u9AD8\u901F\u516C\u8DEF\u8DEF\u7F51\u7BA1\u517B\u89D2\u8272: {
-      id: "AGENT-\u5DE5\u7A0B\u6280\u672F-02",
-      block: "\u5DE5\u7A0B\u6280\u672F",
-      rawRole: "\u9AD8\u901F\u516C\u8DEF\u8DEF\u7F51\u7BA1\u517B\u89D2\u8272 (\u65B0\u589E)",
-      docs: [
-        {
-          name: "0-\u5173\u4E8E\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7B49\u7CFB\u7EDF\u5EFA\u8BBE\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A520260604-2\uFF08\u4FEE\u8BA2\u7248\uFF09.doc",
-          date: "06-04"
-        },
-        {
-          name: "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
-          date: "05-20"
-        },
-        {
-          name: "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-24"
-        },
-        {
-          name: "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-24"
-        },
-        {
-          name: "\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc",
-          date: "05-24"
-        }
-      ]
-    },
-    "\u517B\u62A4\u7BA1\u7406\u5904 - \u4EA4\u8C03\u5E74\u62A5\u4E0E\u5956\u8865\u878D\u5408\u89D2\u8272": {
-      id: "AGENT-\u89C4\u5212\u8BA1\u5212-04",
-      block: "\u89C4\u5212\u8BA1\u5212",
-      rawRole: "\u517B\u62A4\u7BA1\u7406\u5904 - \u4EA4\u8C03\u5E74\u62A5\u4E0E\u5956\u8865\u878D\u5408\u89D2\u8272 (\u65B0\u589E)",
-      docs: [
-        {
-          name: "0528\u2014\u4EA4\u8C03\u7CFB\u7EDF\u4FEE\u6539\u7248.xlsx",
-          date: "05-25"
-        },
-        {
-          name: "\u4EE5\u5956\u4EE3\u8865\u9884\u7B97.xlsx",
-          date: "05-25"
-        },
-        {
-          name: "\u5173\u4E8E\u516C\u8DEF\u4EA4\u901A\u60C5\u51B5\u8C03\u67E5\u7CFB\u7EDF\u4E0E\u5E74\u62A5\u7CFB\u7EDF.docx",
-          date: "05-25"
-        },
-        {
-          name: "\u6E56\u5317\u7701\u516C\u8DEF\u8BA1\u5212\u6267\u884C\u8BC4\u4F30\u8F6F\u4EF6\u5347\u7EA7\u6539\u9020\u8D39\u7528\u6D4B\u7B97-\u8F6F\u4EF6\u529F\u80FD\u70B9\u4F30\u503C\u6CD5-v2.xlsx",
-          date: "05-25"
-        },
-        {
-          name: "\u8F6F\u4EF6\u6539\u9020\u8D39\u7528\u6D4B\u7B97\u62A5\u544A-v2.docx",
-          date: "05-25"
-        }
-      ]
-    },
-    \u8DEF\u7F51\u76D1\u6D4B\u4E0E\u5E94\u6025\u8C03\u5EA6\u6307\u6325\u89D2\u8272: {
-      id: "AGENT-\u5B89\u5168\u5E94\u6025-04",
-      block: "\u5B89\u5168\u5E94\u6025",
-      rawRole: "\u8DEF\u7F51\u76D1\u6D4B\u4E0E\u5E94\u6025\u8C03\u5EA6\u6307\u6325\u89D2\u8272 (\u65B0\u589E)",
-      docs: [
-        {
-          name: "0520-\u516C\u8DEF\u8DEF\u7F51\u8FD0\u884C\u76D1\u6D4B\u4E0E\u5E94\u6025\u6307\u6325\u8C03\u5EA6\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848(3)(1).docx",
-          date: "05-25"
-        }
-      ]
-    },
-    \u56FD\u7701\u5E72\u7EBF\u667A\u6167\u7BA1\u517B\u5347\u7EA7\u89D2\u8272: {
-      id: "AGENT-\u517B\u62A4\u7BA1\u7406-06",
-      block: "\u517B\u62A4\u7BA1\u7406",
-      rawRole: "\u56FD\u7701\u5E72\u7EBF\u667A\u6167\u7BA1\u517B\u5347\u7EA7\u89D2\u8272 (\u590D\u7528\u5347\u7EA7)",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u666E\u901A\u56FD\u7701\u9053\u667A\u6167\u7BA1\u517B\u7CFB\u7EDF\u5347\u7EA7\u7684\u65B9\u68480521.doc",
-          date: "05-26"
-        },
-        {
-          name: "\u666E\u901A\u56FD\u7701\u5E72\u7EBF\u517B\u62A4\u7BA1\u7406\u7CFB\u7EDF\u529F\u80FD\u67B6\u6784(1).pdf",
-          date: "05-26"
-        },
-        {
-          name: "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-26"
-        }
-      ]
-    },
-    \u5EFA\u8BBE\u7BA1\u7406\u7CFB\u7EDF\u5347\u7EA7\u89D2\u8272: {
-      id: "AGENT-\u5EFA\u8BBE\u7BA1\u7406-05",
-      block: "\u5EFA\u8BBE\u7BA1\u7406",
-      rawRole: "\u5EFA\u8BBE\u7BA1\u7406\u7CFB\u7EDF\u5347\u7EA7\u89D2\u8272 (\u590D\u7528\u5347\u7EA7)",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx",
-          date: "05-26"
-        },
-        {
-          name: "\u5173\u4E8E\u5728\u516C\u8DEF\u7EFC\u5408\u4FE1\u606F\u5E73\u53F0\u5B9E\u73B0\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u5B9E\u65BD\u65B9\u6848\u7684\u6C47\u62A56.2.docx",
-          date: "05-26"
-        },
-        {
-          name: "\u666E\u901A\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u7CFB\u7EDF\u67B6\u6784\u56FE.jpg",
-          date: "05-26"
-        }
-      ]
-    },
-    \u519C\u6751\u516C\u8DEF\u667A\u6167\u76D1\u7BA1\u76D1\u7763\u89D2\u8272: {
-      id: "AGENT-\u519C\u6751\u516C\u8DEF-02",
-      block: "\u519C\u6751\u516C\u8DEF",
-      rawRole: "\u519C\u6751\u516C\u8DEF\u667A\u6167\u76D1\u7BA1\u76D1\u7763\u89D2\u8272 (\u590D\u7528\u5347\u7EA7)",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u6E56\u5317\u7701\u519C\u6751\u516C\u8DEF\u667A\u6167\u76D1\u7BA1\u76D1\u7763\u7CFB\u7EDF\u5347\u7EA7\u601D\u8DEF\u7684\u6C47\u62A50521.doc",
-          date: "05-27"
-        },
-        {
-          name: "\u5173\u4E8E\u6E56\u5317\u7701\u519C\u6751\u516C\u8DEF\u667A\u6167\u76D1\u7BA1\u76D1\u7763\u7CFB\u7EDF\u5347\u7EA7\u601D\u8DEF\u7684\u6C47\u62A50603\u6539(end)-W.wps",
-          date: "05-27"
-        },
-        {
-          name: "\u8F6F\u4EF6\u6539\u9020\u8D39\u7528\u6D4B\u7B97\u62A5\u544A-v2.docx",
-          date: "05-27"
-        }
-      ]
-    },
-    \u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406\u89D2\u8272: {
-      id: "AGENT-\u6536\u8D39\u8FD0\u8425-04",
-      block: "\u6536\u8D39\u8FD0\u8425",
-      rawRole: "\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406\u89D2\u8272 (\u590D\u7528\u5347\u7EA7)",
-      docs: [
-        {
-          name: "20260522\u5173\u4E8E\u6E56\u5317\u516C\u8DEF\u670D\u52A1\u533A\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848.docx",
-          date: "05-22"
-        },
-        {
-          name: "\u6E56\u5317\u516C\u8DEF\u670D\u52A1\u533A\u7BA1\u7406\u7CFB\u7EDF\u529F\u80FD.pdf",
-          date: "05-27"
-        }
-      ]
-    },
-    \u89C4\u5212\u7F16\u5236\u4E0E\u5BA1\u67E5\u89D2\u8272: {
-      id: "AGENT-\u89C4\u5212\u8BA1\u5212-01",
-      block: "\u89C4\u5212\u8BA1\u5212",
-      rawRole: "\u89C4\u5212\u7F16\u5236\u4E0E\u5BA1\u67E5\u89D2\u8272",
-      docs: [
-        {
-          name: "\u6E56\u5317\u7701\u516C\u8DEF\u8BA1\u5212\u6267\u884C\u8BC4\u4F30\u8F6F\u4EF6\u5347\u7EA7\u6539\u9020\u8D39\u7528\u6D4B\u7B97-\u8F6F\u4EF6\u529F\u80FD\u70B9\u4F30\u503C\u6CD5-v2.xlsx",
-          date: "05-24"
-        },
-        {
-          name: "\u8F6F\u4EF6\u6539\u9020\u8D39\u7528\u6D4B\u7B97\u62A5\u544A-v2.docx",
-          date: "05-24"
-        }
-      ]
-    },
-    \u8BA1\u5212\u7BA1\u7406\u89D2\u8272: {
-      id: "AGENT-\u89C4\u5212\u8BA1\u5212-02",
-      block: "\u89C4\u5212\u8BA1\u5212",
-      rawRole: "\u8BA1\u5212\u7BA1\u7406\u89D2\u8272",
-      docs: [
-        {
-          name: "0528\u2014\u4EA4\u8C03\u7CFB\u7EDF\u4FEE\u6539\u7248.xlsx",
-          date: "05-21"
-        },
-        {
-          name: "\u4EE5\u5956\u4EE3\u8865\u9884\u7B97.xlsx",
-          date: "05-21"
-        },
-        {
-          name: "\u5173\u4E8E\u516C\u8DEF\u4EA4\u901A\u60C5\u51B5\u8C03\u67E5\u7CFB\u7EDF\u4E0E\u5E74\u62A5\u7CFB\u7EDF.docx",
-          date: "05-21"
-        },
-        {
-          name: "\u6E56\u5317\u7701\u516C\u8DEF\u8BA1\u5212\u6267\u884C\u8BC4\u4F30\u8F6F\u4EF6\u5347\u7EA7\u6539\u9020\u8D39\u7528\u6D4B\u7B97-\u8F6F\u4EF6\u529F\u80FD\u70B9\u4F30\u503C\u6CD5-v2.xlsx",
-          date: "05-21"
-        },
-        {
-          name: "\u8F6F\u4EF6\u6539\u9020\u8D39\u7528\u6D4B\u7B97\u62A5\u544A-v2.docx",
-          date: "05-21"
-        }
-      ]
-    },
-    \u9879\u76EE\u524D\u671F\u8DDF\u8E2A\u89D2\u8272: {
-      id: "AGENT-\u89C4\u5212\u8BA1\u5212-03",
-      block: "\u89C4\u5212\u8BA1\u5212",
-      rawRole: "\u9879\u76EE\u524D\u671F\u8DDF\u8E2A\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx",
-          date: "05-26"
-        },
-        {
-          name: "\u5173\u4E8E\u5728\u516C\u8DEF\u7EFC\u5408\u4FE1\u606F\u5E73\u53F0\u5B9E\u73B0\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u5B9E\u65BD\u65B9\u6848\u7684\u6C47\u62A56.2.docx",
-          date: "05-26"
-        },
-        {
-          name: "\u666E\u901A\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u7CFB\u7EDF\u67B6\u6784\u56FE.jpg",
-          date: "05-26"
-        },
-        {
-          name: "\u4EE5\u5956\u4EE3\u8865\u9884\u7B97.xlsx",
-          date: "05-26"
-        },
-        {
-          name: "\u6E56\u5317\u7701\u516C\u8DEF\u8BA1\u5212\u6267\u884C\u8BC4\u4F30\u8F6F\u4EF6\u5347\u7EA7\u6539\u9020\u8D39\u7528\u6D4B\u7B97-\u8F6F\u4EF6\u529F\u80FD\u70B9\u4F30\u503C\u6CD5-v2.xlsx",
-          date: "05-26"
-        },
-        {
-          name: "\u8F6F\u4EF6\u6539\u9020\u8D39\u7528\u6D4B\u7B97\u62A5\u544A-v2.docx",
-          date: "05-26"
-        }
-      ]
-    },
-    \u62DB\u6295\u6807\u7BA1\u7406\u89D2\u8272: {
-      id: "AGENT-\u5EFA\u8BBE\u7BA1\u7406-01",
-      block: "\u5EFA\u8BBE\u7BA1\u7406",
-      rawRole: "\u62DB\u6295\u6807\u7BA1\u7406\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx",
-          date: "05-20"
-        },
-        {
-          name: "\u5173\u4E8E\u5728\u516C\u8DEF\u7EFC\u5408\u4FE1\u606F\u5E73\u53F0\u5B9E\u73B0\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u5B9E\u65BD\u65B9\u6848\u7684\u6C47\u62A56.2.docx",
-          date: "05-20"
-        }
-      ]
-    },
-    \u521D\u6B65\u8BBE\u8BA1\u5BA1\u67E5\u89D2\u8272: {
-      id: "AGENT-\u5EFA\u8BBE\u7BA1\u7406-02",
-      block: "\u5EFA\u8BBE\u7BA1\u7406",
-      rawRole: "\u521D\u6B65\u8BBE\u8BA1\u5BA1\u67E5\u89D2\u8272",
-      docs: [
-        {
-          name: "\u666E\u901A\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u7CFB\u7EDF\u67B6\u6784\u56FE.jpg",
-          date: "05-20"
-        }
-      ]
-    },
-    \u5DE5\u53EF\u7F16\u5236\u4E0E\u62A5\u6279\u89D2\u8272: {
-      id: "AGENT-\u5EFA\u8BBE\u7BA1\u7406-03",
-      block: "\u5EFA\u8BBE\u7BA1\u7406",
-      rawRole: "\u5DE5\u53EF\u7F16\u5236\u4E0E\u62A5\u6279\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx",
-          date: "05-20"
-        }
-      ]
-    },
-    \u63A5\u517B\u4E0E\u79FB\u4EA4\u89D2\u8272: {
-      id: "AGENT-\u5EFA\u8BBE\u7BA1\u7406-04",
-      block: "\u5EFA\u8BBE\u7BA1\u7406",
-      rawRole: "\u63A5\u517B\u4E0E\u79FB\u4EA4\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx",
-          date: "05-29"
-        },
-        {
-          name: "\u5173\u4E8E\u5728\u516C\u8DEF\u7EFC\u5408\u4FE1\u606F\u5E73\u53F0\u5B9E\u73B0\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u5B9E\u65BD\u65B9\u6848\u7684\u6C47\u62A56.2.docx",
-          date: "05-29"
-        },
-        {
-          name: "\u666E\u901A\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u7CFB\u7EDF\u67B6\u6784\u56FE.jpg",
-          date: "05-29"
-        },
-        {
-          name: "\u8F6F\u4EF6\u6539\u9020\u8D39\u7528\u6D4B\u7B97\u62A5\u544A-v2.docx",
-          date: "05-29"
-        }
-      ]
-    },
-    \u667A\u80FD\u5DE1\u68C0\u89D2\u8272: {
-      id: "AGENT-\u517B\u62A4\u7BA1\u7406-01",
-      block: "\u517B\u62A4\u7BA1\u7406",
-      rawRole: "\u667A\u80FD\u5DE1\u68C0\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
-          date: "05-20"
-        },
-        {
-          name: "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-23"
-        }
-      ]
-    },
-    \u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A\u89D2\u8272: {
-      id: "AGENT-\u517B\u62A4\u7BA1\u7406-02",
-      block: "\u517B\u62A4\u7BA1\u7406",
-      rawRole: "\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
-          date: "05-20"
-        },
-        {
-          name: "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-25"
-        }
-      ]
-    },
-    \u65E5\u5E38\u517B\u62A4\u89D2\u8272: {
-      id: "AGENT-\u517B\u62A4\u7BA1\u7406-03",
-      block: "\u517B\u62A4\u7BA1\u7406",
-      rawRole: "\u65E5\u5E38\u517B\u62A4\u89D2\u8272",
-      docs: []
-    },
-    \u517B\u62A4\u5DE5\u7A0B\u8BA1\u5212\u7F16\u5236\u89D2\u8272: {
-      id: "AGENT-\u517B\u62A4\u7BA1\u7406-04",
-      block: "\u517B\u62A4\u7BA1\u7406",
-      rawRole: "\u517B\u62A4\u5DE5\u7A0B\u8BA1\u5212\u7F16\u5236\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
-          date: "05-20"
-        }
-      ]
-    },
-    \u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5\u534F\u540C\u6CBB\u7406\u89D2\u8272: {
-      id: "AGENT-\u517B\u62A4\u7BA1\u7406-05",
-      block: "\u517B\u62A4\u7BA1\u7406",
-      rawRole: "\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5\u534F\u540C\u6CBB\u7406\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u666E\u901A\u56FD\u7701\u9053\u667A\u6167\u7BA1\u517B\u7CFB\u7EDF\u5347\u7EA7\u7684\u65B9\u68480521.doc",
-          date: "05-29"
-        },
-        {
-          name: "\u666E\u901A\u56FD\u7701\u5E72\u7EBF\u517B\u62A4\u7BA1\u7406\u7CFB\u7EDF\u529F\u80FD\u67B6\u6784(1).pdf",
-          date: "05-29"
-        }
-      ]
-    },
-    \u57FA\u7840\u8BBE\u65BD\u76D1\u6D4B\u9884\u8B66\u89D2\u8272: {
-      id: "AGENT-\u5B89\u5168\u5E94\u6025-01",
-      block: "\u5B89\u5168\u5E94\u6025",
-      rawRole: "\u57FA\u7840\u8BBE\u65BD\u76D1\u6D4B\u9884\u8B66\u89D2\u8272",
-      docs: [
-        {
-          name: "\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-18"
-        }
-      ]
-    },
-    "\u6625\u8FD0/\u9632\u6C5B/\u9632\u707E\u6307\u5BFC\u89D2\u8272": {
-      id: "AGENT-\u5B89\u5168\u5E94\u6025-02",
-      block: "\u5B89\u5168\u5E94\u6025",
-      rawRole: "\u6625\u8FD0/\u9632\u6C5B/\u9632\u707E\u6307\u5BFC\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
-          date: "05-20"
-        },
-        {
-          name: "\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx",
-          date: "05-24"
-        }
-      ]
-    },
-    \u5E94\u6025\u5904\u7F6E\u4E0E\u9884\u6848\u7BA1\u7406\u89D2\u8272: {
-      id: "AGENT-\u5B89\u5168\u5E94\u6025-03",
-      block: "\u5B89\u5168\u5E94\u6025",
-      rawRole: "\u5E94\u6025\u5904\u7F6E\u4E0E\u9884\u6848\u7BA1\u7406\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
-          date: "05-20"
-        },
-        {
-          name: "0520-\u516C\u8DEF\u8DEF\u7F51\u8FD0\u884C\u76D1\u6D4B\u4E0E\u5E94\u6025\u6307\u6325\u8C03\u5EA6\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848(3)(1).docx",
-          date: "05-25"
-        }
-      ]
-    },
-    \u8DEF\u57DF\u73AF\u5883\u6574\u6CBB\u89D2\u8272: {
-      id: "AGENT-\u6536\u8D39\u8FD0\u8425-01",
-      block: "\u6536\u8D39\u8FD0\u8425",
-      rawRole: "\u8DEF\u57DF\u73AF\u5883\u6574\u6CBB\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5FAE\u4FE1\u56FE\u7247_20260520082658.jpg",
-          date: "05-20"
-        }
-      ]
-    },
-    \u670D\u52A1\u533A\u76D1\u7763\u6574\u6CBB\u89D2\u8272: {
-      id: "AGENT-\u6536\u8D39\u8FD0\u8425-02",
-      block: "\u6536\u8D39\u8FD0\u8425",
-      rawRole: "\u670D\u52A1\u533A\u76D1\u7763\u6574\u6CBB\u89D2\u8272",
-      docs: [
-        {
-          name: "20260522\u5173\u4E8E\u6E56\u5317\u516C\u8DEF\u670D\u52A1\u533A\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848.docx",
-          date: "05-22"
-        },
-        {
-          name: "\u6E56\u5317\u516C\u8DEF\u670D\u52A1\u533A\u7BA1\u7406\u7CFB\u7EDF\u529F\u80FD.pdf",
-          date: "05-22"
-        }
-      ]
-    },
-    \u51FA\u884C\u4FE1\u606F\u670D\u52A1\u89D2\u8272: {
-      id: "AGENT-\u6536\u8D39\u8FD0\u8425-03",
-      block: "\u6536\u8D39\u8FD0\u8425",
-      rawRole: "\u51FA\u884C\u4FE1\u606F\u670D\u52A1\u89D2\u8272",
-      docs: [
-        {
-          name: "20260522\u5173\u4E8E\u6E56\u5317\u516C\u8DEF\u670D\u52A1\u533A\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848.docx",
-          date: "05-22"
-        },
-        {
-          name: "\u6E56\u5317\u516C\u8DEF\u670D\u52A1\u533A\u7BA1\u7406\u7CFB\u7EDF\u529F\u80FD.pdf",
-          date: "05-27"
-        }
-      ]
-    },
-    \u8D44\u91D1\u62E8\u4ED8\u7BA1\u7406\u89D2\u8272: {
-      id: "AGENT-\u8D22\u52A1\u8D44\u4EA7-01",
-      block: "\u8D22\u52A1\u8D44\u4EA7",
-      rawRole: "\u8D44\u91D1\u62E8\u4ED8\u7BA1\u7406\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx",
-          date: "05-20"
-        }
-      ]
-    },
-    \u8D44\u4EA7\u6838\u7B97\u89D2\u8272: {
-      id: "AGENT-\u8D22\u52A1\u8D44\u4EA7-02",
-      block: "\u8D22\u52A1\u8D44\u4EA7",
-      rawRole: "\u8D44\u4EA7\u6838\u7B97\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx",
-          date: "05-20"
-        }
-      ]
-    },
-    \u7EE9\u6548\u8BC4\u4EF7\u89D2\u8272: {
-      id: "AGENT-\u8D22\u52A1\u8D44\u4EA7-03",
-      block: "\u8D22\u52A1\u8D44\u4EA7",
-      rawRole: "\u7EE9\u6548\u8BC4\u4EF7\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx",
-          date: "05-20"
-        }
-      ]
-    },
-    \u519C\u6751\u516C\u8DEF\u517B\u62A4\u7BA1\u7406\u8BC4\u4EF7\u89D2\u8272: {
-      id: "AGENT-\u519C\u6751\u516C\u8DEF-01",
-      block: "\u519C\u6751\u516C\u8DEF",
-      rawRole: "\u519C\u6751\u516C\u8DEF\u517B\u62A4\u7BA1\u7406\u8BC4\u4EF7\u89D2\u8272",
-      docs: [
-        {
-          name: "\u5173\u4E8E\u6E56\u5317\u7701\u519C\u6751\u516C\u8DEF\u667A\u6167\u76D1\u7BA1\u76D1\u7763\u7CFB\u7EDF\u5347\u7EA7\u601D\u8DEF\u7684\u6C47\u62A50521.doc",
-          date: "05-21"
-        },
-        {
-          name: "\u5173\u4E8E\u6E56\u5317\u7701\u519C\u6751\u516C\u8DEF\u667A\u6167\u76D1\u7BA1\u76D1\u7763\u7CFB\u7EDF\u5347\u7EA7\u601D\u8DEF\u7684\u6C47\u62A50603\u6539(end)-W.wps",
-          date: "05-21"
-        },
-        {
-          name: "\u8F6F\u4EF6\u6539\u9020\u8D39\u7528\u6D4B\u7B97\u62A5\u544A-v2.docx",
-          date: "05-21"
-        }
-      ]
-    }
   };
 
   // src/app.jsx
@@ -9960,6 +9483,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       ag.name.includes("\u5347\u7EA7") && /* @__PURE__ */ React.createElement("span", { className: `px-1.5 py-0.5 rounded text-[10px] font-bold shadow-sm ${activeAgentIdx === idx ? "bg-white/25 text-white" : "bg-amber-50 text-amber-600 border border-amber-200"}` }, "\u5347\u7EA7")
     ))), (() => {
       const getAgentIdByName = (name) => {
+        const cleanName = name.replace(" (\u65B0\u589E)", "").replace(" (\u590D\u7528\u5347\u7EA7)", "").trim();
         const map = {
           "\u89C4\u5212\u7F16\u5236\u4E0E\u5BA1\u67E5\u89D2\u8272": "AGENT-\u89C4\u5212\u8BA1\u5212-01",
           "\u8BA1\u5212\u7BA1\u7406\u89D2\u8272": "AGENT-\u89C4\u5212\u8BA1\u5212-02",
@@ -10008,12 +9532,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         if (lines.length > 1) g1 = lines[1].replace(/【.*?】/, "").trim();
         const getDocsByAgentId = (id) => {
           if (!id) return [];
-          for (const key in agent_docs_meta_default) {
-            if (agent_docs_meta_default[key].id === id) {
-              return agent_docs_meta_default[key].docs || [];
-            }
-          }
-          return [];
+          const req = INITIAL_REQUIREMENTS.find((r) => r.id === id);
+          const privateDocs = req ? req.docs || [] : [];
+          const commonDocs = COMMON_DOCS ? COMMON_DOCS.filter((d) => d.targets && (d.targets.includes("ALL") || d.targets.includes(id))) : [];
+          return [...privateDocs, ...commonDocs];
         };
         const roleStr = Array.isArray(data.role) ? data.role.join("\u3001") : data.role || "";
         const agentDocs = currentAgent.docs && currentAgent.docs.length > 0 ? currentAgent.docs : getDocsByAgentId(agId);
@@ -10215,7 +9737,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             className: `w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition text-left ${activeMenu === sub.id ? "active-menu-item shadow-md" : "text-slate-600 hover:text-blue-700 hover:bg-blue-50"}`
           },
           /* @__PURE__ */ React.createElement("span", { className: `w-1.5 h-1.5 rounded-full shrink-0 ${activeMenu === sub.id ? "bg-white" : "bg-slate-300"}` }),
-          /* @__PURE__ */ React.createElement("span", { className: "truncate flex-1 flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", null, sub.title), isUpdated && /* @__PURE__ */ React.createElement("span", { className: "bg-red-50 text-red-600 border border-red-200 text-[9px] font-black px-1.5 py-0.5 rounded shadow-sm animate-pulse leading-none shrink-0" }, "0607\u57FA\u7EBF"))
+          /* @__PURE__ */ React.createElement("span", { className: "truncate flex-1 flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", null, sub.title), isUpdated && /* @__PURE__ */ React.createElement("span", { className: "bg-red-50 text-red-600 border border-red-200 text-[9px] font-black px-1.5 py-0.5 rounded shadow-sm animate-pulse leading-none shrink-0" }, "0610\u57FA\u7EBF"))
         );
       })));
     }))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 flex flex-col h-full overflow-hidden relative" }, /* @__PURE__ */ React.createElement("header", { className: "h-20 bg-white border-b border-slate-200 flex items-center justify-between px-10 shrink-0 shadow-sm z-10" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "w-1.5 h-5 bg-blue-600 rounded" }), /* @__PURE__ */ React.createElement("h1", { className: "text-slate-800 font-black text-lg tracking-wider" }, "\u653F\u5E9C\u4FA7\u539F\u578B")), /* @__PURE__ */ React.createElement("div", { className: "w-px h-5 bg-slate-300" }), /* @__PURE__ */ React.createElement("button", { onClick: () => {
@@ -10225,7 +9747,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "\u4F01\u4E1A\u4FA7\u539F\u578B", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "\u653F\u5E9C\u4FA7\u7248\u672C\u66F4\u65B0\u65F6\u95F4: 2026-06-07 12:00", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "\u4F01\u4E1A\u4FA7\u7248\u672C\u66F4\u65B0\u65F6\u95F4: 2026-06-04 22:12"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "\u4F01\u4E1A\u4FA7\u539F\u578B", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "\u653F\u5E9C\u4FA7\u7248\u672C\u66F4\u65B0\u65F6\u95F4: 2026-06-10 12:00", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "\u4F01\u4E1A\u4FA7\u7248\u672C\u66F4\u65B0\u65F6\u95F4: 2026-06-04 22:12"))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
