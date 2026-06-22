@@ -486,6 +486,24 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             border: 1px solid rgba(226, 232, 240, 0.8);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
+
+        /* 解决视图标题下方的空白问题：强制视图标题后紧邻的内容不产生任何额外间距 */
+        .q-and-a-message-content h4 {
+            margin-bottom: 0px !important;
+            padding-bottom: 4px !important;
+        }
+        .q-and-a-message-content h4 + br {
+            display: none !important;
+        }
+        .q-and-a-message-content h4 + div {
+            margin-top: 0px !important;
+            padding-top: 0px !important;
+        }
+        .q-and-a-message-content h4 + p {
+            margin-top: 0px !important;
+            padding-top: 0px !important;
+        }
+    
     
     
     </style>
@@ -30130,7 +30148,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         const latestData = activeData2.filter((d) => d["\u68C0\u6D4B\u5E74\u4EFD"] === latestYear);
         const isMultiYear = activeYears2.length > 1;
         const yearsStr = activeYears2.join("\u3001");
-        if (query.includes("107") && query.includes("\u91CC\u7A0B") && !query.includes("\u6865\u6881")) {
+        if (query.includes("107") && (query.includes("\u91CC\u7A0B") || query.includes("\u516C\u91CC") || query.includes("\u957F\u5EA6") || query.includes("\u5883\u5185")) && !query.includes("\u6865\u6881")) {
           const g107 = activeData2.filter((d) => d["\u8DEF\u7EBF\u7F16\u53F7"] === "G107");
           const latestRow = g107.find((r) => r["\u68C0\u6D4B\u5E74\u4EFD"] === latestYear) || g107[0] || {};
           const detectMileage = g107.reduce((sum, d) => sum + (d["\u68C0\u6D4B\u91CC\u7A0B(km)"] || 0), 0);
