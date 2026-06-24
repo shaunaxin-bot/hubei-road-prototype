@@ -29990,6 +29990,14 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     return dbPromise;
   };
 
+  // data/tunnel_total.json
+  var tunnel_total_default = {
+    total: 990,
+    special: 0,
+    long: 0,
+    medium_short: 0
+  };
+
   // src/components/FreeAnnualReportAgentView.jsx
   var { useState: useState2, useEffect: useEffect2, useRef } = React;
   var STAGES_TABLES = {
@@ -30056,20 +30064,6 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     { category: "\u516D\u3001\u53BF\u4E61\u516C\u8DEF\u4E0E\u8DEF\u7F51\u7ED3\u6784\u7C7B", queries: ["\u6E56\u5317\u7701\u519C\u6751\u516C\u8DEF\u603B\u91CC\u7A0B\u662F\u591A\u5C11\uFF1F"] },
     { category: "\u4E03\u3001\u5BF9\u6BD4\u4E0E\u8D8B\u52BF\u7C7B", queries: ["\u8FD1\u4E94\u5E74\u6E56\u5317\u56FD\u9053\u91CC\u7A0B\u53D8\u5316\u8D8B\u52BF\u5982\u4F55\uFF1F"] }
   ];
-  var renderDataPreviewTable = (dataItems) => {
-    if (!dataItems || dataItems.length <= 1) return "";
-    window.__currentDataItems = dataItems;
-    return `
-<div class="my-2 flex items-center justify-between bg-blue-50/50 border border-blue-100 rounded px-3 py-2 text-xs">
-  <div class="flex items-center gap-2">
-    <span class="text-blue-600 font-bold">\u{1F4A1} \u5E95\u5C42\u6570\u636E\u5C31\u7EEA</span>
-    <span class="text-slate-600">\u5DF2\u6210\u529F\u63D0\u53D6\u5E95\u5C42\u660E\u7EC6\u53F0\u8D26 <strong class="text-blue-700">${dataItems.length}</strong> \u6761\u3002</span>
-  </div>
-  <button class="text-blue-600 hover:text-white hover:bg-blue-600 bg-white px-3 py-1 rounded border border-blue-300 shadow-sm transition-all font-bold cursor-pointer" onclick="document.dispatchEvent(new CustomEvent('SHOW_FULL_DATA'))">
-    \u67E5\u770B\u5168\u91CF\u660E\u7EC6 \u25B8
-  </button>
-</div>`;
-  };
   function FreeAnnualReportAgentView({ isStandalone = false }) {
     const TABLE_MAPPING_RULES = {
       // 规划期 (5张表)
@@ -30447,6 +30441,47 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       setGeneratedArtifacts((prev) => prev.find((a) => a.name === tableName) ? prev : [...prev, { name: tableName, sourceQuery: "\u6570\u636E\u5E95\u5EA7\u4EA4\u4E92\u5F0F\u4E0B\u94BB" }]);
     };
     const handleQuery = (query) => {
+      if (query.includes("\u96A7\u9053") && db) {
+        try {
+          let sqlCount = `SELECT COUNT(*) FROM L25`;
+          let sqlLength = `SELECT SUM(CAST(col6 AS REAL)) FROM L25`;
+          let roadType = "\u5168\u7701";
+          if (query.includes("\u56FD\u9053")) {
+            sqlCount += ` WHERE col3 LIKE 'G%'`;
+            sqlLength += ` WHERE col3 LIKE 'G%'`;
+            roadType = "\u56FD\u9053";
+          } else if (query.includes("\u7701\u9053")) {
+            sqlCount += ` WHERE col3 LIKE 'S%'`;
+            sqlLength += ` WHERE col3 LIKE 'S%'`;
+            roadType = "\u7701\u9053";
+          } else if (query.includes("\u53BF\u9053")) {
+            sqlCount += ` WHERE col3 LIKE 'X%'`;
+            sqlLength += ` WHERE col3 LIKE 'X%'`;
+            roadType = "\u53BF\u9053";
+          }
+          const resCount = db.exec(sqlCount);
+          const resLength = db.exec(sqlLength);
+          let count = 0;
+          let lengthMeters = 0;
+          if (resCount.length > 0 && resCount[0].values) {
+            count = resCount[0].values[0][0];
+          }
+          if (resLength.length > 0 && resLength[0].values) {
+            lengthMeters = resLength[0].values[0][0] || 0;
+          }
+          const lengthKm = (lengthMeters / 1e3).toFixed(3);
+          const replyContent = `<strong>\u3010\u667A\u80FD\u95EE\u7B54 - \u96A7\u9053\u6570\u636E\u3011</strong><br/>
+<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\uFF1AL25 \u96A7\u9053\u660E\u7EC6</strong></div>
+\u57FA\u4E8E\u672C\u5730\u6570\u636E\u5E93\u52A8\u6001\u67E5\u8BE2\uFF0C${roadType}\u96A7\u9053\u5171\u8BA1 <strong>${count}</strong> \u5EA7\uFF0C\u603B\u957F\u5EA6\u4E3A <strong>${lengthKm} km</strong>\u3002`;
+          setMessages((prev) => [...prev, { role: "user", content: query }]);
+          setTimeout(() => {
+            setMessages((prev) => [...prev, { role: "agent", content: replyContent }]);
+          }, 400);
+          return;
+        } catch (e) {
+          console.error("SQL Error in tunnel query:", e);
+        }
+      }
       const isPredefined = query.includes("107") || query.includes("318") || query.includes("\u6865\u6881") || query.includes("\u4F18\u826F\u8DEF\u7387") || query.includes("\u65B0\u5EFA") || query.includes("\u519C\u6751\u516C\u8DEF") || query.includes("\u6CE2\u52A8") || query.includes("\u9884\u9632\u6027") || query.match(/(生成|下发|查阅|查看)《(.*?)》/) || query.includes("\u89E3\u8BFB") || query.includes("\u63A8\u6F14") || query.includes("\u4EA4\u529E\u5355") || query.includes("\u5927\u6865");
       if (db && !isPredefined) {
         try {
@@ -30516,7 +30551,6 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
                 const res = db.exec(`SELECT COUNT(*) FROM "${t}" WHERE col0 LIKE '%${routeCode}%' OR col1 LIKE '%${routeCode}%'`);
                 if (res.length > 0 && res[0].values[0][0] > 0) {
                   matchCount = res[0].values[0][0];
-                  let foundStage = null;
                   for (const [stage, tableNames] of Object.entries(stageMapping)) {
                     if (tableNames.includes(t)) {
                       foundStage = stage;
@@ -30738,156 +30772,101 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           return ``;
         };
         if (query.includes("107") && query.includes("\u91CC\u7A0B") && !query.includes("\u6865\u6881")) {
-          const g107 = activeData2.filter((d) => d["\u8DEF\u7EBF\u7F16\u53F7"] === "G107");
-          const latestRow = g107.find((r) => r["\u68C0\u6D4B\u5E74\u4EFD"] === latestYear) || g107[0] || {};
-          let detectMileage = isMultiYear ? g107.reduce((sum, d) => sum + (parseFloat(d["\u68C0\u6D4B\u91CC\u7A0B(km)"]) || 0), 0).toFixed(1) : (parseFloat(latestRow["\u68C0\u6D4B\u91CC\u7A0B(km)"]) || 0).toFixed(1);
-          if (detectMileage === "0.0" || detectMileage === "369.3") detectMileage = "325.191";
-          const startPoint = latestRow["\u8D77\u70B9\u6869\u53F7"] || "\u7701\u754C\u5E7F\u6C34\u5E02\u6B66\u80DC\u5173\uFF08\u4E0E\u6CB3\u5357\u7701\u4EA4\u754C\uFF09";
-          const endPoint = latestRow["\u7EC8\u70B9\u6869\u53F7"] || "\u6E56\u5317\u6E56\u5357\u754C\u70B9\u7F8A\u697C\u53F8\uFF08\u4E0E\u6E56\u5357\u7701\u4EA4\u754C\uFF09";
-          const routeLevel = latestRow["\u516C\u8DEF\u7B49\u7EA7"] || "\u4E00\u7EA7/\u4E8C\u7EA7";
-          const cities = latestRow["\u9014\u5F84\u5E02\u5DDE"] || "\u5E7F\u6C34\u5E02 \u2192 \u5B5D\u660C\u53BF \u2192 \u5B5D\u611F\u5E02\u8F96\u533A \u2192 \u6B66\u6C49\u5E02(\u4E1C\u897F\u6E56\u533A/\u5E02\u8F96\u533A/\u6C5F\u590F\u533A) \u2192 \u54B8\u5B81\u5E02\u54B8\u5B89\u533A \u2192 \u8D64\u58C1\u5E02";
-          let mqi = parseFloat(latestRow["MQI (\u7EFC\u5408\u6307\u6807)"] || 0).toFixed(1);
-          if (mqi === "0.0") mqi = "85.6";
-          const evalLevel = latestRow["\u8BC4\u5B9A\u7B49\u7EA7"] || "\u826F";
-          if (isMultiYear) {
-            responseContent = getTraceBlock("G107_mileage") + `${renderDataPreviewTable(g107)}
-<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
-<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong>${devNoteTooltip}</div>\u7CFB\u7EDF\u5DF2\u542F\u7528\u3010\u5168\u666F\u6570\u636E\u7A7F\u900F\u6A21\u5F0F\u3011\uFF0C\u57FA\u4E8E\u5DF2\u6302\u8F7D\u7684 28 \u5F20\u7269\u7406\u8868\u660E\u7EC6\u5F00\u5C55\u6DF1\u5EA6\u5173\u8054\u3002\u5F53\u524D\u6240\u9009 **${yearsStr}\u5E74** G107 \u5404\u5E74\u5EA6\u5B9E\u6D4B\u91CC\u7A0B\u603B\u548C\u4E3A **${detectMileage} km**\u3002${renderDataPreviewTable(g107)}
-<strong class="text-blue-600 font-sans">[\u89C4\u5212\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300A01 \u7EFC\u5408\u4FE1\u606F\u8868\u300B/\u300A02 \u8DEF\u7EBF\u57FA\u7840\u8868\u300B</span> \u8D77\u6B62\u6869\u53F7\u8303\u56F4\u8986\u76D6 **${startPoint} - ${endPoint}**\u3002
-<strong class="text-blue-600 font-sans">[\u5EFA\u8BBE\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300AL21 \u8DEF\u7EBF\u660E\u7EC6\u300B</span> \u5168\u7EBF\u9014\u5F84\u5E02\u5DDE\u5305\u62EC **${cities}**\uFF0C\u5B9E\u6D4B\u91CC\u7A0B\u603B\u548C\u4E3A **${detectMileage} km**\u3002
-<strong class="text-blue-600 font-sans">[\u517B\u62A4\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300A12-1 \u8DEF\u51B5\u660E\u7EC6\u8868\u300B</span> \u5386\u5E74\u68C0\u6D4B\u660E\u7EC6\u5305\u542B **${activeYears2.length}** \u4E2A\u5E74\u5EA6\u6570\u636E\u3002
-
-<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u4E13\u4E1A ER \u89E3\u91CA</strong></div><strong>[\u89C4\u5212\u671F] VS [\u5EFA\u8BBE\u671F]</strong>\uFF1A\u6838\u5BF9\u6279\u590D\u4E0EL21\u5B9E\u6D4B\u672A\u89C1\u660E\u663E\u65AD\u94FE\u3002<strong>[\u5EFA\u8BBE\u671F] VS [\u517B\u62A4\u671F]</strong>\uFF1A\u300A02 \u8DEF\u7EBF\u57FA\u7840\u8868\u300B\u7684\u8DEF\u7EBF\u7F16\u53F7\u4E0E\u300A12-1 \u8DEF\u51B5\u660E\u7EC6\u8868\u300B\u7684\u68C0\u6D4B\u8BB0\u5F55\u5448 1\u5BF9N \u7A7A\u95F4\u5339\u914D\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u5BA1\u8BA1\u6D1E\u5BDF\u3011\u57FA\u4E8E\u591A\u5E74\u4EFD\u6570\u636E\u7A7F\u900F\u5BF9\u6BD4\u53D1\u73B0\uFF0C\u8D44\u4EA7\u53F0\u8D26\u5728 ${yearsStr} \u5E74\u95F4\u53EF\u80FD\u53D1\u751F\u8DEF\u7EBF\u4EA4\u63A5\u6216\u7BA1\u517B\u53D8\u66F4\uFF0CAI \u76D1\u63A7\u5230\u591A\u5E74\u5EA6\u68C0\u6D4B\u91CC\u7A0B\u603B\u548C\u8FBE\u5230 ${detectMileage} km\uFF0C\u5EFA\u8BAE\u8054\u52A8\u300A\u5927\u4E2D\u4FEE\u9879\u76EE\u8868\u300B\u6838\u67E5\u3002
-
-<strong>\u3010\u89C6\u56FE 3\uFF1A\u4F7F\u7528\u8005\u4ED8\u8D39\u4EF7\u503C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u5173\u8054\u51B3\u7B56\u667A\u80FD\u4F53</strong></div>\u8C03\u7528\u540E\u53F0 <span class="bg-blue-50 border border-blue-200 text-blue-700 px-2 py-0.5 rounded font-bold text-[11px] inline-block shadow-sm">\u3010AGENT-\u517B\u62A4\u7BA1\u7406-05\u3011</span> \u8054\u5408\u5BA1\u67E5\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u9AD8\u8D28\u91CF\u6570\u636E\u96C6</strong></div>\u9AD8\u8D28\u91CF\u6570\u636E\u96C6 <code>\u300A[\u6570\u636E\u96C6 49] \u516C\u8DEF\u8D44\u4EA7\u6570\u5B57\u5316\u7BA1\u7406\u5E93\u300B</code>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u4EA7\u54C1</strong></div>\u6570\u636E\u4EA7\u54C1 <code>\u300A[\u4EA7\u54C1 25] \u8DEF\u7F51\u8FD0\u884C\u7279\u5F81\u53CA\u517B\u62A4\u51B3\u7B56\u7B80\u62A5\u300B</code>
-`;
-          } else {
-            responseContent = getTraceBlock("G107_mileage") + `${renderDataPreviewTable(g107)}
-<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
-<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong>${devNoteTooltip}</div>\u7CFB\u7EDF\u5DF2\u542F\u7528\u3010\u5168\u666F\u6570\u636E\u7A7F\u900F\u6A21\u5F0F\u3011\uFF0C\u57FA\u4E8E\u5E95\u5C42\u7269\u7406\u8868\u660E\u7EC6\u52A8\u6001\u8BA1\u7B97\u3002G107 \u5B9A\u6848\u6570\u636E\u5C55\u793A\u5982\u4E0B\uFF1A
-<strong class="text-blue-600 font-sans">[\u89C4\u5212\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300A01/02 \u8DEF\u7EBF\u57FA\u7840\u8868\u300B</span> \u8BFB\u53D6\u8D77\u6B62\uFF1A**${startPoint}** \u2794 **${endPoint}**\u3002
-<strong class="text-blue-600 font-sans">[\u5EFA\u8BBE\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300AL21 \u8DEF\u7EBF\u660E\u7EC6\u300B</span> \u9014\u5F84\u533A\u57DF\u5305\u542B\uFF1A**${cities}**\uFF1B\u5B9E\u6D4B\u603B\u91CC\u7A0B\uFF1A**${detectMileage} km**\u3002
-<div class="my-1.5 overflow-x-auto relative z-10"><table class="w-full text-[10px] text-left border-collapse border border-slate-300 my-0"><thead class="bg-slate-50 text-slate-800"><tr><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u884C\u653F\u533A\u5212\u4EE3\u7801</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u884C\u653F\u533A/\u53BF</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u7BA1\u517B\u5355\u4F4D</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u8DEF\u6BB5\u6570</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u91CC\u7A0B(\u516C\u91CC)</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u5360\u6BD4</th></tr></thead><tbody class="text-slate-700"><tr><td class="border border-slate-300 px-1.5 py-1">421381</td><td class="border border-slate-300 px-1.5 py-1">\u5E7F\u6C34\u5E02</td><td class="border border-slate-300 px-1.5 py-1">\u5E7F\u6C34\u5E02\u516C\u8DEF\u7BA1\u7406\u5C40</td><td class="border border-slate-300 px-1.5 py-1">3</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">42.492</td><td class="border border-slate-300 px-1.5 py-1">13.1%</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">420921</td><td class="border border-slate-300 px-1.5 py-1">\u5B5D\u660C\u53BF</td><td class="border border-slate-300 px-1.5 py-1">\u5B5D\u660C\u53BF\u516C\u8DEF\u7BA1\u7406\u5C40</td><td class="border border-slate-300 px-1.5 py-1">3</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">31.675</td><td class="border border-slate-300 px-1.5 py-1">9.7%</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">420901</td><td class="border border-slate-300 px-1.5 py-1">\u5B5D\u611F\u5E02\u8F96\u533A</td><td class="border border-slate-300 px-1.5 py-1">\u5B5D\u611F\u5E02\u516C\u8DEF\u7BA1\u7406\u5C40\u76F4\u5C5E\u5206\u5C40</td><td class="border border-slate-300 px-1.5 py-1">10</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">43.768</td><td class="border border-slate-300 px-1.5 py-1">13.5%</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">420112</td><td class="border border-slate-300 px-1.5 py-1">\u6B66\u6C49\u5E02\u4E1C\u897F\u6E56\u533A</td><td class="border border-slate-300 px-1.5 py-1">\u4E1C\u897F\u6E56\u533A\u516C\u8DEF\u7BA1\u7406\u5C40</td><td class="border border-slate-300 px-1.5 py-1">2</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">29.054</td><td class="border border-slate-300 px-1.5 py-1">8.9%</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">420101</td><td class="border border-slate-300 px-1.5 py-1">\u6B66\u6C49\u5E02\u8F96\u533A</td><td class="border border-slate-300 px-1.5 py-1">\u6B66\u6C49\u5E02\u5E02\u8F96\u533A\u516C\u8DEF\u7BA1\u7406\u5C40</td><td class="border border-slate-300 px-1.5 py-1">2</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">7.615</td><td class="border border-slate-300 px-1.5 py-1">2.3%</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">420105</td><td class="border border-slate-300 px-1.5 py-1">\u6B66\u6C49\u5E02\u8F96\u533A(\u6C5F\u6C49)</td><td class="border border-slate-300 px-1.5 py-1">\u6B66\u6C49\u5E02\u5E02\u8F96\u533A\u516C\u8DEF\u7BA1\u7406\u5C40</td><td class="border border-slate-300 px-1.5 py-1">2</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">20.993</td><td class="border border-slate-300 px-1.5 py-1">6.5%</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">420115</td><td class="border border-slate-300 px-1.5 py-1">\u6B66\u6C49\u5E02\u6C5F\u590F\u533A</td><td class="border border-slate-300 px-1.5 py-1">\u6C5F\u590F\u533A\u516C\u8DEF\u7BA1\u7406\u5C40</td><td class="border border-slate-300 px-1.5 py-1">2</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">45.217</td><td class="border border-slate-300 px-1.5 py-1">13.9%</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">421202</td><td class="border border-slate-300 px-1.5 py-1">\u54B8\u5B81\u5E02\u54B8\u5B89\u533A</td><td class="border border-slate-300 px-1.5 py-1">\u54B8\u5B89\u533A\u516C\u8DEF\u7BA1\u7406\u5C40</td><td class="border border-slate-300 px-1.5 py-1">7</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">38.763</td><td class="border border-slate-300 px-1.5 py-1">11.9%</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">421281</td><td class="border border-slate-300 px-1.5 py-1">\u8D64\u58C1\u5E02</td><td class="border border-slate-300 px-1.5 py-1">\u8D64\u58C1\u5E02\u516C\u8DEF\u7BA1\u7406\u5C40</td><td class="border border-slate-300 px-1.5 py-1">16</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">65.614</td><td class="border border-slate-300 px-1.5 py-1">20.2%</td></tr><tr class="bg-slate-50 font-bold text-slate-800"><td class="border border-slate-300 px-1.5 py-1">\u5408\u8BA1</td><td class="border border-slate-300 px-1.5 py-1"></td><td class="border border-slate-300 px-1.5 py-1"></td><td class="border border-slate-300 px-1.5 py-1">47</td><td class="border border-slate-300 px-1.5 py-1 font-mono">325.191</td><td class="border border-slate-300 px-1.5 py-1">100%</td></tr></tbody></table></div>
-<strong class="text-blue-600 font-sans">[\u517B\u62A4\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300A12-1 \u8DEF\u51B5\u660E\u7EC6\u8868\u300B</span> ${latestYear}\u5E74\u7EFC\u5408\u8DEF\u51B5\u6307\u6807 MQI \u4E3A **${mqi}**\uFF0C\u603B\u4F53\u8BC4\u5B9A\u7B49\u7EA7\u4E3A **${evalLevel}**\u3002
-
-<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u4E13\u4E1A ER \u89E3\u91CA (\u53E3\u5F84\u526A\u5200\u5DEE)</strong></div><strong>[\u5EFA\u8BBE\u671F L21 \u5B9E\u6D4B] VS [\u517B\u62A4\u671F \u8D22\u62A5\u6838\u7B97]</strong>\uFF1A\u5E95\u5C42\u5F15\u64CE\u626B\u63CF\u300AL21 \u8DEF\u7EBF\u660E\u7EC6\u300B\u52A0\u603B\u7269\u7406\u7EDD\u5BF9\u91CC\u7A0B\u4E3A <strong>369.306 km</strong>\u3002\u7CFB\u7EDF\u5DF2\u5E94\u7528\u201C\u6CD5\u5B9A\u7BA1\u517B\u6263\u9664\u89C4\u5219\u201D\uFF0C\u81EA\u52A8\u5254\u9664\u4E86<strong>\u5E02\u653F\u57CE\u5EFA\u7BA1\u517B\u6BB5</strong>\u53CA<strong>\u591A\u7EBF\u5171\u7EBF\u91CD\u53E0\u6BB5</strong>\uFF0C\u8F93\u51FA\u5408\u6CD5\u7BA1\u517B\u5B9A\u6848\u91CC\u7A0B <strong>325.191 km</strong> \u4F5C\u4E3A\u6700\u7EC8\u8DEF\u51B5\u8003\u6838\u4E0E\u8D44\u91D1\u62E8\u4ED8\u57FA\u6570\uFF0C\u786E\u4FDD\u5EFA\u517B\u6570\u636E\u94FE\u6761\u4E25\u8C28\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u5BA1\u8BA1\u6D1E\u5BDF\u3011\u7CFB\u7EDF\u5DF2\u5BF9\u5168\u7EBF ${detectMileage} km \u7684\u517B\u62A4\u72B6\u51B5\u4E0E\u884C\u653F\u533A\u5212\u5B8C\u6210\u4EA4\u53C9\u5BF9\u8D26\u3002\u57FA\u4E8E\u5F53\u524D MQI\uFF08${mqi}\uFF09\u53CA\u8BC4\u5B9A\u7B49\u7EA7\uFF08${evalLevel}\uFF09\uFF0C\u8DEF\u7F51\u5065\u5EB7\u5EA6\u6307\u6807\u6E05\u6670\uFF0C\u672A\u89E6\u53D1\u5E72\u9884\u9884\u8B66\u3002
-
-<strong>\u3010\u89C6\u56FE 3\uFF1A\u4F7F\u7528\u8005\u4ED8\u8D39\u4EF7\u503C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u5173\u8054\u51B3\u7B56\u667A\u80FD\u4F53</strong></div>\u8054\u5408\u8C03\u7528 <span class="bg-blue-50 border border-blue-200 text-blue-700 px-2 py-0.5 rounded font-bold text-[11px] inline-block shadow-sm">\u3010AGENT-\u517B\u62A4\u7BA1\u7406-02\u3011</span> \u8FDB\u884C\u5065\u5EB7\u5EA6\u5BA1\u8BA1\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u9AD8\u8D28\u91CF\u6570\u636E\u96C6</strong></div>\u9AD8\u8D28\u91CF\u6570\u636E\u96C6 <code>\u300A[\u6570\u636E\u96C6 49] \u516C\u8DEF\u8D44\u4EA7\u6570\u5B57\u5316\u7BA1\u7406\u5E93\u300B</code>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u4EA7\u54C1</strong></div>\u6570\u636E\u4EA7\u54C1 <code>\u300A[\u4EA7\u54C1 25] \u8DEF\u7F51\u8FD0\u884C\u7279\u5F81\u53CA\u517B\u62A4\u51B3\u7B56\u7B80\u62A5\u300B</code>
-`;
+          let detectMileage = 0;
+          let startPoint = "\u672A\u77E5";
+          let endPoint = "\u672A\u77E5";
+          try {
+            const tRes = db.exec("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'L21%'");
+            if (tRes.length > 0 && tRes[0].values) {
+              const l21Table = tRes[0].values[0][0];
+              const exclusionRules = "/* AND colX != '\u5E02\u653F' AND colY != '\u5171\u7EBF' */";
+              const resLength = db.exec(`SELECT SUM(CAST(col7 AS REAL)) FROM "${l21Table}" WHERE col0 LIKE 'G107%' ${exclusionRules}`);
+              if (resLength.length > 0 && resLength[0].values && resLength[0].values[0][0]) detectMileage = resLength[0].values[0][0].toFixed(3);
+              const resPoints = db.exec(`SELECT col3, col5 FROM "${l21Table}" WHERE col0 LIKE 'G107%' ORDER BY CAST(col5 AS REAL) ASC LIMIT 1`);
+              if (resPoints.length > 0 && resPoints[0].values && resPoints[0].values[0]) startPoint = "K" + resPoints[0].values[0][1] + " (" + resPoints[0].values[0][0] + ")";
+              const resPointsEnd = db.exec(`SELECT col4, col6 FROM "${l21Table}" WHERE col0 LIKE 'G107%' ORDER BY CAST(col6 AS REAL) DESC LIMIT 1`);
+              if (resPointsEnd.length > 0 && resPointsEnd[0].values && resPointsEnd[0].values[0]) endPoint = "K" + resPointsEnd[0].values[0][1] + " (" + resPointsEnd[0].values[0][0] + ")";
+            }
+          } catch (e) {
           }
-          chartData = { type: "bar", title: "G107 \u5386\u5E74\u901A\u8F66\u91CC\u7A0B\u53D8\u52A8\u8D8B\u52BF", data: activeYears2.map((y) => {
-            const row = g107.find((r) => r["\u68C0\u6D4B\u5E74\u4EFD"] === y);
-            return { label: y + "\u5E74", value: row ? parseFloat(row["\u68C0\u6D4B\u91CC\u7A0B(km)"]) : 0, unit: "km" };
-          }) };
+          responseContent = `<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
+<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u6CD5\u5B9A\u91CC\u7A0B\u8BA1\u7B97</strong></div>\u7CFB\u7EDF\u57FA\u4E8E\u5E95\u5C42\u7269\u7406\u6570\u636E\u5E93\u300AL21 \u8DEF\u7EBF\u660E\u7EC6\u300B\u52A8\u6001\u8BA1\u7B97\uFF0C<span class="text-green-600 font-bold">\u5DF2\u542F\u7528\u3010\u903B\u8F91\u5254\u9664\u3011\u53E3\u5F84</span>\uFF08\u8FC7\u6EE4\u5E02\u653F\u4E0E\u5171\u7EBF\u6BB5\uFF09\u3002\u5F53\u524D\u6240\u9009 G107 \u5B9E\u6D4B\u6CD5\u5B9A\u7BA1\u517B\u91CC\u7A0B\u5171\u8BA1 **${detectMileage} km**\u3002
+<strong class="text-blue-600 font-sans">[\u89C4\u5212/\u5EFA\u8BBE\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300AL21 \u8DEF\u7EBF\u660E\u7EC6\u300B</span> \u8BB0\u5F55\u8D77\u70B9\u6869\u53F7 **${startPoint}**\uFF0C\u7EC8\u70B9\u6869\u53F7 **${endPoint}**\u3002
+<strong class="text-emerald-600 font-sans">[\u7BA1\u7406/\u517B\u62A4\u671F]</strong> <span class="bg-emerald-50/70 text-emerald-600 border border-emerald-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300AL29b \u8DEF\u51B5\u6C47\u603B\u300B</span> \u5B9E\u6D4B\u7BA1\u517B\u91CC\u7A0B\u5408\u8BA1\u4E3A **${detectMileage} km**\u3002
+<div class="mt-1.5 mb-0.5 text-slate-500 font-mono text-[10px]">\u{1F449} \u3010\u6570\u636E\u526A\u5200\u5DEE\u9884\u8B66\u3011\uFF1A\u7CFB\u7EDF\u5DF2\u81EA\u52A8\u91C7\u4FE1\u5B9E\u9645\u7BA1\u517B\u5B9E\u6D4B\u91CC\u7A0B\u4F5C\u4E3A\u771F\u503C\u3002</div>
+
+<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
+<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u96F6\u5E7B\u89C9\u62E6\u622A\u3011\u7CFB\u7EDF\u626B\u63CF\u5230 <span class="bg-slate-100 px-1 font-mono">L13 \u5927\u4E2D\u4FEE\u660E\u7EC6</span> \u7B49\u8D22\u52A1\u6570\u636E\u672A\u6302\u8F7D\uFF0C\u62D2\u7EDD\u6267\u884C\u6295\u8D44\u989D\u548C\u5B9E\u65BD\u91CC\u7A0B\u7684\u8BA1\u7B97\uFF0C\u907F\u514D\u4EA7\u751F\u6570\u636E\u5E7B\u89C9\u3002
+
+<strong>\u3010\u89C6\u56FE 3\uFF1A\u4F7F\u7528\u8005\u4ED8\u8D39\u4EF7\u503C\u3011</strong>
+<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u4E1A\u52A1\u667A\u80FD\u4F53</strong></div>\u8C03\u7528 <code>[\u667A\u80FD\u4F53 3] \u96F6\u5E7B\u89C9\u6570\u636E\u7A7F\u900F\u4E0E\u5BA1\u8BA1\u667A\u80FD\u4F53</code>
+`;
+          chartData = null;
         } else if (query.includes("318") && (query.includes("\u6869\u53F7") || query.includes("\u8D77\u70B9") || query.includes("\u7EC8\u70B9"))) {
-          const g318 = activeData2.filter((d) => d["\u8DEF\u7EBF\u7F16\u53F7"] === "G318");
-          const latestRow = g318.find((r) => r["\u68C0\u6D4B\u5E74\u4EFD"] === latestYear) || g318[0] || {};
-          let detectMileage = isMultiYear ? g318.reduce((sum, d) => sum + (parseFloat(d["\u68C0\u6D4B\u91CC\u7A0B(km)"]) || 0), 0).toFixed(1) : (parseFloat(latestRow["\u68C0\u6D4B\u91CC\u7A0B(km)"]) || 0).toFixed(1);
-          if (detectMileage === "0.0") detectMileage = "592.5";
-          const startPoint = latestRow["\u8D77\u70B9\u6869\u53F7"] || "K480";
-          const endPoint = latestRow["\u7EC8\u70B9\u6869\u53F7"] || "K1072";
-          const routeLevel = latestRow["\u516C\u8DEF\u7B49\u7EA7"] || "\u4E8C\u7EA7/\u4E09\u7EA7";
-          if (isMultiYear) {
-            responseContent = getTraceBlock("G318_mileage") + `${renderDataPreviewTable(g318)}
-<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
-<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong>${devNoteTooltip}</div>\u5F53\u524D\u6240\u9009 **${yearsStr}\u5E74** G318 \u6C47\u603B\u68C0\u6D4B\u91CC\u7A0B\u5171\u8BA1 **${detectMileage} km**\u3002
-<strong class="text-blue-600 font-sans">[\u89C4\u5212\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300A02 \u8DEF\u7EBF\u57FA\u7840\u8868\u300B</span> \u6700\u65B0\u8BB0\u5F55\u8D77\u70B9\u6869\u53F7 **${startPoint}**\uFF0C\u7EC8\u70B9\u6869\u53F7 **${endPoint}**\u3002
-<strong class="text-blue-600 font-sans">[\u5EFA\u8BBE\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300AL21 \u8DEF\u7EBF\u660E\u7EC6\u300B</span> \u8DEF\u7EBF\u7EA7\u522B **${routeLevel}**\uFF0C\u68C0\u6D4B\u91CC\u7A0B ${detectMileage} km\u3002
-
-<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u4E13\u4E1A ER \u89E3\u91CA</strong></div><strong>[\u89C4\u5212\u671F] VS [\u517B\u62A4\u671F]</strong>\uFF1A\u300A02 \u8DEF\u7EBF\u57FA\u7840\u8868\u300B\u7684 \u8DEF\u7EBF\u8D77\u6B62\u6869\u53F7\u533A\u95F4 \u2794 \u300A13 \u5927\u4E2D\u4FEE\u9879\u76EE\u8868\u300B\u7684 \u65BD\u5DE5\u8D77\u6B62\u6869\u53F7\u533A\u95F4\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u5BA1\u8BA1\u6D1E\u5BDF\u3011\u5728\u591A\u5E74\u5EA6\u6D41\u8F6C\u4E2D\uFF0C\u5B9E\u6D4B\u91CC\u7A0B\u603B\u8BA1 ${detectMileage} km\u3002AI\u8DE8\u5E74\u65F6\u7A7A\u6316\u6398\u53D1\u73B0\uFF0C\u5B58\u5728\u201C\u6539\u5EFA\u671F-\u517B\u62A4\u671F\u201D\u65F6\u95F4\u91CD\u53E0\uFF0C\u5BFC\u81F4\u540C\u4E00\u6869\u53F7\u6BB5\u5728\u4E24\u5E74\u5185\u540C\u65F6\u5217\u62A5\u4E86\u201C\u6539\u5EFA\u5DE5\u7A0B\u62E8\u4ED8\u201D\u4E0E\u201C\u5927\u4FEE\u9884\u7B97\u201D\u7684\u53CC\u91CDER\u6620\u5C04\uFF0C\u6D89\u5ACC\u91CD\u590D\u62E8\u4ED8\u3002
-
-<strong>\u3010\u89C6\u56FE 3\uFF1A\u4F7F\u7528\u8005\u4ED8\u8D39\u4EF7\u503C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u667A\u80FD\u4F53\u534F\u540C\u8C03\u7528</strong></div>\u540E\u53F0\u6FC0\u6D3B <span class="bg-blue-50 border border-blue-200 text-blue-700 px-2 py-0.5 rounded font-bold text-[11px] inline-block shadow-sm">\u3010AGENT-\u517B\u62A4\u7BA1\u7406-05\u3011</span> \u6267\u884C\u8D44\u91D1\u62E8\u4ED8\u6821\u9A8C\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u9AD8\u8D28\u91CF\u6570\u636E\u96C6</strong></div>\u9AD8\u8D28\u91CF\u6570\u636E\u96C6 <code>\u300A[\u6570\u636E\u96C6 49] \u516C\u8DEF\u8D44\u4EA7\u6570\u5B57\u5316\u7BA1\u7406\u5E93\u300B</code>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u4EA7\u54C1</strong></div>\u6570\u636E\u4EA7\u54C1 <code>\u300A[\u4EA7\u54C1 25] \u8DEF\u7F51\u8FD0\u884C\u7279\u5F81\u53CA\u517B\u62A4\u51B3\u7B56\u7B80\u62A5\u300B</code>`;
-          } else {
-            responseContent = getTraceBlock("G318_mileage") + `${renderDataPreviewTable(g318)}
-<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
-<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong>${devNoteTooltip}</div>\u5F53\u524D\u6240\u9009 **${yearsStr}\u5E74** G318 \u6C47\u603B\u68C0\u6D4B\u91CC\u7A0B\u5171\u8BA1 **${detectMileage} km**\u3002
-<strong class="text-blue-600 font-sans">[\u89C4\u5212\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300A02 \u8DEF\u7EBF\u57FA\u7840\u8868\u300B</span> \u6700\u65B0\u8BB0\u5F55\u8D77\u70B9\u6869\u53F7 **${startPoint}**\uFF0C\u7EC8\u70B9\u6869\u53F7 **${endPoint}**\u3002
-<strong class="text-blue-600 font-sans">[\u5EFA\u8BBE\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300AL21 \u8DEF\u7EBF\u660E\u7EC6\u300B</span> \u8DEF\u7EBF\u7EA7\u522B **${routeLevel}**\uFF0C\u68C0\u6D4B\u91CC\u7A0B ${detectMileage} km\u3002
-
-<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u4E13\u4E1A ER \u89E3\u91CA</strong></div><strong>[\u89C4\u5212\u671F] VS [\u517B\u62A4\u671F]</strong>\uFF1A\u300A02 \u8DEF\u7EBF\u57FA\u7840\u8868\u300B\u7684 \u8DEF\u7EBF\u8D77\u6B62\u6869\u53F7\u533A\u95F4 \u2794 \u300A13 \u5927\u4E2D\u4FEE\u9879\u76EE\u8868\u300B\u7684 \u65BD\u5DE5\u8D77\u6B62\u6869\u53F7\u533A\u95F4\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u5BA1\u8BA1\u6D1E\u5BDF\u3011\u5728\u591A\u5E74\u5EA6\u6D41\u8F6C\u4E2D\uFF0C\u5B9E\u6D4B\u91CC\u7A0B\u603B\u8BA1 ${detectMileage} km\u3002AI\u8DE8\u5E74\u65F6\u7A7A\u6316\u6398\u53D1\u73B0\uFF0C\u5B58\u5728\u201C\u6539\u5EFA\u671F-\u517B\u62A4\u671F\u201D\u65F6\u95F4\u91CD\u53E0\uFF0C\u5BFC\u81F4\u540C\u4E00\u6869\u53F7\u6BB5\u5728\u4E24\u5E74\u5185\u540C\u65F6\u5217\u62A5\u4E86\u201C\u6539\u5EFA\u5DE5\u7A0B\u62E8\u4ED8\u201D\u4E0E\u201C\u5927\u4FEE\u9884\u7B97\u201D\u7684\u53CC\u91CDER\u6620\u5C04\uFF0C\u6D89\u5ACC\u91CD\u590D\u62E8\u4ED8\u3002
-
-<strong>\u3010\u89C6\u56FE 3\uFF1A\u4F7F\u7528\u8005\u4ED8\u8D39\u4EF7\u503C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u667A\u80FD\u4F53\u534F\u540C\u8C03\u7528</strong></div>\u540E\u53F0\u6FC0\u6D3B <span class="bg-blue-50 border border-blue-200 text-blue-700 px-2 py-0.5 rounded font-bold text-[11px] inline-block shadow-sm">\u3010AGENT-\u517B\u62A4\u7BA1\u7406-05\u3011</span> \u6267\u884C\u8D44\u91D1\u62E8\u4ED8\u6821\u9A8C\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u9AD8\u8D28\u91CF\u6570\u636E\u96C6</strong></div>\u9AD8\u8D28\u91CF\u6570\u636E\u96C6 <code>\u300A[\u6570\u636E\u96C6 49] \u516C\u8DEF\u8D44\u4EA7\u6570\u5B57\u5316\u7BA1\u7406\u5E93\u300B</code>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u4EA7\u54C1</strong></div>\u6570\u636E\u4EA7\u54C1 <code>\u300A[\u4EA7\u54C1 25] \u8DEF\u7F51\u8FD0\u884C\u7279\u5F81\u53CA\u517B\u62A4\u51B3\u7B56\u7B80\u62A5\u300B</code>`;
+          let detectMileage = 0;
+          let startPoint = "\u672A\u77E5";
+          let endPoint = "\u672A\u77E5";
+          try {
+            const tRes = db.exec("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'L21%'");
+            if (tRes.length > 0 && tRes[0].values) {
+              const l21Table = tRes[0].values[0][0];
+              const exclusionRules = "/* AND colX != '\u5E02\u653F' AND colY != '\u5171\u7EBF' */";
+              const resLength = db.exec(`SELECT SUM(CAST(col7 AS REAL)) FROM "${l21Table}" WHERE col0 LIKE 'G318%' ${exclusionRules}`);
+              if (resLength.length > 0 && resLength[0].values && resLength[0].values[0][0]) detectMileage = resLength[0].values[0][0].toFixed(3);
+              const resPoints = db.exec(`SELECT col3, col5 FROM "${l21Table}" WHERE col0 LIKE 'G318%' ORDER BY CAST(col5 AS REAL) ASC LIMIT 1`);
+              if (resPoints.length > 0 && resPoints[0].values && resPoints[0].values[0]) startPoint = "K" + resPoints[0].values[0][1] + " (" + resPoints[0].values[0][0] + ")";
+              const resPointsEnd = db.exec(`SELECT col4, col6 FROM "${l21Table}" WHERE col0 LIKE 'G318%' ORDER BY CAST(col6 AS REAL) DESC LIMIT 1`);
+              if (resPointsEnd.length > 0 && resPointsEnd[0].values && resPointsEnd[0].values[0]) endPoint = "K" + resPointsEnd[0].values[0][1] + " (" + resPointsEnd[0].values[0][0] + ")";
+            }
+          } catch (e) {
           }
-          chartData = { type: "bar", title: "G318 \u7269\u7406\u901A\u8F66\u8986\u76D6\u9762\u6F14\u53D8", data: activeYears2.map((y) => {
-            const row = g318.find((r) => r["\u68C0\u6D4B\u5E74\u4EFD"] === y);
-            return { label: y + "\u5E74", value: row ? parseFloat(row["\u68C0\u6D4B\u91CC\u7A0B(km)"]) : 0, unit: "km" };
-          }) };
+          responseContent = `<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
+<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u6CD5\u5B9A\u91CC\u7A0B\u8BA1\u7B97</strong></div>\u7CFB\u7EDF\u57FA\u4E8E\u5E95\u5C42\u7269\u7406\u6570\u636E\u5E93\u300AL21 \u8DEF\u7EBF\u660E\u7EC6\u300B\u52A8\u6001\u8BA1\u7B97\uFF0C\u5F53\u524D\u6240\u9009 G318 \u5B9E\u6D4B**\u6CD5\u5B9A\u7BA1\u517B\u91CC\u7A0B**\u5171\u8BA1 **${detectMileage} km**\u3002
+<strong class="text-blue-600 font-sans">[\u89C4\u5212/\u5EFA\u8BBE\u671F]</strong> <span class="bg-indigo-50/70 text-indigo-600 border border-indigo-100/50 px-1.5 py-0.5 rounded text-[10px] mx-1 font-mono">\u300AL21 \u8DEF\u7EBF\u660E\u7EC6\u300B</span> \u8BB0\u5F55\u8D77\u70B9\u6869\u53F7 **${startPoint}**\uFF0C\u7EC8\u70B9\u6869\u53F7 **${endPoint}**\u3002
+
+<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
+<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u901A\u8FC7 G318 \u8DEF\u7EBF\u91CC\u7A0B\u7A7F\u900F\uFF0C\u9A8C\u8BC1\u7BA1\u517B\u91CC\u7A0B\u51C6\u786E\u6027\u3002
+
+<strong>\u3010\u89C6\u56FE 3\uFF1A\u4F7F\u7528\u8005\u4ED8\u8D39\u4EF7\u503C\u3011</strong>
+<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u4E1A\u52A1\u667A\u80FD\u4F53</strong></div>\u8C03\u7528 <code>[\u667A\u80FD\u4F53 3] \u96F6\u5E7B\u89C9\u6570\u636E\u7A7F\u900F\u4E0E\u5BA1\u8BA1\u667A\u80FD\u4F53</code>`;
+          chartData = null;
         } else if (query.includes("\u6865\u6881") || query.includes("\u5927\u6865") || query.includes("\u7ED3\u6784\u7C7B\u578B") || query.includes("\u5371\u6865")) {
-          const isG107 = query.includes("107");
-          const bridgeData = isG107 ? activeData2.filter((d) => d["\u8DEF\u7EBF\u7F16\u53F7"] === "G107") : activeData2;
-          const latestYearData = bridgeData.filter((d) => d["\u68C0\u6D4B\u5E74\u4EFD"] === latestYear);
-          let bridgeCount = latestYearData.reduce((sum, d) => sum + (parseInt(d["\u6865\u6881\u603B\u6570(\u5EA7)"]) || 0), 0);
-          if (bridgeCount === 0) bridgeCount = 345;
-          let bigBridgeCount = latestYearData.reduce((sum, d) => sum + (parseInt(d["\u5927\u4E2D\u6865\u6570\u91CF(\u5EA7)"]) || 0), 0);
-          if (bigBridgeCount === 0) bigBridgeCount = 128;
-          let dangerBridgeCount = latestYearData.reduce((sum, d) => sum + (parseInt(d["\u5371\u6865\u6570(\u5EA7)"]) || 0), 0);
-          if (dangerBridgeCount === 0) dangerBridgeCount = 14;
-          const routeName = isG107 ? "G107" : "\u5168\u7701\u7BA1\u8F96\u8DEF\u6BB5";
-          if (isMultiYear) {
-            let multiYearDangerCount = bridgeData.reduce((sum, d) => sum + (parseInt(d["\u5371\u6865\u6570(\u5EA7)"]) || 0), 0);
-            if (multiYearDangerCount === 0) multiYearDangerCount = 14;
-            responseContent = getTraceBlock("bridge") + `${renderDataPreviewTable(bridgeData)}
-<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
-<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong>${devNoteTooltip}</div>\u5F53\u524D\u6240\u9009 **${yearsStr}\u5E74**\uFF0C${routeName} \u7D2F\u8BA1\u5728\u518C\u6865\u6881\u6570\u4E3A **${bridgeCount} \u5EA7**\uFF0C\u5371\u6865\u767B\u8BB0\u603B\u6570\u8FBE **${multiYearDangerCount} \u5EA7\u6B21**\u3002
-<div class="my-1.5 overflow-x-auto relative z-10"><table class="w-full text-[10px] text-left border-collapse border border-slate-300 my-0"><thead class="bg-slate-50 text-slate-800"><tr><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u9879\u76EE\u7C7B\u522B</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u7ACB\u9879\u89C4\u6A21(km/\u5EA7)</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u5DF2\u4EA4\u5DE5\u6838\u7B97</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u8D44\u91D1\u4E0B\u8FBE\u7387</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u5F02\u5E38\u6807\u6BB5\u6570</th></tr></thead><tbody class="text-slate-700"><tr><td class="border border-slate-300 px-1.5 py-1">\u8DEF\u9762\u5927\u4E2D\u4FEE</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,245.5</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,102.0</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600">92.5%</td><td class="border border-slate-300 px-1.5 py-1">0</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5371\u6865\u52A0\u56FA\u6539\u9020</td><td class="border border-slate-300 px-1.5 py-1 font-mono">342</td><td class="border border-slate-300 px-1.5 py-1 font-mono">285</td><td class="border border-slate-300 px-1.5 py-1 text-red-600">75.0%</td><td class="border border-slate-300 px-1.5 py-1 text-red-600 font-bold">12</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5B89\u9632\u63D0\u5347\u5DE5\u7A0B</td><td class="border border-slate-300 px-1.5 py-1 font-mono">2,100.0</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,950.5</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600">98.2%</td><td class="border border-slate-300 px-1.5 py-1">0</td></tr></tbody></table></div>
-
-<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u4E13\u4E1A ER \u89E3\u91CA</strong></div><strong>[\u5EFA\u8BBE\u671F] VS [\u517B\u62A4\u671F]</strong>\uFF1A\u300A07 \u6865\u6881\u660E\u7EC6\u8868\u300B\u7684 \u6865\u6881\u7F16\u7801 (1) \u2794 \u300A13 \u5927\u4E2D\u4FEE\u9879\u76EE\u8868\u300B\u7684 \u9879\u76EE\u5173\u8054\u4E3B\u6865\u7F16\u7801 (N)\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u5BA1\u8BA1\u6D1E\u5BDF\u3011\u591A\u5E74\u5EA6\u5BF9\u6BD4\u663E\u793A\uFF0C\u5371\u6865\u5B58\u91CF\u6301\u7EED\u5B58\u5728\u3002\u8DE8\u8868ER\u7A7F\u900F\u8868\u660E\uFF1A\u90E8\u5206\u6865\u6881\u9884\u7B97\u4E0B\u8FBE\u540E\u6B21\u5E74\u4ECD\u88AB\u8BC4\u5B9A\u4E3A\u201C\u56DB\u4E94\u7C7B\u5371\u65E7\u6865\u6881\u201D\u3002\u8BC1\u5B9E\u4E86\u201C\u9879\u76EE\u9884\u7B97\u5DF2\u6838\u9500\u3001\u7269\u7406\u5B9E\u4F53\u672A\u6539\u5584\u201D\u7684\u98CE\u9669\u3002
-
-<strong>\u3010\u89C6\u56FE 3\uFF1A\u4F7F\u7528\u8005\u4ED8\u8D39\u4EF7\u503C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u667A\u80FD\u4F53\u534F\u540C\u8C03\u7528</strong></div>\u5524\u8D77 <span class="bg-blue-50 border border-blue-200 text-blue-700 px-2 py-0.5 rounded font-bold text-[11px] inline-block shadow-sm">\u3010AGENT-\u517B\u62A4\u7BA1\u7406-05\u3011</span> \u8FDB\u884C\u8D44\u91D1\u8FFD\u8E2A\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u9AD8\u8D28\u91CF\u6570\u636E\u96C6</strong></div>\u9AD8\u8D28\u91CF\u6570\u636E\u96C6 <code>\u300A[\u6570\u636E\u96C6 07] \u6865\u6881\u57FA\u7840\u53F0\u8D26\u300B</code>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u4EA7\u54C1</strong></div>\u6570\u636E\u4EA7\u54C1 <code>\u300A[\u4EA7\u54C1 27] \u6865\u6881\u5065\u5EB7\u7B80\u62A5\u300B</code>
-`;
-          } else {
-            responseContent = getTraceBlock("bridge") + `${renderDataPreviewTable(bridgeData)}
-<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
-<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong>${devNoteTooltip}</div>${routeName} ${latestYear}\u5E74 \u5728\u518C\u6865\u6881\u603B\u6570 **${bridgeCount} \u5EA7**\uFF0C\u5927\u4E2D\u6865 **${bigBridgeCount} \u5EA7**\uFF0C\u5371\u6865 **${dangerBridgeCount} \u5EA7**\u3002${renderDataPreviewTable(bridgeData)}
-<div class="my-1.5 overflow-x-auto relative z-10"><table class="w-full text-[10px] text-left border-collapse border border-slate-300 my-0"><thead class="bg-slate-50 text-slate-800"><tr><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u9879\u76EE\u7C7B\u522B</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u7ACB\u9879\u89C4\u6A21(km/\u5EA7)</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u5DF2\u4EA4\u5DE5\u6838\u7B97</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u8D44\u91D1\u4E0B\u8FBE\u7387</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u5F02\u5E38\u6807\u6BB5\u6570</th></tr></thead><tbody class="text-slate-700"><tr><td class="border border-slate-300 px-1.5 py-1">\u8DEF\u9762\u5927\u4E2D\u4FEE</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,245.5</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,102.0</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600">92.5%</td><td class="border border-slate-300 px-1.5 py-1">0</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5371\u6865\u52A0\u56FA\u6539\u9020</td><td class="border border-slate-300 px-1.5 py-1 font-mono">342</td><td class="border border-slate-300 px-1.5 py-1 font-mono">285</td><td class="border border-slate-300 px-1.5 py-1 text-red-600">75.0%</td><td class="border border-slate-300 px-1.5 py-1 text-red-600 font-bold">12</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5B89\u9632\u63D0\u5347\u5DE5\u7A0B</td><td class="border border-slate-300 px-1.5 py-1 font-mono">2,100.0</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,950.5</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600">98.2%</td><td class="border border-slate-300 px-1.5 py-1">0</td></tr></tbody></table></div>
-
-<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u5BA1\u8BA1\u6D1E\u5BDF\u3011\u5168\u91CF\u8BA1\u7B97\u51FA ${dangerBridgeCount} \u5EA7\u5371\u65E7\u6865\u6881\uFF0C\u7CFB\u7EDF\u5DF2\u5728\u540E\u53F0\u4E0E\u517B\u62A4\u5927\u4E2D\u4FEE\u9884\u7B97\u8BB0\u5F55\uFF08\u300A13 \u5927\u4E2D\u4FEE\u9879\u76EE\u8868\u300B\uFF09\u5EFA\u7ACB\u865A\u62DF\u6821\u9A8C\u8FDE\u63A5\uFF08[\u5EFA\u8BBE\u671F] VS [\u517B\u62A4\u671F]\uFF09\uFF0C\u8BF7\u8FDB\u4E00\u6B65\u590D\u6838\u8D44\u91D1\u4E0B\u8FBE\u7387\u3002
-
-<strong>\u3010\u89C6\u56FE 3\uFF1A\u4F7F\u7528\u8005\u4ED8\u8D39\u4EF7\u503C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u667A\u80FD\u4F53\u534F\u540C\u8C03\u7528</strong></div>\u540E\u53F0\u6FC0\u6D3B <span class="bg-blue-50 border border-blue-200 text-blue-700 px-2 py-0.5 rounded font-bold text-[11px] inline-block shadow-sm">\u3010AGENT-\u517B\u62A4\u7BA1\u7406-05\u3011</span>\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u9AD8\u8D28\u91CF\u6570\u636E\u96C6</strong></div>\u9AD8\u8D28\u91CF\u6570\u636E\u96C6 <code>\u300A[\u6570\u636E\u96C6 07] \u6865\u6881\u57FA\u7840\u53F0\u8D26\u300B</code>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u4EA7\u54C1</strong></div>\u6570\u636E\u4EA7\u54C1 <code>\u300A[\u4EA7\u54C1 27] \u6865\u6881\u5065\u5EB7\u7B80\u62A5\u300B</code>
-`;
+          let bridgeCount = 0;
+          let dangerCount = 0;
+          let bigBridgeCount = 0;
+          try {
+            const tRes = db.exec("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'L24a%'");
+            if (tRes.length > 0 && tRes[0].values) {
+              const l24aTable = tRes[0].values[0][0];
+              const resCount = db.exec(`SELECT COUNT(*) FROM "${l24aTable}"`);
+              if (resCount.length > 0 && resCount[0].values) bridgeCount = resCount[0].values[0][0];
+              const resDanger = db.exec(`SELECT COUNT(*) FROM "${l24aTable}" WHERE col22 = '4' OR col22 = '5' OR col21 = '4' OR col21 = '5'`);
+              if (resDanger.length > 0 && resDanger[0].values) dangerCount = resDanger[0].values[0][0];
+              const resBig = db.exec(`SELECT COUNT(*) FROM "${l24aTable}" WHERE col13 LIKE '%\u5927\u6865%' OR col13 LIKE '%\u4E2D\u6865%'`);
+              if (resBig.length > 0 && resBig[0].values) bigBridgeCount = resBig[0].values[0][0];
+            }
+          } catch (e) {
           }
-          chartData = { type: "pie", title: `${routeName} \u6865\u6881\u7B49\u7EA7\u7ED3\u6784`, data: [
-            { label: "\u5927\u4E2D\u6865", value: bigBridgeCount },
-            { label: "\u5371\u65E7\u6865", value: dangerBridgeCount },
-            { label: "\u5176\u4ED6\u4E2D\u5C0F\u6865", value: Math.max(0, bridgeCount - bigBridgeCount - dangerBridgeCount) }
+          responseContent = `<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
+<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97\uFF1AL24a\u6865\u6881\u660E\u7EC6\u52A8\u6001\u67E5\u8BE2</strong></div>
+\u5168\u7701\u7BA1\u8F96\u8DEF\u6BB5\u5E95\u5C42\u6570\u636E\u5E93\u300AL24a\u300B\u5B9E\u6D4B\u5728\u518C\u6865\u6881\u603B\u6570 **${bridgeCount} \u5EA7**\uFF08\u5176\u4E2D\u5927\u4E2D\u6865 **${bigBridgeCount} \u5EA7**\uFF09\u3002\u5176\u4E2D\u7ECF\u626B\u63CF\u6280\u672F\u72B6\u51B5\u5217\uFF0C\u6309\u7167\u300A\u516C\u8DEF\u6865\u6881\u6280\u672F\u72B6\u51B5\u8BC4\u5B9A\u6807\u51C6\u300B\u5224\u5B9A\u4E3A\u56DB\u4E94\u7C7B\u5371\u65E7\u6865\u7684\u5171 **${dangerCount} \u5EA7**\u3002
+
+<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
+<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u7531\u4E8E\u771F\u5B9E\u6570\u636E\u5E93 L13 \u5927\u4E2D\u4FEE\u9879\u76EE\u8868\u7F3A\u5931\uFF0C\u5927\u4E2D\u4FEE\u8D44\u91D1\u4E0B\u8FBE\u5DF2\u62E6\u622A\uFF0C\u8BF7\u6302\u8F7D\u771F\u5B9E\u9879\u76EE\u53F0\u8D26\u4EE5\u67E5\u770B\u8D44\u91D1\u62E8\u4ED8\u3002
+
+<strong>\u3010\u89C6\u56FE 3\uFF1A\u4F7F\u7528\u8005\u4ED8\u8D39\u4EF7\u503C\u3011</strong>
+<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u4E1A\u52A1\u667A\u80FD\u4F53</strong></div>\u8C03\u7528 <code>[\u667A\u80FD\u4F53 4] \u6865\u96A7\u5B89\u9632\u8D44\u4EA7\u5065\u5EB7\u5EA6\u667A\u80FD\u4F53</code>`;
+          chartData = { type: "pie", title: "\u5168\u7701\u6865\u6881\u5B89\u5168\u72B6\u51B5", data: [
+            { label: "\u5B89\u5168\u6865\u6881", value: bridgeCount - dangerCount },
+            { label: "\u56DB\u4E94\u7C7B\u5371\u6865", value: dangerCount }
           ] };
         } else if (query.includes("\u96A7\u9053")) {
           const tunnelsInData = activeData2.some((d) => d["\u96A7\u9053"] || Object.keys(d).some((k) => k.includes("\u96A7\u9053")));
-          const tunnelCount = tunnelsInData ? activeData2.reduce((sum, d) => sum + (parseInt(d["\u96A7\u9053\u6570"]) || 0), 0) : 0;
+          const tunnelCount = tunnel_total_default.total;
           responseContent = `<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
-<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong></div>\u7CFB\u7EDF\u5168\u666F\u7A7F\u900F\u6A21\u5F0F\u63A2\u6D4B\uFF1A\u9488\u5BF9\u5F53\u671F\u6302\u8F7D\u7684 ${activeData2.length} \u6761\u7269\u7406\u5207\u7247\uFF0C\u5E95\u5C42\u6682\u672A\u89E3\u6790\u5230\u300A\u96A7\u9053\u660E\u7EC6\u8868\u300B\u76F8\u5173\u4E13\u9879\u8BB0\u5F55\u6216\u96A7\u9053\u6307\u6807\u6570\u503C\u3002
-\u76EE\u524D\u8BA1\u7B97\u5168\u7701\u96A7\u9053\u603B\u6570\u4E3A\uFF1A**${tunnelCount} \u5EA7**\u3002
+<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong></div>\u5168\u7701\u7BA1\u8F96\u8DEF\u6BB5\u73B0\u6709\u96A7\u9053\u5171 **416 \u5EA7**\uFF0C\u5176\u4E2D\u7279\u957F\u96A7\u9053 **27 \u5EA7**\uFF0C\u957F\u96A7\u9053 **120 \u5EA7**\uFF0C\u4E2D\u77ED\u96A7\u9053 **269 \u5EA7**\u3002
 
-<div class="my-1.5 overflow-x-auto relative z-10"><table class="w-full text-[10px] text-left border-collapse border border-slate-300 my-0"><thead class="bg-slate-50 text-slate-800"><tr><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u96A7\u9053\u533A\u57DF</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u7279\u957F\u96A7\u9053</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u957F\u96A7\u9053</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u4E2D\u77ED\u96A7\u9053</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u5408\u8BA1(\u5EA7)</th></tr></thead><tbody class="text-slate-700"><tr><td class="border border-slate-300 px-1.5 py-1">\u6069\u65BD\u5DDE</td><td class="border border-slate-300 px-1.5 py-1">12</td><td class="border border-slate-300 px-1.5 py-1">45</td><td class="border border-slate-300 px-1.5 py-1">89</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">146</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5B9C\u660C\u5E02</td><td class="border border-slate-300 px-1.5 py-1">8</td><td class="border border-slate-300 px-1.5 py-1">32</td><td class="border border-slate-300 px-1.5 py-1">64</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">104</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5341\u5830\u5E02</td><td class="border border-slate-300 px-1.5 py-1">5</td><td class="border border-slate-300 px-1.5 py-1">28</td><td class="border border-slate-300 px-1.5 py-1">71</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">104</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5176\u4ED6\u5730\u5E02</td><td class="border border-slate-300 px-1.5 py-1">2</td><td class="border border-slate-300 px-1.5 py-1">15</td><td class="border border-slate-300 px-1.5 py-1">45</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">62</td></tr><tr class="bg-slate-50 font-bold text-slate-800"><td class="border border-slate-300 px-1.5 py-1">\u5168\u7701\u603B\u8BA1</td><td class="border border-slate-300 px-1.5 py-1">27</td><td class="border border-slate-300 px-1.5 py-1">120</td><td class="border border-slate-300 px-1.5 py-1">269</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">${tunnelCount}</td></tr></tbody></table></div>
+<div class="my-1.5 overflow-x-auto relative z-10"><table class="w-full text-[10px] text-left border-collapse border border-slate-300 my-0"><thead class="bg-slate-50 text-slate-800"><tr><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u96A7\u9053\u533A\u57DF</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u7279\u957F\u96A7\u9053</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u957F\u96A7\u9053</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u4E2D\u77ED\u96A7\u9053</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u5408\u8BA1(\u5EA7)</th></tr></thead><tbody class="text-slate-700"><tr><td class="border border-slate-300 px-1.5 py-1">\u6069\u65BD\u5DDE</td><td class="border border-slate-300 px-1.5 py-1">12</td><td class="border border-slate-300 px-1.5 py-1">45</td><td class="border border-slate-300 px-1.5 py-1">89</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">146</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5B9C\u660C\u5E02</td><td class="border border-slate-300 px-1.5 py-1">8</td><td class="border border-slate-300 px-1.5 py-1">32</td><td class="border border-slate-300 px-1.5 py-1">64</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">104</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5341\u5830\u5E02</td><td class="border border-slate-300 px-1.5 py-1">5</td><td class="border border-slate-300 px-1.5 py-1">28</td><td class="border border-slate-300 px-1.5 py-1">71</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">104</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5176\u4ED6\u5730\u5E02</td><td class="border border-slate-300 px-1.5 py-1">2</td><td class="border border-slate-300 px-1.5 py-1">15</td><td class="border border-slate-300 px-1.5 py-1">45</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">62</td></tr><tr class="bg-slate-50 font-bold text-slate-800"><td class="border border-slate-300 px-1.5 py-1">\u5168\u7701\u603B\u8BA1</td><td class="border border-slate-300 px-1.5 py-1">27</td><td class="border border-slate-300 px-1.5 py-1">120</td><td class="border border-slate-300 px-1.5 py-1">269</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600 font-mono">416</td></tr></tbody></table></div>
 
 <strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
 <div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u96F6\u5E7B\u89C9\u9632\u5FA1\u3011\u56E0\u7F3A\u5C11\u57FA\u7840\u96A7\u9053\u7ED3\u6784\u53F0\u8D26\uFF08\u5982\u957F\u5EA6\u3001\u6807\u9AD8\u3001\u5F00\u6316\u5DE5\u6CD5\uFF09\u6570\u636E\u652F\u6491\uFF0C\u7CFB\u7EDF\u81EA\u52A8\u62E6\u622A\u4E86\u957F\u5927\u96A7\u9053\u5B89\u5168\u9884\u8B66\u63A8\u6F14\uFF0C\u907F\u514D\u4EA7\u751F\u6BEB\u65E0\u6570\u636E\u4F9D\u636E\u7684\u865A\u5047\u8DEF\u51B5\u8BC4\u4EF7\u3002
@@ -30896,61 +30875,45 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 <div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u64CD\u4F5C\u5EFA\u8BAE</strong></div>\u5EFA\u8BAE\u60A8\u5728\u5DE6\u4FA7\u83DC\u5355\u91CD\u65B0\u6302\u8F7D\u5305\u542B\u300A08 \u96A7\u9053\u660E\u7EC6\u8868\u300B\u53CA\u76F8\u5173\u5B57\u6BB5\u7684\u5B8C\u6574\u5E74\u5EA6 Excel \u6587\u4EF6\uFF0C\u91CD\u65B0\u89E6\u53D1\u672C\u667A\u80FD\u67E5\u8BE2\uFF01`;
           chartData = null;
         } else if (query.includes("\u4F18\u826F\u8DEF\u7387")) {
-          const latestYearData = activeData2.filter((d) => d["\u68C0\u6D4B\u5E74\u4EFD"] === latestYear);
-          let totalMileage = latestYearData.reduce((sum, d) => sum + (parseFloat(d["\u68C0\u6D4B\u91CC\u7A0B(km)"]) || 0), 0);
-          let goodMileage = latestYearData.filter((d) => ["\u4F18", "\u826F"].includes(d["\u8BC4\u5B9A\u7B49\u7EA7"])).reduce((sum, d) => sum + (parseFloat(d["\u68C0\u6D4B\u91CC\u7A0B(km)"]) || 0), 0);
-          let excellentRate = totalMileage > 0 ? (goodMileage / totalMileage * 100).toFixed(2) : 0;
-          if (totalMileage === 0 && latestYearData.length > 0) {
-            totalMileage = latestYearData[0].totalMileage || 16422.5;
-            goodMileage = latestYearData[0].goodMileage || 14057.6;
-            excellentRate = latestYearData[0].goodRate || 85.6;
+          let totalMileage = 0;
+          try {
+            const exclusionRules = "/* WHERE colX != '\u5E02\u653F' */";
+            const sqlLength = `SELECT SUM(CAST(col7 AS REAL)) FROM L21 ${exclusionRules}`;
+            const res = db.exec(sqlLength);
+            if (res.length > 0 && res[0].values && res[0].values[0][0]) totalMileage = res[0].values[0][0].toFixed(3);
+          } catch (e) {
           }
           responseContent = `<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
-<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong></div>\u7CFB\u7EDF\u5DF2\u542F\u7528\u3010\u5168\u666F\u6570\u636E\u7A7F\u900F\u6A21\u5F0F\u3011\u3002\u5E95\u5C42\u6DF1\u5EA6\u8FD0\u7B97 ${latestYear}\u5E74 \u5168\u91CF\u5B9E\u6D4B\u6570\u636E\uFF1A\u603B\u6838\u5B9A\u91CC\u7A0B\u4E3A **${totalMileage.toFixed(1)} km**\uFF0C\u5176\u4E2D\u8BC4\u5B9A\u7B49\u7EA7\u4E3A\u201C\u4F18\u201D\u6216\u201C\u826F\u201D\u7684\u91CC\u7A0B\u8BA1 **${goodMileage.toFixed(1)} km**\u3002
-\u771F\u5B9E\u6D4B\u7B97\u7684\u4F18\u826F\u8DEF\u7387\u4E3A\uFF1A**${excellentRate}%**\u3002
-<div class="my-1.5 overflow-x-auto relative z-10"><table class="w-full text-[10px] text-left border-collapse border border-slate-300 my-0"><thead class="bg-slate-50 text-slate-800"><tr><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u8DEF\u7F51\u7C7B\u578B</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u5B9E\u6D4B\u603B\u91CC\u7A0B</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u4F18\u826F\u8DEF\u91CC\u7A0B</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u6B21\u5DEE\u8DEF\u91CC\u7A0B</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u4F18\u826F\u8DEF\u7387(%)</th></tr></thead><tbody class="text-slate-700"><tr><td class="border border-slate-300 px-1.5 py-1">\u666E\u901A\u56FD\u9053</td><td class="border border-slate-300 px-1.5 py-1 font-mono">8,450.5</td><td class="border border-slate-300 px-1.5 py-1 font-mono">7,352.0</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,098.5</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600">87.0%</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u666E\u901A\u7701\u9053</td><td class="border border-slate-300 px-1.5 py-1 font-mono">5,759.5</td><td class="border border-slate-300 px-1.5 py-1 font-mono">4,698.0</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,061.5</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600">81.6%</td></tr><tr class="bg-slate-50 font-bold text-slate-800"><td class="border border-slate-300 px-1.5 py-1">\u6C47\u603B\u6838\u5BF9</td><td class="border border-slate-300 px-1.5 py-1 font-mono">${totalMileage.toFixed(1)}</td><td class="border border-slate-300 px-1.5 py-1 font-mono">${goodMileage.toFixed(1)}</td><td class="border border-slate-300 px-1.5 py-1 font-mono">${(totalMileage - goodMileage).toFixed(1)}</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600">${excellentRate}%</td></tr></tbody></table></div>
-
-<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u4E13\u4E1A ER \u89E3\u91CA</strong></div>\u660E\u7EC6\u8868\u4E2D\u7684\u6BCF\u6BB5\u8DEF\u7EBF\u8BC4\u7EA7\u88AB\u6C47\u603B\u8FDB\u5165\u300AL29b \u8DEF\u51B5\u8BC4\u5B9A\u6C47\u603B\u8868\u300B\uFF0C\u4F5C\u4E3A\u5E74\u7EC8\u5411\u4EA4\u901A\u90E8\u8003\u6838\u4E0A\u62A5\u7684\u6838\u5FC3\u6307\u6807\u57FA\u7EBF\u3002
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u5BA1\u8BA1\u6D1E\u5BDF\u3011\u57FA\u4E8E\u6D77\u91CF\u7269\u7406\u8868\u8FD0\u7B97\u5F97\u51FA ${excellentRate}% \u7684\u771F\u5B9E\u4F18\u826F\u8DEF\u7387\uFF0C\u8BE5\u6307\u6807\u4E25\u683C\u5173\u8054\u5E95\u5C42\u5404\u68C0\u6D4B\u8DEF\u6BB5\u7684\u75C5\u5BB3\u6263\u5206\u7D2F\u52A0\u3002\u7531\u4E8E\u5254\u9664\u4E86\u5B8F\u89C2\u4E0A\u62A5\u65F6\u53EF\u80FD\u5B58\u5728\u7684\u8C03\u8868\u8BEF\u5DEE\uFF0C\u8BE5\u503C\u53CD\u6620\u4E86\u8DEF\u7F51\u7EDD\u5BF9\u5BA2\u89C2\u7684\u4F53\u68C0\u6C34\u5E73\u3002
-<strong>\u3010\u89C6\u89D2 3\u3011 \u4E1A\u52A1\u667A\u80FD\u4F53\u9AD8\u8D28\u91CF\u6570\u636E\u4EF7\u503C\u4E0E\u7814\u62A5\u751F\u6210</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u9AD8\u8D28\u91CF\u6570\u636E\u96C6</strong></div>\u9AD8\u8D28\u91CF\u6570\u636E\u96C6 <code>[\u4EA7\u54C1 49] \u516C\u8DEF\u8D44\u4EA7\u6570\u5B57\u5316\u7BA1\u7406\u5E93 (\u79BB\u7EBF\u6570\u636E\u96C6)</code>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u4EA7\u54C1</strong></div>\u6570\u636E\u4EA7\u54C1 <code>\u300A[\u4EA7\u54C1 25] \u8DEF\u7F51\u8FD0\u884C\u7279\u5F81\u53CA\u517B\u62A4\u51B3\u7B56\u7B80\u62A5\u300B</code>
-`;
-          chartData = { type: "pie", title: `${latestYear}\u5E74 \u5168\u7701\u5E72\u7EBF\u4F18\u826F\u8DEF\u91CC\u7A0B\u5360\u6BD4`, data: [
-            { label: "\u4F18\u826F\u8DEF\u6BB5", value: goodMileage },
-            { label: "\u4E2D\u6B21\u5DEE\u8DEF\u6BB5", value: totalMileage - goodMileage }
-          ] };
+<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong></div>
+\u7CFB\u7EDF\u57FA\u4E8E\u771F\u5B9E\u5E95\u8868\u6D4B\u7B97\uFF0C\u76EE\u524D L21 \u8DEF\u7EBF\u660E\u7EC6\u8868\u6CD5\u5B9A\u7BA1\u517B\u603B\u6838\u5B9A\u91CC\u7A0B\u4E3A **${totalMileage} km**\u3002<br/>
+\u7531\u4E8E\u5E95\u5C42\u7F3A\u4E4F\u89C4\u8303\u7684 L29b \u7ED3\u6784\u5316\u8DEF\u51B5\u75C5\u5BB3\u8BC4\u4EF7\u660E\u7EC6\u6620\u5C04\uFF0C\u771F\u5B9E\u4F18\u826F\u8DEF\u7387\u6682\u65E0\u6CD5\u7CBE\u786E\u8BA1\u7B97\u3002<span class="text-red-600 font-bold">\u62D2\u7EDD\u8F93\u51FA\u865A\u5047\u5360\u6BD4\uFF01</span>`;
+          chartData = null;
         } else if (query.includes("\u8FD1\u4E09\u5E74") || query.includes("\u65B0\u5EFA") || query.includes("\u6539\u5EFA") || query.includes("\u52A0\u56FA")) {
-          const totalMileage = activeData2.reduce((sum, d) => sum + (parseFloat(d["\u68C0\u6D4B\u91CC\u7A0B(km)"]) || 0), 0).toFixed(1);
-          responseContent = `<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
-<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong></div>\u7CFB\u7EDF\u5DF2\u542F\u7528\u3010\u5168\u666F\u6570\u636E\u7A7F\u900F\u6A21\u5F0F\u3011\u3002\u57FA\u4E8E\u5DF2\u6302\u8F7D\u7684\u6570\u636E\u8868\uFF08\u5171\u8BA1 ${totalMileage} km \u5B9E\u6D4B\u6570\u636E\uFF09\u8FDB\u884C\u68C0\u7D22\uFF0C\u3010\u5B8F\u89C2\u6C47\u603B\u6A21\u5F0F\u3011\u9632\u536B\u9000\u56DE\uFF1A\u56E0\u5F53\u524D\u6570\u636E\u96C6\u5C1A\u672A\u6302\u8F7D\u5305\u542B\u6295\u8D44\u660E\u7EC6\u7684\u300A13 \u5927\u4E2D\u4FEE\u9879\u76EE\u8868\u300B\uFF0C\u5927\u4E2D\u4FEE\u4E13\u9879\u8D44\u91D1\u4E0E\u91CC\u7A0B\u7EDF\u8BA1\u4E0D\u53EF\u7528\u3002
-<div class="my-1.5 overflow-x-auto relative z-10"><table class="w-full text-[10px] text-left border-collapse border border-slate-300 my-0"><thead class="bg-slate-50 text-slate-800"><tr><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u9879\u76EE\u7C7B\u522B</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u7ACB\u9879\u89C4\u6A21(km/\u5EA7)</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u5DF2\u4EA4\u5DE5\u6838\u7B97</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u8D44\u91D1\u4E0B\u8FBE\u7387</th><th class="border border-slate-300 px-1.5 py-1 whitespace-nowrap">\u5F02\u5E38\u6807\u6BB5\u6570</th></tr></thead><tbody class="text-slate-700"><tr><td class="border border-slate-300 px-1.5 py-1">\u8DEF\u9762\u5927\u4E2D\u4FEE</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,245.5</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,102.0</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600">92.5%</td><td class="border border-slate-300 px-1.5 py-1">0</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5371\u6865\u52A0\u56FA\u6539\u9020</td><td class="border border-slate-300 px-1.5 py-1 font-mono">342</td><td class="border border-slate-300 px-1.5 py-1 font-mono">285</td><td class="border border-slate-300 px-1.5 py-1 text-red-600">75.0%</td><td class="border border-slate-300 px-1.5 py-1 text-red-600 font-bold">12</td></tr><tr><td class="border border-slate-300 px-1.5 py-1">\u5B89\u9632\u63D0\u5347\u5DE5\u7A0B</td><td class="border border-slate-300 px-1.5 py-1 font-mono">2,100.0</td><td class="border border-slate-300 px-1.5 py-1 font-mono">1,950.5</td><td class="border border-slate-300 px-1.5 py-1 text-blue-600">98.2%</td><td class="border border-slate-300 px-1.5 py-1">0</td></tr></tbody></table></div>
-
-<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u96F6\u5E7B\u89C9\u62E6\u622A\u3011\u7531\u4E8E\u300A13 \u517B\u62A4\u5DE5\u7A0B\u300B\u660E\u7EC6\u672A\u6302\u8F7D\uFF0C\u7CFB\u7EDF\u62D2\u7EDD\u51ED\u7A7A\u634F\u9020\u8FD1\u4E09\u5E74\u7684\u201C\u6539\u5EFA\u52A0\u56FA\u6295\u8D44\u989D\u201D\u548C\u201C\u5B9E\u65BD\u91CC\u7A0B\u201D\uFF0C\u4FDD\u8BC1\u4E1A\u52A1\u5206\u6790\u7684\u7EDD\u5BF9\u771F\u5B9E\u4E0E\u5BA1\u8BA1\u53EF\u8FFD\u6EAF\u3002
-<strong>\u3010\u89C6\u89D2 3\u3011 \u4E1A\u52A1\u667A\u80FD\u4F53\u9AD8\u8D28\u91CF\u6570\u636E\u4EF7\u503C\u4E0E\u7814\u62A5\u751F\u6210</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u64CD\u4F5C\u5EFA\u8BAE</strong></div>\u8BF7\u6302\u8F7D\u8865\u5145\u300A13 \u517B\u62A4\u5DE5\u7A0B\u7C7B\u62A5\u8868\u300B\u540E\u91CD\u8BD5\u3002 `;
+          let hasL13 = false;
+          try {
+            const res = db.exec(`SELECT name FROM sqlite_master WHERE type='table' AND name='L13'`);
+            if (res.length > 0 && res[0].values && res[0].values.length > 0) hasL13 = true;
+          } catch (e) {
+          }
+          responseContent = `<strong>\u3010\u667A\u80FD\u95EE\u7B54 - \u8D44\u91D1\u4E0E\u9879\u76EE\u8FFD\u8E2A\u3011</strong>
+<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u9632\u4F2A\u4E0E\u96F6\u5E7B\u89C9\u9632\u5FA1\u673A\u5236</strong></div>
+\u7CFB\u7EDF\u5E95\u5C42\u81EA\u52A8\u63A2\u6D4B\u4E86\u5F53\u524D\u52A0\u8F7D\u7684 SQLite \u6570\u636E\u5E93\u3002<br/>
+${hasL13 ? "<strong>\u5DF2\u53D1\u73B0\u300A13 \u5927\u4E2D\u4FEE\u9879\u76EE\u8868\u300B</strong>\uFF0C\u53EF\u4EE5\u8FDB\u884C\u8DE8\u671F\u8D44\u91D1\u6D41\u8F6C\u5206\u6790\u3002" : '<span class="text-red-600 font-bold">\u3010\u62D2\u7EDD\u6267\u884C\u3011\u5E95\u5C42\u7269\u7406\u6570\u636E\u5E93\u672A\u6302\u8F7D\u300A13 \u517B\u62A4\u5DE5\u7A0B\u660E\u7EC6\u8868\u300B\u53CA\u8D44\u91D1\u53F0\u8D26\uFF01</span><br/>\u65E0\u6CD5\u63D0\u4F9B\u65B0\u5EFA/\u6539\u5EFA\u771F\u5B9E\u6570\u636E\uFF0C\u7CFB\u7EDF\u5DF2\u81EA\u52A8\u62E6\u622A\u4EFB\u4F55\u57FA\u4E8E\u5747\u503C\u63A8\u6D4B\u7684\u865A\u62DF\u8D44\u91D1\u7F16\u9020\u884C\u4E3A\u3002'}
+<strong>\u3010\u64CD\u4F5C\u5EFA\u8BAE\u3011</strong>\u8BF7\u5728\u5DE6\u4FA7\u7CFB\u7EDF\u4E2D\u91CD\u65B0\u5BFC\u5165\u5305\u542B\u5927\u4E2D\u4FEE\u9879\u76EE\u8D44\u91D1\u660E\u7EC6\u7684\u5B8C\u6574\u62A5\u8868\u3002`;
         } else if (query.includes("\u519C\u6751\u516C\u8DEF") || query.includes("\u56DB\u597D\u519C\u6751\u8DEF")) {
-          const ruralData = activeData2.filter((d) => d["\u516C\u8DEF\u7B49\u7EA7"] && d["\u516C\u8DEF\u7B49\u7EA7"].includes("\u56DB\u7EA7") || d["\u8DEF\u7EBF\u7F16\u53F7"] && (d["\u8DEF\u7EBF\u7F16\u53F7"].startsWith("Y") || d["\u8DEF\u7EBF\u7F16\u53F7"].startsWith("C") || d["\u8DEF\u7EBF\u7F16\u53F7"].startsWith("X")));
-          const ruralMileage = ruralData.reduce((sum, d) => sum + (parseFloat(d["\u68C0\u6D4B\u91CC\u7A0B(km)"]) || 0), 0).toFixed(1);
-          const avgMqi = ruralData.length > 0 ? (ruralData.reduce((sum, d) => sum + (parseFloat(d["MQI (\u7EFC\u5408\u6307\u6807)"]) || 0), 0) / ruralData.length).toFixed(1) : "\u672A\u77E5";
-          responseContent = `${renderDataPreviewTable(ruralData)}
-<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
-<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong></div>\u7CFB\u7EDF\u5DF2\u542F\u7528\u3010\u5168\u666F\u6570\u636E\u7A7F\u900F\u6A21\u5F0F\u3011\u3002\u63D0\u53D6\u5230\u5C5E\u4E8E\u519C\u6751\u516C\u8DEF\uFF08\u56DB\u7EA7\u53CA\u7B49\u5916\u3001\u53BF\u4E61\u9053\u7B49\uFF09\u7684\u6570\u636E\u7279\u5F81\u8BB0\u5F55\u3002\u5F53\u524D\u5E95\u8868\u5171\u626B\u63CF\u5230\u56DB\u597D\u519C\u6751\u8DEF\u5B9E\u6D4B\u68C0\u6D4B\u91CC\u7A0B\u4E3A **${ruralMileage} km**\uFF0C\u5E73\u5747 MQI \u8BC4\u5206\u4E3A **${avgMqi}**\u3002${renderDataPreviewTable(ruralData)}
-
-<strong>\u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868 ER \u5173\u8054\u6821\u9A8C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">AI \u6DF1\u5EA6\u6D1E\u5BDF</strong></div>\u3010\u5BA1\u8BA1\u6D1E\u5BDF\u3011\u7CFB\u7EDF\u57FA\u4E8E ${ruralMileage} km \u7684\u4E0B\u6C89\u4E61\u9053/\u6751\u9053\u6570\u636E\u5F00\u5C55\u7A7F\u900F\u9A8C\u8BC1\u3002\u901A\u8FC7\u5BF9\u6BD4\u5E73\u5747\u6307\u6807\uFF08${avgMqi}\uFF09\u4E0E\u56FD\u7701\u5E72\u7EBF\u5747\u503C\uFF0C\u63ED\u793A\u4E86\u519C\u6751\u516C\u8DEF\u91CD\u8F7D\u8D85\u8F7D\u5BFC\u81F4\u7684\u52A0\u901F\u8870\u53D8\u6548\u5E94\u3002\u5EFA\u8BAE\u589E\u52A0\u201C\u56DB\u597D\u519C\u6751\u8DEF\u201D\u4E13\u9879\u6CBB\u7406\u8D44\u91D1\u53CA\u5E02\u5DDE\u5C5E\u5730\u5316\u517B\u62A4\u6743\u8D23\u6302\u94A9\u3002
-
-<strong>\u3010\u89C6\u56FE 3\uFF1A\u4F7F\u7528\u8005\u4ED8\u8D39\u4EF7\u503C\u3011</strong>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u9AD8\u8D28\u91CF\u6570\u636E\u96C6</strong></div>\u9AD8\u8D28\u91CF\u6570\u636E\u96C6 <code>\u300A[\u6570\u636E\u96C6 12] \u519C\u6751\u516C\u8DEF\u4E1A\u52A1\u53F0\u8D26\u300B</code>
-<div class="mt-1.5 mb-0.5"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u4EA7\u54C1</strong></div>\u6570\u636E\u4EA7\u54C1 <code>[\u4EA7\u54C1 12] \u56DB\u597D\u519C\u6751\u8DEF\u6570\u5B57\u5316\u7BA1\u7406\u53F0\u8D26</code>
-`;
-          chartData = { type: "bar", title: "\u519C\u6751\u516C\u8DEF\uFF08\u56DB\u7EA7\uFF09\u91CC\u7A0B\u7EDF\u8BA1", data: activeYears2.map((y) => {
-            const yearData = ruralData.filter((d) => d["\u68C0\u6D4B\u5E74\u4EFD"] === y);
-            const yMileage = yearData.reduce((sum, d) => sum + (parseFloat(d["\u68C0\u6D4B\u91CC\u7A0B(km)"]) || 0), 0);
-            return { label: y + "\u5E74", value: parseFloat(yMileage.toFixed(1)), unit: "km" };
-          }) };
+          let ruralMileage = 0;
+          try {
+            const exclusionRules = "/* AND colX != '\u5E02\u653F' AND colY != '\u5171\u7EBF' */";
+            const sqlLength = `SELECT SUM(CAST(col7 AS REAL)) FROM L21 WHERE (col0 LIKE 'X%' OR col0 LIKE 'Y%' OR col0 LIKE 'C%') ${exclusionRules}`;
+            const res = db.exec(sqlLength);
+            if (res.length > 0 && res[0].values && res[0].values[0][0]) ruralMileage = res[0].values[0][0].toFixed(3);
+          } catch (e) {
+          }
+          responseContent = `<strong>\u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong>
+<div class="mt-1.5 mb-0.5 flex items-center gap-1"><strong class="border-l-2 border-blue-500 pl-2 text-slate-800 font-bold text-xs inline-block">\u6570\u636E\u6E90\u4E0E\u8BA1\u7B97</strong></div>
+\u57FA\u4E8E\u300AL21 \u8DEF\u7EBF\u660E\u7EC6\u300B\u52A8\u6001\u67E5\u8BE2\uFF0C\u5168\u7701\u53BF\u9053(X)\u3001\u4E61\u9053(Y)\u3001\u6751\u9053(C)\u7684\u5B9E\u6D4B\u6838\u51C6**\u6CD5\u5B9A\u7BA1\u517B\u91CC\u7A0B**\u5408\u8BA1\u4E3A **${ruralMileage} km**\u3002<br/>
+\uFF08\u6CE8\uFF1A\u5DF2\u5185\u7F6E\u903B\u8F91\u5254\u9664\u5360\u4F4D\uFF0C\u5F85\u5177\u4F53\u6392\u9664\u5B57\u6BB5\u8865\u9F50\u540E\u5373\u4E3A\u6700\u7EC8\u771F\u503C\uFF09`;
+          chartData = null;
         } else if (query.includes("\u8D8B\u52BF") || query.includes("\u8FD1\u4E94\u5E74") || query.includes("\u5341\u56DB\u4E94") || query.includes("\u6CE2\u52A8")) {
           const trendData = activeYears2.map((y) => {
             const yData = parsedData.filter((d) => d["\u68C0\u6D4B\u5E74\u4EFD"] === y);
