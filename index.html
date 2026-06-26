@@ -720,7 +720,1379 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             if (module === 'react-dom') return window.ReactDOM;
             throw new Error('Module not found: ' + module);
         };
-        console.log("%c[Build Timestamp]%c 2026-06-03 16:48:37", "color: white; background: #6366f1; padding: 2px 6px; border-radius: 4px;", "color: #6366f1; font-weight: bold;");
+        // Embedded nianbao schema (inlined at bundle time, works offline)
+        window.__NIANBAO_SCHEMA__ = `# 2026 公路养护统计年报 数据字典
+
+以下为 42 张底层物理表的精确字段映射字典。当处理具体物理表的数据查询时，**必须严格使用本字典中的 Column N 作为查询列名**，而不要主观臆造列名。
+
+## 06 交通工程及沿线设施年.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 路线代码 |
+| Column 1 | 起点桩号 |
+| Column 2 | 止点桩号 |
+| Column 3 | 柱式标志标志数量 |
+| Column 4 | 柱式标志支撑结构数量 |
+| Column 5 | 门架式标志标志数量 |
+| Column 6 | 门架式标志支撑结构数量 |
+| Column 7 | 悬臂式标志标志数量 |
+| Column 8 | 悬臂式标志支撑结构数量 |
+| Column 9 | 附着式标志标志数量 |
+| Column 10 | 附着式标志支撑结构数量 |
+| Column 11 | 其他式标志标志数量 |
+| Column 12 | 其他式标志支撑结构数量 |
+| Column 13 | 禁令标志 |
+| Column 14 | 指示标志 |
+| Column 15 | 警告标志 |
+| Column 16 | 指路标志 |
+| Column 17 | 旅游区标志 |
+| Column 18 | 告示标志 |
+| Column 19 | 辅助标志 |
+| Column 20 | 波形梁护栏 |
+| Column 21 | 混凝土护栏 |
+| Column 22 | 缆索护栏 |
+| Column 23 | 其他护栏 |
+| Column 24 | 路侧护栏 |
+| Column 25 | 中央分隔带护栏 |
+| Column 26 | 中央分隔带开口护栏 |
+| Column 27 | 侧分隔带护栏 |
+| Column 28 | 桥梁护栏 |
+| Column 29 | 标线 |
+| Column 30 | 防落物网 |
+| Column 31 | 防石物网 |
+| Column 32 | 限高设施 |
+| Column 33 | 限宽设施 |
+| Column 34 | 服务区（站） |
+| Column 35 | 停车区（站） |
+| Column 36 | 声屏障 |
+| Column 37 | 备注 |
+
+## 11-1 公路灾毁损失和抢通情况统计表（季报、年报）一—高速公.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 行政区划 |
+| Column 1 | 项目类别 |
+| Column 2 | 灾毁数量（立方米） |
+| Column 3 | 灾毁数量（平方米） |
+| Column 4 | 灾毁数量（延米） |
+| Column 5 | 灾毁数量（座） |
+| Column 6 | 灾毁数量（公里） |
+| Column 7 | 灾毁数量（道） |
+| Column 8 | 灾毁数量（处） |
+| Column 9 | 灾毁数量（台班） |
+| Column 10 | 灾毁数量（条） |
+| Column 11 | 灾毁数量（工日） |
+| Column 12 | 水毁数量（立方米） |
+| Column 13 | 水毁数量（平方米） |
+| Column 14 | 水毁数量（延米） |
+| Column 15 | 水毁数量（座） |
+| Column 16 | 水毁数量（公里） |
+| Column 17 | 水毁数量（道） |
+| Column 18 | 水毁数量（处） |
+| Column 19 | 水毁数量（台班） |
+| Column 20 | 水毁数量（条） |
+| Column 21 | 水毁数量（工日） |
+| Column 22 | 损失金额（万元） |
+| Column 23 | 水毁损失金额（万元） |
+| Column 24 | 管养单位 |
+| Column 25 | 分类 |
+
+## 11-2 公路灾毁损失和抢通情况统计表（季报、年报）二—普通国、省道.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 项目类别 |
+| Column 1 | 行政区划 |
+| Column 2 | 灾毁数量（立方米） |
+| Column 3 | 灾毁数量（平方米） |
+| Column 4 | 灾毁数量（延米） |
+| Column 5 | 灾毁数量（座） |
+| Column 6 | 灾毁数量（公里） |
+| Column 7 | 灾毁数量（道） |
+| Column 8 | 灾毁数量（处） |
+| Column 9 | 灾毁数量（台班） |
+| Column 10 | 灾毁数量（条） |
+| Column 11 | 灾毁数量（工日） |
+| Column 12 | 水毁数量（立方米） |
+| Column 13 | 水毁数量（平方米） |
+| Column 14 | 水毁数量（延米） |
+| Column 15 | 水毁数量（座） |
+| Column 16 | 水毁数量（公里） |
+| Column 17 | 水毁数量（道） |
+| Column 18 | 水毁数量（处） |
+| Column 19 | 水毁数量（台班） |
+| Column 20 | 水毁数量（条） |
+| Column 21 | 水毁数量（工日） |
+| Column 22 | 损失金额（万元） |
+| Column 23 | 水毁损失金额（万元） |
+| Column 24 | 管养单位 |
+| Column 25 | 分类 |
+
+## 11-3 公路灾毁损失和抢通情况统计表（季报、年报）三—县、乡、村道.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 项目类别 |
+| Column 1 | 行政区划 |
+| Column 2 | 灾毁数量（立方米） |
+| Column 3 | 灾毁数量（平方米） |
+| Column 4 | 灾毁数量（延米） |
+| Column 5 | 灾毁数量（座） |
+| Column 6 | 灾毁数量（公里） |
+| Column 7 | 灾毁数量（道） |
+| Column 8 | 灾毁数量（处） |
+| Column 9 | 灾毁数量（台班） |
+| Column 10 | 灾毁数量（条） |
+| Column 11 | 灾毁数量（工日） |
+| Column 12 | 水毁数量（立方米） |
+| Column 13 | 水毁数量（平方米） |
+| Column 14 | 水毁数量（延米） |
+| Column 15 | 水毁数量（座） |
+| Column 16 | 水毁数量（公里） |
+| Column 17 | 水毁数量（道） |
+| Column 18 | 水毁数量（处） |
+| Column 19 | 水毁数量（台班） |
+| Column 20 | 水毁数量（条） |
+| Column 21 | 水毁数量（工日） |
+| Column 22 | 损失金额（万元） |
+| Column 23 | 水毁损失金额（万元） |
+| Column 24 | 管养单位 |
+| Column 25 | 分类 |
+
+## 12-1 公路技术状况明细表一—高速公路、普通国、省道.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 路线代码 |
+| Column 1 | 路线名称 |
+| Column 2 | 起点桩号 |
+| Column 3 | 止点桩号 |
+| Column 4 | 检测方向 |
+| Column 5 | 技术等级 |
+| Column 6 | 路面类型 |
+| Column 7 | MQI |
+| Column 8 | PQI |
+| Column 9 | PCI |
+| Column 10 | RQI |
+| Column 11 | RDI |
+| Column 12 | SRI |
+| Column 13 | PSSI |
+| Column 14 | PBI |
+| Column 15 | PWI |
+| Column 16 | SCI |
+| Column 17 | BCI |
+| Column 18 | TCI |
+| Column 19 | 备注 |
+
+## 12-2 公路技术状况明细表.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 路线代码 |
+| Column 1 | 起点桩号 |
+| Column 2 | 止点桩号 |
+| Column 3 | 检测方向 |
+| Column 4 | 技术等级 |
+| Column 5 | 路面类型 |
+| Column 6 | 路面宽度 |
+| Column 7 | MQI |
+| Column 8 | PQI |
+| Column 9 | PCI |
+| Column 10 | RQI |
+| Column 11 | RDI |
+| Column 12 | PBI |
+| Column 13 | PWI |
+| Column 14 | SRI |
+| Column 15 | PSSI |
+| Column 16 | SCI |
+| Column 17 | BCI |
+| Column 18 | TCI |
+| Column 19 | 检测方式 |
+| Column 20 | 检测标准 |
+| Column 21 | 检测年度 |
+| Column 22 | 备注 |
+
+## 13-1 公路养护作业统计表.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 指标名称 |
+| Column 1 | 单位代码 |
+| Column 2 | 单位名称 |
+| Column 3 | 本年资金投入 |
+| Column 4 | 日常养护费 |
+| Column 5 | 日常绿化资金投入 |
+| Column 6 | 信息化系统维护投入 |
+| Column 7 | 生产及照明用电支出 |
+| Column 8 | 本年养护里程 |
+| Column 9 | 本年绿化里程 |
+
+## 13-2 公路养护作业统计表（养护工程）（季报_省级提取不填）.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 指标名称 |
+| Column 1 | 累计完成总投资 |
+| Column 2 | 路基路面工程:累计完成投资 |
+| Column 3 | 路基路面工程:累计完成养护车道里程 |
+| Column 4 | 桥梁工程:累计完成投资 |
+| Column 5 | 桥梁工程:累计完成桥梁座数 |
+| Column 6 | 桥梁工程:对应桥梁全长 |
+| Column 7 | 隧道工程:累计完成投资 |
+| Column 8 | 隧道工程:累计完成隧道座数 |
+| Column 9 | 隧道工程:对应隧道全长 |
+| Column 10 | 累计完成其它投资 |
+| Column 11 | 累计完成绿化投资 |
+| Column 12 | 分类 |
+
+## 13-3 公路养护作业统计表（养护工程）（季报、年报）一—高速公路.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 项目名称 |
+| Column 1 | 公路管理单位名称 |
+| Column 2 | 是否多项目打包 |
+| Column 3 | 包内项目序号 |
+| Column 4 | 路线代码 |
+| Column 5 | 起点桩号 |
+| Column 6 | 止点桩号 |
+| Column 7 | 养护作业方向 |
+| Column 8 | 养护作业车道数 |
+| Column 9 | 计划总投资 |
+| Column 10 | 本年完成总投资 |
+| Column 11 | 预防养护-本年完成投资 |
+| Column 12 | 预防养护-路基路面工程-完成投资 |
+| Column 13 | 预防养护-路基路面工程-车道里程 |
+| Column 14 | 预防养护-路基路面工程-养护面积 |
+| Column 15 | 预防养护-桥梁工程-完成投资 |
+| Column 16 | 预防养护-桥梁工程-完成座数 |
+| Column 17 | 预防养护-桥梁工程-全长 |
+| Column 18 | 预防养护-隧道工程-完成投资 |
+| Column 19 | 预防养护-隧道工程-完成座数 |
+| Column 20 | 预防养护-隧道工程-全长 |
+| Column 21 | 修复养护-本年完成投资 |
+| Column 22 | 修复养护-路基路面工程-完成投资 |
+| Column 23 | 修复养护-路基路面工程-车道里程 |
+| Column 24 | 修复养护-路基路面工程-养护面积 |
+| Column 25 | 修复养护-桥梁工程-完成投资 |
+| Column 26 | 修复养护-桥梁工程-完成座数 |
+| Column 27 | 修复养护-桥梁工程-全长 |
+| Column 28 | 修复养护-隧道工程-完成投资 |
+| Column 29 | 修复养护-隧道工程-完成座数 |
+| Column 30 | 修复养护-隧道工程-全长 |
+| Column 31 | 专项养护-本年完成投资 |
+| Column 32 | 专项养护-路基路面工程-完成投资 |
+| Column 33 | 专项养护-路基路面工程-车道里程 |
+| Column 34 | 专项养护-路基路面工程-养护面积 |
+| Column 35 | 专项养护-桥梁工程-完成投资 |
+| Column 36 | 专项养护-桥梁工程-完成座数 |
+| Column 37 | 专项养护-桥梁工程-全长 |
+| Column 38 | 专项养护-隧道工程-完成投资 |
+| Column 39 | 专项养护-隧道工程-完成座数 |
+| Column 40 | 专项养护-隧道工程-全长 |
+| Column 41 | 应急养护-本年完成投资 |
+| Column 42 | 应急养护-路基路面工程-完成投资 |
+| Column 43 | 应急养护-路基路面工程-车道里程 |
+| Column 44 | 应急养护-路基路面工程-养护面积 |
+| Column 45 | 应急养护-桥梁工程-完成投资 |
+| Column 46 | 应急养护-桥梁工程-完成座数 |
+| Column 47 | 应急养护-桥梁工程-全长 |
+| Column 48 | 应急养护-隧道工程-完成投资 |
+| Column 49 | 应急养护-隧道工程-完成座数 |
+| Column 50 | 应急养护-隧道工程-全长 |
+| Column 51 | 其它本年完成投资 |
+| Column 52 | 本年绿化投入资金合计 |
+| Column 53 | 废旧沥青路面材料生成量 |
+| Column 54 | 废旧沥青路面材料循环利用量 |
+| Column 55 | 公路废旧沥青路面材料循环利用率 |
+| Column 56 | 循环利用方式代码 |
+| Column 57 | 循环利用方式类型 |
+| Column 58 | 废旧沥青路面材料实际用量 |
+| Column 59 | 备注 |
+
+## 13-4 公路养护作业统计表（养护工程）（季报、年报）二—普通国、省道.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 项目名称 |
+| Column 1 | 公路管理单位名称 |
+| Column 2 | 是否多项目打包 |
+| Column 3 | 包内项目序号 |
+| Column 4 | 路线代码 |
+| Column 5 | 起点桩号 |
+| Column 6 | 止点桩号 |
+| Column 7 | 养护作业方向 |
+| Column 8 | 养护作业车道数 |
+| Column 9 | 计划总投资 |
+| Column 10 | 本年完成总投资 |
+| Column 11 | 预防养护-本年完成投资 |
+| Column 12 | 预防养护-路基路面工程-完成投资 |
+| Column 13 | 预防养护-路基路面工程-车道里程 |
+| Column 14 | 预防养护-路基路面工程-养护面积 |
+| Column 15 | 预防养护-桥梁工程-完成投资 |
+| Column 16 | 预防养护-桥梁工程-完成座数 |
+| Column 17 | 预防养护-桥梁工程-全长 |
+| Column 18 | 预防养护-隧道工程-完成投资 |
+| Column 19 | 预防养护-隧道工程-完成座数 |
+| Column 20 | 预防养护-隧道工程-全长 |
+| Column 21 | 修复养护-本年完成投资 |
+| Column 22 | 修复养护-路基路面工程-完成投资 |
+| Column 23 | 修复养护-路基路面工程-车道里程 |
+| Column 24 | 修复养护-路基路面工程-养护面积 |
+| Column 25 | 修复养护-桥梁工程-完成投资 |
+| Column 26 | 修复养护-桥梁工程-完成座数 |
+| Column 27 | 修复养护-桥梁工程-全长 |
+| Column 28 | 修复养护-隧道工程-完成投资 |
+| Column 29 | 修复养护-隧道工程-完成座数 |
+| Column 30 | 修复养护-隧道工程-全长 |
+| Column 31 | 专项养护-本年完成投资 |
+| Column 32 | 专项养护-路基路面工程-完成投资 |
+| Column 33 | 专项养护-路基路面工程-车道里程 |
+| Column 34 | 专项养护-路基路面工程-养护面积 |
+| Column 35 | 专项养护-桥梁工程-完成投资 |
+| Column 36 | 专项养护-桥梁工程-完成座数 |
+| Column 37 | 专项养护-桥梁工程-全长 |
+| Column 38 | 专项养护-隧道工程-完成投资 |
+| Column 39 | 专项养护-隧道工程-完成座数 |
+| Column 40 | 专项养护-隧道工程-全长 |
+| Column 41 | 应急养护-本年完成投资 |
+| Column 42 | 应急养护-路基路面工程-完成投资 |
+| Column 43 | 应急养护-路基路面工程-车道里程 |
+| Column 44 | 应急养护-路基路面工程-养护面积 |
+| Column 45 | 应急养护-桥梁工程-完成投资 |
+| Column 46 | 应急养护-桥梁工程-完成座数 |
+| Column 47 | 应急养护-桥梁工程-全长 |
+| Column 48 | 应急养护-隧道工程-完成投资 |
+| Column 49 | 应急养护-隧道工程-完成座数 |
+| Column 50 | 应急养护-隧道工程-全长 |
+| Column 51 | 其它本年完成投资 |
+| Column 52 | 本年绿化投入资金合计 |
+| Column 53 | 废旧沥青路面材料生成量 |
+| Column 54 | 废旧沥青路面材料循环利用量 |
+| Column 55 | 公路废旧沥青路面材料循环利用率 |
+| Column 56 | 循环利用方式代码 |
+| Column 57 | 循环利用方式类型 |
+| Column 58 | 废旧沥青路面材料实际用量 |
+| Column 59 | 备注 |
+
+## 13-5 公路养护作业统计表（养护工程）（季报、年报）三—县、乡、村道.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 项目名称 |
+| Column 1 | 县级政区代码 |
+| Column 2 | 是否多项目打包 |
+| Column 3 | 包内项目序号 |
+| Column 4 | 路线代码 |
+| Column 5 | 起点桩号 |
+| Column 6 | 止点桩号 |
+| Column 7 | 养护作业方向 |
+| Column 8 | 养护作业车道数 |
+| Column 9 | 计划总投资 |
+| Column 10 | 本年完成总投资 |
+| Column 11 | 预防养护-本年完成投资 |
+| Column 12 | 预防养护-路基路面工程-完成投资 |
+| Column 13 | 预防养护-路基路面工程-车道里程 |
+| Column 14 | 预防养护-路基路面工程-养护面积 |
+| Column 15 | 预防养护-桥梁工程-完成投资 |
+| Column 16 | 预防养护-桥梁工程-完成座数 |
+| Column 17 | 预防养护-桥梁工程-全长 |
+| Column 18 | 预防养护-隧道工程-完成投资 |
+| Column 19 | 预防养护-隧道工程-完成座数 |
+| Column 20 | 预防养护-隧道工程-全长 |
+| Column 21 | 修复养护-本年完成投资 |
+| Column 22 | 修复养护-路基路面工程-完成投资 |
+| Column 23 | 修复养护-路基路面工程-车道里程 |
+| Column 24 | 修复养护-路基路面工程-养护面积 |
+| Column 25 | 修复养护-桥梁工程-完成投资 |
+| Column 26 | 修复养护-桥梁工程-完成座数 |
+| Column 27 | 修复养护-桥梁工程-全长 |
+| Column 28 | 修复养护-隧道工程-完成投资 |
+| Column 29 | 修复养护-隧道工程-完成座数 |
+| Column 30 | 修复养护-隧道工程-全长 |
+| Column 31 | 专项养护-本年完成投资 |
+| Column 32 | 专项养护-路基路面工程-完成投资 |
+| Column 33 | 专项养护-路基路面工程-车道里程 |
+| Column 34 | 专项养护-路基路面工程-养护面积 |
+| Column 35 | 专项养护-桥梁工程-完成投资 |
+| Column 36 | 专项养护-桥梁工程-完成座数 |
+| Column 37 | 专项养护-桥梁工程-全长 |
+| Column 38 | 专项养护-隧道工程-完成投资 |
+| Column 39 | 专项养护-隧道工程-完成座数 |
+| Column 40 | 专项养护-隧道工程-全长 |
+| Column 41 | 应急养护-本年完成投资 |
+| Column 42 | 应急养护-路基路面工程-完成投资 |
+| Column 43 | 应急养护-路基路面工程-车道里程 |
+| Column 44 | 应急养护-路基路面工程-养护面积 |
+| Column 45 | 应急养护-桥梁工程-完成投资 |
+| Column 46 | 应急养护-桥梁工程-完成座数 |
+| Column 47 | 应急养护-桥梁工程-全长 |
+| Column 48 | 应急养护-隧道工程-完成投资 |
+| Column 49 | 应急养护-隧道工程-完成座数 |
+| Column 50 | 应急养护-隧道工程-全长 |
+| Column 51 | 其它本年完成投资 |
+| Column 52 | 本年绿化投入资金合计 |
+| Column 53 | 备注 |
+
+## 14-1 公路养护资金投入来.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 资金来源类别 |
+| Column 1 | 合计 |
+| Column 2 | 日常养护支出 |
+| Column 3 | 养护工程支出 |
+| Column 4 | 其他养护有关支出 |
+| Column 5 | 备注 |
+
+## 14-2 公路养护资金投入来源统计表二—普通国道及省道.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 资金来源类别 |
+| Column 1 | 合计 |
+| Column 2 | 日常养护支出-普通国道 |
+| Column 3 | 日常养护支出-普通省道 |
+| Column 4 | 养护工程支出-普通国道 |
+| Column 5 | 养护工程支出-普通省道 |
+| Column 6 | 其他与公路养护有关支出 |
+| Column 7 | 备注 |
+
+## 14-3 公路养护资金投入来源统计表三—县、乡、村道.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 资金来源类别 |
+| Column 1 | 行政区划 |
+| Column 2 | 合计 |
+| Column 3 | 日常养护 |
+| Column 4 | 养护工程 |
+| Column 5 | 其他与公路养护有关支出 |
+| Column 6 | 备注 |
+
+## 15-1 公路管养机构及职工统计表一—高速公路管养单位.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 管养单位 |
+| Column 1 | 单位类型 |
+| Column 2 | 行政区划 |
+| Column 3 | 公路职工人员身份:合计 |
+| Column 4 | 养护工区（中心、所、应急队） |
+| Column 5 | 公路职工人员身份:在岗职工小计 |
+| Column 6 | 公路职工人员身份:公务员身份人员 |
+| Column 7 | 公路职工人员身份:事业身份人员 |
+| Column 8 | 公路职工人员身份:合同制人员 |
+| Column 9 | 公路职工人员身份:劳务派遣人员 |
+| Column 10 | 公路职工人员身份:其他 |
+| Column 11 | 公路职工技术工种:合计 |
+| Column 12 | 公路职工技术工种:在岗职工小计 |
+| Column 13 | 公路职工技术工种:在岗职工管理人员 |
+| Column 14 | 公路职工技术工种:在岗职工专业技术人员 |
+| Column 15 | 公路职工技术工种:在岗职工一般工程技术人员 |
+| Column 16 | 公路职工技术工种:在岗职工劳务人员 |
+| Column 17 | 公路职工技术工种:劳务派遣及其他小计 |
+| Column 18 | 公路职工技术工种:劳务派遣管理人员 |
+| Column 19 | 公路职工技术工种:劳务派遣专业技术人员 |
+| Column 20 | 公路职工技术工种:劳务派遣一般工程技术人员 |
+| Column 21 | 公路职工技术工种:劳务派遣劳务人员 |
+
+## 15-2 公路管养机构及职工统计表二—普通国省干线管养单位.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 管养单位 |
+| Column 1 | 单位类型 |
+| Column 2 | 行政区划 |
+| Column 3 | 养护工区（站、道班） |
+| Column 4 | 公路职工人员身份:合计 |
+| Column 5 | 公路职工人员身份:在岗职工小计 |
+| Column 6 | 公路职工人员身份:公务员身份人员 |
+| Column 7 | 公路职工人员身份:事业身份人员 |
+| Column 8 | 公路职工人员身份:合同制人员 |
+| Column 9 | 公路职工人员身份:劳务派遣人员 |
+| Column 10 | 公路职工人员身份:其他 |
+| Column 11 | 公路职工技术工种:合计 |
+| Column 12 | 公路职工技术工种:在岗职工小计 |
+| Column 13 | 公路职工技术工种:在岗职工管理人员 |
+| Column 14 | 公路职工技术工种:在岗职工专业技术人员 |
+| Column 15 | 公路职工技术工种:在岗职工一般工程技术人员 |
+| Column 16 | 公路职工技术工种:在岗职工劳务人员 |
+| Column 17 | 公路职工技术工种:劳务派遣及其他小计 |
+| Column 18 | 公路职工技术工种:劳务派遣管理人员 |
+| Column 19 | 公路职工技术工种:劳务派遣专业技术人员 |
+| Column 20 | 公路职工技术工种:劳务派遣一般工程技术人员 |
+| Column 21 | 公路职工技术工种:劳务派遣劳务人员 |
+
+## 15-3 公路管养机构及职工统计表二—普通国省干线管养单位.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 管养单位 |
+| Column 1 | 单位类型 |
+| Column 2 | 行政区划代码 |
+| Column 3 | 管理所 |
+| Column 4 | 公路职工人员身份:合计 |
+| Column 5 | 公路职工人员身份:在岗职工小计 |
+| Column 6 | 公路职工人员身份:公务员身份人员 |
+| Column 7 | 公路职工人员身份:事业身份人员 |
+| Column 8 | 公路职工人员身份:合同制人员 |
+| Column 9 | 公路职工人员身份:劳务派遣人员 |
+| Column 10 | 公路职工人员身份:其他 |
+| Column 11 | 公路职工技术工种:合计 |
+| Column 12 | 公路职工技术工种:在岗职工小计 |
+| Column 13 | 公路职工技术工种:在岗职工管理人员 |
+| Column 14 | 公路职工技术工种:在岗职工专业技术人员 |
+| Column 15 | 公路职工技术工种:在岗职工一般工程技术人员 |
+| Column 16 | 公路职工技术工种:在岗职工劳务人员 |
+| Column 17 | 公路职工技术工种:劳务派遣及其他小计 |
+| Column 18 | 公路职工技术工种:劳务派遣管理人员 |
+| Column 19 | 公路职工技术工种:劳务派遣专业技术人员 |
+| Column 20 | 公路职工技术工种:劳务派遣一般工程技术人员 |
+| Column 21 | 公路职工技术工种:劳务派遣劳务人员 |
+| Column 22 | 是否同时管养国省干线 |
+
+## 15-4 “四好农村路”就业岗位统计表.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 就业岗位类别 |
+| Column 1 | 行政区划代码 |
+| Column 2 | 就业岗位具体名录 |
+| Column 3 | 主要工作内容 |
+| Column 4 | 岗位数量 |
+| Column 5 | 脱贫户数量 |
+| Column 6 | 平均年龄 |
+| Column 7 | 平均年收入 |
+| Column 8 | 主要资金来源 |
+| Column 9 | 备注 |
+
+## 15-5 农村公路“路长制”执行情况统计表.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 县级总路长行政职务 |
+| Column 1 | 行政区划代码 |
+| Column 2 | 路长数量合计 |
+| Column 3 | 县级路长数量 |
+| Column 4 | 乡级路长数量 |
+| Column 5 | 村级路长数量 |
+| Column 6 | 路长公示牌合计 |
+| Column 7 | 县级路长公示牌数量 |
+| Column 8 | 乡级路长公示牌数量 |
+| Column 9 | 村级路长公示牌数量 |
+| Column 10 | 是否应用信息化 |
+| Column 11 | 备注 |
+
+## 16-1 公路交通应急储备物资及装备统计表一—高速公路.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 储备中心（点）名称 |
+| Column 1 | 储备中心（点）类别 |
+| Column 2 | 所在行政区划代码 |
+| Column 3 | 公路管理单位名称 |
+| Column 4 | 麻袋（编织袋） |
+| Column 5 | 融雪剂 |
+| Column 6 | 防滑料 |
+| Column 7 | 防滑链 |
+| Column 8 | 应急机械化桥 |
+| Column 9 | 应急模块化桥 |
+| Column 10 | 应急动力舟桥 |
+| Column 11 | 抛雪机 |
+| Column 12 | 吹雪车 |
+| Column 13 | 多功能破冰除雪车 |
+| Column 14 | 除冰机 |
+| Column 15 | 固定翼无人机 |
+| Column 16 | 多旋翼无人机 |
+| Column 17 | 大功率移动式排水泵（车） |
+| Column 18 | 高扬程移动式排水泵（车） |
+| Column 19 | 履带式全地形抢险救援工程车 |
+| Column 20 | 多功能破障装备 |
+| Column 21 | 应急机动路面 |
+| Column 22 | 冲锋舟 |
+| Column 23 | 动力皮划艇 |
+| Column 24 | 多功能应急工具车 |
+| Column 25 | 应急通讯车 |
+| Column 26 | 应急通信指挥方舱 |
+| Column 27 | 单兵应急通信装备 |
+| Column 28 | 步履式挖掘机 |
+| Column 29 | 长臂挖掘机 |
+| Column 30 | 装载机 |
+| Column 31 | 推土机 |
+| Column 32 | 全地面起重机 |
+| Column 33 | 自卸汽车 |
+| Column 34 | 平板运输车 |
+| Column 35 | 高空作业车 |
+| Column 36 | 电源配电车 |
+| Column 37 | 发电机组 |
+| Column 38 | 移动照明设备 |
+| Column 39 | 应急照明高杆设备照明 |
+| Column 40 | 净水车 |
+| Column 41 | 宿营车 |
+| Column 42 | 炊事车 |
+| Column 43 | 专用帐篷 |
+| Column 44 | 应急加油车 |
+| Column 45 | 应急维修车 |
+
+## 16-2 公路交通应急储备物资及装备统计表二—普通公路.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 储备中心（点）名称 |
+| Column 1 | 储备中心（点）类别 |
+| Column 2 | 所在行政区划代码 |
+| Column 3 | 管理单位名称 |
+| Column 4 | 麻袋（编织袋） |
+| Column 5 | 融雪剂 |
+| Column 6 | 防滑料 |
+| Column 7 | 防滑链 |
+| Column 8 | 应急机械化桥 |
+| Column 9 | 应急模块化桥 |
+| Column 10 | 应急动力舟桥 |
+| Column 11 | 抛雪机 |
+| Column 12 | 吹雪车 |
+| Column 13 | 多功能破冰除雪车 |
+| Column 14 | 除冰机 |
+| Column 15 | 固定翼无人机 |
+| Column 16 | 多旋翼无人机 |
+| Column 17 | 大功率移动式排水泵（车） |
+| Column 18 | 高扬程移动式排水泵（车） |
+| Column 19 | 履带式全地形抢险救援工程车 |
+| Column 20 | 多功能破障装备 |
+| Column 21 | 应急机动路面 |
+| Column 22 | 冲锋舟 |
+| Column 23 | 动力皮划艇 |
+| Column 24 | 多功能应急工具车 |
+| Column 25 | 应急通讯车 |
+| Column 26 | 应急通信指挥方舱 |
+| Column 27 | 单兵应急通信装备 |
+| Column 28 | 步履式挖掘机 |
+| Column 29 | 长臂挖掘机 |
+| Column 30 | 装载机 |
+| Column 31 | 推土机 |
+| Column 32 | 全地面起重机 |
+| Column 33 | 自卸汽车 |
+| Column 34 | 平板运输车 |
+| Column 35 | 高空作业车 |
+| Column 36 | 电源配电车 |
+| Column 37 | 发电机组 |
+| Column 38 | 移动照明设备 |
+| Column 39 | 应急照明高杆设备照明 |
+| Column 40 | 净水车 |
+| Column 41 | 宿营车 |
+| Column 42 | 炊事车 |
+| Column 43 | 专用帐篷 |
+| Column 44 | 应急加油车 |
+| Column 45 | 应急维修车 |
+
+## 乡镇属性表.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 乡镇编码 |
+| Column 1 | 乡镇名称 |
+| Column 2 | 乡镇人口 |
+| Column 3 | 所辖建制村数量 |
+| Column 4 | 所属地形 |
+| Column 5 | 是否革命老区 |
+| Column 6 | 是否贫困地区 |
+| Column 7 | 是否少数民族聚居区 |
+| Column 8 | 是否农林牧场 |
+| Column 9 | 是否上报 |
+| Column 10 | 城乡类别 |
+| Column 11 | 岛屿是否建有陆岛交通码头 |
+| Column 12 | 码头与陆地距离 |
+| Column 13 | 岛内是否建有公路 |
+| Column 14 | 是否适宜通公路 |
+| Column 15 | 不适宜原因 |
+| Column 16 | 是否已经通过油路 |
+| Column 17 | 通达现状 |
+| Column 18 | 是否通三级公路 |
+| Column 19 | 备注 |
+| Column 20 | 变更原因 |
+| Column 21 | 原乡镇编码 |
+| Column 22 | 所在区县 |
+| Column 23 | 所在地市 |
+
+## 乡镇通达表.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 乡镇名称 |
+| Column 1 | 乡镇编码 |
+| Column 2 | 通达路线编码 |
+| Column 3 | 通达路线名称 |
+| Column 4 | 通达方向 |
+| Column 5 | 通达位置 |
+| Column 6 | 其它位置名称 |
+| Column 7 | 是否连接乡镇内部街道 |
+| Column 8 | 是否是优选路线 |
+| Column 9 | 待建路段起点桩号 |
+| Column 10 | 待建路段止点桩号 |
+| Column 11 | 备注 |
+
+## 亚洲公路网路线明细表.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 亚洲公路网编号 |
+| Column 1 | 支线号 |
+| Column 2 | 省内顺序号 |
+| Column 3 | 路线编号 |
+| Column 4 | 起点桩号 |
+| Column 5 | 起点名称 |
+| Column 6 | 止点桩号 |
+| Column 7 | 止点名称 |
+| Column 8 | 里程 |
+| Column 9 | 备注 |
+
+## 交通量观测站点.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 观测站编号 |
+| Column 1 | 站点交通量名称 |
+| Column 2 | 中心桩号 |
+| Column 3 | 路段类型 |
+| Column 4 | 观测站类型 |
+| Column 5 | 观测方式 |
+| Column 6 | 建成年份 |
+| Column 7 | 观测站位置 |
+| Column 8 | 代表里程数 |
+| Column 9 | 代表路段起点桩号 |
+| Column 10 | 代表路段止点桩号 |
+| Column 11 | 观测日期 |
+| Column 12 | 年均日交通量绝对值 |
+| Column 13 | 拖拉机绝对值 |
+| Column 14 | 拖挂车绝对值 |
+| Column 15 | 集装箱车绝对值 |
+| Column 16 | 中型货车绝对值 |
+| Column 17 | 小型货车绝对值 |
+| Column 18 | 大型货车绝对值 |
+| Column 19 | 特大型货车绝对值 |
+| Column 20 | 人力车绝对值 |
+| Column 21 | 畜力车绝对值 |
+| Column 22 | 自行车绝对值 |
+| Column 23 | 大型客车绝对值 |
+| Column 24 | 小型客车绝对值 |
+| Column 25 | 摩托车绝对值 |
+| Column 26 | 联系电话 |
+| Column 27 | 负责人 |
+| Column 28 | 是否停测 |
+| Column 29 | 站点交通量代码 |
+| Column 30 | 备注 |
+| Column 31 | 所在区县 |
+| Column 32 | 所在地市 |
+
+## 公路排桩.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 路线代码 |
+| Column 1 | 中心桩号 |
+| Column 2 | 路段类型 |
+| Column 3 | 桩号值 |
+| Column 4 | 桩号类型 |
+| Column 5 | 位置类型 |
+| Column 6 | 备注 |
+| Column 7 | 所在区县 |
+| Column 8 | 所在地市 |
+
+## 公路涵洞.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 公路涵洞代码 |
+| Column 1 | 公路涵洞名称 |
+| Column 2 | 中心桩号 |
+| Column 3 | 路段类型 |
+| Column 4 | 涵洞类型 |
+| Column 5 | 涵洞跨径 |
+| Column 6 | 匝道编码 |
+| Column 7 | 修建年月 |
+| Column 8 | 涵洞净高 |
+| Column 9 | 涵洞长度 |
+| Column 10 | 涵洞全宽 |
+| Column 11 | 管养单位 |
+| Column 12 | 备注 |
+| Column 13 | 限长 |
+| Column 14 | 限宽 |
+| Column 15 | 限高 |
+| Column 16 | 限重 |
+| Column 17 | 所在区县 |
+| Column 18 | 所在地市 |
+
+## 农村公路安防设施明细表.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 农村公路安防设施明细表 |
+| Column 1 | 未命名/空白列 |
+| Column 2 | 未命名/空白列 |
+| Column 3 | 未命名/空白列 |
+| Column 4 | 未命名/空白列 |
+| Column 5 | 未命名/空白列 |
+| Column 6 | 未命名/空白列 |
+| Column 7 | 未命名/空白列 |
+| Column 8 | 未命名/空白列 |
+| Column 9 | 未命名/空白列 |
+| Column 10 | 未命名/空白列 |
+| Column 11 | 未命名/空白列 |
+| Column 12 | 未命名/空白列 |
+| Column 13 | 未命名/空白列 |
+| Column 14 | 未命名/空白列 |
+| Column 15 | 未命名/空白列 |
+| Column 16 | 未命名/空白列 |
+| Column 17 | 未命名/空白列 |
+| Column 18 | 未命名/空白列 |
+| Column 19 | 未命名/空白列 |
+| Column 20 | 未命名/空白列 |
+
+## 农村桥梁.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 桥梁代码 |
+| Column 1 | 桥梁名称 |
+| Column 2 | 中心桩号 |
+| Column 3 | 跨越地物类型 |
+| Column 4 | 跨越地物名称 |
+| Column 5 | 收费性质 |
+| Column 6 | 路段类型 |
+| Column 7 | 行车方向 |
+| Column 8 | 互通类型 |
+| Column 9 | 互通形式 |
+| Column 10 | 互通交叉方式 |
+| Column 11 | 桥梁分类 |
+| Column 12 | 桥梁全长 |
+| Column 13 | 跨径总长 |
+| Column 14 | 主桥主跨 |
+| Column 15 | 主桥孔数 |
+| Column 16 | 跨径组合 |
+| Column 17 | 桥梁性质 |
+| Column 18 | 设计荷载等级 |
+| Column 19 | 上部结构 |
+| Column 20 | 上部结构材料 |
+| Column 21 | 桥面铺装类型 |
+| Column 22 | 桥面宽 |
+| Column 23 | 桥面净宽 |
+| Column 24 | 桥下净空 |
+| Column 25 | 抗震等级 |
+| Column 26 | 通航等级 |
+| Column 27 | 桥台类型 |
+| Column 28 | 桥墩类型 |
+| Column 29 | 墩台防撞设施类型 |
+| Column 30 | 防船撞设施类型 |
+| Column 31 | 路侧护栏防撞等级 |
+| Column 32 | 中央分隔带护栏防撞等级 |
+| Column 33 | 伸缩缝类型 |
+| Column 34 | 支座类型 |
+| Column 35 | 弯坡斜特征 |
+| Column 36 | 桥梁高度 |
+| Column 37 | 人行道宽度 |
+| Column 38 | 防洪标准 |
+| Column 39 | 设计洪水频率 |
+| Column 40 | 建设单位 |
+| Column 41 | 建成时间 |
+| Column 42 | 通车日期 |
+| Column 43 | 总造价 |
+| Column 44 | 设计单位名称 |
+| Column 45 | 施工单位名称 |
+| Column 46 | 监理单位名称 |
+| Column 47 | 养护检查等级 |
+| Column 48 | 评定日期 |
+| Column 49 | 技术状况评定 |
+| Column 50 | 评定单位 |
+| Column 51 | 主要病害位置 |
+| Column 52 | 病害描述 |
+| Column 53 | 采取管制措施 |
+| Column 54 | 最近定期检查日期 |
+| Column 55 | 评定为四五类桥梁的原因 |
+| Column 56 | 管理单位性质 |
+| Column 57 | 管理单位名称 |
+| Column 58 | 管养单位 |
+| Column 59 | 监管单位 |
+| Column 60 | 改造年度 |
+| Column 61 | 改造施工单位 |
+| Column 62 | 是否部补助项目 |
+| Column 63 | 工程性质 |
+| Column 64 | 改造部位 |
+| Column 65 | 改造完工日期 |
+| Column 66 | 是否危桥改造 |
+| Column 67 | 是否宽路窄桥 |
+| Column 68 | 是否在长大桥梁目录中 |
+| Column 69 | 是否跨线桥 |
+| Column 70 | 是否线外桥 |
+| Column 71 | 是否漫水桥 |
+| Column 72 | 是否公路界河桥梁 |
+| Column 73 | 是否公铁两用桥 |
+| Column 74 | 是否跨省桥梁 |
+| Column 75 | 桥梁链接省份 |
+| Column 76 | 是否共同管养桥梁 |
+| Column 77 | 本省管理起点桩号 |
+| Column 78 | 本省管理止点桩号 |
+| Column 79 | 本省管养长度 |
+| Column 80 | 桥梁身份码 |
+| Column 81 | 变更原因 |
+| Column 82 | 原桥梁代码 |
+| Column 83 | 匝道编码 |
+| Column 84 | 跨越地物类型1 |
+| Column 85 | 跨越地物名称1 |
+| Column 86 | 备注 |
+| Column 87 | 所在区县 |
+| Column 88 | 所在地市 |
+
+## 国道路线数据变更表.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 变更日期 |
+| Column 1 | 变更类型 |
+| Column 2 | 上年路线代码 |
+| Column 3 | 上年起点桩号 |
+| Column 4 | 上年止点桩号 |
+| Column 5 | 本年路线代码 |
+| Column 6 | 本年起点桩号 |
+| Column 7 | 本年止点桩号 |
+| Column 8 | 变更原因 |
+| Column 9 | 填报人 |
+| Column 10 | 审核人 |
+| Column 11 | 备注 |
+
+## 建制村属性.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 建制村名称 |
+| Column 1 | 建制村编码 |
+| Column 2 | 建制村人口 |
+| Column 3 | 所辖自然村数量 |
+| Column 4 | 所属地形 |
+| Column 5 | 是否贫困地区 |
+| Column 6 | 是否革命老区 |
+| Column 7 | 是否少数民族聚居区 |
+| Column 8 | 是否农林牧场 |
+| Column 9 | 是否上报 |
+| Column 10 | 城乡类别 |
+| Column 11 | 码头与陆地距离 |
+| Column 12 | 岛内是否建有公路 |
+| Column 13 | 岛屿是否建有陆岛交通码头 |
+| Column 14 | 是否已经通过油路 |
+| Column 15 | 通达现状 |
+| Column 16 | 不适宜原因 |
+| Column 17 | 是否适宜通公路 |
+| Column 18 | 是否通双车道 |
+| Column 19 | 备注 |
+| Column 20 | 变更原因 |
+| Column 21 | 原建制村编码 |
+| Column 22 | 所在区县 |
+| Column 23 | 所在地市 |
+
+## 建制村通达表.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 建制村名称 |
+| Column 1 | 建制村编码 |
+| Column 2 | 通达路线编码 |
+| Column 3 | 通达路线名称 |
+| Column 4 | 通达方向 |
+| Column 5 | 通达位置 |
+| Column 6 | 其它位置名称 |
+| Column 7 | 是否连接建制村内部街道 |
+| Column 8 | 是否是优选路线 |
+| Column 9 | 待建路段起点桩号 |
+| Column 10 | 待建路段止点桩号 |
+| Column 11 | 备注 |
+
+## 收费站.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 收费站代码 |
+| Column 1 | 收费站名称 |
+| Column 2 | 收费站类型 |
+| Column 3 | 收费站桩号 |
+| Column 4 | 建成年份 |
+| Column 5 | 管养单位 |
+| Column 6 | 管理单位性质 |
+| Column 7 | 路段类型 |
+| Column 8 | 匝道编码 |
+| Column 9 | 收费站位置 |
+| Column 10 | 贷款金额 |
+| Column 11 | 批准开始收费日期 |
+| Column 12 | 收费性质 |
+| Column 13 | 批准收费年限 |
+| Column 14 | 国有资产所占比例 |
+| Column 15 | 还贷余额 |
+| Column 16 | 结束收费时间 |
+| Column 17 | 绿色通道减免 |
+| Column 18 | 年还贷额 |
+| Column 19 | 年收费额 |
+| Column 20 | 其他费用支出 |
+| Column 21 | 其他减免 |
+| Column 22 | 收费方向 |
+| Column 23 | 收费及管理人员数 |
+| Column 24 | 投资总额 |
+| Column 25 | 养护经费支出 |
+| Column 26 | 与下一个收费站距离 |
+| Column 27 | 批准收费文件编号 |
+| Column 28 | 收费车道数 |
+| Column 29 | 监督电话 |
+| Column 30 | 联系电话 |
+| Column 31 | 负责人 |
+| Column 32 | 备注 |
+| Column 33 | 所在区县 |
+| Column 34 | 所在地市 |
+
+## 易发地质灾害点.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 路线代码 |
+| Column 1 | 路线桩号 |
+| Column 2 | 路段类型 |
+| Column 3 | 地名 |
+| Column 4 | 路段长度 |
+| Column 5 | 易发地质灾害的类型 |
+| Column 6 | 所在区县 |
+| Column 7 | 所在地市 |
+
+## 服务区.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 服务区编码 |
+| Column 1 | 服务区名称 |
+| Column 2 | 路段类型 |
+| Column 3 | 初始运营时间 |
+| Column 4 | 服务区桩号 |
+| Column 5 | 布局形式 |
+| Column 6 | 管养单位 |
+| Column 7 | 经营模式 |
+| Column 8 | 服务设施类型 |
+| Column 9 | 占地面积 |
+| Column 10 | 停车场面积 |
+| Column 11 | 停车位数量 |
+| Column 12 | 建成年份 |
+| Column 13 | 是否有厕所 |
+| Column 14 | 是否有加油设施 |
+| Column 15 | 是否有加气设施 |
+| Column 16 | 是否有车辆充电设施 |
+| Column 17 | 车辆充电设施数量 |
+| Column 18 | 是否有餐饮服务设施 |
+| Column 19 | 是否有超市 |
+| Column 20 | 是否有住宿设施 |
+| Column 21 | 是否有汽车维修 |
+| Column 22 | 备注 |
+| Column 23 | 所在区县 |
+| Column 24 | 所在地市 |
+
+## 桥梁.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 桥梁代码 |
+| Column 1 | 桥梁名称 |
+| Column 2 | 中心桩号 |
+| Column 3 | 跨越地物类型 |
+| Column 4 | 跨越地物名称 |
+| Column 5 | 收费性质 |
+| Column 6 | 路段类型 |
+| Column 7 | 行车方向 |
+| Column 8 | 限长 |
+| Column 9 | 限宽 |
+| Column 10 | 限高 |
+| Column 11 | 限重 |
+| Column 12 | 互通类型 |
+| Column 13 | 互通形式 |
+| Column 14 | 互通交叉方式 |
+| Column 15 | 桥梁分类 |
+| Column 16 | 桥梁全长 |
+| Column 17 | 跨径总长 |
+| Column 18 | 主桥主跨 |
+| Column 19 | 主桥孔数 |
+| Column 20 | 跨径组合 |
+| Column 21 | 桥梁性质 |
+| Column 22 | 设计荷载等级 |
+| Column 23 | 上部结构 |
+| Column 24 | 上部结构材料 |
+| Column 25 | 桥面铺装类型 |
+| Column 26 | 桥面宽 |
+| Column 27 | 桥面净宽 |
+| Column 28 | 桥下净空 |
+| Column 29 | 抗震等级 |
+| Column 30 | 通航等级 |
+| Column 31 | 桥台类型 |
+| Column 32 | 桥墩类型 |
+| Column 33 | 墩台防撞设施类型 |
+| Column 34 | 防船撞设施类型 |
+| Column 35 | 路侧护栏防撞等级 |
+| Column 36 | 中央分隔带护栏防撞等级 |
+| Column 37 | 伸缩缝类型 |
+| Column 38 | 支座类型 |
+| Column 39 | 弯坡斜特征 |
+| Column 40 | 桥梁高度 |
+| Column 41 | 人行道宽度 |
+| Column 42 | 防洪标准 |
+| Column 43 | 设计洪水频率 |
+| Column 44 | 建设单位 |
+| Column 45 | 建成时间 |
+| Column 46 | 通车日期 |
+| Column 47 | 总造价 |
+| Column 48 | 设计单位名称 |
+| Column 49 | 施工单位名称 |
+| Column 50 | 监理单位名称 |
+| Column 51 | 养护检查等级 |
+| Column 52 | 评定日期 |
+| Column 53 | 技术状况评定 |
+| Column 54 | 评定单位 |
+| Column 55 | 主要病害位置 |
+| Column 56 | 病害描述 |
+| Column 57 | 采取管制措施 |
+| Column 58 | 最近定期检查日期 |
+| Column 59 | 评定为四五类桥梁的原因 |
+| Column 60 | 管理单位性质 |
+| Column 61 | 管理单位名称 |
+| Column 62 | 管养单位 |
+| Column 63 | 监管单位 |
+| Column 64 | 改造年度 |
+| Column 65 | 改造施工单位 |
+| Column 66 | 是否部补助项目 |
+| Column 67 | 工程性质 |
+| Column 68 | 改造部位 |
+| Column 69 | 改造完工日期 |
+| Column 70 | 是否危桥改造 |
+| Column 71 | 是否宽路窄桥 |
+| Column 72 | 是否在长大桥梁目录中 |
+| Column 73 | 是否跨线桥 |
+| Column 74 | 是否线外桥 |
+| Column 75 | 是否公路界河桥梁 |
+| Column 76 | 是否漫水桥 |
+| Column 77 | 是否公铁两用桥 |
+| Column 78 | 是否跨省桥梁 |
+| Column 79 | 桥梁链接省份 |
+| Column 80 | 是否共同管养桥梁 |
+| Column 81 | 本省管理起点桩号 |
+| Column 82 | 本省管理止点桩号 |
+| Column 83 | 本省管养长度 |
+| Column 84 | 桥梁身份码 |
+| Column 85 | 变更原因 |
+| Column 86 | 原桥梁代码 |
+| Column 87 | 匝道编码 |
+| Column 88 | 跨越地物类型1 |
+| Column 89 | 跨越地物名称1 |
+| Column 90 | 备注 |
+| Column 91 | 所在区县 |
+| Column 92 | 所在地市 |
+
+## 沿线服务设施.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 路线代码 |
+| Column 1 | 服务设施名称 |
+| Column 2 | 公路服务设施种类 |
+| Column 3 | 路段类型 |
+| Column 4 | 位置桩号 |
+| Column 5 | 建成年份 |
+| Column 6 | 位置 |
+| Column 7 | 地址 |
+| Column 8 | 负责人 |
+| Column 9 | 联系电话 |
+| Column 10 | 备注 |
+| Column 11 | 所在区县 |
+| Column 12 | 所在地市 |
+
+## 自然村属性.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 名称 |
+| Column 1 | 自然村编码 |
+| Column 2 | 自然村类型 |
+| Column 3 | 所属地形 |
+| Column 4 | 是否革命老区 |
+| Column 5 | 是否少数民族聚居区 |
+| Column 6 | 是否贫困地区 |
+| Column 7 | 是否是新建数据 |
+| Column 8 | 填报单位编码 |
+| Column 9 | 标志建筑物 |
+| Column 10 | 户籍数量 |
+| Column 11 | 人口数量 |
+| Column 12 | 岛屿是否建有陆岛交通码头 |
+| Column 13 | 岛内是否建有公路 |
+| Column 14 | 是否适宜通公路 |
+| Column 15 | 不适宜原因 |
+| Column 16 | 通达现状 |
+| Column 17 | 是否已经通油路 |
+| Column 18 | 变更原因 |
+| Column 19 | 原自然村编码 |
+| Column 20 | 所在区县 |
+| Column 21 | 所在地市 |
+
+## 自然村通达表.xlsx
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 自然村编码 |
+| Column 1 | 自然村名称 |
+| Column 2 | 通达路线代码 |
+| Column 3 | 通达路线名称 |
+| Column 4 | 是否是优选路线 |
+| Column 5 | 通达路线性质 |
+| Column 6 | 自然村通达位置 |
+| Column 7 | 其它位置名称 |
+| Column 8 | 是否连接自然村内部街道 |
+| Column 9 | 标志建筑物与通达路线的距离 |
+| Column 10 | 备注 |
+
+## 路段.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 路线代码 |
+| Column 1 | 路段简码 |
+| Column 2 | 路线名称 |
+| Column 3 | 路段简称 |
+| Column 4 | 路段序号 |
+| Column 5 | 路段编号 |
+| Column 6 | 起点地名 |
+| Column 7 | 起点桩号 |
+| Column 8 | 起点分界点类别 |
+| Column 9 | 止点地名 |
+| Column 10 | 止点桩号 |
+| Column 11 | 止点分界点类别 |
+| Column 12 | 路段类型 |
+| Column 13 | 路段限长 |
+| Column 14 | 路段限宽 |
+| Column 15 | 路段限高 |
+| Column 16 | 路段限重 |
+| Column 17 | 路段性质 |
+| Column 18 | 建成时间 |
+| Column 19 | 改建时间 |
+| Column 20 | 最近一次修复养护年度 |
+| Column 21 | 地貌 |
+| Column 22 | 收费性质 |
+| Column 23 | 收费公路项目编号 |
+| Column 24 | 涵洞数量 |
+| Column 25 | 高边坡数量 |
+| Column 26 | 高边坡延米 |
+| Column 27 | 技术等级 |
+| Column 28 | 路面类型 |
+| Column 29 | 面层厚度(厘米) |
+| Column 30 | 路面宽度 |
+| Column 31 | 路基宽度 |
+| Column 32 | 车道特征 |
+| Column 33 | 设计时速 |
+| Column 34 | 抗震设防等级 |
+| Column 35 | 路基设计洪水频率 |
+| Column 36 | 是否分离式路段 |
+| Column 37 | 管养单位 |
+| Column 38 | 是否城管路段 |
+| Column 39 | 管理单位性质 |
+| Column 40 | 管理单位名称 |
+| Column 41 | 监管单位名称 |
+| Column 42 | 列养情况 |
+| Column 43 | 列养资金来源 |
+| Column 44 | 可绿化还未绿化里程 |
+| Column 45 | 不可绿化里程 |
+| Column 46 | 重复路段路线编码 |
+| Column 47 | 重复道路路段类型 |
+| Column 48 | 重复路段序号 |
+| Column 49 | 省际出入标识 |
+| Column 50 | 匝道编码 |
+| Column 51 | 匝道名称 |
+| Column 52 | 匝道走向分类 |
+| Column 53 | 是否接养 |
+| Column 54 | 预留里程 |
+| Column 55 | 年均日交通量 |
+| Column 56 | 新调增国道中已通车路段是否复核通过 |
+| Column 57 | 备注 |
+| Column 58 | 调整前路线编号 |
+| Column 59 | 调整前路线名称 |
+| Column 60 | 图形里程 |
+| Column 61 | 桩号里程 |
+| Column 62 | 所在区县 |
+| Column 63 | 所在地市 |
+
+## 隧道.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 隧道代码 |
+| Column 1 | 隧道名称 |
+| Column 2 | 入口桩号 |
+| Column 3 | 路段类型 |
+| Column 4 | 限长 |
+| Column 5 | 限宽 |
+| Column 6 | 限高 |
+| Column 7 | 限重 |
+| Column 8 | 隧道分类 |
+| Column 9 | 隧道长度 |
+| Column 10 | 隧道全宽 |
+| Column 11 | 隧道净宽 |
+| Column 12 | 隧道净高 |
+| Column 13 | 洞口形式 |
+| Column 14 | 断面形式 |
+| Column 15 | 砌衬材料 |
+| Column 16 | 路面面层类型 |
+| Column 17 | 消防设施 |
+| Column 18 | 隧道通风 |
+| Column 19 | 隧道电子设备 |
+| Column 20 | 隧道排水类型 |
+| Column 21 | 隧道照明 |
+| Column 22 | 安全通道数量 |
+| Column 23 | 抗震设防等级 |
+| Column 24 | 人行道宽 |
+| Column 25 | 防洪标准 |
+| Column 26 | 设计洪水频率 |
+| Column 27 | 建成时间 |
+| Column 28 | 改建时间 |
+| Column 29 | 通车日期 |
+| Column 30 | 设计单位名称 |
+| Column 31 | 施工单位名称 |
+| Column 32 | 监理单位名称 |
+| Column 33 | 建设单位名称 |
+| Column 34 | 评定日期 |
+| Column 35 | 技术评定等级 |
+| Column 36 | 评定单位 |
+| Column 37 | 主要病害位置 |
+| Column 38 | 病害描述 |
+| Column 39 | 土建评定日期 |
+| Column 40 | 土建评定等级 |
+| Column 41 | 土建评定单位 |
+| Column 42 | 机电评定日期 |
+| Column 43 | 机电评定等级 |
+| Column 44 | 机电评定单位 |
+| Column 45 | 工程设施评定日期 |
+| Column 46 | 工程设施评定等级 |
+| Column 47 | 工程设施评定单位 |
+| Column 48 | 隧道养护等级 |
+| Column 49 | 管理单位性质 |
+| Column 50 | 管理单位名称 |
+| Column 51 | 监管单位名称 |
+| Column 52 | 管养单位 |
+| Column 53 | 改造完工日期 |
+| Column 54 | 病害改造部位 |
+| Column 55 | 改造工程性质 |
+| Column 56 | 年份1 |
+| Column 57 | 投资1 |
+| Column 58 | 年份2 |
+| Column 59 | 投资2 |
+| Column 60 | 年份3 |
+| Column 61 | 投资3 |
+| Column 62 | 年份4 |
+| Column 63 | 投资4 |
+| Column 64 | 年份5 |
+| Column 65 | 投资5 |
+| Column 66 | 计划类别 |
+| Column 67 | 计划年度 |
+| Column 68 | 计划文号 |
+| Column 69 | 计划项目唯一编码 |
+| Column 70 | 计划项目路线编码 |
+| Column 71 | 计划项目路线名称 |
+| Column 72 | 计划项目桩号 |
+| Column 73 | 隧道链接省份 |
+| Column 74 | 是否水下隧道 |
+| Column 75 | 是否分离式隧道 |
+| Column 76 | 分离式隧道上下行方向 |
+| Column 77 | 是否在长大隧道目录中 |
+| Column 78 | 是否跨省隧道 |
+| Column 79 | 是否共同管养隧道 |
+| Column 80 | 本省管理起点桩号 |
+| Column 81 | 本省管理止点桩号 |
+| Column 82 | 本省管养长度 |
+| Column 83 | 原隧道编码 |
+| Column 84 | 变更原因 |
+| Column 85 | 备注 |
+| Column 86 | 所在区县 |
+| Column 87 | 所在地市 |
+
+## 高速公路出入口.xls
+| 列号 (SQL Column) | 字段名称 (Header) |
+|---|---|
+| Column 0 | 出入口编码 |
+| Column 1 | 出入口名称 |
+| Column 2 | 出入口桩号 |
+| Column 3 | 路段类型 |
+| Column 4 | 出入口类型 |
+| Column 5 | 出入口位置 |
+| Column 6 | 匝道编码 |
+| Column 7 | 建成时间 |
+| Column 8 | 出口通往目的地地名 |
+| Column 9 | 出口通往景区名称 |
+| Column 10 | 其它重要信息 |
+| Column 11 | 连接路线名称 |
+| Column 12 | 连接路线代码 |
+| Column 13 | 出口连接路线桩号 |
+| Column 14 | 备注 |
+| Column 15 | 所在区县 |
+| Column 16 | 所在地市 |
+`;
+        console.log("%c[Build Timestamp]%c " + new Date().toISOString(), "color: white; background: #6366f1; padding: 2px 6px; border-radius: 4px;", "color: #6366f1; font-weight: bold;");
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -30183,9 +31555,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     const [loadedTablesByYear, setLoadedTablesByYear] = useState3({});
     const [nianbaoSchema, setNianbaoSchema] = useState3("");
     useEffect3(() => {
-      fetch("/nianbao_schema.md").then((r) => r.text()).then((text) => {
-        setNianbaoSchema(text);
-      }).catch((e) => console.warn("[NianbaoSkill] failed:", e));
+      if (window.__NIANBAO_SCHEMA__) {
+        setNianbaoSchema(window.__NIANBAO_SCHEMA__);
+      } else {
+        fetch("/nianbao_schema.md").then((r) => r.text()).then((text) => {
+          setNianbaoSchema(text);
+        }).catch((e) => console.warn("[NianbaoSkill] failed:", e));
+      }
     }, []);
     useEffect3(() => {
       getDB().then((database) => {
@@ -31417,7 +32793,7 @@ ${tableHtml}
         title: isFullscreen ? "\u9000\u51FA\u5168\u5C4F" : "\u7F51\u9875\u5168\u5C4F\u7F29\u653E"
       },
       isFullscreen ? /* @__PURE__ */ React.createElement(Minimize, { size: 20 }) : /* @__PURE__ */ React.createElement(Maximize, { size: 20 })
-    )))), /* @__PURE__ */ React.createElement("div", { className: "shrink-0 bg-slate-50 border-b border-slate-200 px-6 py-1.5 flex items-center justify-between text-[11px] text-slate-500 z-20" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(Database2, { size: 12, className: "text-emerald-500" }), " SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-300" }, "|"), /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(CircleCheckBig, { size: 12, className: "text-blue-500" }), " 100% \u672C\u5730\u8FD0\u7B97"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-300" }, "|"), /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(Lock2, { size: 12, className: "text-slate-500" }), " \u9690\u79C1\u7EA2\u7EBF\u4FDD\u62A4\uFF1A\u5168\u7A0B\u6C99\u7BB1\u9694\u79BB\u4E0D\u5165\u4E91")), /* @__PURE__ */ React.createElement("div", { className: "relative group cursor-pointer flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", { className: "w-2 h-2 rounded-full bg-green-500 animate-pulse" }), /* @__PURE__ */ React.createElement("span", { className: "hover:text-blue-600 transition-colors" }, "\u72B6\u6001\uFF1A\u5DF2\u771F\u5B9E\u88C5\u8F7D ", selectedYears[0], "\u5E74\u5EA6 ", Object.values(loadedTablesByYear[selectedYears[0]] || {}).filter(Boolean).length, "/42 \u5F20\u7269\u7406\u8868 (\u60AC\u6D6E\u56FE\u8C31)"), /* @__PURE__ */ React.createElement("div", { className: "absolute top-full right-0 pt-2 w-[480px] pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 transition-all duration-200 z-50" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white border border-slate-200 rounded-xl p-4 shadow-2xl" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3 border-b border-slate-100 pb-2" }, /* @__PURE__ */ React.createElement("span", { className: "font-extrabold text-slate-800 text-[11px] flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F4C2}"), " ", selectedYears[0], "\u5E74\u5EA6\u5E74\u62A5\u6570\u636E\u88C5\u8F7D\u56FE\u8C31"), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded" }, "\u5DF2\u6FC0\u6D3B")), /* @__PURE__ */ React.createElement(Tables42Grid, { selectedYears, onTableClick: handleTableClick, loadedTablesByYear }), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-400 mt-2 text-right" }, "\u652F\u6301\u70B9\u51FB\u8868\u683C\u76F4\u63A5\u8C03\u53D6\u8BE5\u7269\u7406\u6570\u636E\u7684\u5B57\u6BB5\u9884\u89C8"))))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 flex overflow-hidden w-full mx-auto" }, /* @__PURE__ */ React.createElement("div", { id: "chat-dialogue-panel", className: "flex-1 flex flex-col bg-slate-50/50 relative" }, /* @__PURE__ */ React.createElement("div", { id: "chat-messages-container", className: "flex-1 overflow-y-auto p-6" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full flex flex-col gap-6" }, messages.map((msg, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}` }, msg.role === "agent" && /* @__PURE__ */ React.createElement("div", { className: `w-8 h-8 rounded-full flex items-center justify-center shrink-0 mr-3 ${msg.type === "warning" ? "bg-slate-200 text-slate-600" : "bg-blue-600 text-white"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement(TriangleAlert, { size: 16 }) : /* @__PURE__ */ React.createElement(Database2, { size: 16 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2 max-w-2xl" }, /* @__PURE__ */ React.createElement("div", { className: `p-4 rounded-2xl shadow-sm ${msg.role === "user" ? "bg-blue-600 text-white rounded-tr-sm" : msg.type === "warning" ? "bg-slate-50 border border-slate-200 text-slate-800 rounded-tl-sm" : "bg-white border border-slate-200 text-slate-800 rounded-tl-sm"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement("div", { className: "whitespace-pre-wrap text-sm leading-relaxed font-medium" }, msg.content, /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-4 border-t border-slate-200/50" }, /* @__PURE__ */ React.createElement("button", { className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg shadow font-bold text-sm transition-all flex items-center gap-2" }, "\u{1F449} \u7ACB\u5373\u5347\u7EA7\u4E13\u4E1A\u7248\uFF0C\u89E3\u9501\u8DE8\u90E8\u95E8\u81EA\u52A8\u6821\u9A8C\u6D41"))) : /* @__PURE__ */ React.createElement(React.Fragment, null, msg.thought && /* @__PURE__ */ React.createElement("div", { className: "mb-2 p-2 bg-slate-100 rounded text-xs text-slate-500 font-mono whitespace-pre-wrap border border-slate-200" }, msg.thought), /* @__PURE__ */ React.createElement("div", { className: "whitespace-pre-wrap text-sm leading-relaxed", dangerouslySetInnerHTML: { __html: msg.content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") } }))), msg.suggestions && msg.suggestions.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "mt-3" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] text-slate-400 font-medium mb-2 pl-1 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F451}"), " \u6DF1\u5EA6\u4E1A\u52A1\u6D41\u63A8\u6F14 (\u4E13\u4E1A\u7248\u4F53\u9A8C)"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, msg.suggestions.map((s, idx2) => /* @__PURE__ */ React.createElement(
+    )))), /* @__PURE__ */ React.createElement("div", { className: "shrink-0 bg-slate-50 border-b border-slate-200 px-6 py-1.5 flex items-center justify-between text-[11px] text-slate-500 z-20" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(Database2, { size: 12, className: "text-emerald-500" }), " SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-300" }, "|"), /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(CircleCheckBig, { size: 12, className: "text-blue-500" }), " 100% \u672C\u5730\u8FD0\u7B97"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-300" }, "|"), /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(Lock2, { size: 12, className: "text-slate-500" }), " \u9690\u79C1\u7EA2\u7EBF\u4FDD\u62A4\uFF1A\u5168\u7A0B\u6C99\u7BB1\u9694\u79BB\u4E0D\u5165\u4E91")), /* @__PURE__ */ React.createElement("div", { className: "relative group cursor-pointer flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", { className: "w-2 h-2 rounded-full bg-green-500 animate-pulse" }), /* @__PURE__ */ React.createElement("span", { className: "hover:text-blue-600 transition-colors" }, "\u72B6\u6001\uFF1A\u5DF2\u771F\u5B9E\u88C5\u8F7D ", selectedYears[0], "\u5E74\u5EA6 ", Object.values(loadedTablesByYear[selectedYears[0]] || {}).filter(Boolean).length, "/42 \u5F20\u7269\u7406\u8868 (\u60AC\u6D6E\u56FE\u8C31)"), /* @__PURE__ */ React.createElement("div", { className: "absolute top-full right-0 pt-2 w-[480px] pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 transition-all duration-200 z-50" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white border border-slate-200 rounded-xl p-4 shadow-2xl" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3 border-b border-slate-100 pb-2" }, /* @__PURE__ */ React.createElement("span", { className: "font-extrabold text-slate-800 text-[11px] flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F4C2}"), " ", selectedYears[0], "\u5E74\u5EA6\u5E74\u62A5\u6570\u636E\u88C5\u8F7D\u56FE\u8C31"), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded" }, "\u5DF2\u6FC0\u6D3B")), /* @__PURE__ */ React.createElement(Tables42Grid, { selectedYears, onTableClick: handleTableClick, loadedTablesByYear }), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-400 mt-2 text-right" }, "\u652F\u6301\u70B9\u51FB\u8868\u683C\u76F4\u63A5\u8C03\u53D6\u8BE5\u7269\u7406\u6570\u636E\u7684\u5B57\u6BB5\u9884\u89C8"))))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 flex overflow-hidden w-full mx-auto" }, /* @__PURE__ */ React.createElement("div", { id: "chat-dialogue-panel", className: "flex-1 flex flex-col bg-slate-50/50 relative" }, /* @__PURE__ */ React.createElement("div", { id: "chat-messages-container", className: "flex-1 overflow-y-auto p-3" }, /* @__PURE__ */ React.createElement("div", { className: "w-full flex flex-col gap-4" }, messages.map((msg, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}` }, msg.role === "agent" && /* @__PURE__ */ React.createElement("div", { className: `w-8 h-8 rounded-full flex items-center justify-center shrink-0 mr-3 ${msg.type === "warning" ? "bg-slate-200 text-slate-600" : "bg-blue-600 text-white"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement(TriangleAlert, { size: 16 }) : /* @__PURE__ */ React.createElement(Database2, { size: 16 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2 max-w-2xl" }, /* @__PURE__ */ React.createElement("div", { className: `p-4 rounded-2xl shadow-sm ${msg.role === "user" ? "bg-blue-600 text-white rounded-tr-sm" : msg.type === "warning" ? "bg-slate-50 border border-slate-200 text-slate-800 rounded-tl-sm" : "bg-white border border-slate-200 text-slate-800 rounded-tl-sm"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement("div", { className: "whitespace-pre-wrap text-sm leading-relaxed font-medium" }, msg.content, /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-4 border-t border-slate-200/50" }, /* @__PURE__ */ React.createElement("button", { className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg shadow font-bold text-sm transition-all flex items-center gap-2" }, "\u{1F449} \u7ACB\u5373\u5347\u7EA7\u4E13\u4E1A\u7248\uFF0C\u89E3\u9501\u8DE8\u90E8\u95E8\u81EA\u52A8\u6821\u9A8C\u6D41"))) : /* @__PURE__ */ React.createElement(React.Fragment, null, msg.thought && /* @__PURE__ */ React.createElement("div", { className: "mb-2 p-2 bg-slate-100 rounded text-xs text-slate-500 font-mono whitespace-pre-wrap border border-slate-200" }, msg.thought), /* @__PURE__ */ React.createElement("div", { className: "whitespace-pre-wrap text-sm leading-relaxed", dangerouslySetInnerHTML: { __html: msg.content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") } }))), msg.suggestions && msg.suggestions.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "mt-3" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] text-slate-400 font-medium mb-2 pl-1 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F451}"), " \u6DF1\u5EA6\u4E1A\u52A1\u6D41\u63A8\u6F14 (\u4E13\u4E1A\u7248\u4F53\u9A8C)"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, msg.suggestions.map((s, idx2) => /* @__PURE__ */ React.createElement(
       "button",
       {
         key: idx2,
@@ -31426,7 +32802,7 @@ ${tableHtml}
       },
       /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 mt-0.5" }, "\u{1F451}"),
       /* @__PURE__ */ React.createElement("span", { className: "flex-1 leading-snug font-medium text-slate-700" }, s)
-    ))))), msg.role === "user" && /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center shrink-0 ml-3 text-white" }, "You"))), /* @__PURE__ */ React.createElement("div", { ref: messagesEndRef }))), /* @__PURE__ */ React.createElement("div", { className: "px-4 py-3 bg-white border-t border-slate-200 shrink-0 flex flex-col gap-2" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 overflow-x-auto scrollbar-hide pb-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-400 whitespace-nowrap shrink-0" }, "\u8BD5\u8BD5\u95EE\uFF1A"), prompts.flatMap((p) => p.queries).slice(0, 3).map((q, idx) => /* @__PURE__ */ React.createElement(
+    ))))), msg.role === "user" && /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center shrink-0 ml-3 text-white" }, "You"))), /* @__PURE__ */ React.createElement("div", { ref: messagesEndRef }))), /* @__PURE__ */ React.createElement("div", { className: "px-4 py-3 bg-white border-t border-slate-200 shrink-0 flex flex-col gap-2" }, /* @__PURE__ */ React.createElement("div", { className: "w-full" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 overflow-x-auto scrollbar-hide pb-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-400 whitespace-nowrap shrink-0" }, "\u8BD5\u8BD5\u95EE\uFF1A"), prompts.flatMap((p) => p.queries).slice(0, 3).map((q, idx) => /* @__PURE__ */ React.createElement(
       "button",
       {
         key: idx,
@@ -31441,7 +32817,7 @@ ${tableHtml}
         className: "shrink-0 px-2 py-1 rounded-full text-[10px] text-blue-500 hover:text-blue-700 font-medium whitespace-nowrap cursor-pointer hover:bg-blue-50 transition-all"
       },
       isMountPanelExpanded ? "\u6536\u8D77 \u25BC" : "\u66F4\u591A \u25B8"
-    ))), isMountPanelExpanded && /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full" }, /* @__PURE__ */ React.createElement("div", { className: "bg-slate-50 border border-slate-200/80 rounded-lg p-3 max-h-48 overflow-y-auto" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-1.5" }, prompts.flatMap((p) => p.queries).map((q, idx) => /* @__PURE__ */ React.createElement(
+    ))), isMountPanelExpanded && /* @__PURE__ */ React.createElement("div", { className: "w-full" }, /* @__PURE__ */ React.createElement("div", { className: "bg-slate-50 border border-slate-200/80 rounded-lg p-3 max-h-48 overflow-y-auto" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-1.5" }, prompts.flatMap((p) => p.queries).map((q, idx) => /* @__PURE__ */ React.createElement(
       "button",
       {
         key: idx,
@@ -31452,7 +32828,7 @@ ${tableHtml}
         className: "text-left px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 text-[11px] text-slate-600 hover:text-blue-700 transition-all border border-slate-200/60 hover:border-blue-200 cursor-pointer"
       },
       q
-    ))))), /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full flex items-center gap-3" }, /* @__PURE__ */ React.createElement(
+    ))))), /* @__PURE__ */ React.createElement("div", { className: "w-full flex items-center gap-3" }, /* @__PURE__ */ React.createElement(
       "button",
       {
         className: "shrink-0 flex items-center gap-1.5 px-4 py-3 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white rounded-full border border-blue-200 hover:border-blue-600 font-bold text-sm transition-all shadow-sm cursor-pointer",
@@ -41591,12 +42967,12 @@ ${tableHtml}
       title: "\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5\u667A\u80FD\u4F53",
       icon: /* @__PURE__ */ React.createElement(MessageSquare, { size: 18 }),
       children: [
-        { id: "6.1", title: "\u57FA\u7840\u7248", badge: "AI" },
+        { id: "6.1", title: "\u57FA\u7840\u7248" },
         { id: "6.2", title: "\u4E13\u4E1A\u7248 \u{1F512}" }
       ]
     }
   ];
-  var UPDATED_MENU_IDS = ["6.1", "1.5"];
+  var UPDATED_MENU_IDS = [];
   var ArchitectureView = ({ onNavigate }) => {
     const [viewMode, setViewMode] = useState7("normal");
     const archDomains = [
@@ -42838,7 +44214,7 @@ ${tableHtml}
         targetPath = "../release/ningbo/index.html";
       }
       window.open(targetPath, "_blank");
-    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "\u4F01\u4E1A\u4FA7\u539F\u578B", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col items-end gap-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5 shadow-sm" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "\u653F\u5E9C\u4FA7\u7248\u672C\u66F4\u65B0\u65F6\u95F4: 2026-06-25", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "\u4F01\u4E1A\u4FA7\u7248\u672C\u66F4\u65B0\u65F6\u95F4: 2026-06-03"), /* @__PURE__ */ React.createElement("a", { href: "?mode=standalone&view=progress", target: "_blank", className: "flex items-center gap-1 text-[9px] text-slate-400 hover:text-blue-500 transition-colors mr-1" }, /* @__PURE__ */ React.createElement(Activity, { size: 9 }), " \u6570\u5B57\u5316\u8F6C\u578B\u8FDB\u5EA6\u770B\u677F ", /* @__PURE__ */ React.createElement(ExternalLink, { size: 8 })))), /* @__PURE__ */ React.createElement("main", { className: "flex-1 overflow-y-auto custom-scroll p-8 bg-slate-50/60 relative" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
+    }, className: "flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 transition-colors font-bold text-[15px] cursor-pointer" }, /* @__PURE__ */ React.createElement(Briefcase, { size: 16 }), "\u4F01\u4E1A\u4FA7\u539F\u578B", /* @__PURE__ */ React.createElement(ExternalLink, { size: 14 }))), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col items-end gap-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5 shadow-sm" }, /* @__PURE__ */ React.createElement(Settings, { size: 14 }), "\u653F\u5E9C\u4FA7\u7248\u672C\u66F4\u65B0\u65F6\u95F4: 2026-06-25", /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|"), "\u4F01\u4E1A\u4FA7\u7248\u672C\u66F4\u65B0\u65F6\u95F4: 2026-06-03"), /* @__PURE__ */ React.createElement("a", { href: "?mode=standalone&view=progress", target: "_blank", className: "flex items-center gap-1 text-[9px] text-slate-400 hover:text-blue-500 transition-colors mr-1" }, /* @__PURE__ */ React.createElement(Activity, { size: 9 }), " \u6570\u5B57\u5316\u8F6C\u578B\u8FDB\u5EA6\u770B\u677F ", /* @__PURE__ */ React.createElement(ExternalLink, { size: 8 })))), /* @__PURE__ */ React.createElement("main", { className: `flex-1 overflow-y-auto custom-scroll bg-slate-50/60 relative ${activeMenu === "6.1" || activeMenu === "6.2" ? "p-0" : "p-8"}` }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, renderContent()))));
   };
   var root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(/* @__PURE__ */ React.createElement(App, null));
