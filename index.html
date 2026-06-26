@@ -29992,6 +29992,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
   // src/components/FreeAnnualReportAgentView.jsx
   var { useState: useState2, useEffect: useEffect2, useRef } = React;
+
+  // src/components/DeepQAAnnualReportAgentView.jsx
+  var { useState: useState3, useEffect: useEffect3, useRef: useRef2 } = React;
   var STAGES_TABLES = {
     "\u89C4\u5212\u671F": ["01 \u7EFC\u5408\u4FE1\u606F\u8868", "02 \u8DEF\u7EBF\u57FA\u7840\u8868", "03 \u8DEF\u7EBF\u4EA4\u53C9", "\u5EFA\u7BA1\u673A\u6784\u8868", "\u516C\u8DEF\u57FA\u672C\u60C5\u51B5\u6C47\u603B"],
     "\u5EFA\u8BBE\u671F": ["L21 \u8DEF\u7EBF\u660E\u7EC6", "\u8DEF\u7EBF\u53D8\u66F4", "T2a/T2b \u6865\u6881\u6C47\u603B", "\u96A7\u9053", "\u6DB5\u6D1E", "\u519C\u6751\u6865\u6881", "\u516C\u8DEF\u6392\u6869", "\u89C2\u6D4B\u7AD9\u70B9", "\u670D\u52A1\u8BBE\u65BD"],
@@ -30056,7 +30059,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     { category: "\u516D\u3001\u53BF\u4E61\u516C\u8DEF\u4E0E\u8DEF\u7F51\u7ED3\u6784\u7C7B", queries: ["\u6E56\u5317\u7701\u519C\u6751\u516C\u8DEF\u603B\u91CC\u7A0B\u662F\u591A\u5C11\uFF1F"] },
     { category: "\u4E03\u3001\u5BF9\u6BD4\u4E0E\u8D8B\u52BF\u7C7B", queries: ["\u8FD1\u4E94\u5E74\u6E56\u5317\u56FD\u9053\u91CC\u7A0B\u53D8\u5316\u8D8B\u52BF\u5982\u4F55\uFF1F"] }
   ];
-  function FreeAnnualReportAgentView({ isStandalone = false }) {
+  function DeepQAAnnualReportAgentView({ isStandalone = false }) {
     const TABLE_MAPPING_RULES = {
       // 规划期 (5张表)
       "01 \u7EFC\u5408\u4FE1\u606F\u8868": { sheets: ["\u7EFC\u5408\u4FE1\u606F", "T001", "T01"], files: ["\u7EFC\u5408\u4FE1\u606F", "T001"] },
@@ -30159,21 +30162,32 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       "13-1 \u517B\u62A4\u4F5C\u4E1A": true,
       "13-4 \u517B\u62A4\u666E\u901A": true
     };
-    const [messages, setMessages] = useState2([{
+    const [messages, setMessages] = useState3([{
+      id: 1,
       role: "agent",
-      content: "\u6B63\u5728\u8FDE\u63A5\u672C\u5730 SQLite Wasm \u6570\u636E\u5E95\u5EA7\uFF0C\u8BF7\u7A0D\u5019..."
+      content: "\u60A8\u597D\uFF01\u6211\u662F\u5927\u6A21\u578B\u6DF1\u5EA6\u7A7F\u900F\u7248\u667A\u80FD\u4F53\u3002\u8BF7\u8F93\u5165\u60A8\u60F3\u4E86\u89E3\u7684\u516C\u8DEF\u7EDF\u8BA1\u5E74\u62A5\u4E1A\u52A1\u6570\u636E\u95EE\u9898\uFF0C\u6211\u5C06\u4F7F\u7528 DeepSeek \u5927\u6A21\u578B\u5B9E\u65F6\u4E3A\u60A8\u751F\u6210 SQL \u5E76\u4E0B\u94BB\u67E5\u8BE2\u672C\u5730\u5E95\u5EA7\u6570\u636E\u3002",
+      time: "\u521A\u521A"
     }]);
-    const [uploading, setUploading] = useState2(false);
-    const [selectedYears, setSelectedYears] = useState2([2016]);
-    const [expandedCategory, setExpandedCategory] = useState2(0);
-    const fileInputRef = useRef(null);
-    const messagesEndRef = useRef(null);
-    const isFirstRender = useRef(true);
-    const [hasMultiYearData, setHasMultiYearData] = useState2(false);
-    const [parsedData, setParsedData] = useState2([]);
-    const [db, setDb] = useState2(null);
-    const [loadedTablesByYear, setLoadedTablesByYear] = useState2({});
-    useEffect2(() => {
+    const [apiKey, setApiKey] = useState3("sk-eb7b07d113a441d9be1cd31e0d7efc5b");
+    const [apiProvider, setApiProvider] = useState3("deepseek");
+    const [queryInput, setQueryInput] = useState3("");
+    const [uploading, setUploading] = useState3(false);
+    const [selectedYears, setSelectedYears] = useState3([2016]);
+    const [expandedCategory, setExpandedCategory] = useState3(0);
+    const fileInputRef = useRef2(null);
+    const messagesEndRef = useRef2(null);
+    const isFirstRender = useRef2(true);
+    const [hasMultiYearData, setHasMultiYearData] = useState3(false);
+    const [parsedData, setParsedData] = useState3([]);
+    const [db, setDb] = useState3(null);
+    const [loadedTablesByYear, setLoadedTablesByYear] = useState3({});
+    const [nianbaoSchema, setNianbaoSchema] = useState3("");
+    useEffect3(() => {
+      fetch("/nianbao_schema.md").then((r) => r.text()).then((text) => {
+        setNianbaoSchema(text);
+      }).catch((e) => console.warn("[NianbaoSkill] failed:", e));
+    }, []);
+    useEffect3(() => {
       getDB().then((database) => {
         setDb(database);
         setLoadedTablesByYear({ 2016: PRESET_2016_LOADED_STATUS });
@@ -30222,13 +30236,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         }]);
       });
     }, []);
-    const [rightPanelTab, setRightPanelTab] = useState2("\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5\u7EFC\u5408\u8BC4\u4F30\u62A5\u544A");
-    const [isGenerating, setIsGenerating] = useState2(false);
-    const [hasGenerated, setHasGenerated] = useState2(false);
-    const [rightPanelWidth, setRightPanelWidth] = useState2(384);
-    const [isRightPanelExpanded, setIsRightPanelExpanded] = useState2(false);
-    const [fullTableData, setFullTableData] = useState2(null);
-    useEffect2(() => {
+    const [rightPanelTab, setRightPanelTab] = useState3("\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5\u7EFC\u5408\u8BC4\u4F30\u62A5\u544A");
+    const [isGenerating, setIsGenerating] = useState3(false);
+    const [hasGenerated, setHasGenerated] = useState3(false);
+    const [rightPanelWidth, setRightPanelWidth] = useState3(384);
+    const [isRightPanelExpanded, setIsRightPanelExpanded] = useState3(false);
+    const [fullTableData, setFullTableData] = useState3(null);
+    useEffect3(() => {
       const handleShowFullData = () => {
         if (window.__currentDataItems) {
           setGeneratedArtifacts((prev) => [...prev.filter((a) => a.name !== "\u5168\u91CF\u660E\u7EC6\u6570\u636E\u5E95\u8868"), { name: "\u5168\u91CF\u660E\u7EC6\u6570\u636E\u5E95\u8868", sourceQuery: "\u5168\u91CF\u660E\u7EC6\u8F93\u51FA" }]);
@@ -30242,14 +30256,14 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       document.addEventListener("SHOW_FULL_DATA", handleShowFullData);
       return () => document.removeEventListener("SHOW_FULL_DATA", handleShowFullData);
     }, []);
-    const [leftPanelWidth, setLeftPanelWidth] = useState2(320);
-    const [isLeftPanelExpanded, setIsLeftPanelExpanded] = useState2(true);
-    const [isLeftDragging, setIsLeftDragging] = useState2(false);
-    const [generatedArtifacts, setGeneratedArtifacts] = useState2([{ name: "\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5\u7EFC\u5408\u8BC4\u4F30\u62A5\u544A", sourceQuery: "\u5168\u76D8\u57FA\u7EBF\u6570\u636E\u521D\u59CB\u5316" }]);
-    const [isDragging, setIsDragging] = useState2(false);
-    const [isMountPanelExpanded, setIsMountPanelExpanded] = useState2(false);
-    const [isFullscreen, setIsFullscreen] = useState2(false);
-    const [localDbStatus, setLocalDbStatus] = useState2("SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA \xB7 \u5DF2\u771F\u5B9E\u6302\u8F7D 2016 \u5E74\u62A5 28 \u5F20\u8868 \xB7 42\u8868\u5168\u666F\u7EB3\u7BA1");
+    const [leftPanelWidth, setLeftPanelWidth] = useState3(320);
+    const [isLeftPanelExpanded, setIsLeftPanelExpanded] = useState3(true);
+    const [isLeftDragging, setIsLeftDragging] = useState3(false);
+    const [generatedArtifacts, setGeneratedArtifacts] = useState3([{ name: "\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5\u7EFC\u5408\u8BC4\u4F30\u62A5\u544A", sourceQuery: "\u5168\u76D8\u57FA\u7EBF\u6570\u636E\u521D\u59CB\u5316" }]);
+    const [isDragging, setIsDragging] = useState3(false);
+    const [isMountPanelExpanded, setIsMountPanelExpanded] = useState3(false);
+    const [isFullscreen, setIsFullscreen] = useState3(false);
+    const [localDbStatus, setLocalDbStatus] = useState3("SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA \xB7 \u5DF2\u771F\u5B9E\u6302\u8F7D 2016 \u5E74\u62A5 28 \u5F20\u8868 \xB7 42\u8868\u5168\u666F\u7EB3\u7BA1");
     const toggleFullscreen = async () => {
       if (!document.fullscreenElement) {
         try {
@@ -30263,14 +30277,14 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         }
       }
     };
-    useEffect2(() => {
+    useEffect3(() => {
       const handleFullscreenChange = () => {
         setIsFullscreen(!!document.fullscreenElement);
       };
       document.addEventListener("fullscreenchange", handleFullscreenChange);
       return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
     }, []);
-    useEffect2(() => {
+    useEffect3(() => {
       const handleMouseMove = (e) => {
         if (!isDragging) return;
         const newWidth = document.body.clientWidth - e.clientX;
@@ -30293,7 +30307,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         document.body.style.cursor = "default";
       };
     }, [isDragging]);
-    useEffect2(() => {
+    useEffect3(() => {
       const handleLeftMouseMove = (e) => {
         if (!isLeftDragging) return;
         const newWidth = e.clientX;
@@ -30316,7 +30330,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         document.body.style.cursor = "default";
       };
     }, [isLeftDragging]);
-    useEffect2(() => {
+    useEffect3(() => {
       if (isFirstRender.current) {
         isFirstRender.current = false;
         return;
@@ -30432,6 +30446,84 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       setRightPanelTab(tableName);
       setGeneratedArtifacts((prev) => prev.find((a) => a.name === tableName) ? prev : [...prev, { name: tableName, sourceQuery: "\u6570\u636E\u5E95\u5EA7\u4EA4\u4E92\u5F0F\u4E0B\u94BB" }]);
     };
+    const handleDeepSeekQuery = async (queryText) => {
+      if (!queryText || !queryText.trim()) return;
+      const msgId = Date.now();
+      setMessages((prev) => [...prev, { id: msgId, role: "user", content: queryText, time: "\u73B0\u5728" }]);
+      setQueryInput("");
+      const botMsgId = msgId + 1;
+      setMessages((prev) => [...prev, { id: botMsgId, role: "agent", content: "\u{1F50D} \u6B63\u5728\u89E3\u6790\u4E1A\u52A1\u610F\u56FE\u4E0E\u6570\u636E\u6A21\u578B...", time: "\u6B63\u5728\u63A8\u7406" }]);
+      try {
+        const isDeepSeek = apiProvider === "deepseek";
+        const modelName = isDeepSeek ? "deepseek-chat" : "glm-4-flash";
+        const url = isDeepSeek ? "https://api.deepseek.com/chat/completions" : "https://open.bigmodel.cn/api/paas/v4/chat/completions";
+        const nianbaoShujuSkill = (nianbaoSchema || "[Schema loading, please retry]") + "\n\n\u91CD\u8981\u63D0\u793A\uFF1A\u6574\u4E2A\u6570\u636E\u5E93\u5DF2\u7ECF\u662F\u6E56\u5317\u7701\u7684\u6570\u636E\uFF0C\u5207\u52FF\u5728 SQL \u4E2D\u52A0\u5165 col1='\u6E56\u5317\u7701' \u8FD9\u6837\u7684\u7701\u4EFD\u8FC7\u6EE4\u6761\u4EF6\uFF01\u8868\u540D\u8BF7\u76F4\u63A5\u4F7F\u7528\u539F\u59CB\u4E2D\u82F1\u6587\u6DF7\u5408\u540D\u5B57\uFF0C\u4E0D\u9700\u8981\u52A0\u5F15\u53F7\u3002\u6C42\u603B\u548C\u8BF7\u7528 SUM(CAST(ColumnName AS REAL))\u3002\u5982\u679C\u4E0D\u77E5\u9053\u54EA\u4E2A\u5B57\u6BB5\u4EE3\u8868\u91CC\u7A0B\uFF0C\u901A\u5E38\u4F18\u5148\u627E\u5E26\u6709'\u91CC\u7A0B'\u7684\u5B57\u6BB5\u5E76CAST AS REAL\u3002\n";
+        let prompt1 = {
+          model: modelName,
+          messages: [{ role: "user", content: "\u4F60\u662F\u4E00\u4E2A SQLite \u6570\u636E\u5206\u6790\u4E13\u5BB6\u3002\u8BF7\u6839\u636E\u4E0B\u9762\u7684\u7528\u6237\u95EE\u9898\u751F\u6210\u4E00\u6761 SQLite \u8BED\u53E5\u3002\u53EA\u8F93\u51FA\u7EAF\u6587\u672C\u7684 SQL \u8BED\u53E5\uFF0C\u4E0D\u8981\u6709\u4EFB\u4F55\u4EE3\u7801\u5757\u6807\u8BB0\u3002\n\n" + nianbaoShujuSkill + "\n\u7528\u6237\u95EE\u9898: " + queryText }]
+        };
+        const res1 = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${apiKey}`
+          },
+          body: JSON.stringify(prompt1)
+        });
+        const data1 = await res1.json();
+        if (data1.error) throw new Error("API Error: " + data1.error.message);
+        let sql = data1.choices[0].message.content.trim();
+        sql = sql.replace(/```sql/g, "").replace(/```/g, "").trim();
+        setMessages((prev) => prev.map((m) => m.id === botMsgId ? { ...m, content: "\u2699\uFE0F \u751F\u6210 SQL \u6210\u529F\uFF0C\u6B63\u5728\u6267\u884C\u7A7F\u900F\u67E5\u8BE2...\n", thought: "\u3010\u6267\u884CSQL\u3011:\n" + sql } : m));
+        let sqlResultStr = "\u65E0\u6570\u636E";
+        if (db) {
+          try {
+            const dbRes = db.exec(sql);
+            if (dbRes.length > 0 && dbRes[0].values) {
+              sqlResultStr = JSON.stringify({ columns: dbRes[0].columns, values: dbRes[0].values.slice(0, 5) });
+            }
+          } catch (e) {
+            sqlResultStr = "\u6267\u884C\u62A5\u9519: " + e.message;
+          }
+        } else {
+          sqlResultStr = "\u672C\u5730\u6570\u636E\u5E93\u5C1A\u672A\u52A0\u8F7D";
+        }
+        setMessages((prev) => prev.map((m) => m.id === botMsgId ? { ...m, content: "\u{1F4DD} \u62BD\u6570\u5B8C\u6BD5\uFF0C\u5F00\u59CB\u751F\u6210\u62A5\u544A...", thought: m.thought + "\n\n\u3010\u5E95\u5C42\u539F\u59CB\u8FD4\u56DE\u6570\u636E\u3011:\n" + sqlResultStr } : m));
+        const nianbaoSkillPrompt = `
+\u4E25\u683C\u8F93\u51FA\u683C\u5F0F\u8981\u6C42\uFF08\u5FC5\u987B\u4F7F\u7528HTML\u6807\u7B7E\uFF0C\u4E25\u7981Markdown\u7684#\u53F7\uFF0C\u4E25\u7981\u4F7F\u7528\u4EFB\u4F55\u7269\u7406\u6362\u884C\u7B26\\n\uFF01\u6240\u6709\u7684\u89C6\u89C9\u95F4\u8DDD\u5FC5\u987B\u4F9D\u8D56\u9884\u8BBE\u7684 mb-5 \u7B49 Tailwind \u6837\u5F0F\uFF09\uFF1A
+
+<div class="mb-5"><div class="bg-blue-50 border-l-4 border-blue-600 p-3 rounded-r shadow-sm"><strong class="text-blue-800 text-sm flex items-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg> \u3010\u6838\u5FC3\u7ED3\u8BBA\uFF1A\u76F4\u51FB\u95EE\u9898\u3011</strong><div class="mt-2 text-[13px] font-bold text-slate-800 leading-relaxed">\uFF08\u5FC5\u987B\u628A\u8FD9\u4E2A\u6A21\u5757\u653E\u5728\u6700\u5F00\u5934\uFF01\u7528\u6700\u7B80\u7EC3\u7684\u8BDD\u76F4\u63A5\u56DE\u7B54\uFF0C\u4E25\u7981\u5728\u6B64\u4F7F\u7528\u8868\u683C\uFF0C\u4E25\u7981\u6DFB\u52A0\u4EFB\u4F55\u7A7A\u884C\u3002\uFF09</div></div></div><div class="mb-5"><div class="bg-emerald-50 border-l-4 border-emerald-500 p-2.5 rounded-r shadow-sm mb-3"><strong class="text-emerald-800 text-sm flex items-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> \u3010\u89C6\u56FE 1\uFF1A\u4E94\u9636\u6BB5\u5168\u666F\u6570\u636E\u7A7F\u900F\u3011</strong></div><div class="space-y-1.5 px-2"><div class="text-[12px]"><strong class="text-emerald-600 bg-emerald-100/50 px-1.5 py-0.5 rounded mr-1">[\u89C4\u5212\u671F]</strong> <span class="text-slate-500">(\u5173\u8054\u53F0\u8D26\uFF1A\u7EFC\u5408\u4FE1\u606F\u8868)</span>\uFF1A...</div><div class="text-[12px]"><strong class="text-emerald-600 bg-emerald-100/50 px-1.5 py-0.5 rounded mr-1">[\u5EFA\u8BBE\u671F]</strong> <span class="text-slate-500">(\u5173\u8054\u53F0\u8D26\uFF1A\u8DEF\u7EBF\u660E\u7EC6\u8868)</span>\uFF1A...</div><div class="text-[12px]"><strong class="text-emerald-600 bg-emerald-100/50 px-1.5 py-0.5 rounded mr-1">[\u7BA1\u7406\u671F]</strong> <span class="text-slate-500">(\u5173\u8054\u53F0\u8D26\uFF1A\u7BA1\u517B\u673A\u6784\u660E\u7EC6)</span>\uFF1A...</div><div class="text-[12px]"><strong class="text-emerald-600 bg-emerald-100/50 px-1.5 py-0.5 rounded mr-1">[\u517B\u62A4\u671F]</strong> <span class="text-slate-500">(\u5173\u8054\u53F0\u8D26\uFF1A\u8DEF\u51B5\u8BC4\u5B9A\u6C47\u603B)</span>\uFF1A...</div><div class="text-[12px]"><strong class="text-emerald-600 bg-emerald-100/50 px-1.5 py-0.5 rounded mr-1">[\u8FD0\u8425\u671F]</strong> <span class="text-slate-500">(\u5173\u8054\u53F0\u8D26\uFF1A\u8D44\u91D1\u6765\u6E90\u8868)</span>\uFF1A...</div></div><div class="mt-3 mb-1 overflow-x-auto relative z-10 px-2"><table class="w-full text-[11px] text-left border-collapse border border-slate-200"><thead class="bg-slate-100 text-slate-700"><tr><th class="border border-slate-200 px-2 py-1">\u5217\u540D1</th><th class="border border-slate-200 px-2 py-1">\u5217\u540D2</th></tr></thead><tbody class="text-slate-600 bg-white"><tr><td class="border border-slate-200 px-2 py-1">\u6570\u636E1</td><td class="border border-slate-200 px-2 py-1">\u6570\u636E2</td></tr></tbody></table></div></div><div class="mb-5"><div class="bg-amber-50 border-l-4 border-amber-500 p-2.5 rounded-r shadow-sm mb-3"><strong class="text-amber-800 text-sm flex items-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> \u3010\u89C6\u56FE 2\uFF1A\u4E94\u9636\u6BB5\u8DE8\u8868\u6570\u636E\u5173\u8054\u4E0E\u6821\u9A8C\u3011</strong></div><div class="px-2 space-y-1.5 text-[12px] text-slate-700"><div class="flex items-start gap-1.5"><span class="text-amber-500 mt-0.5">\u2022</span> <div><strong>\u4E1A\u52A1\u53F0\u8D26\u6620\u5C04\u5173\u7CFB</strong>\uFF1A\u4F8B\u5982 <code class="bg-amber-100/50 text-amber-700 px-1 rounded">[\u89C4\u5212\u671F-\u8DEF\u7EBF\u4E3B\u6863(1)] -> [\u5EFA\u8BBE\u671F-\u8DEF\u6BB5\u660E\u7EC6\u53F0\u8D26(N)]</code></div></div><div class="flex items-start gap-1.5"><span class="text-amber-500 mt-0.5">\u2022</span> <div><strong>\u5173\u8054\u903B\u8F91\u4E0E\u8D26\u5B9E\u6838\u5BF9</strong>\uFF1A(\u63CF\u8FF0\u57FA\u4E8E1:N\u5173\u7CFB\u7684\u903B\u8F91\u6821\u9A8C\u70B9)</div></div></div><div class="mt-3 px-2"><div class="bg-red-50/80 border border-red-100 p-2.5 rounded text-[12px] text-slate-700"><strong class="text-red-600 flex items-center gap-1 mb-1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> \u5BA1\u8BA1\u6D1E\u5BDF\uFF1A</strong>\u4E25\u683C\u4F7F\u7528\u653F\u52A1\u5BA1\u8BA1\u98CE\u683C\uFF0C\u89E3\u91CA\u6570\u636E\u7684\u91CD\u53E0\u5254\u9664\u903B\u8F91\u3002</div></div></div><div class="mb-2"><div class="bg-indigo-50 border-l-4 border-indigo-500 p-2.5 rounded-r shadow-sm mb-3"><strong class="text-indigo-800 text-sm flex items-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg> \u3010\u89C6\u56FE 3\uFF1A\u6570\u636E\u8981\u7D20\u5316\u53CA\u5E94\u7528\u4EF7\u503C\u3011</strong></div><div class="px-2 space-y-1.5 text-[12px] text-slate-700"><div class="flex items-start gap-1.5"><span class="text-indigo-500 mt-0.5">\u2022</span> <div><strong>\u667A\u80FD\u4F53\u534F\u540C\u5BA1\u8BA1</strong>\uFF1A\u4F8B\u5982\u8C03\u7528 <code class="bg-indigo-100/50 text-indigo-700 px-1 rounded">[AGENT-\u517B\u62A4\u7BA1\u7406-05] \u4E1A\u52A1\u8F85\u52A9\u5BF9\u8D26</code></div></div><div class="flex items-start gap-1.5"><span class="text-indigo-500 mt-0.5">\u2022</span> <div><strong>\u9AD8\u8D28\u91CF\u6570\u636E\u96C6\u6C89\u6DC0</strong>\uFF1A\u4F8B\u5982 <code class="bg-indigo-100/50 text-indigo-700 px-1 rounded">[\u6570\u636E\u96C6 49] \u516C\u8DEF\u8D44\u4EA7\u5E93</code></div></div><div class="flex items-start gap-1.5"><span class="text-indigo-500 mt-0.5">\u2022</span> <div><strong>\u6570\u636E\u4EA7\u54C1\u8F93\u51FA</strong>\uFF1A\u4F8B\u5982 <code class="bg-indigo-100/50 text-indigo-700 px-1 rounded">[\u4EA7\u54C1 27] \u7BA1\u517B\u57FA\u6570\u5BA1\u8BA1\u7B80\u62A5</code></div></div></div></div>`;
+        let prompt2 = {
+          model: modelName,
+          messages: [{ role: "user", content: "\u4F60\u662F\u4E00\u4E2A\u4E13\u4E1A\u7684\u4E2D\u56FD\u653F\u52A1\u6570\u636E\u5206\u6790\u5458\u3002\u7528\u6237\u7684\u95EE\u9898\u662F\uFF1A[" + queryText + "]\u3002\u7CFB\u7EDF\u6267\u884CSQL\u67E5\u8BE2\u540E\u7684\u771F\u5B9E\u5E95\u5C42\u6570\u636E\u5982\u4E0B: [" + sqlResultStr + "]\u3002\u8BF7\u7ED3\u5408\u6570\u636E\uFF0C\u4F7F\u7528\u6781\u5176\u4E25\u8C28\u3001\u6B63\u5F0F\u7684\u4E2D\u56FD\u4F53\u5236\u5185\u516C\u6587\u8BED\u6001\u751F\u6210\u5206\u6790\u62A5\u544A\uFF0C\u4E0D\u8981\u51FA\u73B0AI\u5BA2\u670D\u8BED\u6C14\u3002\u5982\u679C\u6570\u636E\u4E3A\u7A7A\u6216\u62A5\u9519\uFF0C\u8BF7\u660E\u786E\u6307\u51FA\u3002\n\n" + nianbaoSkillPrompt }]
+        };
+        console.log("Sending prompt2 to AI...", prompt2);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15e3);
+        let res2;
+        try {
+          res2 = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${apiKey}`
+            },
+            body: JSON.stringify(prompt2),
+            signal: controller.signal
+          });
+        } finally {
+          clearTimeout(timeoutId);
+        }
+        const data2 = await res2.json();
+        if (data2.error) throw new Error("API Error: " + data2.error.message);
+        let finalReport = data2.choices[0].message.content;
+        setMessages((prev) => prev.map((m) => m.id === botMsgId ? { ...m, content: finalReport } : m));
+      } catch (error) {
+        console.error("DeepQA Error:", error);
+        let errMsg = error.name === "AbortError" ? "\u8BF7\u6C42\u5927\u6A21\u578B\u8D85\u65F6\uFF0815\u79D2\u65E0\u54CD\u5E94\uFF09\uFF0C\u8FD9\u53EF\u80FD\u662F\u56E0\u4E3A\u8BBE\u5B9A\u7684\u5206\u6790\u89C4\u5219\u8FC7\u4E8E\u590D\u6742\u5BFC\u81F4\u6A21\u578B\u63A8\u7406\u8FC7\u8F7D\u3002" : error.message;
+        setMessages((prev) => prev.map((m) => m.id === botMsgId ? { ...m, content: "\u274C \u6DF1\u5EA6\u7A7F\u900F\u5931\u8D25: " + errMsg } : m));
+      }
+    };
     const handleQuery = (query) => {
       const isPredefined = query.includes("107") || query.includes("318") || query.includes("\u6865\u6881") || query.includes("\u4F18\u826F\u8DEF\u7387") || query.includes("\u65B0\u5EFA") || query.includes("\u519C\u6751\u516C\u8DEF") || query.includes("\u6CE2\u52A8") || query.includes("\u9884\u9632\u6027") || query.match(/(生成|下发|查阅|查看)《(.*?)》/) || query.includes("\u89E3\u8BFB") || query.includes("\u63A8\u6F14") || query.includes("\u4EA4\u529E\u5355") || query.includes("\u5927\u6865") || query.includes("\u96A7\u9053");
       if (db && !isPredefined) {
@@ -30488,10 +30580,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             "T2b": "\u6865\u6881\u6309\u8DE8\u5F84\u5206\u7C7B"
           };
           const tablesResult = db.exec("SELECT name FROM sqlite_master WHERE type='table';");
+          let foundStage = null;
+          let hitCount = 0;
+          let bridgeCount = 0;
+          let testCount = 0;
           if (tablesResult.length > 0 && tablesResult[0].values) {
             const allTables = tablesResult[0].values.map((v) => v[0]);
             allTables.forEach((t) => {
-              let matchCount = 0;
               try {
                 if (t === "L21") {
                   const sumRes = db.exec(`SELECT SUM(CAST(col7 AS REAL)) FROM L21 WHERE col0 LIKE '%${routeCode}%'`);
@@ -30501,7 +30596,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
                 }
                 const res = db.exec(`SELECT COUNT(*) FROM "${t}" WHERE col0 LIKE '%${routeCode}%' OR col1 LIKE '%${routeCode}%'`);
                 if (res.length > 0 && res[0].values[0][0] > 0) {
-                  matchCount = res[0].values[0][0];
+                  let matchCount = res[0].values[0][0];
+                  let found = false;
                   for (const [stage, tableNames] of Object.entries(stageMapping)) {
                     if (tableNames.includes(t)) {
                       foundStage = stage;
@@ -30519,9 +30615,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             });
           }
           if (mileage === 0) mileage = "\u672A\u77E5";
-          let hitCount = Object.values(stages).reduce((sum, stage) => sum + stage.count, 0);
-          let bridgeCount = 0;
-          let testCount = 0;
+          hitCount = Object.values(stages).reduce((sum, stage) => sum + stage.count, 0);
+          bridgeCount = 0;
+          testCount = 0;
           try {
             const rBridge = db.exec(`SELECT COUNT(*) FROM L24a WHERE col0 LIKE '%${routeCode}%' OR col1 LIKE '%${routeCode}%'`);
             if (rBridge.length > 0) bridgeCount = rBridge[0].values[0][0];
@@ -31303,10 +31399,10 @@ ${tableHtml}
     const maxYear = allYears[allYears.length - 1] || 2017;
     const yearCount = allYears.length || 1;
     const loadedDataText = yearCount > 1 ? `${minYear}-${maxYear} \u591A\u5E74\u5EA6\u6570\u636E (${yearCount}\u5E74)` : "2017 \u5355\u5E74\u57FA\u7EBF\u6570\u636E";
-    return /* @__PURE__ */ React.createElement("div", { className: `h-full flex flex-col bg-slate-50 overflow-hidden relative ` }, /* @__PURE__ */ React.createElement("div", { className: "shrink-0 bg-white border-b border-slate-200 p-4 shadow-sm z-10" }, /* @__PURE__ */ React.createElement("div", { className: "w-full mx-auto flex items-center justify-between" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("div", { className: "p-2 bg-blue-100 rounded-lg" }, /* @__PURE__ */ React.createElement(Database2, { className: "text-blue-600", size: 24 })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h2", { className: "font-bold text-slate-800 text-lg" }, "\u5386\u53F2\u5E74\u62A5\u667A\u80FD\u89E3\u6790\u8231 ", /* @__PURE__ */ React.createElement("span", { className: "text-xs bg-blue-50 text-blue-600 font-bold px-2 py-0.5 rounded ml-2 border border-blue-200" }, "\u57FA\u7840\u7248")))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, !isStandalone && /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React.createElement("div", { className: `h-full flex flex-col bg-slate-50 overflow-hidden relative ` }, /* @__PURE__ */ React.createElement("div", { className: "shrink-0 bg-white border-b border-slate-200 p-4 shadow-sm z-10" }, /* @__PURE__ */ React.createElement("div", { className: "w-full mx-auto flex items-center justify-between" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("div", { className: "p-2 bg-blue-100 rounded-lg" }, /* @__PURE__ */ React.createElement(Database2, { className: "text-blue-600", size: 24 })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h2", { className: "font-bold text-slate-800 text-lg" }, "\u5386\u53F2\u5E74\u62A5\u667A\u80FD\u89E3\u6790\u8231 ", /* @__PURE__ */ React.createElement("span", { className: "text-xs bg-emerald-50 text-emerald-600 font-bold px-2 py-0.5 rounded ml-2 border border-emerald-200" }, "\u57FA\u7840\u7248")))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, !isStandalone && /* @__PURE__ */ React.createElement(
       "a",
       {
-        href: "?mode=standalone&view=free",
+        href: "?mode=standalone&view=deepqa",
         target: "_blank",
         rel: "noopener noreferrer",
         className: "bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 transition-colors rounded-lg px-4 py-2 flex items-center justify-center cursor-pointer shadow-sm text-indigo-700 font-bold text-sm gap-2"
@@ -31321,11 +31417,11 @@ ${tableHtml}
         title: isFullscreen ? "\u9000\u51FA\u5168\u5C4F" : "\u7F51\u9875\u5168\u5C4F\u7F29\u653E"
       },
       isFullscreen ? /* @__PURE__ */ React.createElement(Minimize, { size: 20 }) : /* @__PURE__ */ React.createElement(Maximize, { size: 20 })
-    )))), /* @__PURE__ */ React.createElement("div", { className: "shrink-0 bg-slate-50 border-b border-slate-200 px-6 py-1.5 flex items-center justify-between text-[11px] text-slate-500 z-20" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(Database2, { size: 12, className: "text-emerald-500" }), " SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-300" }, "|"), /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(CircleCheckBig, { size: 12, className: "text-blue-500" }), " 100% \u672C\u5730\u8FD0\u7B97"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-300" }, "|"), /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(Lock2, { size: 12, className: "text-slate-500" }), " \u9690\u79C1\u7EA2\u7EBF\u4FDD\u62A4\uFF1A\u5168\u7A0B\u6C99\u7BB1\u9694\u79BB\u4E0D\u5165\u4E91")), /* @__PURE__ */ React.createElement("div", { className: "relative group cursor-pointer flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", { className: "w-2 h-2 rounded-full bg-green-500 animate-pulse" }), /* @__PURE__ */ React.createElement("span", { className: "hover:text-blue-600 transition-colors" }, "\u72B6\u6001\uFF1A\u5DF2\u771F\u5B9E\u88C5\u8F7D ", selectedYears[0], "\u5E74\u5EA6 ", Object.values(loadedTablesByYear[selectedYears[0]] || {}).filter(Boolean).length, "/42 \u5F20\u7269\u7406\u8868 (\u60AC\u6D6E\u56FE\u8C31)"), /* @__PURE__ */ React.createElement("div", { className: "absolute top-full right-0 pt-2 w-[480px] pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 transition-all duration-200 z-50" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white border border-slate-200 rounded-xl p-4 shadow-2xl" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3 border-b border-slate-100 pb-2" }, /* @__PURE__ */ React.createElement("span", { className: "font-extrabold text-slate-800 text-[11px] flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F4C2}"), " ", selectedYears[0], "\u5E74\u5EA6\u5E74\u62A5\u6570\u636E\u88C5\u8F7D\u56FE\u8C31"), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded" }, "\u5DF2\u6FC0\u6D3B")), /* @__PURE__ */ React.createElement(Tables42Grid, { selectedYears, onTableClick: handleTableClick, loadedTablesByYear }), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-400 mt-2 text-right" }, "\u652F\u6301\u70B9\u51FB\u8868\u683C\u76F4\u63A5\u8C03\u53D6\u8BE5\u7269\u7406\u6570\u636E\u7684\u5B57\u6BB5\u9884\u89C8"))))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 flex overflow-hidden w-full mx-auto" }, /* @__PURE__ */ React.createElement("div", { id: "chat-dialogue-panel", className: "flex-1 flex flex-col bg-slate-50/50 relative" }, /* @__PURE__ */ React.createElement("div", { id: "chat-messages-container", className: "flex-1 overflow-y-auto p-6" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full flex flex-col gap-6" }, messages.map((msg, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}` }, msg.role === "agent" && /* @__PURE__ */ React.createElement("div", { className: `w-8 h-8 rounded-full flex items-center justify-center shrink-0 mr-3 ${msg.type === "warning" ? "bg-slate-200 text-slate-600" : "bg-blue-600 text-white"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement(TriangleAlert, { size: 16 }) : /* @__PURE__ */ React.createElement(Database2, { size: 16 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2 max-w-2xl" }, /* @__PURE__ */ React.createElement("div", { className: `p-4 rounded-2xl shadow-sm ${msg.role === "user" ? "bg-blue-600 text-white rounded-tr-sm" : msg.type === "warning" ? "bg-slate-50 border border-slate-200 text-slate-800 rounded-tl-sm" : "bg-white border border-slate-200 text-slate-800 rounded-tl-sm"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement("div", { className: "whitespace-pre-wrap text-sm leading-relaxed font-medium" }, msg.content, /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-4 border-t border-slate-200/50" }, /* @__PURE__ */ React.createElement("button", { className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg shadow font-bold text-sm transition-all flex items-center gap-2" }, "\u{1F449} \u7ACB\u5373\u5347\u7EA7\u4E13\u4E1A\u7248\uFF0C\u89E3\u9501\u8DE8\u90E8\u95E8\u81EA\u52A8\u6821\u9A8C\u6D41"))) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "whitespace-pre-wrap text-sm leading-relaxed", dangerouslySetInnerHTML: { __html: msg.content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") } }))), msg.suggestions && msg.suggestions.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "mt-3" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] text-slate-400 font-medium mb-2 pl-1 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F451}"), " \u6DF1\u5EA6\u4E1A\u52A1\u6D41\u63A8\u6F14 (\u4E13\u4E1A\u7248\u4F53\u9A8C)"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, msg.suggestions.map((s, idx2) => /* @__PURE__ */ React.createElement(
+    )))), /* @__PURE__ */ React.createElement("div", { className: "shrink-0 bg-slate-50 border-b border-slate-200 px-6 py-1.5 flex items-center justify-between text-[11px] text-slate-500 z-20" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(Database2, { size: 12, className: "text-emerald-500" }), " SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-300" }, "|"), /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(CircleCheckBig, { size: 12, className: "text-blue-500" }), " 100% \u672C\u5730\u8FD0\u7B97"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-300" }, "|"), /* @__PURE__ */ React.createElement("span", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement(Lock2, { size: 12, className: "text-slate-500" }), " \u9690\u79C1\u7EA2\u7EBF\u4FDD\u62A4\uFF1A\u5168\u7A0B\u6C99\u7BB1\u9694\u79BB\u4E0D\u5165\u4E91")), /* @__PURE__ */ React.createElement("div", { className: "relative group cursor-pointer flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", { className: "w-2 h-2 rounded-full bg-green-500 animate-pulse" }), /* @__PURE__ */ React.createElement("span", { className: "hover:text-blue-600 transition-colors" }, "\u72B6\u6001\uFF1A\u5DF2\u771F\u5B9E\u88C5\u8F7D ", selectedYears[0], "\u5E74\u5EA6 ", Object.values(loadedTablesByYear[selectedYears[0]] || {}).filter(Boolean).length, "/42 \u5F20\u7269\u7406\u8868 (\u60AC\u6D6E\u56FE\u8C31)"), /* @__PURE__ */ React.createElement("div", { className: "absolute top-full right-0 pt-2 w-[480px] pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 transition-all duration-200 z-50" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white border border-slate-200 rounded-xl p-4 shadow-2xl" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3 border-b border-slate-100 pb-2" }, /* @__PURE__ */ React.createElement("span", { className: "font-extrabold text-slate-800 text-[11px] flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F4C2}"), " ", selectedYears[0], "\u5E74\u5EA6\u5E74\u62A5\u6570\u636E\u88C5\u8F7D\u56FE\u8C31"), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded" }, "\u5DF2\u6FC0\u6D3B")), /* @__PURE__ */ React.createElement(Tables42Grid, { selectedYears, onTableClick: handleTableClick, loadedTablesByYear }), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-400 mt-2 text-right" }, "\u652F\u6301\u70B9\u51FB\u8868\u683C\u76F4\u63A5\u8C03\u53D6\u8BE5\u7269\u7406\u6570\u636E\u7684\u5B57\u6BB5\u9884\u89C8"))))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 flex overflow-hidden w-full mx-auto" }, /* @__PURE__ */ React.createElement("div", { id: "chat-dialogue-panel", className: "flex-1 flex flex-col bg-slate-50/50 relative" }, /* @__PURE__ */ React.createElement("div", { id: "chat-messages-container", className: "flex-1 overflow-y-auto p-6" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full flex flex-col gap-6" }, messages.map((msg, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}` }, msg.role === "agent" && /* @__PURE__ */ React.createElement("div", { className: `w-8 h-8 rounded-full flex items-center justify-center shrink-0 mr-3 ${msg.type === "warning" ? "bg-slate-200 text-slate-600" : "bg-blue-600 text-white"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement(TriangleAlert, { size: 16 }) : /* @__PURE__ */ React.createElement(Database2, { size: 16 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2 max-w-2xl" }, /* @__PURE__ */ React.createElement("div", { className: `p-4 rounded-2xl shadow-sm ${msg.role === "user" ? "bg-blue-600 text-white rounded-tr-sm" : msg.type === "warning" ? "bg-slate-50 border border-slate-200 text-slate-800 rounded-tl-sm" : "bg-white border border-slate-200 text-slate-800 rounded-tl-sm"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement("div", { className: "whitespace-pre-wrap text-sm leading-relaxed font-medium" }, msg.content, /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-4 border-t border-slate-200/50" }, /* @__PURE__ */ React.createElement("button", { className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg shadow font-bold text-sm transition-all flex items-center gap-2" }, "\u{1F449} \u7ACB\u5373\u5347\u7EA7\u4E13\u4E1A\u7248\uFF0C\u89E3\u9501\u8DE8\u90E8\u95E8\u81EA\u52A8\u6821\u9A8C\u6D41"))) : /* @__PURE__ */ React.createElement(React.Fragment, null, msg.thought && /* @__PURE__ */ React.createElement("div", { className: "mb-2 p-2 bg-slate-100 rounded text-xs text-slate-500 font-mono whitespace-pre-wrap border border-slate-200" }, msg.thought), /* @__PURE__ */ React.createElement("div", { className: "whitespace-pre-wrap text-sm leading-relaxed", dangerouslySetInnerHTML: { __html: msg.content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") } }))), msg.suggestions && msg.suggestions.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "mt-3" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] text-slate-400 font-medium mb-2 pl-1 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F451}"), " \u6DF1\u5EA6\u4E1A\u52A1\u6D41\u63A8\u6F14 (\u4E13\u4E1A\u7248\u4F53\u9A8C)"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, msg.suggestions.map((s, idx2) => /* @__PURE__ */ React.createElement(
       "button",
       {
         key: idx2,
-        onClick: () => handleQuery(s),
+        onClick: () => handleDeepSeekQuery(s),
         className: "px-3 py-2 bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 hover:border-slate-300 rounded-lg text-[13px] transition-colors cursor-pointer text-left shadow-sm inline-flex items-start gap-1.5 w-fit"
       },
       /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 mt-0.5" }, "\u{1F451}"),
@@ -31334,7 +31430,7 @@ ${tableHtml}
       "button",
       {
         key: idx,
-        onClick: () => handleQuery(q),
+        onClick: () => handleDeepSeekQuery(q),
         className: "shrink-0 px-2.5 py-1 rounded-full bg-slate-50 hover:bg-blue-50 text-[10px] text-slate-500 hover:text-blue-600 transition-all border border-slate-200/50 hover:border-blue-200 whitespace-nowrap cursor-pointer"
       },
       q.length > 20 ? q.slice(0, 20) + "\u2026" : q
@@ -31350,7 +31446,7 @@ ${tableHtml}
       {
         key: idx,
         onClick: () => {
-          handleQuery(q);
+          handleDeepSeekQuery(q);
           setIsMountPanelExpanded(false);
         },
         className: "text-left px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 text-[11px] text-slate-600 hover:text-blue-700 transition-all border border-slate-200/60 hover:border-blue-200 cursor-pointer"
@@ -31387,12 +31483,18 @@ ${tableHtml}
       "input",
       {
         type: "text",
-        disabled: true,
-        placeholder: "\u8F93\u5165\u60A8\u5BF9\u7EDF\u8BA1\u5E74\u62A5\u7684\u6570\u636E\u67E5\u8BE2\u6216\u6821\u9A8C\u8981\u6C42...",
-        className: "w-full bg-slate-50 border border-slate-200 rounded-full pr-14 py-3 text-sm text-slate-700 focus:outline-none cursor-not-allowed",
-        style: { paddingLeft: `${Math.max(60, allYears.length * 52 + 16)}px` }
+        placeholder: "\u8F93\u5165\u6DF1\u5EA6\u67E5\u8BE2\u95EE\u9898\uFF0C\u6309\u56DE\u8F66\u53D1\u9001\u7ED9 DeepSeek...",
+        className: "w-full bg-slate-50 border border-slate-200 rounded-full pr-14 py-3 text-sm text-slate-700 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-all",
+        style: { paddingLeft: `${Math.max(60, allYears.length * 52 + 16)}px` },
+        value: queryInput,
+        onChange: (e) => setQueryInput(e.target.value),
+        onKeyDown: (e) => {
+          if (e.key === "Enter") {
+            handleDeepSeekQuery(queryInput);
+          }
+        }
       }
-    ), /* @__PURE__ */ React.createElement("div", { className: "absolute right-2 top-1/2 -translate-y-1/2" }, /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center cursor-pointer shadow-sm hover:bg-blue-700 transition-colors" }, /* @__PURE__ */ React.createElement(Send2, { size: 14, className: "ml-0.5" }))))))), isRightPanelExpanded ? /* @__PURE__ */ React.createElement(
+    ), /* @__PURE__ */ React.createElement("div", { className: "absolute right-2 top-1/2 -translate-y-1/2" }, /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center cursor-pointer shadow-sm hover:bg-blue-700 transition-colors", onClick: () => handleDeepSeekQuery(queryInput) }, /* @__PURE__ */ React.createElement(Send2, { size: 14, className: "ml-0.5" }))))))), isRightPanelExpanded ? /* @__PURE__ */ React.createElement(
       "div",
       {
         style: { width: `${rightPanelWidth}px` },
@@ -34154,7 +34256,7 @@ ${tableHtml}
   };
 
   // src/components/RoadDigitalRequirementsView.jsx
-  var { useState: useState3 } = React;
+  var { useState: useState4 } = React;
   var react_shim_default = React;
   var FILE_MAP = { "AGENT-\u5DE5\u7A0B\u6280\u672F-01": "\u300A(\u7701\u516C\u8DEF\u4E2D\u5FC3)\u6E56\u5317\u516C\u8DEF\u6570\u5B57\u5316\u8F6C\u578B\u5347\u7EA7\u884C\u4E1A\u4E1A\u52A1\u8981\u6C42\u62A5\u9001\u6A21\u677F.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-03": "\u300A\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-04": "\u300A\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc\u300B", "AGENT-\u5EFA\u8BBE\u7BA1\u7406-01": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u5EFA\u8BBE\u7BA1\u7406-02": "\u300A\u666E\u901A\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u7CFB\u7EDF\u67B6\u6784\u56FE.jpg\u300B", "AGENT-\u5EFA\u8BBE\u7BA1\u7406-03": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-02": "\u300A\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-01": "\u300A\u6E56\u5317\u7701\u516C\u8DEF\u8BA1\u5212\u6267\u884C\u8BC4\u4F30\u8F6F\u4EF6\u5347\u7EA7\u6539\u9020\u8D39\u7528\u6D4B\u7B97-\u8F6F\u4EF6\u529F\u80FD\u70B9\u4F30\u503C\u6CD5-v2.xlsx\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-02": "\u300A0528\u2014\u4EA4\u8C03\u7CFB\u7EDF\u4FEE\u6539\u7248.xlsx\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-03": "\u300A\u4EE5\u5956\u4EE3\u8865\u9884\u7B97.xlsx\u300B", "AGENT-\u5EFA\u8BBE\u7BA1\u7406-04": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u517B\u62A4\u7BA1\u7406-01": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u517B\u62A4\u7BA1\u7406-02": "\u300A\u666E\u901A\u56FD\u7701\u5E72\u7EBF\u517B\u62A4\u7BA1\u7406\u7CFB\u7EDF\u529F\u80FD\u67B6\u6784(1).pdf\u300B", "AGENT-\u5B89\u5168\u5E94\u6025-01": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u5B89\u5168\u5E94\u6025-02": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u5B89\u5168\u5E94\u6025-03": "\u300A0520-\u516C\u8DEF\u8DEF\u7F51\u8FD0\u884C\u76D1\u6D4B\u4E0E\u5E94\u6025\u6307\u6325\u8C03\u5EA6\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848(3)(1).docx\u300B" };
   var readiness_config_default = {
@@ -34368,10 +34470,10 @@ ${tableHtml}
     ]
   };
   var RoadDigitalRequirementsView = ({ onNavigate }) => {
-    const [selectedBlock, setSelectedBlock] = useState3("ALL");
-    const [searchTerm, setSearchTerm] = useState3("");
-    const [selectedReq, setSelectedReq] = useState3(null);
-    const [diffDocGroup, setDiffDocGroup] = useState3(() => {
+    const [selectedBlock, setSelectedBlock] = useState4("ALL");
+    const [searchTerm, setSearchTerm] = useState4("");
+    const [selectedReq, setSelectedReq] = useState4(null);
+    const [diffDocGroup, setDiffDocGroup] = useState4(() => {
       const showDiff = new URLSearchParams(window.location.search).get("showDiff");
       if (showDiff === "true") {
         return {
@@ -34384,14 +34486,14 @@ ${tableHtml}
       }
       return null;
     });
-    const [showCollectionForm, setShowCollectionForm] = useState3(false);
-    const [viewMode, setViewMode] = useState3(new URLSearchParams(window.location.search).get("viewMode") || "time");
-    const [activeConsensusReq, setActiveConsensusReq] = useState3(null);
-    const [consensusSenderSector, setConsensusSenderSector] = useState3("");
-    const [consensusMemoText, setConsensusMemoText] = useState3("");
-    const [showReadinessModal, setShowReadinessModal] = useState3(false);
-    const [configVersion, setConfigVersion] = useState3(0);
-    const [modalConfig, setModalConfig] = useState3({
+    const [showCollectionForm, setShowCollectionForm] = useState4(false);
+    const [viewMode, setViewMode] = useState4(new URLSearchParams(window.location.search).get("viewMode") || "time");
+    const [activeConsensusReq, setActiveConsensusReq] = useState4(null);
+    const [consensusSenderSector, setConsensusSenderSector] = useState4("");
+    const [consensusMemoText, setConsensusMemoText] = useState4("");
+    const [showReadinessModal, setShowReadinessModal] = useState4(false);
+    const [configVersion, setConfigVersion] = useState4(0);
+    const [modalConfig, setModalConfig] = useState4({
       nameA: "\u90E8\u7701\u5BF9\u9F50\u4E0E\u90E8\u59D4\u8003\u6838",
       descA: "\u542B\u4E0A\u62A5/\u62A5\u9001/CBMS/\u6865\u96A7\u5B89\u5168/\u5DE1\u68C0\u8DEF\u68C0/\u4EA4\u901A\u91CF\u7B49",
       weightA: 70,
@@ -34402,8 +34504,8 @@ ${tableHtml}
       descC: "\u6570\u636E\u96C6\u5B8C\u5907\u4E0E\u5DF2\u63D0\u4EA4\u62A5\u4EF7\u6750\u6599\u7B49",
       weightC: 20
     });
-    const [modalApprovedIds, setModalApprovedIds] = useState3([]);
-    const [scoreConfig, setScoreConfig] = useState3(() => {
+    const [modalApprovedIds, setModalApprovedIds] = useState4([]);
+    const [scoreConfig, setScoreConfig] = useState4(() => {
       try {
         const storedConfig = localStorage.getItem("readiness_score_config");
         if (storedConfig) {
@@ -34599,7 +34701,7 @@ ${tableHtml}
       if (reqId.includes("\u519C\u6751\u516C\u8DEF")) return "5.7";
       return null;
     };
-    const [formData, setFormData] = useState3({
+    const [formData, setFormData] = useState4({
       block: "\u89C4\u5212\u8BA1\u5212\u677F\u5757",
       role: "",
       desc: "",
@@ -34610,7 +34712,7 @@ ${tableHtml}
       modelValue: "\u884C\u4E1A\u7BA1\u7406\u7F51 / \u8D44\u4EA7\u8BC4\u5B9A\u6A21\u578B",
       docsText: ""
     });
-    const [requirements2, setRequirements] = useState3(() => {
+    const [requirements2, setRequirements] = useState4(() => {
       return INITIAL_REQUIREMENTS.map((req) => {
         const mappedDocs = dict_agent_to_docs_default[req.id]?.docs || [];
         const docs = mappedDocs.filter((name) => !name.includes("\u62A5\u9001\u6A21\u677F")).map((name) => ({ name, url: "#" }));
@@ -41377,7 +41479,7 @@ ${tableHtml}
   };
 
   // src/app.jsx
-  var { useState: useState6, useEffect: useEffect4, Component, useRef: useRef3 } = React;
+  var { useState: useState7, useEffect: useEffect5, Component, useRef: useRef4 } = React;
   var ErrorBoundary = class extends Component {
     constructor(props) {
       super(props);
@@ -41391,7 +41493,7 @@ ${tableHtml}
     }
     render() {
       if (this.state.hasError) {
-        return /* @__PURE__ */ React.createElement("div", { className: "fade-in p-8 bg-red-50 rounded-2xl border border-red-200 m-6 shadow-sm" }, /* @__PURE__ */ React.createElement("h3", { className: "text-red-700 font-bold text-lg mb-2 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(AlertTriangle, { size: 20 }), "\u5E73\u53F0\u5B89\u5168\u6C99\u7BB1\uFF1A\u6A21\u5757\u6E32\u67D3\u62E6\u622A\u4FDD\u6D3B"), /* @__PURE__ */ React.createElement("p", { className: "text-slate-600 text-sm" }, "\u5F53\u524D\u6A21\u5757\u6E32\u67D3\u65F6\u53D1\u751F\u9519\u8BEF\uFF1A", this.state.error && this.state.error.message), /* @__PURE__ */ React.createElement("button", { onClick: () => this.setState({ hasError: false }), className: "mt-4 bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition" }, "\u5C1D\u8BD5\u91CD\u65B0\u8F7D\u5165"));
+        return /* @__PURE__ */ React.createElement("div", { className: "fade-in p-8 bg-red-50 rounded-2xl border border-red-200 m-6 shadow-sm" }, /* @__PURE__ */ React.createElement("h3", { className: "text-red-700 font-bold text-lg mb-2 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(AlertTriangle, { size: 20 }), "REACT\u5D29\u6E83\uFF1A\u6A21\u5757\u6E32\u67D3\u62E6\u622A\u4FDD\u6D3B"), /* @__PURE__ */ React.createElement("p", { className: "text-slate-600 text-sm" }, "\u5F53\u524D\u6A21\u5757\u6E32\u67D3\u65F6\u53D1\u751F\u9519\u8BEF\uFF1A", this.state.error && this.state.error.message), /* @__PURE__ */ React.createElement("button", { onClick: () => this.setState({ hasError: false }), className: "mt-4 bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition" }, "\u5C1D\u8BD5\u91CD\u65B0\u8F7D\u5165"));
       }
       return this.props.children;
     }
@@ -41406,7 +41508,7 @@ ${tableHtml}
     return /* @__PURE__ */ React.createElement("div", { className: "bg-indigo-50/60 rounded-xl p-5 border border-indigo-100/80 shadow-sm mt-6" }, /* @__PURE__ */ React.createElement("h4", { className: "text-indigo-900 font-bold text-sm mb-3 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(FileText, { size: 16, className: "text-indigo-600" }), title, " (", files.length, "\u4EFD)"), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3" }, files.map((file, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: "bg-white hover:border-indigo-400 border border-slate-200 rounded-lg p-3 flex items-center justify-between shadow-sm transition hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 min-w-0" }, /* @__PURE__ */ React.createElement("span", { className: "p-1.5 bg-red-50 text-red-600 rounded" }, /* @__PURE__ */ React.createElement(FileText, { size: 16 })), /* @__PURE__ */ React.createElement("span", { className: "text-xs text-slate-700 font-medium truncate", title: file }, file)), /* @__PURE__ */ React.createElement("button", { className: "p-1 hover:bg-slate-100 text-slate-400 hover:text-slate-600 rounded transition shrink-0 ml-2", title: "\u67E5\u770B\u6216\u6A21\u62DF\u4E0B\u8F7D" }, /* @__PURE__ */ React.createElement(Download, { size: 14 }))))));
   };
   var TabbedContainer = ({ title, subtitle, icon, depts, docs, tabs }) => {
-    const [activeTab, setActiveTab] = useState6(0);
+    const [activeTab, setActiveTab] = useState7(0);
     return /* @__PURE__ */ React.createElement("div", { className: "fade-in flex flex-col h-[82vh]" }, /* @__PURE__ */ React.createElement(PageHeader2, { title, subtitle, icon, depts, docs }), /* @__PURE__ */ React.createElement("div", { className: "flex gap-2 mt-4 shrink-0 border-b border-slate-200 overflow-x-auto custom-scroll" }, tabs.map((t, i) => /* @__PURE__ */ React.createElement(
       "button",
       {
@@ -41489,14 +41591,14 @@ ${tableHtml}
       title: "\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5\u667A\u80FD\u4F53",
       icon: /* @__PURE__ */ React.createElement(MessageSquare, { size: 18 }),
       children: [
-        { id: "6.1", title: "\u57FA\u7840\u7248", badge: "\u65B0" },
+        { id: "6.1", title: "\u57FA\u7840\u7248", badge: "AI" },
         { id: "6.2", title: "\u4E13\u4E1A\u7248 \u{1F512}" }
       ]
     }
   ];
   var UPDATED_MENU_IDS = ["6.1", "1.5"];
   var ArchitectureView = ({ onNavigate }) => {
-    const [viewMode, setViewMode] = useState6("normal");
+    const [viewMode, setViewMode] = useState7("normal");
     const archDomains = [
       {
         id: 1,
@@ -41968,7 +42070,7 @@ ${tableHtml}
     return map[color] || map.blue;
   };
   var ContentCollaboration = () => {
-    const [activeIdx, setActiveIdx] = useState6(0);
+    const [activeIdx, setActiveIdx] = useState7(0);
     const currentProduct = DATA_PRODUCTS[activeIdx];
     const activeStyles = getColorClasses(currentProduct.color, true);
     return /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-12 gap-6 h-[72vh] min-h-0 overflow-hidden text-slate-700 fade-in" }, /* @__PURE__ */ React.createElement("div", { className: "col-span-7 flex flex-col min-h-0 bg-slate-50/70 p-5 rounded-2xl border border-slate-200/80" }, /* @__PURE__ */ React.createElement("div", { className: "mb-4 shrink-0 flex items-center justify-between" }, /* @__PURE__ */ React.createElement("h3", { className: "font-extrabold text-slate-800 text-sm flex items-center gap-2" }, /* @__PURE__ */ React.createElement(Layers, { className: "text-indigo-600 animate-pulse", size: 16 }), "\u6570\u636E\u7EDF\u7B79\u6CBB\u7406\u4E0E\u667A\u80FD\u4F53\u8D4B\u80FD"), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] bg-indigo-50 text-indigo-700 font-bold px-2.5 py-1 rounded border border-indigo-100" }, "\u9759\u6001\u7F51\u683C\u77E9\u9635 / 6\u5927\u6838\u5FC3\u4EA7\u54C1")), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-2 gap-3 flex-1 overflow-y-auto pr-1 custom-scroll" }, DATA_PRODUCTS.map((prod, idx) => {
@@ -41998,9 +42100,9 @@ ${tableHtml}
   var ContentStandardEnforce = () => /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-2 gap-6 pb-6" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm" }, /* @__PURE__ */ React.createElement("h3", { className: "font-bold text-slate-800 mb-4 border-l-4 border-indigo-500 pl-2 text-sm" }, "\u6CD5\u5178\u89C4\u5219\u5B9E\u65F6\u8C03\u7528\u72B6\u6001"), /* @__PURE__ */ React.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ React.createElement("div", { className: "p-2 bg-slate-50 rounded-lg border border-slate-100 flex justify-between font-bold text-slate-600 text-sm" }, /* @__PURE__ */ React.createElement("span", null, "[\u7EA6\u675F\u4E00] \u8D26\u5B9E\u6838\u5BF9\u62E6\u622A"), /* @__PURE__ */ React.createElement("span", { className: "text-indigo-600" }, "\u8D44\u91D1\u62E8\u4ED8 \u2264 \u5B9E\u7269\u8FDB\u5EA6")), /* @__PURE__ */ React.createElement("div", { className: "p-2 bg-slate-50 rounded-lg border border-slate-100 flex justify-between font-bold text-slate-600 text-sm" }, /* @__PURE__ */ React.createElement("span", null, "[\u7EA6\u675F\u4E8C] \u8BC4\u4EF7\u6570\u503C\u8FB9\u754C"), /* @__PURE__ */ React.createElement("span", { className: "text-indigo-600" }, "0 \u2264 PCI \u2264 100")))), /* @__PURE__ */ React.createElement("div", { className: "bg-slate-50 p-6 rounded-2xl border border-slate-200 text-slate-600 font-mono shadow-inner" }, /* @__PURE__ */ React.createElement("h3", { className: "font-bold text-slate-800 border-b border-slate-200 pb-3 mb-4 flex items-center gap-1.5 text-sm" }, /* @__PURE__ */ React.createElement("span", { className: "w-2 h-2 rounded-full bg-yellow-500 animate-ping" }), " \u8D44\u91D1\u4E0E\u5408\u89C4\u62E6\u622A\u4FA6\u542C\u63A7\u5236\u53F0"), /* @__PURE__ */ React.createElement("p", { className: "text-emerald-700 text-xs bg-emerald-50 p-3 rounded-lg border border-emerald-100 mb-3 shadow-sm" }, "[Pass] G318\u8BA1\u91CF\u652F\u4ED8\u6B3E\u6D41\u6C34\u5BF9\u8D26\u6210\u529F\uFF0C\u8D44\u91D1\u62E8\u4ED8\u989D\u672A\u8D85WBS\u5F62\u8C61\u8FDB\u5EA6\uFF0C\u653E\u884C\u7ED3\u7B97\u3002"), /* @__PURE__ */ React.createElement("p", { className: "text-red-700 text-xs bg-red-50 p-3 rounded-lg border border-red-100 shadow-sm" }, "[Block] \u5F3A\u529B\u62E6\u622A\u54B8\u5B81\u517B\u62A4\u5305\uFF01\u68C0\u6D4B\u5230\u6280\u672F\u6307\u6807BCI\u6EA2\u754C\u4E14\u5927\u4FEE\u9884\u62E8\u6B3E\u4E0E\u5386\u53F2\u53F0\u8D26\u5012\u6302\uFF0C\u6267\u884C\u9000\u56DE\u9501\u5B9A\uFF01")));
   var ContentComplianceAudit = () => /* @__PURE__ */ React.createElement("div", { className: "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm pb-6" }, /* @__PURE__ */ React.createElement("div", { className: "p-2 mb-5 rounded-lg text-sm bg-red-50 text-red-700 border border-red-200 shadow-sm" }, /* @__PURE__ */ React.createElement("strong", null, "\u26A0\uFE0F \u91CD\u5927\u8D44\u91D1\u8FDD\u89C4\u963B\u65AD\uFF1A"), "\u3010\u4EA4\u7AE3\u5DE5\u56FA\u5B9A\u8D44\u4EA7\u786E\u6743\u5E93\u3011\u4E0E\u4F01\u4E1A\u65B0\u63D0\u62A5\u7684\u3010\u517B\u62A4\u7ECF\u8D39\u7EDF\u8BA1\u5E74\u62A5\u3011\u53D1\u751F\u865A\u62A5\u91CD\u53E0\uFF01"), /* @__PURE__ */ React.createElement("table", { className: "w-full text-left border-t border-slate-200 text-slate-600 text-xs" }, /* @__PURE__ */ React.createElement("thead", { className: "bg-slate-50" }, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("th", { className: "p-2 font-bold text-slate-800" }, "\u5F02\u5E38\u5BF9\u8C61"), /* @__PURE__ */ React.createElement("th", { className: "p-2 font-bold text-slate-800" }, "\u8D44\u91D1\u786E\u6743\u5E93\u91CC\u7A0B"), /* @__PURE__ */ React.createElement("th", { className: "p-2 font-bold text-slate-800" }, "\u4E1A\u52A1\u5E74\u62A5\u865A\u62A5\u91CC\u7A0B"), /* @__PURE__ */ React.createElement("th", { className: "p-2 font-bold text-slate-800" }, "\u8BCA\u65AD"), /* @__PURE__ */ React.createElement("th", { className: "p-2 font-bold text-slate-800" }, "\u6307\u4EE4"))), /* @__PURE__ */ React.createElement("tbody", null, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("td", { className: "p-2 border-b border-slate-100 font-bold" }, "S108\u7701\u9053"), /* @__PURE__ */ React.createElement("td", { className: "p-2 border-b border-slate-100 font-mono" }, "25.0 km"), /* @__PURE__ */ React.createElement("td", { className: "p-2 text-red-600 font-bold font-mono border-b border-slate-100 bg-red-50/50" }, "28.5 km"), /* @__PURE__ */ React.createElement("td", { className: "p-2 text-red-600 border-b border-slate-100" }, "\u8D26\u5B9E\u4E0D\u7B26\uFF1A\u6D89\u5ACC\u9A97\u53D6\u5927\u4FEE\u517B\u62A4\u7ECF\u8D39\u3002"), /* @__PURE__ */ React.createElement("td", { className: "p-2 border-b border-slate-100" }, /* @__PURE__ */ React.createElement("button", { className: "bg-indigo-600 text-white px-4 py-2 rounded shadow font-bold" }, "\u51BB\u7ED3\u4E0B\u62E8\u5355"))))));
   var ContentAssetCatalog = () => {
-    const [selectedAsset, setSelectedAsset] = useState6("pavement");
-    const [activeSubTab, setActiveSubTab] = useState6("metadata");
-    const [isCertModalOpen, setIsCertModalOpen] = useState6(false);
+    const [selectedAsset, setSelectedAsset] = useState7("pavement");
+    const [activeSubTab, setActiveSubTab] = useState7("metadata");
+    const [isCertModalOpen, setIsCertModalOpen] = useState7(false);
     const MetaRow = ({ label, value, verified, tooltip, tag }) => {
       const getTagStyle = () => {
         if (tag === "\u89C4") return "bg-slate-100 text-slate-600 border border-slate-300";
@@ -42112,19 +42214,19 @@ ${tableHtml}
   };
   var ContentArchiveAgent = () => /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-12 gap-6 pb-6 h-[60vh]" }, /* @__PURE__ */ React.createElement("div", { className: "col-span-4 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm overflow-y-auto custom-scroll" }, /* @__PURE__ */ React.createElement("h3", { className: "font-bold text-slate-800 border-b border-slate-100 pb-3 mb-4 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(FileText, { size: 16 }), " \u5F85\u89E3\u6790\u5386\u53F2\u6863\u6848\u961F\u5217"), /* @__PURE__ */ React.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ React.createElement("div", { className: "bg-indigo-50 border border-indigo-200 p-3 rounded-xl shadow-sm cursor-pointer border-l-4 border-l-indigo-500" }, /* @__PURE__ */ React.createElement("p", { className: "font-bold text-indigo-900 mb-1 text-sm" }, "1998\u5E74S108\u7701\u9053\u4EA4\u5DE5\u9A8C\u6536\u62A5\u544A.pdf"), /* @__PURE__ */ React.createElement("p", { className: "text-[10px] text-indigo-600 font-bold mt-2" }, "\u7C7B\u578B: \u5F71\u5370\u7248PDF | \u72B6\u6001: \u89E3\u6790\u4E2D...")), /* @__PURE__ */ React.createElement("div", { className: "bg-slate-50 border border-slate-200 p-3 rounded-xl cursor-not-allowed" }, /* @__PURE__ */ React.createElement("p", { className: "font-bold text-slate-600 mb-1 text-sm" }, "2005\u5E74\u6B66\u9EC4\u5927\u4FEE\u51B3\u7B97\u5355.xls"), /* @__PURE__ */ React.createElement("p", { className: "text-[10px] text-slate-400 mt-2" }, "\u7C7B\u578B: \u7535\u5B50\u8868\u683C | \u72B6\u6001: \u7B49\u5F85\u5165\u5217")))), /* @__PURE__ */ React.createElement("div", { className: "col-span-8 bg-slate-900 rounded-2xl p-6 shadow-inner flex flex-col font-mono relative overflow-hidden" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" }), /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center mb-6 border-b border-slate-800 pb-4" }, /* @__PURE__ */ React.createElement("h3", { className: "text-sm font-black text-indigo-400 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(Activity, { size: 16, className: "animate-spin text-indigo-500" }), " Highway-LLM Parsing Console"), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] bg-slate-800 text-emerald-400 px-3 py-1 rounded font-bold" }, "GPU Node: Active")), /* @__PURE__ */ React.createElement("div", { className: "flex-1 overflow-y-auto custom-scroll space-y-4 text-xs text-slate-300 leading-relaxed pr-2" }, /* @__PURE__ */ React.createElement("p", null, "> \u8F7D\u5165\u76EE\u6807\u6587\u4EF6: [1998\u5E74S108\u7701\u9053\u4EA4\u5DE5\u9A8C\u6536\u62A5\u544A.pdf] ..."), /* @__PURE__ */ React.createElement("p", null, "> \u542F\u52A8 OCR \u4E0E NLP \u8BED\u4E49\u5206\u5272\u5F15\u64CE ..."), /* @__PURE__ */ React.createElement("div", { className: "bg-blue-900/20 border border-blue-800/50 p-2 rounded-xl shadow-sm" }, /* @__PURE__ */ React.createElement("p", { className: "text-blue-400 font-bold mb-2 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(Check, { size: 14 }), " \u53D1\u73B0\u3010\u6280\u672F\u4E1A\u52A1\u8BCD\u5143\u3011"), /* @__PURE__ */ React.createElement("p", { className: "pl-6" }, "\u89E3\u6790\u7269\u7406\u5168\u957F: ", /* @__PURE__ */ React.createElement("span", { className: "text-white bg-blue-500/30 px-1 rounded ml-1" }, "12.508 km"), " \uFF5C \u8BBE\u8BA1\u65F6\u901F: ", /* @__PURE__ */ React.createElement("span", { className: "text-white bg-blue-500/30 px-1 rounded ml-1" }, "80 km/h"))), /* @__PURE__ */ React.createElement("div", { className: "bg-emerald-900/20 border border-emerald-800/50 p-2 rounded-xl shadow-sm" }, /* @__PURE__ */ React.createElement("p", { className: "text-emerald-400 font-bold mb-2 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(Check, { size: 14 }), " \u53D1\u73B0\u3010\u8D44\u91D1\u7BA1\u7406\u8BCD\u5143\u3011"), /* @__PURE__ */ React.createElement("p", { className: "pl-6" }, "\u63D0\u53D6\u51B3\u7B97\u9020\u4EF7: ", /* @__PURE__ */ React.createElement("span", { className: "text-white bg-emerald-500/30 px-1 rounded ml-1" }, "\xA5 285,450,000"))), /* @__PURE__ */ React.createElement("div", { className: "bg-red-900/20 border border-red-800/50 p-2 rounded-xl shadow-sm animate-pulse" }, /* @__PURE__ */ React.createElement("p", { className: "text-red-400 font-bold mb-2 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(AlertTriangle, { size: 14 }), " \u53D1\u73B0\u957F\u5C3E\u9690\u60A3"), /* @__PURE__ */ React.createElement("p", { className: "pl-6 text-red-300 italic bg-red-950/50 p-1 rounded" }, '"K12+300\u5904\u8F6F\u571F\u8DEF\u57FA\u66FE\u6709\u7EC6\u5FAE\u6C89\u964D\uFF0C\u9700\u91CD\u70B9\u89C2\u6D4B\u3002"')))));
   var ContentIotBus = () => {
-    const [logs, setLogs] = useState6([
+    const [logs, setLogs] = useState7([
       `[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] [\u7CFB\u7EDF\u521D\u59CB\u5316] \u542F\u52A8\u6E56\u5317\u666E\u901A\u516C\u8DEF\u7269\u8054\u63A5\u5165\u603B\u7EBF\u76D1\u542C\u8FDB\u7A0B...`,
       `[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] [\u901A\u9053\u6CE8\u518C] \u767D\u6C99\u6D32\u5927\u6865 K15+200 \u5E94\u53D8\u4F20\u611F\u5668\u901A\u9053\u5EFA\u7ACB\u6210\u529F\uFF0C\u6CE2\u9891\u8BBE\u5B9A\u4E3A 50Hz.`,
       `[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] [\u5BC6\u7EA7\u786E\u8BA4] \u4F9D\u636E JT/T 1434-2022\uFF0C\u8BE5\u901A\u9053\u5B9A\u7EA7\u4E3A [L3 \u654F\u611F\u7EA7]\uFF0C\u542F\u7528\u56FD\u5BC6SM4\u786C\u4EF6\u52A0\u5BC6\u5957\u4EF6\u3002`
     ]);
-    const [phase, setPhase] = useState6(0);
-    useEffect4(() => {
+    const [phase, setPhase] = useState7(0);
+    useEffect5(() => {
       const interval = setInterval(() => {
         setPhase((prev) => (prev + 1) % 360);
       }, 100);
       return () => clearInterval(interval);
     }, []);
-    useEffect4(() => {
+    useEffect5(() => {
       const logTemplates = [
         "\u6865\u6881\u5E94\u53D8\u8BA1 #01 \u632F\u52A8\u5E94\u529B\u6B63\u5E38\uFF0C\u76D1\u6D4B\u503C: 12.5 MPa\uFF0C\u672A\u8D85\u5B89\u5168\u5305\u7EDC\u7EBF\u3002",
         "\u767D\u6C99\u6D32\u5927\u6865\u76D1\u6D4B\u70B9 K15+200 \u4E0E\u90E8\u6807 JC2_MX \u6869\u53F7\u5BF9\u9F50\u6821\u9A8C\u6210\u529F\uFF0C\u9006\u5411\u504F\u89D2\u6821\u51C6\u5B8C\u6210\u3002",
@@ -42387,8 +42489,8 @@ ${tableHtml}
     ), /* @__PURE__ */ React.createElement("div", { className: "mt-3 flex items-center gap-2 text-sm text-slate-600 bg-slate-100 px-4 py-2.5 rounded-lg border border-slate-200 w-fit" }, /* @__PURE__ */ React.createElement(Network, { size: 16, className: "text-blue-600 shrink-0" }), /* @__PURE__ */ React.createElement("span", { className: "font-bold text-slate-700 shrink-0" }, "\u7EB5\u5411\u90E8\u95E8\u534F\u540C\uFF1A"), data.vertical.split("\u2192").map((dept, i, arr) => /* @__PURE__ */ React.createElement("span", { key: i, className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "bg-white px-2.5 py-1 rounded shadow-sm border border-slate-200 font-medium text-xs text-slate-900" }, dept.trim()), i < arr.length - 1 && /* @__PURE__ */ React.createElement(ArrowRight, { size: 14, className: "text-slate-400" })))), /* @__PURE__ */ React.createElement("div", { className: "bg-gradient-to-r from-indigo-50/70 via-blue-50/50 to-indigo-50/30 border border-indigo-200 rounded-xl p-5 shadow-sm border-l-4 border-l-indigo-600 fade-in space-y-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-start gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "text-2xl leading-none" }, "\u{1F517}"), /* @__PURE__ */ React.createElement("div", { className: "text-xs flex-1" }, /* @__PURE__ */ React.createElement("h4", { className: "font-bold text-indigo-900 mb-1" }, "\u4E1A\u52A1\u4E0E\u90E8\u6807\u51C6\u7684\u5143\u6570\u636E\u7EBD\u5E26\u89C4\u5219 (Metadata Linkage Rule)"), /* @__PURE__ */ React.createElement("p", { className: "text-slate-500 mt-1 leading-relaxed font-medium" }, "\u8BE5\u677F\u5757\u6240\u6709\u65E5\u5E38\u4EA7\u751F\u7684\u6570\u636E\u5C06\u4EE5\u8BE5\u6620\u5C04\u7EBD\u5E26\u89C4\u5219\u4E3A\u7269\u7406\u552F\u4E00\u4E3B\u952E\uFF0C\u5728\u6570\u636E\u63A5\u5165\u65F6\u4E0E\u4EA4\u901A\u90E8\u6743\u5A01\u57FA\u7840\u5E95\u5EA7\u7A7A\u95F4\u5B9A\u4F4D\u81EA\u52A8\u5BF9\u9F50\u3002\u82E5\u7CFB\u7EDF\u68C0\u6D4B\u5230\u65E5\u5E38\u6570\u636E\uFF08\u5982\u68C0\u6D4B\u6869\u53F7\u3001\u8DEF\u7EBF\u7F16\u7801\uFF09\u53D1\u751F\u6F02\u79FB\u6216\u5BF9\u9F50\u504F\u79BB\uFF0C\u5C06\u81EA\u52A8\u89E6\u53D1\u300C\u5E95\u5C42\u4E1A\u52A1\u77EB\u6B63\u901A\u9053\u300D\u4E0B\u53D1\u6807\u51C6\u89C4\u8303\uFF0C\u4FDD\u969C\u201C\u65E5\u5E38\u4E1A\u52A1 \u21C4 \u5E74\u62A5\u7EDF\u8BA1\u201D\u53CC\u5411\u6570\u636E\u5B8C\u5168\u4E00\u81F4\u3002"))), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-5 items-center bg-white/80 p-2 rounded-xl border border-indigo-100/80 gap-3" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-col items-center p-3 bg-slate-50 rounded-lg border border-slate-200 text-center" }, /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-400 font-bold mb-1" }, "\u65E5\u5E38\u672C\u5730\u4E1A\u52A1\u7AEF"), /* @__PURE__ */ React.createElement("span", { className: "text-xs font-bold text-slate-900" }, data.linkageFlow[0])), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col items-center justify-center text-indigo-500 font-bold text-sm" }, /* @__PURE__ */ React.createElement("span", { className: "leading-none" }, "\u21C4"), /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-indigo-400 font-semibold tracking-wider mt-0.5" }, "\u7269\u7406\u6620\u5C04\u952E")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col items-center p-3 bg-indigo-50 rounded-lg border border-indigo-200 text-center" }, /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-indigo-500 font-bold mb-1" }, "\u5143\u6570\u636E\u7EBD\u5E26\u7EBD\u7ED3"), /* @__PURE__ */ React.createElement("span", { className: "text-xs font-black text-indigo-700 font-mono" }, data.linkageFlow[1])), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col items-center justify-center text-blue-500 font-bold text-sm" }, /* @__PURE__ */ React.createElement("span", { className: "leading-none" }, "\u21C4"), /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-blue-400 font-semibold tracking-wider mt-0.5" }, "\u6743\u5A01\u62C9\u9F50")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col items-center p-3 bg-blue-50 rounded-lg border border-blue-200 text-center" }, /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-blue-500 font-bold mb-1" }, "\u56FD\u5BB6\u4EA4\u901A\u90E8\u90E8\u6807"), /* @__PURE__ */ React.createElement("span", { className: "text-xs font-bold text-blue-700" }, data.linkageFlow[2])))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between border-b border-slate-100 pb-3" }, /* @__PURE__ */ React.createElement("h3", { className: "font-bold text-sm text-slate-800 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(ShieldCheck, { size: 16, className: "text-emerald-500" }), " \u3010\u6743\u5A01\u9996\u53D1\u3011\u6570\u636E\u7EDF\u7B79\u843D\u5730\u5B9E\u65BD\u5EFA\u8BAE"), /* @__PURE__ */ React.createElement("span", { className: "bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded text-[10px] font-bold border border-emerald-100" }, "\u6570\u636E\u7EDF\u7B79\u4E13\u73ED\u6307\u5BFC\u610F\u89C1")), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-2" }, data.recommendations.map((rec, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "bg-gradient-to-br from-slate-50 to-emerald-50/20 border border-slate-200 rounded-xl p-2 flex flex-col gap-2 transition hover:border-emerald-300 hover:shadow-sm" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "bg-emerald-500 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center font-bold font-mono" }, "0", i + 1), /* @__PURE__ */ React.createElement("span", { className: "font-bold text-xs text-slate-900" }, "\u5EFA\u8BAE\u4E3E\u63AA")), /* @__PURE__ */ React.createElement("p", { className: "text-slate-600 text-xs leading-relaxed font-medium mt-1" }, rec))))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between border-b border-slate-100 pb-3" }, /* @__PURE__ */ React.createElement("h3", { className: "font-bold text-sm text-slate-800 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(Layers, { size: 16, className: "text-indigo-500" }), " \u3010\u6838\u5FC3\u3011\u5BF9\u8C61\u4E0E\u6570\u636E\u5206\u7EA7\u5206\u7C7B\u6210\u679C"), /* @__PURE__ */ React.createElement("span", { className: "bg-indigo-50 text-indigo-600 px-2.5 py-1 rounded text-[10px] font-bold border border-indigo-100" }, "\u6307\u5BFC\u6E90\u5934\u91C7\u96C6\u7BA1\u63A7")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-2" }, data.classifications.map((cls, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "flex-1 min-w-[280px] bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col gap-3 transition hover:border-indigo-300 hover:shadow-sm" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center" }, /* @__PURE__ */ React.createElement("span", { className: `px-2.5 py-0.5 rounded text-[10px] font-bold font-mono ${cls.level === "L4" || cls.level === "L3" ? "bg-red-100 text-red-700 border border-red-200" : "bg-orange-100 text-orange-700 border border-orange-200"}` }, "\u5BC6\u7EA7: ", cls.level), /* @__PURE__ */ React.createElement("span", { className: "text-slate-400" }, /* @__PURE__ */ React.createElement(Target, { size: 14 }))), /* @__PURE__ */ React.createElement("p", { className: "font-black text-slate-800 text-base" }, cls.type), /* @__PURE__ */ React.createElement("p", { className: "text-slate-500 text-xs font-medium mt-auto bg-white p-3 rounded-lg border border-slate-100 leading-relaxed" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 block mb-1" }, "\u5305\u542B\u6838\u5FC3\u6570\u636E\uFF1A"), cls.core))))), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-6" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border p-5 shadow-sm space-y-4 flex flex-col" }, /* @__PURE__ */ React.createElement("h3", { className: "font-bold text-sm text-slate-800 border-b pb-2 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "w-2.5 h-2.5 rounded bg-slate-400" }), " \u9759\u6001\u6570\u636E (\u57FA\u7840\u5E95\u5EA7)"), /* @__PURE__ */ React.createElement("ul", { className: "text-xs text-slate-600 space-y-2 flex-1" }, data.static.items.map((f, i) => /* @__PURE__ */ React.createElement("li", { key: i, className: "p-2.5 bg-slate-50 rounded font-medium border-l-2 border-slate-300" }, f))), /* @__PURE__ */ React.createElement("div", { className: "pt-3 border-t border-slate-100" }, /* @__PURE__ */ React.createElement("div", { className: "text-[10px] text-slate-400 mb-2 flex items-center gap-1 font-bold tracking-widest" }, /* @__PURE__ */ React.createElement(Shield, { size: 12 }), " \u6838\u5FC3\u6D89\u53CA\u5904\u5BA4"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-1.5" }, data.static.depts.map((d, i) => /* @__PURE__ */ React.createElement("span", { key: i, className: "bg-slate-100 text-slate-600 px-2 py-1 rounded text-[10px] border border-slate-200" }, d))))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border p-5 shadow-sm space-y-4 flex flex-col" }, /* @__PURE__ */ React.createElement("h3", { className: "font-bold text-sm text-blue-700 border-b pb-2 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "w-2.5 h-2.5 rounded bg-blue-500" }), " \u52A8\u6001\u6570\u636E (\u65F6\u5E8F\u4FDD\u9C9C)"), /* @__PURE__ */ React.createElement("ul", { className: "text-xs text-slate-600 space-y-2 flex-1" }, data.dynamic.items.map((f, i) => /* @__PURE__ */ React.createElement("li", { key: i, className: "p-2.5 bg-blue-50/50 rounded font-medium border-l-2 border-blue-400" }, f))), /* @__PURE__ */ React.createElement("div", { className: "pt-3 border-t border-slate-100" }, /* @__PURE__ */ React.createElement("div", { className: "text-[10px] text-slate-400 mb-2 flex items-center gap-1 font-bold tracking-widest" }, /* @__PURE__ */ React.createElement(Shield, { size: 12 }), " \u6838\u5FC3\u6D89\u53CA\u5904\u5BA4"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-1.5" }, data.dynamic.depts.map((d, i) => /* @__PURE__ */ React.createElement("span", { key: i, className: "bg-blue-50 text-blue-700 px-2 py-1 rounded text-[10px] border border-blue-200" }, d))))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border p-5 shadow-sm space-y-4 flex flex-col" }, /* @__PURE__ */ React.createElement("h3", { className: "font-bold text-sm text-indigo-700 border-b pb-2 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "w-2.5 h-2.5 rounded bg-indigo-500" }), " \u4E13\u9898\u6570\u636E (\u7CBE\u7EC6\u51B3\u7B56)"), /* @__PURE__ */ React.createElement("ul", { className: "text-xs text-slate-600 space-y-2 flex-1" }, data.special.items.map((f, i) => /* @__PURE__ */ React.createElement("li", { key: i, className: "p-2.5 bg-indigo-50/50 rounded font-medium border-l-2 border-indigo-400" }, f))), /* @__PURE__ */ React.createElement("div", { className: "pt-3 border-t border-slate-100" }, /* @__PURE__ */ React.createElement("div", { className: "text-[10px] text-slate-400 mb-2 flex items-center gap-1 font-bold tracking-widest" }, /* @__PURE__ */ React.createElement(Shield, { size: 12 }), " \u6838\u5FC3\u6D89\u53CA\u5904\u5BA4"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-1.5" }, data.special.depts.map((d, i) => /* @__PURE__ */ React.createElement("span", { key: i, className: "bg-indigo-50 text-indigo-700 px-2 py-1 rounded text-[10px] border border-indigo-200" }, d)))))), /* @__PURE__ */ React.createElement(DocumentList, { files: data.pdfs, title: "\u5173\u8054\u5206\u7EA7\u5206\u7C7B\u6307\u5BFC\u89C4\u8303" }));
   };
   var BusinessAgentView = ({ section }) => {
-    const [activeAgentIdx, setActiveAgentIdx] = useState6(0);
-    useEffect4(() => {
+    const [activeAgentIdx, setActiveAgentIdx] = useState7(0);
+    useEffect5(() => {
       setActiveAgentIdx(0);
     }, [section]);
     const sectionMeta = {
@@ -42513,9 +42615,9 @@ ${tableHtml}
     })(), /* @__PURE__ */ React.createElement(DocumentList, { files: data.pdfs, title: "\u4E1A\u52A1\u6D41\u8F6C\u6307\u5BFC\u6807\u51C6\u4E0E\u6D41\u7A0B\u56FE\u6302\u63A5" }));
   };
   var SmartQAView = ({ type }) => {
-    const [messages, setMessages] = useState6([]);
-    const [inputValue, setInputValue] = useState6("");
-    const chatEndRef = useRef3(null);
+    const [messages, setMessages] = useState7([]);
+    const [inputValue, setInputValue] = useState7("");
+    const chatEndRef = useRef4(null);
     const qaTemplates = {
       "6.1": [
         "S108\u7701\u9053\u8D44\u4EA7\u7F16\u7801\u662F\u4EC0\u4E48\uFF1F\u9759\u6001\u539F\u503C\u591A\u5C11\uFF1F",
@@ -42555,13 +42657,14 @@ ${tableHtml}
         setMessages((prev) => [...prev, { id: Date.now() + 1, text: answer, sender: "ai" }]);
       }, 800);
     };
-    useEffect4(() => {
+    useEffect5(() => {
       if (chatEndRef.current) chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
     const titleMap = {
       "6.1": "\u6570\u636E\u8D44\u4EA7\u667A\u80FD\u95EE\u7B54",
-      "6.2": "\u653F\u7B56\u6807\u51C6\u667A\u80FD\u54A8\u8BE2",
-      "6.3": "\u517B\u62A4\u7EDF\u8BA1\u667A\u80FD\u67E5\u8BE2"
+      "6.2": "\u6DF1\u5EA6\u5927\u6A21\u578B\u95EE\u7B54",
+      "6.3": "\u653F\u7B56\u6807\u51C6\u667A\u80FD\u54A8\u8BE2",
+      "6.4": "\u517B\u62A4\u7EDF\u8BA1\u667A\u80FD\u67E5\u8BE2"
     };
     return /* @__PURE__ */ React.createElement("div", { className: "fade-in flex flex-col h-[75vh]" }, /* @__PURE__ */ React.createElement(
       PageHeader2,
@@ -42617,8 +42720,8 @@ ${tableHtml}
     const urlParams = new URLSearchParams(window.location.search);
     const isStandalone = urlParams.get("mode") === "standalone";
     if (isStandalone) {
-      if (urlParams.get("view") === "free") {
-        return /* @__PURE__ */ React.createElement("div", { className: "w-screen h-screen bg-slate-50 overflow-hidden" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, /* @__PURE__ */ React.createElement(FreeAnnualReportAgentView, { isStandalone: true })));
+      if (urlParams.get("view") === "deepqa") {
+        return /* @__PURE__ */ React.createElement("div", { className: "w-screen h-screen bg-slate-50 overflow-hidden" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, /* @__PURE__ */ React.createElement(DeepQAAnnualReportAgentView, { isStandalone: true })));
       }
       if (urlParams.get("view") === "progress") {
         return /* @__PURE__ */ React.createElement("div", { className: "w-screen h-screen bg-slate-50 overflow-hidden" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, /* @__PURE__ */ React.createElement(DigitalTransformationProgressView, { onNavigate: () => {
@@ -42626,8 +42729,8 @@ ${tableHtml}
       }
       return /* @__PURE__ */ React.createElement("div", { className: "w-screen h-screen bg-slate-50 overflow-hidden" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, /* @__PURE__ */ React.createElement(AnnualReportAgentView_default, null)));
     }
-    const [activeMenu, setActiveMenu] = useState6(new URLSearchParams(window.location.search).get("activeMenu") || "1.1");
-    const [expandedGroups, setExpandedGroups] = useState6({
+    const [activeMenu, setActiveMenu] = useState7(new URLSearchParams(window.location.search).get("activeMenu") || "1.1");
+    const [expandedGroups, setExpandedGroups] = useState7({
       group1: true,
       group2: false,
       group3: false,
@@ -42669,7 +42772,7 @@ ${tableHtml}
       if (activeMenu === "3.1") return /* @__PURE__ */ React.createElement(DataEnablementView, null);
       if (activeMenu === "3.2") return /* @__PURE__ */ React.createElement(DataQualityView, null);
       if (activeMenu === "3.3") return /* @__PURE__ */ React.createElement(DataSourceView, { onNavigate: handleNavigate });
-      if (activeMenu === "6.1") return /* @__PURE__ */ React.createElement(FreeAnnualReportAgentView, null);
+      if (activeMenu === "6.1") return /* @__PURE__ */ React.createElement(DeepQAAnnualReportAgentView, null);
       if (activeMenu === "6.2") return /* @__PURE__ */ React.createElement(AnnualReportAgentView_default, null);
       if (activeMenu.startsWith("4.")) {
         return /* @__PURE__ */ React.createElement(DataClassificationView, { section: activeMenu });
