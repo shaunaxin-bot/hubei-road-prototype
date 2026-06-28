@@ -2086,6 +2086,8 @@ description: 提供给大模型进行生成的展示模版。已针对前端按�
 
 #### 视角1：规建管养运全生命周期单阶段分析
 
+**【阶段定位示意图】**：在正式分析前，必须绘制包含五个阶段（规划、建设、管理、养护、运营）的纯文本流程图，用特殊符号标出当前分析聚焦的阶段，并**明确写出当前阶段所调用的具体底层物理表官方全称（例如：《L21（公路路线基本情况明细表）》或《L24a（公路桥梁明细表）》等，严禁简写）**。
+
 **【规划阶段核准】**：阐述该资产被纳入国家/省级中长期网规划的定位，并分析关联规划选线数据时的规范要求。
 
 **【建设阶段确权】**：描述建设期工程交竣工审计、工可批复以及物理资产移交时的财务与原值核验要点。
@@ -2098,6 +2100,8 @@ description: 提供给大模型进行生成的展示模版。已针对前端按�
 
 #### 视角 2：规建管养运全生命周期跨阶段分析
 
+**【多维交叉连线示意图】**：在正式分析前，必须绘制纯文本树状或关联图，直观展示本视图涉及的几张年报表单是如何关联的。**必须严格标出 1:1 或 1:N 映射关系，并在连线中明确写出穿透键（如：路线代码、起止桩号、行政区划代码等）进行业务穿透。涉及的所有表单必须使用《官方完整表名》**。
+
 **【业务台账映射关系】**：分析该大类资产在各业务系统（项目代码、路段编码、桥隧定检、能耗系统）中的全生命周期映射链条。
 
 **【关联逻辑与账实核对】**：论证该资产数据记录与《L21（公路路线基本情况明细表）》或《T001（公路基本情况汇总表）》主干网台账之间的空间/物理里程吻合度校验方法。
@@ -2106,13 +2110,15 @@ description: 提供给大模型进行生成的展示模版。已针对前端按�
 
 #### 视角 3：数据要素化及应用价值
 
+**【要素化价值路径图】**：在正式分析前，必须绘制纯文本漏斗/路径流转图，展示从数据底座到顶层应用的完整闭环。**图中要求：1. 底座层必须列出完整的物理库表名；2. 加工层必须写出具体的智能体编码及名称（格式如：AGENT-养护管理-05(养护统计年报)）；3. 数据集层必须输出具体的高质量数据集名称；4. 产品层必须单独输出具体的数据产品名称，并附带其文档来源的绝对路径（如：[来源：C:\\\\AIprojects\\\\roaddata\\\\customer\\\\数据统筹资料\\\\10-湖北省交通运输数字底座及数据运营创新示范工程可行性报告-0203.pdf]）；5. 终端消费层必须展现【使用者付费闭环】，明确写出该数据产品最终授权给谁（如第三方导航、保险理赔、特定政府部门等）并产生确权变现或应用价值。**
+
 **【智能体协同对账审计】**：匹配相关的行业智能体编码和岗位完整名称（必须从提供的数据字典中100%一致检索，严禁捏造），阐述多智能体跨部门联合对账与勾稽审计的协同运行模式。
 
 **【高质量数据要素资产沉淀】**：列出由此沉淀的规范数据集名称（如《智慧公路桥梁资产定检测量标准数据集》），作为数字底座。
 
 **【数据产品对外服务输出】**：写出自动生成的核算公文或对外数据产品名称（如《部省校验年报双上报产品》），说明其对账支撑作用。
 
-**【数据运营与商业模式推算】**：推算数据对于第三方导航、商用车高精地图定位或保险理赔方的商业授权前景，并进行年创收运行价值估算。
+**【数据运营与闭环模式推算】**：推算数据对于第三方导航、商用车高精地图定位或保险理赔方的授权前景，并进行年创收运行价值估算。
 
 **【🚨 核心指令：占位符与合计行强制要求】**
 1. 在分类汇总表格中最下方，**必须包含且输出一个“合计”行**，对上方各个明细值进行正确的求和汇总计算。
@@ -39134,10 +39140,7 @@ ${nextStep}`;
           }
         },
         /* @__PURE__ */ React.createElement("summary", { className: "font-bold text-slate-700 hover:text-red-700 cursor-pointer select-none list-none flex items-center gap-1.5 text-xs py-1" }, "\u25B6 \u3010\u89C6\u56FE 1\uFF1A\u89C4\u5EFA\u7BA1\u517B\u8FD0\u5168\u751F\u547D\u5468\u671F\u5355\u9636\u6BB5\u3011"),
-        /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view1 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u8FD0\u7528\u516C\u6587\u8BED\u6001\u6DF1\u5EA6\u5206\u6790\u4E2D\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "font-mono text-xs bg-slate-50 p-3 rounded border border-slate-200 mb-3 whitespace-pre text-slate-500 overflow-x-auto" }, `\u3010\u751F\u547D\u5468\u671F\u805A\u7126\u3011
-[ \u89C4\u5212 ] \u2500\u2500> [ \u5EFA\u8BBE ] \u2500\u2500> [ \u7BA1\u7406 ] \u2500\u2500> [ \u517B\u62A4 ] \u2500\u2500> [ \u8FD0\u8425 ]
-                                        \u2191
-                                   (\u5F53\u524D\u5206\u6790\u9636\u6BB5)`), /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view1 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view1 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
+        /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view1 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u8FD0\u7528\u516C\u6587\u8BED\u6001\u6DF1\u5EA6\u5206\u6790\u4E2D\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view1 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view1 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
           "button",
           {
             onClick: (e) => {
@@ -39170,10 +39173,7 @@ ${nextStep}`;
           }
         },
         /* @__PURE__ */ React.createElement("summary", { className: "font-bold text-slate-700 hover:text-red-700 cursor-pointer select-none list-none flex items-center gap-1.5 text-xs py-1" }, "\u25B6 \u3010\u89C6\u56FE 2\uFF1A\u89C4\u5EFA\u7BA1\u517B\u8FD0\u5168\u751F\u547D\u5468\u671F\u8DE8\u9636\u6BB5\u3011"),
-        /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view2 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u6838\u6821\u8DE8\u9636\u6BB5\u52FE\u7A3D\u5173\u7CFB\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "font-mono text-xs bg-slate-50 p-3 rounded border border-slate-200 mb-3 whitespace-pre text-slate-500 overflow-x-auto" }, `\u3010\u591A\u7EF4\u4EA4\u53C9\u878D\u5408\u3011
-  \u4E1A\u52A1/\u8868\u5355 A \u2500\u2500\u2500\u2510      
-                 \u251C\u2500> [ \u8DE8\u9636\u6BB5\u4E1A\u52A1\u7A7F\u900F ] \u2500> (\u6570\u636E\u6D1E\u5BDF\u4E0E\u7ED3\u8BBA)
-  \u4E1A\u52A1/\u8868\u5355 B \u2500\u2500\u2500\u2518`), /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view2 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view2 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
+        /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view2 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u6838\u6821\u8DE8\u9636\u6BB5\u52FE\u7A3D\u5173\u7CFB\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view2 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view2 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
           "button",
           {
             onClick: (e) => {
@@ -39206,8 +39206,7 @@ ${nextStep}`;
           }
         },
         /* @__PURE__ */ React.createElement("summary", { className: "font-bold text-slate-700 hover:text-red-700 cursor-pointer select-none list-none flex items-center gap-1.5 text-xs py-1" }, "\u25B6 \u3010\u89C6\u56FE 3\uFF1A\u6570\u636E\u8981\u7D20\u5316\u53CA\u5E94\u7528\u4EF7\u503C\u3011"),
-        /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view3 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u8BC4\u4F30\u667A\u80FD\u4F53\u878D\u5408\u521B\u6536\u524D\u666F\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "font-mono text-xs bg-slate-50 p-3 rounded border border-slate-200 mb-3 whitespace-pre text-slate-500 overflow-x-auto" }, `\u3010\u6570\u636E\u8981\u7D20\u5316\u8DEF\u5F84\u3011
-(\u5E95\u5C42) \u591A\u6E90\u6570\u636E\u5E95\u5EA7 \u2500\u2500> [ \u878D\u5408\u52A0\u5DE5\u5F15\u64CE / \u6A21\u578B ] \u2500\u2500> (\u9876\u5C42) \u6570\u636E\u8D44\u4EA7\u4E0E\u5E94\u7528\u670D\u52A1`), /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view3 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view3 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
+        /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view3 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u8BC4\u4F30\u667A\u80FD\u4F53\u878D\u5408\u521B\u6536\u524D\u666F\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view3 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view3 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
           "button",
           {
             onClick: (e) => {
