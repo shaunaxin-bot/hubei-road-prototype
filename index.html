@@ -2066,6 +2066,8 @@ description: 提供给大模型进行生成的展示模版。已针对前端按�
 | [分类项 B，如：拱桥 / 2类] | [数值 B] | [里程 B] | [评价 B，如：二类/占比55%] |
 | **合计** | **[数量汇总求和]** | **[里程汇总求和]** | **-** |
 
+[动作指令：生成全量分析报告至右侧]
+
 ---
 
 ### 模版 B：全局资产汇总模版（核心结论）
@@ -2086,6 +2088,8 @@ description: 提供给大模型进行生成的展示模版。已针对前端按�
 | [地市 A，如：武汉市] | [数值 A] | [里程 A] | [占比 A / 评价 A] |
 | [地市 B，如：宜昌市] | [数值 B] | [里程 B] | [占比 B / 评价 B] |
 | **全省合计** | **[全省数量总和]** | **[全省里程总和]** | **100%** |
+
+[动作指令：生成全量分析报告至右侧]
 
 ---
 
@@ -38201,6 +38205,10 @@ default_footer: 单位负责人：______    审核人：______    制表人：__
     const [fullTableData, setFullTableData] = useState2(null);
     const [sqlQueryResult, setSqlQueryResult] = useState2(null);
     const [docExportContent, setDocExportContent] = useState2(null);
+    const messagesRef = useRef(messages);
+    useEffect2(() => {
+      messagesRef.current = messages;
+    }, [messages]);
     useEffect2(() => {
       const handleShowFullData = () => {
         if (window.__currentDataItems) {
@@ -38214,6 +38222,17 @@ default_footer: 单位负责人：______    审核人：______    制表人：__
       };
       document.addEventListener("SHOW_FULL_DATA", handleShowFullData);
       return () => document.removeEventListener("SHOW_FULL_DATA", handleShowFullData);
+    }, []);
+    useEffect2(() => {
+      const handleExportEvent = (e) => {
+        const msgId = e.detail;
+        const targetMsg = messagesRef.current.find((m) => m.id === msgId);
+        if (targetMsg) {
+          handleExportDoc(targetMsg);
+        }
+      };
+      document.addEventListener("EXPORT_DOC", handleExportEvent);
+      return () => document.removeEventListener("EXPORT_DOC", handleExportEvent);
     }, []);
     const [leftPanelWidth, setLeftPanelWidth] = useState2(320);
     const [isLeftPanelExpanded, setIsLeftPanelExpanded] = useState2(true);
@@ -39171,7 +39190,7 @@ ${msg.views.view3}
         {
           className: "whitespace-pre-wrap text-sm leading-relaxed",
           dangerouslySetInnerHTML: {
-            __html: formatBadgeText(convertMarkdownTablesToHtml(msg.content))
+            __html: formatBadgeText(convertMarkdownTablesToHtml(msg.content), msg.id)
           }
         }
       ), msg.sqlResult && msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && /* @__PURE__ */ React.createElement("div", { className: "mt-2 py-2 border-t border-slate-100 text-[12px] flex items-center justify-between" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400" }, "\u660E\u7EC6\u6570\u636E\u5DF2\u8F7D\u5165\u53F3\u4FA7\u5E95\u76D8 \u27A1\uFE0F"), /* @__PURE__ */ React.createElement(
@@ -39279,14 +39298,6 @@ ${msg.views.view3}
           },
           "\u91CD\u65B0\u751F\u6210\u6B64\u89C6\u56FE"
         ))))
-      )), msg.views && Object.keys(msg.views).length > 0 && /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-3 border-t border-slate-100 flex justify-end" }, /* @__PURE__ */ React.createElement(
-        "button",
-        {
-          onClick: () => handleExportDoc(msg),
-          className: "flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs rounded border border-indigo-200 transition-colors shadow-sm"
-        },
-        /* @__PURE__ */ React.createElement("svg", { className: "w-3 h-3", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" })),
-        "\u5C06\u5B8C\u6574\u5206\u6790\u751F\u6210\u4E3A Doc \u62A5\u544A\u8F93\u51FA\u81F3\u53F3\u4FA7"
       ))))
     ), msg.role === "agent" && msg.sqlResult && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex items-center gap-3 text-slate-400 text-[11px] select-none pl-1" }, /* @__PURE__ */ React.createElement(
       "button",
