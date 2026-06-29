@@ -47868,136 +47868,145 @@ ${window.__ER_MAPPING__ || ""}
         if (db) {
           try {
             const dbRes = db.exec(sql);
-            if (dbRes.length > 0 && dbRes[0].values) {
-              const cols = dbRes[0].columns;
-              const vals = dbRes[0].values;
-              let summaryHint = "";
-              const col7Idx = cols.indexOf("col7");
-              const col22Idx = cols.indexOf("col22");
-              const col25Idx = cols.indexOf("col25");
-              const col8Idx = cols.indexOf("col8");
-              const col9Idx = cols.indexOf("col9");
-              const col10Idx = cols.indexOf("col10");
-              const col4Idx = cols.indexOf("col4");
-              const col5Idx = cols.indexOf("col5");
-              const isTrueL21 = col22Idx !== -1 && col25Idx !== -1 && col7Idx !== -1;
-              const isTrueL29a = col8Idx !== -1 && col9Idx !== -1 && col10Idx !== -1 && col7Idx !== -1 && col4Idx !== -1;
-              if (isTrueL21) {
-                if (col7Idx !== -1) {
-                  let totalSum = 0;
-                  let totalCount = 0;
-                  let validSum = 0;
-                  let validCount = 0;
-                  let groups = {};
-                  let adminGroups = {};
-                  vals.forEach((row) => {
-                    const val = parseFloat(row[col7Idx]) || 0;
-                    totalSum += val;
-                    totalCount++;
-                    const col34Idx = cols.indexOf("col34");
-                    const adminKey = col34Idx !== -1 && row[col34Idx] ? row[col34Idx] : "\u672A\u77E5\u533A\u57DF";
-                    if (!adminGroups[adminKey]) adminGroups[adminKey] = { physical: 0, valid: 0, count: 0 };
-                    adminGroups[adminKey].physical += val;
-                    const isUrban = col22Idx !== -1 && row[col22Idx] === "\u662F";
-                    const isOverlap = col25Idx !== -1 && row[col25Idx] !== null && row[col25Idx] !== "";
-                    if (!isUrban && !isOverlap) {
-                      validSum += val;
-                      validCount++;
-                      adminGroups[adminKey].valid += val;
-                      adminGroups[adminKey].count++;
-                      if (col4Idx !== -1 && col5Idx !== -1) {
-                        const key = (row[col4Idx] || "\u672A\u77E5") + " - " + (row[col5Idx] || "\u672A\u77E5");
-                        if (!groups[key]) groups[key] = { length: 0, count: 0 };
-                        groups[key].length += val;
-                        groups[key].count++;
+            if (dbRes.length > 0) {
+              let globalSummaryHint = "";
+              let allTableData = [];
+              dbRes.forEach((res, resIdx) => {
+                if (!res.values) return;
+                const cols = res.columns;
+                const vals = res.values;
+                let summaryHint = "";
+                const col7Idx = cols.indexOf("col7");
+                const col22Idx = cols.indexOf("col22");
+                const col25Idx = cols.indexOf("col25");
+                const col8Idx = cols.indexOf("col8");
+                const col9Idx = cols.indexOf("col9");
+                const col10Idx = cols.indexOf("col10");
+                const col4Idx = cols.indexOf("col4");
+                const col5Idx = cols.indexOf("col5");
+                const isTrueL21 = col22Idx !== -1 && col25Idx !== -1 && col7Idx !== -1;
+                const isTrueL29a = col8Idx !== -1 && col9Idx !== -1 && col10Idx !== -1 && col7Idx !== -1 && col4Idx !== -1;
+                if (isTrueL21) {
+                  if (col7Idx !== -1) {
+                    let totalSum = 0;
+                    let totalCount = 0;
+                    let validSum = 0;
+                    let validCount = 0;
+                    let groups = {};
+                    let adminGroups = {};
+                    vals.forEach((row) => {
+                      const val = parseFloat(row[col7Idx]) || 0;
+                      totalSum += val;
+                      totalCount++;
+                      const col34Idx = cols.indexOf("col34");
+                      const adminKey = col34Idx !== -1 && row[col34Idx] ? row[col34Idx] : "\u672A\u77E5\u533A\u57DF";
+                      if (!adminGroups[adminKey]) adminGroups[adminKey] = { physical: 0, valid: 0, count: 0 };
+                      adminGroups[adminKey].physical += val;
+                      const isUrban = col22Idx !== -1 && row[col22Idx] === "\u662F";
+                      const isOverlap = col25Idx !== -1 && row[col25Idx] !== null && row[col25Idx] !== "";
+                      if (!isUrban && !isOverlap) {
+                        validSum += val;
+                        validCount++;
+                        adminGroups[adminKey].valid += val;
+                        adminGroups[adminKey].count++;
+                        if (col4Idx !== -1 && col5Idx !== -1) {
+                          const key = (row[col4Idx] || "\u672A\u77E5") + " - " + (row[col5Idx] || "\u672A\u77E5");
+                          if (!groups[key]) groups[key] = { length: 0, count: 0 };
+                          groups[key].length += val;
+                          groups[key].count++;
+                        }
                       }
+                    });
+                    let groupText = "";
+                    if (Object.keys(groups).length > 0) {
+                      groupText = "\u6CD5\u5B9A\u5B9E\u9645\u7BA1\u517B\u91CC\u7A0B\uFF08\u6309\u6280\u672F\u7B49\u7EA7\u4E0E\u9762\u5C42\u7C7B\u578B\uFF09\u5206\u7EC4\u660E\u7EC6\uFF1A\\n" + Object.entries(groups).map(([k, v2]) => `- ${k.split(" - ")[0]} ${k.split(" - ")[1]}\uFF1A${v2.length.toFixed(3)} \u516C\u91CC (${v2.count}\u6BB5)`).join("\\n");
                     }
-                  });
-                  let groupText = "";
-                  if (Object.keys(groups).length > 0) {
-                    groupText = "\u6CD5\u5B9A\u5B9E\u9645\u7BA1\u517B\u91CC\u7A0B\uFF08\u6309\u6280\u672F\u7B49\u7EA7\u4E0E\u9762\u5C42\u7C7B\u578B\uFF09\u5206\u7EC4\u660E\u7EC6\uFF1A\\n" + Object.entries(groups).map(([k, v2]) => `- ${k.split(" - ")[0]} ${k.split(" - ")[1]}\uFF1A${v2.length.toFixed(3)} \u516C\u91CC (${v2.count}\u6BB5)`).join("\\n");
-                  }
-                  let adminText = "";
-                  if (Object.keys(adminGroups).length > 0) {
-                    adminText = "\u6309\u7BA1\u517B\u5355\u4F4D/\u884C\u653F\u533A\u5212\u6C47\u603B\u7684\u5206\u7EC4\u660E\u7EC6\uFF1A\\n" + Object.entries(adminGroups).map(([k, v2]) => `- ${k}\uFF1A\u7269\u7406\u5728\u518C ${v2.physical.toFixed(3)} \u516C\u91CC\uFF0C\u6CD5\u5B9A\u7BA1\u517B ${v2.valid.toFixed(3)} \u516C\u91CC (${v2.count}\u6BB5)`).join("\\n");
-                    groupText += "\\n\\n" + adminText;
-                  }
-                  summaryHint = `\\n\u3010\u7CFB\u7EDF\u9632\u5E7B\u89C9\u8BA1\u7B97\u7ED3\u679C\u3011\uFF1A\u5E95\u5C42\u7CFB\u7EDF\u5DF2\u4E3A\u4F60\u62E6\u622A\u5E76\u7CBE\u786E\u8BA1\u7B97\u4E86\u5404\u9879\u91CC\u7A0B\u89C4\u6A21\u3002\u8BF7\u4E25\u683C\u6309\u7167\u5168\u5C40\u7CFB\u7EDF\u63D0\u793A\u8BCD\u4E2D\u7684\u3010\u7EDF\u4E00\u91CC\u7A0B\u4E09\u53E3\u5F84\u7B54\u590D\u6A21\u677F\u3011\uFF08\u5305\u542B\u884C\u653F\u533A\u5212\u6C47\u603B\u8868\u6A21\u677F\uFF09\uFF0C\u5C06\u4EE5\u4E0B\u7CFB\u7EDF\u6570\u503C\u586B\u5165\u56DE\u7B54\u4E2D\uFF0C\u4E25\u7981\u81EA\u884C\u76F2\u76EE\u6C42\u548C\u6216\u7BE1\u6539\u4EE5\u4E0B\u6570\u636E\uFF01\\n- \u7269\u7406\u5728\u518C\u603B\u957F\u5EA6: ${totalSum.toFixed(3)} \u516C\u91CC (\u6BB5\u6570: ${totalCount})\\n- \u6CD5\u5B9A\u5B9E\u9645\u7BA1\u517B\u957F\u5EA6: ${validSum.toFixed(3)} \u516C\u91CC (\u6BB5\u6570: ${validCount})\\n- \u5206\u7EC4\u660E\u7EC6: \\n${groupText}\\n\u3010\u6CE8\uFF1A\u672C\u8868\u4E0D\u652F\u6301\u8BA1\u7B97\u68C0\u6D4B\u91CC\u7A0B\uFF0C\u8BF7\u5728\u8868\u683C\u5BF9\u5E94\u5217\u4E2D\u586B\u5199 "-"\u3002\u3011\\n\\n`;
-                }
-              } else if (isTrueL29a) {
-                if (col7Idx !== -1) {
-                  let totalMeters = 0;
-                  let counts = { total: 0, up: 0, down: 0, bi: 0 };
-                  let sums = { up: 0, down: 0, bi: 0 };
-                  vals.forEach((row) => {
-                    const val = parseFloat(row[col7Idx]) || 0;
-                    totalMeters += val;
-                    counts.total++;
-                    const dir = row[col4Idx] || "";
-                    if (dir.includes("\u4E0A")) {
-                      sums.up += val;
-                      counts.up++;
-                    } else if (dir.includes("\u4E0B")) {
-                      sums.down += val;
-                      counts.down++;
-                    } else {
-                      sums.bi += val;
-                      counts.bi++;
+                    let adminText = "";
+                    if (Object.keys(adminGroups).length > 0) {
+                      adminText = "\u6309\u7BA1\u517B\u5355\u4F4D/\u884C\u653F\u533A\u5212\u6C47\u603B\u7684\u5206\u7EC4\u660E\u7EC6\uFF1A\\n" + Object.entries(adminGroups).map(([k, v2]) => `- ${k}\uFF1A\u7269\u7406\u5728\u518C ${v2.physical.toFixed(3)} \u516C\u91CC\uFF0C\u6CD5\u5B9A\u7BA1\u517B ${v2.valid.toFixed(3)} \u516C\u91CC (${v2.count}\u6BB5)`).join("\\n");
+                      groupText += "\\n\\n" + adminText;
                     }
-                  });
-                  const totalKm = (totalMeters / 1e3).toFixed(3);
-                  const upKm = (sums.up / 1e3).toFixed(3);
-                  const downKm = (sums.down / 1e3).toFixed(3);
-                  const biKm = (sums.bi / 1e3).toFixed(3);
-                  summaryHint = `\\n\u3010\u7CFB\u7EDF\u9632\u5E7B\u89C9\u8BA1\u7B97\u7ED3\u679C\u3011\uFF1A\u5E95\u5C42\u7CFB\u7EDF\u5DF2\u4E3A\u4F60\u62E6\u622A\u5E76\u7CBE\u786E\u8BA1\u7B97\u4E86\u5404\u9879\u68C0\u6D4B\u91CC\u7A0B\u89C4\u6A21\u3002\u8BF7\u4E25\u683C\u6309\u7167\u5168\u5C40\u7CFB\u7EDF\u63D0\u793A\u8BCD\u4E2D\u7684\u3010\u7EDF\u4E00\u91CC\u7A0B\u4E09\u53E3\u5F84\u7B54\u590D\u6A21\u677F\u3011\uFF0C\u5C06\u4EE5\u4E0B\u7CFB\u7EDF\u6570\u503C\u586B\u5165\u7B2C\u4E09\u9879\uFF08\u68C0\u6D4B\u603B\u91CC\u7A0B\uFF09\u4E2D\uFF0C\u4E25\u7981\u81EA\u884C\u76F2\u76EE\u6C42\u548C\uFF01\\n- \u68C0\u6D4B\u603B\u91CC\u7A0B: ${totalKm} \u516C\u91CC (\u5373 ${totalMeters} \u7C73\uFF0C\u6BB5\u6570: ${counts.total})\\n- \u4E0A\u884C\u68C0\u6D4B: ${upKm} \u516C\u91CC (\u6BB5\u6570: ${counts.up})\\n- \u4E0B\u884C\u68C0\u6D4B: ${downKm} \u516C\u91CC (\u6BB5\u6570: ${counts.down})\\n- \u53CC\u5411\u6DF7\u5408\u68C0\u6D4B: ${biKm} \u516C\u91CC (\u6BB5\u6570: ${counts.bi})\\n\u3010\u6CE8\uFF1A\u672C\u8868\u4E3A\u8DEF\u51B5\u8BC4\u5B9A\u68C0\u6D4B\u8868\uFF0C\u65E0\u6CD5\u8BA1\u7B97\u7BA1\u517B\u91CC\u7A0B\u548C\u5355\u7EBF\u7269\u7406\u91CC\u7A0B\uFF0C\u8BF7\u5728\u6A21\u677F\u4E2D\u58F0\u660E\u5E76\u7740\u91CD\u89E3\u91CA\u4E0A\u4E0B\u884C\u53CC\u5E45\u68C0\u6D4B\u5BFC\u81F4\u91CC\u7A0B\u81A8\u80C0\u7684\u53E3\u5F84\u539F\u7406\u3002\u3011\\n\\n`;
-                }
-              } else {
-                let sums = {};
-                let numCounts = {};
-                vals.forEach((row) => {
-                  row.forEach((cell, idx) => {
-                    if (cell !== null && cell !== "" && !isNaN(cell)) {
-                      const num = parseFloat(cell);
-                      if (num > 0) {
-                        sums[cols[idx]] = (sums[cols[idx]] || 0) + num;
-                        numCounts[cols[idx]] = (numCounts[cols[idx]] || 0) + 1;
+                    summaryHint = `\\n\u3010\u7CFB\u7EDF\u9632\u5E7B\u89C9\u8BA1\u7B97\u7ED3\u679C\u3011\uFF1A\u5E95\u5C42\u7CFB\u7EDF\u5DF2\u4E3A\u4F60\u62E6\u622A\u5E76\u7CBE\u786E\u8BA1\u7B97\u4E86\u5404\u9879\u91CC\u7A0B\u89C4\u6A21\u3002\u8BF7\u4E25\u683C\u6309\u7167\u5168\u5C40\u7CFB\u7EDF\u63D0\u793A\u8BCD\u4E2D\u7684\u3010\u7EDF\u4E00\u91CC\u7A0B\u4E09\u53E3\u5F84\u7B54\u590D\u6A21\u677F\u3011\uFF08\u5305\u542B\u884C\u653F\u533A\u5212\u6C47\u603B\u8868\u6A21\u677F\uFF09\uFF0C\u5C06\u4EE5\u4E0B\u7CFB\u7EDF\u6570\u503C\u586B\u5165\u56DE\u7B54\u4E2D\uFF0C\u4E25\u7981\u81EA\u884C\u76F2\u76EE\u6C42\u548C\u6216\u7BE1\u6539\u4EE5\u4E0B\u6570\u636E\uFF01\\n- \u7269\u7406\u5728\u518C\u603B\u957F\u5EA6: ${totalSum.toFixed(3)} \u516C\u91CC (\u6BB5\u6570: ${totalCount})\\n- \u6CD5\u5B9A\u5B9E\u9645\u7BA1\u517B\u957F\u5EA6: ${validSum.toFixed(3)} \u516C\u91CC (\u6BB5\u6570: ${validCount})\\n- \u5206\u7EC4\u660E\u7EC6: \\n${groupText}\\n\u3010\u6CE8\uFF1A\u672C\u8868\u4E0D\u652F\u6301\u8BA1\u7B97\u68C0\u6D4B\u91CC\u7A0B\uFF0C\u8BF7\u5728\u8868\u683C\u5BF9\u5E94\u5217\u4E2D\u586B\u5199 "-"\u3002\u3011\\n\\n`;
+                  }
+                } else if (isTrueL29a) {
+                  if (col7Idx !== -1) {
+                    let totalMeters = 0;
+                    let counts = { total: 0, up: 0, down: 0, bi: 0 };
+                    let sums = { up: 0, down: 0, bi: 0 };
+                    vals.forEach((row) => {
+                      const val = parseFloat(row[col7Idx]) || 0;
+                      totalMeters += val;
+                      counts.total++;
+                      const dir = row[col4Idx] || "";
+                      if (dir.includes("\u4E0A")) {
+                        sums.up += val;
+                        counts.up++;
+                      } else if (dir.includes("\u4E0B")) {
+                        sums.down += val;
+                        counts.down++;
+                      } else {
+                        sums.bi += val;
+                        counts.bi++;
                       }
-                    }
+                    });
+                    const totalKm = (totalMeters / 1e3).toFixed(3);
+                    const upKm = (sums.up / 1e3).toFixed(3);
+                    const downKm = (sums.down / 1e3).toFixed(3);
+                    const biKm = (sums.bi / 1e3).toFixed(3);
+                    summaryHint = `\\n\u3010\u7CFB\u7EDF\u9632\u5E7B\u89C9\u8BA1\u7B97\u7ED3\u679C\u3011\uFF1A\u5E95\u5C42\u7CFB\u7EDF\u5DF2\u4E3A\u4F60\u62E6\u622A\u5E76\u7CBE\u786E\u8BA1\u7B97\u4E86\u5404\u9879\u68C0\u6D4B\u91CC\u7A0B\u89C4\u6A21\u3002\u8BF7\u4E25\u683C\u6309\u7167\u5168\u5C40\u7CFB\u7EDF\u63D0\u793A\u8BCD\u4E2D\u7684\u3010\u7EDF\u4E00\u91CC\u7A0B\u4E09\u53E3\u5F84\u7B54\u590D\u6A21\u677F\u3011\uFF0C\u5C06\u4EE5\u4E0B\u7CFB\u7EDF\u6570\u503C\u586B\u5165\u7B2C\u4E09\u9879\uFF08\u68C0\u6D4B\u603B\u91CC\u7A0B\uFF09\u4E2D\uFF0C\u4E25\u7981\u81EA\u884C\u76F2\u76EE\u6C42\u548C\uFF01\\n- \u68C0\u6D4B\u603B\u91CC\u7A0B: ${totalKm} \u516C\u91CC (\u5373 ${totalMeters} \u7C73\uFF0C\u6BB5\u6570: ${counts.total})\\n- \u4E0A\u884C\u68C0\u6D4B: ${upKm} \u516C\u91CC (\u6BB5\u6570: ${counts.up})\\n- \u4E0B\u884C\u68C0\u6D4B: ${downKm} \u516C\u91CC (\u6BB5\u6570: ${counts.down})\\n- \u53CC\u5411\u6DF7\u5408\u68C0\u6D4B: ${biKm} \u516C\u91CC (\u6BB5\u6570: ${counts.bi})\\n\u3010\u6CE8\uFF1A\u672C\u8868\u4E3A\u8DEF\u51B5\u8BC4\u5B9A\u68C0\u6D4B\u8868\uFF0C\u65E0\u6CD5\u8BA1\u7B97\u7BA1\u517B\u91CC\u7A0B\u548C\u5355\u7EBF\u7269\u7406\u91CC\u7A0B\uFF0C\u8BF7\u5728\u6A21\u677F\u4E2D\u58F0\u660E\u5E76\u7740\u91CD\u89E3\u91CA\u4E0A\u4E0B\u884C\u53CC\u5E45\u68C0\u6D4B\u5BFC\u81F4\u91CC\u7A0B\u81A8\u80C0\u7684\u53E3\u5F84\u539F\u7406\u3002\u3011\\n\\n`;
+                  }
+                } else {
+                  let sums = {};
+                  let numCounts = {};
+                  vals.forEach((row) => {
+                    row.forEach((cell, idx) => {
+                      if (cell !== null && cell !== "" && !isNaN(cell)) {
+                        const num = parseFloat(cell);
+                        if (num > 0) {
+                          sums[cols[idx]] = (sums[cols[idx]] || 0) + num;
+                          numCounts[cols[idx]] = (numCounts[cols[idx]] || 0) + 1;
+                        }
+                      }
+                    });
                   });
-                });
-                let genericHint = `\\n\u3010\u7CFB\u7EDF\u6570\u636E\u9632\u5E7B\u89C9\u62E6\u622A\uFF1A\u4EE5\u4E0B\u662F\u672C\u6B21\u67E5\u8BE2\u6570\u636E\u7684\u7CBE\u786E\u8BA1\u7B97\u7ED3\u679C\uFF0C\u7531\u4E8E\u67E5\u8BE2\u8FD4\u56DE\u4E86\u5927\u91CF\u660E\u7EC6\uFF08\u5171 ${vals.length} \u6761\uFF09\uFF0C\u7EDD\u5BF9\u7981\u6B62\u4F60\u81EA\u884C\u5728\u8111\u5185\u8FDB\u884C\u6D6E\u70B9\u6570\u6C42\u548C\uFF01\u5982\u679C\u9700\u8981\u6C47\u62A5\u7EDF\u8BA1\u89C4\u6A21\uFF0C\u8BF7\u4E25\u683C\u4F7F\u7528\u4EE5\u4E0B\u7CFB\u7EDF\u9884\u8BA1\u7B97\u7684\u771F\u5B9E\u6C47\u603B\u7ED3\u679C\uFF1A\\n`;
-                let hasValidSums = false;
-                for (let col in sums) {
-                  if (numCounts[col] > 1) {
-                    genericHint += `- \u5B57\u6BB5 ${col} \u7684\u7CBE\u786E\u603B\u548C\u4E3A: ${sums[col].toFixed(3)}\\n`;
-                    hasValidSums = true;
+                  let genericHint = `\\n\u3010\u7CFB\u7EDF\u6570\u636E\u9632\u5E7B\u89C9\u62E6\u622A\uFF1A\u4EE5\u4E0B\u662F\u672C\u6B21\u67E5\u8BE2\u6570\u636E\u7684\u7CBE\u786E\u8BA1\u7B97\u7ED3\u679C\uFF0C\u7531\u4E8E\u67E5\u8BE2\u8FD4\u56DE\u4E86\u5927\u91CF\u660E\u7EC6\uFF08\u5171 ${vals.length} \u6761\uFF09\uFF0C\u7EDD\u5BF9\u7981\u6B62\u4F60\u81EA\u884C\u5728\u8111\u5185\u8FDB\u884C\u6D6E\u70B9\u6570\u6C42\u548C\uFF01\u5982\u679C\u9700\u8981\u6C47\u62A5\u7EDF\u8BA1\u89C4\u6A21\uFF0C\u8BF7\u4E25\u683C\u4F7F\u7528\u4EE5\u4E0B\u7CFB\u7EDF\u9884\u8BA1\u7B97\u7684\u771F\u5B9E\u6C47\u603B\u7ED3\u679C\uFF1A\\n`;
+                  let hasValidSums = false;
+                  for (let col in sums) {
+                    if (numCounts[col] > 1) {
+                      genericHint += `- \u5B57\u6BB5 ${col} \u7684\u7CBE\u786E\u603B\u548C\u4E3A: ${sums[col].toFixed(3)}\\n`;
+                      hasValidSums = true;
+                    }
+                  }
+                  genericHint += "\u8BF7\u6839\u636E\u5B57\u5178\u786E\u8BA4\u5404\u5217\u7684\u5B9E\u9645\u4E1A\u52A1\u542B\u4E49\uFF08\u5982\u957F\u5EA6\u5355\u4F4D\u53EF\u80FD\u662F\u7C73\u6216\u516C\u91CC\uFF09\uFF0C\u5E76\u4F7F\u7528\u8FD9\u4E9B\u771F\u5B9E\u6C47\u603B\u6570\u503C\uFF0C\u4E0D\u8981\u51ED\u7A7A\u634F\u9020\uFF01\u3011\\n\\n";
+                  if (hasValidSums) {
+                    summaryHint = genericHint;
                   }
                 }
-                genericHint += "\u8BF7\u6839\u636E\u5B57\u5178\u786E\u8BA4\u5404\u5217\u7684\u5B9E\u9645\u4E1A\u52A1\u542B\u4E49\uFF08\u5982\u957F\u5EA6\u5355\u4F4D\u53EF\u80FD\u662F\u7C73\u6216\u516C\u91CC\uFF09\uFF0C\u5E76\u4F7F\u7528\u8FD9\u4E9B\u771F\u5B9E\u6C47\u603B\u6570\u503C\uFF0C\u4E0D\u8981\u51ED\u7A7A\u634F\u9020\uFF01\u3011\\n\\n";
-                if (hasValidSums) {
-                  summaryHint = genericHint;
+                globalSummaryHint += summaryHint;
+                allTableData.push({ tableIndex: resIdx, columns: cols, values: vals.slice(0, 1e3) });
+                if (resIdx === 0) {
+                  try {
+                    const activeTable = selectedTables[0] || "L21";
+                    tempHtml = `<div class="overflow-x-auto"><table class="text-[12px] text-left border-collapse"><thead class="text-slate-800 font-bold"><tr class="border-b border-slate-400">`;
+                    cols.forEach((c) => {
+                      const translated = COLUMN_MAP[activeTable] && COLUMN_MAP[activeTable][c.toLowerCase()] || c;
+                      tempHtml += `<th class="py-1 px-1">${translated}</th>`;
+                    });
+                    tempHtml += '</tr></thead><tbody class="text-slate-600 bg-white">';
+                    vals.slice(0, 100).forEach((row) => {
+                      tempHtml += '<tr class="border-b border-slate-100">';
+                      row.forEach((cell) => {
+                        tempHtml += `<td class="py-1 px-1">${cell === null ? "" : cell}</td>`;
+                      });
+                      tempHtml += "</tr>";
+                    });
+                    tempHtml += "</tbody></table></div>";
+                  } catch (errTable) {
+                    console.warn("Table generation error:", errTable);
+                  }
                 }
-              }
-              sqlResultStr = summaryHint + JSON.stringify({ columns: cols, values: vals.slice(0, 1e3) });
-              try {
-                const activeTable = selectedTables[0] || "L21";
-                tempHtml = `<div class="overflow-x-auto"><table class="text-[12px] text-left border-collapse"><thead class="text-slate-800 font-bold"><tr class="border-b border-slate-400">`;
-                cols.forEach((c) => {
-                  const translated = COLUMN_MAP[activeTable] && COLUMN_MAP[activeTable][c.toLowerCase()] || c;
-                  tempHtml += `<th class="py-1 px-1">${translated}</th>`;
-                });
-                tempHtml += '</tr></thead><tbody class="text-slate-600 bg-white">';
-                vals.slice(0, 100).forEach((row) => {
-                  tempHtml += '<tr class="border-b border-slate-100">';
-                  row.forEach((cell) => {
-                    tempHtml += `<td class="py-1 px-1">${cell === null ? "" : cell}</td>`;
-                  });
-                  tempHtml += "</tr>";
-                });
-                tempHtml += "</tbody></table></div>";
-              } catch (errTable) {
-                console.warn("Table generation error:", errTable);
-              }
+              });
+              sqlResultStr = globalSummaryHint + JSON.stringify(allTableData);
             }
           } catch (e) {
             sqlResultStr = "\u6267\u884C\u62A5\u9519: " + e.message;
