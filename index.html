@@ -47839,14 +47839,18 @@ ${window.__ER_MAPPING__ || ""}
                 const col4Idx = cols.indexOf("col4");
                 const col5Idx = cols.indexOf("col5");
                 if (col7Idx !== -1) {
+                  let totalSum = 0;
+                  let totalCount = 0;
                   let validSum = 0;
                   let validCount = 0;
                   let groups = {};
                   vals.forEach((row) => {
+                    const val = parseFloat(row[col7Idx]) || 0;
+                    totalSum += val;
+                    totalCount++;
                     const isUrban = col22Idx !== -1 && row[col22Idx] === "\u662F";
                     const isOverlap = col25Idx !== -1 && row[col25Idx] !== null && row[col25Idx] !== "";
                     if (!isUrban && !isOverlap) {
-                      const val = parseFloat(row[col7Idx]) || 0;
                       validSum += val;
                       validCount++;
                       if (col4Idx !== -1 && col5Idx !== -1) {
@@ -47859,9 +47863,9 @@ ${window.__ER_MAPPING__ || ""}
                   });
                   let groupText = "";
                   if (Object.keys(groups).length > 0) {
-                    groupText = "\u5404\u6280\u672F\u7B49\u7EA7\u4E0E\u9762\u5C42\u7C7B\u578B\u5206\u7EC4\u6C47\u603B\u5982\u4E0B\uFF1A\\n" + Object.entries(groups).map(([k, v2]) => `${k.split(" - ")[0]} ${k.split(" - ")[1]} ${v2.length.toFixed(3)} (${v2.count}\u6BB5)`).join("\\n");
+                    groupText = "\u6CD5\u5B9A\u5B9E\u9645\u7BA1\u517B\u91CC\u7A0B\uFF08\u6309\u6280\u672F\u7B49\u7EA7\u4E0E\u9762\u5C42\u7C7B\u578B\uFF09\u5206\u7EC4\u660E\u7EC6\uFF1A\\n" + Object.entries(groups).map(([k, v2]) => `- ${k.split(" - ")[0]} ${k.split(" - ")[1]}\uFF1A${v2.length.toFixed(3)} \u516C\u91CC (${v2.count}\u6BB5)`).join("\\n");
                   }
-                  summaryHint = `\\n\u3010\u7CFB\u7EDF\u81EA\u52A8\u8BA1\u7B97\u8F85\u52A9\u4FE1\u606F\uFF1A\u6263\u9664\u57CE\u5EFA\u6BB5\uFF08col22='\u662F'\uFF09\u53CA\u91CD\u53E0\u6BB5\uFF08col25\u975E\u7A7A\uFF09\u540E\uFF0C\u5B9E\u9645\u7BA1\u517B\u6BB5\u843D\u5171 ${validCount} \u6761\uFF0C\u6CD5\u5B9A\u5B9E\u9645\u7BA1\u517B\u603B\u91CC\u7A0B\u7CBE\u786E\u503C\u4E3A ${validSum.toFixed(3)} \u516C\u91CC\u3002\\n${groupText}\\n\u8BF7\u5728\u56DE\u7B54\u4E2D\u76F4\u63A5\u4F7F\u7528\u8FD9\u4E9B\u7CBE\u786E\u7684\u5206\u7EC4\u4E0E\u6C47\u603B\u6570\u5B57\uFF0C\u5207\u52FF\u81EA\u884C\u5728\u5934\u8111\u4E2D\u52A0\u603B\u6570\u767E\u884C\u660E\u7EC6\u6570\u636E\uFF01\u3011\\n\\n`;
+                  summaryHint = `\\n\u3010\u26A0\uFE0F \u6838\u5FC3\u6392\u7248\u4E0E\u53E3\u5F84\u9650\u5B9A\u6307\u4EE4\uFF1A\u4E3A\u4E86\u5411\u7528\u6237\u4E25\u8C28\u5730\u89E3\u91CA\u6570\u636E\uFF0C\u4F60\u5FC5\u987B\u5728\u56DE\u7B54\u4E2D\u5305\u542B\u4EE5\u4E0B\u201C\u91CC\u7A0B\u53CC\u53E3\u5F84\u201D\u5B9A\u4E49\u53CA\u7CBE\u786E\u6C47\u603B\u6570\u636E\uFF1A\\n1. **\u7269\u7406\u5728\u518C\u603B\u91CC\u7A0B**\uFF1A${totalSum.toFixed(3)} \u516C\u91CC\uFF08\u5171 ${totalCount} \u6BB5\uFF0C\u5305\u542B\u57CE\u5EFA\u6BB5\u4E0E\u91CD\u53E0\u6BB5\u7684\u539F\u59CB\u8DEF\u7EBF\u603B\u957F\u5EA6\uFF09\uFF1B\\n2. **\u6CD5\u5B9A\u5B9E\u9645\u7BA1\u517B\u91CC\u7A0B**\uFF1A${validSum.toFixed(3)} \u516C\u91CC\uFF08\u5171 ${validCount} \u6BB5\uFF0C\u5DF2\u4E25\u683C\u6309\u89C4\u8303\u6263\u9664\u57CE\u5EFA\u6BB5\u4E0E\u91CD\u53E0\u6BB5\uFF0C\u6B64\u4E3A\u8D22\u52A1\u6838\u7B97\u4E0E\u517B\u62A4\u4E0B\u62E8\u7684\u771F\u5B9E\u53E3\u5F84\uFF09\u3002\\n\\n${groupText}\\n\u8BF7\u5728\u56DE\u7B54\u4E2D\u76F4\u63A5\u4F7F\u7528\u4E0A\u8FF0\u6A21\u677F\u683C\u5F0F\u548C\u7CBE\u786E\u6570\u5B57\u8FDB\u884C\u8BF4\u660E\uFF0C\u5207\u52FF\u81EA\u884C\u52A0\u603B\u6570\u767E\u884C\u660E\u7EC6\u6570\u636E\uFF01\u3011\\n\\n`;
                 }
               }
               sqlResultStr = summaryHint + JSON.stringify({ columns: cols, values: vals.slice(0, 1e3) });
