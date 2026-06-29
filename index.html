@@ -39041,7 +39041,7 @@ ${msg.views.view3}
         `<span class="product-badge">\u201C$1\u201D</span>`
       ).replace(
         /```[a-z]*\n([\s\S]*?)\n```/g,
-        `<div class="bg-slate-50 border border-slate-200 rounded-md p-3 my-3 text-slate-700 font-mono text-[10px] overflow-x-auto whitespace-pre leading-[1.4] shadow-sm">$1</div>`
+        `<div class="bg-slate-50 border border-slate-200 rounded-md p-3 my-3 text-slate-700 text-[10px] overflow-x-auto whitespace-pre leading-[1.4] shadow-sm" style="font-family: Consolas, 'Courier New', NSimSun, monospace;">$1</div>`
       );
     };
     const loadViewOnDemand = async (msgId, msgIdx2, viewNum, force = false) => {
