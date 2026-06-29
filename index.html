@@ -45642,14 +45642,29 @@ default_footer: 单位负责人：______    审核人：______    制表人：__
     if (!text || !text.includes("|")) return text;
     const lines = text.split("\n");
     let inTable = false;
+    let inCodeBlock = false;
     let tableHtml = "";
     const result = [];
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
+      if (line.startsWith("```")) {
+        inCodeBlock = !inCodeBlock;
+        if (inTable) {
+          inTable = false;
+          tableHtml += "</tbody></table></div>";
+          result.push(tableHtml);
+        }
+        result.push(lines[i]);
+        continue;
+      }
+      if (inCodeBlock) {
+        result.push(lines[i]);
+        continue;
+      }
       if (line.startsWith("|") && line.endsWith("|")) {
         if (!inTable) {
           inTable = true;
-          tableHtml = '<div class="overflow-x-auto"><table class="text-[12px] text-left border-collapse">';
+          tableHtml = '<div class="overflow-x-auto"><table class="text-[12px] text-left border-collapse w-full">';
         }
         if (/^[|:\s-]+$/.test(line)) {
           continue;
@@ -45659,15 +45674,15 @@ default_footer: 单位负责人：______    审核人：______    制表人：__
         if (isHeader) {
           tableHtml += '<thead class="text-slate-800 font-bold"><tr class="border-b border-slate-400">';
           cells.forEach((cell) => {
-            tableHtml += `<th class="py-1 px-1">${cell}</th>`;
+            tableHtml += `<th class="py-1.5 px-2">${cell}</th>`;
           });
           tableHtml += '</tr></thead><tbody class="text-slate-600 bg-white">';
         } else {
-          tableHtml += '<tr class="border-b border-slate-100">';
+          tableHtml += '<tr class="border-b border-slate-100 hover:bg-slate-50">';
           cells.forEach((cell) => {
             const isNumeric = /^\d+(\.\d+)?$/.test(cell);
             const alignClass = isNumeric ? "text-right" : "";
-            tableHtml += `<td class="py-1 px-1 ${alignClass}">${cell}</td>`;
+            tableHtml += `<td class="py-1 px-2 ${alignClass}">${cell}</td>`;
           });
           tableHtml += "</tr>";
         }
@@ -45676,7 +45691,6 @@ default_footer: 单位负责人：______    审核人：______    制表人：__
           inTable = false;
           tableHtml += "</tbody></table></div>";
           result.push(tableHtml);
-          tableHtml = "";
         }
         result.push(lines[i]);
       }
