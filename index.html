@@ -47898,21 +47898,12 @@ ${window.__ER_MAPPING__ || ""}
                       const val = parseFloat(row[col7Idx]) || 0;
                       totalSum += val;
                       totalCount++;
-                      const col62Idx = cols.indexOf("col62");
-                      const col63Idx = cols.indexOf("col63");
+                      const col34Idx = cols.indexOf("col34");
                       const col27Idx = cols.indexOf("col27");
                       const col28Idx = cols.indexOf("col28");
                       let adminKey = "\u672A\u77E5\u533A\u57DF";
-                      if (col62Idx !== -1 || col63Idx !== -1) {
-                        const city = col63Idx !== -1 && row[col63Idx] ? row[col63Idx] : "";
-                        const county = col62Idx !== -1 && row[col62Idx] ? row[col62Idx] : "";
-                        if (city && county) {
-                          adminKey = city === county ? city : city + county;
-                        } else if (city) {
-                          adminKey = city;
-                        } else if (county) {
-                          adminKey = county;
-                        }
+                      if (col34Idx !== -1 && row[col34Idx]) {
+                        adminKey = row[col34Idx];
                       }
                       const grade = col27Idx !== -1 && row[col27Idx] ? row[col27Idx] : "\u672A\u77E5";
                       const pavement = col28Idx !== -1 && row[col28Idx] ? row[col28Idx] : "\u672A\u77E5";
