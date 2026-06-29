@@ -47867,6 +47867,32 @@ ${window.__ER_MAPPING__ || ""}
                   }
                   summaryHint = `\\n\u3010\u26A0\uFE0F \u6838\u5FC3\u6392\u7248\u4E0E\u53E3\u5F84\u9650\u5B9A\u6307\u4EE4\uFF1A\u4E3A\u4E86\u5411\u7528\u6237\u4E25\u8C28\u5730\u89E3\u91CA\u6570\u636E\uFF0C\u4F60\u5FC5\u987B\u5728\u56DE\u7B54\u4E2D\u5305\u542B\u4EE5\u4E0B\u201C\u91CC\u7A0B\u53CC\u53E3\u5F84\u201D\u5B9A\u4E49\u53CA\u7CBE\u786E\u6C47\u603B\u6570\u636E\uFF1A\\n1. **\u7269\u7406\u5728\u518C\u603B\u91CC\u7A0B**\uFF1A${totalSum.toFixed(3)} \u516C\u91CC\uFF08\u5171 ${totalCount} \u6BB5\uFF0C\u5305\u542B\u57CE\u5EFA\u6BB5\u4E0E\u91CD\u53E0\u6BB5\u7684\u539F\u59CB\u8DEF\u7EBF\u603B\u957F\u5EA6\uFF09\uFF1B\\n2. **\u6CD5\u5B9A\u5B9E\u9645\u7BA1\u517B\u91CC\u7A0B**\uFF1A${validSum.toFixed(3)} \u516C\u91CC\uFF08\u5171 ${validCount} \u6BB5\uFF0C\u5DF2\u4E25\u683C\u6309\u89C4\u8303\u6263\u9664\u57CE\u5EFA\u6BB5\u4E0E\u91CD\u53E0\u6BB5\uFF0C\u6B64\u4E3A\u8D22\u52A1\u6838\u7B97\u4E0E\u517B\u62A4\u4E0B\u62E8\u7684\u771F\u5B9E\u53E3\u5F84\uFF09\u3002\\n\\n${groupText}\\n\u8BF7\u5728\u56DE\u7B54\u4E2D\u76F4\u63A5\u4F7F\u7528\u4E0A\u8FF0\u6A21\u677F\u683C\u5F0F\u548C\u7CBE\u786E\u6570\u5B57\u8FDB\u884C\u8BF4\u660E\uFF0C\u5207\u52FF\u81EA\u884C\u52A0\u603B\u6570\u767E\u884C\u660E\u7EC6\u6570\u636E\uFF01\u3011\\n\\n`;
                 }
+              } else {
+                let sums = {};
+                let numCounts = {};
+                vals.forEach((row) => {
+                  row.forEach((cell, idx) => {
+                    if (cell !== null && cell !== "" && !isNaN(cell)) {
+                      const num = parseFloat(cell);
+                      if (num > 0) {
+                        sums[cols[idx]] = (sums[cols[idx]] || 0) + num;
+                        numCounts[cols[idx]] = (numCounts[cols[idx]] || 0) + 1;
+                      }
+                    }
+                  });
+                });
+                let genericHint = `\\n\u3010\u7CFB\u7EDF\u6570\u636E\u9632\u5E7B\u89C9\u62E6\u622A\uFF1A\u4EE5\u4E0B\u662F\u672C\u6B21\u67E5\u8BE2\u6570\u636E\u7684\u7CBE\u786E\u8BA1\u7B97\u7ED3\u679C\uFF0C\u7531\u4E8E\u67E5\u8BE2\u8FD4\u56DE\u4E86\u5927\u91CF\u660E\u7EC6\uFF08\u5171 ${vals.length} \u6761\uFF09\uFF0C\u7EDD\u5BF9\u7981\u6B62\u4F60\u81EA\u884C\u5728\u8111\u5185\u8FDB\u884C\u6D6E\u70B9\u6570\u6C42\u548C\uFF01\u5982\u679C\u9700\u8981\u6C47\u62A5\u7EDF\u8BA1\u89C4\u6A21\uFF0C\u8BF7\u4E25\u683C\u4F7F\u7528\u4EE5\u4E0B\u7CFB\u7EDF\u9884\u8BA1\u7B97\u7684\u771F\u5B9E\u6C47\u603B\u7ED3\u679C\uFF1A\\n`;
+                let hasValidSums = false;
+                for (let col in sums) {
+                  if (numCounts[col] > 1) {
+                    genericHint += `- \u5B57\u6BB5 ${col} \u7684\u7CBE\u786E\u603B\u548C\u4E3A: ${sums[col].toFixed(3)}\\n`;
+                    hasValidSums = true;
+                  }
+                }
+                genericHint += "\u8BF7\u6839\u636E\u5B57\u5178\u786E\u8BA4\u5404\u5217\u7684\u5B9E\u9645\u4E1A\u52A1\u542B\u4E49\uFF08\u5982\u957F\u5EA6\u5355\u4F4D\u53EF\u80FD\u662F\u7C73\u6216\u516C\u91CC\uFF09\uFF0C\u5E76\u4F7F\u7528\u8FD9\u4E9B\u771F\u5B9E\u6C47\u603B\u6570\u503C\uFF0C\u4E0D\u8981\u51ED\u7A7A\u634F\u9020\uFF01\u3011\\n\\n";
+                if (hasValidSums) {
+                  summaryHint = genericHint;
+                }
               }
               sqlResultStr = summaryHint + JSON.stringify({ columns: cols, values: vals.slice(0, 1e3) });
               try {
