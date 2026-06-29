@@ -46850,7 +46850,7 @@ ${msg.views.view3}
         /“([^”]+)”/g,
         `<span class="product-badge">\u201C$1\u201D</span>`
       ).replace(
-        /```[a-z]*\n([\s\S]*?)\n```/g,
+        /```[a-zA-Z\s]*\n([\s\S]*?)\n```/g,
         (match, p1) => {
           const id = "diagram-" + Math.random().toString(36).substr(2, 9);
           return `<div class="relative group my-3">
