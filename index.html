@@ -47912,6 +47912,7 @@ ${knowledgeBase}
             updateBot({ content: (updateBot.content || "") + "\n\n\u26A0\uFE0F \u5DF2\u8FBE\u5230\u5355\u6B21\u67E5\u8BE2 1 \u5143\u9632\u8D85\u652F\u7EA2\u7EBF\uFF0C\u5DF2\u81EA\u52A8\u7194\u65AD\u3002" });
             const elapsed = ((Date.now() - startTime) / 1e3).toFixed(1);
             setLastQueryStats({ totalTokens, cost: totalCost, time: elapsed, iter: iterCount });
+            updateBot({ totalTokens });
             break;
           }
           const choice = data.choices?.[0];
@@ -47936,6 +47937,7 @@ ${knowledgeBase}
               toolCalls: [...toolCallLog]
             });
             setLastQueryStats({ totalTokens, cost: totalCost, time: elapsed, iter: iterCount });
+            updateBot({ totalTokens });
             break;
           }
           const toolResults = [];
