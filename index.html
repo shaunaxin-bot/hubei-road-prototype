@@ -47220,6 +47220,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     useEffect2(() => {
       getDB().then((database) => {
         setDb(database);
+        window.__DB__ = database;
         setLoadedTablesByYear({ 2016: PRESET_2016_LOADED_STATUS });
         setLocalDbStatus(`SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA \xB7 \u5DF2\u771F\u5B9E\u6302\u8F7D 2016 \u5E74\u62A5\u5168\u91CF 28 \u5F20\u8868`);
         try {
@@ -47530,6 +47531,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         });
         const database = new SQL.Database(new Uint8Array(buffer));
         setDb(database);
+        window.__DB__ = database;
         setLoadedTablesByYear({ 2016: PRESET_2016_LOADED_STATUS });
         let macroEntry = { "\u68C0\u6D4B\u5E74\u4EFD": 2016, year: 2016, totalMileage: 0, goodMileage: 0, goodRate: 0, totalBridges: 0, dangerBridges: 0 };
         try {
