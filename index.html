@@ -48270,7 +48270,7 @@ ${msg.views.view3}
         {
           className: "whitespace-pre-wrap text-sm leading-snug",
           dangerouslySetInnerHTML: {
-            __html: formatBadgeText(convertMarkdownTablesToHtml((msg.content || "").replace(/\n{2,}/g, "\n")), msg.id)
+            __html: formatBadgeText(convertMarkdownTablesToHtml((msg.content || "").replace(/(\r?\n\s*){2,}/g, "\n")), msg.id)
           }
         }
       ), msg.sqlResult && msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && /* @__PURE__ */ React.createElement("div", { className: "mt-2 py-2 border-t border-slate-100 text-[12px] flex items-center justify-between" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 text-xs" }, "\u660E\u7EC6\u6570\u636E\u5DF2\u8F7D\u5165\u53F3\u4FA7\u5E95\u76D8 \u27A1\uFE0F"), /* @__PURE__ */ React.createElement(
