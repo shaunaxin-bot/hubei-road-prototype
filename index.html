@@ -46914,6 +46914,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     if (!text) return text;
     let processedText = text.replace(/^[ \t]*[#＃]{1,6}[ \t]*(.*)$/gm, '<div class="font-bold text-slate-800 text-lg mt-4 mb-2">$1</div>');
     processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<span class="font-bold">$1</span>');
+    let previousText;
+    do {
+      previousText = processedText;
+      processedText = processedText.replace(/(\|[^\n]+[^|\s])\s*\n\s*([^|]+\|)/g, "$1 $2");
+    } while (processedText !== previousText);
     if (!processedText.includes("|")) return processedText;
     const lines = processedText.split("\n");
     let inTable = false;
