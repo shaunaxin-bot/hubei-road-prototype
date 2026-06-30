@@ -47712,8 +47712,12 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     };
     const handleDeepSeekQuery = async (queryText) => {
       if (!queryText || !queryText.trim()) return;
-      const loadedYears = window.__LOADED_DB_YEARS__ || [];
-      if (loadedYears.length === 0) {
+      let currentDb = db;
+      try {
+        if (!currentDb) currentDb = await getDB();
+      } catch (e) {
+      }
+      if (!currentDb) {
         const errId = Date.now();
         setMessages((prev) => [
           ...prev,
@@ -47781,21 +47785,19 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         }
       ];
       const execGetAvailableDatabases = () => {
-        const years = window.__LOADED_DB_YEARS__ || [];
-        const result = years.map((y2) => ({
+        const result = (selectedYears || [2016]).map((y2) => ({
           year: y2,
-          tables: window.__LOADED_DB_TABLES__?.[y2] || []
+          tables: Object.keys(loadedTablesByYear?.[y2] || {}).filter((t) => loadedTablesByYear[y2][t])
         }));
         return JSON.stringify(result);
       };
       const execGetTableSchema = (tableName, year) => {
         try {
-          const db2 = window.__LOADED_DBS__?.[year] || window.__DB__;
-          if (!db2) return JSON.stringify({ error: "\u6570\u636E\u5E93\u672A\u52A0\u8F7D" });
-          const colRes = db2.exec(`PRAGMA table_info(${tableName})`);
+          if (!currentDb) return JSON.stringify({ error: "\u6570\u636E\u5E93\u672A\u52A0\u8F7D" });
+          const colRes = currentDb.exec(`PRAGMA table_info(${tableName})`);
           if (!colRes.length) return JSON.stringify({ error: `\u8868 ${tableName} \u4E0D\u5B58\u5728` });
           const cols = colRes[0].values.map((r) => ({ cid: r[0], name: r[1], type: r[2] }));
-          const sampleRes = db2.exec(`SELECT * FROM ${tableName} LIMIT 3`);
+          const sampleRes = currentDb.exec(`SELECT * FROM ${tableName} LIMIT 3`);
           const sampleRows = sampleRes.length ? sampleRes[0].values : [];
           return JSON.stringify({ table: tableName, year: year || "default", columns: cols, sample_rows: sampleRows });
         } catch (e) {
@@ -47804,12 +47806,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       };
       const execExecuteSql = (sql, year, retryCount) => {
         try {
-          const db2 = window.__LOADED_DBS__?.[year] || window.__DB__;
-          if (!db2) return JSON.stringify({ error: "\u6570\u636E\u5E93\u672A\u52A0\u8F7D" });
-          const res = db2.exec(sql);
+          if (!currentDb) return JSON.stringify({ error: "\u6570\u636E\u5E93\u672A\u52A0\u8F7D" });
+          const res = currentDb.exec(sql);
           if (!res.length) return JSON.stringify({ rows: [], row_count: 0, note: "\u67E5\u8BE2\u8FD4\u56DE0\u884C\uFF0C\u8BF7\u68C0\u67E5WHERE\u6761\u4EF6\u6216\u8868\u540D\u662F\u5426\u6B63\u786E" });
           const { columns, values } = res[0];
-          return JSON.stringify({ columns, rows: values, row_count: values.length, year: year || window.__LOADED_DB_YEARS__?.[0] });
+          return JSON.stringify({ columns, rows: values, row_count: values.length, year: year || (selectedYears?.[0] || 2016) });
         } catch (e) {
           return JSON.stringify({ error: e.message, sql_attempted: sql });
         }
