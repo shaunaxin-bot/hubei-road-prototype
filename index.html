@@ -47924,8 +47924,7 @@ ${knowledgeBase}
   \u53C2\u6570: ${tc.argsStr}
   ${tc.status === "ok" ? "\u2705" : tc.status === "running" ? "\u23F3" : "\u274C"} ${tc.resultSummary}`
             ).join("\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n");
-            let base = msg.content || "";
-            return base + (currentThought ? "\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n" + currentThought : "");
+            return currentThought;
           };
           if (msg.content) {
             updateBot({ thought: renderThoughts(), toolCalls: [...toolCallLog] });
@@ -48009,7 +48008,7 @@ ${knowledgeBase}
             }
             if (tcEntry.status === "running") {
               tcEntry.status = "ok";
-              tcEntry.resultSummary = "\u2705 \u6210\u529F";
+              tcEntry.resultSummary = "\u6210\u529F";
             }
             toolCallLog = toolCallLog.map((t) => t.id === tc.id ? tcEntry : t);
             updateBot({ thought: renderThoughts(), toolCalls: [...toolCallLog] });
