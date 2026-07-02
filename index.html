@@ -11003,8 +11003,17 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   ];
   var PanelRightOpen = createLucideIcon("panel-right-open", __iconNode9);
 
-  // node_modules/lucide-react/dist/esm/icons/send.mjs
+  // node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
   var __iconNode10 = [
+    ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
+    ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
+    ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
+    ["path", { d: "M8 16H3v5", key: "1cv678" }]
+  ];
+  var RefreshCw = createLucideIcon("refresh-cw", __iconNode10);
+
+  // node_modules/lucide-react/dist/esm/icons/send.mjs
+  var __iconNode11 = [
     [
       "path",
       {
@@ -11014,10 +11023,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     ],
     ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
   ];
-  var Send2 = createLucideIcon("send", __iconNode10);
+  var Send2 = createLucideIcon("send", __iconNode11);
 
   // node_modules/lucide-react/dist/esm/icons/sparkles.mjs
-  var __iconNode11 = [
+  var __iconNode12 = [
     [
       "path",
       {
@@ -11029,10 +11038,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     ["path", { d: "M22 4h-4", key: "gwowj6" }],
     ["circle", { cx: "4", cy: "20", r: "2", key: "6kqj1y" }]
   ];
-  var Sparkles2 = createLucideIcon("sparkles", __iconNode11);
+  var Sparkles2 = createLucideIcon("sparkles", __iconNode12);
 
   // node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
-  var __iconNode12 = [
+  var __iconNode13 = [
     [
       "path",
       {
@@ -11043,15 +11052,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     ["path", { d: "M12 9v4", key: "juzpu7" }],
     ["path", { d: "M12 17h.01", key: "p32p05" }]
   ];
-  var TriangleAlert = createLucideIcon("triangle-alert", __iconNode12);
-
-  // node_modules/lucide-react/dist/esm/icons/upload.mjs
-  var __iconNode13 = [
-    ["path", { d: "M12 3v12", key: "1x0j5s" }],
-    ["path", { d: "m17 8-5-5-5 5", key: "7q97r8" }],
-    ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }]
-  ];
-  var Upload = createLucideIcon("upload", __iconNode13);
+  var TriangleAlert = createLucideIcon("triangle-alert", __iconNode13);
 
   // node_modules/lucide-react/dist/esm/icons/x.mjs
   var __iconNode14 = [
@@ -47074,16 +47075,16 @@ ${msg.views.view3}
         style: { width: `${leftPanelWidth}px` },
         className: "bg-white border-r border-slate-200 flex flex-col shrink-0 z-20 shadow-[4px_0_15px_-3px_rgba(0,0,0,0.05)] relative overflow-hidden"
       },
-      /* @__PURE__ */ React.createElement("div", { className: "p-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between shrink-0" }, /* @__PURE__ */ React.createElement("span", { className: "font-bold text-slate-800 text-sm flex items-center gap-2" }, uploading ? /* @__PURE__ */ React.createElement(LoaderCircle, { className: "animate-spin text-blue-600", size: 16 }) : /* @__PURE__ */ React.createElement(Folder2, { size: 16, className: "text-blue-600" }), "\u5E74\u62A5\u6587\u4EF6\u5939", !uploading && Object.keys(loadedTablesByYear).length > 0 && /* @__PURE__ */ React.createElement("span", { className: "text-green-500 font-bold ml-1" }, "\u2713")), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement(
+      /* @__PURE__ */ React.createElement("div", { className: "px-3 py-2 border-b border-slate-200 bg-slate-50 flex items-center justify-between shrink-0" }, /* @__PURE__ */ React.createElement("span", { className: "font-bold text-slate-800 text-[13px] flex items-center gap-2" }, uploading ? /* @__PURE__ */ React.createElement(LoaderCircle, { className: "animate-spin text-blue-600", size: 15 }) : /* @__PURE__ */ React.createElement(Folder2, { size: 15, className: "text-blue-600" }), "\u5E74\u62A5\u6587\u4EF6\u5939"), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(
         "button",
         {
           onClick: handleFolderScan,
-          className: "p-1.5 hover:bg-white bg-slate-100 rounded text-slate-600 hover:text-blue-600 transition-colors shadow-sm cursor-pointer",
-          title: "\u540C\u6B65\u52A0\u8F7D\u672C\u5730\u6570\u636E"
+          className: "p-1 hover:bg-white bg-slate-100 rounded text-slate-600 hover:text-blue-600 transition-colors shadow-sm cursor-pointer flex items-center justify-center",
+          title: "\u5237\u65B0\u672C\u5730\u6570\u636E"
         },
-        /* @__PURE__ */ React.createElement(Upload, { size: 14 })
-      ), /* @__PURE__ */ React.createElement("button", { onClick: () => setIsLeftPanelExpanded(false), className: "p-1 hover:bg-slate-200 rounded text-slate-400 cursor-pointer" }, /* @__PURE__ */ React.createElement(X, { size: 14 })))),
-      /* @__PURE__ */ React.createElement("div", { className: "flex-1 overflow-y-auto p-3" }, /* @__PURE__ */ React.createElement("div", { className: "mb-4" }, /* @__PURE__ */ React.createElement("div", { className: "text-[11px] font-bold text-slate-500 mb-2 px-1" }, "\u6570\u636E\u5E74\u4EFD\u8303\u56F4"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-1.5 px-1" }, effectiveAllYears.length > 0 ? effectiveAllYears.map((yr) => {
+        /* @__PURE__ */ React.createElement(RefreshCw, { size: 13, className: uploading ? "animate-spin" : "" })
+      ), /* @__PURE__ */ React.createElement("button", { onClick: () => setIsLeftPanelExpanded(false), className: "p-1 hover:bg-slate-200 rounded text-slate-400 cursor-pointer flex items-center justify-center" }, /* @__PURE__ */ React.createElement(X, { size: 13 })))),
+      /* @__PURE__ */ React.createElement("div", { className: "flex-1 overflow-y-auto px-2 py-2" }, /* @__PURE__ */ React.createElement("div", { className: "mb-2" }, /* @__PURE__ */ React.createElement("div", { className: "text-[11px] font-bold text-slate-500 mb-1.5 px-1" }, "\u6570\u636E\u5E74\u4EFD\u8303\u56F4"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-1.5 px-1" }, effectiveAllYears.length > 0 ? effectiveAllYears.map((yr) => {
         const isSel = selectedYears.includes(yr);
         const yrTables = loadedTablesByYear[yr] || {};
         const realTableCount = Object.values(yrTables).filter(Boolean).length;
@@ -57782,10 +57783,10 @@ lucide-react/dist/esm/icons/maximize.mjs:
 lucide-react/dist/esm/icons/minimize.mjs:
 lucide-react/dist/esm/icons/panel-right-close.mjs:
 lucide-react/dist/esm/icons/panel-right-open.mjs:
+lucide-react/dist/esm/icons/refresh-cw.mjs:
 lucide-react/dist/esm/icons/send.mjs:
 lucide-react/dist/esm/icons/sparkles.mjs:
 lucide-react/dist/esm/icons/triangle-alert.mjs:
-lucide-react/dist/esm/icons/upload.mjs:
 lucide-react/dist/esm/icons/x.mjs:
 lucide-react/dist/esm/lucide-react.mjs:
   (**
