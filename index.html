@@ -45789,7 +45789,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     }, []);
     const fetchYearsData = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/list_years");
+        const res = await fetch("/api/list_years");
         if (!res.ok) return;
         const data = await res.json();
         const years = [...new Set(data.map((item) => item.year))].sort((a, b2) => b2 - a);
@@ -45800,7 +45800,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
           (item.tables || []).forEach((t) => {
             tablesObj[t.lcode || t] = true;
           });
-          loaded[item.year] = tablesObj;
+          loaded[item.year] = { ...loaded[item.year] || {}, ...tablesObj };
         });
         if (Object.keys(loaded).length > 0) {
           setLoadedTablesByYear((prev) => {
