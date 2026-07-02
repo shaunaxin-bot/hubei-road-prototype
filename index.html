@@ -45518,18 +45518,15 @@ Please report this to https://github.com/markedjs/marked.`, e) {
                         ${hasData ? "hover:bg-slate-50" : "opacity-60"}`
           },
           /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 min-w-0" }, /* @__PURE__ */ React.createElement("span", { className: `text-[10px] font-bold font-mono shrink-0 ${hasData ? "text-slate-700" : "text-slate-400"}` }, lcode), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-500 truncate" }, name)),
-          /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 shrink-0 ml-1" }, (agents || []).map((agent, i) => {
-            const shortName = agent.includes("-") ? agent.split("-")[1] : "\u667A\u80FD\u4F53";
-            return /* @__PURE__ */ React.createElement(
-              "span",
-              {
-                key: i,
-                className: "text-[9px] font-bold px-1 rounded-sm bg-blue-50 text-blue-500 border border-blue-200",
-                title: agent
-              },
-              shortName
-            );
-          })),
+          /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 shrink-0 ml-1" }, (agents || []).map((agent, i) => /* @__PURE__ */ React.createElement(
+            "span",
+            {
+              key: i,
+              className: "text-[9px] font-bold px-1 rounded-sm bg-blue-50 text-blue-500 border border-blue-200 truncate max-w-[150px]",
+              title: agent
+            },
+            agent
+          ))),
           /* @__PURE__ */ React.createElement("div", { className: "absolute left-full top-0 ml-2 z-[200] hidden group-hover/row:flex flex-col w-52 bg-white shadow-xl border border-slate-200 rounded p-3 pointer-events-none" }, /* @__PURE__ */ React.createElement("div", { className: `text-[11px] font-bold text-slate-800 mb-1` }, lcode, " \xB7 ", name), /* @__PURE__ */ React.createElement("div", { className: "text-[10px] text-slate-500 mb-1.5" }, hasData ? loadedYrs.map((yr) => `${yr}\u5E74`).join(" \xB7 ") : "\u6682\u65E0\u6570\u636E"), agents && agents.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded border border-slate-200 w-fit" }, "[AGENT] ", agents[0]))
         );
       })));
