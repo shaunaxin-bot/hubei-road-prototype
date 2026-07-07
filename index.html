@@ -48482,21 +48482,22 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     };
     const execGetTableSchema = async (tableName, year) => {
       const targetYear = year || (selectedYears?.[0] || 2016);
+      const cleanTableName = tableName.split(" ")[0].replace(/[^a-zA-Z0-9_]/g, "");
       try {
         const pragmaRes = await fetch("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sql: `PRAGMA table_info("${tableName}")`, year: targetYear })
+          body: JSON.stringify({ sql: `PRAGMA table_info("${cleanTableName}")`, year: targetYear })
         });
         if (!pragmaRes.ok) throw new Error("Backend server error on PRAGMA");
         const pragmaData = await pragmaRes.json();
         if (pragmaData.error) return JSON.stringify({ error: pragmaData.error });
         const cols = (pragmaData.rows || []).map((r) => ({ cid: r[0], name: r[1], type: r[2] }));
-        if (cols.length === 0) return JSON.stringify({ error: `\u8868 ${tableName} \u4E0D\u5B58\u5728` });
+        if (cols.length === 0) return JSON.stringify({ error: `\u8868 ${cleanTableName} \u4E0D\u5B58\u5728` });
         const sampleRes = await fetch("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sql: `SELECT * FROM "${tableName}" LIMIT 15`, year: targetYear })
+          body: JSON.stringify({ sql: `SELECT * FROM "${cleanTableName}" LIMIT 15`, year: targetYear })
         });
         let sampleRows = [];
         if (sampleRes.ok) {
