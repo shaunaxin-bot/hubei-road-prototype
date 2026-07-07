@@ -48544,10 +48544,10 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         if (window.__DBs__ && window.__DBs__[targetYear]) {
           try {
             const localDb = window.__DBs__[targetYear];
-            const pragmaRes = localDb.exec(`PRAGMA table_info("${tableName}")`);
-            if (!pragmaRes || pragmaRes.length === 0) return JSON.stringify({ error: `\u8868 ${tableName} \u4E0D\u5B58\u5728` });
+            const pragmaRes = localDb.exec(`PRAGMA table_info("${cleanTableName}")`);
+            if (!pragmaRes || pragmaRes.length === 0) return JSON.stringify({ error: `\u8868 ${cleanTableName} \u4E0D\u5B58\u5728` });
             const cols = pragmaRes[0].values.map((r) => ({ cid: r[0], name: r[1], type: r[2] }));
-            const sampleRes = localDb.exec(`SELECT * FROM "${tableName}" LIMIT 15`);
+            const sampleRes = localDb.exec(`SELECT * FROM "${cleanTableName}" LIMIT 15`);
             let sampleRows = [];
             if (sampleRes && sampleRes.length > 0) {
               sampleRows = sampleRes[0].values.map((rowArray) => {
@@ -48558,7 +48558,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
                 return obj;
               });
             }
-            return JSON.stringify({ table: tableName, year: targetYear, columns: cols, sample_rows: sampleRows });
+            return JSON.stringify({ table: cleanTableName, year: targetYear, columns: cols, sample_rows: sampleRows });
           } catch (err) {
             return JSON.stringify({ error: "Local SQLite Error: " + err.message });
           }
