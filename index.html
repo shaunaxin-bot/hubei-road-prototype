@@ -2885,9 +2885,49 @@ default_footer: 单位负责人：______    审核人：______    制表人：__
     getDB: () => getDB,
     loadDBByYear: () => loadDBByYear
   });
-  var dbPromise, loadDBByYear, getDB;
+  var getDbCache, setDbCache, dbPromise, loadDBByYear, getDB;
   var init_sqlite = __esm({
     "src/db/sqlite.js"() {
+      getDbCache = (key) => {
+        return new Promise((resolve, reject) => {
+          const req = indexedDB.open("RoadDataCacheDB", 1);
+          req.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains("db_files")) {
+              db.createObjectStore("db_files");
+            }
+          };
+          req.onsuccess = (e) => {
+            const db = e.target.result;
+            const tx = db.transaction("db_files", "readonly");
+            const store = tx.objectStore("db_files");
+            const getReq = store.get(key);
+            getReq.onsuccess = () => resolve(getReq.result);
+            getReq.onerror = () => reject(getReq.error);
+          };
+          req.onerror = () => reject(req.error);
+        });
+      };
+      setDbCache = (key, arrayBuffer) => {
+        return new Promise((resolve, reject) => {
+          const req = indexedDB.open("RoadDataCacheDB", 1);
+          req.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains("db_files")) {
+              db.createObjectStore("db_files");
+            }
+          };
+          req.onsuccess = (e) => {
+            const db = e.target.result;
+            const tx = db.transaction("db_files", "readwrite");
+            const store = tx.objectStore("db_files");
+            const putReq = store.put(arrayBuffer, key);
+            putReq.onsuccess = () => resolve();
+            putReq.onerror = () => reject(putReq.error);
+          };
+          req.onerror = () => reject(req.error);
+        });
+      };
       dbPromise = null;
       loadDBByYear = (year) => {
         dbPromise = new Promise(async (resolve, reject) => {
@@ -2907,13 +2947,27 @@ default_footer: 单位负责人：______    审核人：______    制表人：__
             reject(errWasm);
             return;
           }
+          const cacheKey = `hubei_${year}_db_v1`;
           try {
-            console.log(`\u6B63\u5728\u5C1D\u8BD5\u4ECE\u76F8\u5BF9\u8DEF\u5F84\u81EA\u52A8\u88C5\u8F7D\u6570\u636E\u5E93 hubei_${year}.db...`);
+            console.log(`\u6B63\u5728\u68C0\u67E5\u672C\u5730\u7F13\u5B58(IndexedDB)\u4E2D\u662F\u5426\u5B58\u5728 ${year} \u6570\u636E\u5E93...`);
+            const cachedBuffer = await getDbCache(cacheKey);
+            if (cachedBuffer) {
+              console.log(`\u547D\u4E2D\u7F13\u5B58\uFF01\u6781\u901F\u4ECE\u672C\u5730\u6302\u8F7D hubei_${year}.db (\u8017\u65F6\u7EA6\u51E0\u767E\u6BEB\u79D2)...`);
+              const db = new SQL.Database(new Uint8Array(cachedBuffer));
+              resolve(db);
+              return;
+            }
+          } catch (e) {
+            console.warn("\u8BFB\u53D6\u7F13\u5B58\u5931\u8D25\uFF0C\u5C06\u8D70\u7F51\u7EDC\u91CD\u65B0\u4E0B\u8F7D", e);
+          }
+          try {
+            console.log(`\u6B63\u5728\u5C1D\u8BD5\u4ECE\u76F8\u5BF9\u8DEF\u5F84\u81EA\u52A8\u4E0B\u8F7D\u6570\u636E\u5E93 hubei_${year}.db (\u7EA640MB\uFF0C\u9996\u6B21\u52A0\u8F7D\u8BF7\u7A0D\u5019)...`);
             const response = await fetch(`./hubei_${year}.db`);
             if (response.ok) {
               const buffer = await response.arrayBuffer();
+              setDbCache(cacheKey, buffer).catch((e) => console.warn("\u5199\u5165\u7F13\u5B58\u5931\u8D25", e));
               const db = new SQL.Database(new Uint8Array(buffer));
-              console.log(`\u6210\u529F\u901A\u8FC7\u76F8\u5BF9\u8DEF\u5F84\u6302\u8F7D\u672C\u5730 SQLite \u6570\u636E\u5E93 hubei_${year}.db\uFF01`);
+              console.log(`\u6210\u529F\u901A\u8FC7\u76F8\u5BF9\u8DEF\u5F84\u4E0B\u8F7D\u5E76\u6302\u8F7D\u672C\u5730 SQLite \u6570\u636E\u5E93 hubei_${year}.db\uFF01\u5DF2\u5B58\u5165\u672C\u5730\u7F13\u5B58\uFF01`);
               resolve(db);
               return;
             }
@@ -2926,8 +2980,9 @@ default_footer: 单位负责人：______    审核人：______    制表人：__
             const response = await fetch(localUrl);
             if (response.ok) {
               const buffer = await response.arrayBuffer();
+              setDbCache(cacheKey, buffer).catch((e) => console.warn("\u5199\u5165\u7F13\u5B58\u5931\u8D25", e));
               const db = new SQL.Database(new Uint8Array(buffer));
-              console.log("\u6210\u529F\u901A\u8FC7\u672C\u5730\u56DE\u73AF\u670D\u52A1\u88C5\u8F7D SQLite \u6570\u636E\u5E93\uFF01");
+              console.log("\u6210\u529F\u901A\u8FC7\u672C\u5730\u56DE\u73AF\u670D\u52A1\u88C5\u8F7D SQLite \u6570\u636E\u5E93\uFF01\u5DF2\u5B58\u5165\u672C\u5730\u7F13\u5B58\uFF01");
               resolve(db);
               return;
             }
