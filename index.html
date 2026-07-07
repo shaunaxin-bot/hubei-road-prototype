@@ -48008,6 +48008,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     return result.join("\n").replace(/<\/div>\s*\n\s*(<div|<table)/g, "</div>$1").replace(/<\/table>\s*\n\s*(<div|<span|<p|<h)/g, "</table>$1").replace(/>\s*\n\s*</g, "><");
   };
   function DeepQAAnnualReportAgentView({ isStandalone = false }) {
+    const [hoveredPrompt, setHoveredPrompt] = useState2(null);
     const TABLE_MAPPING_RULES = {
       // 规划期 (5张表)
       "01 \u7EFC\u5408\u4FE1\u606F\u8868": { sheets: ["\u7EFC\u5408\u4FE1\u606F", "T001", "T01"], files: ["\u7EFC\u5408\u4FE1\u606F", "T001"] },
