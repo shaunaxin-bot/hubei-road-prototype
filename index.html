@@ -47867,12 +47867,24 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       "13-1 \u517B\u62A4\u4F5C\u4E1A": true,
       "13-4 \u517B\u62A4\u666E\u901A": true
     };
-    const [messages, setMessages] = useState2([{
-      id: 1,
-      role: "agent",
-      content: "\u60A8\u597D\uFF01\u6211\u662F\u5927\u6A21\u578B\u6DF1\u5EA6\u7A7F\u900F\u7248\u667A\u80FD\u4F53\u3002\u8BF7\u8F93\u5165\u60A8\u60F3\u4E86\u89E3\u7684\u516C\u8DEF\u7EDF\u8BA1\u5E74\u62A5\u4E1A\u52A1\u6570\u636E\u95EE\u9898\uFF0C\u6211\u5C06\u6839\u636E\u6570\u636E\u5927\u6A21\u578B\u5B9E\u65F6\u4E3A\u60A8\u751F\u6210 SQL \u5E76\u4E0B\u94BB\u67E5\u8BE2\u672C\u5730\u5E95\u5EA7\u6570\u636E\u3002",
-      time: "\u521A\u521A"
-    }]);
+    const [messages, setMessages] = useState2(() => {
+      if (isStandalone) {
+        const saved = localStorage.getItem("deepqa_standalone_messages");
+        if (saved) {
+          try {
+            return JSON.parse(saved);
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+      return [{
+        id: 1,
+        role: "agent",
+        content: "\u60A8\u597D\uFF01\u6211\u662F\u5927\u6A21\u578B\u6DF1\u5EA6\u7A7F\u900F\u7248\u667A\u80FD\u4F53\u3002\u8BF7\u8F93\u5165\u60A8\u60F3\u4E86\u89E3\u7684\u516C\u8DEF\u7EDF\u8BA1\u5E74\u62A5\u4E1A\u52A1\u6570\u636E\u95EE\u9898\uFF0C\u6211\u5C06\u6839\u636E\u6570\u636E\u5927\u6A21\u578B\u5B9E\u65F6\u4E3A\u60A8\u751F\u6210 SQL \u5E76\u4E0B\u94BB\u67E5\u8BE2\u672C\u5730\u5E95\u5EA7\u6570\u636E\u3002",
+        time: "\u521A\u521A"
+      }];
+    });
     const [apiKey, setApiKey] = useState2("");
     const [maxBudget, setMaxBudget] = useState2(1);
     const [lastQueryStats, setLastQueryStats] = useState2(() => {
@@ -49729,6 +49741,7 @@ ${msg.views.view3}
         href: "?mode=standalone&view=deepqa",
         target: "_blank",
         rel: "noopener noreferrer",
+        onClick: () => localStorage.setItem("deepqa_standalone_messages", JSON.stringify(messages)),
         className: "bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 transition-colors rounded-lg px-4 py-2 flex items-center justify-center cursor-pointer shadow-sm text-indigo-700 font-bold text-sm gap-2"
       },
       /* @__PURE__ */ React.createElement(ExternalLink2, { size: 16 }),
