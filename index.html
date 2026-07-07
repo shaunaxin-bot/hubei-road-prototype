@@ -2669,27 +2669,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 ## 4. 系统级输出约束 (System Prompt Rules)
 
-为实现极致的“主从智能体协同透明化”，大模型在处理任意涉及具体年报表格的数据问答时，**必须严格遵循以下单表维度的主从呈现规范**：
+为实现极致的“主从智能体协同透明化”，大模型在处理任意涉及具体年报表格的数据问答时，**必须严格遵循以下规范**：
 
 1. **思索链（Tool Calls）的精准指派**：
    - 当大模型针对某一张表（如 L29a）发起查询时，不仅要调用工具，还必须明确在工具上下文中注入该表的**主责智能体**（例如：\`AGENT-养护管理-02_路况检测评定\`），而不能笼统使用统筹智能体。
-2. **文本回复的单表架构树输出**：
-   - 在给出数据查询结果之前，**必须**基于第 3 节的字典，在回答的最上方以 Markdown 代码块形式，生成一个微型的单表归属架构树（Text Tree）。
-   - **格式要求**：只展现被查询的这一张表及其主/从智能体和物理表的关系。
-   
-   **输出示例**：
-   \`\`\`text
-   【当前数据归属架构】
-    ├─ [L29a] 公路日常路况评定明细表
-         ├─ 主责智能体: AGENT-养护管理-02_路况检测评定
-         └─ 从属更新:
-              └─ AGENT-养护管理-02_路况检测评定: 公路技术状况明细表.xlsx
-   ----------------------------------
-   \`\`\`
-3. **主从协同工作流的解析（COT）**：
-   - 在输出完上述架构树、准备给出具体数据结果之前，**必须**用简短的语言向用户解释“读写分离”的底层协作逻辑。
-   - 话术大意参考：“*💡 协同说明：统筹智能体之所以能直接为您秒级计算出上述结果，是因为各个底层的【从属智能体】（详见上方图谱）在数据生产期，已经提前完成了各自物理底表的收集与融合，拼装成了这套中央宏观库（读写分离）。我现在的查询，是直接站在它们汇总完毕的成果肩膀上进行的穿透。*”
-   - 然后，再按照常规格式输出数据的查询结论。
 
 ---
 
@@ -49363,7 +49346,7 @@ ${knowledgeBase}
               }
               if (queriedTableObj) break;
             }
-            if (queriedTableObj && !finalContent.includes("\u3010\u5F53\u524D\u6570\u636E\u5F52\u5C5E\u67B6\u6784\u3011")) {
+            if (queriedTableObj) {
               let subTableLines = queriedTableObj.subTables.map((st2) => `           \u2514\u2500 AGENT-${st2.microAgent}: ${st2.name}`).join("\n");
               const treeText = `\`\`\`text
 \u3010\u5F53\u524D\u6570\u636E\u7A7F\u900F\u67B6\u6784 (Data Lineage)\u3011
@@ -49373,9 +49356,12 @@ ${knowledgeBase}
 ${subTableLines}
 \`\`\`
 > \u{1F6E1}\uFE0F **\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A (Agent Trust Declaration)**: \u672C\u6B21\u56DE\u7B54\u7684\u6BCF\u4E00\u9879\u6570\u503C\u6307\u6807\uFF0C\u5747\u7531 \`AGENT-${queriedTableObj.macroAgent}\` \u5B9E\u65F6\u7A7F\u900F\u81F3\u5E95\u90E8\u7269\u7406\u8868 \`[${queriedTableObj.lcode}] ${queriedTableObj.name}\` \u83B7\u53D6\u3002\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u7EDD\u5BF9\u6570\u636E\u6EAF\u6E90\u80FD\u529B\u3002
+> \u{1F4A1} **\u4E3B\u4ECE\u534F\u540C\u539F\u7406\u89E3\u6790**: \u7EDF\u7B79\u667A\u80FD\u4F53\u4E4B\u6240\u4EE5\u80FD\u77AC\u95F4\u5F97\u51FA\u4E0A\u8FF0\u7ED3\u679C\uFF0C\u662F\u56E0\u4E3A\u5404\u4E2A\u5E95\u5C42\u7684\u3010\u4ECE\u5C5E\u667A\u80FD\u4F53\u3011\uFF08\u8BE6\u89C1\u4E0A\u65B9\u67B6\u6784\uFF09\u5728\u524D\u671F\u5DF2\u5B8C\u6210\u4E86\u591A\u6E90\u7269\u7406\u5E95\u8868\u7684\u6536\u96C6\u4E0E\u878D\u5408\uFF0C\u62FC\u88C5\u6210\u4E86\u4E2D\u592E\u5B8F\u89C2\u5E93\uFF08\u8BFB\u5199\u5206\u79BB\uFF09\u3002\u672C\u6B21\u67E5\u8BE2\u76F4\u63A5\u57FA\u4E8E\u4ED6\u4EEC\u6C47\u603B\u7684\u5E95\u5C42\u6210\u679C\u8FDB\u884C\u7A7F\u900F\u5206\u6790\u3002
 
 `;
-              finalContent = treeText + finalContent;
+              if (!finalContent.includes("\u3010\u5F53\u524D\u6570\u636E\u7A7F\u900F\u67B6\u6784")) {
+                finalContent = treeText + finalContent;
+              }
             }
             let actionPrompt = null;
             if (toolCallLog.some((tc) => tc.name === "execute_sql")) {
