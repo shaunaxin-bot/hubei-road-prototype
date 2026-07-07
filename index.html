@@ -47945,6 +47945,8 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         loadDBByYear2(targetYear).then((database) => {
           setDb(database);
           window.__DB__ = database;
+          if (!window.__DBs__) window.__DBs__ = {};
+          window.__DBs__[targetYear] = database;
           setLocalDbStatus(`\u2705 SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA \xB7 \u5DF2\u52A8\u6001\u6302\u8F7D ${targetYear} \u5E74\u62A5`);
           try {
             let macroEntry = { "\u68C0\u6D4B\u5E74\u4EFD": targetYear, year: targetYear, totalMileage: 0, goodMileage: 0, goodRate: 0, totalBridges: 0, dangerBridges: 0 };
@@ -49340,75 +49342,10 @@ ${subTableLines}
                 resultStr = JSON.stringify(result);
               } else if (fnName === "get_table_schema") {
                 const targetYear = args.year || (selectedYears?.[0] || 2016);
-                let schemaSuccess = false;
-                try {
-                  const srvRes = await fetch("/api/execute_sql", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ sql: `PRAGMA table_info(${args.table_name})`, year: targetYear })
-                  });
-                  if (srvRes.ok) {
-                    const srvData = await srvRes.json();
-                    if (!srvData.error && srvData.rows && srvData.rows.length > 0) {
-                      const cols = srvData.rows.map((r) => ({ cid: r[0], name: r[1], type: r[2] }));
-                      let sampleRows = [];
-                      try {
-                        const srvSample = await fetch("/api/execute_sql", {
-                          method: "POST",
-                          headers: { "Content-Type": "application/json" },
-                          body: JSON.stringify({ sql: `SELECT * FROM ${args.table_name} LIMIT 15`, year: targetYear })
-                        });
-                        if (srvSample.ok) {
-                          const srvSampleData = await srvSample.json();
-                          if (!srvSampleData.error && srvSampleData.rows) {
-                            sampleRows = srvSampleData.rows.map((rowArray) => {
-                              let obj = {};
-                              cols.forEach((c, i) => {
-                                obj[c.name] = rowArray[i];
-                              });
-                              return obj;
-                            });
-                          }
-                        }
-                      } catch (e) {
-                      }
-                      resultStr = JSON.stringify({ table: args.table_name, year: targetYear, columns: cols, sample_rows: sampleRows, data_source: `\u670D\u52A1\u5668DB(${targetYear}\u5E74)` });
-                      schemaSuccess = true;
-                    } else if (!srvData.error && srvData.rows?.length === 0) {
-                      resultStr = JSON.stringify({ error: `\u8868 ${args.table_name} \u4E0D\u5B58\u5728` });
-                      schemaSuccess = true;
-                    } else if (srvData.error) {
-                      resultStr = JSON.stringify({ error: srvData.error });
-                      schemaSuccess = true;
-                    }
-                  }
-                } catch (e) {
-                  console.warn("[Tool: get_table_schema] server error:", e.message);
-                  resultStr = JSON.stringify({ error: "Failed to fetch schema from server: " + e.message });
-                }
+                resultStr = await execGetTableSchema(args.table_name, targetYear);
               } else if (fnName === "execute_sql") {
                 const targetYear = args.year || (selectedYears?.[0] || 2016);
-                let sqlSuccess = false;
-                try {
-                  const srvRes = await fetch("/api/execute_sql", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ sql: args.sql, year: targetYear })
-                  });
-                  if (srvRes.ok) {
-                    const srvData = await srvRes.json();
-                    if (!srvData.error) {
-                      resultStr = JSON.stringify({ ...srvData, year: targetYear, data_source: `\u670D\u52A1\u5668DB(${targetYear}\u5E74)` });
-                      sqlSuccess = true;
-                    } else {
-                      resultStr = JSON.stringify(srvData);
-                      sqlSuccess = true;
-                    }
-                  }
-                } catch (e) {
-                  console.warn("[Tool: execute_sql] server error:", e.message);
-                  resultStr = JSON.stringify({ error: "Failed to fetch execute_sql from server: " + e.message, sql_attempted: args.sql });
-                }
+                resultStr = await execExecuteSql(args.sql, targetYear);
                 const parsed = JSON.parse(resultStr);
                 if (parsed.row_count === 0 && emptyRetryCount < MAX_EMPTY_RETRY) {
                   emptyRetryCount++;
