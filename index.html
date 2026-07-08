@@ -49821,9 +49821,9 @@ ${knowledgeBase}
 > \u{1F6E1}\uFE0F **\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A**: \u672C\u6B21\u62E6\u622A\u4E0E\u7EA0\u504F\u8FC7\u7A0B\uFF0C\u5168\u7A0B\u7531\u653F\u4F01\u591A\u667A\u80FD\u4F53\u7A7F\u900F\u5E95\u5C42\u786C\u4EF6\u8BBE\u5907\u4E0E\u53F0\u8D26\u81EA\u52A8\u5B8C\u6210\uFF0C\u4EBA\u5DE5\u4EC5\u4FDD\u7559\u6700\u540E\u4E00\u9053\u5BA1\u6279\u6743\u3002\u4E1A\u52A1\u7ED3\u8BBA\u5177\u6709 100% \u4E8B\u5B9E\u652F\u6491\u4E0E\u5B8C\u6574\u9632\u7BE1\u6539\u5BA1\u8BA1\u6EAF\u6E90\u3002
 
 `;
-              if (!finalContent.includes("\u3010\u653F\u5E9C\u4FA7\uFF1A\u65E5\u5E38\u5165\u5E93\u68C0\u67E5\u3011")) {
-                finalContent = perfectTree + finalContent;
-              }
+              const treeRegex = /```text[\s\S]*?【政府侧：日常入库检查】[\s\S]*?```/g;
+              finalContent = finalContent.replace(treeRegex, "");
+              finalContent = perfectTree + finalContent;
             } else if (queriedTableObj) {
               let subTableLines = queriedTableObj.subTables.map((st2) => `           \u2514\u2500 AGENT-${st2.microAgent}: ${st2.name}`).join("\n");
               const treeText = `\`\`\`text
