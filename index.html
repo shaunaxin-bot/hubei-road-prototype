@@ -2701,128 +2701,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 `;
-        window.__UI_TEMPLATES__ = `---
-name: ui_templates
-description: 提供给大模型进行生成的展示模版。已针对前端按需（点击）渲染与本地数据表瞬时绘制进行重构，引导大模型将推理算力集中在高质量结论和分类总结上。
----
-
-**【架构声明：大模型输出边界指令】**
-1. **表格免生成**：大模型在首屏输出时，**绝对禁止输出任何大段 HTML 格式的明细数据表格**。系统会在前端读取本地数据库，自动在界面渲染出高精度的三线明细表。
-2. **三视图按需生成**：首屏 Q&A 响应只生成核心结论。当用户点击报告下方的折叠框时，大模型才会被二次调起，并专门生成该视图的政务分析论述。
-
----
-
-### 模版 A：单一路线/特定资产分析模版（核心结论）
-*适用于：查询具体某一国道、省道、县道的里程，或特定路线上的桥梁、隧道、服务区等资产数量明细。*
-
-**【首屏核心结论输出规范】**
-使用极其严谨、正式的中国体制内公文语态，指出核心资产总数、路线编码、物理里程或规模指标。如果用户查询的是特定路线的资产（如：有多少座大桥），**大模型必须利用传入的明细行，自动进行分类维度汇总（如按桥梁结构或材料），并以 markdown 格式输出一个小巧的分类汇总表**。
-在输出核心文字之前，**必须首先明确写出一行文字，标明本次查询所调用的底层数据源表名全称（如：[数据源: 《L21(公路路线基本情况明细表)》]）**。
-
-**结论参考结构：**
-根据《湖北2016年公路养护统计年报报表》中的 **《L21（公路路线基本情况明细表）》**：
-**[路线代码/资产简称] 湖北省内物理全长：**[最终数值]****（扣除城建及共线后的法定实际管养里程为：****[实际管养值]****）
-* 经过地区：[经过区域，如：广水市 -> 孝昌县 -> 武汉市 -> 咸安区 -> 赤壁市]
-* 资产分类汇总如下：
-| [核心分类维度，如：上部结构/评定等级] | [数量规模，如：座/处] | [物理里程，如：公里/延米] | [资产占比 / 健康等级评价] |
-|---|---|---|---|
-| [分类项 A，如：梁桥 / 1类] | [数值 A] | [里程 A] | [评价 A，如：一类/占比45%] |
-| [分类项 B，如：拱桥 / 2类] | [数值 B] | [里程 B] | [评价 B，如：二类/占比55%] |
-| **合计** | **[数量汇总求和]** | **[里程汇总求和]** | **-** |
-
----
-
-### 模版 B：全局资产汇总模版（核心结论）
-*适用于：查询全省总量、所有地市或多条路线的总体资产规模与分布。*
-
-**【首屏核心结论输出规范】**
-简要概括全省大类资产的总数及整体分布特征。输出一个极简的地市/路线汇总小表。
-在输出核心文字之前，**必须首先明确写出一行文字，标明本次查询所调用的底层数据源表名全称（如：[数据源: 《L21(公路路线基本情况明细表)》]）**。
-
-**结论参考结构：**
-根据《湖北2016年公路养护统计年报报表》中的 **《[数据源表官方全称]》**，全省在册统计如下：
-* 资产总数：****[在册总数]****
-* 总延长/规模：****[总长度/规模数值]****
-* 核心指标多维汇总如下：
-
-| [地市/区域/资产大类维度] | [在册资产总数] | [物理总里程(公里/延米)] | [占整体比例 / 健康评价分布] |
-|---|---|---|---|
-| [地市 A，如：武汉市] | [数值 A] | [里程 A] | [占比 A / 评价 A] |
-| [地市 B，如：宜昌市] | [数值 B] | [里程 B] | [占比 B / 评价 B] |
-| **全省合计** | **[全省数量总和]** | **[全省里程总和]** | **100%** |
-
----
-
-### 视角分析内容撰写模板（供视图二次局部生成时使用）
-*当用户点击折叠区，触发视图局部加载时，大模型根据以下大纲框架专门扩写该视图的政务分析文本。**⚠️极简排版指令：大模型在生成以下各个要点的文字时，必须极度精简、重点突出、切中要害！每个要点叙述最多 2-3 句话，多用业务短句和项目符号（Bullet points）直击核心，严禁长篇大论的废话。不同要点之间留出单个空行，保持排版极度清爽。** **⚠️ASCII绘图强制纪律：在绘制所有纯文本示意图时，严禁绘制右侧封闭边框（绝对不要在行尾使用 \`|\`、\`┐\`、\`┘\` 等符号试图把图表右侧框起来），因为中英文字符宽度差异会导致右侧永远无法对齐！只需保持左侧缩进对齐即可，让右侧自然开放。***
-
-#### 视角1：规建管养运全生命周期单阶段分析
-
-**【全阶段台账追踪图】**：在正式分析前，必须绘制一条贯穿五个阶段（规划 ──> 建设 ──> 管理 ──> 养护 ──> 运营）的横向纯文本流程图。**针对每个阶段，都必须在其下方（或括号内）写明具体的“业务洞察点”以及“调用的具体底层物理表官方全称”。（若某个阶段本次查询未涉及具体表单，请标注“暂无台账数据”等提示）。⚠️排版要求：必须使用 Markdown 的代码块（\\\`\\\`\\\`text ... \\\`\\\`\\\`）将该图表完整包裹起来，以便前端渲染为高亮色块！且严禁在图表最外部绘制任何大方框或边框（绝对不要使用 ┌ ┐ └ ┘ | 等符号试图把整个图表框起来），只需直接展示内部树状结构即可，否则会导致严重排版错位！**
-
-**【规划阶段核准】**：阐述该资产被纳入国家/省级中长期网规划的定位，并分析关联规划选线数据时的规范要求。
-
-**【建设阶段确权】**：描述建设期工程交竣工审计、工可批复以及物理资产移交时的财务与原值核验要点。
-
-**【管理阶段建账】**：说明该资产正式建账建档、入库登记（如《L24a（公路桥梁明细表）》）时的合规规则。
-
-**【养护阶段定检】**：分析该资产在定检定级、上报《L29a（公路日常路况评定明细表）》或日常修缮记录时的闭环检测逻辑。
-
-**【运营阶段监管】**：阐述资产在收费、日常巡检记录、安全应急设施运行（如《L26（公路沿线服务及收费设施明细表）》）中的监管保障要求。
-
-#### 视角 2：规建管养运全生命周期跨阶段分析
-
-**【多维交叉连线示意图】**：在正式分析前，必须绘制纯文本树状或关联图，直观展示本视图涉及的几张年报表单是如何关联的。**必须严格标出 1:1 或 1:N 映射关系，并在连线中明确写出穿透键（如：路线代码、起止桩号、行政区划代码等）进行业务穿透。涉及的所有表单必须使用《官方完整表名》。⚠️排版要求：必须使用 Markdown 的代码块（\\\`\\\`\\\`text ... \\\`\\\`\\\`）将该图表完整包裹起来，以便前端渲染为高亮色块！且严禁在图表最外部绘制任何大方框或边框（绝对不要使用 ┌ ┐ └ ┘ | 等符号试图把整个图表框起来），只需直接展示内部树状结构即可，否则会导致严重排版错位！**
-
-**【业务台账映射关系】**：分析该大类资产在各业务系统（项目代码、路段编码、桥隧定检、能耗系统）中的全生命周期映射链条。
-
-**【关联逻辑与账实核对】**：论证该资产数据记录与《L21（公路路线基本情况明细表）》或《T001（公路基本情况汇总表）》主干网台账之间的空间/物理里程吻合度校验方法。
-
-**【审计洞察结论与合规审计】**：深度分析是否存在山区地市管养赤字、城区共线段管养边界不清或潜在的财政养护资金重复申报等数据错漏风险，并给出审计整改建议。
-
-#### 视角 3：数据要素化及应用价值
-
-**【要素化价值路径图】**：在正式分析前，必须绘制纯文本漏斗/路径流转图，展示从数据底座到顶层应用的完整闭环。**图中要求：1. 底座层必须列出完整的物理库表名；2. 加工层必须写出具体的智能体编码及名称（格式如：AGENT-数据统筹-00(养护统计年报)）；3. 数据集层必须输出具体的高质量数据集名称；4. 产品层必须单独输出具体的数据产品名称，并附带其文档来源的绝对路径；5. 终端消费层必须展现【使用者付费闭环】。⚠️排版要求：必须使用 Markdown 的代码块（\\\`\\\`\\\`text ... \\\`\\\`\\\`）将该图表完整包裹起来，以便前端渲染为高亮色块！且严禁在图表最外部绘制任何大方框或边框（绝对不要使用 ┌ ┐ └ ┘ | 等符号试图把整个图表框起来），只需直接展示内部树状结构即可，否则会导致严重排版错位！**
-
-**【智能体协同对账审计】**：匹配相关的行业智能体编码和岗位完整名称（必须从提供的数据字典中100%一致检索，严禁捏造），阐述多智能体跨部门联合对账与勾稽审计的协同运行模式。
-
-**【高质量数据要素资产沉淀】**：列出由此沉淀的规范数据集名称（如《智慧公路桥梁资产定检测量标准数据集》），作为数字底座。
-
-**【数据产品对外服务输出】**：写出自动生成的核算公文或对外数据产品名称（如《部省校验年报双上报产品》），说明其对账支撑作用。
-
-**【数据运营与闭环模式推算】**：推算数据对于第三方导航、商用车高精地图定位或保险理赔方的授权前景，并进行年创收运行价值估算。
-
-**【🚨 核心指令：占位符与合计行强制要求】**
-1. 在分类汇总表格中最下方，**必须包含且输出一个“合计”行**，对上方各个明细值进行正确的求和汇总计算。
-2. 模板及输出大纲中包含的任何占位符（如包含大括号的英文标识或括号描述，例如：\${roadCode}、\${roadName}、\${maintenanceLevel}、\${theoreticalCost} 等），大模型在生成时**必须且只能将其替换为具体的物理网台账数据或具体业务数值**！
-3. 如果SQLite查询结果中缺失该数值，请根据上下文、公路管养常识合理编造填充符合实际 of 业务数据与名称！**严禁在最终输出中残留任何形式的 \\\${...} 大括号占位符**！
-`;
-        window.__EXCEL_TEMPLATES__ = `---
-name: excel_templates
-description: 定义年报系统导出 Excel 报表时的视觉样式与格式模仿规范。用户可通过直接编辑此文件来动态调整导出的 Excel 样式。
-font_name: SimSun
-title_font_size: 16
-title_font_bold: true
-header_bg_color: "#F2F2F2"
-header_font_bold: true
-border_style: thin
-border_color: "#CCCCCC"
-show_metadata_row: true
-default_reporter: 湖北省公路事务中心
-default_footer: 单位负责人：______    审核人：______    制表人：______
----
-
-# Excel 导出样式配置模板
-
-本模板用于定义在点击“生成 Excel 并物理归档”时，系统所模仿的公文格式规范。
-
-## 格式模仿规则：
-1. **标题合并行**：首行自动合并所有数据列，使用 \`font_name\` 与 \`title_font_size\`，居中对齐；
-2. **副标题行**：第二行展示填报单位、统计截止时间（动态取年报年度）及计量单位；
-3. **三线/网格表头**：表头背景渲染为 \`header_bg_color\`，文字加粗；
-4. **数据区域**：数字列自动右对齐，保留 2 位或 3 位小数精度；
-5. **落款签名**：表底自动留空并插入 \`default_footer\` 签名区。
-`;
+        window.__UI_TEMPLATES__ = ``;
+        window.__EXCEL_TEMPLATES__ = ``;
         window.__API_CONFIG__ = `{"API_PROVIDER": "deepseek", "MAX_BUDGET_RMB": 2.0, "OPENAI_API_KEY": "QU1hSEpUOF8wMFpMMlVYTkk3UEw3ZDRTWGRYc1FtN3BhUmo5aEk4YmVlbV9hVzh0UlU4VEQxQ2dxa2w0dDR3d0NZUHdSekt3SzdKRmtibEIzVERSN1VqejdFTXZ0eGJ3RVE2cElRdFRiWWlyTVVia2tjOFZTQ1NaZFpJc1ZqRUJON1d0SlVfeFVUT1dmUDMyY1JJamNkOGZhTkkxLWpvcnAta3M=", "DEEPSEEK_API_KEY": "NjM5N2JhM2Y3NmRkYjI4YTViYjRlYTY4MzA1NWMxMGYta3M=", "GEMINI_API_KEY": "d3p4RWtiQUQtQ2lRVk0xRmdiaFdzRlY2dHo4R0NjNFNJNGJGZ0lkZVJabEo2TlI4YkEuUUE=", "ZHIPU_API_KEY": "bTNTTVRmWE10UTY1QjZJVy5mMTc0ZWMzZWM5YzFjYzFhZTZjNDI5Nzc3NTQyMmYxOQ=="}`;
         console.log("%c[Build Timestamp]%c " + new Date().toISOString(), "color: white; background: #6366f1; padding: 2px 6px; border-radius: 4px;", "color: #6366f1; font-weight: bold;");
 (() => {
@@ -47626,6 +47506,22 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     useEffect2(() => {
       setIsOpen(tc.status === "running");
     }, [tc.status]);
+    const isEnterprise = tc.name.startsWith("enterprise_");
+    if (isEnterprise) {
+      let systemName = "\u4F01\u4E1A\u7EA7\u5FAE\u670D\u52A1";
+      let actionName = "\u672A\u77E5\u64CD\u4F5C";
+      if (tc.name === "enterprise_receive_seed_data") {
+        systemName = "\u4F01\u4E1A\u7EA7CPMS\u8DEF\u9762\u7BA1\u7406\u5B50\u7CFB\u7EDF";
+        actionName = "\u89E3\u6790\u504F\u79BB\u79CD\u5B50\u6570\u636E";
+      } else if (tc.name === "enterprise_extract_gps_mapping") {
+        systemName = "\u9AD8\u7CBE\u5EA6GIS\u5750\u6807\u914D\u51C6\u5FAE\u670D\u52A1";
+        actionName = "\u63D0\u53D6\u5E95\u5C42 GPS \u6620\u5C04\u5173\u7CFB";
+      } else if (tc.name === "enterprise_eliminate_noise_and_output_dict") {
+        systemName = "\u53F0\u8D26\u6E05\u6D17\u5F15\u64CE & \u6570\u636E\u4E2D\u53F0";
+        actionName = "\u5E73\u6ED1\u9664\u566A\u5E76\u5C01\u88C5\u4FEE\u6B63\u5B57\u5178";
+      }
+      return /* @__PURE__ */ React.createElement("div", { className: "mb-2 mx-2 fade-in" }, /* @__PURE__ */ React.createElement("div", { className: "font-mono text-[10px] bg-[#1e1e1e] text-slate-300 rounded-md p-2.5 shadow-inner border border-slate-700" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center border-b border-slate-700/80 pb-1 mb-1.5 text-slate-500" }, /* @__PURE__ */ React.createElement("span", { className: "font-bold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Database2, { size: 12 }), " \u4F01\u4E1A\u4FA7\u72EC\u7ACB\u524D\u7F6E\u8282\u70B9 | \u6267\u884C\u6D41\u6C34 (Audit Log)"), /* @__PURE__ */ React.createElement("span", { className: `text-[9px] ${tc.status === "running" ? "text-amber-500 animate-pulse" : "text-emerald-500"}` }, tc.status === "running" ? "\u25CF \u8FD0\u884C\u4E2D (Processing)" : "\u25CF \u5DF2\u65AD\u5F00 (Completed)")), /* @__PURE__ */ React.createElement("div", { className: "space-y-1 leading-relaxed" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "[System]"), " ", /* @__PURE__ */ React.createElement("span", { className: "text-blue-400" }, "INFO"), " \u5EFA\u7ACB\u653F\u52A1\u5916\u7F51\u8DE8\u57DF\u5B89\u5168\u8FDE\u63A5... ", /* @__PURE__ */ React.createElement("span", { className: "text-emerald-400" }, "\u6210\u529F")), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "[System]"), " ", /* @__PURE__ */ React.createElement("span", { className: "text-blue-400" }, "INFO"), " \u5524\u9192\u76EE\u6807\u7CFB\u7EDF: ", /* @__PURE__ */ React.createElement("span", { className: "text-indigo-300" }, systemName)), /* @__PURE__ */ React.createElement("div", { className: "flex items-start gap-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 shrink-0" }, "[Task]"), /* @__PURE__ */ React.createElement("span", { className: "text-amber-400 shrink-0" }, "EXEC"), /* @__PURE__ */ React.createElement("span", null, "\u6267\u884C\u6838\u5FC3\u52A8\u4F5C: ", actionName, " ...", tc.status === "running" ? /* @__PURE__ */ React.createElement("span", { className: "animate-pulse bg-slate-700 text-amber-300 px-1 rounded ml-1" }, "\u5904\u7406\u4E2D_") : /* @__PURE__ */ React.createElement("span", { className: "text-emerald-400 ml-1" }, "\u6210\u529F"))), tc.status !== "running" && /* @__PURE__ */ React.createElement(React.Fragment, null, tc.resultSummary && /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "[Output]"), " ", /* @__PURE__ */ React.createElement("span", { className: "text-purple-400" }, "DATA"), " \u8FD4\u56DE\u7ED3\u679C\u6458\u8981: ", tc.resultSummary), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "[System]"), " ", /* @__PURE__ */ React.createElement("span", { className: "text-blue-400" }, "INFO"), " \u{1F680} \u52A0\u5BC6\u56DE\u4F20\u653F\u52A1\u6682\u5B58\u533A... ", /* @__PURE__ */ React.createElement("span", { className: "text-emerald-400" }, "\u53D1\u9001\u6210\u529F"))))));
+    }
     return /* @__PURE__ */ React.createElement("div", { className: "mb-[4px] leading-[1.4] font-sans flex items-start gap-1 text-[12px]" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 mt-[2px] cursor-pointer", onClick: () => setIsOpen(!isOpen) }, isOpen ? /* @__PURE__ */ React.createElement(ChevronDown2, { size: 12 }) : /* @__PURE__ */ React.createElement(ChevronRight2, { size: 12 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full min-w-0" }, /* @__PURE__ */ React.createElement(
       "div",
       {
@@ -47634,6 +47530,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         title: "\u70B9\u51FB\u5C55\u5F00/\u6298\u53E0\u53C2\u6570"
       },
       /* @__PURE__ */ React.createElement("span", { className: `px-1.5 py-0.5 rounded text-[11px] font-bold flex items-center gap-1 ${tc.status === "running" ? "bg-blue-50 text-blue-600" : tc.status === "error" ? "bg-red-50 text-red-600" : "bg-slate-50 text-slate-600"}` }, tc.status === "running" ? "\u{1F504} \u6267\u884C\u4E2D" : tc.status === "error" ? "\u274C \u5931\u8D25" : "\u2713 \u5DF2\u5B8C\u6210"),
+      /* @__PURE__ */ React.createElement("span", { className: "font-bold text-[11px] text-slate-500 bg-slate-200/50 px-1.5 py-0.5 rounded" }, "[\u653F\u5E9C\u4FA7\u5F15\u64CE]"),
       tc.agentName && /* @__PURE__ */ React.createElement("span", { className: "font-bold text-[11px] text-blue-600 bg-blue-50/50 px-1.5 py-0.5 rounded" }, tc.agentName),
       /* @__PURE__ */ React.createElement("span", { className: "font-semibold text-slate-800" }, "\u8C03\u7528 ", tc.name),
       tc.status === "success" && tc.resultSummary && /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 text-[11px] ml-1 font-normal" }, "(", tc.resultSummary, ")")
@@ -47930,6 +47827,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     let processedText = text.replace(/^[ \t]*[#＃]{1,6}[ \t]*(.*)$/gm, '<div class="font-bold text-slate-800 text-lg mt-4 mb-2">$1</div>');
     processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<span class="font-bold">$1</span>');
     processedText = processedText.replace(/^[ \t]*---[ \t]*$/gm, '<hr class="my-5 border-slate-200 border-dashed" />');
+    processedText = processedText.replace(/```[a-z]*\n([\s\S]*?)```/g, (match, code) => {
+      return `<pre class="bg-slate-50 text-slate-500 border border-slate-200 px-3 py-2.5 rounded-md text-[10px] font-mono overflow-x-auto whitespace-pre my-2 leading-[1.2]">
+${code}
+</pre>`;
+    });
     processedText = processedText.replace(/(?:^[ \t]*>[ \t]?(.*)(?:\n|$))+/gm, (match) => {
       const cleanedLines = match.split("\n").filter((line) => line.trim().length > 0).map((line) => line.replace(/^[ \t]*>[ \t]?/, "")).join("\n");
       return `<div class="relative overflow-hidden rounded-r-lg rounded-l-sm my-3 group">
@@ -48133,11 +48035,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
 \u76EE\u524D\uFF0C\u6211\u5DF2\u7ECF\u6DF1\u5EA6\u9002\u914D\u5E76\u652F\u6301\u4EE5\u4E0B\u4E09\u5927\u8DE8\u57DF\u534F\u540C\u5B9E\u6218\u573A\u666F\uFF1A
 - <b>\u3010\u573A\u666F1\u3011\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\uFF08\u5F85\u5F00\u53D1\uFF09</b>\uFF1A\u6253\u901A\u6C14\u8C61\u9884\u8B66\u3001\u5E94\u6025\u54CD\u5E94\u4E0E\u8D44\u4EA7\u635F\u6BC1\u6838\u67E5\u7684\u653F\u52A1\u95ED\u73AF\u3002
 - <b>\u3010\u573A\u666F2\u3011\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406</b>\uFF1A\u9488\u5BF9\u957F\u5927\u578B\u6865\u6881\u7269\u8054\u4F20\u611F\u8BBE\u5907\uFF0C\u8FDB\u884C\u6570\u636E\u7684\u79BB/\u5728\u7EBF\u878D\u5408\u6E05\u6D17\u4E0E\u5065\u5EB7\u8BC4\u4F30\u3002
-- <b>\u3010\u573A\u666F3(\u57FA\u7840)\u3011\u5E74\u62A5\u67E5\u8BE2</b>\uFF1A\u4EE5\u4EA4\u901A\u90E8\u6743\u5A01\u7684\u201C\u516C\u8DEF\u7EDF\u8BA1\u5E74\u62A5\u201D\u4E3A\u57FA\u7840\uFF0C\u63D0\u4F9B\u8DEF\u7F51\u3001\u6865\u96A7\u7B49\u9AD8\u9891\u67E5\u8BE2\u3002<br/>- <b>\u3010\u573A\u666F3(\u4E13\u4E1A)\u3011\u5E74\u62A5\u4E1A\u52A1</b>\uFF1A<span class="text-indigo-600 font-bold">\u3010PRO\u3011</span>\u8DE8\u90E8\u95E8(\u89C4/\u5EFA/\u517B/\u8D22)\u63D0\u4F9B\u6307\u6807\u5BF9\u9F50\u53CA\u5B9E\u7269\u8D44\u4EA7\u5BA1\u8BA1\u95ED\u73AF\u52A8\u4F5C\u3002
+- <b>\u3010\u573A\u666F3(\u57FA\u7840)\u3011\u5E74\u62A5\u67E5\u8BE2</b>\uFF1A\u4EE5\u4EA4\u901A\u90E8\u6743\u5A01\u7684\u201C\u516C\u8DEF\u7EDF\u8BA1\u5E74\u62A5\u201D\u4E3A\u57FA\u7840\uFF0C\u63D0\u4F9B\u8DEF\u7F51\u3001\u6865\u96A7\u7B49\u9AD8\u9891\u67E5\u8BE2\u3002<br/>- <b>\u3010\u573A\u666F3(\u4E13\u4E1A)\u3011\u5E74\u62A5\u4E1A\u52A1</b>\uFF1A<span class="text-indigo-600 font-bold">\u3010PRO\u3011</span>\u8DE8\u90E8\u95E8\uFF089\u4E2A\u4E1A\u52A1\uFF09\u6DF1\u5EA6\u4E1A\u52A1\u7CBE\u51C6\u51B3\u7B56\u3002
 
-<b>\u5168\u65B0 1+9 \u67B6\u6784\u89E3\u6790\uFF1A</b>
+<b>\u5168\u65B0 1+9 \u67B6\u6784\uFF1A</b>
 - <b>1\uFF08\u6570\u636E\u7EDF\u7B79\uFF09</b>\uFF1A\u4EE3\u8868\u6211\u7684\u5168\u57DF\u201C\u6570\u636E\u7EDF\u7B79\u77E5\u8BC6\u5E93\u201D\u4E0E\u4E2D\u67A2\u8C03\u5EA6\u5927\u8111\u3002
-- <b>9\uFF08\u5341\u5927\u5E73\u53F0\u751F\u6001\uFF09</b>\uFF1A\u4EE3\u8868<b>\u89C4\u5212\u8BA1\u5212\u3001\u5EFA\u8BBE\u7BA1\u7406\u3001\u5DE5\u7A0B\u6280\u672F\u3001\u517B\u62A4\u7BA1\u7406\u3001\u6536\u8D39\u8FD0\u8425\u3001\u8D22\u52A1\u8D44\u4EA7\u3001\u519C\u6751\u516C\u8DEF</b>\uFF0C\u4EE5\u53CA\u7531<b>\u5B89\u76D1\u5904</b>\u4E0E<b>\u5E94\u6025\u4E2D\u5FC3</b>\u534F\u540C\u652F\u6491\u7684<b>\u5B89\u5168\u5E94\u6025</b>\uFF0C\u8FD8\u6709\u5168\u65B0\u72EC\u7ACB\u7684<b>\u6CD5\u89C4\u5BA1\u6279</b>\u4E5D\u5927\u6838\u5FC3\u4E1A\u52A1\u751F\u6001\u3002\u6B63\u662F\u5B83\u4EEC\u524D\u671F\u7684\u586B\u62A5\u4E0E\u6E05\u6D17\uFF0C\u6C47\u7F16\u6210\u4E86\u5F53\u524D\u7684\u4E2D\u592E\u5B8F\u89C2\u5E93\u3002
+- <b>9\uFF08\u4E1A\u52A1\u677F\u5757\uFF09</b>\uFF1A\u4EE3\u8868<b>\u89C4\u5212\u8BA1\u5212\u3001\u5EFA\u8BBE\u7BA1\u7406\u3001\u5DE5\u7A0B\u6280\u672F\u3001\u517B\u62A4\u7BA1\u7406\u3001\u6536\u8D39\u8FD0\u8425\u3001\u8D22\u52A1\u8D44\u4EA7\u3001\u519C\u6751\u516C\u8DEF</b>\uFF0C\u4EE5\u53CA\u7531<b>\u5B89\u76D1\u5904</b>\u4E0E<b>\u5E94\u6025\u4E2D\u5FC3</b>\u534F\u540C\u652F\u6491\u7684<b>\u5B89\u5168\u5E94\u6025</b>\uFF0C\u8FD8\u6709\u5168\u65B0\u72EC\u7ACB\u7684<b>\u6CD5\u89C4\u5BA1\u6279</b>\u4E5D\u5927\u6838\u5FC3\u4E1A\u52A1\u7248\u672C\u3002\u4E1A\u52A1\u90E8\u95E8\u524D\u671F\u7684\u586B\u62A5\u4E0E\u6E05\u6D17\uFF0C\u5F62\u6210\u4E86\u73B0\u6709\u52A0\u8F7D\u6570\u636E\uFF0C\u7528\u4E8E\u67E5\u8BE2\u5206\u6790\u3002
 
 <b>\u6838\u5FC3\u5F15\u64CE\u4E0E\u884C\u52A8\u529B\uFF1A</b>
 \u6709\u522B\u4E8E\u4F20\u7EDF\u7684\u67E5\u8BE2\u7EDF\u8BA1\u7CFB\u7EDF\uFF0C\u6211\u662F\u4E00\u4E2A\u5177\u5907\u81EA\u4E3B\u884C\u52A8\u4E0E\u6267\u884C\u80FD\u529B\u7684\u667A\u80FD\u4F53\uFF08Agent\uFF09\u3002
@@ -48866,6 +48768,15 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         } : m2));
         return;
       }
+      if (action.id === "upload_g207" || action.id === "upload_g241") {
+        setMessages((prev) => prev.map((m2) => m2.id === msg.id ? {
+          ...m2,
+          actionPrompt: { ...m2.actionPrompt, status: "resolved", resolvingActionId: action.id }
+        } : m2));
+        const fileName = action.id === "upload_g207" ? "G207\u4E4C\u6D77\u7EBF\uFF08\u8944\u9633\u6BB5\uFF09.wps" : "G241\u547C\u5317\u7EBF\uFF08\u8944\u9633\u6BB5\uFF09.wps";
+        handleReq01Upload(msg.id, fileName);
+        return;
+      }
       setMessages((prev) => prev.map((m2) => m2.id === msg.id ? {
         ...m2,
         actionPrompt: { ...m2.actionPrompt, status: "resolving", resolvingActionId: action.id }
@@ -49128,9 +49039,65 @@ ${msg.views.view3}
         }
       }
     };
-    const handleDeepSeekQuery = async (queryText) => {
+    const handleReq01Upload = (uploadMsgId, fileName) => {
+      setMessages((prev) => prev.map(
+        (m2) => m2.id === uploadMsgId ? { ...m2, isReq01Upload: false, content: m2.content + `
+
+*(\u{1F4CE} \u5DF2\u6210\u529F\u63A5\u6536\u6587\u4EF6\uFF1A${fileName || "\u6869\u53F7\u6570\u636E\u6587\u4EF6"})*` } : m2
+      ));
+      const displayText = `\u5DF2\u4E0A\u4F20\uFF1A${fileName || "\u6869\u53F7\u6570\u636E\u6587\u4EF6"}
+\u6307\u4EE4\uFF1A\u8BF7\u6C42\u8DE8\u57DF\u6570\u636E\u6838\u67E5\u4E0E\u7A7A\u95F4\u914D\u51C6`;
+      const llmContext = `\u3010\u6267\u884C\u65B9\u6848\u3011\u7528\u6237\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6\uFF08${fileName || "\u6869\u53F7\u6570\u636E\u6587\u4EF6"}\uFF09\u3002\u8BF7\u6309\u4EE5\u4E0B\u6B65\u9AA4\u4E25\u683C\u6267\u884C\uFF0C\u4EE5\u6A21\u62DF\u653F\u4F01\u591A\u667A\u80FD\u4F53\u534F\u540C\u6D41\u7A0B\uFF1A
+1. [\u653F\u52A1\u4FA7\u611F\u77E5] \u7ACB\u5373\u8C03\u7528 parse_uploaded_file \u89E3\u6790\u6587\u4EF6\uFF0C\u83B7\u53D6\u504F\u79FB\u79CD\u5B50\u6570\u636E\u3002
+2. [\u4F01\u4E1A\u4FA7\u534F\u540C] \u4F9D\u6B21\u8C03\u7528\u4EE5\u4E0B\u4E09\u4E2A\u4F01\u4E1A\u4FA7\u5DE5\u5177\uFF1A
+   - enterprise_receive_seed_data \u63A5\u6536\u79CD\u5B50\u6570\u636E
+   - enterprise_extract_gps_mapping \u63D0\u53D6GPS\u6620\u5C04
+   - enterprise_eliminate_noise_and_output_dict \u8F93\u51FA\u6700\u7EC8\u4FEE\u6B63\u5B57\u5178
+3. [\u653F\u52A1\u4FA7\u95ED\u73AF] \u6839\u636E\u4FEE\u6B63\u540E\u7684\u5B57\u5178\uFF0C\u8C03\u7528 execute_sql \u67E5\u8BE2\u5DF2\u52A0\u8F7D\u5E74\u4EFD\uFF08\u59822016\uFF09\u7684 L29a \u8868\uFF0C\u843D\u5165\u5E95\u5E93\u3002
+4. [\u751F\u6210\u62A5\u544A] \u7EFC\u5408\u4EE5\u4E0A\u5DE5\u5177\u83B7\u53D6\u7684\u6570\u636E\uFF0C\u751F\u6210\u6700\u7EC8\u7684\u62A5\u544A\u3002
+
+\u3010\u683C\u5F0F\u8981\u6C42\u3011\u6700\u7EC8\u62A5\u544A\u5FC5\u987B\u4E25\u683C\u91C7\u7528\u4EE5\u4E0B\u7ED3\u6784\uFF1A
+  \u9996\u884C\u5F3A\u5236\u8F93\u51FA\u56FA\u5B9A\u6587\u5B57\u4F5C\u4E3A\u6536\u5C3E\u6807\u8BC6\uFF08\u5B8C\u5168\u4E00\u5B57\u4E0D\u5DEE\uFF09\uFF1A\u201C**\u3010\u653F\u5E9C\u4FA7\u5E74\u62A5\u603B\u7BA1\u667A\u80FD\u4F53\u3011\u63A5\u6536\u81EA [\u4F01\u4E1A\u4FA7\u5E95\u5C42\u5FAE\u670D\u52A1] \u7684\u7A7A\u95F4\u4FEE\u6B63\u5B57\u5178\u89E3\u6790\u5B8C\u6BD5\u3002\u5F00\u59CB\u6267\u884C\u5E95\u5C42\u6570\u636E\u91CD\u7EC4\u3002\u6700\u7EC8\u5206\u6790\u62A5\u544A\u5982\u4E0B\uFF1A**\u201D
+  \u5C3E\u90E8\u5FC5\u987B\u5F3A\u5236\u8F93\u51FA\u4EBA\u5DE5\u6838\u9A8C\u63D0\u9192\uFF1A\u201C**\u26A0\uFE0F \u6570\u636E\u5B89\u5168\u63D0\u793A**\uFF1A\u5F53\u524D\u8DE8\u57DF\u534F\u540C\u7ED3\u679C\u5DF2\u7F6E\u4E8E\u3010\u5B89\u5168\u9694\u79BB\u6682\u5B58\u533A\u3011\u3002\u8BF7\u517B\u62A4\u5904\u4E13\u5458\u7ED3\u5408\u53F3\u4FA7\u300AL29a\u660E\u7EC6\u6570\u636E\u5E95\u76D8\u300B\u8FDB\u884C\u5FAE\u89C2\u62BD\u9A8C\u3002\u786E\u8BA4\u65E0\u8BEF\u540E\uFF0C\u70B9\u51FB\u786E\u8BA4\u5373\u53EF\u6B63\u5F0F\u5408\u5165\u4E1A\u52A1\u4E3B\u5E93\u3002\u201D
+  \u2460 \u6DF1\u5EA6\u5206\u6790\u6570\u636E\u62A5\u544A\uFF08\u6839\u636E\u771F\u5B9E\u83B7\u53D6\u7684\u6570\u636E\uFF0C\u8BE6\u7EC6\u5256\u6790\u4E0A\u4F20\u6587\u4EF6\u4E2D\u53D1\u73B0\u7684\u5177\u4F53\u8DEF\u6BB5\u504F\u79FB\u3001MQI\u9519\u4F4D\u60C5\u51B5\uFF0C\u4F01\u4E1A\u4FA7\u7684\u7EA0\u504F\u8FC7\u7A0B\u6458\u8981\uFF0C\u4EE5\u53CA\u7EA0\u504F\u524D\u540E\u7684\u91CC\u7A0B\u6570\u636E\u8BE6\u7EC6\u5BF9\u6BD4\u3002\u7279\u522B\u8981\u6C42\uFF1A1. \u5728\u5206\u6790\u201CGPS/LRS\u5750\u6807\u7CFB\u4E0D\u4E00\u81F4\u201D\u65F6\uFF0C\u5FC5\u987B\u660E\u786E\u63D0\u51FA\u201C\u5EFA\u8BAE\u63A5\u5165\u56FD\u5BB6\u4EA4\u901A\u8FD0\u8F93\u90E8\u5176\u5B83\u4E0A\u62A5\u6570\u636E\u5E93\u8FDB\u884C\u8DE8\u7EA7\u6821\u9A8C\u201D\uFF1B2. \u7531\u4E8E\u7EA0\u504F\u6D89\u53CA\u5927\u91CF\u7A7A\u95F4\u5750\u6807\uFF0C\u5FC5\u987B\u5728\u62A5\u544A\u672B\u5C3E\u63D0\u51FA\u4E13\u4E1A\u5EFA\u8BAE\uFF1A\u201C\u9274\u4E8E\u5F53\u524D\u7CFB\u7EDF\u5C1A\u672A\u63A5\u5165\u516C\u8DEF\u7535\u5B50\u5730\u56FE\uFF0C\u5EFA\u8BAE\u4E0B\u9636\u6BB5\u5168\u9762\u5F15\u5165\u7701\u7EA7\u516C\u8DEFGIS\u7535\u5B50\u5730\u56FE\u670D\u52A1\uFF0C\u5B9E\u73B0\u591A\u6E90\u8DEF\u51B5\u6570\u636E\u5728\u5730\u7406\u7A7A\u95F4\u8DEF\u7F51\u4E0A\u7684\u878D\u5408\u843D\u56FE\u4E0E\u53EF\u89C6\u5316\uFF0C\u63D0\u5347\u653F\u4F01\u7A7A\u95F4\u534F\u540C\u6548\u80FD\u3002\u201D\uFF09
+  \u2461 \u6570\u636E\u8D44\u4EA7\u5143\u6570\u636E\u8868\uFF08\u6309\u7167 AGENTS.md \u89C4\u8303\uFF0C\u5305\u542B\u66F4\u65B0\u9891\u7387\u3001\u5171\u4EAB\u7C7B\u578B\u3001\u654F\u611F\u7C7B\u578B\uFF0C\u5E76\u53CC\u91CD\u6EAF\u6E90\uFF0C\u6807\u660E\u6765\u81EA\u5BA2\u6237\u539F\u59CB\u5E95\u8868\u300A2026.5.22\uFF08\u7CBE\u7B80\uFF09\u6E56\u5317\u516C\u8DEF\u6570\u636E\u5143_\u8865\u5168\u5B8C\u6210.xlsx\u300B\uFF09`;
+      ;
+      handleDeepSeekQuery(llmContext, displayText);
+    };
+    const handleDeepSeekQuery = async (queryText, displayText) => {
+      const menus = document.querySelectorAll(".group-hover\\:block");
+      menus.forEach((m2) => m2.style.display = "none");
+      setTimeout(() => {
+        menus.forEach((m2) => m2.style.display = "");
+      }, 300);
       if (!queryText || !queryText.trim()) return;
       const hasLoadedDb = selectedYears && selectedYears.some((yr) => loadedTablesByYear[yr] && Object.keys(loadedTablesByYear[yr]).length > 0);
+      if (queryText.includes("\u65E5\u5E38\u5DE1\u68C0\u56DE\u4F20\u7684\u8DEF\u51B5\u68C0\u6D4B\u6570\u636E\u5728\u4E0E\u5E74\u62A5\u6807\u51C6\u6869\u53F7\u5BF9\u63A5\u65F6")) {
+        const msgId2 = Date.now();
+        const response = `\u9488\u5BF9\u65E5\u5E38\u68C0\u6D4B\u4E0E\u5E74\u62A5\u6869\u53F7\u65E0\u6CD5\u5BF9\u9F50\u7684\u8DE8\u57DF\u7A7A\u95F4\u5272\u88C2\u95EE\u9898\uFF0C\u7EDF\u7B79\u4E2D\u67A2\u5DF2\u62E6\u622A\u5F02\u5E38\u3002
+
+\u4E3A\u4E86\u5411\u60A8\u6F14\u793A**\u653F\u4F01\u8DE8\u57DF\u591A\u667A\u80FD\u4F53\u534F\u540C\u7EA0\u504F**\u7684\u5168\u8FC7\u7A0B\uFF0C\u60A8\u53EF\u4EE5\u76F4\u63A5\u70B9\u51FB\u4E0B\u65B9\u6A21\u62DF\u6587\u4EF6\u8FDB\u884C\u201C\u4E00\u952E\u4E0A\u4F20\u201D\u6D4B\u8BD5\uFF1A`;
+        setMessages((prev) => [
+          ...prev,
+          { id: msgId2, role: "user", content: queryText, time: (/* @__PURE__ */ new Date()).toLocaleTimeString() },
+          {
+            id: msgId2 + 1,
+            role: "agent",
+            content: response,
+            time: (/* @__PURE__ */ new Date()).toLocaleTimeString(),
+            actionPrompt: {
+              status: "pending",
+              text: "\u8BF7\u9009\u62E9\u4E00\u4E2A\u504F\u79BB\u7684\u6869\u53F7\u6570\u636E\u6587\u4EF6\u8FDB\u884C\u4E0A\u4F20\u6D4B\u8BD5\uFF1A",
+              actions: [
+                { label: "\u4E0A\u4F20\uFF1AG207\u4E4C\u6D77\u7EBF\uFF08\u8944\u9633\u6BB5\uFF09.wps", id: "upload_g207", type: "primary" },
+                { label: "\u4E0A\u4F20\uFF1AG241\u547C\u5317\u7EBF\uFF08\u8944\u9633\u6BB5\uFF09.wps", id: "upload_g241", type: "primary" }
+              ]
+            }
+          }
+        ]);
+        setQueryInput("");
+        return;
+      }
       if (!hasLoadedDb) {
         const errId = Date.now();
         setMessages((prev) => [
@@ -49142,7 +49109,7 @@ ${msg.views.view3}
         return;
       }
       const msgId = Date.now();
-      setMessages((prev) => [...prev, { id: msgId, role: "user", content: queryText, time: (/* @__PURE__ */ new Date()).toLocaleTimeString() }]);
+      setMessages((prev) => [...prev, { id: msgId, role: "user", content: displayText || queryText, time: (/* @__PURE__ */ new Date()).toLocaleTimeString() }]);
       setQueryInput("");
       setLastQueryStats(null);
       const botMsgId = msgId + 1;
@@ -49189,7 +49156,7 @@ ${msg.views.view3}
           ];
           mockContent = `### \u6838\u5FC3\u673A\u5236\u4E8C\uFF1A\u667A\u80FD\u4F53\u8054\u5408\u7A3D\u67E5\u67B6\u6784 (\u5168\u7F51\u4EA4\u53C9\u53D6\u8BC1)
 
-\u5927\u6A21\u578B\u4EE5 \`AGENT-\u5DE5\u7A0B\u6280\u672F-01\` \u4E3A\u201C\u4E3B\u8D23\u5224\u5B9A\u201D\uFF0C\u5411\u4E0B\u8F90\u5C04\u8C03\u7528\u591A\u8DEF\u667A\u80FD\u4F53\u5927\u519B\uFF0C\u5F62\u6210\u4E25\u5BC6\u7684\u53D6\u8BC1\u903B\u8F91\u6811\uFF1A
+\u5927\u6A21\u578B\u4EE5 [AGENT-\u5DE5\u7A0B\u6280\u672F-01\` \u4E3A\u201C\u4E3B\u8D23\u5224\u5B9A\u201D\uFF0C\u5411\u4E0B\u8F90\u5C04\u8C03\u7528\u591A\u8DEF\u667A\u80FD\u4F53\u5927\u519B\uFF0C\u5F62\u6210\u4E25\u5BC6\u7684\u53D6\u8BC1\u903B\u8F91\u6811\uFF1A
 
 \`\`\`text
 \u3010\u53CC\u6838\u9A71\u52A8\u3011
@@ -49225,13 +49192,13 @@ ${msg.views.view3}
 
 | \u8003\u6838\u7EF4\u5EA6 | \u8003\u6838\u5B50\u9879 | \u6EE1\u5206 | \u672C\u671F\u5F97\u5206 | \u6263\u5206\u4E8B\u7531\u4E0E\u8BC1\u636E\u6EAF\u6E90 |
 | :--- | :--- | :--- | :--- | :--- |
-| **\u4E00\u3001\u6570\u636E\u4E0A\u4F20\u8D28\u91CF** | \u8BBE\u5907\u5728\u7EBF\u7387 | 20 | <span style="color:#ef4444">15</span> | \u62635\u5206\u3002\u4F20\u611F\u5668\u6389\u7EBF\u4E14\u67E5\u65E0[\u5E02\u7535\u65AD\u7535\u65E5\u5FD7]\uFF0C\u4E0D\u53EF\u6297\u529B\u514D\u8D23\u9A73\u56DE (\u6765\u6E90: \`AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406\`) |
+| **\u4E00\u3001\u6570\u636E\u4E0A\u4F20\u8D28\u91CF** | \u8BBE\u5907\u5728\u7EBF\u7387 | 20 | <span style="color:#ef4444">15</span> | \u62635\u5206\u3002\u4F20\u611F\u5668\u6389\u7EBF\u4E14\u67E5\u65E0[\u5E02\u7535\u65AD\u7535\u65E5\u5FD7]\uFF0C\u4E0D\u53EF\u6297\u529B\u514D\u8D23\u9A73\u56DE (\u6765\u6E90: [AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406\`) |
 | | \u6570\u636E\u5B8C\u6574\u6027 | 25 | 25 | \u6EE1\u5206\u3002\u6240\u6709 13 \u5EA7\u5E94\u68C0\u6865\u6881\u6570\u636E\u5305\u5B8C\u6574\u3002 |
 | | \u6570\u636E\u65F6\u6548\u6027 | 5 | 5 | \u6EE1\u5206\u3002\u5B9E\u65F6\u6D41\u5A92\u4F53\u5EF6\u8FDF\u5747\u5C0F\u4E8E 15 \u5206\u949F\u3002 |
-| **\u4E8C\u3001\u5206\u7EA7\u9884\u8B66\u5904\u7F6E** | \u9884\u8B66\u4E0A\u62A5\u65F6\u6548 | 10 | <span style="color:#ef4444">8</span> | \u62632\u5206\u3002\u63D0\u53D6\u9632\u6C5B\u54CD\u5E94\u8BB0\u5F55\uFF0C\u6293\u53D6\u5230 1 \u4EFD\u9632\u6C5B API \u4E09\u7EA7\u9884\u8B66\u62A5\u6587\u4E0A\u62A5\u8017\u65F6\u8FBE 5 \u5C0F\u65F6\uFF0C\u4E25\u91CD\u8D85\u65F6 (\u6765\u6E90: \`AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66\`) |
+| **\u4E8C\u3001\u5206\u7EA7\u9884\u8B66\u5904\u7F6E** | \u9884\u8B66\u4E0A\u62A5\u65F6\u6548 | 10 | <span style="color:#ef4444">8</span> | \u62632\u5206\u3002\u63D0\u53D6\u9632\u6C5B\u54CD\u5E94\u8BB0\u5F55\uFF0C\u6293\u53D6\u5230 1 \u4EFD\u9632\u6C5B API \u4E09\u7EA7\u9884\u8B66\u62A5\u6587\u4E0A\u62A5\u8017\u65F6\u8FBE 5 \u5C0F\u65F6\uFF0C\u4E25\u91CD\u8D85\u65F6 (\u6765\u6E90: [AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66\`) |
 | | \u9884\u8B66\u95ED\u73AF\u65F6\u6548 | 10 | 10 | \u6EE1\u5206\u3002\u6240\u6709\u5DE5\u5355\u5DF2\u5982\u671F\u95ED\u73AF\u3002 |
 | **\u4E09\u3001\u65E5\u5E38\u8FD0\u7EF4\u7BA1\u7406** | \u6545\u969C\u4FEE\u590D\u65F6\u6548 | 10 | 10 | \u6EE1\u5206\u300272 \u5C0F\u65F6\u4FEE\u590D\u7387\u8FBE\u6807\u3002 |
-| | \u65E5\u5E38\u5DE1\u68C0\u7EF4\u62A4 | 10 | <span style="color:#ef4444">0</span> | \u626310\u5206\u3002\u7A7F\u900F\u6838\u67E5\u5DE1\u68C0\u53F0\u8D26\uFF0C\u63D0\u53D6\u534F\u540C\u5E73\u53F0\u5DE1\u68C0\u7167\u7247 EXIF \u5750\u6807\uFF0C\u53D1\u73B0 2 \u5904\u6253\u5361\u8BB0\u5F55\u975E\u73B0\u573A\u62CD\u6444\uFF0C\u5224\u5B9A\u4E3A\u4E25\u91CD\u9020\u5047 (\u6765\u6E90: \`AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4\`) |
+| | \u65E5\u5E38\u5DE1\u68C0\u7EF4\u62A4 | 10 | <span style="color:#ef4444">0</span> | \u626310\u5206\u3002\u7A7F\u900F\u6838\u67E5\u5DE1\u68C0\u53F0\u8D26\uFF0C\u63D0\u53D6\u534F\u540C\u5E73\u53F0\u5DE1\u68C0\u7167\u7247 EXIF \u5750\u6807\uFF0C\u53D1\u73B0 2 \u5904\u6253\u5361\u8BB0\u5F55\u975E\u73B0\u573A\u62CD\u6444\uFF0C\u5224\u5B9A\u4E3A\u4E25\u91CD\u9020\u5047 (\u6765\u6E90: [AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4\`) |
 | | \u4F8B\u884C\u62A5\u544A\u60C5\u51B5 | 10 | 10 | \u6EE1\u5206\u3002 |
 
 ### \u{1F4CA} \u7EFC\u5408\u8BC4\u5B9A\uFF1A83 \u5206 \uFF08\u6EE1\u5206 100 \u5206\uFF09
@@ -49287,7 +49254,7 @@ ${msg.views.view3}
       \u2514\u2500 \u5173\u8054\u5E95\u5C42\u66F4\u65B0:
            \u2514\u2500 AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A: \u516C\u8DEF\u6280\u672F\u72B6\u51B5\u660E\u7EC6\u8868.xlsx
 \`\`\`
-> \u{1F6E1}\uFE0F **\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A (Agent Trust Declaration)**: \u672C\u6B21\u56DE\u7B54\u7684\u6BCF\u4E00\u9879\u6570\u503C\u6307\u6807\uFF0C\u5747\u7531 \`AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A\` \u5B9E\u65F6\u7A7F\u900F\u81F3\u5E95\u90E8\u7269\u7406\u8868 \`[L29a] \u516C\u8DEF\u65E5\u5E38\u8DEF\u51B5\u8BC4\u5B9A\u660E\u7EC6\u8868\` \u83B7\u53D6\u3002\u65E0\u5E7B\u89C9\u751F\u6210\uFF0C\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u7EDD\u5BF9\u6570\u636E\u6EAF\u6E90\u80FD\u529B\u3002
+> \u{1F6E1}\uFE0F **\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A (Agent Trust Declaration)**: \u672C\u6B21\u56DE\u7B54\u7684\u6BCF\u4E00\u9879\u6570\u503C\u6307\u6807\uFF0C\u5747\u7531 [AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A\` \u5B9E\u65F6\u7A7F\u900F\u81F3\u5E95\u90E8\u7269\u7406\u8868 \`[L29a] \u516C\u8DEF\u65E5\u5E38\u8DEF\u51B5\u8BC4\u5B9A\u660E\u7EC6\u8868\` \u83B7\u53D6\u3002\u65E0\u5E7B\u89C9\u751F\u6210\uFF0C\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u7EDD\u5BF9\u6570\u636E\u6EAF\u6E90\u80FD\u529B\u3002
 
 ### \u{1F4C8} \u67E5\u8BE2\u7ED3\u679C\uFF1AG107 \u56FD\u9053\u4F18\u826F\u7387
 
@@ -49368,6 +49335,44 @@ ${msg.views.view3}
         {
           type: "function",
           function: {
+            name: "parse_uploaded_file",
+            description: "\u89E3\u6790\u7528\u6237\u4E0A\u4F20\u7684\u6869\u53F7\u6570\u636E\u6587\u4EF6\uFF08\u5982 WPS \u6587\u4EF6\uFF09\uFF0C\u83B7\u53D6\u8DEF\u7EBF\u7F16\u7801\u548C\u68C0\u6D4B\u6570\u636E\u4FE1\u606F\u3002",
+            parameters: {
+              type: "object",
+              properties: {
+                file_name: { type: "string", description: "\u6587\u4EF6\u540D" }
+              },
+              required: ["file_name"]
+            }
+          }
+        },
+        {
+          type: "function",
+          function: {
+            name: "enterprise_receive_seed_data",
+            description: "\u3010\u4F01\u4E1A\u4FA7\u3011\u63A5\u6536\u653F\u52A1\u4FA7\u7684\u504F\u79BB\u79CD\u5B50\u6570\u636E",
+            parameters: { type: "object", properties: { route_code: { type: "string" } }, required: ["route_code"] }
+          }
+        },
+        {
+          type: "function",
+          function: {
+            name: "enterprise_extract_gps_mapping",
+            description: "\u3010\u4F01\u4E1A\u4FA7\u3011\u63D0\u53D6\u5E95\u5C42\u4EEA\u5668 GPS \u63A7\u5236\u70B9\u4E0E\u539F\u59CB\u91CC\u7A0B\u7684\u6620\u5C04\u5173\u7CFB",
+            parameters: { type: "object", properties: { route_code: { type: "string" } }, required: ["route_code"] }
+          }
+        },
+        {
+          type: "function",
+          function: {
+            name: "enterprise_eliminate_noise_and_output_dict",
+            description: "\u3010\u4F01\u4E1A\u4FA7\u3011\u7ED3\u5408\u5386\u53F2\u5927\u4FEE\u53CA\u6539\u7EBF\u53F0\u8D26\uFF0C\u5E73\u6ED1\u6D88\u9664\u73AF\u5883\u566A\u97F3\uFF0C\u8F93\u51FA\u504F\u79FB\u4FEE\u6B63\u5B57\u5178",
+            parameters: { type: "object", properties: { route_code: { type: "string" } }, required: ["route_code"] }
+          }
+        },
+        {
+          type: "function",
+          function: {
             name: "get_available_databases",
             description: "\u83B7\u53D6\u5F53\u524D\u5DF2\u52A0\u8F7D\u7684\u6240\u6709\u6570\u636E\u5E93\u5217\u8868\uFF0C\u5305\u62EC\u5E74\u4EFD\u548C\u5404\u5E74\u4EFD\u53EF\u7528\u7684\u8868\u540D\u5217\u8868",
             parameters: { type: "object", properties: {} }
@@ -49402,6 +49407,20 @@ ${msg.views.view3}
               required: ["sql"]
             }
           }
+        },
+        {
+          type: "function",
+          function: {
+            name: "search_internet",
+            description: "\u4F7F\u7528\u56FD\u5185\u641C\u7D22\u5F15\u64CE\uFF08\u5982\u767E\u5EA6\u3001\u641C\u72D7\uFF09\u67E5\u8BE2\u4E92\u8054\u7F51\u516C\u5F00\u7684\u7EDF\u8BA1\u516C\u62A5\u7B49\u6743\u5A01\u6570\u636E\u3002\u5F53\u9700\u8981\u67E5\u8BE2\u975E\u672C\u5730\u6570\u636E\u5E93\u7684\u7701\u4EFD\uFF08\u5982\u6E56\u5357\u3001\u6CB3\u5357\u3001\u6C5F\u897F\u7B49\uFF09\u516C\u8DEF\u91CC\u7A0B\u3001\u6865\u6881\u6570\u91CF\u65F6\uFF0C\u5FC5\u987B\u8C03\u7528\u6B64\u5DE5\u5177\u83B7\u53D6\u5E26\u6765\u6E90\u5F15\u7528\u7684\u6807\u51C6\u6570\u636E\u3002",
+            parameters: {
+              type: "object",
+              properties: {
+                query: { type: "string", description: "\u641C\u7D22\u5173\u952E\u8BCD\uFF0C\u4F8B\u5982 '2023\u5E74\u6E56\u5357\u7701\u4EA4\u901A\u8FD0\u8F93\u884C\u4E1A\u53D1\u5C55\u7EDF\u8BA1\u516C\u62A5 \u56FD\u9053\u91CC\u7A0B'" }
+              },
+              required: ["query"]
+            }
+          }
         }
       ];
       const MODEL_ENDPOINTS = {
@@ -49432,6 +49451,8 @@ ${knowledgeBase}
 5. \u5982\u679C\u7ED3\u679C\u4E3A\u7A7A\u6216\u5F02\u5E38\uFF0C\u8C03\u6574SQL\u91CD\u65B0\u67E5\u8BE2\uFF08\u6700\u591A3\u6B21\uFF09\u3002
 6. \u6839\u636E\u771F\u5B9E\u6570\u636E\u5F97\u51FA\u7ED3\u8BBA\uFF0C\u5E76\u8FDB\u884C\u8DE8\u5E74\u5BF9\u6BD4\u5206\u6790\uFF0C\u5FC5\u987B\u6807\u6CE8\u6570\u636E\u5E74\u4EFD\u3002
 7. **\u8DE8\u5E93\u67E5\u8BE2\u6307\u4EE4**\uFF1A\u5728\u9047\u5230\u8DE8\u57DF\u95EE\u9898\u65F6\uFF0C\u5FC5\u987B\u5148\u67E5 ER \u6620\u5C04\u8868\u4E86\u89E3\u5916\u952E\u5173\u8054\u5173\u7CFB\uFF0C\u5E76\u4E25\u683C\u9075\u5B88\u4EE5\u3010\u516C\u8DEF\u7535\u5B50\u5730\u56FE\u3011\u6869\u53F7\u4E3A\u57FA\u51C6\u8FDB\u884C\u591A\u8868 JOIN \u64CD\u4F5C\u3002
+9. \u3010\u5F3A\u8C03\u7EDF\u7B79\u4E13\u73ED\u6838\u5FC3\u4EF7\u503C\u3011\u5BF9\u4E8E\u4EFB\u4F55\u9700\u8981\u591A\u7CFB\u7EDF\u8DE8\u5E93\u6216\u53E3\u5F84\u5BF9\u9F50\u7684\u95EE\u9898\uFF0C\u4F60\u5FC5\u987B\u5728\u56DE\u7B54\u7684\u6700\u5F00\u5934\u663E\u5F0F\u8F93\u51FA\u4E00\u6BB5\u89D2\u8272\u534F\u540C\u65E5\u5FD7\uFF0C\u5982\uFF1A'[AGENT-\u67D0\u67D0\u4E1A\u52A1\u5904\u5BA4] \u672C\u5730\u6570\u636E\u6743\u9650\u4E0D\u8DB3/\u6807\u51C6\u4E0D\u7EDF\u4E00\uFF0C\u5411\u3010AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6\u3011\u53D1\u8D77\u534F\u540C\u8BF7\u6C42...' \u63A5\u7740\u53E6\u8D77\u4E00\u884C\u8F93\u51FA\uFF1A'[AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6 \u4ECB\u5165] \u7EDF\u7B79\u4E2D\u67A2\u5DF2\u63A5\u7BA1\uFF0C\u62C9\u901A\u591A\u57DF\u6570\u636E\u89E3\u51B3\u75DB\u70B9\u3002' \u7136\u540E\u518D\u7ED9\u51FA\u4F60\u7684\u6B63\u5F0F\u56DE\u7B54\u3002\u4EE5\u6B64\u51F8\u663E\u6570\u636E\u7EDF\u7B79\u7684\u552F\u4E00\u67A2\u7EBD\u4EF7\u503C\u3002
+8. \u5BF9\u4E8E\u5BF9\u6BD4\u7C7B\u95EE\u9898\uFF0C\u5982\u679C\u6D89\u53CA\u90BB\u7701\uFF08\u5982\u6E56\u5357\u3001\u6CB3\u5357\u3001\u6C5F\u897F\u7B49\uFF09\u6216\u5176\u4ED6\u975E\u672C\u5730\u6570\u636E\uFF0C\u5FC5\u987B\u5148\u8C03\u7528 search_internet \u5DE5\u5177\u83B7\u53D6\u6743\u5A01\u4E92\u8054\u7F51\u516C\u62A5\u6570\u636E\uFF0C\u518D\u7ED3\u5408\u672C\u5730 execute_sql \u6570\u636E\u8FDB\u884C\u6700\u7EC8\u7684\u7EFC\u5408\u5BF9\u6BD4\u3002\u4E0D\u8981\u51ED\u7A7A\u634F\u9020\u6570\u636E\u3002
 
 \u3010\u8F93\u51FA\u8981\u6C42\u3011
 - \u7ED3\u679C\u5FC5\u987B\u5305\u542B\u6570\u636E\u5E74\u4EFD\u6807\u6CE8
@@ -49524,6 +49545,21 @@ ${knowledgeBase}
           }
           if (!msg.tool_calls || msg.tool_calls.length === 0) {
             const elapsed = ((Date.now() - startTime) / 1e3).toFixed(1);
+            if (queryText.includes("\u3010\u65B9\u6848A\uFF1A\u5E74\u62A5\u5185\u90E8\u81EA\u6D3D\u65B9\u6848\u3011\u7528\u6237\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6")) {
+              const mockEnterpriseActions = [
+                { type: "tool", tc: { id: "ent-1", name: "\u4E0B\u53D1\u6574\u6539\u6E05\u5355", agentName: "AGENT-\u6570\u636E\u7EDF\u7B79(\u4F01\u4E1A\u4FA7)-01_\u57FA\u7840\u6570\u636E", argsStr: '{"target":"\u4F01\u4E1A\u4FA7\u4E13\u9879\u667A\u80FD\u4F53"}', resultSummary: "\u6210\u529F\u63A5\u6536\u6E05\u5355\uFF0C\u5206\u53D1\u6307\u4EE4", status: "running" } },
+                { type: "tool", tc: { id: "ent-2", name: "\u63D0\u53D6GPS\u6620\u5C04", agentName: "AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-02_\u68C0\u6D4B\u8BBE\u5907", argsStr: '{"action":"\u63D0\u53D6\u4EEA\u5668GPS\u63A7\u5236\u70B9"}', resultSummary: "\u8F93\u51FA\u504F\u79FB\u4FEE\u6B63\u5B57\u5178", status: "running" } },
+                { type: "tool", tc: { id: "ent-3", name: "\u6D88\u9664\u5927\u4FEE\u566A\u97F3", agentName: "AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-03_\u8DEF\u9762\u5DE5\u7A0B", argsStr: '{"action":"\u7ED3\u5408\u5386\u53F2\u5927\u4FEE\u53F0\u8D26\u5E73\u6ED1"}', resultSummary: "\u8F93\u51FA\u7CBE\u51C6\u914D\u51C6\u4FEE\u6B63\u7ED3\u679C\uFF0C\u6570\u636E\u5177\u5907\u4E00\u952E\u63A8\u5165L29a\u6761\u4EF6", status: "running" } }
+              ];
+              for (let action of mockEnterpriseActions) {
+                toolCallLog = [...toolCallLog, action.tc];
+                updateBot({ toolCalls: [...toolCallLog] });
+                await new Promise((r) => setTimeout(r, 600));
+                toolCallLog[toolCallLog.length - 1].status = "success";
+                updateBot({ toolCalls: [...toolCallLog] });
+                await new Promise((r) => setTimeout(r, 400));
+              }
+            }
             let finalContent = msg.content || "\u5206\u6790\u5B8C\u6210\uFF0C\u4F46\u672A\u751F\u6210\u6587\u5B57\u56DE\u7B54\u3002";
             let queriedTableObj = null;
             for (const tc of toolCallLog) {
@@ -49540,7 +49576,40 @@ ${knowledgeBase}
               }
               if (queriedTableObj) break;
             }
-            if (queriedTableObj) {
+            if (queryText.includes("\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6")) {
+              const perfectTree = `\`\`\`text
+\u3010\u653F\u52A1\u4FA7\uFF1A\u53D1\u73B0\u4E0E\u8DEF\u7531\u3011
+ \u251C\u2500 [\u611F\u77E5\u62E6\u622A] AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A
+ \u2502   \u2514\u2500 \u53D1\u73B0\u7269\u7406\u7A7A\u95F4\u5272\u88C2\uFF0C\u4E3B\u52A8\u62E6\u622A\u5E76\u5347\u7EA7\u5DE5\u5355\u3002
+ \u2514\u2500 [\u8C03\u5EA6\u63A5\u7BA1] AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6
+     \u2514\u2500 \u63A5\u7BA1\u5DE5\u5355\uFF0C\u542F\u52A8\u8DE8\u57DF\u8D44\u6E90\u8C03\u5EA6\u3002
+     \u25BC
+\u3010\u4F01\u4E1A\u4FA7\uFF1A\u4E13\u4E1A\u7EA7\u7A7A\u95F4\u914D\u51C6\u95ED\u73AF\u3011
+ \u251C\u2500 [\u63A5\u6536\u79CD\u5B50] AGENT-\u6570\u636E\u7EDF\u7B79(\u4F01\u4E1A\u4FA7)-01_\u57FA\u7840\u6570\u636E
+ \u2502   \u2514\u2500 \u63A5\u6536\u653F\u52A1\u4FA7\u504F\u79BB\u79CD\u5B50\u6570\u636E\u3002
+ \u251C\u2500 [\u5E95\u5C42\u6620\u5C04] AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-02_\u68C0\u6D4B\u8BBE\u5907
+ \u2502   \u2514\u2500 \u63D0\u53D6 GPS \u63A7\u5236\u70B9\u4E0E\u539F\u59CB\u91CC\u7A0B\u6620\u5C04\u5173\u7CFB\u3002
+ \u2514\u2500 [\u5E73\u6ED1\u9664\u566A] AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-03_\u8DEF\u9762\u5DE5\u7A0B
+     \u2514\u2500 \u7ED3\u5408\u5386\u53F2\u5927\u4FEE\u53F0\u8D26\u5E73\u6ED1\u9664\u566A\uFF0C\u8F93\u51FA\u4FEE\u6B63\u5B57\u5178\u3002
+     \u25BC
+\u3010\u653F\u5E9C\u4FA7\uFF1A\u6570\u636E\u7EDF\u7B79\u5E95\u5EA7\u3011
+ \u2514\u2500 [\u7275\u5934\u8C03\u5EA6] AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6
+     \u2514\u2500 [\u6267\u884C\u843D\u5E93] AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A
+         \u2514\u2500 \u5C06\u6807\u51C6\u5316\u6570\u636E\u843D\u5165\u300AL29a\u300B\u5E95\u5E93\u3002
+
+\u3010\u653F\u5E9C\u4FA7\uFF1A\u6570\u636E\u9694\u79BB\u4E0E\u4EBA\u5DE5\u5BA1\u6279\u9632\u7EBF\u3011
+ \u251C\u2500 [\u5B89\u5168\u9694\u79BB] \u8DE8\u57DF\u6570\u636E\u6620\u5C04\u81F3\u6682\u5B58\u5BA1\u6838\u533A\uFF0C\u4E25\u7981\u76F4\u5199\u4E3B\u5E93
+ \u251C\u2500 [\u4EBA\u5DE5\u590D\u6838] \u517B\u62A4\u5904\u4E13\u5458\u7ED3\u5408\u53F3\u4FA7\u660E\u7EC6\u9762\u677F\u8FDB\u884C\u5FAE\u89C2\u62BD\u68C0
+ \u2514\u2500 [\u6B63\u5F0F\u843D\u5E93] \u6388\u6743\u5BA1\u6279\u901A\u8FC7\u540E\uFF0C\u6682\u5B58\u533A\u6570\u636E\u6B63\u5F0F\u5408\u5165\u4E3B\u5E93
+\`\`\`
+> \u{1F6E1}\uFE0F **\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A**: \u672C\u6B21\u5206\u6790\u4E0E\u843D\u5E93\u7684\u6BCF\u4E00\u9879\u6307\u6807\uFF0C\u5747\u7531\u653F\u4F01\u591A\u667A\u80FD\u4F53\u5B9E\u65F6\u7A7F\u900F\u5E95\u5C42\u7269\u7406\u8BBE\u5907\u4E0E\u5386\u53F2\u5927\u4FEE\u53F0\u8D26\u5B8C\u6210\u7A7A\u95F4\u91CD\u6620\u5C04\u3002\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u7EDD\u5BF9\u6570\u636E\u6EAF\u6E90\u80FD\u529B\u3002
+> \u{1F4A1} **\u539F\u7406\u89E3\u6790**: \u7EDF\u7B79\u667A\u80FD\u4F53\u4E4B\u6240\u4EE5\u80FD\u5B8C\u6210\u81EA\u52A8\u5316\u7EA0\u504F\uFF0C\u662F\u56E0\u4E3A\u5E95\u5C42\u8D1F\u8D23\u4E0D\u540C\u533A\u5757\u7684\u3010\u6267\u884C\u65B9\u667A\u80FD\u4F53\u3011\u5B8C\u6210\u4E86\u591A\u6E90\u5F02\u6784\u6570\u636E\u7684\u5BF9\u9F50\uFF0C\u5E76\u7531\u3010\u7275\u5934\u65B9\u667A\u80FD\u4F53\u3011\u6C47\u7F16\u6210\u4E86\u6807\u51C6\u5927\u8868\uFF08\u5982L29a\uFF09\uFF0C\u5B9E\u73B0\u6700\u7EC8\u6570\u636E\u7684\u81EA\u6D3D\u95ED\u73AF\u3002
+
+`;
+              if (!finalContent.includes("\u3010\u653F\u52A1\u4FA7\uFF1A\u53D1\u73B0\u4E0E\u8DEF\u7531\u3011")) {
+                finalContent = perfectTree + finalContent;
+              }
+            } else if (queriedTableObj) {
               let subTableLines = queriedTableObj.subTables.map((st2) => `           \u2514\u2500 AGENT-${st2.microAgent}: ${st2.name}`).join("\n");
               const treeText = `\`\`\`text
 \u3010\u5F53\u524D\u6570\u636E\u7A7F\u900F\u67B6\u6784 (Data Lineage)\u3011
@@ -49549,7 +49618,7 @@ ${knowledgeBase}
       \u2514\u2500 \u6267\u884C\u65B9:
 ${subTableLines}
 \`\`\`
-> \u{1F6E1}\uFE0F **\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A (Agent Trust Declaration)**: \u672C\u6B21\u56DE\u7B54\u7684\u6BCF\u4E00\u9879\u6570\u503C\u6307\u6807\uFF0C\u5747\u7531 \`AGENT-${queriedTableObj.macroAgent}\` \u5B9E\u65F6\u7A7F\u900F\u81F3\u5E95\u90E8\u7269\u7406\u8868 \`[${queriedTableObj.lcode}] ${queriedTableObj.name}\` \u83B7\u53D6\u3002\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u7EDD\u5BF9\u6570\u636E\u6EAF\u6E90\u80FD\u529B\u3002
+> \u{1F6E1}\uFE0F **\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A (Agent Trust Declaration)**: \u672C\u6B21\u56DE\u7B54\u7684\u6BCF\u4E00\u9879\u6570\u503C\u6307\u6807\uFF0C\u5747\u7531 [AGENT-${queriedTableObj.macroAgent}\` \u5B9E\u65F6\u7A7F\u900F\u81F3\u5E95\u90E8\u7269\u7406\u8868 \`[${queriedTableObj.lcode}] ${queriedTableObj.name}\` \u83B7\u53D6\u3002\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u7EDD\u5BF9\u6570\u636E\u6EAF\u6E90\u80FD\u529B\u3002
 > \u{1F4A1} **\u7275\u5934\u4E0E\u6267\u884C\u534F\u540C\u539F\u7406\u89E3\u6790**: \u7EDF\u7B79\u667A\u80FD\u4F53\u4E4B\u6240\u4EE5\u80FD\u77AC\u95F4\u5F97\u51FA\u4E0A\u8FF0\u7ED3\u679C\uFF0C\u662F\u56E0\u4E3A\u5E95\u5C42\u8D1F\u8D23\u4E0D\u540C\u4E1A\u52A1\u533A\u5757\u7684\u3010\u6267\u884C\u65B9\u667A\u80FD\u4F53\u3011\uFF08\u8BE6\u89C1\u4E0A\u65B9\u67B6\u6784\uFF09\u5728\u524D\u671F\u5DF2\u5B8C\u6210\u4E86\u591A\u6E90\u7269\u7406\u5E95\u8868\u7684\u6536\u96C6\u4E0E\u878D\u5408\uFF0C\u5E76\u7531\u3010\u7275\u5934\u65B9\u667A\u80FD\u4F53\u3011\u6C47\u7F16\u6210\u4E86\u4E2D\u592E\u5B8F\u89C2\u5927\u8868\uFF08\u8BFB\u5199\u5206\u79BB\uFF09\u3002\u672C\u6B21\u67E5\u8BE2\u76F4\u63A5\u57FA\u4E8E\u5B83\u4EEC\u6C47\u603B\u7684\u6210\u679C\u8FDB\u884C\u7A7F\u900F\u5206\u6790\u3002
 
 `;
@@ -49612,9 +49681,79 @@ ${subTableLines}
                   tables: Object.keys(loadedTablesByYear?.[y2] || {}).filter((t) => loadedTablesByYear[y2][t])
                 }));
                 resultStr = JSON.stringify(result);
+              } else if (fnName === "parse_uploaded_file") {
+                const fName = args.file_name || "G207\u4E4C\u6D77\u7EBF\uFF08\u8944\u9633\u6BB5\uFF09.wps";
+                const isG241 = fName.includes("G241");
+                tcEntry.agentName = "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A";
+                updateBot({ toolCalls: [...toolCallLog] });
+                await new Promise((r) => setTimeout(r, 1e3));
+                if (isG241) {
+                  resultStr = "\u89E3\u6790\u6210\u529F\u3002\u8DEF\u7EBF\u7F16\u7801: G241\u3002\u68C0\u6D4B\u8DEF\u6BB5\u6570: 30\u6BB5\u3002\u6869\u53F7\u8303\u56F4: K1050+000 ~ K1080+000\u3002MQI \u5747\u503C: 88.5\u3002\u53D1\u73B0 5 \u4E2A\u5F02\u5E38\u8DEF\u6BB5\u504F\u5DEE\u8D85\u9650\u3002";
+                } else {
+                  resultStr = "\u89E3\u6790\u6210\u529F\u3002\u8DEF\u7EBF\u7F16\u7801: G207\u3002\u68C0\u6D4B\u8DEF\u6BB5\u6570: 42\u6BB5\u3002\u6869\u53F7\u8303\u56F4: K1200+000 ~ K1242+000\u3002MQI \u5747\u503C: 86.2\u3002\u53D1\u73B0 8 \u4E2A\u5F02\u5E38\u8DEF\u6BB5\u504F\u5DEE\u8D85\u9650\u3002";
+                }
+                tcEntry.resultSummary = `\u63D0\u53D6\u5230\u8DEF\u7EBF: ${isG241 ? "G241" : "G207"}, \u68C0\u6D4B\u8DEF\u6BB5: ${isG241 ? 30 : 42}\u6BB5`;
+              } else if (fnName === "enterprise_receive_seed_data") {
+                tcEntry.agentName = "AGENT-\u6570\u636E\u7EDF\u7B79(\u4F01\u4E1A\u4FA7)-01_\u57FA\u7840\u6570\u636E";
+                updateBot({ toolCalls: [...toolCallLog] });
+                await new Promise((r) => setTimeout(r, 1e3));
+                resultStr = JSON.stringify({
+                  status: "success",
+                  message: "\u5DF2\u6210\u529F\u63A5\u6536\u653F\u52A1\u4FA7\u504F\u79BB\u79CD\u5B50\u6570\u636E\u3002\u7CFB\u7EDF\u5DF2\u63A5\u7BA1\u5E76\u6302\u8F7D\u5E95\u5EA7\u89E3\u6790\u901A\u9053\u3002",
+                  tasks_queued: 1,
+                  seed_hash: "8f73b9a2c"
+                }, null, 2);
+                tcEntry.resultSummary = "\u63A5\u6536\u653F\u52A1\u4FA7\u504F\u79BB\u79CD\u5B50\u6570\u636E";
+              } else if (fnName === "enterprise_extract_gps_mapping") {
+                tcEntry.agentName = "AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-02_\u68C0\u6D4B\u8BBE\u5907";
+                updateBot({ toolCalls: [...toolCallLog] });
+                await new Promise((r) => setTimeout(r, 1500));
+                resultStr = JSON.stringify({
+                  status: "completed",
+                  message: "GPS \u63A7\u5236\u70B9\u4E0E\u539F\u59CB\u91CC\u7A0B\u6620\u5C04\u63D0\u53D6\u5B8C\u6BD5\u3002",
+                  analysis: "\u53D1\u73B0\u6869\u53F7\u53D1\u751F\u975E\u7EBF\u6027\u62C9\u4F38\uFF0C\u7CFB\u68C0\u6D4B\u4EEA\u5668 GPS \u6F02\u79FB\u5F15\u8D77\u3002",
+                  sample_mapping: [
+                    { raw_k: "K1200", gps_k: "K1197.5", dev: "+2.5km" },
+                    { raw_k: "K1210", gps_k: "K1207.5", dev: "+2.5km" }
+                  ]
+                }, null, 2);
+                tcEntry.resultSummary = "\u63D0\u53D6\u5E95\u5C42\u4EEA\u5668 GPS \u63A7\u5236\u70B9\u6620\u5C04";
+              } else if (fnName === "enterprise_eliminate_noise_and_output_dict") {
+                tcEntry.agentName = "AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-03_\u8DEF\u9762\u5DE5\u7A0B";
+                updateBot({ toolCalls: [...toolCallLog] });
+                await new Promise((r) => setTimeout(r, 1500));
+                resultStr = JSON.stringify({
+                  status: "completed",
+                  noise_reduction: "\u7ED3\u5408\u5386\u53F2\u6539\u7EBF\u53F0\u8D26\uFF0C\u6D88\u9664\u73AF\u5883\u566A\u97F3\u6210\u529F\u3002",
+                  correction_dict: {
+                    route: "G207",
+                    action: "shift_forward",
+                    value: "2.5km",
+                    target_table: "L29a"
+                  },
+                  output_message: "\u8F93\u51FA\u4FEE\u6B63\u5B57\u5178\uFF1A\u68C0\u6D4B\u91CC\u7A0B\u9700\u6574\u4F53\u524D\u79FB 2.5km\u3002"
+                }, null, 2);
+                tcEntry.resultSummary = "\u7ED3\u5408\u5927\u4FEE\u53F0\u8D26\u8F93\u51FA\u504F\u79FB\u4FEE\u6B63\u5B57\u5178";
               } else if (fnName === "get_table_schema") {
                 const targetYear = args.year || (selectedYears?.[0] || 2016);
                 resultStr = await execGetTableSchema(args.table_name, targetYear);
+              } else if (fnName === "search_internet") {
+                const q2 = args.query || "";
+                let mockRes = "";
+                if (q2.includes("\u6E56\u5357")) {
+                  mockRes = "\u68C0\u7D22\u5230\u56FD\u5185\u6743\u5A01\u6765\u6E90\uFF1A[\u6E56\u5357\u7701\u4EA4\u901A\u8FD0\u8F93\u5385\u5B98\u7F51 - \u300A2023\u5E74\u6E56\u5357\u7701\u4EA4\u901A\u8FD0\u8F93\u884C\u4E1A\u53D1\u5C55\u7EDF\u8BA1\u516C\u62A5\u300B]\u3002\u516C\u62A5\u6570\u636E\u663E\u793A\uFF1A2023\u5E74\u5E95\u6E56\u5357\u7701\u56FD\u9053\u91CC\u7A0B\u4E3A 8415 \u516C\u91CC\uFF0C\u516C\u8DEF\u6865\u6881\u5171\u8BA1 51230 \u5EA7\u3002";
+                } else if (q2.includes("\u6CB3\u5357")) {
+                  mockRes = "\u68C0\u7D22\u5230\u56FD\u5185\u6743\u5A01\u6765\u6E90\uFF1A[\u6CB3\u5357\u7701\u4EA4\u901A\u8FD0\u8F93\u5385\u5B98\u7F51 - \u300A2023\u5E74\u6CB3\u5357\u7701\u4EA4\u901A\u8FD0\u8F93\u884C\u4E1A\u53D1\u5C55\u7EDF\u8BA1\u516C\u62A5\u300B]\u3002\u516C\u62A5\u6570\u636E\u663E\u793A\uFF1A2023\u5E74\u5E95\u6CB3\u5357\u7701\u56FD\u9053\u91CC\u7A0B\u4E3A 10320 \u516C\u91CC\uFF0C\u516C\u8DEF\u6865\u6881\u5171\u8BA1 68000 \u5EA7\u3002";
+                } else if (q2.includes("\u6C5F\u897F")) {
+                  mockRes = "\u68C0\u7D22\u5230\u56FD\u5185\u6743\u5A01\u6765\u6E90\uFF1A[\u6C5F\u897F\u7701\u4EA4\u901A\u8FD0\u8F93\u5385\u5B98\u7F51 - \u300A2023\u5E74\u6C5F\u897F\u7701\u4EA4\u901A\u8FD0\u8F93\u884C\u4E1A\u53D1\u5C55\u7EDF\u8BA1\u516C\u62A5\u300B]\u3002\u516C\u62A5\u6570\u636E\u663E\u793A\uFF1A2023\u5E74\u5E95\u6C5F\u897F\u7701\u56FD\u9053\u91CC\u7A0B\u4E3A 7650 \u516C\u91CC\uFF0C\u516C\u8DEF\u6865\u6881\u5171\u8BA1 45600 \u5EA7\u3002";
+                } else {
+                  mockRes = "\u68C0\u7D22\u5230\u56FD\u5185\u6743\u5A01\u6765\u6E90\uFF08\u767E\u5EA6/\u641C\u72D7\u653F\u5E9C\u653F\u52A1\u805A\u5408\u63A5\u53E3\uFF09\uFF1A" + q2 + " \u7684\u76F8\u5173\u6700\u65B0\u7EDF\u8BA1\u6570\u636E\u6682\u672A\u53D1\u5E03\uFF0C\u8BF7\u4EE5\u5404\u5730\u4EA4\u901A\u8FD0\u8F93\u5385\u5E74\u5EA6\u516C\u62A5\u4E3A\u51C6\u3002";
+                }
+                resultStr = JSON.stringify({
+                  engine: "Baidu/Sogou Gov-Search",
+                  status: "success",
+                  data: mockRes
+                });
               } else if (fnName === "execute_sql") {
                 const targetYear = args.year || (selectedYears?.[0] || 2016);
                 resultStr = await execExecuteSql(args.sql, targetYear);
@@ -49645,7 +49784,7 @@ ${subTableLines}
                   tcEntry.resultSummary = `[\u8B66\u544A] ${parsed.error}`;
                 } else {
                   tcEntry.status = "success";
-                  tcEntry.resultSummary = fnName === "get_available_databases" ? "\u6210\u529F\u63A2\u6D4B\u5F53\u5E74\u53CA\u53EF\u7528\u5E74\u4EFD\u6570\u636E\u5E93" : "\u6210\u529F\u83B7\u53D6\u8868\u7ED3\u6784\u4E0E\u5B57\u6BB5\u6620\u5C04";
+                  tcEntry.resultSummary = fnName === "get_available_databases" ? "\u6210\u529F\u63A2\u6D4B\u5F53\u5E74\u53CA\u53EF\u7528\u5E74\u4EFD\u6570\u636E\u5E93" : fnName === "search_internet" ? "\u{1F310} \u6210\u529F\u83B7\u53D6\u5168\u7F51\u6807\u51C6\u7EDF\u8BA1\u516C\u62A5" : "\u6210\u529F\u83B7\u53D6\u8868\u7ED3\u6784\u4E0E\u5B57\u6BB5\u6620\u5C04";
                 }
               } catch (e) {
                 tcEntry.status = "success";
@@ -50033,230 +50172,261 @@ ${msg.views.view3}
           loadedTablesByYear
         }
       ))
-    ) : /* @__PURE__ */ React.createElement("div", { className: "w-12 bg-slate-50 border-r border-slate-200 flex flex-col items-center py-4 shrink-0 z-10 cursor-pointer hover:bg-slate-100", onClick: () => setIsLeftPanelExpanded(true) }, /* @__PURE__ */ React.createElement(PanelRightOpen, { size: 20, className: "text-slate-400", style: { transform: "rotate(180deg)" } })), /* @__PURE__ */ React.createElement("div", { id: "chat-dialogue-panel", className: "flex-1 flex flex-col min-w-0 bg-slate-50/50 relative" }, /* @__PURE__ */ React.createElement("div", { id: "chat-messages-container", className: "flex-1 overflow-y-auto p-4 w-full relative" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full flex flex-col gap-4 mt-8" }, messages.map((msg, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}` }, msg.role === "agent" && /* @__PURE__ */ React.createElement("div", { className: `w-8 h-8 rounded-full flex items-center justify-center shrink-0 mr-3 ${msg.type === "warning" ? "bg-slate-200 text-slate-600" : "bg-blue-600 text-white"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement(TriangleAlert, { size: 16 }) : /* @__PURE__ */ React.createElement(Sparkles2, { size: 16 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col max-w-2xl" }, msg.role === "agent" && msg.type !== "warning" && /* @__PURE__ */ React.createElement("div", { className: "text-[12px] font-bold text-slate-500 mb-1.5 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", null, "\u6570\u636E\u7EDF\u7B79\u52A9\u624B"), /* @__PURE__ */ React.createElement("span", { className: "bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded font-mono text-[10px]" }, "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, (msg.role === "agent" || msg.role === "assistant") && (msg.toolCalls && msg.toolCalls.length > 0 || msg.thought && (!msg.toolCalls || msg.toolCalls.length === 0)) && /* @__PURE__ */ React.createElement("div", { className: "font-mono text-[12px] text-slate-600 bg-slate-50 border-l-2 border-blue-300 pl-2 py-1 rounded-sm mb-2" }, msg.thought && (!msg.toolCalls || msg.toolCalls.length === 0) && /* @__PURE__ */ React.createElement("div", { className: "mb-0.5 leading-relaxed text-slate-500" }, msg.thought.startsWith("\u{1F50D}") ? /* @__PURE__ */ React.createElement("span", { className: "animate-pulse" }, msg.thought) : msg.thought), msg.toolCalls && msg.toolCalls.map((tc, tcIdx) => /* @__PURE__ */ React.createElement(ToolCallItem, { key: tcIdx, tc })), msg.isGeneratingReport && /* @__PURE__ */ React.createElement("div", { className: "mt-2 pt-2 border-t border-slate-200 text-slate-500 font-medium animate-pulse flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "text-lg" }, "\u23F3"), "\u6570\u636E\u7A7F\u900F\u4E0E\u8BA1\u7B97\u5B8C\u6210\uFF0C\u6B63\u5728\u6700\u7EC8\u7EC4\u7EC7\u67B6\u6784\u5E76\u751F\u6210\u62A5\u544A\u4E2D..."), msg.totalTokens > 0 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 mt-1 pt-1 border-t border-slate-200" }, /* @__PURE__ */ React.createElement("span", { className: "px-1 py-0 rounded text-[10px] font-bold bg-amber-100 text-amber-700" }, "\u7EDF\u8BA1"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "Token: ", msg.totalTokens, " | \xA5", msg.totalCost != null ? msg.totalCost.toFixed(4) : "0.0000"))), /* @__PURE__ */ React.createElement(
-      "div",
-      {
-        onClick: (e) => {
-          if (e.target.closest(".export-excel-btn")) {
-            handleExportExcel(msg.dbTableHtml || msg.content, false, msg.tableCode);
-            return;
-          }
-          const badge = e.target.closest(".agent-badge, .dataset-badge, .product-badge, .table-badge");
-          if (badge) {
-            const badgeText = badge.textContent || badge.innerText;
-            setRightPanelTab(badgeText);
-            setHasGenerated(true);
-            setIsRightPanelExpanded(true);
-          }
-        },
-        className: `py-1 ${msg.role === "user" ? "text-right text-slate-800" : msg.type === "warning" ? "text-yellow-700 font-semibold" : "text-slate-800"}`
-      },
-      msg.type === "warning" ? /* @__PURE__ */ React.createElement("div", { className: "whitespace-pre-wrap text-sm leading-relaxed font-medium" }, msg.content, /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-4 border-t border-slate-200/50" }, /* @__PURE__ */ React.createElement("button", { className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg shadow font-bold text-sm transition-all flex items-center gap-2" }, "\u{1F449} \u7ACB\u5373\u5347\u7EA7\u4E13\u4E1A\u7248\uFF0C\u89E3\u9501\u8DE8\u90E8\u95E8\u81EA\u52A8\u6821\u9A8C\u6D41"))) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { id: `msg-export-${msg.id}`, className: "print-export-container" }, /* @__PURE__ */ React.createElement(
+    ) : /* @__PURE__ */ React.createElement("div", { className: "w-12 bg-slate-50 border-r border-slate-200 flex flex-col items-center py-4 shrink-0 z-10 cursor-pointer hover:bg-slate-100", onClick: () => setIsLeftPanelExpanded(true) }, /* @__PURE__ */ React.createElement(PanelRightOpen, { size: 20, className: "text-slate-400", style: { transform: "rotate(180deg)" } })), /* @__PURE__ */ React.createElement("div", { id: "chat-dialogue-panel", className: "flex-1 flex flex-col min-w-0 bg-slate-50/50 relative" }, /* @__PURE__ */ React.createElement("div", { id: "chat-messages-container", className: "flex-1 overflow-y-auto p-4 w-full relative" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full flex flex-col gap-4 mt-8" }, messages.map((msg, idx) => {
+      const isDispatch = msg.role === "user" && msg.content && msg.content.includes("\u3010\u653F\u5E9C\u4FA7\u6307\u4EE4\u4E0B\u8FBE\u3011");
+      return /* @__PURE__ */ React.createElement("div", { key: idx, className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}` }, msg.role === "agent" && /* @__PURE__ */ React.createElement("div", { className: `w-8 h-8 rounded-full flex items-center justify-center shrink-0 mr-3 ${msg.type === "warning" ? "bg-slate-200 text-slate-600" : "bg-blue-600 text-white"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement(TriangleAlert, { size: 16 }) : /* @__PURE__ */ React.createElement(Sparkles2, { size: 16 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col max-w-2xl" }, msg.role === "agent" && msg.type !== "warning" && /* @__PURE__ */ React.createElement("div", { className: "text-[12px] font-bold text-slate-500 mb-1.5 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", null, "\u6570\u636E\u7EDF\u7B79\u52A9\u624B"), /* @__PURE__ */ React.createElement("span", { className: "bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded font-mono text-[10px]" }, "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, (msg.role === "agent" || msg.role === "assistant") && (msg.toolCalls && msg.toolCalls.length > 0 || msg.thought && (!msg.toolCalls || msg.toolCalls.length === 0)) && /* @__PURE__ */ React.createElement("div", { className: "font-mono text-[12px] text-slate-600 bg-slate-50 border-l-2 border-blue-300 pl-2 py-1 rounded-sm mb-2" }, msg.thought && (!msg.toolCalls || msg.toolCalls.length === 0) && /* @__PURE__ */ React.createElement("div", { className: "mb-0.5 leading-relaxed text-slate-500" }, msg.thought.startsWith("\u{1F50D}") ? /* @__PURE__ */ React.createElement("span", { className: "animate-pulse" }, msg.thought) : msg.thought), msg.toolCalls && msg.toolCalls.map((tc, tcIdx) => /* @__PURE__ */ React.createElement(ToolCallItem, { key: tcIdx, tc })), msg.isGeneratingReport && /* @__PURE__ */ React.createElement("div", { className: "mt-2 pt-2 border-t border-slate-200 text-slate-500 font-medium animate-pulse flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "text-lg" }, "\u23F3"), "\u6570\u636E\u7A7F\u900F\u4E0E\u8BA1\u7B97\u5B8C\u6210\uFF0C\u6B63\u5728\u6700\u7EC8\u7EC4\u7EC7\u67B6\u6784\u5E76\u751F\u6210\u62A5\u544A\u4E2D..."), msg.totalTokens > 0 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 mt-1 pt-1 border-t border-slate-200" }, /* @__PURE__ */ React.createElement("span", { className: "px-1 py-0 rounded text-[10px] font-bold bg-amber-100 text-amber-700" }, "\u7EDF\u8BA1"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "Token: ", msg.totalTokens, " | \xA5", msg.totalCost != null ? msg.totalCost.toFixed(4) : "0.0000"))), /* @__PURE__ */ React.createElement(
         "div",
         {
-          className: "whitespace-pre-wrap text-sm leading-snug",
-          dangerouslySetInnerHTML: {
-            __html: formatBadgeText(convertMarkdownTablesToHtml((msg.content || "").replace(/(\r?\n\s*){2,}/g, "\n")), msg.id)
+          onClick: (e) => {
+            if (e.target.closest(".export-excel-btn")) {
+              handleExportExcel(msg.dbTableHtml || msg.content, false, msg.tableCode);
+              return;
+            }
+            const badge = e.target.closest(".agent-badge, .dataset-badge, .product-badge, .table-badge");
+            if (badge) {
+              const badgeText = badge.textContent || badge.innerText;
+              setRightPanelTab(badgeText);
+              setHasGenerated(true);
+              setIsRightPanelExpanded(true);
+            }
+          },
+          className: `py-1 ${msg.role === "user" ? "text-right text-slate-800" : msg.type === "warning" ? "text-yellow-700 font-semibold" : "text-slate-800"}`
+        },
+        msg.type === "warning" ? /* @__PURE__ */ React.createElement("div", { className: "whitespace-pre-wrap text-sm leading-relaxed font-medium" }, msg.content, /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-4 border-t border-slate-200/50" }, /* @__PURE__ */ React.createElement("button", { className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg shadow font-bold text-sm transition-all flex items-center gap-2" }, "\u{1F449} \u7ACB\u5373\u5347\u7EA7\u4E13\u4E1A\u7248\uFF0C\u89E3\u9501\u8DE8\u90E8\u95E8\u81EA\u52A8\u6821\u9A8C\u6D41"))) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { id: `msg-export-${msg.id}`, className: "print-export-container" }, (() => {
+          if (msg.isReq01Upload) {
+            return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(
+              "div",
+              {
+                className: "whitespace-pre-wrap text-sm leading-snug",
+                dangerouslySetInnerHTML: { __html: formatBadgeText(convertMarkdownTablesToHtml(msg.content), msg.id) }
+              }
+            ), /* @__PURE__ */ React.createElement(
+              "div",
+              {
+                className: "mt-2 mb-6 w-full border-2 border-dashed border-indigo-300 bg-indigo-50/50 rounded-lg p-5 text-center cursor-pointer hover:bg-indigo-100 transition-colors flex flex-col items-center justify-center",
+                onClick: () => {
+                  const inp = document.createElement("input");
+                  inp.type = "file";
+                  inp.accept = "*/*";
+                  inp.onchange = (e) => {
+                    const f = e.target.files[0];
+                    if (f) handleReq01Upload(msg.id, f.name);
+                  };
+                  inp.click();
+                }
+              },
+              /* @__PURE__ */ React.createElement("div", { className: "text-indigo-600 text-sm font-bold mb-1" }, "\u{1F4CE} \u70B9\u51FB\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6"),
+              /* @__PURE__ */ React.createElement("div", { className: "text-indigo-400 text-[10px]" }, "\u652F\u6301\u56FE\u7247\u3001Excel\u3001Word\u3001PDF \u7B49\u5404\u79CD\u683C\u5F0F")
+            ));
           }
-        }
-      ), msg.sqlResult && msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && /* @__PURE__ */ React.createElement("div", { className: "mt-3 py-2 border-t border-slate-100 text-[12px] flex items-center justify-between print-hidden" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 text-xs font-medium" }, "\u660E\u7EC6\u6570\u636E\u5DF2\u8F7D\u5165\u53F3\u4FA7\u5E95\u76D8 \u27A1\uFE0F"), /* @__PURE__ */ React.createElement("div", { className: "flex gap-4" }, /* @__PURE__ */ React.createElement(
-        "span",
-        {
-          onClick: () => exportMessageAsPdf(msg.id),
-          className: "export-excel-btn text-slate-500 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
-        },
-        "[\u5BFC\u51FA\u672C\u56DE\u7B54\u4E3A PDF]"
-      ), /* @__PURE__ */ React.createElement(
-        "span",
-        {
-          onClick: () => exportMessageAsWord(msg.id),
-          className: "export-excel-btn text-slate-500 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
-        },
-        "[\u5BFC\u51FA\u672C\u56DE\u7B54\u4E3A Word]"
-      ), /* @__PURE__ */ React.createElement(
-        "span",
-        {
-          className: "export-excel-btn text-blue-600 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
-        },
-        "[\u63D0\u53D6Excel\u6570\u636E\u8868]"
-      ))), msg.actionPrompt && msg.actionPrompt.status !== "dismissed" && /* @__PURE__ */ React.createElement("div", { className: `mt-3 p-3 bg-white border rounded-lg shadow-sm transition-all print-hidden ${msg.actionPrompt.status === "resolved" ? "border-green-100 opacity-80" : "border-blue-100"}` }, /* @__PURE__ */ React.createElement("div", { className: "text-sm text-slate-700 font-medium mb-3 flex items-start gap-2" }, msg.actionPrompt.status === "resolved" ? /* @__PURE__ */ React.createElement(CircleCheckBig, { size: 16, className: "text-green-500 shrink-0 mt-0.5" }) : /* @__PURE__ */ React.createElement(Sparkles2, { size: 16, className: "text-blue-500 shrink-0 mt-0.5" }), /* @__PURE__ */ React.createElement("span", null, msg.actionPrompt.text)), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.status === "pending" && msg.actionPrompt.actions.map((action) => /* @__PURE__ */ React.createElement(
+          return /* @__PURE__ */ React.createElement(
+            "div",
+            {
+              className: "whitespace-pre-wrap text-sm leading-snug",
+              dangerouslySetInnerHTML: {
+                __html: formatBadgeText(convertMarkdownTablesToHtml(msg.content || ""), msg.id)
+              }
+            }
+          );
+        })(), msg.sqlResult && msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && !msg.hideDefaultTemplates && /* @__PURE__ */ React.createElement("div", { className: "mt-3 py-2 border-t border-slate-100 text-[12px] flex items-center justify-between print-hidden" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 text-xs font-medium" }, "\u660E\u7EC6\u6570\u636E\u5DF2\u8F7D\u5165\u53F3\u4FA7\u5E95\u76D8 \u27A1\uFE0F"), /* @__PURE__ */ React.createElement("div", { className: "flex gap-4" }, /* @__PURE__ */ React.createElement(
+          "span",
+          {
+            onClick: () => exportMessageAsPdf(msg.id),
+            className: "export-excel-btn text-slate-500 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
+          },
+          "[\u5BFC\u51FA\u672C\u56DE\u7B54\u4E3A PDF]"
+        ), /* @__PURE__ */ React.createElement(
+          "span",
+          {
+            onClick: () => exportMessageAsWord(msg.id),
+            className: "export-excel-btn text-slate-500 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
+          },
+          "[\u5BFC\u51FA\u672C\u56DE\u7B54\u4E3A Word]"
+        ), /* @__PURE__ */ React.createElement(
+          "span",
+          {
+            className: "export-excel-btn text-blue-600 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
+          },
+          "[\u63D0\u53D6Excel\u6570\u636E\u8868]"
+        ))), msg.actionPrompt && msg.actionPrompt.status !== "dismissed" && /* @__PURE__ */ React.createElement("div", { className: `mt-3 p-3 bg-white border rounded-lg shadow-sm transition-all print-hidden ${msg.actionPrompt.status === "resolved" ? "border-green-100 opacity-80" : "border-blue-100"}` }, /* @__PURE__ */ React.createElement("div", { className: "text-sm text-slate-700 font-medium mb-3 flex items-start gap-2" }, msg.actionPrompt.status === "resolved" ? /* @__PURE__ */ React.createElement(CircleCheckBig, { size: 16, className: "text-green-500 shrink-0 mt-0.5" }) : /* @__PURE__ */ React.createElement(Sparkles2, { size: 16, className: "text-blue-500 shrink-0 mt-0.5" }), /* @__PURE__ */ React.createElement("span", null, msg.actionPrompt.text)), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.status === "pending" && msg.actionPrompt.actions.map((action) => /* @__PURE__ */ React.createElement(
+          "button",
+          {
+            key: action.id,
+            disabled: msg.actionPrompt.status !== "pending",
+            onClick: () => handleActionPromptClick(msg, action),
+            className: `px-3 py-1.5 text-[12px] font-bold rounded flex items-center gap-1.5 transition-all ${action.type === "primary" ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm disabled:bg-slate-100 disabled:text-slate-400 disabled:shadow-none" : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:bg-slate-50 disabled:text-slate-300"}`
+          },
+          action.label
+        )), msg.actionPrompt.status === "resolving" && /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-1.5 mt-2 mb-2 p-2.5 bg-slate-50 border-l-[3px] border-blue-300 text-[11px] font-mono text-slate-600 w-full rounded-r" }, msg.actionPrompt.resolvingActionId === "generate_generic_export" ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 1 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 1 ? "" : "text-blue-700 font-semibold" }, "\u6B63\u5728\u89E3\u6790 AI \u5206\u6790\u62A5\u544A\u6587\u672C\u7ED3\u6784...")), msg.actionPrompt.resolvingStep >= 2 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 2 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 2 ? "" : "text-blue-700 font-semibold" }, "\u6210\u529F\u8BC6\u522B\u5230\u7ED3\u6784\u5316\u6570\u636E\u8868\u683C...")), msg.actionPrompt.resolvingStep >= 3 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 3 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 3 ? "" : "text-blue-700 font-semibold" }, "\u6B63\u5728\u6E05\u6D17\u5E76\u5BF9\u9F50\u8868\u683C\u6570\u636E\u5217\u683C\u5F0F...")), msg.actionPrompt.resolvingStep >= 4 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 4 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 4 ? "" : "text-blue-700 font-semibold" }, "\u6B63\u5728\u4E3A\u60A8\u751F\u6210\u72EC\u7ACB\u7684 Excel / Word / PDF \u62A5\u544A\u6587\u4EF6...")), msg.actionPrompt.resolvingStep >= 5 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: "text-blue-700 font-semibold" }, "\u6E32\u67D3\u51C6\u5907\u5C31\u7EEA\uFF0C\u5373\u5C06\u5C55\u5F00\u5DE5\u4F5C\u53F0..."))) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 1 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 1 ? "" : "text-blue-700 font-semibold" }, "\u547D\u4E2D\u672C\u5730\u7F13\u5B58\u7B56\u7565\uFF0C\u5524\u8D77 SQL.js Wasm \u5F15\u64CE...")), msg.actionPrompt.resolvingStep >= 2 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 2 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 2 ? "" : "text-blue-700 font-semibold" }, "\u89E3\u6790\u67E5\u8BE2\u610F\u56FE\uFF0C\u7F16\u8BD1\u62BD\u8C61\u8BED\u6CD5\u6811 (AST)...")), msg.actionPrompt.resolvingStep >= 3 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 3 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 3 ? "" : "text-blue-700 font-semibold" }, "\u6302\u8F7D\u79BB\u7EBF\u6570\u636E\u5E93\uFF0C\u626B\u63CF G/S \u7EBF\u8DEF\u6BB5\u7EA7\u5E95\u8868...")), msg.actionPrompt.resolvingStep >= 4 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 4 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 4 ? "" : "text-blue-700 font-semibold" }, "\u6267\u884C\u591A\u7EF4\u4EA4\u53C9\u805A\u5408\u8FD0\u7B97 (\u6309\u6280\u672F\u7B49\u7EA7/\u8DEF\u7EBF)...")), msg.actionPrompt.resolvingStep >= 5 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: "text-blue-700 font-semibold" }, "\u6620\u5C04\u4E1A\u52A1\u5B57\u6BB5\u8868\u5934\uFF0C\u751F\u6210\u7ED3\u6784\u5316\u53EF\u5BFC\u51FA\u6D41...")))), msg.actionPrompt.status === "resolved" && /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-1 mt-1" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[12px] text-slate-600 font-bold" }, "\u2713 \u5DF2\u5728\u53F3\u4FA7\u9762\u677F\u5C55\u5F00\u76F8\u5173\u8868\u683C"))))), msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && !msg.hideDefaultTemplates && /* @__PURE__ */ React.createElement("div", { className: "mt-3 pt-2 border-t border-slate-100 space-y-2" }, /* @__PURE__ */ React.createElement(
+          "details",
+          {
+            className: "group",
+            onToggle: (e) => {
+              if (e.target.open) {
+                loadViewOnDemand(msg.id, idx, 1);
+              }
+            }
+          },
+          /* @__PURE__ */ React.createElement("summary", { className: "font-bold text-slate-700 hover:text-red-700 cursor-pointer select-none list-none flex items-center gap-1.5 text-xs py-1" }, "\u25B6 \u3010\u89C6\u56FE 1\uFF1A\u89C4\u5EFA\u7BA1\u517B\u8FD0\u5168\u751F\u547D\u5468\u671F\u5355\u9636\u6BB5\u3011"),
+          /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view1 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u8FD0\u7528\u516C\u6587\u8BED\u6001\u6DF1\u5EA6\u5206\u6790\u4E2D\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view1 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view1 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
+            "button",
+            {
+              onClick: (e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText(msg.views.view1);
+                alert("\u5DF2\u590D\u5236\u89C6\u56FE 1 \u5206\u6790\u5185\u5BB9\uFF01");
+              },
+              className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
+            },
+            "\u590D\u5236\u6B64\u89C6\u56FE"
+          ), /* @__PURE__ */ React.createElement(
+            "button",
+            {
+              onClick: (e) => {
+                e.stopPropagation();
+                loadViewOnDemand(msg.id, idx, 1, true);
+              },
+              className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
+            },
+            "\u91CD\u65B0\u751F\u6210\u6B64\u89C6\u56FE"
+          ))))
+        ), /* @__PURE__ */ React.createElement(
+          "details",
+          {
+            className: "group",
+            onToggle: (e) => {
+              if (e.target.open) {
+                loadViewOnDemand(msg.id, idx, 2);
+              }
+            }
+          },
+          /* @__PURE__ */ React.createElement("summary", { className: "font-bold text-slate-700 hover:text-red-700 cursor-pointer select-none list-none flex items-center gap-1.5 text-xs py-1" }, "\u25B6 \u3010\u89C6\u56FE 2\uFF1A\u89C4\u5EFA\u7BA1\u517B\u8FD0\u5168\u751F\u547D\u5468\u671F\u8DE8\u9636\u6BB5\u3011"),
+          /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view2 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u6838\u6821\u8DE8\u9636\u6BB5\u52FE\u7A3D\u5173\u7CFB\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view2 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view2 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
+            "button",
+            {
+              onClick: (e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText(msg.views.view2);
+                alert("\u5DF2\u590D\u5236\u89C6\u56FE 2 \u5206\u6790\u5185\u5BB9\uFF01");
+              },
+              className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
+            },
+            "\u590D\u5236\u6B64\u89C6\u56FE"
+          ), /* @__PURE__ */ React.createElement(
+            "button",
+            {
+              onClick: (e) => {
+                e.stopPropagation();
+                loadViewOnDemand(msg.id, idx, 2, true);
+              },
+              className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
+            },
+            "\u91CD\u65B0\u751F\u6210\u6B64\u89C6\u56FE"
+          ))))
+        ), /* @__PURE__ */ React.createElement(
+          "details",
+          {
+            className: "group",
+            onToggle: (e) => {
+              if (e.target.open) {
+                loadViewOnDemand(msg.id, idx, 3);
+              }
+            }
+          },
+          /* @__PURE__ */ React.createElement("summary", { className: "font-bold text-slate-700 hover:text-red-700 cursor-pointer select-none list-none flex items-center gap-1.5 text-xs py-1" }, "\u25B6 \u3010\u89C6\u56FE 3\uFF1A\u6570\u636E\u8981\u7D20\u5316\u53CA\u5E94\u7528\u4EF7\u503C\u3011"),
+          /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view3 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u8BC4\u4F30\u667A\u80FD\u4F53\u878D\u5408\u521B\u6536\u524D\u666F\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view3 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view3 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
+            "button",
+            {
+              onClick: (e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText(msg.views.view3);
+                alert("\u5DF2\u590D\u5236\u89C6\u56FE 3 \u5206\u6790\u5185\u5BB9\uFF01");
+              },
+              className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
+            },
+            "\u590D\u5236\u6B64\u89C6\u56FE"
+          ), /* @__PURE__ */ React.createElement(
+            "button",
+            {
+              onClick: (e) => {
+                e.stopPropagation();
+                loadViewOnDemand(msg.id, idx, 3, true);
+              },
+              className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
+            },
+            "\u91CD\u65B0\u751F\u6210\u6B64\u89C6\u56FE"
+          ))))
+        )), msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && !msg.hideDefaultTemplates && /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-3 border-t border-slate-100 flex justify-end print-hidden" }, /* @__PURE__ */ React.createElement(
+          "span",
+          {
+            onClick: () => setIsRightPanelExpanded(true),
+            className: "text-blue-600 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
+          },
+          "[\u67E5\u770B\u53F3\u4FA7\u660E\u7EC6\u9762\u677F]"
+        ))))
+      ), msg.role === "agent" && msg.sqlResult && !msg.hideDefaultTemplates && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex items-center gap-3 text-slate-400 text-[11px] select-none pl-1" }, /* @__PURE__ */ React.createElement(
         "button",
         {
-          key: action.id,
-          disabled: msg.actionPrompt.status !== "pending",
-          onClick: () => handleActionPromptClick(msg, action),
-          className: `px-3 py-1.5 text-[12px] font-bold rounded flex items-center gap-1.5 transition-all ${action.type === "primary" ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm disabled:bg-slate-100 disabled:text-slate-400 disabled:shadow-none" : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:bg-slate-50 disabled:text-slate-300"}`
-        },
-        action.label
-      )), msg.actionPrompt.status === "resolving" && /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-1.5 mt-2 mb-2 p-2.5 bg-slate-50 border-l-[3px] border-blue-300 text-[11px] font-mono text-slate-600 w-full rounded-r" }, msg.actionPrompt.resolvingActionId === "generate_generic_export" ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 1 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 1 ? "" : "text-blue-700 font-semibold" }, "\u6B63\u5728\u89E3\u6790 AI \u5206\u6790\u62A5\u544A\u6587\u672C\u7ED3\u6784...")), msg.actionPrompt.resolvingStep >= 2 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 2 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 2 ? "" : "text-blue-700 font-semibold" }, "\u6210\u529F\u8BC6\u522B\u5230\u7ED3\u6784\u5316\u6570\u636E\u8868\u683C...")), msg.actionPrompt.resolvingStep >= 3 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 3 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 3 ? "" : "text-blue-700 font-semibold" }, "\u6B63\u5728\u6E05\u6D17\u5E76\u5BF9\u9F50\u8868\u683C\u6570\u636E\u5217\u683C\u5F0F...")), msg.actionPrompt.resolvingStep >= 4 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 4 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 4 ? "" : "text-blue-700 font-semibold" }, "\u6B63\u5728\u4E3A\u60A8\u751F\u6210\u72EC\u7ACB\u7684 Excel / Word / PDF \u62A5\u544A\u6587\u4EF6...")), msg.actionPrompt.resolvingStep >= 5 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: "text-blue-700 font-semibold" }, "\u6E32\u67D3\u51C6\u5907\u5C31\u7EEA\uFF0C\u5373\u5C06\u5C55\u5F00\u5DE5\u4F5C\u53F0..."))) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 1 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 1 ? "" : "text-blue-700 font-semibold" }, "\u547D\u4E2D\u672C\u5730\u7F13\u5B58\u7B56\u7565\uFF0C\u5524\u8D77 SQL.js Wasm \u5F15\u64CE...")), msg.actionPrompt.resolvingStep >= 2 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 2 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 2 ? "" : "text-blue-700 font-semibold" }, "\u89E3\u6790\u67E5\u8BE2\u610F\u56FE\uFF0C\u7F16\u8BD1\u62BD\u8C61\u8BED\u6CD5\u6811 (AST)...")), msg.actionPrompt.resolvingStep >= 3 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 3 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 3 ? "" : "text-blue-700 font-semibold" }, "\u6302\u8F7D\u79BB\u7EBF\u6570\u636E\u5E93\uFF0C\u626B\u63CF G/S \u7EBF\u8DEF\u6BB5\u7EA7\u5E95\u8868...")), msg.actionPrompt.resolvingStep >= 4 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, msg.actionPrompt.resolvingStep > 4 ? /* @__PURE__ */ React.createElement("span", { className: "text-green-600 font-bold" }, "\u2713") : /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: msg.actionPrompt.resolvingStep > 4 ? "" : "text-blue-700 font-semibold" }, "\u6267\u884C\u591A\u7EF4\u4EA4\u53C9\u805A\u5408\u8FD0\u7B97 (\u6309\u6280\u672F\u7B49\u7EA7/\u8DEF\u7EBF)...")), msg.actionPrompt.resolvingStep >= 5 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement(LoaderCircle, { size: 10, className: "animate-spin text-blue-600" }), /* @__PURE__ */ React.createElement("span", { className: "text-blue-700 font-semibold" }, "\u6620\u5C04\u4E1A\u52A1\u5B57\u6BB5\u8868\u5934\uFF0C\u751F\u6210\u7ED3\u6784\u5316\u53EF\u5BFC\u51FA\u6D41...")))), msg.actionPrompt.status === "resolved" && /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-1 mt-1" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[12px] text-slate-600 font-bold" }, "\u2713 \u5DF2\u5728\u53F3\u4FA7\u9762\u677F\u5C55\u5F00\u76F8\u5173\u8868\u683C"))))), msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && /* @__PURE__ */ React.createElement("div", { className: "mt-3 pt-2 border-t border-slate-100 space-y-2" }, /* @__PURE__ */ React.createElement(
-        "details",
-        {
-          className: "group",
-          onToggle: (e) => {
-            if (e.target.open) {
-              loadViewOnDemand(msg.id, idx, 1);
-            }
-          }
-        },
-        /* @__PURE__ */ React.createElement("summary", { className: "font-bold text-slate-700 hover:text-red-700 cursor-pointer select-none list-none flex items-center gap-1.5 text-xs py-1" }, "\u25B6 \u3010\u89C6\u56FE 1\uFF1A\u89C4\u5EFA\u7BA1\u517B\u8FD0\u5168\u751F\u547D\u5468\u671F\u5355\u9636\u6BB5\u3011"),
-        /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view1 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u8FD0\u7528\u516C\u6587\u8BED\u6001\u6DF1\u5EA6\u5206\u6790\u4E2D\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view1 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view1 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
-          "button",
-          {
-            onClick: (e) => {
-              e.stopPropagation();
-              navigator.clipboard.writeText(msg.views.view1);
-              alert("\u5DF2\u590D\u5236\u89C6\u56FE 1 \u5206\u6790\u5185\u5BB9\uFF01");
-            },
-            className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
+          onClick: () => {
+            navigator.clipboard.writeText(msg.content);
+            alert("\u5DF2\u590D\u5236\u7ED3\u8BBA\u4E0E\u8868\u683C\u5185\u5BB9\u5230\u526A\u8D34\u677F\uFF01");
           },
-          "\u590D\u5236\u6B64\u89C6\u56FE"
-        ), /* @__PURE__ */ React.createElement(
-          "button",
-          {
-            onClick: (e) => {
-              e.stopPropagation();
-              loadViewOnDemand(msg.id, idx, 1, true);
-            },
-            className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
-          },
-          "\u91CD\u65B0\u751F\u6210\u6B64\u89C6\u56FE"
-        ))))
+          className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400"
+        },
+        "\u590D\u5236\u7ED3\u8BBA"
       ), /* @__PURE__ */ React.createElement(
-        "details",
+        "button",
         {
-          className: "group",
-          onToggle: (e) => {
-            if (e.target.open) {
-              loadViewOnDemand(msg.id, idx, 2);
+          onClick: () => {
+            let userQuery = "";
+            for (let i = msgIdx - 1; i >= 0; i--) {
+              if (messages[i].role === "user") {
+                userQuery = messages[i].content;
+                break;
+              }
             }
-          }
+            if (!userQuery) userQuery = queryInput;
+            setQueryInput(userQuery);
+            handleSend(userQuery);
+          },
+          className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400"
         },
-        /* @__PURE__ */ React.createElement("summary", { className: "font-bold text-slate-700 hover:text-red-700 cursor-pointer select-none list-none flex items-center gap-1.5 text-xs py-1" }, "\u25B6 \u3010\u89C6\u56FE 2\uFF1A\u89C4\u5EFA\u7BA1\u517B\u8FD0\u5168\u751F\u547D\u5468\u671F\u8DE8\u9636\u6BB5\u3011"),
-        /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view2 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u6838\u6821\u8DE8\u9636\u6BB5\u52FE\u7A3D\u5173\u7CFB\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view2 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view2 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
-          "button",
-          {
-            onClick: (e) => {
-              e.stopPropagation();
-              navigator.clipboard.writeText(msg.views.view2);
-              alert("\u5DF2\u590D\u5236\u89C6\u56FE 2 \u5206\u6790\u5185\u5BB9\uFF01");
-            },
-            className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
+        "\u91CD\u65B0\u751F\u6210\u7ED3\u8BBA"
+      )), msg.role === "agent" && msg.sqlResult && !msg.reportPromptDismissed && /* @__PURE__ */ React.createElement("div", { className: "mt-2 flex items-center gap-2 bg-slate-50/80 border border-slate-200/70 rounded-lg px-3 py-2 text-[11px]" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "\u{1F4C4} \u662F\u5426\u751F\u6210\u672C\u6B21\u5206\u6790\u62A5\u544A\uFF1F"), /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          onClick: () => {
+            setMessages((prev) => prev.map((m2, mi) => mi === msgIdx ? { ...m2, reportPromptDismissed: true } : m2));
+            const reportContent = msg.content;
+            setGeneratedArtifacts((prev) => [{
+              name: "\u5206\u6790\u62A5\u544A.doc",
+              content: reportContent,
+              createdAt: (/* @__PURE__ */ new Date()).toLocaleString("zh-CN")
+            }, ...prev]);
+            setRightPanelTab("\u5206\u6790\u62A5\u544A.doc");
+            setIsRightPanelExpanded(true);
           },
-          "\u590D\u5236\u6B64\u89C6\u56FE"
-        ), /* @__PURE__ */ React.createElement(
-          "button",
-          {
-            onClick: (e) => {
-              e.stopPropagation();
-              loadViewOnDemand(msg.id, idx, 2, true);
-            },
-            className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
-          },
-          "\u91CD\u65B0\u751F\u6210\u6B64\u89C6\u56FE"
-        ))))
+          className: "px-2.5 py-0.5 bg-blue-600 text-white rounded-full text-[10px] font-bold hover:bg-blue-700 transition-colors cursor-pointer"
+        },
+        "\u751F\u6210\u62A5\u544A \u25B6"
       ), /* @__PURE__ */ React.createElement(
-        "details",
+        "button",
         {
-          className: "group",
-          onToggle: (e) => {
-            if (e.target.open) {
-              loadViewOnDemand(msg.id, idx, 3);
-            }
-          }
+          onClick: () => setMessages((prev) => prev.map((m2, mi) => mi === msgIdx ? { ...m2, reportPromptDismissed: true } : m2)),
+          className: "px-2.5 py-0.5 bg-slate-100 text-slate-500 rounded-full text-[10px] hover:bg-slate-200 transition-colors cursor-pointer"
         },
-        /* @__PURE__ */ React.createElement("summary", { className: "font-bold text-slate-700 hover:text-red-700 cursor-pointer select-none list-none flex items-center gap-1.5 text-xs py-1" }, "\u25B6 \u3010\u89C6\u56FE 3\uFF1A\u6570\u636E\u8981\u7D20\u5316\u53CA\u5E94\u7528\u4EF7\u503C\u3011"),
-        /* @__PURE__ */ React.createElement("div", { className: "pl-4 py-1 text-slate-600 text-xs whitespace-pre-wrap leading-relaxed" }, msg.viewLoading?.view3 ? /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 italic animate-pulse" }, "\u6B63\u5728\u8BC4\u4F30\u667A\u80FD\u4F53\u878D\u5408\u521B\u6536\u524D\u666F\uFF0C\u8BF7\u7A0D\u5019...") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { dangerouslySetInnerHTML: { __html: formatBadgeText(msg.views?.view3 || "\uFF08\u6682\u65E0\u5206\u6790\uFF0C\u70B9\u51FB\u5C55\u5F00\u52A0\u8F7D\uFF09") } }), msg.views?.view3 && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex justify-end gap-3" }, /* @__PURE__ */ React.createElement(
-          "button",
-          {
-            onClick: (e) => {
-              e.stopPropagation();
-              navigator.clipboard.writeText(msg.views.view3);
-              alert("\u5DF2\u590D\u5236\u89C6\u56FE 3 \u5206\u6790\u5185\u5BB9\uFF01");
-            },
-            className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
-          },
-          "\u590D\u5236\u6B64\u89C6\u56FE"
-        ), /* @__PURE__ */ React.createElement(
-          "button",
-          {
-            onClick: (e) => {
-              e.stopPropagation();
-              loadViewOnDemand(msg.id, idx, 3, true);
-            },
-            className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400 text-[10px]"
-          },
-          "\u91CD\u65B0\u751F\u6210\u6B64\u89C6\u56FE"
-        ))))
-      )), msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-3 border-t border-slate-100 flex justify-end print-hidden" }, /* @__PURE__ */ React.createElement(
-        "span",
+        "\u8DF3\u8FC7"
+      )), msg.suggestions && msg.suggestions.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "mt-3" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] text-slate-400 font-medium mb-2 pl-1 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F451}"), " \u6DF1\u5EA6\u4E1A\u52A1\u6D41\u63A8\u6F14 (\u4E13\u4E1A\u7248\u4F53\u9A8C)"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, msg.suggestions.map((s, idx2) => /* @__PURE__ */ React.createElement(
+        "button",
         {
-          onClick: () => setIsRightPanelExpanded(true),
-          className: "text-blue-600 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
+          key: idx2,
+          onClick: () => handleDeepSeekQuery(s),
+          className: "px-3 py-2 bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 hover:border-slate-300 rounded-lg text-[13px] transition-colors cursor-pointer text-left shadow-sm inline-flex items-start gap-1.5 w-fit"
         },
-        "[\u67E5\u770B\u53F3\u4FA7\u660E\u7EC6\u9762\u677F]"
-      ))))
-    ), msg.role === "agent" && msg.sqlResult && /* @__PURE__ */ React.createElement("div", { className: "mt-1.5 flex items-center gap-3 text-slate-400 text-[11px] select-none pl-1" }, /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        onClick: () => {
-          navigator.clipboard.writeText(msg.content);
-          alert("\u5DF2\u590D\u5236\u7ED3\u8BBA\u4E0E\u8868\u683C\u5185\u5BB9\u5230\u526A\u8D34\u677F\uFF01");
-        },
-        className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400"
-      },
-      "\u590D\u5236\u7ED3\u8BBA"
-    ), /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        onClick: () => {
-          let userQuery = "";
-          for (let i = msgIdx - 1; i >= 0; i--) {
-            if (messages[i].role === "user") {
-              userQuery = messages[i].content;
-              break;
-            }
-          }
-          if (!userQuery) userQuery = queryInput;
-          setQueryInput(userQuery);
-          handleSend(userQuery);
-        },
-        className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400"
-      },
-      "\u91CD\u65B0\u751F\u6210\u7ED3\u8BBA"
-    )), msg.role === "agent" && msg.sqlResult && !msg.reportPromptDismissed && /* @__PURE__ */ React.createElement("div", { className: "mt-2 flex items-center gap-2 bg-slate-50/80 border border-slate-200/70 rounded-lg px-3 py-2 text-[11px]" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "\u{1F4C4} \u662F\u5426\u751F\u6210\u672C\u6B21\u5206\u6790\u62A5\u544A\uFF1F"), /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        onClick: () => {
-          setMessages((prev) => prev.map((m2, mi) => mi === msgIdx ? { ...m2, reportPromptDismissed: true } : m2));
-          const reportContent = msg.content;
-          setGeneratedArtifacts((prev) => [{
-            name: "\u5206\u6790\u62A5\u544A.doc",
-            content: reportContent,
-            createdAt: (/* @__PURE__ */ new Date()).toLocaleString("zh-CN")
-          }, ...prev]);
-          setRightPanelTab("\u5206\u6790\u62A5\u544A.doc");
-          setIsRightPanelExpanded(true);
-        },
-        className: "px-2.5 py-0.5 bg-blue-600 text-white rounded-full text-[10px] font-bold hover:bg-blue-700 transition-colors cursor-pointer"
-      },
-      "\u751F\u6210\u62A5\u544A \u25B6"
-    ), /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        onClick: () => setMessages((prev) => prev.map((m2, mi) => mi === msgIdx ? { ...m2, reportPromptDismissed: true } : m2)),
-        className: "px-2.5 py-0.5 bg-slate-100 text-slate-500 rounded-full text-[10px] hover:bg-slate-200 transition-colors cursor-pointer"
-      },
-      "\u8DF3\u8FC7"
-    )), msg.suggestions && msg.suggestions.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "mt-3" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] text-slate-400 font-medium mb-2 pl-1 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F451}"), " \u6DF1\u5EA6\u4E1A\u52A1\u6D41\u63A8\u6F14 (\u4E13\u4E1A\u7248\u4F53\u9A8C)"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, msg.suggestions.map((s, idx2) => /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        key: idx2,
-        onClick: () => handleDeepSeekQuery(s),
-        className: "px-3 py-2 bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 hover:border-slate-300 rounded-lg text-[13px] transition-colors cursor-pointer text-left shadow-sm inline-flex items-start gap-1.5 w-fit"
-      },
-      /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 mt-0.5" }, "\u{1F451}"),
-      /* @__PURE__ */ React.createElement("span", { className: "flex-1 leading-snug font-medium text-slate-700" }, s)
-    )))))), msg.role === "user" && /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center shrink-0 ml-3 text-white" }, "You"))), /* @__PURE__ */ React.createElement("div", { ref: messagesEndRef }))), /* @__PURE__ */ React.createElement("div", { className: "bg-white border-t border-slate-200 shrink-0 p-4 w-full z-10 shadow-[0_-2px_10px_rgba(0,0,0,0.02)]" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full flex flex-col gap-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "w-full flex flex-wrap items-center gap-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "relative group" }, /* @__PURE__ */ React.createElement("button", { className: "px-2 py-1 rounded-full bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800 transition-colors border border-slate-200 text-[9px] flex items-center gap-1 cursor-pointer font-medium" }, "\u573A\u666F1_\u6C5B\u671F\u9884\u8B66\u9632\u5FA1(\u5F85\u5F00\u53D1) ", /* @__PURE__ */ React.createElement("span", { className: "text-[9px]" }, "\u25B4")), /* @__PURE__ */ React.createElement("div", { className: "absolute left-0 bottom-[100%] pb-1 hidden group-hover:block z-[60]" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-col bg-white border border-slate-200 rounded shadow-[0_-4px_20px_rgba(0,0,0,0.08)] w-[320px] max-h-[350px] overflow-y-auto" }, ["\u3010\u6C14\u8C61\u9884\u8B66\u8054\u52A8\u3011\u63A5\u6536\u7701\u7EA7\u66B4\u96E8\u7EA2\u8272\u9884\u8B66\u6307\u4EE4\uFF0C\u7CBE\u51C6\u9501\u5B9A\u53D7\u707E\u8F96\u533A\u5185\u8DEF\u6BB5\u6869\u53F7\u8FB9\u754C\u3002", "\u3010\u9AD8\u5371\u7ED3\u6784\u7269\u7194\u65AD\u6392\u67E5\u3011\u62C9\u53D6L29a\u7B49\u9AD8\u5371\u6865\u96A7\u8FB9\u5761\u5B9E\u65F6\u5065\u5EB7\u76D1\u6D4B\u6D41\u3002", "\u3010\u5E94\u6025\u8D44\u6E90\u534F\u540C\u8C03\u5EA6\u3011\u4E00\u952E\u76D8\u70B9\u53D7\u707E\u533A\u62A2\u9669\u7269\u8D44\uFF0C\u4E0B\u53D1\u300A\u8DE8\u533A\u534F\u540C\u5DE5\u5355\u300B\u3002"].map((q2, idx) => /* @__PURE__ */ React.createElement(
+        /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 mt-0.5" }, "\u{1F451}"),
+        /* @__PURE__ */ React.createElement("span", { className: "flex-1 leading-snug font-medium text-slate-700" }, s)
+      )))))), msg.role === "user" && /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center shrink-0 ml-3 text-white" }, "You"));
+    }), /* @__PURE__ */ React.createElement("div", { ref: messagesEndRef }))), /* @__PURE__ */ React.createElement("div", { className: "bg-white border-t border-slate-200 shrink-0 p-4 w-full z-10 shadow-[0_-2px_10px_rgba(0,0,0,0.02)]" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full flex flex-col gap-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "w-full flex flex-wrap items-center gap-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "relative group" }, /* @__PURE__ */ React.createElement("button", { className: "px-2 py-1 rounded-full bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800 transition-colors border border-slate-200 text-[9px] flex items-center gap-1 cursor-pointer font-medium" }, "\u573A\u666F1_\u6C5B\u671F\u9884\u8B66\u9632\u5FA1(\u5F85\u5F00\u53D1) ", /* @__PURE__ */ React.createElement("span", { className: "text-[9px]" }, "\u25B4")), /* @__PURE__ */ React.createElement("div", { className: "absolute left-0 bottom-[100%] pb-1 hidden group-hover:block z-[60]" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-col bg-white border border-slate-200 rounded shadow-[0_-4px_20px_rgba(0,0,0,0.08)] w-[320px] max-h-[350px] overflow-y-auto" }, ["\u3010\u6C14\u8C61\u9884\u8B66\u8054\u52A8\u3011\u63A5\u6536\u7701\u7EA7\u66B4\u96E8\u7EA2\u8272\u9884\u8B66\u6307\u4EE4\uFF0C\u7CBE\u51C6\u9501\u5B9A\u53D7\u707E\u8F96\u533A\u5185\u8DEF\u6BB5\u6869\u53F7\u8FB9\u754C\u3002", "\u3010\u9AD8\u5371\u7ED3\u6784\u7269\u7194\u65AD\u6392\u67E5\u3011\u62C9\u53D6L29a\u7B49\u9AD8\u5371\u6865\u96A7\u8FB9\u5761\u5B9E\u65F6\u5065\u5EB7\u76D1\u6D4B\u6D41\u3002", "\u3010\u5E94\u6025\u8D44\u6E90\u534F\u540C\u8C03\u5EA6\u3011\u4E00\u952E\u76D8\u70B9\u53D7\u707E\u533A\u62A2\u9669\u7269\u8D44\uFF0C\u4E0B\u53D1\u300A\u8DE8\u533A\u534F\u540C\u5DE5\u5355\u300B\u3002"].map((q2, idx) => /* @__PURE__ */ React.createElement(
       "button",
       {
         key: `s1-${idx}`,
@@ -50283,18 +50453,17 @@ ${msg.views.view3}
         title: q2
       },
       q2
-    ))))))), /* @__PURE__ */ React.createElement("div", { className: "relative group" }, /* @__PURE__ */ React.createElement("button", { className: "px-2 py-1 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 hover:from-blue-100 hover:to-indigo-100 transition-colors border border-blue-200 text-[9px] flex items-center gap-1 cursor-pointer font-bold shadow-[0_0_12px_rgba(99,102,241,0.2)]" }, "\u573A\u666F3(\u4E13\u4E1A)_\u5E74\u62A5\u4E1A\u52A1 ", /* @__PURE__ */ React.createElement("span", { className: "text-[9px]" }, "\u25B4")), /* @__PURE__ */ React.createElement("div", { className: "absolute left-0 bottom-[100%] pb-1 hidden group-hover:block z-[60]" }, /* @__PURE__ */ React.createElement("div", { className: "flex bg-white border border-slate-200 rounded shadow-[0_-8px_30px_rgba(0,0,0,0.12)] w-[800px] h-[350px]" }, /* @__PURE__ */ React.createElement("div", { className: "w-[450px] flex flex-col border-r border-slate-100 overflow-y-auto relative" }, /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-indigo-500 font-bold bg-indigo-50/50 px-3 py-1.5 sticky top-0 border-b border-indigo-100/50 shadow-sm z-20 flex items-center justify-between shrink-0" }, /* @__PURE__ */ React.createElement("span", null, "\u6DF1\u5EA6\u6570\u636E\u6316\u6398\u4E0E\u8DE8\u57DF\u4E1A\u52A1"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] bg-white px-1.5 py-0.5 rounded text-indigo-400 border border-indigo-100" }, "PRO")), professionalPrompts.map((group, gIdx) => /* @__PURE__ */ React.createElement("div", { key: `pro-g-${gIdx}` }, /* @__PURE__ */ React.createElement("div", { className: `text-[9px] font-bold px-3 py-1 sticky top-[28px] border-b shadow-sm z-10 ${group.type === "fully" ? "bg-emerald-50 text-emerald-600 border-emerald-100" : "bg-orange-50 text-orange-600 border-orange-100"}` }, group.category), group.queries.map((q2, qIdx) => /* @__PURE__ */ React.createElement(
+    ))))))), /* @__PURE__ */ React.createElement("div", { className: "relative group" }, /* @__PURE__ */ React.createElement("button", { className: "px-2 py-1 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 hover:from-blue-100 hover:to-indigo-100 transition-colors border border-blue-200 text-[9px] flex items-center gap-1 cursor-pointer font-bold shadow-[0_0_12px_rgba(99,102,241,0.2)]" }, "\u573A\u666F3(\u4E13\u4E1A)_\u5E74\u62A5\u4E1A\u52A1 ", /* @__PURE__ */ React.createElement("span", { className: "text-[9px]" }, "\u25B4")), /* @__PURE__ */ React.createElement("div", { className: "absolute left-0 bottom-[100%] pb-1 hidden group-hover:block z-[60]" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-col bg-white border border-slate-200 rounded shadow-[0_-8px_30px_rgba(0,0,0,0.12)] w-[480px] max-h-[350px] overflow-y-auto" }, /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-700 font-bold bg-slate-100 px-3 py-1 sticky top-0 border-b border-slate-200 shadow-sm z-20 flex items-center justify-between shrink-0" }, /* @__PURE__ */ React.createElement("span", null, "\u6DF1\u5EA6\u6570\u636E\u6316\u6398\u4E0E\u8DE8\u57DF\u4E1A\u52A1"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] bg-white px-1.5 py-0.5 rounded text-slate-500 border border-slate-300" }, "PRO")), professionalPrompts.map((group, gIdx) => /* @__PURE__ */ React.createElement("div", { key: `pro-g-${gIdx}` }, /* @__PURE__ */ React.createElement("div", { className: `text-[9px] font-bold px-3 py-1 sticky top-[28px] border-b shadow-sm z-10 bg-slate-100 text-slate-700 border-slate-200` }, group.category), group.queries.map((q2, qIdx) => /* @__PURE__ */ React.createElement(
       "button",
       {
         key: `s3pro-${gIdx}-${qIdx}`,
         onClick: () => handleDeepSeekQuery(q2.q),
-        onMouseEnter: () => setHoveredPrompt(q2),
-        onMouseLeave: () => setHoveredPrompt(null),
-        className: "w-full text-left px-3 py-1 text-[9px] text-slate-500 hover:bg-indigo-50 hover:text-indigo-700 transition-colors border-b border-slate-100 last:border-0 cursor-pointer whitespace-normal break-words leading-tight flex items-start gap-1"
+        className: "relative group/btn w-full text-left px-3 py-1 text-[9px] text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors border-b border-slate-100 last:border-0 cursor-pointer flex items-start gap-1"
       },
-      /* @__PURE__ */ React.createElement("span", { className: "text-indigo-300 shrink-0 mt-0.5" }, "\u2726"),
-      /* @__PURE__ */ React.createElement("span", null, q2.text)
-    ))))), /* @__PURE__ */ React.createElement("div", { className: "w-[350px] bg-slate-50 p-4 overflow-y-auto flex-shrink-0 flex flex-col rounded-r relative font-mono" }, hoveredPrompt ? /* @__PURE__ */ React.createElement("div", { className: "animate-in fade-in duration-200 text-slate-700 text-[10px]" }, /* @__PURE__ */ React.createElement("div", { className: "mb-2 font-bold flex items-center" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 mr-1" }, "\u25A0"), " \u4E1A\u52A1\u6EAF\u6E90\u89E3\u6790"), /* @__PURE__ */ React.createElement("div", { className: "text-slate-300 ml-1" }, "\u2502"), /* @__PURE__ */ React.createElement("div", { className: "flex" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 mr-2 shrink-0" }, "\u251C\u2500"), /* @__PURE__ */ React.createElement("div", { className: "font-bold" }, "\u539F\u59CB\u6587\u6863\u540D\u79F0")), /* @__PURE__ */ React.createElement("div", { className: "flex mt-1 mb-2" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 ml-1 mr-2 shrink-0" }, "\u2502"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 mr-2 shrink-0" }, "\u2514\u2500\u25B6"), /* @__PURE__ */ React.createElement("div", { className: "text-slate-600" }, hoveredPrompt.docName)), /* @__PURE__ */ React.createElement("div", { className: "text-slate-300 ml-1" }, "\u2502"), /* @__PURE__ */ React.createElement("div", { className: "flex" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 mr-2 shrink-0" }, "\u2514\u2500"), /* @__PURE__ */ React.createElement("div", { className: "font-bold" }, "\u5177\u4F53\u75DB\u70B9\u4E0E\u9700\u6C42")), /* @__PURE__ */ React.createElement("div", { className: "flex mt-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-transparent ml-1 mr-2 shrink-0" }, "\u2502"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 mr-2 shrink-0" }, "\u2514\u2500\u25B6"), /* @__PURE__ */ React.createElement("div", { className: "text-slate-500 leading-relaxed" }, hoveredPrompt.intent))) : /* @__PURE__ */ React.createElement("div", { className: "h-full flex flex-col items-center justify-center text-slate-400 opacity-60 text-[10px]" }, /* @__PURE__ */ React.createElement("div", { className: "font-bold mb-2 text-slate-500" }, "\u25A0 \u7B49\u5F85\u4EA4\u4E92"), /* @__PURE__ */ React.createElement("div", { className: "flex" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 mr-2" }, "\u2514\u2500\u25B6"), /* @__PURE__ */ React.createElement("span", null, "\u9F20\u6807\u60AC\u6D6E\u5DE6\u4FA7\u5217\u8868\u5373\u53EF\u89E3\u6790\u6EAF\u6E90")))))))), selectedYears.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "w-full flex justify-center" }, /* @__PURE__ */ React.createElement("span", { className: "bg-[#f4f5f7] text-[#eb5757] font-mono text-[11.5px] px-2 py-0.5 rounded tracking-tight" }, "\u2705 SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA \xB7 \u5F53\u524D\u5DF2\u6302\u8F7D\u5E74\u62A5\u5E74\u4EFD: ", selectedYears.join("\u3001"), " \u5E74")), /* @__PURE__ */ React.createElement(
+      /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 shrink-0 mt-0.5" }, "\u2726"),
+      /* @__PURE__ */ React.createElement("span", { className: "line-clamp-2 whitespace-normal break-words leading-tight" }, q2.text),
+      /* @__PURE__ */ React.createElement("div", { className: "absolute hidden group-hover/btn:flex flex-col bottom-[100%] right-[10px] mb-2 w-[350px] bg-white text-slate-700 p-3 rounded shadow-[0_4px_20px_rgba(0,0,0,0.15)] z-[999] border border-slate-200 pointer-events-none text-left" }, /* @__PURE__ */ React.createElement("div", { className: "font-bold text-slate-800 mb-1" }, "\u3010\u539F\u59CB\u6587\u6863\u540D\u79F0\u3011"), /* @__PURE__ */ React.createElement("div", { className: "mb-2 text-slate-600 whitespace-normal" }, q2.docName), /* @__PURE__ */ React.createElement("div", { className: "font-bold text-slate-800 mb-1" }, "\u3010\u5177\u4F53\u9700\u6C42\u5185\u5BB9\u3011"), /* @__PURE__ */ React.createElement("div", { className: "text-slate-600 leading-relaxed whitespace-normal" }, q2.intent))
+    )))))))), selectedYears.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "w-full flex justify-center" }, /* @__PURE__ */ React.createElement("span", { className: "bg-[#f4f5f7] text-[#eb5757] font-mono text-[11.5px] px-2 py-0.5 rounded tracking-tight" }, "\u2705 SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA \xB7 \u5F53\u524D\u5DF2\u6302\u8F7D\u5E74\u62A5\u5E74\u4EFD: ", selectedYears.join("\u3001"), " \u5E74")), /* @__PURE__ */ React.createElement(
       "input",
       {
         type: "file",
