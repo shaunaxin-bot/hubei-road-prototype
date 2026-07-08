@@ -49771,7 +49771,8 @@ ${knowledgeBase}
               }
               if (queriedTableObj) break;
             }
-            if (queryText.includes("\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6")) {
+            const hasEnterpriseTool = toolCallLog.some((tc) => tc.name && tc.name.startsWith("enterprise_"));
+            if (queryText.includes("\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6") || queryText.includes("\u65B9\u6848A") || hasEnterpriseTool) {
               const perfectTree = `\`\`\`text
 \u3010\u653F\u5E9C\u4FA7\uFF1A\u65E5\u5E38\u5165\u5E93\u68C0\u67E5\u3011
  \u251C\u2500 [\u611F\u77E5] AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A
