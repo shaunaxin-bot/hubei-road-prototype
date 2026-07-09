@@ -49948,30 +49948,30 @@ ${subTableLines}
                 await new Promise((r) => setTimeout(r, 1500));
                 resultStr = JSON.stringify({
                   status: "completed",
-                  message: "GPS \u63A7\u5236\u70B9\u4E0E\u539F\u59CB\u91CC\u7A0B\u6620\u5C04\u63D0\u53D6\u5B8C\u6BD5\u3002",
-                  analysis: "\u53D1\u73B0\u6869\u53F7\u53D1\u751F\u975E\u7EBF\u6027\u62C9\u4F38\uFF0C\u7CFB\u68C0\u6D4B\u4EEA\u5668 GPS \u6F02\u79FB\u5F15\u8D77\u3002",
+                  message: "\u5E95\u5E93\u4E3B\u7EBF\u57FA\u51C6\u4E0E\u4E0A\u62A5\u5B50\u7EBF\u91CC\u7A0B\u6620\u5C04\u63D0\u53D6\u5B8C\u6BD5\u3002",
+                  analysis: "\u53D1\u73B0\u6869\u53F7\u5B58\u5728\u7CFB\u7EDF\u6027\u504F\u5DEE\uFF0C\u7CFB\u4E3B\u88AB\u5171\u7EBF(G207/G241)\u7F16\u7801\u6DF7\u7528\u5F15\u8D77\u3002",
                   sample_mapping: [
-                    { raw_k: "K1200", gps_k: "K1197.5", dev: "+2.5km" },
-                    { raw_k: "K1210", gps_k: "K1207.5", dev: "+2.5km" }
+                    { raw_k: "G241_K1050", mapped_k: "G207_K1200", action: "\u8DE8\u7EBF\u6620\u5C04" },
+                    { raw_k: "G241_K1080", mapped_k: "G207_K1230", action: "\u8DE8\u7EBF\u6620\u5C04" }
                   ]
                 }, null, 2);
-                tcEntry.resultSummary = "\u63D0\u53D6\u5E95\u5C42\u4EEA\u5668 GPS \u63A7\u5236\u70B9\u6620\u5C04";
+                tcEntry.resultSummary = "\u63D0\u53D6\u5E95\u5E93\u4E3B\u88AB\u5171\u7EBF\u57FA\u51C6\u6620\u5C04";
               } else if (fnName === "enterprise_eliminate_noise_and_output_dict") {
                 tcEntry.agentName = "AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-03_\u8DEF\u9762\u5DE5\u7A0B";
                 updateBot({ toolCalls: [...toolCallLog] });
                 await new Promise((r) => setTimeout(r, 1500));
                 resultStr = JSON.stringify({
                   status: "completed",
-                  noise_reduction: "\u7ED3\u5408\u5386\u53F2\u6539\u7EBF\u53F0\u8D26\uFF0C\u6D88\u9664\u73AF\u5883\u566A\u97F3\u6210\u529F\u3002",
+                  noise_reduction: "\u6839\u636E\u300A\u56FD\u5BB6\u516C\u8DEF\u7F51\u4E3B\u88AB\u5171\u7EBF\u6620\u5C04\u57FA\u51C6\u89C4\u5219\u300B\uFF0C\u5DF2\u6D88\u9664\u5171\u7EBF\u7F16\u7801\u566A\u97F3\u3002",
                   correction_dict: {
                     route: "G207",
-                    action: "shift_forward",
-                    value: "2.5km",
+                    action: "switch_master_route",
+                    value: "\u5171\u7EBF\u5E73\u79FB",
                     target_table: "L29a"
                   },
-                  output_message: "\u8F93\u51FA\u4FEE\u6B63\u5B57\u5178\uFF1A\u68C0\u6D4B\u91CC\u7A0B\u9700\u6574\u4F53\u524D\u79FB 2.5km\u3002"
+                  output_message: "\u8F93\u51FA\u4FEE\u6B63\u5B57\u5178\uFF1A\u6309\u4E3B\u88AB\u5171\u7EBF\u89C4\u5219\uFF0C\u5C06 G241 \u6570\u636E\u91CD\u5B9A\u5411\u81F3\u4E3B\u7EBF G207 \u5BF9\u5E94\u6869\u53F7\u3002"
                 }, null, 2);
-                tcEntry.resultSummary = "\u7ED3\u5408\u5927\u4FEE\u53F0\u8D26\u8F93\u51FA\u504F\u79FB\u4FEE\u6B63\u5B57\u5178";
+                tcEntry.resultSummary = "\u4F9D\u636E\u5171\u7EBF\u89C4\u5219\u8F93\u51FA\u4FEE\u6B63\u5B57\u5178";
               } else if (fnName === "get_table_schema") {
                 const targetYear = args.year || (selectedYears?.[0] || 2016);
                 resultStr = await execGetTableSchema(args.table_name, targetYear);
