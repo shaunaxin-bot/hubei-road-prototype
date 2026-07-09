@@ -47677,6 +47677,12 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       }
       return /* @__PURE__ */ React.createElement("div", { className: "mb-1 mx-2 fade-in" }, /* @__PURE__ */ React.createElement("div", { className: "font-mono text-[11px] bg-slate-50 text-slate-600 rounded-md px-2 py-1.5 shadow-sm border border-slate-200" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center border-b border-slate-200 pb-1 mb-1 text-slate-700" }, /* @__PURE__ */ React.createElement("span", { className: "font-semibold flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Database2, { size: 12, className: "text-slate-500" }), " \u4F01\u4E1A\u4FA7\u5185\u90E8\u8282\u70B9\u6267\u884C\u6D41\u6C34"), /* @__PURE__ */ React.createElement("span", { className: `text-[10px] ${tc.status === "running" ? "text-slate-500 animate-pulse" : "text-slate-500"}` }, tc.status === "running" ? "\u25CF \u5904\u7406\u4E2D (Processing)" : "\u25CF \u5DF2\u5B8C\u6210 (Completed)")), /* @__PURE__ */ React.createElement("div", { className: "space-y-0.5 leading-tight" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400" }, "[\u7F51\u5173]"), " ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-700" }, "INFO"), " \u5EFA\u7ACB\u8DE8\u57DF\u5B89\u5168\u8FDE\u63A5... ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-700" }, "\u6210\u529F")), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400" }, "[\u8DEF\u7531]"), " ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-700" }, "INFO"), " \u5BF9\u63A5\u76EE\u6807\u7CFB\u7EDF: ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-800 bg-slate-200 px-1 rounded" }, systemName)), /* @__PURE__ */ React.createElement("div", { className: "flex items-start gap-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 shrink-0" }, "[\u6307\u4EE4]"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-700 shrink-0" }, "EXEC"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-800" }, "\u6267\u884C\u6838\u5FC3\u52A8\u4F5C: ", actionName, " ...", tc.status === "running" ? /* @__PURE__ */ React.createElement("span", { className: "animate-pulse bg-slate-200 text-slate-700 px-1 rounded ml-1 text-[10px]" }, "\u5904\u7406\u4E2D...") : /* @__PURE__ */ React.createElement("span", { className: "text-slate-700 ml-1" }, "\u6210\u529F"))), tc.status !== "running" && /* @__PURE__ */ React.createElement(React.Fragment, null, tc.resultSummary && /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400" }, "[\u7ED3\u679C]"), " ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-700" }, "DATA"), " \u6267\u884C\u53CD\u9988: ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-800" }, tc.resultSummary)), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400" }, "[\u7F51\u5173]"), " ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-700" }, "INFO"), " \u52A0\u5BC6\u56DE\u4F20\u653F\u52A1\u5BA1\u6838\u9694\u79BB\u533A... ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-700" }, "\u53D1\u9001\u6210\u529F"))))));
     }
+    const fullTableNames = {
+      "L29a": "\u8DEF\u51B5\u68C0\u6D4B\u660E\u7EC6\u8868",
+      "L21": "\u8DEF\u7EBF\u660E\u7EC6\u8868",
+      "T1a": "\u5E74\u5E95\u5230\u8FBE\u6570\u8868",
+      "L14": "\u5927\u4E2D\u4FEE\u660E\u7EC6\u8868"
+    };
     let tableInfo = "";
     try {
       const parsedArgs = JSON.parse(tc.args || "{}");
@@ -47685,7 +47691,8 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       const y2 = parsedArgs.year;
       if (tName) {
         const yearStr = y2 ? `${y2}\u5E74` : "2016\u5E74";
-        tableInfo = `[${yearStr}\u5E74\u62A5\u4E3B\u5E93] ${tName}\u8868`;
+        const fullName = fullTableNames[tName] ? `${tName}(${fullTableNames[tName]})` : `${tName}\u8868`;
+        tableInfo = `[${yearStr}\u5E74\u62A5\u4E3B\u5E93] ${fullName}`;
       } else if (fName) {
         tableInfo = `[\u4F01\u4E1A\u4E0A\u4F20\u6587\u4EF6] ${fName}`;
       }
@@ -47698,9 +47705,8 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         onClick: () => setIsOpen(!isOpen),
         title: "\u70B9\u51FB\u5C55\u5F00/\u6298\u53E0\u53C2\u6570"
       },
-      /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-500 flex items-center gap-1" }, tc.status === "running" ? "\u{1F504} \u6267\u884C\u4E2D" : tc.status === "error" ? "\u274C \u5931\u8D25" : "\u2713 \u5DF2\u5B8C\u6210"),
-      /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-500" }, "[\u653F\u5E9C\u4FA7\u5F15\u64CE]"),
-      tc.agentName && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-500" }, tc.agentName),
+      /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-400 flex items-center gap-1" }, tc.status === "running" ? "\u{1F504} \u6267\u884C\u4E2D" : tc.status === "error" ? "\u274C \u5931\u8D25" : "\u2713 \u5DF2\u5B8C\u6210"),
+      tc.agentName && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-400" }, tc.agentName),
       /* @__PURE__ */ React.createElement("span", { className: "text-slate-600" }, "\u8C03\u7528 ", tc.name, " ", tableInfo && /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 font-mono" }, "(", tableInfo, ")")),
       tc.status === "success" && tc.resultSummary && /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 text-[10px] ml-1" }, "(", tc.resultSummary, ")")
     ), tc.status === "error" && tc.resultSummary && /* @__PURE__ */ React.createElement("div", { className: "text-slate-400 text-[11px] mt-0.5 ml-1" }, "(", tc.resultSummary, ")"), isOpen && tc.argsStr && /* @__PURE__ */ React.createElement("div", { className: "mt-1 ml-[4px] pl-[8px] border-l-2 border-slate-200" }, /* @__PURE__ */ React.createElement("pre", { className: "text-slate-500 text-[11px] whitespace-pre-wrap break-all font-mono m-0 p-0 bg-transparent border-none leading-[1.2]" }, tc.argsStr))));
