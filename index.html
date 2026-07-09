@@ -47655,6 +47655,12 @@ Please report this to https://github.com/markedjs/marked.`, e) {
 
   // src/components/DeepQAAnnualReportAgentView.jsx
   var { useState: useState2, useEffect: useEffect2, useRef } = React;
+  var AgentWorkflowVisualizer = ({ data }) => {
+    if (!data || data.length === 0) return null;
+    return /* @__PURE__ */ React.createElement("div", { className: "bg-white p-5 border border-slate-200 shadow-sm rounded-lg mt-4 mb-4 mx-1" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-6 border-b border-slate-100 pb-3" }, /* @__PURE__ */ React.createElement(Database2, { className: "text-blue-600", size: 18 }), /* @__PURE__ */ React.createElement("h3", { className: "text-sm font-bold text-slate-800" }, "\u653F\u4F01\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u5EA6\u94FE\u8DEF (REQ-01)")), /* @__PURE__ */ React.createElement("div", { className: "relative border-l-2 border-indigo-100 ml-4 pl-6 space-y-6" }, data.map((step, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: "relative" }, /* @__PURE__ */ React.createElement("div", { className: `absolute -left-[33px] top-1 w-4 h-4 rounded-full border-2 border-white shadow-sm flex items-center justify-center
+                            ${step.side === "gov" ? "bg-blue-500" : "bg-orange-500"}` }), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-1" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: `text-[10px] px-1.5 py-0.5 rounded font-mono font-bold
+                                    ${step.side === "gov" ? "bg-blue-50 text-blue-700" : "bg-orange-50 text-orange-700"}` }, "[", step.side === "gov" ? "\u653F\u5E9C\u4FA7" : "\u4F01\u4E1A\u4FA7", "] ", step.agent), /* @__PURE__ */ React.createElement("span", { className: "text-xs font-bold text-slate-700" }, step.action)), /* @__PURE__ */ React.createElement("div", { className: "text-[13px] text-slate-600 leading-relaxed bg-slate-50 p-2 rounded border border-slate-100 mt-1" }, step.desc))))));
+  };
   var ToolCallItem = ({ tc }) => {
     const [isOpen, setIsOpen] = useState2(tc.status === "running");
     useEffect2(() => {
@@ -49780,30 +49786,18 @@ ${knowledgeBase}
             }
             const hasEnterpriseTool = toolCallLog.some((tc) => tc.name && tc.name.startsWith("enterprise_"));
             if (queryText.includes("\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6") || queryText.includes("\u65B9\u6848A") || hasEnterpriseTool) {
-              const perfectTree = `\`\`\`text
-\u3010\u653F\u5E9C\u4FA7\uFF1A\u65E5\u5E38\u5165\u5E93\u68C0\u67E5\u3011
- \u251C\u2500 [\u611F\u77E5] AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A
- \u2502   \u2514\u2500 \u53D1\u73B0\u68C0\u6D4B\u5355\u4F4D\u4E0A\u4F20\u7684GPS\u6570\u636E\u8D85\u51FA\u4E86\u9053\u8DEF\u6807\u51C6\u754C\u9650\uFF0C\u5224\u5B9A\u4E3A\u201C\u8D8A\u754C\u201D\u3002
- \u2514\u2500 [\u963B\u65AD] AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6
-     \u2514\u2500 \u7ACB\u5373\u6390\u65AD\u5165\u5E93\u6D41\u7A0B\uFF0C\u751F\u6210\u5F02\u5E38\u5DE5\u5355\u5E76\u6253\u56DE\u7ED9\u68C0\u6D4B\u5355\u4F4D\u3002
-     \u25BC
-\u3010\u4F01\u4E1A\u4FA7(\u68C0\u6D4B\u5355\u4F4D)\uFF1A\u63A5\u6536\u6307\u4EE4\u4E0E\u4FEE\u6B63\u91CD\u4F20\u3011
- \u251C\u2500 [\u63A5\u6536] AGENT-\u6570\u636E\u7EDF\u7B79(\u4F01\u4E1A\u4FA7)-01_\u57FA\u7840\u6570\u636E
- \u2502   \u2514\u2500 \u63A5\u6536\u5230\u7701\u5385\u6253\u56DE\u7684\u5750\u6807\u8D8A\u754C\u8B66\u544A\u3002
- \u251C\u2500 [\u4FEE\u6B63] AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-02_\u68C0\u6D4B\u8BBE\u5907
- \u2502   \u2514\u2500 \u820D\u5F03\u539F\u9519\u8BEF\u5750\u6807\uFF0C\u5F3A\u5236\u63A5\u53D7\u56FD\u5BB62000\u5750\u6807\u7CFB\u6807\u51C6\u8FDB\u884C\u91CD\u65B0\u6620\u5C04\u3002
- \u2514\u2500 [\u91CD\u4F20] AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-03_\u8DEF\u9762\u5DE5\u7A0B
-     \u2514\u2500 \u5C06\u91CD\u65B0\u6807\u5B9A\u540E\u7684\u5408\u89C4\u6570\u636E\u518D\u6B21\u6253\u5305\u4E0A\u4F20\u3002
-     \u25BC
-\u3010\u653F\u5E9C\u4FA7\uFF1A\u6570\u636E\u9694\u79BB\u4E0E\u590D\u6838\u3011
- \u2514\u2500 [\u590D\u6838] AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6
-     \u2514\u2500 [\u5B89\u5168\u9694\u79BB] \u786E\u8BA4\u65B0\u6570\u636E\u683C\u5F0F\u5408\u89C4\u540E\uFF0C\u8DE8\u57DF\u6570\u636E\u6620\u5C04\u81F3\u6682\u5B58\u5BA1\u6838\u533A\uFF0C\u4E25\u7981\u76F4\u5199\u4E3B\u5E93\u3002
-
-\u3010\u653F\u5E9C\u4FA7\uFF1A\u4EBA\u5DE5\u5BA1\u6279\u4E0E\u6B63\u5F0F\u843D\u5E93\u9632\u7EBF\u3011
- \u251C\u2500 [\u4EBA\u5DE5\u590D\u6838] \u517B\u62A4\u5904\u4E13\u5458\u7ED3\u5408\u53F3\u4FA7\u660E\u7EC6\u9762\u677F\u8FDB\u884C\u5FAE\u89C2\u62BD\u68C0
- \u2514\u2500 [\u6B63\u5F0F\u843D\u5E93] AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A
-     \u2514\u2500 \u6388\u6743\u5BA1\u6279\u901A\u8FC7\u540E\uFF0C\u89E3\u9664\u963B\u65AD\uFF0C\u6682\u5B58\u533A\u6570\u636E\u6B63\u5F0F\u5199\u5165\u300AL29a\u300B\u5927\u8868\u3002
-\`\`\`
+              const req01WorkflowData = [
+                { side: "gov", agent: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", action: "\u611F\u77E5\u8D8A\u754C", desc: "\u53D1\u73B0\u68C0\u6D4B\u5355\u4F4D\u4E0A\u4F20\u7684\u68C0\u6D4B\u6869\u53F7\uFF08\u5982G241\uFF09\u4E0E\u6807\u51C6\u8DEF\u7F51\u754C\u9650\u4E0D\u5339\u914D\uFF08\u4E3B\u88AB\u5171\u7EBF\u7F16\u7801\u6DF7\u7528\uFF09\uFF0C\u5224\u5B9A\u4E3A\u8D8A\u754C\u65AD\u94FE\u3002" },
+                { side: "gov", agent: "AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6", action: "\u963B\u65AD\u5165\u5E93", desc: "\u7ACB\u5373\u963B\u65AD\u5E95\u5C42\u843D\u5E93\u6D41\u7A0B\uFF0C\u751F\u6210\u5F02\u5E38\u7763\u529E\u5DE5\u5355\u5E76\u901A\u8FC7\u7F51\u5173\u6253\u56DE\u7ED9\u68C0\u6D4B\u5355\u4F4D\u3002" },
+                { side: "enterprise", agent: "AGENT-\u57FA\u7840\u6570\u636E(\u4F01\u4E1A\u4FA7)-01", action: "\u63A5\u6536\u6253\u56DE", desc: "\u76D1\u542C\u5E76\u63A5\u6536\u5230\u7701\u5385\u6253\u56DE\u7684\u6869\u53F7\u8D8A\u754C\u8B66\u544A\u3002" },
+                { side: "enterprise", agent: "AGENT-\u68C0\u6D4B\u8BBE\u5907(\u4F01\u4E1A\u4FA7)-02", action: "\u89C4\u5219\u4FEE\u6B63", desc: "\u5F3A\u5236\u4F9D\u636E\u300A\u56FD\u5BB6\u516C\u8DEF\u7F51\u4E3B\u88AB\u5171\u7EBF\u6620\u5C04\u57FA\u51C6\u89C4\u5219\u300B\u6D88\u9664\u5171\u7EBF\u7F16\u7801\u566A\u97F3\uFF0C\u5C06\u4E0A\u4F20\u5B50\u7EBF\u504F\u79FB\u6869\u53F7\u91CD\u5B9A\u5411\u81F3\u4E3B\u7EBF\u57FA\u51C6\u6869\u53F7\u3002" },
+                { side: "enterprise", agent: "AGENT-\u8DEF\u9762\u5DE5\u7A0B(\u4F01\u4E1A\u4FA7)-03", action: "\u5408\u89C4\u91CD\u4F20", desc: "\u91CD\u6784\u5408\u89C4\u7684\u6869\u53F7\u6570\u636E\u5305\u5E76\u5B8C\u6210\u4E8C\u6B21\u52A0\u5BC6\u4E0A\u4F20\u3002" },
+                { side: "gov", agent: "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", action: "\u5B89\u5168\u9694\u79BB", desc: "\u786E\u8BA4\u65B0\u6570\u636E\u683C\u5F0F\u5408\u89C4\u540E\uFF0C\u8DE8\u57DF\u6570\u636E\u6620\u5C04\u81F3\u6682\u5B58\u5BA1\u6838\u533A\uFF08\u9694\u79BB\u6C99\u7BB1\uFF09\uFF0C\u4E25\u7981\u76F4\u5199\u4E3B\u5E93\u3002" },
+                { side: "gov", agent: "\u517B\u62A4\u5904\u4E13\u5458", action: "\u4EBA\u5DE5\u5BA1\u6279", desc: "\u7ED3\u5408\u660E\u7EC6\u9762\u677F\u5728\u6682\u5B58\u5BA1\u6838\u533A\u8FDB\u884C\u5FAE\u89C2\u62BD\u68C0\u5E76\u70B9\u51FB\u201C\u6388\u6743\u901A\u8FC7\u201D\u3002" },
+                { side: "gov", agent: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", action: "\u6B63\u5F0F\u843D\u5E93", desc: "\u83B7\u53D6\u6388\u6743\u5BA1\u6279\u540E\uFF0C\u89E3\u9664\u6700\u7EC8\u963B\u65AD\uFF0C\u6682\u5B58\u533A\u6570\u636E\u6B63\u5F0F\u5199\u5165\u300AL29a\uFF08\u516C\u8DEF\u65E5\u5E38\u8DEF\u51B5\u8BC4\u5B9A\u660E\u7EC6\u8868\uFF09\u300B\u7B49\u5E74\u62A5\u5E95\u5C42\u6838\u5FC3\u7269\u7406\u8868\u3002" }
+              ];
+              updateBot({ workflowData: req01WorkflowData });
+              const ticketHtml = `
 <div class="bg-white p-5 border border-red-200 shadow-sm rounded-sm mt-4 font-serif text-slate-800 mx-1">
   <div class="text-center mb-5">
     <h2 class="text-[#e53e3e] text-[22px] font-bold tracking-[0.2em] mb-2 font-serif">\u6E56\u5317\u7701\u666E\u901A\u516C\u8DEF\u8DEF\u51B5\u68C0\u6D4B\u5F02\u5E38\u6838\u67E5\u7763\u529E\u5355</h2>
@@ -49828,11 +49822,10 @@ ${knowledgeBase}
     <span class="text-emerald-600 mt-1.5 inline-block font-medium">\u{1F6E1}\uFE0F \u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A: \u672C\u6B21\u62E6\u622A\u4E0E\u7EA0\u504F\u8FC7\u7A0B\u5168\u7A0B\u7531\u653F\u4F01\u591A\u667A\u80FD\u4F53\u7A7F\u900F\u5B8C\u6210\uFF0C\u5177\u6709 100% \u4E8B\u5B9E\u652F\u6491\u4E0E\u5B8C\u6574\u5BA1\u8BA1\u6EAF\u6E90\u3002</span>
   </div>
 </div>
-
 `;
               const treeRegex = /```text[\s\S]*?【政府侧：日常入库检查】[\s\S]*?```/g;
               finalContent = finalContent.replace(treeRegex, "");
-              finalContent = perfectTree + finalContent;
+              finalContent = ticketHtml + finalContent;
             } else if (queriedTableObj) {
               let subTableLines = queriedTableObj.subTables.map((st2) => `           \u2514\u2500 AGENT-${st2.microAgent}: ${st2.name}`).join("\n");
               let requester = "\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6";
@@ -50473,7 +50466,7 @@ ${msg.views.view3}
               /* @__PURE__ */ React.createElement("div", { className: "text-indigo-400 text-[10px]" }, "\u652F\u6301\u56FE\u7247\u3001Excel\u3001Word\u3001PDF \u7B49\u5404\u79CD\u683C\u5F0F")
             ));
           }
-          return /* @__PURE__ */ React.createElement(
+          return /* @__PURE__ */ React.createElement(React.Fragment, null, msg.workflowData && /* @__PURE__ */ React.createElement(AgentWorkflowVisualizer, { data: msg.workflowData }), /* @__PURE__ */ React.createElement(
             "div",
             {
               className: `whitespace-pre-wrap leading-snug agent-message-content ${msg.isGreeting ? "text-[12.5px]" : "text-sm"}`,
@@ -50481,7 +50474,7 @@ ${msg.views.view3}
                 __html: formatBadgeText(convertMarkdownTablesToHtml(msg.content || ""), msg.id)
               }
             }
-          );
+          ));
         })(), msg.sqlResult && msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && !msg.hideDefaultTemplates && /* @__PURE__ */ React.createElement("div", { className: "mt-3 py-2 border-t border-slate-100 text-[12px] flex items-center justify-between print-hidden" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 text-xs font-medium" }, "\u660E\u7EC6\u6570\u636E\u5DF2\u8F7D\u5165\u53F3\u4FA7\u5E95\u76D8 \u27A1\uFE0F"), /* @__PURE__ */ React.createElement("div", { className: "flex gap-4" }, /* @__PURE__ */ React.createElement(
           "span",
           {
