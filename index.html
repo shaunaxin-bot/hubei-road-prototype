@@ -2691,6 +2691,351 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 3. **降级查询策略**：如果发现所需字段在当年数据库中缺失，请基于存在的字段进行逻辑降级（例如：不按区县分组，改为按路线分组），并在回答中向客户说明：“受限于当年（2016）数据规范，底库尚未采集区县字段，已为您降维汇总如下...”。
 
 
+
+
+=== 【场景2】长大桥结构监测数据质量管理规范 ===
+
+# 场景2_长大桥结构监测数据质量管理 (基于双核心文件驱动)
+
+## 场景描述
+当面临跨领域的综合性质量打分任务时，系统不再单打独斗，而是**拉起一张横跨“32个专项智能体 + 1个数据统筹智能体” (32+1体系) 的庞大考核网**。
+为了实现“扣分字字见血，免责铁证如山”，大模型在处理该场景时，必须严格遵循部省双核驱动机制，并调用相应的智能体完成取证闭环。
+
+---
+
+## 核心机制一：部省双核心标准驱动
+
+大模型在生成考核成绩单前，必须按先后顺序读取并解析两份核心文件，以确保考核的法理正当性与计算精准度：
+1. **定性红线（权力边界）**：以《公路长大桥梁结构监测数据质量管理办法（试行）》（交通部）作为大纲。智能体依此文件确认必须核查“数据质量、预警机制、运维保障”三大范畴，确保不越权、不漏项。
+2. **定量公式（量刑标准）**：以《长大桥结构监测质量考核.xlsx》（地市）作为算分细则。智能体将 Excel 中的 8 项评分标准，直接编译为底层可执行的 API 与 SQL 触发器。
+
+---
+
+## 核心机制二：智能体联合稽查架构 (全网交叉取证)
+
+大模型以 \`AGENT-工程技术-01\` 为“主责判官”，向下辐射调用多路智能体大军，形成严密的取证逻辑树：
+
+### 核心流转节点
+大模型需按照以下逻辑链条，以 \`AGENT-工程技术-01_桥梁结构健康监测\` 为主责判官，向下辐射调用多路智能体大军进行全网交叉取证：
+
+1. **空间锚定查询**：必须唤醒 \`AGENT-数据统筹-01_年报主骨架\`，提取 L21与L29a 表。引入【市州/干线】空间坐标框定查询范围，并基于血缘过滤免责项（如封闭施工）。
+2. **时效协查**：必须唤醒 \`AGENT-安全应急-01_预警\`，调取应急工单 API。严格计算报文 trigger_time 与 ack_time 的差值，死磕“超时响应”现象。
+3. **现场协查防伪**：必须唤醒 \`AGENT-养护管理-03_日常养护\`，穿透省市级公路日常养护协同作业平台。不仅抓取 72 小时修复率，更须获取巡检照片的真实打卡坐标（避免异地造假）。
+4. **免责申诉闭环**：必须唤醒 \`AGENT-收费运营-04_智慧服务区管理\`，核查路域机电网关的市电断电日志。用以证明数据断联系不可抗力，以此作为撤销相关扣分的依据。
+
+---
+
+## 核心机制三：八大考核项的白盒化取证与闭环
+
+所有的考核子项必须杜绝“黑盒估算”，必须带有明确的物理底层调用轨迹和截图证据，对应关系如下：
+
+### 1. 基础数据层面 (Item 1, 2, 3)
+- **指标项**：设备在线率、数据完整性、数据时效性。
+- **执行智能体**：【主责自查】\`AGENT-工程技术-01_桥梁结构健康监测\`
+- **取证技术细节**：直连省市级桥梁结构健康监测系统，穿透底层物联网数据库平台，读取桥梁传感器的原始流媒体日志。根据 Excel 细则自动计算百分比，若发现“离线/丢包”，返回日志断连时间戳进行自动化扣分。
+
+### 2. 分级预警处置 (Item 4, 5)
+- **指标项**：预警上报时效、预警闭环时效。
+- **唤醒智能体**：【跨域协查】\`AGENT-安全应急-01_预警\`
+- **取证技术细节**：Call API 调取真实防汛业务系统的 OpenAPI（例如 \`GET /api/v1/flood/events?level=3&response_time_gt=2h\`），提取工单日志。若大模型抓取到 \`ack_time\` - \`trigger_time\` > 2小时的超时 JSON 报文，直接作为迟报扣分铁证。
+
+### 3. 日常运维管理 (Item 6, 7)
+- **指标项**：故障修复时效、日常巡检维护。
+- **唤醒智能体**：【跨域协查】\`AGENT-养护管理-03_日常养护\`
+- **取证技术细节**：利用 RPA 工具 \`verify_oa_records\` 穿透省市级公路日常养护协同作业平台。不仅提取 72 小时修复率工单，还必须提取巡检照片的 EXIF/GPS 坐标。若通过比对发现“异地打卡（造假）”，该项成绩直接判定为 0 分。
+
+### 4. 体系文档与免责前置核查 (Item 8 及免责逻辑)
+- **指标项**：例行报告情况及不可抗力免责。
+- **唤醒智能体**：【系统核查】\`AGENT-数据统筹-01_年报主骨架\`
+- **空间扩展与骨架防伪查询**：
+  在考核启动前，禁止做空泛的全库查询。必须将预设问题加入地点约束（如：**武汉市境内 G107 国道**），大模型通过以下 SQL 逻辑进行范围框定，并通过 \`JOIN L32\` 大修表，自动识别并过滤正处于“封闭施工”期的免责桥梁：
+  \`\`\`sql
+  SELECT L29a.桥名, L29a.桩号
+  FROM L29a 
+  JOIN L21_路线表 ON L29a.路线编号 = L21.路线编号
+  LEFT JOIN L32_大修表 ON L29a.桥梁ID = L32.桥梁ID
+  WHERE L21.地市 = '武汉市' AND L21.路线编号 LIKE 'G107%' 
+    AND (L32.状态 != '封闭施工' OR L32.状态 IS NULL)
+  \`\`\`
+  在评分结尾，查阅系统内是否按期提交了相应的分析报告（Item 8）。
+
+## 前端思维链展示红线
+当大模型在执行此场景回答用户提问时，其输出的思维链必须写明具体的被唤醒智能体名称（如：\`调用：AGENT-安全应急-01\`），并输出真实的接口返回值或 SQL 过滤条数，严禁伪造“检查成功”进度条。
+
+
+
+
+=== 【场景1】汛期预警防御与应急处置规范 ===
+
+# 场景1_汛期预警防御与应急处置 (基于物理文件驱动的链式唤醒)
+
+> **物理原件归档引用**：
+> - \`5.架构-汛期预警防御与应急处置场景.pdf\`（系统架构与数据流）
+> - \`5.流程-汛期预警防御与应急处置场景.pdf\`（执行流程图）
+> **文件版本**：场景图-04.30
+
+---
+
+## 一、场景定位与触发条件
+
+| 项目 | 内容 |
+|---|---|
+| **场景域** | 公路汛期预警防御与应急处置 |
+| **触发条件** | 省级气象或路网监测系统发出气象预警；或突发公路交通中断事件 |
+| **数据基底** | 42张年报底表作为"超级总线"，4大类29小类基础数据 |
+| **指挥体系** | 32个专项智能体 + 1个数据统筹智能体（32+1体系） |
+| **战区总指挥** | \`AGENT-数据统筹-01_年报主骨架\`（底盘锚定）→ 移交 \`AGENT-安全应急-02_防汛指导\`（战时总指挥） |
+
+---
+
+## 二、分级响应体系（来源：架构PDF第1页）
+
+### 2.1 气象灾害预警等级与响应分工
+
+| 预警颜色 | 事件级别 | 省级（决策层） | 市州/高速（执行层） | 区县/路段（操作层） |
+|---|---|---|---|---|
+| 🔴 红色 | 重大及以上突发事件 | **组织** | 参与 | 参与 |
+| 🟠 橙色 | 较大突发事件 | 跟踪 | **组织** | 参与 |
+| 🟡 黄色/🔵蓝色 | 一般突发事件 | 掌握 | 跟踪 | **组织** |
+
+### 2.2 防御响应层级（事前阶段）
+
+| 响应层级 | 触发主体 | 核心动作 |
+|---|---|---|
+| **省级一、二级防御响应** | 省级决策层 | 会商研判部署；装备物资力量前置；基于平台线上会商（警路企气）；视情派出现场工作组 |
+| **省级三、四级防御响应** | 省级决策层 | 平台自动匹配相关责任单位；跟踪市州执行情况 |
+| **市州一、二级防御响应** | 市州执行层 | 参会/组织会议；调配抢险队伍；防台防汛物资设备到位；每日值守上报 |
+| **市州三、四级防御响应** | 市州执行层 | 路网运行实时监测；开展风险点位巡查；落实/部署防御计划 |
+| **区县一至四级防御响应** | 区县操作层 | 按照本单位预案规定采取相应防御响应措施；基于APP开展线下巡查 |
+
+### 2.3 应急响应层级（事中阶段）
+
+| 响应层级 | 触发主体 | 核心动作 |
+|---|---|---|
+| **一、二级应急响应** | 省级指挥机构 | 启动24小时应急值班；召开任务部署会；视情启动省际联动机制；平台自动生成处置措施建议 |
+| **三、四级应急响应** | 市州/区县 | 平台调度区域内县市区公路部门及高速单位；协调交管、路政、应急等部门协同处置 |
+
+---
+
+## 三、数据汇聚规范（来源：架构PDF数据流层）
+
+### 3.1 基础信息类（4大类29小类）
+
+| 数据类别 | 具体数据项 | 归属层级 |
+|---|---|---|
+| **公路基础设施** | 公路基础设施基本信息、设施设备信息（12项）| 省/市/县三级共享 |
+| **路网运行动态** | 路网运行动态信息、交通量信息、速度信息、公路交通阻断事件信息 | 实时采集 |
+| **气象与灾害预警** | 气象预警信息、自然灾害监测预警信息、恶劣天气高影响路段信息 | 外部接入 |
+| **协调调度** | 应急预案信息、应急队伍信息表、储备物资及装备信息、储备中心及养护工区信息 | 内部管理 |
+
+### 3.2 行业外接入数据（5项）
+
+省气象数据、医疗数据、交管数据、图商数据、其他单位数据
+
+---
+
+## 四、智能体联合作战架构（32+1体系执行序列）
+
+按**灾前防范 → 灾中应急 → 灾后复盘**三阶段执行：
+
+### 【阶段1】灾前防范
+
+| 序号 | 唤醒智能体 | 核心输入 | 执行动作 | 输出 |
+|---|---|---|---|---|
+| 1 | \`AGENT-数据统筹-01_年报主骨架\` | 前端物联网预警信号 | 查询 \`L21路线表\`，锁定受灾区域桩号和物理管辖权 | 受灾区域数据锚点（路线ID + 管辖机构代码） |
+| 2 | \`AGENT-安全应急-01_预警\` | L21路线表主键ID | 调取气象站、雨量计实时流数据；交叉比对险情真实性 | 《险情定级报告（JSON）》 |
+| 3 | \`AGENT-养护管理-03_日常养护\` | 预警确权后的坐标系 | RPA登录地市养护OA，下发"即刻巡查并设立物理围挡"工单 | 巡查工单（含created_at时间戳） |
+| 4 | \`AGENT-工程技术-01_桥梁结构健康监测\` | L21关联L29a桥梁明细 + 高位边坡台账 | 调取桥梁应变计与边坡深层水平位移计数据 | 《暴雨区高风险桥隧及边坡实时健康评估报告》 |
+| 5 | \`AGENT-农村公路-01_农路评价\` | 受灾干线辐射范围 | 向沿河、临崖脆弱村道下发"封路避险"电子指令 | 封路指令清单 |
+
+### 【阶段2】灾中应急处置
+
+| 序号 | 唤醒智能体 | 核心输入 | 执行动作 | 输出 |
+|---|---|---|---|---|
+| 6 | \`AGENT-安全应急-03_应急处置与预案管理\` | 受灾坐标 + 物资台账 | 穿透\`16-1应急储备物资表.xls\`，盘点方圆50公里内沙袋库存 | 《调拨单》 |
+| 7 | \`AGENT-建设管理-04_接养与移交\` | 暴雨区施工标段清单 | 强制下发停工撤离电子指令 | 停工指令（含标段ID） |
+
+### 【阶段3】灾后复盘重建
+
+| 序号 | 唤醒智能体 | 核心输入 | 执行动作 | 输出 |
+|---|---|---|---|---|
+| 8 | \`AGENT-财务资产-01_资金拨付管理\` | 抗洪工单汇总 | 核算抗洪备用金使用情况 | 资金核算报告 |
+| 9 | \`AGENT-规划计划-04_交调年报与奖补融合\` | 灾情期间交通流数据 | 评估全年流量损失 | 流量损失影响评估报告 |
+
+---
+
+## 五、处置流程三阶段（来源：流程PDF）
+
+\`\`\`
+【事前】
+气象预警触发
+  → 信息流转与审核（初判）
+  → 分级防御响应（省/市/县各层级）
+  → 会商研判部署
+  → 装备物资力量前置
+  → 风险点位巡查（线上+APP线下）
+  → 防御响应专题会议
+
+【事中】
+应急事件确认（是否形成应急事件）
+  → 应急响应启动（一至四级）
+  → 启动24小时应急值班（一、二级）
+  → 平台自动生成处置措施建议
+  → 政警路企联合指挥
+  → 紧急营救、疏散撤离
+  → 调集抢修力量开展抢险抢通
+  → 配合公安交警实施交通分流管控
+  → 跨省联动（视情启动）
+  → 过程跟踪及指导
+  → 调整或终止响应
+
+【恢复重建及总结评估】
+  → 解除交通管控措施
+  → 转养护，开始恢复重建工作
+  → 复盘评估（重大/较大事件）或定期总结（一般事件）
+  → 预案制修订
+\`\`\`
+
+---
+
+## 六、模型赋能清单（平台智能化能力）
+
+| 模型名称 | 功能 |
+|---|---|
+| 恶劣天气影响评估模型 | 路段级精准气象预警 |
+| 会商研判模型 | 自动匹配涉及相关责任单位，快速创建视频会议 |
+| 高风险点位视频巡查编组模型 | 根据研判结果自动编组视频巡查资源动态轮换 |
+| 事件自动填报模型 | 基于事件基础信息自动匹配填报对应事件信息 |
+| 智能指挥调度辅助决策模型 | 应急资源多级综合调度；管控措施自动生成；基于预案的处置方案输出 |
+
+---
+
+## 七、前端思维链展示红线
+
+当大模型在执行此场景回答用户提问时：
+1. **必须显式输出被唤醒的智能体名称**（如：\`调用：AGENT-安全应急-01_预警\`）
+2. **必须说明真实的数据输入**（如：\`输入：L21.路线ID = xxxxx\`）
+3. **必须引用本文件的层级分工表**（如：\`依据：二、分级响应体系 - 2.1红色预警为省级组织\`）
+4. **严禁伪造"检查成功"进度条**，必须输出真实接口返回值或SQL过滤条数
+5. **严禁自行编造响应时效数字**，如无量化依据，应说明"本场景架构文件未定义具体时效阈值，如需考核细则请提供《湖北省公路防汛应急预案》量化版本"
+
+
+
+
+=== 【国家及行业规范知识库】===
+
+--- 国家规范_交通运输部桥梁结构监测指导文件.md ---
+# 交通运输部桥梁结构监测相关指导文件 (国家级规范)
+
+## 1. 《公路长大桥梁结构监测时空大数据应用指引》（交办公路〔2024〕37号，2024年10月发布）（简称《指引》）
+**核心定位**：部级文件通篇为技术分析方法论，涉及数据质量管理的部分仅作原则性要求，全篇没有给出具体的百分比阈值、分值权重或者扣分规则。
+
+**关键条款摘录**：
+- **第1.0.4条（总则）**："单桥监测系统和省级监测平台应保持良好的运行状态, 采集存储的监测数据应确保完整、 及时和准确。"
+- **第2.2.2条（单桥报告）**：单桥日常监测报告应包括："数据质量分析、 软硬件维护情况等"。
+- **第3.4.2条（省级报告）**：省级监测平台的日常监测报告应汇总："各单桥系统的报告推送、 在线情况、 故障修复和报警处置等内容"。
+
+## 2. 《进一步推进公路桥梁隧道结构监测工作实施方案（2024—2030年）》
+**分工原则**：
+- **交通运输部**：组织制定标准指南（定方向、定原则）。
+- **属地省级主管部门**：结合实际，将原则转化为可执行细则（定具体考核标准和 KPI 阈值），履行建设监管主体责任。
+- **产权单位**：负责具体实施运维。
+
+## 3. 已出台配套考核文件
+- **《公路长大桥梁结构监测数据质量管理办法（试行）》**（2025年4月发布）：
+  作为《指引》的量化考核配套文件，该办法已出台并包含极度详尽的四性公式（完整、时效、准确、真实）及分桥型的打分权重。
+  详细拆解参阅：**[[国家规范_公路长大桥梁结构监测数据质量管理办法]]**。
+
+
+--- 国家规范_公路长大桥梁结构监测数据质量管理办法.md ---
+# 公路长大桥梁结构监测数据质量管理办法（试行）
+
+> **物理原件归档引用**：![[公路长大桥梁结构监测数据质量管理办法（试行）.pdf]]
+> **发文单位**：交通运输部公路局 (2025年4月)
+> **执行日期**：自 2025年5月1日起试行
+
+## 一、 核心评价分级 (五级制)
+依据本办法《附表 3-1 数据质量评价等级》，评价结果按百分制划分为五档：
+- **I级**：[90%, 100%]，数据质量优秀
+- **II级**：[80%, 90%)，数据质量良好
+- **III级**：[70%, 80%)，数据质量中等
+- **IV级**：[60%, 70%)，数据质量一般
+- **V级**：[0%, 60%)，数据质量较差
+
+## 二、 评价指标四要素模型 (Formula Base)
+数据质量评分由“数据完整性、数据时效性、数据准确性、数据真实性”四个分项组成，各项得分域值为 0% ~ 100%。
+
+1. **数据完整性 ($F_{1}$)**
+   - 核心逻辑：反映上传至省级/部级平台特征值数据量的完整程度。
+   - 算法：实际上传数据量 / 周期内要求上传总数量 × 100%
+2. **数据时效性 ($F_{2}$)**
+   - 核心逻辑：反映时钟同步性与时延。当写入数据库时间晚于采集时间超过规定阈值（单桥10分钟，省部级20分钟），视为不满足要求。
+3. **数据准确性 ($F_{3}$)**
+   - 核心逻辑：反映数据异常波动情况。可采用标准差、变异系数(CV)、一阶差分与阈值比较等算法进行异常筛除。
+4. **数据真实性 ($F_{4}$)**
+   - 核心逻辑：防篡改及物理逻辑验证。若不真实直接得 0%，否则 100%。
+
+## 三、 单桥评分与各项权重体系 (AHP赋权)
+单桥系统的总评分 ($B_i$) 采用加权求和算法：
+$B_i = \\sum (M_i \\times \\omega_i) / \\sum \\omega_i$
+其中 $\\omega_i$ 为监测项数据的**权重指标赋分值**。
+
+**【部分权重抽样（依据附录A）】**
+*由于原件包含近百项极度详尽的权重，此处仅摘录“超限报警”场景下，两类主桥型的核心参数。*
+
+| 监测类别 | 监测项     | 悬索桥权重 ($\\omega_i$) | 斜拉桥权重 ($\\omega_i$) |
+| ---- | ------- | ------------------ | ------------------ |
+| 环境   | 温湿度     | 0.015              | 0.016              |
+|      | 结冰      | 0.013              | 0.021              |
+| 作用   | 车辆荷载    | 0.025              | 0.030              |
+| 结构响应 | 索力      | 0.066              | 0.077              |
+|      | 结构空间变形  | 0.062              | 0.069              |
+|      | 挠度      | 0.061              | 0.069              |
+| 结构变化 | 锚碇位移/断丝 | 0.084 (锚碇)         | 0.069 (断丝)         |
+
+
+--- 宁波公路局桥梁防汛与监测数据质量考核标准.md ---
+# 宁波公路局桥梁防汛与监测数据质量考核标准 (结合《指引》原文溯源)
+
+## 一、《指引》原文里与表格直接对应的条款
+
+**1. 总则里的"数据质量"要求（对应表里的完整性、时效性）**
+《指引》第1.0.4条明确写道："单桥监测系统和省级监测平台应保持良好的运行状态, 采集存储的监测数据应确保完整、 及时和准确。"
+——对应表格中"**数据完整性**（25分）""**数据时效性**（5分）"两项的直接出处。
+
+**2. 省级日常监测报告要求（对应表里最核心的四项）**
+第3.4.2条规定，省级监测平台的日常监测报告应汇总："各单桥系统的报告推送、 在线情况、 故障修复和报警处置等内容"
+对应关系：
+- 在线情况 -> 设备在线率（20分）
+- 报警处置 -> 预警上报时效（10分）、预警闭环时效（10分）
+- 故障修复 -> 故障修复时效（10分）
+- 报告推送 -> 例行报告情况（10分）
+
+**3. 日常监测报告须含"数据质量分析"**
+第2.2.2条规定单桥日常监测报告应包括："数据质量分析、 软硬件维护情况等"
+——对应表格里的日常巡检维护（10分）。
+
+## 二、数据质量工作要求表 (地方考核细则)
+
+| 序号 | 维度 | 考核子项 | 分值 | 评分标准 |
+|---|---|---|---|---|
+| 1 | 数据上传质量 (50分) | 设备在线率 | 20 | 传感设备在线率≥90%得20分；90%-80%得15分；80%-70%得10分；70%-60%得5分；<60%得0分。 |
+| 2 | | 数据完整性 | 25 | 数据完整率≥90%得25分；90%-80%得20分；80%-70%得15分；70%-60%得10分；<60%得0分。 |
+| 3 | | 数据时效性 | 5 | 数据上传延迟≤15分钟得5分；60分钟内得3分；24小时内得1分；超过24小时得0分。 |
+| 4 | 分级预警处置 (20分) | 预警上报时效 | 10 | 各级预警在规定时限内上报（三级预警≤2小时、二级预警一般报警≤12小时、一级预警≤24小时）得10分；每延迟1次扣2分，扣完为止。 |
+| 5 | | 预警闭环时效 | 10 | 在规定时限内进行预警处置闭环确认得10分；每延迟1次扣5分，扣完为止。 |
+| 6 | 日常运维管理 (30分) | 故障修复时效 | 10 | 平台连续12个小时未收到单结构监测系统发送的特征数据则判断系统故障离线，离线后72小时内修复得10分；每延迟修复1次扣2分，超过240小时未修复得0分。 |
+| 7 | | 日常巡检维护 | 10 | 按规定周期开展设备巡检，巡检记录完整、真实，得10分；未按期开展的每发现一次扣1分。 |
+| 8 | | 例行报告情况 | 10 | 按要求提交分析报告，得10分；未提交的不得分，未按时提交的每发现一次扣3分。 |
+
+## 三、数据溯源不确定性说明 (Data Source Caveats)
+1. **指标精度的来源疑点**：表格中诸如“预警上报时效≤2/12/24小时”、“连续12小时未收到数据判故障”等极度具体的量化阈值，并非直接照搬自部颁《指引》（部级文件只定原则）。
+2. **可能的来源推测**：
+   - 很大可能是某个**省级交通运输主管部门**基于部里《指引》精神，结合本地情况制定的实施细则或考核办法。
+   - 或者是某个具体桥梁项目/平台的定制化运维考核标准。
+3. **后续验证建议**：需获取该表格原件的页眉页脚、发文字号或标题页截图，方可将其彻底确权并录入标准知识库。当前将其暂定为“宁波公路局防汛材料参考细则”。
+
+
 `;
         window.__UI_TEMPLATES__ = ``;
         window.__EXCEL_TEMPLATES__ = ``;
@@ -47703,12 +48048,12 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         onClick: () => setIsOpen(!isOpen),
         title: "\u70B9\u51FB\u5C55\u5F00/\u6298\u53E0\u53C2\u6570"
       },
-      /* @__PURE__ */ React.createElement("span", { className: "text-[10px] flex items-center gap-1" }, tc.status === "running" ? "\u{1F504} \u6267\u884C\u4E2D" : tc.status === "error" ? "X \u5931\u8D25" : "\u2713 \u5DF2\u5B8C\u6210"),
-      /* @__PURE__ */ React.createElement("span", { className: "text-[10px]" }, "[\u653F\u5E9C\u4FA7\u667A\u80FD\u4F53]"),
-      tc.agentName && /* @__PURE__ */ React.createElement("span", { className: "text-[10px]" }, tc.agentName),
-      /* @__PURE__ */ React.createElement("span", null, "\u8C03\u7528 ", tc.name, " ", tableInfo && /* @__PURE__ */ React.createElement("span", null, "(", tableInfo, ")")),
-      tc.status === "success" && tc.resultSummary && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] ml-1" }, "(", tc.resultSummary, ")")
-    ), tc.status === "error" && tc.resultSummary && /* @__PURE__ */ React.createElement("div", { className: "text-[11px] mt-0.5 ml-1 text-black" }, "(", tc.resultSummary, ")"), isOpen && (tc.argsStr || tc.args || tc.arguments) && /* @__PURE__ */ React.createElement("div", { className: "mt-1 ml-[4px] pl-[8px] border-l-2 border-slate-200" }, /* @__PURE__ */ React.createElement("pre", { className: "text-black text-[11px] whitespace-pre-wrap break-all font-mono m-0 p-0 bg-transparent border-none leading-[1.2]" }, typeof (tc.argsStr || tc.args || tc.arguments) === "string" ? tc.argsStr || tc.args || tc.arguments : JSON.stringify(tc.args || tc.arguments, null, 2)))));
+      /* @__PURE__ */ React.createElement("span", { className: "text-[10px]", style: { color: tc.status === "error" ? "#8b1c1c" : tc.status === "running" ? "#888" : "#8b1c1c" } }, tc.status === "running" ? "\u{1F504} \u6267\u884C\u4E2D" : tc.status === "error" ? "X \u5931\u8D25" : "\u2713 \u5DF2\u5B8C\u6210"),
+      /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-400" }, "[\u653F\u5E9C\u4FA7\u667A\u80FD\u4F53]"),
+      tc.agentName && /* @__PURE__ */ React.createElement("span", { className: "text-[10px]", style: { color: "#8b1c1c" } }, tc.agentName),
+      /* @__PURE__ */ React.createElement("span", null, "\u8C03\u7528 ", tc.name, " ", tableInfo && /* @__PURE__ */ React.createElement("span", { style: { color: "#8b1c1c" } }, "(", tableInfo, ")")),
+      tc.status === "success" && tc.resultSummary && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] ml-1 text-slate-500" }, "(", tc.resultSummary, ")")
+    ), tc.status === "error" && tc.resultSummary && /* @__PURE__ */ React.createElement("div", { className: "text-[11px] mt-0.5 ml-1", style: { color: "#8b1c1c" } }, "(", tc.resultSummary, ")"), isOpen && (tc.argsStr || tc.args || tc.arguments) && /* @__PURE__ */ React.createElement("div", { className: "mt-1 ml-[4px] pl-[8px] border-l-2 border-slate-200" }, /* @__PURE__ */ React.createElement("pre", { className: "text-black text-[11px] whitespace-pre-wrap break-all font-mono m-0 p-0 bg-transparent border-none leading-[1.2]" }, typeof (tc.argsStr || tc.args || tc.arguments) === "string" ? tc.argsStr || tc.args || tc.arguments : JSON.stringify(tc.args || tc.arguments, null, 2)))));
   };
   var STAGE_TREE_DATA = window.__STAGE_TREE_DATA__ && window.__STAGE_TREE_DATA__.length > 0 ? window.__STAGE_TREE_DATA__ : [
     { stage: "\u6570\u636E\u7EDF\u7B79", color: "#64748b", icon: "\u{1F9E0}", tables: [
@@ -47838,7 +48183,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     });
     const totalTables = seenLcodes.size;
     const totalStages = dynamicStages.length;
-    return /* @__PURE__ */ React.createElement("div", { className: "select-none text-slate-700" }, /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-blue-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F1\u3011\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u4F53\u7CFB"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "space-y-0.5" }, /* @__PURE__ */ React.createElement("div", { className: "group/row relative flex flex-col items-start justify-center px-2.5 py-2 cursor-default transition-all rounded border bg-slate-50/50 border-slate-200 hover:bg-slate-50 hover:border-blue-200" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center w-full" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-800 font-medium truncate" }, "\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F (\u5305\u542B\u67B6\u6784\u56FE\u4E0E\u6D41\u7A0B\u56FE)")), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-500 mt-1 ml-2" }, /* @__PURE__ */ React.createElement("div", null, "- 5.\u67B6\u6784-\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F.pdf"), /* @__PURE__ */ React.createElement("div", null, "- 5.\u6D41\u7A0B-\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F.pdf")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1 mt-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 group relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-600 font-bold shrink-0" }, "\u7275\u5934:"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] px-1 py-[1px] text-blue-700 leading-tight break-words flex items-center bg-blue-50 rounded" }, "AGENT-\u5B89\u5168\u5E94\u6025-02_\u9632\u6C5B\u6307\u5BFC"))), /* @__PURE__ */ React.createElement("div", { className: "flex w-full pl-1 mt-1 border-t border-slate-100 pt-1 items-start" }, /* @__PURE__ */ React.createElement("span", { className: "text-[8px] text-slate-500 font-medium ml-1 mr-1 mt-[2px] shrink-0" }, "\u6267\u884C:"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full gap-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center leading-none mt-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-blue-700 mr-1 whitespace-nowrap flex items-center bg-slate-100 px-1 py-0.5 rounded" }, "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66, AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4"))))))), /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-indigo-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F2\u3011\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "space-y-0.5" }, /* @__PURE__ */ React.createElement("div", { className: "group/row relative flex flex-col items-start justify-center px-2.5 py-2 cursor-default transition-all rounded border bg-slate-50/50 border-slate-200 hover:bg-slate-50 hover:border-indigo-200" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center w-full" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-800 font-medium truncate" }, "\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u8D28\u91CF\u8003\u6838\u4F53\u7CFB")), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-500 mt-1 ml-2" }, /* @__PURE__ */ React.createElement("div", null, "- \u516C\u8DEF\u957F\u5927\u6865\u6881\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406\u529E\u6CD5\uFF08\u8BD5\u884C\uFF09.pdf ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1" }, "(\u90E8\u7EA7\u7BA1\u7406\u8981\u6C42)")), /* @__PURE__ */ React.createElement("div", null, "- \u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u8D28\u91CF\u8003\u6838.xlsx ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1" }, "(\u7701\u7EA7\u8003\u6838\u6307\u6807)"))), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1 mt-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 group relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-600 font-bold shrink-0" }, "\u7275\u5934:"), /* @__PURE__ */ React.createElement("div", { className: "absolute left-0 bottom-full mb-2 hidden group-hover:block w-[260px] z-[999] pointer-events-none" }, /* @__PURE__ */ React.createElement("div", { className: "relative p-2 text-[9px] leading-[1.4] text-slate-700 bg-white rounded border border-slate-800 shadow-[0_4px_12px_rgba(0,0,0,0.1)] whitespace-normal" }, /* @__PURE__ */ React.createElement("div", { className: "font-bold text-slate-800 mb-0.5 flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-blue-500" }, "\u25C6"), " \u4E3B\u52A8\u6267\u884C\u673A\u5236"), /* @__PURE__ */ React.createElement("div", { className: "text-slate-500 mb-1.5 text-[8.5px] border-b border-slate-200 pb-1" }, "\u4EE5\u7EC4\u4EF6\u5316\u6302\u8F7D\u4E8E\u73B0\u6709\u7CFB\u7EDF\uFF0C\u907F\u514D\u91CD\u590D\u5EFA\u8BBE"), /* @__PURE__ */ React.createElement("div", { className: "mb-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-red-500 font-medium" }, "\u4F20\u7EDF\u5BA1\u6838\uFF1A"), "\u88AB\u52A8\u63A5\u6536\u6570\u636E\uFF0C\u4F9D\u8D56\u8DE8\u7CFB\u7EDF\u4EBA\u5DE5\u6BD4\u5BF9\u3002"), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-emerald-600 font-medium" }, "\u667A\u80FD\u5BA1\u6838\uFF1A"), "\u62E6\u622A\u5165\u5E93\uFF0C\u7275\u5934\u8282\u70B9\u7F16\u6392\u8C03\u5EA6\uFF0C\u4E0B\u53D1\u8282\u70B9\u7A7F\u900F\u6838\u9A8C\uFF0C\u5B9E\u73B0\u95ED\u73AF\u3002"), /* @__PURE__ */ React.createElement("div", { className: "absolute top-full left-4 -mt-px w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[7px] border-t-slate-800" }), /* @__PURE__ */ React.createElement("div", { className: "absolute top-full left-4 -mt-[2px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[7px] border-t-white" }))), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] px-1 py-[1px] text-indigo-700 leading-tight break-words flex items-center bg-indigo-50 rounded" }, "AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B"))), /* @__PURE__ */ React.createElement("div", { className: "flex w-full pl-1 mt-1 border-t border-slate-100 pt-1 items-start" }, /* @__PURE__ */ React.createElement("span", { className: "text-[8px] text-slate-500 font-medium ml-1 mr-1 mt-[2px] shrink-0" }, "\u6267\u884C:"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full gap-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center leading-none mt-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-indigo-700 flex flex-col gap-1 w-full" }, /* @__PURE__ */ React.createElement("span", { className: "flex items-center bg-slate-100 px-1 py-0.5 rounded" }, "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 ml-1.5" }, "(\u63D0\u4F9BL21/L29a\u7A7A\u95F4\u5E95\u5EA7)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center bg-slate-100 px-1 py-0.5 rounded" }, "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 ml-1.5" }, "(\u63D0\u53D6\u9632\u6C5B\u54CD\u5E94\u8BB0\u5F55)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center bg-slate-100 px-1 py-0.5 rounded" }, "AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 ml-1.5" }, "(\u7A7F\u900F\u6838\u67E5\u5DE1\u68C0\u53F0\u8D26)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center bg-slate-100 px-1 py-0.5 rounded" }, "AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 ml-1.5" }, "(\u6838\u67E5\u8BBE\u5907\u65AD\u7535\u53CA\u514D\u8D23\u7533\u8BC9)"))))))))), /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-emerald-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F3\u3011\u5E74\u62A5\u6570\u636E\u7EDF\u7B79\u9AA8\u67B6"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "px-1.5 mb-2 text-[9px] text-slate-500" }, "\u6DB5\u76D6 ", totalTables, " \u5957\u4EA4\u901A\u90E8\u7EDF\u8BA1\u62A5\u8868\u4F53\u7CFB"), /* @__PURE__ */ React.createElement("div", { className: "space-y-1" }, dynamicStages.map(({ stage, icon, tables }) => {
+    return /* @__PURE__ */ React.createElement("div", { className: "select-none text-slate-700" }, /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-blue-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F1\u3011\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u4F53\u7CFB"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "space-y-0.5" }, /* @__PURE__ */ React.createElement("div", { className: "group/row relative flex flex-col items-start justify-center px-2.5 py-2 cursor-default transition-all rounded border bg-slate-50/50 border-slate-200 hover:bg-slate-50 hover:border-blue-200" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center w-full" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-800 font-medium truncate" }, "\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F (\u5305\u542B\u67B6\u6784\u56FE\u4E0E\u6D41\u7A0B\u56FE)")), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-500 mt-1 ml-2" }, /* @__PURE__ */ React.createElement("div", null, "- 5.\u67B6\u6784-\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F.pdf"), /* @__PURE__ */ React.createElement("div", null, "- 5.\u6D41\u7A0B-\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F.pdf")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1 mt-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 group relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-600 font-bold shrink-0" }, "\u7275\u5934:"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] px-1 py-[1px] text-slate-700 font-medium leading-tight break-words flex items-center" }, "AGENT-\u5B89\u5168\u5E94\u6025-02_\u9632\u6C5B\u6307\u5BFC"))), /* @__PURE__ */ React.createElement("div", { className: "flex w-full pl-1 mt-1 border-t border-slate-100 pt-1 items-start" }, /* @__PURE__ */ React.createElement("span", { className: "text-[8px] text-slate-500 font-medium ml-1 mr-1 mt-[2px] shrink-0" }, "\u6267\u884C:"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full gap-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center leading-none mt-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-slate-600 mr-1 whitespace-nowrap flex items-center" }, "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66, AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4"))))))), /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-indigo-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F2\u3011\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "space-y-0.5" }, /* @__PURE__ */ React.createElement("div", { className: "group/row relative flex flex-col items-start justify-center px-2.5 py-2 cursor-default transition-all rounded border bg-slate-50/50 border-slate-200 hover:bg-slate-50 hover:border-indigo-200" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center w-full" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-800 font-medium truncate" }, "\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u8D28\u91CF\u8003\u6838\u4F53\u7CFB")), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-500 mt-1 ml-2" }, /* @__PURE__ */ React.createElement("div", null, "- \u516C\u8DEF\u957F\u5927\u6865\u6881\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406\u529E\u6CD5\uFF08\u8BD5\u884C\uFF09.pdf ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1" }, "(\u90E8\u7EA7\u7BA1\u7406\u8981\u6C42)")), /* @__PURE__ */ React.createElement("div", null, "- \u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u8D28\u91CF\u8003\u6838.xlsx ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1" }, "(\u7701\u7EA7\u8003\u6838\u6307\u6807)"))), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1 mt-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 group relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-600 font-bold shrink-0" }, "\u7275\u5934:"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] px-1 py-[1px] text-slate-700 font-medium leading-tight break-words flex items-center" }, "AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B"))), /* @__PURE__ */ React.createElement("div", { className: "flex w-full pl-1 mt-1 border-t border-slate-100 pt-1 items-start" }, /* @__PURE__ */ React.createElement("span", { className: "text-[8px] text-slate-500 font-medium ml-1 mr-1 mt-[2px] shrink-0" }, "\u6267\u884C:"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full gap-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center leading-none mt-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-indigo-700 flex flex-col gap-1 w-full" }, /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u63D0\u4F9BL21/L29a\u7A7A\u95F4\u5E95\u5EA7)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u63D0\u53D6\u9632\u6C5B\u54CD\u5E94\u8BB0\u5F55)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u7A7F\u900F\u6838\u67E5\u5DE1\u68C0\u53F0\u8D26)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u6838\u67E5\u8BBE\u5907\u65AD\u7535\u53CA\u514D\u8D23\u7533\u8BC9)"))))))))), /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-emerald-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F3\u3011\u5E74\u62A5\u6570\u636E\u7EDF\u7B79\u9AA8\u67B6"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "px-1.5 mb-2 text-[9px] text-slate-500" }, "\u6DB5\u76D6 ", totalTables, " \u5957\u4EA4\u901A\u90E8\u7EDF\u8BA1\u62A5\u8868\u4F53\u7CFB"), /* @__PURE__ */ React.createElement("div", { className: "space-y-1" }, dynamicStages.map(({ stage, icon, tables }) => {
       const isOpen = expanded[stage];
       return /* @__PURE__ */ React.createElement("div", { key: stage }, /* @__PURE__ */ React.createElement(
         "button",
@@ -47862,7 +48207,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
           macroAgent && (() => {
             const hasSubordinateAgents = subTables && subTables.some((sub) => sub.microAgent && sub.microAgent.trim() !== "");
             const isMacroCompiled = !hasSubordinateAgents && subTables && subTables.some((sub) => sub.isCompiled);
-            return /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 group relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-600 font-bold shrink-0" }, "\u7275\u5934:"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] px-1 py-[1px] text-blue-700 leading-tight break-words flex items-center" }, macroAgent.startsWith("AGENT-") ? macroAgent : "AGENT-" + macroAgent, isMacroCompiled && /* @__PURE__ */ React.createElement("span", { className: "ml-1 text-[7px] text-emerald-500 font-medium bg-emerald-50 border border-emerald-200 px-[2px] py-[0px] rounded-sm" }, "\u5DF2\u53D1\u5E03"))));
+            return /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 group relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-600 font-bold shrink-0" }, "\u7275\u5934:"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] px-1 py-[1px] text-slate-700 font-medium leading-tight break-words flex items-center" }, macroAgent.startsWith("AGENT-") ? macroAgent : "AGENT-" + macroAgent, isMacroCompiled && /* @__PURE__ */ React.createElement("span", { className: "ml-1 text-[7px] text-emerald-500 font-medium bg-emerald-50 border border-emerald-200 px-[2px] py-[0px] rounded-sm" }, "\u5DF2\u53D1\u5E03"))));
           })(),
           subTables && subTables.some((sub) => sub.microAgent && sub.microAgent.trim() !== "") && /* @__PURE__ */ React.createElement("div", { className: "flex w-full pl-1 mt-0.5 items-start" }, /* @__PURE__ */ React.createElement("span", { className: "text-[8px] text-slate-500 font-medium ml-1 mr-1 mt-[4px] shrink-0" }, "\u6267\u884C:"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full gap-0" }, (() => {
             const grouped = {};
@@ -47875,7 +48220,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
             });
             return Object.keys(grouped).map((agent, i) => {
               const isAgentCompiled = grouped[agent].some((sub) => sub.isCompiled);
-              return /* @__PURE__ */ React.createElement("div", { key: i, className: "flex flex-wrap items-center leading-none mt-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-blue-700 mr-1 whitespace-nowrap flex items-center" }, agent.startsWith("AGENT-") ? agent : "AGENT-" + agent, agent === macroAgent && /* @__PURE__ */ React.createElement("span", { className: "text-rose-400 ml-0.5 font-normal" }, "(\u540C\u4E3B\u8D23)"), isAgentCompiled && /* @__PURE__ */ React.createElement("span", { className: "ml-1 text-[7px] text-emerald-500 font-medium bg-emerald-50 border border-emerald-200 px-[2px] py-[0px] rounded-sm" }, "\u5DF2\u53D1\u5E03"), ":"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-x-1 items-center" }, grouped[agent].map((sub, j2) => /* @__PURE__ */ React.createElement("span", { key: j2, className: "text-[8px] text-slate-500 flex items-center" }, sub.name, j2 < grouped[agent].length - 1 && /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-0.5" }, "|")))));
+              return /* @__PURE__ */ React.createElement("div", { key: i, className: "flex flex-wrap items-center leading-none mt-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-slate-600 mr-1 whitespace-nowrap flex items-center" }, agent.startsWith("AGENT-") ? agent : "AGENT-" + agent, agent === macroAgent && /* @__PURE__ */ React.createElement("span", { className: "text-rose-400 ml-0.5 font-normal" }, "(\u540C\u4E3B\u8D23)"), isAgentCompiled && /* @__PURE__ */ React.createElement("span", { className: "ml-1 text-[7px] text-emerald-500 font-medium bg-emerald-50 border border-emerald-200 px-[2px] py-[0px] rounded-sm" }, "\u5DF2\u53D1\u5E03"), ":"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-x-1 items-center" }, grouped[agent].map((sub, j2) => /* @__PURE__ */ React.createElement("span", { key: j2, className: "text-[8px] text-slate-500 flex items-center" }, sub.name, j2 < grouped[agent].length - 1 && /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-0.5" }, "|")))));
             });
           })())),
           /* @__PURE__ */ React.createElement("div", { className: "absolute left-full top-0 ml-2 z-[200] hidden group-hover/row:flex flex-col w-52 bg-white shadow-xl border border-slate-200 rounded p-3 pointer-events-none" }, /* @__PURE__ */ React.createElement("div", { className: `text-[11px] font-bold text-slate-800 mb-1` }, lcode, " \xB7 ", name), /* @__PURE__ */ React.createElement("div", { className: "text-[10px] text-slate-500 mb-1.5" }, hasData ? loadedYrs.map((yr) => `${yr}\u5E74`).join(" \xB7 ") : "\u6682\u65E0\u6570\u636E"), macroAgent && /* @__PURE__ */ React.createElement("div", { className: "text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded border border-slate-200 w-fit" }, "[\u4E3B\u8D23] ", macroAgent))
@@ -47998,7 +48343,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   ];
   var convertMarkdownTablesToHtml = (text) => {
     if (!text) return text;
-    let processedText = text.replace(/^[ \t]*[#＃]{1,6}[ \t]*(.*)$/gm, '<div class="font-bold text-slate-800 text-lg mt-4 mb-2">$1</div>');
+    let processedText = text.replace(/^[ \t]*[#＃]{1,6}[ \t]+([^\n]*)$/gm, '<div class="font-bold text-slate-800 text-lg mt-4 mb-2">$1</div>');
     processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<span class="font-bold">$1</span>');
     processedText = processedText.replace(/^[ \t]*---[ \t]*$/gm, '<hr class="my-5 border-slate-200 border-dashed" />');
     processedText = processedText.replace(/```[a-z]*\n([\s\S]*?)```/g, (match, code) => {
@@ -49286,338 +49631,6 @@ ${msg.views.view3}
         toolCalls: [],
         time: (/* @__PURE__ */ new Date()).toLocaleTimeString()
       }]);
-      const s1Prompts = [
-        "\u3010\u6C14\u8C61\u9884\u8B66\u8054\u52A8\u3011\u63A5\u6536\u7701\u7EA7\u66B4\u96E8\u7EA2\u8272\u9884\u8B66\u6307\u4EE4\uFF0C\u8BF7\u6C42\u7A7F\u900FL21\u8DEF\u7EBF\u57FA\u7840\u53F0\u8D26\uFF0C\u7CBE\u51C6\u9501\u5B9A\u53D7\u707E\u8F96\u533A\u5185\u8DEF\u6BB5\u6869\u53F7\u8FB9\u754C\uFF0C\u5E76\u81EA\u52A8\u751F\u6210\u300A\u7279\u7EA7\u9669\u60C5\u5F71\u54CD\u8303\u56F4\u5B9A\u7EA7\u62A5\u544A\u300B\u3002",
-        "\u3010\u9AD8\u5371\u7ED3\u6784\u7269\u7194\u65AD\u6392\u67E5\u3011\u57FA\u4E8E\u53D7\u707E\u8DEF\u7EBF\u951A\u70B9\uFF0C\u62C9\u53D6L29a\u7B49\u9AD8\u5371\u6865\u96A7\u8FB9\u5761\u7684\u5065\u5EB7\u76D1\u6D4B\u5B9E\u65F6\u7269\u8054\u4F20\u611F\u6D41\uFF0C\u8F93\u51FA\u300A\u66B4\u96E8\u533A\u6781\u7AEF\u5DE5\u51B5\u4E0B\u7ED3\u6784\u7269\u5B9E\u65F6\u5B89\u5168\u6392\u67E5\u6E05\u5355\u300B\u3002",
-        "\u3010\u5E94\u6025\u8D44\u6E90\u534F\u540C\u8C03\u5EA6\u3011\u6FC0\u6D3B16-1\u5E94\u6025\u7269\u8D44\u6218\u65F6\u50A8\u5907\u603B\u7EBF\uFF0C\u4E00\u952E\u76D8\u70B9\u53D7\u707E\u6838\u5FC3\u533A\u5468\u8FB950\u516C\u91CC\u5185\u62A2\u9669\u673A\u68B0\u4E0E\u9632\u6C5B\u7269\u8D44\u5E93\u5B58\uFF0C\u4E0B\u53D1\u300A\u8DE8\u533A\u534F\u540C\u5E94\u6025\u8C03\u62E8\u5DE5\u5355\u300B\u3002"
-      ];
-      if (s1Prompts.includes(queryText.trim())) {
-        let scriptIdx = s1Prompts.indexOf(queryText.trim());
-        let mockActions = [];
-        let mockContent = "";
-        let s1WorkflowData = [
-          { side: "gov", agent: "\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66", action: "\u9884\u8B66\u611F\u77E5", desc: "\u63A5\u6536\u5916\u90E8\u201C\u66B4\u96E8\u7EA2\u8272\u9884\u8B66\u201D\uFF0C\u89E3\u6790\u53D7\u707E\u884C\u653F\u533A\u5212\u8303\u56F4\uFF08\u5982\u9EC4\u5188\u3001\u9102\u5DDE\u7B49\uFF09\u3002" },
-          { side: "gov", agent: "\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", action: "\u7A7A\u95F4\u53E0\u7F6E", desc: "\u5C06\u884C\u653F\u533A\u5212\u8FB9\u754C\u4E0E L21 \u8DEF\u7EBF\u5750\u6807\u53E0\u52A0\uFF0C\u63D0\u53D6\u53D7\u707E\u8DEF\u7EBF\u6BB5\u4E0E\u8D77\u8BAB\u6869\u53F7\u3002" },
-          { side: "gov", agent: "\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", action: "\u75C5\u5BB3\u7B5B\u67E5", desc: "\u8C03\u53D6 L29a \u7B49\u5E95\u8868\u5386\u53F2\u8DEF\u51B5\u4E0E\u75C5\u5BB3\u8BB0\u5F55\uFF0C\u5B9A\u4F4D\u9632\u6C5B\u9AD8\u5371\u8584\u5F31\u8DEF\u6BB5\u3002" },
-          { side: "gov", agent: "\u7EFC\u5408\u8BA1\u5212-01_\u6295\u8D44\u8BA1\u5212", action: "\u635F\u5931\u9884\u4F30", desc: "\u4F9D\u636E\u707E\u6BC1\u7B97\u6CD5\u6A21\u578B\uFF0C\u9884\u4F30\u8DEF\u4EA7\u4EF7\u503C\u53CA\u6F5C\u5728\u707E\u6BC1\u7ECF\u6D4E\u635F\u5931\u3002" },
-          { side: "enterprise", agent: "\u5B89\u5168\u5E94\u6025(\u4F01\u4E1A\u4FA7)-01", action: "\u5DE5\u5355\u4E0B\u53D1", desc: "\u5168\u7F51\u5E76\u53D1\u4E0B\u53D1\u9632\u6C5B\u5E94\u6025\u6307\u4EE4\uFF0C\u6FC0\u6D3B\u4E8B\u53D1\u5730\u6CBF\u7EBF\u7BA1\u517B\u4F01\u4E1A\u7684\u4E00\u7EA7\u54CD\u5E94\u72B6\u6001\u3002" }
-        ];
-        if (scriptIdx === 0) {
-          mockActions = [
-            { type: "thought", text: "[AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66] \u6210\u529F\u63A5\u6536\u7701\u7EA7\u66B4\u96E8\u7EA2\u8272\u9884\u8B66\uFF0C\u6B63\u5728\u89E3\u6790\u53D7\u707E\u533A\u57DF\u8FB9\u754C..." },
-            { type: "tool", tc: { name: "parse_weather_warning", agentName: "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66", argsStr: '{\n  "level": "RED",\n  "region": "\u9102\u4E1C\u7247\u533A"\n}', resultSummary: "\u9501\u5B9A\u6838\u5FC3\u53D7\u707E\u533A: \u9102\u5DDE\u5E02\u3001\u9EC4\u5188\u5E02", status: "success" } },
-            { type: "thought", text: "\u5524\u9192 [AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6]\uFF0C\u63D0\u53D6\u6838\u5FC3\u53D7\u707E\u533A\u5185\u7684 L21 \u8DEF\u7EBF\u53CA\u8D77\u8BAB\u6869\u53F7..." },
-            { type: "tool", tc: { name: "spatial_overlay", agentName: "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", argsStr: '{\n  "regions": ["\u9102\u5DDE\u5E02", "\u9EC4\u5188\u5E02"],\n  "target_table": "L21"\n}', resultSummary: "\u63D0\u53D6\u53D7\u5F71\u54CD\u5E72\u7EBF 14 \u6761\uFF0C\u6D89\u53CA\u603B\u91CC\u7A0B 620.5 km", status: "success" } },
-            { type: "thought", text: "\u7A7A\u95F4\u8303\u56F4\u5DF2\u9501\u5B9A\uFF0C\u6B63\u5728\u751F\u6210\u300A\u7279\u7EA7\u9669\u60C5\u5F71\u54CD\u8303\u56F4\u5B9A\u7EA7\u62A5\u544A\u300B..." }
-          ];
-          mockContent = `### \u{1F6A8} \u7279\u7EA7\u9669\u60C5\u5F71\u54CD\u8303\u56F4\u5B9A\u7EA7\u62A5\u544A (\u66B4\u96E8\u7EA2\u8272\u9884\u8B66)
-
-**\u707E\u5BB3\u5B9A\u7EA7\uFF1AI \u7EA7\uFF08\u7279\u5927\u66B4\u96E8\uFF09**
-**\u6838\u5FC3\u53D7\u707E\u533A**\uFF1A\u9102\u5DDE\u5E02\u3001\u9EC4\u5188\u5E02\u5168\u57DF
-
-\u7ECF\u7A7A\u95F4\u53E0\u52A0\u5206\u6790\uFF0C\u672C\u6B21\u66B4\u96E8\u7EA2\u8272\u9884\u8B66\u8986\u76D6\u8303\u56F4\u5185\uFF0C\u5171\u6D89\u53CA **14** \u6761\u666E\u901A\u56FD\u7701\u5E72\u7EBF\u516C\u8DEF\uFF08\u542B G106\u3001G318 \u7B49\u5E72\u7EBF\uFF09\uFF0C\u53D7\u5F71\u54CD\u603B\u91CC\u7A0B\u8FBE **620.5** km\u3002\u5DF2\u901A\u77E5\u6CBF\u7EBF\u7BA1\u517B\u5355\u4F4D\u8FDB\u5165\u9632\u6C5B\u6218\u65F6\u72B6\u6001\uFF0C\u5E76\u5B9E\u65BD\u5C40\u90E8\u4EA4\u901A\u7BA1\u5236\u3002`;
-        } else if (scriptIdx === 1) {
-          mockActions = [
-            { type: "thought", text: "[AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A] \u6536\u5230\u6307\u4EE4\uFF0C\u57FA\u4E8E\u53D7\u707E\u8DEF\u6BB5\u951A\u70B9\uFF0C\u6392\u67E5\u9AD8\u5371\u6865\u96A7\u8FB9\u5761..." },
-            { type: "tool", tc: { name: "query_l29a", agentName: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", argsStr: '{\n  "routes": ["G106", "G318"],\n  "structures": ["\u5927\u6865", "\u7279\u5927\u6865", "\u96A7\u9053", "\u9AD8\u8FB9\u5761"]\n}', resultSummary: "\u9501\u5B9A\u9AD8\u5371\u7ED3\u6784\u7269 27 \u5904", status: "success" } },
-            { type: "thought", text: "\u5524\u9192 [AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B]\uFF0C\u62C9\u53D6\u8FD9 27 \u5904\u7ED3\u6784\u7269\u7684\u5B9E\u65F6\u7269\u8054\u4F20\u611F\u6570\u636E..." },
-            { type: "tool", tc: { name: "fetch_iot_streams", agentName: "AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B", argsStr: '{\n  "target_ids": ["BRG-01", "TUN-05", ...]\n}', resultSummary: "2 \u5904\u4F4D\u79FB\u4F20\u611F\u5668\u9608\u503C\u544A\u8B66\uFF0C\u5176\u4F59\u6B63\u5E38", status: "success" } },
-            { type: "thought", text: "\u6392\u67E5\u5B8C\u6210\uFF0C\u6B63\u5728\u8F93\u51FA\u5B89\u5168\u6392\u67E5\u6E05\u5355..." }
-          ];
-          mockContent = `### \u{1F309} \u66B4\u96E8\u533A\u6781\u7AEF\u5DE5\u51B5\u4E0B\u7ED3\u6784\u7269\u5B9E\u65F6\u5B89\u5168\u6392\u67E5\u6E05\u5355
-
-\u57FA\u4E8E L29a \u57FA\u7840\u53F0\u8D26\u4E0E\u5B9E\u65F6\u5065\u5EB7\u76D1\u6D4B\u6D41\u7684\u4EA4\u53C9\u6392\u67E5\u7ED3\u679C\uFF1A
-
-- **\u6392\u67E5\u603B\u6570**\uFF1A27 \u5904\uFF08\u5176\u4E2D\u6865\u6881 15 \u5EA7\uFF0C\u96A7\u9053 8 \u5EA7\uFF0C\u9AD8\u8FB9\u5761 4 \u5904\uFF09
-- **\u5B9E\u65F6\u7269\u8054\u72B6\u6001**\uFF1A
-  - \u2705 **\u6B63\u5E38\u8FD0\u884C**\uFF1A25 \u5904\uFF08\u4F20\u611F\u5668\u6570\u636E\u5E73\u7A33\uFF0C\u672A\u89C1\u660E\u663E\u5F02\u5E38\uFF09
-  - \u26A0\uFE0F **\u9AD8\u5371\u544A\u8B66**\uFF1A2 \u5904\uFF08G106 \u767D\u83B2\u6CB3\u5927\u6865**\u4E3B\u6881\u6320\u5EA6\u903C\u8FD1\u9608\u503C**\uFF1BG318 \u7F57\u7530\u6BB5\u9AD8\u8FB9\u5761**\u503E\u89D2\u4EEA\u6570\u636E\u7A81\u8DF3**\uFF09
-
-\u9488\u5BF9\u544A\u8B66\u7ED3\u6784\u7269\uFF0C\u5DF2\u901A\u8FC7\u4F01\u4E1A\u4FA7\u603B\u7EBF\u5F3A\u5236\u7194\u65AD\u76F8\u5173\u8DEF\u6BB5\u901A\u884C\u6743\u9650\uFF0C\u5E76\u6307\u6D3E\u73B0\u573A\u5E94\u6025\u961F\u4F0D\u524D\u5F80\u67E5\u52D8\u3002`;
-        } else if (scriptIdx === 2) {
-          mockActions = [
-            { type: "thought", text: "[AGENT-\u7EFC\u5408\u8BA1\u5212-01_\u6295\u8D44\u8BA1\u5212] \u8BC4\u4F30\u6F5C\u5728\u7ECF\u6D4E\u635F\u5931\u5E76\u9884\u5BA1\u6551\u707E\u5907\u7528\u91D1..." },
-            { type: "thought", text: "\u5524\u9192 [AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66] \u76D8\u70B9\u7269\u8D44\uFF0C\u5524\u9192 [\u4F01\u4E1A\u4FA7] \u4E0B\u53D1\u8DE8\u533A\u8C03\u62E8\u5DE5\u5355..." },
-            { type: "tool", tc: { name: "inventory_check", agentName: "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66", argsStr: '{\n  "center_gps": "[114.88, 30.45]",\n  "radius_km": 50\n}', resultSummary: "\u9501\u5B9A 3 \u5904\u7701\u7EA7\u5E94\u6025\u50A8\u5907\u4E2D\u5FC3\uFF0C\u53EF\u7528\u6316\u6398\u673A12\u53F0\u3001\u7F16\u7EC7\u888B5\u4E07\u6761", status: "success" } },
-            { type: "tool", tc: { name: "dispatch_order", agentName: "AGENT-\u5B89\u5168\u5E94\u6025(\u4F01\u4E1A\u4FA7)-01", argsStr: '{\n  "task": "\u8DE8\u533A\u8C03\u62E8",\n  "resources": "\u6316\u6398\u673A4\u53F0, \u7F16\u7EC7\u888B2\u4E07\u6761",\n  "destination": "\u9EC4\u5188\u5E02\u7F57\u7530\u6BB5"\n}', resultSummary: "\u5DE5\u5355\u5DF2\u4E0B\u53D1\u5E76\u7531\u4F01\u4E1A\u63A5\u6536", status: "success" } },
-            { type: "thought", text: "\u8C03\u5EA6\u94FE\u8DEF\u5DF2\u5168\u7EBF\u8D2F\u901A\u3002" }
-          ];
-          mockContent = `### \u{1F69C} \u8DE8\u533A\u534F\u540C\u5E94\u6025\u8C03\u62E8\u5DE5\u5355 (\u6267\u884C\u56DE\u6267)
-
-**\u8D44\u6E90\u76D8\u70B9\u7ED3\u8BBA**\uFF1A\u53D7\u707E\u6838\u5FC3\u533A\u5468\u8FB9 50 \u516C\u91CC\u5185\uFF0C\u5171\u6709 3 \u5904\u7701\u7EA7\u516C\u8DEF\u5E94\u6025\u88C5\u5907\u7269\u8D44\u50A8\u5907\u4E2D\u5FC3\uFF0C\u5404\u7C7B\u62A2\u9669\u673A\u68B0\u4E0E\u9632\u6C5B\u7269\u8D44\u50A8\u5907\u5145\u8DB3\u3002
-
-**\u81EA\u52A8\u8C03\u62E8\u6267\u884C\u8BB0\u5F55**\uFF1A
-\u5DF2\u6210\u529F\u5411 **\u9102\u4E1C\u5E94\u6025\u50A8\u5907\u4E2D\u5FC3** \u53CA **\u4F01\u4E1A\u4FA7\u76F8\u5173\u7BA1\u517B\u5355\u4F4D** \u4E0B\u53D1 \`#EMG-2026-001\` \u53F7\u8DE8\u533A\u534F\u540C\u5E94\u6025\u8C03\u62E8\u5DE5\u5355\u3002
-- \u8C03\u62E8\u660E\u7EC6\uFF1A\u91CD\u578B\u6316\u6398\u673A 4 \u53F0\uFF0C\u9632\u6C5B\u7F16\u7EC7\u888B 2 \u4E07\u6761\uFF0C\u62BD\u6C34\u6CF5 10 \u53F0\u3002
-- \u76EE\u6807\u96C6\u7ED3\u5730\uFF1AG318 \u7F57\u7530\u9AD8\u8FB9\u5761\u544A\u8B66\u70B9\u3002
-- \u72B6\u6001\uFF1A**[\u4F01\u4E1A\u4FA7] \u5DF2\u7B7E\u6536\u5E76\u786E\u8BA4\u53D1\u8F66**\u3002`;
-        }
-        let actionIdx = 0;
-        let currentThoughtStr = "";
-        let currentToolCalls = [];
-        let currentContentStr = "";
-        const timer = setInterval(() => {
-          if (actionIdx < mockActions.length) {
-            const action = mockActions[actionIdx];
-            if (action.type === "thought") {
-              currentThoughtStr += (currentThoughtStr ? "\n" : "") + action.text;
-            } else if (action.type === "tool") {
-              currentToolCalls.push(action.tc);
-            }
-            updateBot({ thought: currentThoughtStr, toolCalls: [...currentToolCalls] });
-            actionIdx++;
-          } else {
-            clearInterval(timer);
-            const typingSpeed = 10;
-            let charIdx = 0;
-            const typeTimer = setInterval(() => {
-              if (charIdx < mockContent.length) {
-                currentContentStr += mockContent.charAt(charIdx);
-                updateBot({ content: currentContentStr });
-                charIdx++;
-              } else {
-                clearInterval(typeTimer);
-                updateBot({ isGenerating: false, workflowData: s1WorkflowData, workflowTitle: "\u653F\u4F01\u534F\u540C\u9632\u6C5B\u9884\u8B66\u4E0E\u54CD\u5E94\u94FE\u8DEF" });
-              }
-            }, typingSpeed);
-          }
-        }, 600);
-        return;
-      }
-      const s2Prompts = [
-        "\u8BF7\u57FA\u4E8E\u6B66\u6C49\u5E02\u5883\u5185G107\u56FD\u9053\u7684L21\u5E72\u7EBF\u8303\u56F4\uFF0C\u8054\u5408\u5404\u5927\u90E8\u95E8\uFF0C\u751F\u6210\u672C\u5B63\u5EA6\u957F\u5927\u6865\u6881\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u8003\u6838\u603B\u5355\u3002",
-        "\u9488\u5BF9 L29a \u6CBF\u7EBF\u7684\u5E02\u53BF\u7EA7\u91CD\u70B9\u957F\u5927\u6865\u6881\uFF0C\u7A7F\u900F\u5E95\u5C42\u517B\u62A4OA\u6392\u67E5\u5DE1\u68C0\u5F02\u5E38\u6253\u5361\u8BB0\u5F55\u3002",
-        "\u542F\u52A8\u957F\u5927\u6865\u6881\u5065\u5EB7\u76D1\u6D4B\u6570\u636E\u5DE1\u67E5\uFF0C\u5982\u9047API\u65AD\u8054\u8BF7\u63D0\u4F9B\u79BB\u7EBF\u5BB9\u707E\u63A5\u7BA1\u3002"
-      ];
-      if (s2Prompts.includes(queryText.trim())) {
-        let scriptIdx = s2Prompts.indexOf(queryText.trim());
-        let mockActions = [];
-        let mockContent = "";
-        let s2WorkflowData = null;
-        let s2WorkflowTitle = "";
-        if (scriptIdx === 0) {
-          s2WorkflowData = [
-            { side: "gov", agent: "\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B", action: "\u4E3B\u8D23\u53D1\u8D77", desc: "\u4F5C\u4E3A\u4E3B\u8D23\u5355\u4F4D\uFF0C\u53D1\u8D77\u5B63\u5EA6\u8D28\u91CF\u8003\u6838\uFF0C\u81EA\u67E5\u4F20\u611F\u5668\u5728\u7EBF\u7387\u3002" },
-            { side: "gov", agent: "\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", action: "\u7A7A\u95F4\u951A\u5B9A", desc: "\u63D0\u53D6 L21\u4E0EL29a\uFF0C\u5F15\u5165\u7A7A\u95F4\u5750\u6807\u6846\u5B9A\u8303\u56F4\uFF0C\u8FC7\u6EE4\u514D\u8D23\u6865\u6881\u3002" },
-            { side: "gov", agent: "\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66", action: "\u65F6\u6548\u534F\u67E5", desc: "\u8C03\u53D6\u5E94\u6025\u5DE5\u5355 API\uFF0C\u5BF9\u6BD4\u62A5\u6587\u65F6\u5DEE\uFF0C\u67E5\u9A8C\u201C\u8D85\u65F6\u54CD\u5E94\u201D\u3002" },
-            { side: "gov", agent: "\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4", action: "\u73B0\u573A\u534F\u67E5", desc: "\u7A7F\u900F\u5E95\u5C42 OA\uFF0C\u6293\u53D6 72 \u5C0F\u65F6\u4FEE\u590D\u7387\u4E0E\u7167\u7247 EXIF \u771F\u5B9E\u6253\u5361\u5750\u6807\u3002" },
-            { side: "enterprise", agent: "\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406", action: "\u514D\u8D23\u7533\u8BC9", desc: "\u67E5\u8DEF\u57DF\u673A\u7535\u7F51\u5173\u5E02\u7535\u65AD\u7535\u65E5\u5FD7\uFF0C\u8BC1\u660E\u65AD\u8054\u4E0D\u53EF\u6297\u529B\u3002" }
-          ];
-          s2WorkflowTitle = "\u653F\u4F01\u8054\u5408\u7A3D\u67E5\u5168\u7F51\u4EA4\u53C9\u53D6\u8BC1\u67B6\u6784";
-          mockActions = [
-            { type: "thought", text: "[AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B] \u6536\u5230\u603B\u6307\u4EE4\uFF0C\u5F00\u59CB\u57FA\u4E8E\u300A\u5730\u65B9\u8003\u6838\u7EC6\u5219\u300B\u6267\u884C\u81EA\u52A8\u5316\u6253\u5206..." },
-            { type: "thought", text: "\u9996\u5148\uFF0C\u5524\u9192 [AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6] \u5F15\u5165\u7A7A\u95F4\u8303\u56F4\uFF0C\u9501\u5B9A\u8003\u6838\u540D\u5355\u5E76\u5254\u9664\u514D\u8D23\u6865\u6881..." },
-            { type: "tool", tc: { name: "query_sql", agentName: "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", argsStr: `{
-  "sql": "SELECT L29a.\u6865\u540D FROM L29a JOIN L21 ON ... LEFT JOIN L32... WHERE L21.\u5730\u5E02='\u6B66\u6C49\u5E02' AND L21.\u8DEF\u7EBF\u7F16\u53F7 LIKE 'G107%' AND L32.\u72B6\u6001!='\u5C01\u95ED\u65BD\u5DE5'"
-}`, resultSummary: "\u6210\u529F\u9501\u5B9A 13 \u5EA7\u6865\u6881\uFF0C\u5254\u9664 2 \u5EA7\u5927\u4FEE\u514D\u8D23\u6865", status: "success" } },
-            { type: "thought", text: "\u57FA\u7840\u540D\u5355\u5DF2\u5C31\u7EEA\u3002\u5F00\u59CB\u5524\u9192 [AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B] \u81EA\u67E5\u7269\u8054\u7F51\u6570\u636E\u6D41\u5728\u7EBF\u7387..." },
-            { type: "tool", tc: { name: "check_iot_logs", agentName: "AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B", argsStr: '{\n  "bridge_ids": ["WH-G107-001", ...]\n}', resultSummary: "\u53D1\u73B0 1 \u5EA7\u6865\u4F20\u611F\u5668\u6389\u7EBF\u8D8524\u5C0F\u65F6", status: "success" } },
-            { type: "thought", text: "\u53D1\u73B0\u6389\u7EBF\u5F02\u5E38\u3002\u5524\u9192 [AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406] \u6838\u67E5\u8DEF\u57DF\u65AD\u7535\u65E5\u5FD7\uFF0C\u5224\u5B9A\u662F\u5426\u9002\u7528\u4E0D\u53EF\u6297\u529B\u514D\u8D23..." },
-            { type: "tool", tc: { name: "query_power_logs", agentName: "AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406", argsStr: `{
-  "sql": "SELECT log_type FROM power_grid_logs WHERE ip='\u7F51\u5173IP' AND error='CITY_POWER_LOSS'"
-}`, resultSummary: "\u67E5\u65E0\u5E02\u7535\u65AD\u7535\u8BB0\u5F55\uFF0C\u4E0D\u53EF\u6297\u529B\u514D\u8D23\u5931\u8D25", status: "success" } },
-            { type: "thought", text: "\u514D\u8D23\u5931\u8D25\uFF0C\u6263\u51CF\u3010\u8BBE\u5907\u5728\u7EBF\u7387\u3011\u6307\u6807\u5206\u3002\u7EE7\u7EED\u5524\u9192 [AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66] \u6838\u67E5\u5206\u7EA7\u9884\u8B66\u4E0A\u62A5\u65F6\u6548..." },
-            { type: "tool", tc: { name: "request_api", agentName: "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66", argsStr: '{\n  "endpoint": "/api/v1/flood/events?level=3&response_time_gt=2h"\n}', resultSummary: "\u63D0\u53D6\u5230 1 \u4EFD\u8D85\u671F\u62A5\u6587\uFF08\u8D85\u65F6 3 \u5C0F\u65F6\uFF09", status: "success" } },
-            { type: "thought", text: "\u63D0\u53D6\u5230\u8D85\u65F6\u62A5\u6587\uFF0C\u5DF2\u622A\u56FE\u7559\u75D5\u3002\u7EE7\u7EED\u5524\u9192 [AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4] \u7A7F\u900F\u5730\u5E02 OA \u67E5\u9A8C\u73B0\u573A\u5DE1\u68C0\u8BB0\u5F55..." },
-            { type: "tool", tc: { name: "verify_oa_records", agentName: "AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4", argsStr: '{\n  "target_routes": ["G107"],\n  "repair_window": "72h",\n  "check_gps": true\n}', resultSummary: "[\u8B66\u544A] \u53D1\u73B0 G107 \u6865\u6881\u5DE1\u68C0\u7167\u7247 EXIF \u5750\u6807\u5F02\u5730\u6253\u5361\uFF0C\u5224\u5B9A\u4E3A\u9020\u5047", status: "error" } },
-            { type: "thought", text: "\u8BC1\u636E\u94FE\u5DF2\u5B8C\u5168\u95ED\u73AF\uFF0C\u6B63\u5728\u4F9D\u636E Excel \u7B97\u5206\u7EC6\u5219\u6C47\u603B\u751F\u6210\u7EC8\u7248\u8D28\u91CF\u8003\u6838\u6210\u7EE9\u5355..." }
-          ];
-          mockContent = `### \u{1F4DA} \u5730\u65B9\u8003\u6838\u7EC6\u5219\u77E5\u8BC6\u5E93\u81EA\u52A8\u63D0\u53D6
-
-\u5927\u6A21\u578B\u5DF2\u4ECE\u77E5\u8BC6\u5E93 \`04_RawData/03_\u56FD\u5BB6\u53CA\u5916\u90E8\u884C\u4E1A\u89C4\u8303/\u5B81\u6CE2\u516C\u8DEF\u5C40\u6865\u6881\u9632\u6C5B\u4E0E\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u8003\u6838\u6807\u51C6\` \u4E2D\u7CBE\u51C6\u63D0\u53D6\u4EE5\u4E0B\u8BC4\u5206\u6807\u51C6\uFF08\u4F5C\u4E3A\u672C\u6B21\u8003\u6838\u4F9D\u636E\uFF09\uFF1A
-
-#### \u4E8C\u3001\u6570\u636E\u8D28\u91CF\u5DE5\u4F5C\u8981\u6C42\u8868 (\u5730\u65B9\u8003\u6838\u7EC6\u5219)
-
-| \u5E8F\u53F7 | \u7EF4\u5EA6 | \u8003\u6838\u5B50\u9879 | \u5206\u503C | \u8BC4\u5206\u6807\u51C6 |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | \u6570\u636E\u4E0A\u4F20\u8D28\u91CF (50\u5206) | \u8BBE\u5907\u5728\u7EBF\u7387 | 20 | \u4F20\u611F\u8BBE\u5907\u5728\u7EBF\u7387\u226590%\u5F9720\u5206\uFF1B90%-80%\u5F9715\u5206\uFF1B80%-70%\u5F9710\u5206\uFF1B70%-60%\u5F975\u5206\uFF1B<60%\u5F970\u5206\u3002 |
-| 2 | | \u6570\u636E\u5B8C\u6574\u6027 | 25 | \u6570\u636E\u5B8C\u6574\u7387\u226590%\u5F9725\u5206\uFF1B90%-80%\u5F9720\u5206\uFF1B80%-70%\u5F9715\u5206\uFF1B70%-60%\u5F9710\u5206\uFF1B<60%\u5F970\u5206\u3002 |
-| 3 | | \u6570\u636E\u65F6\u6548\u6027 | 5 | \u6570\u636E\u4E0A\u4F20\u5EF6\u8FDF\u226415\u5206\u949F\u5F975\u5206\uFF1B60\u5206\u949F\u5185\u5F973\u5206\uFF1B24\u5C0F\u65F6\u5185\u5F971\u5206\uFF1B\u8D85\u8FC724\u5C0F\u65F6\u5F970\u5206\u3002 |
-| 4 | \u5206\u7EA7\u9884\u8B66\u5904\u7F6E (20\u5206) | \u9884\u8B66\u4E0A\u62A5\u65F6\u6548 | 10 | \u5404\u7EA7\u9884\u8B66\u5728\u89C4\u5B9A\u65F6\u9650\u5185\u4E0A\u62A5\uFF08\u4E09\u7EA7\u9884\u8B66\u22642\u5C0F\u65F6\u3001\u4E8C\u7EA7\u9884\u8B66\u4E00\u822C\u62A5\u8B66\u226412\u5C0F\u65F6\u3001\u4E00\u7EA7\u9884\u8B66\u226424\u5C0F\u65F6\uFF09\u5F9710\u5206\uFF1B\u6BCF\u5EF6\u8FDF1\u6B21\u62632\u5206\uFF0C\u6263\u5B8C\u4E3A\u6B62\u3002 |
-| 5 | | \u9884\u8B66\u95ED\u73AF\u65F6\u6548 | 10 | \u5728\u89C4\u5B9A\u65F6\u9650\u5185\u8FDB\u884C\u9884\u8B66\u5904\u7F6E\u95ED\u73AF\u786E\u8BA4\u5F9710\u5206\uFF1B\u6BCF\u5EF6\u8FDF1\u6B21\u62635\u5206\uFF0C\u6263\u5B8C\u4E3A\u6B62\u3002 |
-| 6 | \u65E5\u5E38\u8FD0\u7EF4\u7BA1\u7406 (30\u5206) | \u6545\u969C\u4FEE\u590D\u65F6\u6548 | 10 | \u5E73\u53F0\u8FDE\u7EED12\u4E2A\u5C0F\u65F6\u672A\u6536\u5230\u5355\u7ED3\u6784\u76D1\u6D4B\u7CFB\u7EDF\u53D1\u9001\u7684\u7279\u5F81\u6570\u636E\u5219\u5224\u65AD\u7CFB\u7EDF\u6545\u969C\u79BB\u7EBF\uFF0C\u79BB\u7EBF\u540E72\u5C0F\u65F6\u5185\u4FEE\u590D\u5F9710\u5206\uFF1B\u6BCF\u5EF6\u8FDF\u4FEE\u590D1\u6B21\u62632\u5206\uFF0C\u8D85\u8FC7240\u5C0F\u65F6\u672A\u4FEE\u590D\u5F970\u5206\u3002 |
-| 7 | | \u65E5\u5E38\u5DE1\u68C0\u7EF4\u62A4 | 10 | \u6309\u89C4\u5B9A\u5468\u671F\u5F00\u5C55\u8BBE\u5907\u5DE1\u68C0\uFF0C\u5DE1\u68C0\u8BB0\u5F55\u5B8C\u6574\u3001\u771F\u5B9E\uFF0C\u5F9710\u5206\uFF1B\u672A\u6309\u671F\u5F00\u5C55\u7684\u6BCF\u53D1\u73B0\u4E00\u6B21\u62631\u5206\u3002 |
-| 8 | | \u4F8B\u884C\u62A5\u544A\u60C5\u51B5 | 10 | \u6309\u8981\u6C42\u63D0\u4EA4\u5206\u6790\u62A5\u544A\uFF0C\u5F9710\u5206\uFF1B\u672A\u63D0\u4EA4\u7684\u4E0D\u5F97\u5206\uFF0C\u672A\u6309\u65F6\u63D0\u4EA4\u7684\u6BCF\u53D1\u73B0\u4E00\u6B21\u62633\u5206\u3002 |
-
----
-
-### \u{1F4CB} \u5B63\u5EA6\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u8003\u6838\u603B\u5355 (\u6B66\u6C49\u5E02G107\u4E13\u5C5E)
-
-**\u{1F916} \u591A\u667A\u80FD\u4F53\u4EA4\u53C9\u53D6\u8BC1\u95ED\u73AF\u7ED3\u8BBA**\uFF1A
-- **\u4E3B\u8D23\u5224\u5B9A**\uFF1A[AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B] (\u8D1F\u8D23\u7701\u5E02\u7EA7\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B\u7CFB\u7EDF\u7269\u8054\u7F51\u57FA\u76D8)
-- **\u7A7A\u95F4\u5E95\u5EA7**\uFF1A[AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6] (\u8D1F\u8D23 L21/L29a \u7A7A\u95F4\u8FC7\u6EE4)
-- **\u534F\u540C\u6570\u5B57\u5BA1\u8BA1**\uFF1A[AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66] (\u63D0\u53D6\u9632\u6C5B\u54CD\u5E94\u8BB0\u5F55)\u3001[AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4] (\u7A7F\u900F\u6838\u67E5\u5DE1\u68C0\u53F0\u8D26)\u3001[AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406] (\u6838\u67E5\u8BBE\u5907\u65AD\u7535\u53CA\u514D\u8D23\u7533\u8BC9)
-
----
-
-\u4F9D\u636E\u300A\u516C\u8DEF\u957F\u5927\u6865\u6881\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406\u529E\u6CD5\uFF08\u8BD5\u884C\uFF09.pdf\u300B\u90E8\u7EA7\u7BA1\u7406\u8981\u6C42\uFF0C\u53CA\u4E0A\u8FF0\u63D0\u53D6\u7684\u300A\u8003\u6838\u7EC6\u5219\u300B\uFF0C\u672C\u6B21\u9488\u5BF9\u3010\u6B66\u6C49\u5E02G107\u56FD\u9053\u3011\u5171\u6838\u67E5 13 \u5EA7\u8FD0\u8425\u6865\u6881\uFF08\u5DF2\u4F9D\u6CD5\u8FC7\u6EE4 2 \u5EA7\u5904\u4E8E\u5C01\u95ED\u5927\u4FEE\u671F\u7684\u6865\u6881\uFF09\u3002\u5177\u4F53\u5F97\u5206\u5982\u4E0B\uFF1A
-
-| \u8003\u6838\u7EF4\u5EA6 | \u8003\u6838\u5B50\u9879 | \u6EE1\u5206 | \u672C\u671F\u5F97\u5206 | \u6263\u5206\u4E8B\u7531\u4E0E\u8BC1\u636E\u6EAF\u6E90 |
-| :--- | :--- | :--- | :--- | :--- |
-| **\u4E00\u3001\u6570\u636E\u4E0A\u4F20\u8D28\u91CF** | \u8BBE\u5907\u5728\u7EBF\u7387 | 20 | <span style="color:#ef4444">15</span> | \u62635\u5206\u3002\u4F20\u611F\u5668\u6389\u7EBF\u4E14\u67E5\u65E0[\u5E02\u7535\u65AD\u7535\u65E5\u5FD7]\uFF0C\u4E0D\u53EF\u6297\u529B\u514D\u8D23\u9A73\u56DE (\u6765\u6E90: [AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406]) |
-| | \u6570\u636E\u5B8C\u6574\u6027 | 25 | 25 | \u6EE1\u5206\u3002\u6240\u6709 13 \u5EA7\u5E94\u68C0\u6865\u6881\u6570\u636E\u5305\u5B8C\u6574\u3002 |
-| | \u6570\u636E\u65F6\u6548\u6027 | 5 | 5 | \u6EE1\u5206\u3002\u5B9E\u65F6\u6D41\u5A92\u4F53\u5EF6\u8FDF\u5747\u5C0F\u4E8E 15 \u5206\u949F\u3002 |
-| **\u4E8C\u3001\u5206\u7EA7\u9884\u8B66\u5904\u7F6E** | \u9884\u8B66\u4E0A\u62A5\u65F6\u6548 | 10 | <span style="color:#ef4444">8</span> | \u62632\u5206\u3002\u63D0\u53D6\u9632\u6C5B\u54CD\u5E94\u8BB0\u5F55\uFF0C\u6293\u53D6\u5230 1 \u4EFD\u9632\u6C5B API \u4E09\u7EA7\u9884\u8B66\u62A5\u6587\u4E0A\u62A5\u8017\u65F6\u8FBE 5 \u5C0F\u65F6\uFF0C\u4E25\u91CD\u8D85\u65F6 (\u6765\u6E90: [AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66]) |
-| | \u9884\u8B66\u95ED\u73AF\u65F6\u6548 | 10 | 10 | \u6EE1\u5206\u3002\u6240\u6709\u5DE5\u5355\u5DF2\u5982\u671F\u95ED\u73AF\u3002 |
-| **\u4E09\u3001\u65E5\u5E38\u8FD0\u7EF4\u7BA1\u7406** | \u6545\u969C\u4FEE\u590D\u65F6\u6548 | 10 | 10 | \u6EE1\u5206\u300272 \u5C0F\u65F6\u4FEE\u590D\u7387\u8FBE\u6807\u3002 |
-| | \u65E5\u5E38\u5DE1\u68C0\u7EF4\u62A4 | 10 | <span style="color:#ef4444">0</span> | \u626310\u5206\u3002\u7A7F\u900F\u6838\u67E5\u5DE1\u68C0\u53F0\u8D26\uFF0C\u63D0\u53D6\u534F\u540C\u5E73\u53F0\u5DE1\u68C0\u7167\u7247 EXIF \u5750\u6807\uFF0C\u53D1\u73B0 2 \u5904\u6253\u5361\u8BB0\u5F55\u975E\u73B0\u573A\u62CD\u6444\uFF0C\u5224\u5B9A\u4E3A\u4E25\u91CD\u9020\u5047 (\u6765\u6E90: [AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4]) |
-| | \u4F8B\u884C\u62A5\u544A\u60C5\u51B5 | 10 | 10 | \u6EE1\u5206\u3002 |
-
-### \u{1F4CA} \u7EFC\u5408\u8BC4\u5B9A\uFF1A83 \u5206 \uFF08\u6EE1\u5206 100 \u5206\uFF09
-
-#### \u{1F4A1} \u7763\u529E\u5EFA\u8BAE\u4E0E\u7EA2\u7EBF\u8B66\u544A\uFF1A
-\u68C0\u6D4B\u5230\u4E25\u91CD\u5F04\u865A\u4F5C\u5047\u884C\u4E3A\uFF08**\u65E5\u5E38\u5DE1\u68C0\u5F02\u5730\u6253\u5361**\uFF09\uFF0C\u6839\u636E\u90E8\u7EA7\u7BA1\u7406\u8981\u6C42\u7B2C\u56DB\u6761\u89C4\u5B9A\uFF0C\u7CFB\u7EDF\u5DF2\u81EA\u52A8\u51BB\u7ED3\u8BE5\u7BA1\u517B\u5355\u4F4D\u672C\u5B63\u5EA6\u7684\u5BF9\u5E94\u62E8\u4ED8\u8D44\u91D1\u6D41\uFF08API\u8C03\u7528\uFF09\uFF0C\u5E76\u751F\u6210\u300A\u8FDD\u89C4\u53D6\u8BC1\u62A5\u544A\u300B\u9012\u4EA4\u7EAA\u68C0\u5BA1\u8BA1\u3002`;
-        } else if (scriptIdx === 1) {
-          mockActions = [
-            { type: "thought", text: "[AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4] \u63A5\u5230\u6307\u4EE4\uFF0C\u5F00\u59CB\u6267\u884C\u91CD\u70B9\u957F\u5927\u6865\u6881\u5DE1\u68C0\u6F0F\u6253\u5361\u53CA\u9020\u5047\u6392\u67E5\u4EFB\u52A1\u3002" },
-            { type: "thought", text: "\u9996\u5148\uFF0C\u6211\u9700\u8981\u4ECE L29a (\u6865\u6881\u660E\u7EC6\u8868) \u4E2D\u7B5B\u9009\u51FA\u6240\u6709\u88AB\u6807\u8BB0\u4E3A\u201C\u7279\u5927\u6865\u201D\u6216\u201C\u5927\u6865\u201D\u7684\u5E02\u53BF\u7EA7\u7BA1\u8F96\u540D\u5355\u3002" },
-            { type: "tool", tc: { name: "execute_sql", agentName: "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", argsStr: `{
-  "sql": "SELECT col0, col1 FROM L29a WHERE col2_\u6865\u6881\u89C4\u6A21 IN ('\u7279\u5927\u6865', '\u5927\u6865')"
-}`, resultSummary: "\u547D\u4E2D 12 \u5EA7\u957F\u5927\u6865\u8BB0\u5F55", status: "success" } },
-            { type: "thought", text: "\u6210\u529F\u9501\u5B9A 12 \u5EA7\u91CD\u70B9\u957F\u5927\u6865\u6881\u3002\u63A5\u4E0B\u6765\uFF0C\u5C1D\u8BD5\u63D0\u53D6\u5BF9\u5E94\u65E5\u671F\u7684\u7ED3\u6784\u5316\u300A\u65E5\u5E38\u517B\u62A4\u6253\u5361\u8868\u300B\u8FDB\u884C\u6BD4\u5BF9\u3002" },
-            { type: "tool", tc: { name: "get_table_schema", agentName: "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", argsStr: '{\n  "table": "\u65E5\u5E38\u517B\u62A4\u6253\u5361\u8868"\n}', resultSummary: "ERROR: Table not found in current schema", status: "error" } },
-            { type: "thought", text: "\u{1F50D} \u8B66\u544A\uFF1A\u5E95\u5C42\u6570\u636E\u5E93\u4E2D\u672A\u627E\u5230\u6807\u51C6\u7ED3\u6784\u5316\u6253\u5361\u8868\u3002\u7B56\u7565\u53D8\u66F4\u4E3A\uFF1A\u76F4\u63A5\u7A7F\u900F\u7701\u5E02\u7EA7\u516C\u8DEF\u65E5\u5E38\u517B\u62A4\u534F\u540C\u4F5C\u4E1A\u5E73\u53F0\uFF0C\u5BF9\u4E00\u7EBF\u4EBA\u5458\u4E0A\u62A5\u7684\u975E\u7ED3\u6784\u5316\u5DE5\u4F5C\u65E5\u5FD7\u8FDB\u884C\u89E3\u6790\uFF0C\u5E76\u63D0\u53D6\u7167\u7247 EXIF \u5750\u6807\u3002" },
-            { type: "thought", text: "\u8BF7\u6C42 [AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B] \u534F\u52A9\uFF0C\u5BF9\u6700\u8FD1\u4E00\u5468\u7684\u5DE1\u68C0\u65E5\u5FD7\u4E0E\u6865\u6881\u5B9E\u9645\u5750\u6807\u8FDB\u884C\u4EA4\u53C9\u6BD4\u5BF9..." },
-            { type: "tool", tc: { name: "analyze_unstructured_logs", agentName: "AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B", argsStr: '{\n  "target_bridges": ["WH-B-001", "WH-B-005"],\n  "time_window": "last_7_days",\n  "check_gps_exif": true\n}', resultSummary: "\u53D1\u73B0 2 \u5904\u6253\u5361\u7167\u7247GPS\u5750\u6807\u8DDD\u79BB\u6865\u6881\u8D85\u8FC7 10km\uFF0C\u5224\u5B9A\u5F02\u5730\u6253\u5361", status: "success" } },
-            { type: "thought", text: "\u9A8C\u8BC1\u7ED3\u8BBA\u5B8C\u6210\uFF1A\u53D1\u73B0\u4E25\u91CD\u7684\u957F\u5927\u6865\u6881\u5DE1\u68C0\u5F02\u5730\u6253\u5361\u9020\u5047\u884C\u4E3A\uFF0C\u6F0F\u68C0\u5C06\u5E26\u6765\u6781\u9AD8\u7ED3\u6784\u5B89\u5168\u98CE\u9669\u3002\u6B63\u5728\u751F\u6210\u8FDD\u89C4\u901A\u62A5\u51FD\u3002" }
-          ];
-          mockContent = `### \u{1F6A8} \u957F\u5927\u6865\u6881\u5DE1\u68C0\u5F02\u5730\u6253\u5361\u8FDD\u89C4\u901A\u62A5
-
-\u7ECF\u7531\u591A\u667A\u80FD\u4F53\u534F\u4F5C\uFF0C\u7A7F\u900F\u5E95\u5C42\u65E5\u5FD7\u5E93\u5E76\u4E0E \`L29a\` (\u6865\u6881\u57FA\u7840\u60C5\u51B5\u660E\u7EC6\u8868) \u8FDB\u884C\u4EA4\u53C9\u6BD4\u5BF9\uFF0C\u53D1\u73B0\u90E8\u5206\u91CD\u70B9\u957F\u5927\u6865\u6881\u5B58\u5728**\u4E25\u91CD\u5DE1\u68C0\u9020\u5047\u60C5\u51B5**\u3002
-
-#### \u{1F4CC} \u6392\u67E5\u53D1\u73B0\u7EC6\u8282
-
-- **\u9AD8\u98CE\u9669\u9884\u8B66\u5BF9\u8C61**\uFF1A\`WH-B-001 (\u767D\u6C99\u6D32\u5927\u6865)\` \u7B49 2 \u5EA7\u7279\u5927\u6865
-- **\u6838\u5BF9\u7ED3\u679C**\uFF1A\u5728\u9488\u5BF9\u975E\u7ED3\u6784\u5316\u5DE5\u4F5C\u65E5\u5FD7\u53CA\u73B0\u573A\u7167\u7247\u7684\u6392\u67E5\u4E2D\uFF0C\u63D0\u53D6\u56FE\u7247 EXIF \u7684 GPS \u5750\u6807\uFF0C\u53D1\u73B0\u6709 2 \u5904\u6253\u5361\u8BB0\u5F55\u7684\u5B9E\u9645\u7269\u7406\u5750\u6807\u8DDD\u79BB\u6865\u6881\u57FA\u51C6\u4F4D\u7F6E **\u8D85\u8FC7 10 \u516C\u91CC**\uFF0C\u5C5E\u4E8E\u5178\u578B\u7684\u201C\u5F02\u5730\u6253\u5361\u201D\u3002
-- **\u53E0\u52A0\u98CE\u9669\u7814\u5224**\uFF1A\u957F\u5927\u6865\u6881\u7684\u7D22\u5854\u4E0E\u7F06\u7D22\u5FC5\u987B\u8FDB\u884C\u62B5\u8FD1\u76EE\u89C6\u68C0\u67E5\uFF0C\u5F02\u5730\u6253\u5361\u610F\u5473\u7740\u5173\u952E\u53D7\u529B\u6784\u4EF6\u53EF\u80FD\u5904\u4E8E\u5931\u63A7\u72B6\u6001\uFF0C\u7ED3\u6784\u5B89\u5168\u9690\u60A3\u6781\u9AD8\u3002
-
-#### \u26A1 \u7CFB\u7EDF\u81EA\u52A8\u5904\u7F6E\u52A8\u4F5C
-
-1. **\u751F\u6210\u7763\u529E\u5DE5\u5355**\uFF1A\u5DF2\u89E6\u53D1\u5B89\u5168\u9884\u8B66\u54CD\u5E94\u673A\u5236\uFF0C\u7CFB\u7EDF\u81EA\u52A8\u751F\u6210\u4E86\u300A\u5F02\u5E38\u6838\u67E5\u7763\u529E\u5355\u300B\uFF08\u5355\u53F7\uFF1A#BRG-2607-042\uFF09\u3002
-2. **\u8DE8\u90E8\u95E8\u6284\u9001**\uFF1A\u8BE5\u7763\u529E\u5355\u5DF2\u901A\u8FC7\u653F\u52A1\u63A5\u53E3\u540C\u6B65\u6284\u9001\u81F3\u7701\u5385\u517B\u62A4\u5904\u53CA\u9A7B\u5385\u7EAA\u68C0\u7EC4\u3002
-3. **\u963B\u65AD\u63AA\u65BD**\uFF1A\u5728\u672A\u8865\u5145\u73B0\u573A\u5E26\u6C34\u5370\u7684\u8865\u68C0\u7167\u7247\u5E76\u505A\u51FA\u60C5\u51B5\u8BF4\u660E\u524D\uFF0C\u76F4\u63A5\u62E6\u622A\u8BE5\u7BA1\u517B\u5355\u4F4D\u672C\u5B63\u5EA6\u7684\u6700\u7EC8\u8003\u6838\u6210\u7EE9\u63D0\u4EA4\u3002`;
-        } else if (scriptIdx === 3) {
-          mockActions = [
-            { type: "thought", text: "\u63A2\u6D4B\u5230\u76EE\u6807\u6570\u636E\u8868\u4E3A L29a\uFF08\u8DEF\u51B5\u660E\u7EC6\u8868\uFF09\uFF0C\u5F00\u59CB\u6839\u636E\u300A\u56FD\u6807L\u7801\u6620\u5C04\u5B57\u5178\u300B\u68C0\u7D22\u4E3B\u8D23\u667A\u80FD\u4F53..." },
-            { type: "tool", tc: { name: "get_data_owner", agentName: "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", argsStr: '{\n  "table": "L29a"\n}', resultSummary: "\u9501\u5B9A\u4E3B\u8D23\u667A\u80FD\u4F53: AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", status: "success" } },
-            { type: "thought", text: "\u5C06\u67E5\u8BE2\u4EFB\u52A1\u4E0E\u4E0A\u4E0B\u6587\u6B63\u5F0F\u79FB\u4EA4\u81F3 [AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A]..." },
-            { type: "tool", tc: { name: "get_table_schema", agentName: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", argsStr: '{\n  "table_name": "L29a"\n}', resultSummary: "\u83B7\u53D6\u8868\u7ED3\u6784: \u5305\u542B\u5217 \u8DEF\u7EBF\u7F16\u53F7\u3001\u4F18\u826F\u7387...", status: "success" } },
-            { type: "thought", text: "\u8868\u7ED3\u6784\u5C31\u7EEA\uFF0C\u5F00\u59CB\u6267\u884C\u4E1A\u52A1\u6307\u6807 SQL \u7A7F\u900F\u67E5\u8BE2..." },
-            { type: "tool", tc: { name: "execute_sql", agentName: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", argsStr: `{
-  "sql": "SELECT \u8DEF\u7EBF\u7F16\u53F7, AVG(\u4F18\u826F\u7387) FROM L29a WHERE \u8DEF\u7EBF\u7F16\u53F7 LIKE 'G107%'"
-}`, resultSummary: "\u6210\u529F\u8FD4\u56DE\u6570\u636E: \u4F18\u826F\u7387 91.2%", status: "success" } },
-            { type: "thought", text: "\u6570\u636E\u63D0\u53D6\u6210\u529F\uFF0C\u51C6\u5907\u6309\u7167\u573A\u666F3\u8F93\u51FA\u89C4\u8303\uFF0C\u6E32\u67D3\u5355\u8868\u5FAE\u578B\u8C03\u5EA6\u67B6\u6784\u6811\u5E76\u7EC4\u7EC7\u6587\u5B57\u7ED3\u679C..." },
-            { type: "thought", text: "\u751F\u6210\u62A5\u544A\u4E2D..." }
-          ];
-          mockContent = `\`\`\`text
-\u3010\u5F53\u524D\u6570\u636E\u7A7F\u900F\u67B6\u6784 (Data Lineage)\u3011
- \u251C\u2500 \u7269\u7406\u6570\u636E\u8868: [L29a] \u516C\u8DEF\u65E5\u5E38\u8DEF\u51B5\u8BC4\u5B9A\u660E\u7EC6\u8868
-      \u251C\u2500 \u4E3B\u8D23\u667A\u80FD\u4F53: AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A
-      \u2514\u2500 \u5173\u8054\u5E95\u5C42\u66F4\u65B0:
-           \u2514\u2500 AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A: \u516C\u8DEF\u6280\u672F\u72B6\u51B5\u660E\u7EC6\u8868.xlsx
-\`\`\`
-> \u{1F6E1}\uFE0F **\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A (Agent Trust Declaration)**: \u672C\u6B21\u56DE\u7B54\u7684\u6BCF\u4E00\u9879\u6570\u503C\u6307\u6807\uFF0C\u5747\u7531 [AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A\` \u5B9E\u65F6\u7A7F\u900F\u81F3\u5E95\u90E8\u7269\u7406\u8868 \`[L29a] \u516C\u8DEF\u65E5\u5E38\u8DEF\u51B5\u8BC4\u5B9A\u660E\u7EC6\u8868\` \u83B7\u53D6\u3002\u65E0\u5E7B\u89C9\u751F\u6210\uFF0C\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u7EDD\u5BF9\u6570\u636E\u6EAF\u6E90\u80FD\u529B\u3002
-
-### \u{1F4C8} \u67E5\u8BE2\u7ED3\u679C\uFF1AG107 \u56FD\u9053\u4F18\u826F\u7387
-
-\u6839\u636E\u5E95\u5C42\u8DEF\u51B5\u660E\u7EC6\u7A7F\u900F\u5206\u6790\uFF1A
-
-\u7ECF\u6838\u5B9E\uFF0CG107\u56FD\u9053\u4ECA\u5E74\u7684\u5E73\u5747\u4F18\u826F\u7387\u4E3A **91.2%**\uFF0C\u8DEF\u51B5\u6574\u4F53\u4FDD\u6301\u5728\u4F18\u826F\u72B6\u6001\u3002`;
-        } else {
-          mockActions = [
-            { type: "thought", text: "[AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B] \u6536\u5230\u6307\u4EE4\uFF0C\u51C6\u5907\u5F00\u59CB\u5468\u671F\u6027\u957F\u5927\u6865\u6881\u76D1\u6D4B\u6570\u636E\u5DE1\u67E5\u3002" },
-            { type: "thought", text: "\u9996\u5148\uFF0C\u5C1D\u8BD5\u5EFA\u7ACB\u4E0E\u7701\u5385\u7EA7\u6865\u6881\u5065\u5EB7\u76D1\u6D4B\u6570\u636E\u603B\u7EBF\uFF08API Gateway\uFF09\u7684\u8FDE\u63A5..." },
-            { type: "tool", tc: { name: "request_api", agentName: "AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B", argsStr: '{\n  "endpoint": "/api/v2/bridge/sensors/telemetry",\n  "timeout_ms": 3000\n}', resultSummary: "ERR_TIMEOUT", status: "error" } },
-            { type: "thought", text: "\u274C \u4E3B\u7F51\u5173\u8BF7\u6C42\u8D85\u65F6\u3002\u542F\u52A8\u5BB9\u9519\u673A\u5236\uFF0C\u5C1D\u8BD5\u8FDE\u63A5\u5907\u7528\u8282\u70B9\uFF08Node-B\uFF09..." },
-            { type: "tool", tc: { name: "request_api", agentName: "AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B", argsStr: '{\n  "endpoint": "/api/v2/bridge/sensors/telemetry_backup",\n  "timeout_ms": 3000\n}', resultSummary: "ERR_CONNECTION_REFUSED", status: "error" } },
-            { type: "thought", text: "\u274C \u5907\u7528\u8282\u70B9\u4EA6\u62D2\u7EDD\u8FDE\u63A5\u3002\u786E\u8BA4\u5F53\u524D\u73AF\u5883\u4E3A API \u65AD\u8054\u72B6\u6001\u3002" },
-            { type: "thought", text: "\u{1F6E1}\uFE0F [AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6] \u63A5\u7BA1\u8FDB\u7A0B\u3002\u89E6\u53D1 RPA \u79BB\u7EBF\u5BB9\u707E\u7B56\u7565\uFF0C\u963B\u65AD\u6D41\u7A0B\u5E76\u5524\u8D77\u524D\u7AEF\u672C\u5730\u6587\u4EF6\u4E0A\u4F20\u7EC4\u4EF6\uFF0C\u7B49\u5F85\u4EBA\u5DE5\u4ECB\u5165\u6295\u5582\u6570\u636E\u5305..." }
-          ];
-          mockContent = `### \u{1F534} \u957F\u5927\u6865\u6881\u5065\u5EB7\u76D1\u6D4B\u7CFB\u7EDF\u76F4\u8FDE\u5931\u8D25\u9884\u8B66
-
-**\u7CFB\u7EDF\u8BCA\u65AD\u8BB0\u5F55**\uFF1A
-- **\u4E3B\u8282\u70B9**\uFF1A\u8BF7\u6C42 \`/api/v2/bridge/sensors/telemetry\` \u5931\u8D25 (ERR_TIMEOUT)
-- **\u5907\u7528\u8282\u70B9**\uFF1A\u8BF7\u6C42\u5931\u8D25 (ERR_CONNECTION_REFUSED)
-
----
-
-#### \u{1F6E1}\uFE0F \u79BB\u7EBF\u5BB9\u707E\u63A5\u7BA1\u7A0B\u5E8F\u5DF2\u542F\u52A8
-
-\u4E3A\u786E\u4FDD\u957F\u5927\u6865\u6881\u6570\u636E\u8003\u6838\u53CA\u62A5\u8868\u586B\u62A5\u8FDB\u5EA6\u4E0D\u53D7\u5916\u90E8\u7F51\u7EDC\u6CE2\u52A8\u5F71\u54CD\uFF0C\u7CFB\u7EDF\u5DF2\u81EA\u52A8\u5207\u65AD\u6302\u8D77\u7684 API \u8FDB\u7A0B\uFF0C\u5E76\u542F\u52A8\u672C\u5730 **RPA \u79BB\u7EBF\u63A5\u7BA1\u9884\u6848**\u3002
-
-\u8BF7\u8FD0\u7EF4\u4E13\u5458\u4ECE\u79BB\u7EBF\u4FDD\u9669\u7BB1\u4E2D\u5BFC\u51FA\u672C\u5468\u671F\u7684\u52A0\u5BC6\u76D1\u6D4B\u6570\u636E\uFF0C\u5E76\u5728\u6B64\u5904\u624B\u52A8\u6295\u5582\uFF1A
-
-<div style="margin: 15px 0; padding: 15px; border: 1px dashed #94a3b8; border-radius: 6px; background-color: #f8fafc; text-align: center;">
-  <p style="font-size: 12px; color: #64748b; margin-bottom: 10px;">\u652F\u6301\u683C\u5F0F\uFF1A.zip (\u5305\u542B\u4F20\u611F\u5668\u7279\u5F81\u65E5\u5FD7\u4E0E\u5DE1\u68C0\u56FE\u7247)</p>
-  <button style="padding:8px 16px; background-color:#3b82f6; color:white; border-radius:6px; font-weight:bold; font-size:13px; cursor:pointer; border:none; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);" onclick="alert('\u7CFB\u7EDF\u63D0\u793A\uFF1A\u5DF2\u6210\u529F\u5524\u8D77\u64CD\u4F5C\u7CFB\u7EDF\u7684\u6587\u4EF6\u9009\u62E9\u5668\u3002\\n\\n(\u6B64\u4E3A\u524D\u7AEF\u6A21\u62DF\u52A8\u4F5C\uFF0C\u771F\u5B9E\u73AF\u5883\u4E0B\u5C06\u81EA\u52A8\u89E3\u6790ZIP\u5E76\u6062\u590D\u667A\u80FD\u4F53\u63A8\u7406\u94FE\u8DEF)')">\u{1F4C1} \u70B9\u51FB\u6B64\u5904\u4E0A\u4F20\u300A\u957F\u5927\u6865\u6881\u79BB\u7EBF\u76D1\u6D4B\u6570\u636E\u5305\u300B</button>
-</div>
-
-*(\u6CE8\uFF1A\u6570\u636E\u5305\u6210\u529F\u4E0A\u4F20\u540E\uFF0C[AGENT-\u6570\u636E\u7EDF\u7B79-00] \u5C06\u81EA\u52A8\u6062\u590D\u8FD0\u884C\uFF0C\u63A5\u529B\u5B8C\u6210\u79BB\u7EBF\u6570\u636E\u7684\u89E3\u538B\u3001\u8131\u654F\u6E05\u6D17\u4E0E\u7ED3\u6784\u5316\u6620\u5C04\u3002)*`;
-        }
-        const metadataTable = `
-
-### \u4E8C\u3001\u6570\u636E\u66F4\u65B0\u9891\u7387\u3001\u5171\u4EAB\u7C7B\u578B\u4E0E\u6570\u636E\u654F\u611F\u7C7B\u578B
-
-\u672C\u6570\u636E\u7BA1\u7406\u5C5E\u6027\u57FA\u4E8E\u300A\u516C\u8DEF\u517B\u62A4\u7EDF\u8BA1\u8C03\u67E5\u5236\u5EA6\u300B(\u56FD\u5BB6\u89C4\u8303)\uFF0C\u5E76\u4E25\u683C\u8FFD\u6EAF\u81F3\u5BA2\u6237\u539F\u59CB\u5E95\u8868\u300A2026.5.22\uFF08\u7CBE\u7B80\uFF09\u6E56\u5317\u516C\u8DEF\u6570\u636E\u5143_\u8865\u5168\u5B8C\u6210.xlsx\u300B(\u5730\u65B9\u89C4\u8303)\uFF0C\u7531 1+8 \u67B6\u6784\u5927\u6A21\u578B\u6E05\u6D17\u5F15\u64CE\u63D0\u53D6\u5F52\u7C7B\u5982\u4E0B\uFF1A
-
-| \u5C5E\u6027 | \u5185\u5BB9\u89C4\u8303 | \u4F9D\u636E\u6765\u6E90\u8BF4\u660E |
-| :--- | :--- | :--- |
-| \u{1F4C5} **\u6570\u636E\u66F4\u65B0\u9891\u7387** | \u5E74\u62A5\u6570\u636E\uFF08\u6BCF\u5E74\u66F4\u65B0\u4E00\u6B21\uFF09 | **\u56FD\u5BB6\u89C4\u8303**: \u7EDF\u7F16\u8C03\u67E5\u5236\u5EA6<br>**\u5730\u65B9\u6EAF\u6E90**: \`08_\u519C\u6751\u516C\u8DEF/..XQ.md\` (\u6E90\u81EA2026\u5BA2\u6237\u5E95\u8868) |
-| \u{1F517} **\u5171\u4EAB\u7C7B\u578B** | \u653F\u52A1\u90E8\u95E8\u95F4\u5171\u4EAB | **\u56FD\u5BB6\u89C4\u8303**: \u516C\u8DEF\u5171\u4EAB\u5206\u7EA7\u6807\u51C6<br>**\u5730\u65B9\u6EAF\u6E90**: \u6807\u8BB0\u4E3A"\u65E0\u6761\u4EF6\u5171\u4EAB" (\u6E90\u81EA2026\u5BA2\u6237\u5E95\u8868) |
-| \u{1F512} **\u6570\u636E\u654F\u611F\u7C7B\u578B** | \u4E00\u822C\u654F\u611F\u6570\u636E | **\u5730\u65B9\u6EAF\u6E90**: \u63D0\u53D6\u81EA\u5BA2\u6237\u5E95\u8868"\u654F\u611F\u7B49\u7EA7"\u5217 |`;
-        mockContent += metadataTable;
-        let actionIdx = 0;
-        let currentThoughtStr = "";
-        let currentToolCalls = [];
-        let currentContentStr = "";
-        const processNextAction = () => {
-          if (actionIdx < mockActions.length) {
-            const action = mockActions[actionIdx];
-            if (action.type === "thought") {
-              currentThoughtStr = currentThoughtStr ? currentThoughtStr + "\n" + action.text : action.text;
-              updateBot({ thought: currentThoughtStr, toolCalls: [...currentToolCalls] });
-              actionIdx++;
-              setTimeout(processNextAction, 400);
-            } else if (action.type === "tool") {
-              const tc = { ...action.tc, status: "running" };
-              currentToolCalls.push(tc);
-              updateBot({ toolCalls: [...currentToolCalls] });
-              setTimeout(() => {
-                tc.status = action.tc.status;
-                updateBot({ toolCalls: [...currentToolCalls] });
-                actionIdx++;
-                setTimeout(processNextAction, 400);
-              }, 700);
-            }
-          } else {
-            let cIdx = 0;
-            const contentInterval = setInterval(() => {
-              if (cIdx < mockContent.length) {
-                currentContentStr += mockContent.charAt(cIdx);
-                updateBot({ content: currentContentStr, isMock: true });
-                cIdx++;
-              } else {
-                clearInterval(contentInterval);
-                updateBot({
-                  isMock: true,
-                  workflowData: s2WorkflowData,
-                  workflowTitle: s2WorkflowTitle,
-                  actionPrompt: {
-                    text: "\u9700\u8981\u63D0\u53D6\u4E0A\u8FF0\u5206\u6790\u62A5\u544A\u548C\u754C\u9762\u8868\u683C\uFF0C\u5E76\u5728\u53F3\u4FA7\u9762\u677F\u4E3A\u60A8\u63D0\u4F9B\u72EC\u7ACB\u7684 Excel / Word / PDF \u5BFC\u51FA\u529F\u80FD\u5417\uFF1F",
-                    actions: [
-                      { label: "\u662F\uFF0C\u63D0\u53D6\u754C\u9762\u6570\u636E\u81F3\u53F3\u4FA7\u9762\u677F", id: "generate_generic_export", type: "primary" },
-                      { label: "\u5426\uFF0C\u4E0D\u9700\u8981", id: "dismiss", type: "default" }
-                    ],
-                    status: "pending"
-                  }
-                });
-              }
-            }, 5);
-          }
-        };
-        setTimeout(processNextAction, 200);
-        return;
-      }
       const TOOLS = [
         {
           type: "function",
@@ -49633,30 +49646,8 @@ ${msg.views.view3}
             }
           }
         },
-        {
-          type: "function",
-          function: {
-            name: "enterprise_receive_seed_data",
-            description: "\u3010\u4F01\u4E1A\u4FA7\u3011\u63A5\u6536\u653F\u52A1\u4FA7\u7684\u504F\u79BB\u79CD\u5B50\u6570\u636E",
-            parameters: { type: "object", properties: { route_code: { type: "string" } }, required: ["route_code"] }
-          }
-        },
-        {
-          type: "function",
-          function: {
-            name: "enterprise_extract_gps_mapping",
-            description: "\u3010\u4F01\u4E1A\u4FA7\u3011\u63D0\u53D6\u5E95\u5C42\u4EEA\u5668 GPS \u63A7\u5236\u70B9\u4E0E\u539F\u59CB\u91CC\u7A0B\u7684\u6620\u5C04\u5173\u7CFB",
-            parameters: { type: "object", properties: { route_code: { type: "string" } }, required: ["route_code"] }
-          }
-        },
-        {
-          type: "function",
-          function: {
-            name: "enterprise_eliminate_noise_and_output_dict",
-            description: "\u3010\u4F01\u4E1A\u4FA7\u3011\u7ED3\u5408\u5386\u53F2\u5927\u4FEE\u53CA\u6539\u7EBF\u53F0\u8D26\uFF0C\u5E73\u6ED1\u6D88\u9664\u73AF\u5883\u566A\u97F3\uFF0C\u8F93\u51FA\u504F\u79FB\u4FEE\u6B63\u5B57\u5178",
-            parameters: { type: "object", properties: { route_code: { type: "string" } }, required: ["route_code"] }
-          }
-        },
+        // enterprise_ tools are only injected dynamically by handleReq01Upload (file upload flow)
+        // They must NOT appear here to prevent LLM from calling them during normal scenario queries
         {
           type: "function",
           function: {
@@ -49832,7 +49823,7 @@ ${knowledgeBase}
           }
           if (!msg.tool_calls || msg.tool_calls.length === 0) {
             const elapsed = ((Date.now() - startTime) / 1e3).toFixed(1);
-            if (queryText.includes("\u3010\u6267\u884C\u65B9\u6848\u3011\u7528\u6237\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6") || queryText.includes("\u3010\u65B9\u6848A\uFF1A\u5E74\u62A5\u5185\u90E8\u81EA\u6D3D\u65B9\u6848\u3011\u7528\u6237\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6")) {
+            if (queryText.includes("\u3010\u6267\u884C\u65B9\u6848\u3011\u7528\u6237\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6")) {
               const mockEnterpriseActions = [
                 { type: "tool", tc: { id: "gov-1", name: "\u611F\u77E5\u8D8A\u754C\u6570\u636E", agentName: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", argsStr: '{"action":"\u6821\u9A8C\u6869\u53F7\u8FB9\u754C"}', resultSummary: "\u53D1\u73B0\u68C0\u6D4B\u6869\u53F7(\u5982G241)\u4E0E\u6807\u51C6\u8DEF\u7F51\u754C\u9650\u4E0D\u5339\u914D", status: "running" } },
                 { type: "tool", tc: { id: "gov-2", name: "\u6267\u884C\u963B\u65AD", agentName: "AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6", argsStr: '{"action":"\u6390\u65AD\u5165\u5E93\u6D41\u7A0B","target":"\u5F02\u5E38\u5DE5\u5355\u5206\u53D1"}', resultSummary: "\u5DF2\u751F\u6210\u5F02\u5E38\u5DE5\u5355\u5E76\u8DE8\u57DF\u6253\u56DE\u7ED9\u68C0\u6D4B\u5355\u4F4D", status: "running" } },
@@ -49868,7 +49859,7 @@ ${knowledgeBase}
               if (queriedTableObj) break;
             }
             const hasEnterpriseTool = toolCallLog.some((tc) => tc.name && tc.name.startsWith("enterprise_"));
-            if (queryText.includes("\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6") || queryText.includes("\u65B9\u6848A") || hasEnterpriseTool) {
+            if (queryText.includes("\u3010\u6267\u884C\u65B9\u6848\u3011\u7528\u6237\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6")) {
               const req01WorkflowData = [
                 { side: "gov", agent: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", action: "\u611F\u77E5\u8D8A\u754C", desc: "\u53D1\u73B0\u68C0\u6D4B\u5355\u4F4D\u4E0A\u4F20\u7684\u68C0\u6D4B\u6869\u53F7\uFF08\u5982G241\uFF09\u4E0E\u6807\u51C6\u8DEF\u7F51\u754C\u9650\u4E0D\u5339\u914D\uFF08\u4E3B\u88AB\u5171\u7EBF\u7F16\u7801\u5171\u7528\uFF09\uFF0C\u5224\u5B9A\u4E3A\u8D8A\u754C\u65AD\u94FE\u3002" },
                 { side: "gov", agent: "AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6", action: "\u963B\u65AD\u5165\u5E93", desc: "\u7ACB\u5373\u963B\u65AD\u5E95\u5C42\u843D\u5E93\u6D41\u7A0B\uFF0C\u751F\u6210\u5F02\u5E38\u7763\u529E\u5DE5\u5355\u5E76\u901A\u8FC7\u7F51\u5173\u6253\u56DE\u7ED9\u68C0\u6D4B\u5355\u4F4D\u3002" },
