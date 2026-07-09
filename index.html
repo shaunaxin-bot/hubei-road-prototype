@@ -48182,11 +48182,8 @@ ${code}
       return [{
         id: 1,
         role: "agent",
-        content: `<div class="text-[12.5px] leading-relaxed">
-
-${dict_agent_greeting_default.content}
-
-</div>`,
+        content: dict_agent_greeting_default.content,
+        isGreeting: true,
         time: "\u521A\u521A"
       }];
     });
@@ -50437,7 +50434,7 @@ ${msg.views.view3}
           return /* @__PURE__ */ React.createElement(
             "div",
             {
-              className: "whitespace-pre-wrap text-sm leading-snug",
+              className: `whitespace-pre-wrap leading-snug agent-message-content ${msg.isGreeting ? "text-[12.5px]" : "text-sm"}`,
               dangerouslySetInnerHTML: {
                 __html: formatBadgeText(convertMarkdownTablesToHtml(msg.content || ""), msg.id)
               }
