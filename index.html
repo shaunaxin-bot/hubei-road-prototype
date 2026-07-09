@@ -47655,9 +47655,9 @@ Please report this to https://github.com/markedjs/marked.`, e) {
 
   // src/components/DeepQAAnnualReportAgentView.jsx
   var { useState: useState2, useEffect: useEffect2, useRef } = React;
-  var AgentWorkflowVisualizer = ({ data }) => {
+  var AgentWorkflowVisualizer = ({ data, title }) => {
     if (!data || data.length === 0) return null;
-    return /* @__PURE__ */ React.createElement("div", { className: "mt-1 mb-1" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1 mb-1 border-b border-slate-200 pb-1" }, /* @__PURE__ */ React.createElement(Database2, { className: "text-slate-600", size: 14 }), /* @__PURE__ */ React.createElement("h3", { className: "text-[11px] font-bold text-slate-800" }, "\u653F\u4F01\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u5EA6\u94FE\u8DEF (REQ-01)")), /* @__PURE__ */ React.createElement("div", { className: "relative border-l border-slate-300 ml-1 pl-3 space-y-0" }, data.map((step, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: "relative flex flex-col py-0.5" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -left-[15px] top-1.5 w-1.5 h-1.5 rounded-full bg-slate-400" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1 flex-wrap" }, /* @__PURE__ */ React.createElement("span", { className: "text-[10px] font-mono font-bold text-slate-700" }, "[", step.side === "gov" ? "\u653F\u5E9C\u4FA7" : "\u4F01\u4E1A\u4FA7", "] ", step.agent), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] font-bold text-slate-800" }, "[", step.action, "]"), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-600 leading-tight" }, step.desc))))));
+    return /* @__PURE__ */ React.createElement("div", { className: "m-0 p-0 leading-none" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center m-0 p-0 border-b border-black" }, /* @__PURE__ */ React.createElement("h3", { className: "text-[11px] font-bold text-black m-0 p-0 leading-none" }, title || "\u653F\u4F01\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u5EA6\u94FE\u8DEF (REQ-01)")), /* @__PURE__ */ React.createElement("div", { className: "border-l border-black ml-1 pl-1 m-0 space-y-0" }, data.map((step, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: "flex flex-col p-0 m-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center flex-wrap m-0 p-0" }, /* @__PURE__ */ React.createElement("span", { className: "text-[10px] font-mono font-bold text-black leading-none m-0 p-0" }, "[", step.side === "gov" ? "\u653F\u5E9C\u4FA7" : "\u4F01\u4E1A\u4FA7", "] ", step.agent), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] font-bold text-black leading-none m-0 p-0" }, "[", step.action, "]"), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-black leading-none m-0 p-0" }, step.desc))))));
   };
   var ToolCallItem = ({ tc }) => {
     const [isOpen, setIsOpen] = useState2(tc.status === "running");
@@ -49286,6 +49286,104 @@ ${msg.views.view3}
         toolCalls: [],
         time: (/* @__PURE__ */ new Date()).toLocaleTimeString()
       }]);
+      const s1Prompts = [
+        "\u3010\u6C14\u8C61\u9884\u8B66\u8054\u52A8\u3011\u63A5\u6536\u7701\u7EA7\u66B4\u96E8\u7EA2\u8272\u9884\u8B66\u6307\u4EE4\uFF0C\u8BF7\u6C42\u7A7F\u900FL21\u8DEF\u7EBF\u57FA\u7840\u53F0\u8D26\uFF0C\u7CBE\u51C6\u9501\u5B9A\u53D7\u707E\u8F96\u533A\u5185\u8DEF\u6BB5\u6869\u53F7\u8FB9\u754C\uFF0C\u5E76\u81EA\u52A8\u751F\u6210\u300A\u7279\u7EA7\u9669\u60C5\u5F71\u54CD\u8303\u56F4\u5B9A\u7EA7\u62A5\u544A\u300B\u3002",
+        "\u3010\u9AD8\u5371\u7ED3\u6784\u7269\u7194\u65AD\u6392\u67E5\u3011\u57FA\u4E8E\u53D7\u707E\u8DEF\u7EBF\u951A\u70B9\uFF0C\u62C9\u53D6L29a\u7B49\u9AD8\u5371\u6865\u96A7\u8FB9\u5761\u7684\u5065\u5EB7\u76D1\u6D4B\u5B9E\u65F6\u7269\u8054\u4F20\u611F\u6D41\uFF0C\u8F93\u51FA\u300A\u66B4\u96E8\u533A\u6781\u7AEF\u5DE5\u51B5\u4E0B\u7ED3\u6784\u7269\u5B9E\u65F6\u5B89\u5168\u6392\u67E5\u6E05\u5355\u300B\u3002",
+        "\u3010\u5E94\u6025\u8D44\u6E90\u534F\u540C\u8C03\u5EA6\u3011\u6FC0\u6D3B16-1\u5E94\u6025\u7269\u8D44\u6218\u65F6\u50A8\u5907\u603B\u7EBF\uFF0C\u4E00\u952E\u76D8\u70B9\u53D7\u707E\u6838\u5FC3\u533A\u5468\u8FB950\u516C\u91CC\u5185\u62A2\u9669\u673A\u68B0\u4E0E\u9632\u6C5B\u7269\u8D44\u5E93\u5B58\uFF0C\u4E0B\u53D1\u300A\u8DE8\u533A\u534F\u540C\u5E94\u6025\u8C03\u62E8\u5DE5\u5355\u300B\u3002"
+      ];
+      if (s1Prompts.includes(queryText.trim())) {
+        let scriptIdx = s1Prompts.indexOf(queryText.trim());
+        let mockActions = [];
+        let mockContent = "";
+        let s1WorkflowData = [
+          { side: "gov", agent: "\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66", action: "\u9884\u8B66\u611F\u77E5", desc: "\u63A5\u6536\u5916\u90E8\u201C\u66B4\u96E8\u7EA2\u8272\u9884\u8B66\u201D\uFF0C\u89E3\u6790\u53D7\u707E\u884C\u653F\u533A\u5212\u8303\u56F4\uFF08\u5982\u9EC4\u5188\u3001\u9102\u5DDE\u7B49\uFF09\u3002" },
+          { side: "gov", agent: "\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", action: "\u7A7A\u95F4\u53E0\u7F6E", desc: "\u5C06\u884C\u653F\u533A\u5212\u8FB9\u754C\u4E0E L21 \u8DEF\u7EBF\u5750\u6807\u53E0\u52A0\uFF0C\u63D0\u53D6\u53D7\u707E\u8DEF\u7EBF\u6BB5\u4E0E\u8D77\u8BAB\u6869\u53F7\u3002" },
+          { side: "gov", agent: "\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", action: "\u75C5\u5BB3\u7B5B\u67E5", desc: "\u8C03\u53D6 L29a \u7B49\u5E95\u8868\u5386\u53F2\u8DEF\u51B5\u4E0E\u75C5\u5BB3\u8BB0\u5F55\uFF0C\u5B9A\u4F4D\u9632\u6C5B\u9AD8\u5371\u8584\u5F31\u8DEF\u6BB5\u3002" },
+          { side: "gov", agent: "\u7EFC\u5408\u8BA1\u5212-01_\u6295\u8D44\u8BA1\u5212", action: "\u635F\u5931\u9884\u4F30", desc: "\u4F9D\u636E\u707E\u6BC1\u7B97\u6CD5\u6A21\u578B\uFF0C\u9884\u4F30\u8DEF\u4EA7\u4EF7\u503C\u53CA\u6F5C\u5728\u707E\u6BC1\u7ECF\u6D4E\u635F\u5931\u3002" },
+          { side: "enterprise", agent: "\u5B89\u5168\u5E94\u6025(\u4F01\u4E1A\u4FA7)-01", action: "\u5DE5\u5355\u4E0B\u53D1", desc: "\u5168\u7F51\u5E76\u53D1\u4E0B\u53D1\u9632\u6C5B\u5E94\u6025\u6307\u4EE4\uFF0C\u6FC0\u6D3B\u4E8B\u53D1\u5730\u6CBF\u7EBF\u7BA1\u517B\u4F01\u4E1A\u7684\u4E00\u7EA7\u54CD\u5E94\u72B6\u6001\u3002" }
+        ];
+        if (scriptIdx === 0) {
+          mockActions = [
+            { type: "thought", text: "[AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66] \u6210\u529F\u63A5\u6536\u7701\u7EA7\u66B4\u96E8\u7EA2\u8272\u9884\u8B66\uFF0C\u6B63\u5728\u89E3\u6790\u53D7\u707E\u533A\u57DF\u8FB9\u754C..." },
+            { type: "tool", tc: { name: "parse_weather_warning", agentName: "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66", argsStr: '{\n  "level": "RED",\n  "region": "\u9102\u4E1C\u7247\u533A"\n}', resultSummary: "\u9501\u5B9A\u6838\u5FC3\u53D7\u707E\u533A: \u9102\u5DDE\u5E02\u3001\u9EC4\u5188\u5E02", status: "success" } },
+            { type: "thought", text: "\u5524\u9192 [AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6]\uFF0C\u63D0\u53D6\u6838\u5FC3\u53D7\u707E\u533A\u5185\u7684 L21 \u8DEF\u7EBF\u53CA\u8D77\u8BAB\u6869\u53F7..." },
+            { type: "tool", tc: { name: "spatial_overlay", agentName: "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", argsStr: '{\n  "regions": ["\u9102\u5DDE\u5E02", "\u9EC4\u5188\u5E02"],\n  "target_table": "L21"\n}', resultSummary: "\u63D0\u53D6\u53D7\u5F71\u54CD\u5E72\u7EBF 14 \u6761\uFF0C\u6D89\u53CA\u603B\u91CC\u7A0B 620.5 km", status: "success" } },
+            { type: "thought", text: "\u7A7A\u95F4\u8303\u56F4\u5DF2\u9501\u5B9A\uFF0C\u6B63\u5728\u751F\u6210\u300A\u7279\u7EA7\u9669\u60C5\u5F71\u54CD\u8303\u56F4\u5B9A\u7EA7\u62A5\u544A\u300B..." }
+          ];
+          mockContent = `### \u{1F6A8} \u7279\u7EA7\u9669\u60C5\u5F71\u54CD\u8303\u56F4\u5B9A\u7EA7\u62A5\u544A (\u66B4\u96E8\u7EA2\u8272\u9884\u8B66)
+
+**\u707E\u5BB3\u5B9A\u7EA7\uFF1AI \u7EA7\uFF08\u7279\u5927\u66B4\u96E8\uFF09**
+**\u6838\u5FC3\u53D7\u707E\u533A**\uFF1A\u9102\u5DDE\u5E02\u3001\u9EC4\u5188\u5E02\u5168\u57DF
+
+\u7ECF\u7A7A\u95F4\u53E0\u52A0\u5206\u6790\uFF0C\u672C\u6B21\u66B4\u96E8\u7EA2\u8272\u9884\u8B66\u8986\u76D6\u8303\u56F4\u5185\uFF0C\u5171\u6D89\u53CA **14** \u6761\u666E\u901A\u56FD\u7701\u5E72\u7EBF\u516C\u8DEF\uFF08\u542B G106\u3001G318 \u7B49\u5E72\u7EBF\uFF09\uFF0C\u53D7\u5F71\u54CD\u603B\u91CC\u7A0B\u8FBE **620.5** km\u3002\u5DF2\u901A\u77E5\u6CBF\u7EBF\u7BA1\u517B\u5355\u4F4D\u8FDB\u5165\u9632\u6C5B\u6218\u65F6\u72B6\u6001\uFF0C\u5E76\u5B9E\u65BD\u5C40\u90E8\u4EA4\u901A\u7BA1\u5236\u3002`;
+        } else if (scriptIdx === 1) {
+          mockActions = [
+            { type: "thought", text: "[AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A] \u6536\u5230\u6307\u4EE4\uFF0C\u57FA\u4E8E\u53D7\u707E\u8DEF\u6BB5\u951A\u70B9\uFF0C\u6392\u67E5\u9AD8\u5371\u6865\u96A7\u8FB9\u5761..." },
+            { type: "tool", tc: { name: "query_l29a", agentName: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", argsStr: '{\n  "routes": ["G106", "G318"],\n  "structures": ["\u5927\u6865", "\u7279\u5927\u6865", "\u96A7\u9053", "\u9AD8\u8FB9\u5761"]\n}', resultSummary: "\u9501\u5B9A\u9AD8\u5371\u7ED3\u6784\u7269 27 \u5904", status: "success" } },
+            { type: "thought", text: "\u5524\u9192 [AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B]\uFF0C\u62C9\u53D6\u8FD9 27 \u5904\u7ED3\u6784\u7269\u7684\u5B9E\u65F6\u7269\u8054\u4F20\u611F\u6570\u636E..." },
+            { type: "tool", tc: { name: "fetch_iot_streams", agentName: "AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B", argsStr: '{\n  "target_ids": ["BRG-01", "TUN-05", ...]\n}', resultSummary: "2 \u5904\u4F4D\u79FB\u4F20\u611F\u5668\u9608\u503C\u544A\u8B66\uFF0C\u5176\u4F59\u6B63\u5E38", status: "success" } },
+            { type: "thought", text: "\u6392\u67E5\u5B8C\u6210\uFF0C\u6B63\u5728\u8F93\u51FA\u5B89\u5168\u6392\u67E5\u6E05\u5355..." }
+          ];
+          mockContent = `### \u{1F309} \u66B4\u96E8\u533A\u6781\u7AEF\u5DE5\u51B5\u4E0B\u7ED3\u6784\u7269\u5B9E\u65F6\u5B89\u5168\u6392\u67E5\u6E05\u5355
+
+\u57FA\u4E8E L29a \u57FA\u7840\u53F0\u8D26\u4E0E\u5B9E\u65F6\u5065\u5EB7\u76D1\u6D4B\u6D41\u7684\u4EA4\u53C9\u6392\u67E5\u7ED3\u679C\uFF1A
+
+- **\u6392\u67E5\u603B\u6570**\uFF1A27 \u5904\uFF08\u5176\u4E2D\u6865\u6881 15 \u5EA7\uFF0C\u96A7\u9053 8 \u5EA7\uFF0C\u9AD8\u8FB9\u5761 4 \u5904\uFF09
+- **\u5B9E\u65F6\u7269\u8054\u72B6\u6001**\uFF1A
+  - \u2705 **\u6B63\u5E38\u8FD0\u884C**\uFF1A25 \u5904\uFF08\u4F20\u611F\u5668\u6570\u636E\u5E73\u7A33\uFF0C\u672A\u89C1\u660E\u663E\u5F02\u5E38\uFF09
+  - \u26A0\uFE0F **\u9AD8\u5371\u544A\u8B66**\uFF1A2 \u5904\uFF08G106 \u767D\u83B2\u6CB3\u5927\u6865**\u4E3B\u6881\u6320\u5EA6\u903C\u8FD1\u9608\u503C**\uFF1BG318 \u7F57\u7530\u6BB5\u9AD8\u8FB9\u5761**\u503E\u89D2\u4EEA\u6570\u636E\u7A81\u8DF3**\uFF09
+
+\u9488\u5BF9\u544A\u8B66\u7ED3\u6784\u7269\uFF0C\u5DF2\u901A\u8FC7\u4F01\u4E1A\u4FA7\u603B\u7EBF\u5F3A\u5236\u7194\u65AD\u76F8\u5173\u8DEF\u6BB5\u901A\u884C\u6743\u9650\uFF0C\u5E76\u6307\u6D3E\u73B0\u573A\u5E94\u6025\u961F\u4F0D\u524D\u5F80\u67E5\u52D8\u3002`;
+        } else if (scriptIdx === 2) {
+          mockActions = [
+            { type: "thought", text: "[AGENT-\u7EFC\u5408\u8BA1\u5212-01_\u6295\u8D44\u8BA1\u5212] \u8BC4\u4F30\u6F5C\u5728\u7ECF\u6D4E\u635F\u5931\u5E76\u9884\u5BA1\u6551\u707E\u5907\u7528\u91D1..." },
+            { type: "thought", text: "\u5524\u9192 [AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66] \u76D8\u70B9\u7269\u8D44\uFF0C\u5524\u9192 [\u4F01\u4E1A\u4FA7] \u4E0B\u53D1\u8DE8\u533A\u8C03\u62E8\u5DE5\u5355..." },
+            { type: "tool", tc: { name: "inventory_check", agentName: "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66", argsStr: '{\n  "center_gps": "[114.88, 30.45]",\n  "radius_km": 50\n}', resultSummary: "\u9501\u5B9A 3 \u5904\u7701\u7EA7\u5E94\u6025\u50A8\u5907\u4E2D\u5FC3\uFF0C\u53EF\u7528\u6316\u6398\u673A12\u53F0\u3001\u7F16\u7EC7\u888B5\u4E07\u6761", status: "success" } },
+            { type: "tool", tc: { name: "dispatch_order", agentName: "AGENT-\u5B89\u5168\u5E94\u6025(\u4F01\u4E1A\u4FA7)-01", argsStr: '{\n  "task": "\u8DE8\u533A\u8C03\u62E8",\n  "resources": "\u6316\u6398\u673A4\u53F0, \u7F16\u7EC7\u888B2\u4E07\u6761",\n  "destination": "\u9EC4\u5188\u5E02\u7F57\u7530\u6BB5"\n}', resultSummary: "\u5DE5\u5355\u5DF2\u4E0B\u53D1\u5E76\u7531\u4F01\u4E1A\u63A5\u6536", status: "success" } },
+            { type: "thought", text: "\u8C03\u5EA6\u94FE\u8DEF\u5DF2\u5168\u7EBF\u8D2F\u901A\u3002" }
+          ];
+          mockContent = `### \u{1F69C} \u8DE8\u533A\u534F\u540C\u5E94\u6025\u8C03\u62E8\u5DE5\u5355 (\u6267\u884C\u56DE\u6267)
+
+**\u8D44\u6E90\u76D8\u70B9\u7ED3\u8BBA**\uFF1A\u53D7\u707E\u6838\u5FC3\u533A\u5468\u8FB9 50 \u516C\u91CC\u5185\uFF0C\u5171\u6709 3 \u5904\u7701\u7EA7\u516C\u8DEF\u5E94\u6025\u88C5\u5907\u7269\u8D44\u50A8\u5907\u4E2D\u5FC3\uFF0C\u5404\u7C7B\u62A2\u9669\u673A\u68B0\u4E0E\u9632\u6C5B\u7269\u8D44\u50A8\u5907\u5145\u8DB3\u3002
+
+**\u81EA\u52A8\u8C03\u62E8\u6267\u884C\u8BB0\u5F55**\uFF1A
+\u5DF2\u6210\u529F\u5411 **\u9102\u4E1C\u5E94\u6025\u50A8\u5907\u4E2D\u5FC3** \u53CA **\u4F01\u4E1A\u4FA7\u76F8\u5173\u7BA1\u517B\u5355\u4F4D** \u4E0B\u53D1 \`#EMG-2026-001\` \u53F7\u8DE8\u533A\u534F\u540C\u5E94\u6025\u8C03\u62E8\u5DE5\u5355\u3002
+- \u8C03\u62E8\u660E\u7EC6\uFF1A\u91CD\u578B\u6316\u6398\u673A 4 \u53F0\uFF0C\u9632\u6C5B\u7F16\u7EC7\u888B 2 \u4E07\u6761\uFF0C\u62BD\u6C34\u6CF5 10 \u53F0\u3002
+- \u76EE\u6807\u96C6\u7ED3\u5730\uFF1AG318 \u7F57\u7530\u9AD8\u8FB9\u5761\u544A\u8B66\u70B9\u3002
+- \u72B6\u6001\uFF1A**[\u4F01\u4E1A\u4FA7] \u5DF2\u7B7E\u6536\u5E76\u786E\u8BA4\u53D1\u8F66**\u3002`;
+        }
+        let actionIdx = 0;
+        let currentThoughtStr = "";
+        let currentToolCalls = [];
+        let currentContentStr = "";
+        const timer = setInterval(() => {
+          if (actionIdx < mockActions.length) {
+            const action = mockActions[actionIdx];
+            if (action.type === "thought") {
+              currentThoughtStr += (currentThoughtStr ? "\n" : "") + action.text;
+            } else if (action.type === "tool") {
+              currentToolCalls.push(action.tc);
+            }
+            updateBot({ thought: currentThoughtStr, toolCalls: [...currentToolCalls] });
+            actionIdx++;
+          } else {
+            clearInterval(timer);
+            const typingSpeed = 10;
+            let charIdx = 0;
+            const typeTimer = setInterval(() => {
+              if (charIdx < mockContent.length) {
+                currentContentStr += mockContent.charAt(charIdx);
+                updateBot({ content: currentContentStr });
+                charIdx++;
+              } else {
+                clearInterval(typeTimer);
+                updateBot({ isGenerating: false, workflowData: s1WorkflowData, workflowTitle: "\u653F\u4F01\u534F\u540C\u9632\u6C5B\u9884\u8B66\u4E0E\u54CD\u5E94\u94FE\u8DEF (SCENARIO-01)" });
+              }
+            }, typingSpeed);
+          }
+        }, 600);
+        return;
+      }
       const s2Prompts = [
         "\u8BF7\u57FA\u4E8E\u6B66\u6C49\u5E02\u5883\u5185G107\u56FD\u9053\u7684L21\u5E72\u7EBF\u8303\u56F4\uFF0C\u8054\u5408\u5404\u5927\u90E8\u95E8\uFF0C\u751F\u6210\u672C\u5B63\u5EA6\u957F\u5927\u6865\u6881\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u8003\u6838\u603B\u5355\u3002",
         "\u9488\u5BF9 L29a \u6CBF\u7EBF\u7684\u5E02\u53BF\u7EA7\u91CD\u70B9\u957F\u5927\u6865\u6881\uFF0C\u7A7F\u900F\u5E95\u5C42\u517B\u62A4OA\u6392\u67E5\u5DE1\u68C0\u5F02\u5E38\u6253\u5361\u8BB0\u5F55\u3002",
@@ -49295,7 +49393,17 @@ ${msg.views.view3}
         let scriptIdx = s2Prompts.indexOf(queryText.trim());
         let mockActions = [];
         let mockContent = "";
+        let s2WorkflowData = null;
+        let s2WorkflowTitle = "";
         if (scriptIdx === 0) {
+          s2WorkflowData = [
+            { side: "gov", agent: "\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B", action: "\u4E3B\u8D23\u53D1\u8D77", desc: "\u4F5C\u4E3A\u4E3B\u8D23\u5355\u4F4D\uFF0C\u53D1\u8D77\u5B63\u5EA6\u8D28\u91CF\u8003\u6838\uFF0C\u81EA\u67E5\u4F20\u611F\u5668\u5728\u7EBF\u7387\u3002" },
+            { side: "gov", agent: "\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", action: "\u7A7A\u95F4\u951A\u5B9A", desc: "\u63D0\u53D6 L21\u4E0EL29a\uFF0C\u5F15\u5165\u7A7A\u95F4\u5750\u6807\u6846\u5B9A\u8303\u56F4\uFF0C\u8FC7\u6EE4\u514D\u8D23\u6865\u6881\u3002" },
+            { side: "gov", agent: "\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66", action: "\u65F6\u6548\u534F\u67E5", desc: "\u8C03\u53D6\u5E94\u6025\u5DE5\u5355 API\uFF0C\u5BF9\u6BD4\u62A5\u6587\u65F6\u5DEE\uFF0C\u67E5\u9A8C\u201C\u8D85\u65F6\u54CD\u5E94\u201D\u3002" },
+            { side: "gov", agent: "\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4", action: "\u73B0\u573A\u534F\u67E5", desc: "\u7A7F\u900F\u5E95\u5C42 OA\uFF0C\u6293\u53D6 72 \u5C0F\u65F6\u4FEE\u590D\u7387\u4E0E\u7167\u7247 EXIF \u771F\u5B9E\u6253\u5361\u5750\u6807\u3002" },
+            { side: "enterprise", agent: "\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406", action: "\u514D\u8D23\u7533\u8BC9", desc: "\u67E5\u8DEF\u57DF\u673A\u7535\u7F51\u5173\u5E02\u7535\u65AD\u7535\u65E5\u5FD7\uFF0C\u8BC1\u660E\u65AD\u8054\u4E0D\u53EF\u6297\u529B\u3002" }
+          ];
+          s2WorkflowTitle = "\u653F\u4F01\u8054\u5408\u7A3D\u67E5\u5168\u7F51\u4EA4\u53C9\u53D6\u8BC1\u67B6\u6784 (SCENARIO-02)";
           mockActions = [
             { type: "thought", text: "[AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B] \u6536\u5230\u603B\u6307\u4EE4\uFF0C\u5F00\u59CB\u57FA\u4E8E\u300A\u5730\u65B9\u8003\u6838\u7EC6\u5219\u300B\u6267\u884C\u81EA\u52A8\u5316\u6253\u5206..." },
             { type: "thought", text: "\u9996\u5148\uFF0C\u5524\u9192 [AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6] \u5F15\u5165\u7A7A\u95F4\u8303\u56F4\uFF0C\u9501\u5B9A\u8003\u6838\u540D\u5355\u5E76\u5254\u9664\u514D\u8D23\u6865\u6881..." },
@@ -49333,34 +49441,9 @@ ${msg.views.view3}
 
 ---
 
-### \u6838\u5FC3\u673A\u5236\u4E8C\uFF1A\u667A\u80FD\u4F53\u8054\u5408\u7A3D\u67E5\u67B6\u6784 (\u5168\u7F51\u4EA4\u53C9\u53D6\u8BC1)
-
-\u5927\u6A21\u578B\u4EE5 \`[AGENT-\u5DE5\u7A0B\u6280\u672F-01]\` \u4E3A\u201C\u4E3B\u8D23\u5224\u5B9A\u201D\uFF0C\u5411\u4E0B\u8F90\u5C04\u8C03\u7528\u591A\u8DEF\u667A\u80FD\u4F53\u5927\u519B\uFF0C\u5F62\u6210\u4E25\u5BC6\u7684\u53D6\u8BC1\u903B\u8F91\u6811\uFF1A
-
-\`\`\`text
-\u3010\u53CC\u6838\u9A71\u52A8\u3011
- \u251C\u2500 [\u90E8\u7EA7\u7BA1\u7406\u8981\u6C42] \u516C\u8DEF\u957F\u5927\u6865\u6881\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406\u529E\u6CD5\uFF08\u8BD5\u884C\uFF09.pdf 
- \u2514\u2500 [\u7701\u7EA7\u8003\u6838\u6307\u6807] \u6865\u6881\u9632\u6C5B\u4E0E\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u8003\u6838\u6807\u51C6 (\u4E0A\u8FF08\u9879\u6307\u6807)
-        \u2502
-        \u25BC
-\u3010\u4E3B\u8D23\u5224\u5B9A\u3011 AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B (\u8D1F\u8D23\u57FA\u672C\u6570\u636E\u76D8\u67E5)
-        \u2502
-        \u251C\u2500\u25B6 [\u7A7A\u95F4\u951A\u5B9A] AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6
-        \u2502    \u2514\u2500 \u63D0\u53D6 L21\u4E0EL29a\uFF0C\u5F15\u5165\u3010\u5E02\u5DDE/\u5E72\u7EBF\u3011\u7A7A\u95F4\u5750\u6807\u6846\u5B9A\u67E5\u8BE2\u8303\u56F4\uFF0C\u5E76\u57FA\u4E8E\u8840\u7F18\u8FC7\u6EE4\u514D\u8D23\u9879\u3002
-        \u2502
-        \u251C\u2500\u25B6 [\u65F6\u6548\u534F\u67E5] AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66
-        \u2502    \u2514\u2500 \u8C03\u53D6\u5E94\u6025\u5DE5\u5355 API\uFF0C\u8BA1\u7B97\u62A5\u6587 trigger_time \u4E0E ack_time \u7684\u5DEE\u503C\uFF0C\u6B7B\u78D5\u201C\u8D85\u65F6\u54CD\u5E94\u201D\u3002
-        \u2502
-        \u251C\u2500\u25B6 [\u73B0\u573A\u534F\u67E5] AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4
-        \u2502    \u2514\u2500 \u7A7F\u900F\u7701\u5E02\u7EA7\u516C\u8DEF\u65E5\u5E38\u517B\u62A4\u534F\u540C\u4F5C\u4E1A\u5E73\u53F0\uFF0C\u6293\u53D6 72 \u5C0F\u65F6\u4FEE\u590D\u7387\u4E0E\u5DE1\u68C0\u7167\u7247\u7684\u771F\u5B9E\u6253\u5361\u5750\u6807\u3002
-        \u2502
-        \u2514\u2500\u25B6 [\u514D\u8D23\u7533\u8BC9] AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406
-             \u2514\u2500 \u67E5\u8DEF\u57DF\u673A\u7535\u7F51\u5173\u7684\u5E02\u7535\u65AD\u7535\u65E5\u5FD7\uFF0C\u8BC1\u660E\u6570\u636E\u65AD\u8054\u7CFB\u4E0D\u53EF\u6297\u529B\uFF0C\u64A4\u9500\u76F8\u5173\u6263\u5206\u3002
-\`\`\`
-
 ### \u{1F4CB} \u5B63\u5EA6\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u8003\u6838\u603B\u5355 (\u6B66\u6C49\u5E02G107\u4E13\u5C5E)
 
-**\u{1F916} \u591A\u667A\u80FD\u4F53\u4EA4\u53C9\u53D6\u8BC1\u95ED\u73AF**\uFF1A
+**\u{1F916} \u591A\u667A\u80FD\u4F53\u4EA4\u53C9\u53D6\u8BC1\u95ED\u73AF\u7ED3\u8BBA**\uFF1A
 - **\u4E3B\u8D23\u5224\u5B9A**\uFF1A[AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B] (\u8D1F\u8D23\u7701\u5E02\u7EA7\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B\u7CFB\u7EDF\u7269\u8054\u7F51\u57FA\u76D8)
 - **\u7A7A\u95F4\u5E95\u5EA7**\uFF1A[AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6] (\u8D1F\u8D23 L21/L29a \u7A7A\u95F4\u8FC7\u6EE4)
 - **\u534F\u540C\u6570\u5B57\u5BA1\u8BA1**\uFF1A[AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66] (\u63D0\u53D6\u9632\u6C5B\u54CD\u5E94\u8BB0\u5F55)\u3001[AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4] (\u7A7F\u900F\u6838\u67E5\u5DE1\u68C0\u53F0\u8D26)\u3001[AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406] (\u6838\u67E5\u8BBE\u5907\u65AD\u7535\u53CA\u514D\u8D23\u7533\u8BC9)
@@ -50464,7 +50547,7 @@ ${msg.views.view3}
               /* @__PURE__ */ React.createElement("div", { className: "text-indigo-400 text-[10px]" }, "\u652F\u6301\u56FE\u7247\u3001Excel\u3001Word\u3001PDF \u7B49\u5404\u79CD\u683C\u5F0F")
             ));
           }
-          return /* @__PURE__ */ React.createElement(React.Fragment, null, msg.workflowData && /* @__PURE__ */ React.createElement(AgentWorkflowVisualizer, { data: msg.workflowData }), /* @__PURE__ */ React.createElement(
+          return /* @__PURE__ */ React.createElement(React.Fragment, null, msg.workflowData && /* @__PURE__ */ React.createElement(AgentWorkflowVisualizer, { data: msg.workflowData, title: msg.workflowTitle }), /* @__PURE__ */ React.createElement(
             "div",
             {
               className: `whitespace-pre-wrap leading-snug agent-message-content ${msg.isGreeting ? "text-[12.5px]" : "text-sm"}`,
