@@ -47680,9 +47680,15 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     let tableInfo = "";
     try {
       const parsedArgs = JSON.parse(tc.args || "{}");
-      if (parsedArgs.table_name) tableInfo = parsedArgs.table_name;
-      else if (parsedArgs.table) tableInfo = parsedArgs.table;
-      else if (parsedArgs.file_name) tableInfo = parsedArgs.file_name;
+      const tName = parsedArgs.table_name || parsedArgs.table;
+      const fName = parsedArgs.file_name;
+      const y2 = parsedArgs.year;
+      if (tName) {
+        const yearStr = y2 ? `${y2}\u5E74` : "2016\u5E74";
+        tableInfo = `[${yearStr}\u5E74\u62A5\u4E3B\u5E93] ${tName}\u8868`;
+      } else if (fName) {
+        tableInfo = `[\u4F01\u4E1A\u4E0A\u4F20\u6587\u4EF6] ${fName}`;
+      }
     } catch (e) {
     }
     return /* @__PURE__ */ React.createElement("div", { className: "mb-[4px] leading-[1.4] font-sans flex items-start gap-1 text-[11px]" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 mt-[2px] cursor-pointer", onClick: () => setIsOpen(!isOpen) }, isOpen ? /* @__PURE__ */ React.createElement(ChevronDown2, { size: 12 }) : /* @__PURE__ */ React.createElement(ChevronRight2, { size: 12 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full min-w-0" }, /* @__PURE__ */ React.createElement(
@@ -47692,10 +47698,10 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         onClick: () => setIsOpen(!isOpen),
         title: "\u70B9\u51FB\u5C55\u5F00/\u6298\u53E0\u53C2\u6570"
       },
-      /* @__PURE__ */ React.createElement("span", { className: `px-1.5 py-0.5 rounded text-[10px] font-medium flex items-center gap-1 ${tc.status === "running" ? "bg-blue-50 text-blue-600" : tc.status === "error" ? "bg-red-50 text-red-600" : "bg-slate-50 text-slate-600"}` }, tc.status === "running" ? "\u{1F504} \u6267\u884C\u4E2D" : tc.status === "error" ? "\u274C \u5931\u8D25" : "\u2713 \u5DF2\u5B8C\u6210"),
-      /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-500 bg-slate-200/50 px-1.5 py-0.5 rounded" }, "[\u653F\u5E9C\u4FA7\u5F15\u64CE]"),
-      tc.agentName && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-blue-600 bg-blue-50/50 px-1.5 py-0.5 rounded" }, tc.agentName),
-      /* @__PURE__ */ React.createElement("span", { className: "text-slate-700" }, "\u8C03\u7528 ", tc.name, " ", tableInfo && /* @__PURE__ */ React.createElement("span", { className: "text-blue-500 font-mono" }, "(", tableInfo, ")")),
+      /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-500 flex items-center gap-1" }, tc.status === "running" ? "\u{1F504} \u6267\u884C\u4E2D" : tc.status === "error" ? "\u274C \u5931\u8D25" : "\u2713 \u5DF2\u5B8C\u6210"),
+      /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-500" }, "[\u653F\u5E9C\u4FA7\u5F15\u64CE]"),
+      tc.agentName && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-500" }, tc.agentName),
+      /* @__PURE__ */ React.createElement("span", { className: "text-slate-600" }, "\u8C03\u7528 ", tc.name, " ", tableInfo && /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 font-mono" }, "(", tableInfo, ")")),
       tc.status === "success" && tc.resultSummary && /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 text-[10px] ml-1" }, "(", tc.resultSummary, ")")
     ), tc.status === "error" && tc.resultSummary && /* @__PURE__ */ React.createElement("div", { className: "text-slate-400 text-[11px] mt-0.5 ml-1" }, "(", tc.resultSummary, ")"), isOpen && tc.argsStr && /* @__PURE__ */ React.createElement("div", { className: "mt-1 ml-[4px] pl-[8px] border-l-2 border-slate-200" }, /* @__PURE__ */ React.createElement("pre", { className: "text-slate-500 text-[11px] whitespace-pre-wrap break-all font-mono m-0 p-0 bg-transparent border-none leading-[1.2]" }, tc.argsStr))));
   };
