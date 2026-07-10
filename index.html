@@ -3042,6 +3042,7 @@ $B_i = \\sum (M_i \\times \\omega_i) / \\sum \\omega_i$
         window.__UI_TEMPLATES__ = ``;
         window.__EXCEL_TEMPLATES__ = ``;
         window.__API_CONFIG__ = `{"API_PROVIDER": "deepseek", "MAX_BUDGET_RMB": 2.0, "OPENAI_API_KEY": "QU1hSEpUOF8wMFpMMlVYTkk3UEw3ZDRTWGRYc1FtN3BhUmo5aEk4YmVlbV9hVzh0UlU4VEQxQ2dxa2w0dDR3d0NZUHdSekt3SzdKRmtibEIzVERSN1VqejdFTXZ0eGJ3RVE2cElRdFRiWWlyTVVia2tjOFZTQ1NaZFpJc1ZqRUJON1d0SlVfeFVUT1dmUDMyY1JJamNkOGZhTkkxLWpvcnAta3M=", "DEEPSEEK_API_KEY": "NjM5N2JhM2Y3NmRkYjI4YTViYjRlYTY4MzA1NWMxMGYta3M=", "GEMINI_API_KEY": "d3p4RWtiQUQtQ2lRVk0xRmdiaFdzRlY2dHo4R0NjNFNJNGJGZ0lkZVJabEo2TlI4YkEuUUE=", "ZHIPU_API_KEY": "bTNTTVRmWE10UTY1QjZJVy5mMTc0ZWMzZWM5YzFjYzFhZTZjNDI5Nzc3NTQyMmYxOQ=="}`;
+        window.__DB_META_BY_YEAR__ = {"2015": {"tableCount": 24}, "2016": {"tableCount": 24}, "2017": {"tableCount": 24}, "2018": {"tableCount": 24}, "2019": {"tableCount": 24}, "2020": {"tableCount": 28}, "2025": {"tableCount": 1}};
         console.log("%c[Build Timestamp]%c " + new Date().toISOString(), "color: white; background: #6366f1; padding: 2px 6px; border-radius: 4px;", "color: #6366f1; font-weight: bold;");
 (() => {
   var __create = Object.create;
@@ -48006,7 +48007,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     if (!data || data.length === 0) return null;
     return /* @__PURE__ */ React.createElement("div", { className: "mb-2 mt-1 bg-transparent" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 pb-1.5 mb-2 border-b border-slate-200" }, /* @__PURE__ */ React.createElement(Database2, { size: 15, className: "text-slate-700" }), /* @__PURE__ */ React.createElement("h3", { className: "text-[13px] font-bold text-slate-800 m-0 p-0 tracking-wide" }, title || "\u653F\u4F01\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u5EA6\u94FE\u8DEF")), /* @__PURE__ */ React.createElement("div", { className: "relative border-l-[2px] border-slate-200 ml-[7px] pl-3.5 space-y-1.5" }, data.map((step, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: "relative flex flex-col group" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -left-[20px] top-[5px] w-[6px] h-[6px] rounded-full bg-slate-400" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center flex-wrap gap-1.5 mb-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11.5px] font-mono font-medium text-slate-700" }, "[", step.side === "gov" ? "\u653F\u5E9C\u4FA7" : "\u4F01\u4E1A\u4FA7", "] ", step.agent), /* @__PURE__ */ React.createElement("span", { className: "text-[11.5px] font-bold text-slate-800" }, "[", step.action, "]")), /* @__PURE__ */ React.createElement("div", { className: "text-[11px] text-slate-600 leading-snug" }, step.desc)))));
   };
-  var ToolCallItem = ({ tc }) => {
+  var ToolCallItem = ({ tc, selectedYears = [] }) => {
     const [isOpen, setIsOpen] = useState2(tc.status === "running");
     useEffect2(() => {
       setIsOpen(tc.status === "running");
@@ -48035,7 +48036,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       const fName = parsedArgs.file_name;
       const y2 = parsedArgs.year;
       if (tName) {
-        const yearStr = y2 ? `${y2}\u5E74` : "2016\u5E74";
+        const yearStr = y2 ? `${y2}\u5E74` : selectedYears.length > 0 ? selectedYears.join("\u3001") + "\u5E74" : "2016\u5E74";
         const fullName = dict_table_names_default[tName] ? `${tName}(${dict_table_names_default[tName]})` : `${tName}\u8868`;
         tableInfo = `[${yearStr}\u5E74\u62A5\u4E3B\u5E93] ${fullName}`;
       } else if (fName) {
@@ -48058,7 +48059,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     ), tc.status === "error" && tc.resultSummary && /* @__PURE__ */ React.createElement("div", { className: "text-[11px] mt-0.5 ml-1", style: { color: "#8b1c1c" } }, "(", tc.resultSummary, ")"), isOpen && (tc.argsStr || tc.args || tc.arguments) && /* @__PURE__ */ React.createElement("div", { className: "mt-1 ml-[4px] pl-[8px] border-l-2 border-slate-200" }, /* @__PURE__ */ React.createElement("pre", { className: "text-black text-[11px] whitespace-pre-wrap break-all font-mono m-0 p-0 bg-transparent border-none leading-[1.2]" }, typeof (tc.argsStr || tc.args || tc.arguments) === "string" ? tc.argsStr || tc.args || tc.arguments : JSON.stringify(tc.args || tc.arguments, null, 2)))));
   };
   var STAGE_TREE_DATA = window.__STAGE_TREE_DATA__ && window.__STAGE_TREE_DATA__.length > 0 ? window.__STAGE_TREE_DATA__ : [
-    { stage: "\u6570\u636E\u7EDF\u7B79", color: "#64748b", icon: "\u{1F9E0}", tables: [
+    { stage: "\u6570\u636E\u7EDF\u7B79", color: "#64748b", icon: "\u{1F4CA}", tables: [
       { lcode: "L31a", name: "L31a\uFF08\u9AD8\u901F\u516C\u8DEF\u7BA1\u517B\u5355\u4F4D\u5C5E\u6027\u8868\uFF09", macroAgent: "\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", subTables: [
         { name: "\u9AD8\u901F\u516C\u8DEF\u7BA1\u517B\u5355\u4F4D.xls", microAgent: "\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6" }
       ] },
@@ -48067,7 +48068,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         { name: "\u4E61\u9547\u5C5E\u6027\u8868.xls", microAgent: "\u519C\u6751\u516C\u8DEF-02_\u667A\u6167\u76D1\u7BA1" }
       ] }
     ] },
-    { stage: "\u89C4\u5212\u8BA1\u5212", color: "#3b82f6", icon: "\u{1F5FA}\uFE0F", tables: [
+    { stage: "\u89C4\u5212\u8BA1\u5212", color: "#3b82f6", icon: "\u{1F4CA}", tables: [
       { lcode: "L21", name: "L21\uFF08\u516C\u8DEF\u8DEF\u7EBF\u57FA\u672C\u60C5\u51B5\u660E\u7EC6\u8868\uFF09", macroAgent: "\u89C4\u5212\u8BA1\u5212-02_\u8BA1\u5212\u7BA1\u7406", subTables: [
         { name: "\u8DEF\u6BB5.xls", microAgent: "\u89C4\u5212\u8BA1\u5212-02_\u8BA1\u5212\u7BA1\u7406" },
         { name: "\u516C\u8DEF\u6392\u6869.xls", microAgent: "\u89C4\u5212\u8BA1\u5212-02_\u8BA1\u5212\u7BA1\u7406" },
@@ -48079,8 +48080,8 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         { name: "\u4E9A\u6D32\u516C\u8DEF\u7F51\u8DEF\u7EBF\u660E\u7EC6\u8868.xls", microAgent: "\u89C4\u5212\u8BA1\u5212-02_\u8BA1\u5212\u7BA1\u7406" }
       ] }
     ] },
-    { stage: "\u5EFA\u8BBE\u7BA1\u7406", color: "#8b5cf6", icon: "\u{1F3D7}\uFE0F", tables: [] },
-    { stage: "\u5DE5\u7A0B\u6280\u672F", color: "#22c55e", icon: "\u{1F477}", tables: [
+    { stage: "\u5EFA\u8BBE\u7BA1\u7406", color: "#8b5cf6", icon: "\u{1F4CA}", tables: [] },
+    { stage: "\u5DE5\u7A0B\u6280\u672F", color: "#22c55e", icon: "\u{1F4CA}", tables: [
       { lcode: "L24a", name: "L24a\uFF08\u516C\u8DEF\u6865\u6881\u57FA\u672C\u60C5\u51B5\u660E\u7EC6\u8868\uFF09", macroAgent: "\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u76D1\u6D4B", subTables: [
         { name: "\u6865\u6881.xls", microAgent: "\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u76D1\u6D4B" },
         { name: "\u519C\u6751\u6865\u6881.xls", microAgent: "\u519C\u6751\u516C\u8DEF-01_\u519C\u8DEF\u8BC4\u4EF7" }
@@ -48095,7 +48096,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         { name: "\u516C\u8DEF\u517B\u62A4\u4F5C\u4E1A\u7EDF\u8BA1\u8868\uFF08\u517B\u62A4\u5DE5\u7A0B\uFF09.xlsx", microAgent: "\u5DE5\u7A0B\u6280\u672F-02_\u517B\u62A4\u667A\u80FD\u7BA1\u63A7" }
       ] }
     ] },
-    { stage: "\u517B\u62A4\u7BA1\u7406", color: "#a855f7", icon: "\u{1F6E0}\uFE0F", tables: [
+    { stage: "\u517B\u62A4\u7BA1\u7406", color: "#a855f7", icon: "\u{1F4CA}", tables: [
       { lcode: "L28", name: "L28\uFF08\u4EA4\u901A\u5DE5\u7A0B\u53CA\u6CBF\u7EBF\u8BBE\u65BD\u6C47\u603B\u8868\uFF09", macroAgent: "\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4", subTables: [
         { name: "06 \u4EA4\u901A\u5DE5\u7A0B\u53CA\u6CBF\u7EBF\u8BBE\u65BD\u5E74.xlsx", microAgent: "\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4" }
       ] },
@@ -48106,7 +48107,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         { name: "\u516C\u8DEF\u517B\u62A4\u4F5C\u4E1A\u7EDF\u8BA1\u8868.xlsx", microAgent: "\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4" }
       ] }
     ] },
-    { stage: "\u5B89\u5168\u5E94\u6025", color: "#f97316", icon: "\u{1F6A8}", tables: [
+    { stage: "\u5B89\u5168\u5E94\u6025", color: "#f97316", icon: "\u{1F4CA}", tables: [
       { lcode: "L27", name: "L27\uFF08\u6613\u53D1\u5730\u8D28\u707E\u5BB3\u70B9\u660E\u7EC6\u8868\uFF09", macroAgent: "\u5B89\u5168\u5E94\u6025-01_\u57FA\u7840\u8BBE\u65BD\u76D1\u6D4B\u9884\u8B66", subTables: [
         { name: "\u6613\u53D1\u5730\u8D28\u707E\u5BB3\u70B9.xls", microAgent: "\u5B89\u5168\u5E94\u6025-01_\u57FA\u7840\u8BBE\u65BD\u76D1\u6D4B\u9884\u8B66" },
         { name: "\u516C\u8DEF\u707E\u6BC1\u635F\u5931\u548C\u62A2\u901A\u60C5\u51B5\u7EDF\u8BA1\u8868.xlsx", microAgent: "\u5B89\u5168\u5E94\u6025-01_\u57FA\u7840\u8BBE\u65BD\u76D1\u6D4B\u9884\u8B66" }
@@ -48115,7 +48116,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         { name: "\u516C\u8DEF\u4EA4\u901A\u5E94\u6025\u50A8\u5907\u7269\u8D44\u53CA\u88C5\u5907\u7EDF\u8BA1\u8868.xls", microAgent: "\u5B89\u5168\u5E94\u6025-03_\u5E94\u6025\u5904\u7F6E\u4E0E\u9884\u6848\u7BA1\u7406" }
       ] }
     ] },
-    { stage: "\u6536\u8D39\u8FD0\u8425", color: "#ef4444", icon: "\u{1F697}", tables: [
+    { stage: "\u6536\u8D39\u8FD0\u8425", color: "#ef4444", icon: "\u{1F4CA}", tables: [
       { lcode: "L26", name: "L26\uFF08\u516C\u8DEF\u6CBF\u7EBF\u670D\u52A1\u53CA\u6536\u8D39\u8BBE\u65BD\u660E\u7EC6\u8868\uFF09", macroAgent: "\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406", subTables: [
         { name: "\u6CBF\u7EBF\u670D\u52A1\u8BBE\u65BD.xls", microAgent: "\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406" },
         { name: "\u6536\u8D39\u7AD9.xls", microAgent: "\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406" },
@@ -48123,12 +48124,12 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         { name: "\u9AD8\u901F\u516C\u8DEF\u51FA\u5165\u53E3.xls", microAgent: "\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406" }
       ] }
     ] },
-    { stage: "\u8D22\u52A1\u8D44\u4EA7", color: "#eab308", icon: "\u{1F4B0}", tables: [
+    { stage: "\u8D22\u52A1\u8D44\u4EA7", color: "#eab308", icon: "\u{1F4CA}", tables: [
       { lcode: "L30c", name: "L30c\uFF08\u516C\u8DEF\u517B\u62A4\u8D44\u91D1\u7EDF\u8BA1\u8868\uFF09", macroAgent: "\u8D22\u52A1\u8D44\u4EA7-01_\u8D44\u91D1\u62E8\u4ED8\u7BA1\u7406", subTables: [
         { name: "\u516C\u8DEF\u517B\u62A4\u8D44\u91D1\u6295\u5165\u6765\u6E90\u7EDF\u8BA1\u8868.xlsx", microAgent: "\u8D22\u52A1\u8D44\u4EA7-01_\u8D44\u91D1\u62E8\u4ED8\u7BA1\u7406" }
       ] }
     ] },
-    { stage: "\u519C\u6751\u516C\u8DEF", color: "#84cc16", icon: "\u{1F33E}", tables: [
+    { stage: "\u519C\u6751\u516C\u8DEF", color: "#84cc16", icon: "\u{1F4CA}", tables: [
       { lcode: "L22", name: "L22\uFF08\u4E61\u9547/\u5EFA\u5236\u6751/\u81EA\u7136\u6751\u901A\u8FBE\u53CA\u5C5E\u6027\u8868\uFF09", macroAgent: "\u519C\u6751\u516C\u8DEF-01_\u519C\u8DEF\u8BC4\u4EF7", subTables: [
         { name: "\u4E61\u9547\u901A\u8FBE\u8868.xlsx", microAgent: "\u519C\u6751\u516C\u8DEF-01_\u519C\u8DEF\u8BC4\u4EF7" },
         { name: "\u5EFA\u5236\u6751\u901A\u8FBE\u8868.xlsx", microAgent: "\u519C\u6751\u516C\u8DEF-01_\u519C\u8DEF\u8BC4\u4EF7" },
@@ -48185,7 +48186,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     });
     const totalTables = seenLcodes.size;
     const totalStages = dynamicStages.length;
-    return /* @__PURE__ */ React.createElement("div", { className: "select-none text-slate-700" }, /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-blue-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F1\u3011\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u4F53\u7CFB"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "space-y-0.5" }, /* @__PURE__ */ React.createElement("div", { className: "group/row relative flex flex-col items-start justify-center px-2.5 py-2 cursor-default transition-all rounded border bg-slate-50/50 border-slate-200 hover:bg-slate-50 hover:border-blue-200" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center w-full" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-800 font-medium truncate" }, "\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F (\u5305\u542B\u67B6\u6784\u56FE\u4E0E\u6D41\u7A0B\u56FE)")), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-500 mt-1 ml-2" }, /* @__PURE__ */ React.createElement("div", null, "- 5.\u67B6\u6784-\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F.pdf"), /* @__PURE__ */ React.createElement("div", null, "- 5.\u6D41\u7A0B-\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F.pdf")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1 mt-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 group relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-600 font-bold shrink-0" }, "\u7275\u5934:"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] px-1 py-[1px] text-slate-700 font-medium leading-tight break-words flex items-center" }, "AGENT-\u5B89\u5168\u5E94\u6025-02_\u9632\u6C5B\u6307\u5BFC"))), /* @__PURE__ */ React.createElement("div", { className: "flex w-full pl-1 mt-1 border-t border-slate-100 pt-1 items-start" }, /* @__PURE__ */ React.createElement("span", { className: "text-[8px] text-slate-500 font-medium ml-1 mr-1 mt-[2px] shrink-0" }, "\u6267\u884C:"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full gap-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center leading-none mt-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-slate-600 mr-1 whitespace-nowrap flex items-center" }, "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66, AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4"))))))), /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-indigo-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F2\u3011\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "space-y-0.5" }, /* @__PURE__ */ React.createElement("div", { className: "group/row relative flex flex-col items-start justify-center px-2.5 py-2 cursor-default transition-all rounded border bg-slate-50/50 border-slate-200 hover:bg-slate-50 hover:border-indigo-200" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center w-full" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-800 font-medium truncate" }, "\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u8D28\u91CF\u8003\u6838\u4F53\u7CFB")), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-500 mt-1 ml-2" }, /* @__PURE__ */ React.createElement("div", null, "- \u516C\u8DEF\u957F\u5927\u6865\u6881\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406\u529E\u6CD5\uFF08\u8BD5\u884C\uFF09.pdf ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1" }, "(\u90E8\u7EA7\u7BA1\u7406\u8981\u6C42)")), /* @__PURE__ */ React.createElement("div", null, "- \u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u8D28\u91CF\u8003\u6838.xlsx ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1" }, "(\u7701\u7EA7\u8003\u6838\u6307\u6807)"))), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1 mt-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 group relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-600 font-bold shrink-0" }, "\u7275\u5934:"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] px-1 py-[1px] text-slate-700 font-medium leading-tight break-words flex items-center" }, "AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B"))), /* @__PURE__ */ React.createElement("div", { className: "flex w-full pl-1 mt-1 border-t border-slate-100 pt-1 items-start" }, /* @__PURE__ */ React.createElement("span", { className: "text-[8px] text-slate-500 font-medium ml-1 mr-1 mt-[2px] shrink-0" }, "\u6267\u884C:"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full gap-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center leading-none mt-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-indigo-700 flex flex-col gap-1 w-full" }, /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u63D0\u4F9BL21/L29a\u7A7A\u95F4\u5E95\u5EA7)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u5B89\u5168\u5E94\u6025-01_\u9884\u8B66 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u63D0\u53D6\u9632\u6C5B\u54CD\u5E94\u8BB0\u5F55)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u7A7F\u900F\u6838\u67E5\u5DE1\u68C0\u53F0\u8D26)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u6838\u67E5\u8BBE\u5907\u65AD\u7535\u53CA\u514D\u8D23\u7533\u8BC9)"))))))))), /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-emerald-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F3\u3011\u5E74\u62A5\u6570\u636E\u7EDF\u7B79\u9AA8\u67B6"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "px-1.5 mb-2 text-[9px] text-slate-500" }, "\u6DB5\u76D6 ", totalTables, " \u5957\u4EA4\u901A\u90E8\u7EDF\u8BA1\u62A5\u8868\u4F53\u7CFB"), /* @__PURE__ */ React.createElement("div", { className: "space-y-1" }, dynamicStages.map(({ stage, icon, tables }) => {
+    return /* @__PURE__ */ React.createElement("div", { className: "select-none text-slate-700" }, /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-blue-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F1\u3011\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u4F53\u7CFB"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "space-y-0.5" }, /* @__PURE__ */ React.createElement("div", { className: "group/row relative flex flex-col items-start justify-center px-2.5 py-2 cursor-default transition-all rounded border bg-slate-50/50 border-slate-200 hover:bg-slate-50 hover:border-blue-200" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center w-full" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-800 font-medium truncate" }, "\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F (\u5305\u542B\u67B6\u6784\u56FE\u4E0E\u6D41\u7A0B\u56FE)")), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-500 mt-1 ml-2" }, /* @__PURE__ */ React.createElement("div", null, "- 5.\u67B6\u6784-\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F.pdf"), /* @__PURE__ */ React.createElement("div", null, "- 5.\u6D41\u7A0B-\u6C5B\u671F\u9884\u8B66\u9632\u5FA1\u4E0E\u5E94\u6025\u5904\u7F6E\u573A\u666F.pdf")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1 mt-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 group relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-600 font-bold shrink-0" }, "\u7275\u5934:"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] px-1 py-[1px] text-slate-700 font-medium leading-tight break-words flex items-center" }, "AGENT-\u5B89\u5168\u5E94\u6025-02_\u9632\u6C5B\u6307\u5BFC"))), /* @__PURE__ */ React.createElement("div", { className: "flex w-full pl-1 mt-1 border-t border-slate-100 pt-1 items-start" }, /* @__PURE__ */ React.createElement("span", { className: "text-[8px] text-slate-500 font-medium ml-1 mr-1 mt-[2px] shrink-0" }, "\u6267\u884C:"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full gap-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center leading-none mt-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-slate-600 mr-1 whitespace-nowrap flex items-center" }, "AGENT-\u5B89\u5168\u5E94\u6025-01_\u57FA\u7840\u8BBE\u65BD\u76D1\u6D4B\u9884\u8B66, AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4"))))))), /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-indigo-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F2\u3011\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "space-y-0.5" }, /* @__PURE__ */ React.createElement("div", { className: "group/row relative flex flex-col items-start justify-center px-2.5 py-2 cursor-default transition-all rounded border bg-slate-50/50 border-slate-200 hover:bg-slate-50 hover:border-indigo-200" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center w-full" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-800 font-medium truncate" }, "\u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u8D28\u91CF\u8003\u6838\u4F53\u7CFB")), /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-500 mt-1 ml-2" }, /* @__PURE__ */ React.createElement("div", null, "- \u516C\u8DEF\u957F\u5927\u6865\u6881\u7ED3\u6784\u76D1\u6D4B\u6570\u636E\u8D28\u91CF\u7BA1\u7406\u529E\u6CD5\uFF08\u8BD5\u884C\uFF09.pdf ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1" }, "(\u90E8\u7EA7\u7BA1\u7406\u8981\u6C42)")), /* @__PURE__ */ React.createElement("div", null, "- \u957F\u5927\u6865\u7ED3\u6784\u76D1\u6D4B\u8D28\u91CF\u8003\u6838.xlsx ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1" }, "(\u7701\u7EA7\u8003\u6838\u6307\u6807)"))), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1 mt-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-0.5 group relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-600 font-bold shrink-0" }, "\u7275\u5934:"), /* @__PURE__ */ React.createElement("span", { className: "text-[8px] px-1 py-[1px] text-slate-700 font-medium leading-tight break-words flex items-center" }, "AGENT-\u5DE5\u7A0B\u6280\u672F-01_\u6865\u6881\u7ED3\u6784\u5065\u5EB7\u76D1\u6D4B"))), /* @__PURE__ */ React.createElement("div", { className: "flex w-full pl-1 mt-1 border-t border-slate-100 pt-1 items-start" }, /* @__PURE__ */ React.createElement("span", { className: "text-[8px] text-slate-500 font-medium ml-1 mr-1 mt-[2px] shrink-0" }, "\u6267\u884C:"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full gap-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center leading-none mt-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-indigo-700 flex flex-col gap-1 w-full" }, /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5E74\u62A5\u4E3B\u9AA8\u67B6 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u63D0\u4F9BL21/L29a\u7A7A\u95F4\u5E95\u5EA7)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u5B89\u5168\u5E94\u6025-01_\u57FA\u7840\u8BBE\u65BD\u76D1\u6D4B\u9884\u8B66 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u63D0\u53D6\u9632\u6C5B\u54CD\u5E94\u8BB0\u5F55)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u517B\u62A4\u7BA1\u7406-03_\u65E5\u5E38\u517B\u62A4 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u7A7F\u900F\u6838\u67E5\u5DE1\u68C0\u53F0\u8D26)")), /* @__PURE__ */ React.createElement("span", { className: "flex items-center px-1 py-0.5 text-slate-600" }, "AGENT-\u6536\u8D39\u8FD0\u8425-04_\u667A\u6167\u670D\u52A1\u533A\u7BA1\u7406 ", /* @__PURE__ */ React.createElement("span", { className: "text-slate-400 ml-1.5" }, "(\u6838\u67E5\u8BBE\u5907\u65AD\u7535\u53CA\u514D\u8D23\u7533\u8BC9)"))))))))), /* @__PURE__ */ React.createElement("div", { className: "mb-5 bg-white border border-slate-200 rounded-md p-2.5 shadow-sm relative transition-shadow hover:shadow-md" }, /* @__PURE__ */ React.createElement("div", { className: "absolute top-0 left-0 w-1 h-full bg-emerald-500 rounded-l-md" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 mb-2.5 px-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] font-bold text-slate-700 uppercase tracking-wider" }, "\u3010\u573A\u666F3\u3011\u5E74\u62A5\u6570\u636E\u7EDF\u7B79\u9AA8\u67B6"), /* @__PURE__ */ React.createElement("div", { className: "flex-1 h-px bg-slate-100" })), /* @__PURE__ */ React.createElement("div", { className: "px-1.5 mb-2 text-[9px] text-slate-500" }, "\u6DB5\u76D6 ", totalTables, " \u5957\u4EA4\u901A\u90E8\u7EDF\u8BA1\u62A5\u8868\u4F53\u7CFB"), /* @__PURE__ */ React.createElement("div", { className: "space-y-1" }, dynamicStages.map(({ stage, icon, tables }) => {
       const isOpen = expanded[stage];
       return /* @__PURE__ */ React.createElement("div", { key: stage }, /* @__PURE__ */ React.createElement(
         "button",
@@ -48222,7 +48223,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
             });
             return Object.keys(grouped).map((agent, i) => {
               const isAgentCompiled = grouped[agent].some((sub) => sub.isCompiled);
-              return /* @__PURE__ */ React.createElement("div", { key: i, className: "flex flex-wrap items-center leading-none mt-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-slate-600 mr-1 whitespace-nowrap flex items-center" }, agent.startsWith("AGENT-") ? agent : "AGENT-" + agent, agent === macroAgent && /* @__PURE__ */ React.createElement("span", { className: "text-rose-400 ml-0.5 font-normal" }, "(\u540C\u4E3B\u8D23)"), isAgentCompiled && /* @__PURE__ */ React.createElement("span", { className: "ml-1 text-[7px] text-emerald-500 font-medium bg-emerald-50 border border-emerald-200 px-[2px] py-[0px] rounded-sm" }, "\u5DF2\u53D1\u5E03"), ":"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-x-1 items-center" }, grouped[agent].map((sub, j2) => /* @__PURE__ */ React.createElement("span", { key: j2, className: "text-[8px] text-slate-500 flex items-center" }, sub.name, j2 < grouped[agent].length - 1 && /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-0.5" }, "|")))));
+              return /* @__PURE__ */ React.createElement("div", { key: i, className: "flex flex-col items-start mt-1.5 gap-0.5 w-full" }, /* @__PURE__ */ React.createElement("span", { className: "text-[7.5px] text-slate-600 flex items-center" }, agent.startsWith("AGENT-") ? agent : "AGENT-" + agent, agent === macroAgent && /* @__PURE__ */ React.createElement("span", { className: "text-rose-400 ml-0.5 font-normal" }, "(\u540C\u4E3B\u8D23)"), isAgentCompiled && /* @__PURE__ */ React.createElement("span", { className: "ml-1 text-[7px] text-emerald-500 font-medium bg-emerald-50 border border-emerald-200 px-[2px] py-[0px] rounded-sm" }, "\u5DF2\u53D1\u5E03"), ":"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-x-1 gap-y-0.5 items-center w-full leading-tight text-slate-500 text-[8px]" }, grouped[agent].map((sub, j2) => /* @__PURE__ */ React.createElement("span", { key: j2, className: "flex items-center" }, sub.name, j2 < grouped[agent].length - 1 && /* @__PURE__ */ React.createElement("span", { className: "text-slate-300 mx-1" }, "|")))));
             });
           })())),
           /* @__PURE__ */ React.createElement("div", { className: "absolute left-full top-0 ml-2 z-[200] hidden group-hover/row:flex flex-col w-52 bg-white shadow-xl border border-slate-200 rounded p-3 pointer-events-none" }, /* @__PURE__ */ React.createElement("div", { className: `text-[11px] font-bold text-slate-800 mb-1` }, lcode, " \xB7 ", name), /* @__PURE__ */ React.createElement("div", { className: "text-[10px] text-slate-500 mb-1.5" }, hasData ? loadedYrs.map((yr) => `${yr}\u5E74`).join(" \xB7 ") : "\u6682\u65E0\u6570\u636E"), macroAgent && /* @__PURE__ */ React.createElement("div", { className: "text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded border border-slate-200 w-fit" }, "[\u4E3B\u8D23] ", macroAgent))
@@ -48597,7 +48598,7 @@ ${code}
     const [tempProvider, setTempProvider] = useState2("deepseek");
     const [tempKey, setTempKey] = useState2("");
     const [uploading, setUploading] = useState2(false);
-    const [selectedYears, setSelectedYears] = useState2([2016]);
+    const [selectedYears, setSelectedYears] = useState2([2015, 2025]);
     const [allYears, setAllYears] = useState2([]);
     const [expandedCategory, setExpandedCategory] = useState2(0);
     const fileInputRef = useRef(null);
@@ -48624,14 +48625,26 @@ ${code}
       fetchYearsData();
     }, []);
     const fetchYearsData = async () => {
-      const staticYears = [2016, 2017, 2018, 2019, 2020].sort((a, b2) => b2 - a);
+      let staticYears = [2016, 2017, 2018, 2019, 2020];
+      let loaded = {};
+      if (window.__DB_META_BY_YEAR__) {
+        const metaByYear = window.__DB_META_BY_YEAR__;
+        staticYears = Object.keys(metaByYear).map(Number).sort((a, b2) => b2 - a);
+        staticYears.forEach((yr) => {
+          const count = metaByYear[yr].tableCount || 0;
+          const mockLoaded = {};
+          for (let i = 0; i < count; i++) mockLoaded[`table_${i}`] = true;
+          loaded[yr] = mockLoaded;
+        });
+      } else {
+        staticYears = staticYears.sort((a, b2) => b2 - a);
+        staticYears.forEach((yr) => {
+          loaded[yr] = PRESET_2016_LOADED_STATUS;
+        });
+      }
       setAllYears(staticYears);
-      setSelectedYears([2016]);
+      if (staticYears.length > 0) setSelectedYears([2015, 2025]);
       setHasMultiYearData(true);
-      const loaded = {};
-      staticYears.forEach((yr) => {
-        loaded[yr] = PRESET_2016_LOADED_STATUS;
-      });
       setLoadedTablesByYear(loaded);
     };
     useEffect2(() => {
@@ -49053,7 +49066,7 @@ ${code}
         setSelectedYears((prev) => [.../* @__PURE__ */ new Set([...prev, ...newYearsArr])]);
         if (newYearsArr.length > 0) setHasMultiYearData(true);
         const ms = Math.floor(Math.random() * 30) + 8;
-        const activeYear = newYearsArr[0] || 2016;
+        const activeYear = newYearsArr[0] || 2025;
         const loadedCount = Object.values(updatedLoadedTables[activeYear] || {}).filter(Boolean).length;
         if (window.__DBs__[activeYear]) {
           window.__DB__ = window.__DBs__[activeYear];
@@ -49152,7 +49165,7 @@ ${code}
       setGeneratedArtifacts((prev) => prev.find((a) => a.name === tableName) ? prev : [...prev, { name: tableName, sourceQuery: "\u6570\u636E\u5E95\u5EA7\u4EA4\u4E92\u5F0F\u4E0B\u94BB" }]);
     };
     const execGetAvailableDatabases = () => {
-      const result = (selectedYears || [2016]).map((y2) => ({
+      const result = (selectedYears || [2015, 2025]).map((y2) => ({
         year: y2,
         tables: Object.keys(loadedTablesByYear?.[y2] || {}).filter((t) => loadedTablesByYear[y2][t])
       }));
@@ -49171,7 +49184,7 @@ ${code}
       }
     };
     const execGetTableSchema = async (tableName, year) => {
-      const targetYear = year || (selectedYears?.[0] || 2016);
+      const targetYear = year || (selectedYears?.[0] || 2025);
       const cleanTableName = (tableName || "").split(" ")[0].replace(/[^a-zA-Z0-9_]/g, "");
       if (!cleanTableName) return JSON.stringify({ error: "\u8868\u540D\u4E0D\u80FD\u4E3A\u7A7A" });
       try {
@@ -49231,7 +49244,7 @@ ${code}
       }
     };
     const execExecuteSql = async (sql, year) => {
-      const targetYear = year || (selectedYears?.[0] || 2016);
+      const targetYear = year || (selectedYears?.[0] || 2025);
       try {
         const res = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
@@ -49306,7 +49319,7 @@ ${code}
         setIsGenerating(true);
       }
       if (action.id === "generate_national_highway_breakdown" || action.id === "generate_generic_export") {
-        const targetYear = selectedYears?.[0] || 2016;
+        const targetYear = selectedYears?.[0] || 2025;
         let sql = "";
         let isGeneric = action.id === "generate_generic_export";
         if (isGeneric) {
@@ -49473,7 +49486,8 @@ ${msg.views.view3}
         const wsName = wb.SheetNames[0];
         const ws = wb.Sheets[wsName];
         dataRows = utils.sheet_to_json(ws, { header: 1 });
-        if (queryInput.toUpperCase().includes("G318") || tableHtmlOrContent.includes("G318")) routeCode = "G318";
+        const routeMatch = (queryInput + tableHtmlOrContent).toUpperCase().match(/[GS]\d{3}/);
+        if (routeMatch) routeCode = routeMatch[0];
         else if (queryInput.toUpperCase().includes("G105") || tableHtmlOrContent.includes("G105")) routeCode = "G105";
         let tableCode = targetTableCode;
         if (!tableCode) {
@@ -49560,14 +49574,15 @@ ${msg.views.view3}
       }
     };
     const handleReq01Upload = (uploadMsgId, fileName) => {
-      const targetYear = selectedYears?.[0] || 2016;
+      const targetYear = selectedYears?.[0] || 2025;
+      const activeYearsLabel = selectedYears && selectedYears.length > 0 ? selectedYears.join("\u3001") + "\u5E74" : targetYear + "\u5E74";
       setMessages((prev) => prev.map(
         (m2) => m2.id === uploadMsgId ? { ...m2, isReq01Upload: false, content: m2.content + `
 
 *(\u{1F4CE} \u5DF2\u6210\u529F\u63A5\u6536\u6587\u4EF6\uFF1A${fileName || "\u6869\u53F7\u6570\u636E\u6587\u4EF6"})*` } : m2
       ));
       const displayText = `\u5DF2\u4E0A\u4F20\uFF1A${fileName || "\u6869\u53F7\u6570\u636E\u6587\u4EF6"}
-\u6307\u4EE4\uFF1A\u8BF7\u6C42\u8DE8\u57DF\u6570\u636E\u6838\u67E5\u4E0E\u7A7A\u95F4\u914D\u51C6`;
+\u6307\u4EE4\uFF1A\u8BF7\u6C42\u8DE8\u57DF\u6570\u636E\u6838\u67E5\u4E0E\u6869\u53F7\u4F53\u7CFB\u5339\u914D`;
       const llmContext = `\u3010\u6267\u884C\u65B9\u6848\u3011\u7528\u6237\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6\uFF08${fileName || "\u6869\u53F7\u6570\u636E\u6587\u4EF6"}\uFF09\u3002\u8BF7\u6309\u4EE5\u4E0B\u6B65\u9AA4\u4E25\u683C\u6267\u884C\uFF0C\u4EE5\u6A21\u62DF\u653F\u4F01\u591A\u667A\u80FD\u4F53\u534F\u540C\u6D41\u7A0B\uFF1A
 1. [\u653F\u52A1\u4FA7\u611F\u77E5] \u7ACB\u5373\u8C03\u7528 parse_uploaded_file \u89E3\u6790\u6587\u4EF6\uFF0C\u83B7\u53D6\u504F\u79FB\u79CD\u5B50\u6570\u636E\uFF08\u5305\u542B\u6570\u636E\u5E74\u4EFD\uFF09\u3002
 2. [\u4F01\u4E1A\u4FA7\u534F\u540C] \u4F9D\u6B21\u8C03\u7528\u4EE5\u4E0B\u4E09\u4E2A\u4F01\u4E1A\u4FA7\u5DE5\u5177\uFF1A
@@ -49577,16 +49592,18 @@ ${msg.views.view3}
 3. [\u653F\u52A1\u4FA7\u95ED\u73AF] \u6839\u636E\u4FEE\u6B63\u540E\u7684\u5B57\u5178\uFF0C\u8C03\u7528 execute_sql \u67E5\u8BE2\u5DF2\u52A0\u8F7D\u5E74\u4EFD\uFF08\u59822016\uFF09\u7684 L29a \u8868\uFF0C\u843D\u5165\u5E95\u5E93\u3002
 4. [\u751F\u6210\u62A5\u544A] \u7EFC\u5408\u4EE5\u4E0A\u5DE5\u5177\u83B7\u53D6\u7684\u6570\u636E\uFF0C\u751F\u6210\u6700\u7EC8\u7684\u62A5\u544A\u3002
 
+\u3010\u53CD\u5E7B\u89C9\u94C1\u5F8B - \u6700\u9AD8\u4F18\u5148\u7EA7\u3011\u62A5\u544A\u4E2D\u51FA\u73B0\u7684\u6BCF\u4E00\u4E2A\u5177\u4F53\u6570\u503C\uFF08\u6869\u53F7\u8303\u56F4\u3001MQI\u5747\u503C\u3001\u91CC\u7A0B\u6570\u3001\u8DEF\u6BB5\u6570\u7B49\uFF09\uFF0C\u5FC5\u987B\u4E14\u53EA\u80FD\u6765\u81EA\u672C\u6B21\u5BF9\u8BDD\u4E2D\u5DE5\u5177\u8C03\u7528\u7684\u5B9E\u9645\u8FD4\u56DE\u6570\u636E\uFF1A\u2460 execute_sql \u67E5\u8BE2\u5E95\u5E93\u7684\u771F\u5B9E\u8FD4\u56DE\uFF1B\u2461 search_internet \u4E92\u8054\u7F51\u68C0\u7D22\u7684\u771F\u5B9E\u8FD4\u56DE\u3002\u4E25\u7981\u51ED\u7A7A\u63A8\u65AD\u3001\u4F30\u7B97\u6216\u7F16\u9020\u4EFB\u4F55\u6570\u503C\u3002\u5982\u679C\u67D0\u9879\u6570\u636E\u6CA1\u6709\u901A\u8FC7\u5DE5\u5177\u5B9E\u9645\u67E5\u5230\uFF0C\u5FC5\u987B\u5199"\uFF08\u672A\u67E5\u5230\uFF0C\u5F85\u6838\u5B9E\uFF09"\uFF0C\u7EDD\u4E0D\u5141\u8BB8\u586B\u5199\u4EFB\u4F55\u81EA\u5DF1\u63A8\u6D4B\u7684\u6570\u5B57\u3002
+
 \u3010\u683C\u5F0F\u8981\u6C42\u3011\u6700\u7EC8\u62A5\u544A\u5FC5\u987B\u4E25\u683C\u91C7\u7528\u4EE5\u4E0B\u7ED3\u6784\uFF1A
   (\u5728\u6700\u5F00\u5934\uFF0C\u4F60\u5FC5\u987B\u4E25\u683C\u9075\u7167\u4E3B\u7CFB\u7EDF\u63D0\u793A\u8BCD\u7684\u8981\u6C42\uFF0C\u4F18\u5148\u8F93\u51FA\u5305\u542B\u3010\u{1F916} \u667A\u80FD\u4F53\u534F\u540C\u65E5\u5FD7\u3011\u7684 Markdown \u8868\u683C\uFF0C\u603B\u7ED3\u6240\u6709\u7684\u653F\u4F01\u8DE8\u57DF\u4EA4\u4E92\u548C\u5DE5\u5177\u8C03\u7528)
-  \u9996\u884C\u5F3A\u5236\u8F93\u51FA\u56FA\u5B9A\u6587\u5B57\u4F5C\u4E3A\u6536\u5C3E\u6807\u8BC6\uFF08\u5B8C\u5168\u4E00\u5B57\u4E0D\u5DEE\uFF09\uFF1A\u201C**\u3010\u653F\u5E9C\u4FA7\u5E74\u62A5\u603B\u7BA1\u667A\u80FD\u4F53\u3011\u63A5\u6536\u81EA [\u4F01\u4E1A\u4FA7\u5E95\u5C42\u5FAE\u670D\u52A1] \u7684\u7A7A\u95F4\u4FEE\u6B63\u5B57\u5178\u89E3\u6790\u5B8C\u6BD5\u3002\u5F00\u59CB\u6267\u884C\u5E95\u5C42\u6570\u636E\u91CD\u7EC4\u3002\u6700\u7EC8\u5206\u6790\u62A5\u544A\u5982\u4E0B\uFF1A**\u201D
-  (\u5E74\u4EFD\u6838\u67E5\u673A\u5236)\uFF1A\u6838\u5BF9\u6587\u4EF6\u6807\u79F0\u7684\u201C\u6570\u636E\u5E74\u4EFD\u201D\u4E0E\u5F53\u524D\u7CFB\u7EDF\u8BBE\u5B9A\u7684\u5E74\u62A5\u5E74\u4EFD\uFF08${targetYear}\u5E74\uFF09\u3002\u5982\u679C\u53D1\u73B0\u5E74\u4EFD\u4E0D\u5339\u914D\uFF0C\u5FC5\u987B\u5728\u62A5\u544A\u5F00\u5934\u7D27\u8DDF\u4E00\u53E5\u6781\u5176\u9192\u76EE\u7684\u7EA2\u8272\u8B66\u544A\u6846\u660E\u786E\u6807\u6CE8\u51FA\u6765\uFF08\u683C\u5F0F\u793A\u4F8B\uFF1A\u{1F6D1} **\u3010\u7CFB\u7EDF\u62E6\u622A\uFF1A\u8DE8\u5E74\u4EFD\u6570\u636E\u9632\u51FB\u7A7F\u4FDD\u62A4\u3011** \u7ECF\u89E3\u6790\uFF0C\u4E0A\u4F20\u6587\u4EF6\u6807\u6CE8\u7684\u91C7\u96C6\u5E74\u4EFD\u4E3A ${(/* @__PURE__ */ new Date()).getFullYear()}\u5E74\uFF0C\u4F46\u5F53\u524D\u653F\u5E9C\u4FA7\u7CFB\u7EDF\u6FC0\u6D3B\u7684\u5E74\u62A5\u57FA\u51C6\u5E74\u4EFD\u4E3A ${targetYear}\u5E74\u3002\u7CFB\u7EDF\u4E25\u7981\u8DE8\u5E74\u4EFD\u6570\u636E\u76F4\u63A5\u6DF7\u5165\u4E3B\u5E93\u3002\u5904\u7F6E\u5EFA\u8BAE\uFF1A\u82E5\u662F\u57FA\u5C42\u586B\u62A5\u9519\u8BEF\uFF0C\u8BF7\u6253\u56DE\u91CD\u4F20\uFF1B\u82E5\u662F\u4F7F\u7528\u6700\u65B0\u6570\u636E\u6838\u67E5\u5386\u53F2\uFF0C\u8BF7\u5148\u5C06\u7CFB\u7EDF\u6570\u636E\u5E93\u5E74\u4EFD\u5207\u6362\u81F3\u5F53\u524D\u5E74\u4EFD\u540E\u518D\u6267\u884C\u6821\u9A8C\uFF09\u3002
+  \u9996\u884C\u5F3A\u5236\u8F93\u51FA\u56FA\u5B9A\u6587\u5B57\u4F5C\u4E3A\u6536\u5C3E\u6807\u8BC6\uFF08\u5B8C\u5168\u4E00\u5B57\u4E0D\u5DEE\uFF09\uFF1A\u201C**\u3010\u653F\u5E9C\u4FA7\u5E74\u62A5\u603B\u7BA1\u667A\u80FD\u4F53\u3011\u63A5\u6536\u81EA [\u4F01\u4E1A\u4FA7\u5E95\u5C42\u5FAE\u670D\u52A1] \u7684\u6869\u53F7\u4FEE\u6B63\u5B57\u5178\u89E3\u6790\u5B8C\u6BD5\u3002\u5F00\u59CB\u6267\u884C\u5E95\u5C42\u6570\u636E\u91CD\u7EC4\u3002\u6700\u7EC8\u5206\u6790\u62A5\u544A\u5982\u4E0B\uFF1A**\u201D
+  (\u5E74\u4EFD\u6838\u67E5\u673A\u5236)\uFF1A\u6838\u5BF9\u6587\u4EF6\u6807\u79F0\u7684"\u6570\u636E\u5E74\u4EFD"\u4E0E\u5F53\u524D\u7CFB\u7EDF\u5DF2\u6302\u8F7D\u7684\u5E74\u62A5\u5E74\u4EFD\uFF08${activeYearsLabel}\uFF09\u3002\u5982\u679C\u6587\u4EF6\u5E74\u4EFD\u4E0D\u5728\u5DF2\u6302\u8F7D\u8303\u56F4\u5185\uFF0C\u5FC5\u987B\u5728\u62A5\u544A\u5F00\u5934\u7D27\u8DDF\u4E00\u53E5\u6781\u5176\u9192\u76EE\u7684\u7EA2\u8272\u8B66\u544A\u6846\uFF08\u683C\u5F0F\u793A\u4F8B\uFF1A\u{1F6D1} **\u3010\u7CFB\u7EDF\u62E6\u622A\uFF1A\u8DE8\u5E74\u4EFD\u6570\u636E\u9632\u51FB\u7A7F\u4FDD\u62A4\u3011** \u7ECF\u89E3\u6790\uFF0C\u4E0A\u4F20\u6587\u4EF6\u6807\u6CE8\u7684\u91C7\u96C6\u5E74\u4EFD\u4E3A ${(/* @__PURE__ */ new Date()).getFullYear()}\u5E74\uFF0C\u4E0D\u5728\u5F53\u524D\u5DF2\u6302\u8F7D\u7684\u5E74\u62A5\u5E74\u4EFD\uFF08${activeYearsLabel}\uFF09\u8303\u56F4\u5185\u3002\u5904\u7F6E\u5EFA\u8BAE\uFF1A\u8BF7\u6838\u5B9E\u6587\u4EF6\u6570\u636E\u5E74\u4EFD\uFF0C\u82E5\u4E3A\u57FA\u5C42\u586B\u62A5\u9519\u8BEF\u8BF7\u6253\u56DE\u91CD\u4F20\uFF0C\u5426\u5219\u8BF7\u5148\u6302\u8F7D\u8BE5\u5E74\u4EFD\u6570\u636E\u5E93\u540E\u518D\u6267\u884C\u6838\u9A8C\uFF09\u3002
   \u5C3E\u90E8\u5FC5\u987B\u5F3A\u5236\u8F93\u51FA\u4EBA\u5DE5\u6838\u9A8C\u63D0\u9192\uFF1A\u201C**\u26A0\uFE0F \u6570\u636E\u5B89\u5168\u63D0\u793A**\uFF1A\u5F53\u524D\u8DE8\u57DF\u534F\u540C\u7ED3\u679C\u5DF2\u7F6E\u4E8E\u3010\u5B89\u5168\u9694\u79BB\u6682\u5B58\u533A\u3011\u3002\u8BF7\u517B\u62A4\u5904\u4E13\u5458\u7ED3\u5408\u53F3\u4FA7\u300AL29a\u660E\u7EC6\u6570\u636E\u5E95\u76D8\u300B\u8FDB\u884C\u5FAE\u89C2\u62BD\u9A8C\u3002\u786E\u8BA4\u65E0\u8BEF\u540E\uFF0C\u70B9\u51FB\u786E\u8BA4\u5373\u53EF\u6B63\u5F0F\u5408\u5165\u4E1A\u52A1\u4E3B\u5E93\u3002\u201D
-  \u2460 \u6DF1\u5EA6\u5206\u6790\u6570\u636E\u62A5\u544A\uFF08\u6839\u636E\u771F\u5B9E\u83B7\u53D6\u7684\u6570\u636E\uFF0C\u8BE6\u7EC6\u5256\u6790\u4E0A\u4F20\u6587\u4EF6\u4E2D\u53D1\u73B0\u7684\u5177\u4F53\u8DEF\u6BB5\u504F\u79FB\u3001MQI\u9519\u4F4D\u60C5\u51B5\u3002\uFF09
-  \u2461 \u6E32\u67D3\u3010\u5BA2\u6237\u539F\u8868\u53CA\u5E95\u5E93\u6838\u67E5\u5B9E\u8BC1\u8868\u3011\u4F5C\u4E3A\u94C1\u8BC1\uFF08\u5C06 parse_uploaded_file \u63D0\u53D6\u5230\u7684 data_preview \u6240\u6709\u7684\u660E\u7EC6\u6570\u636E\u5B8C\u6574\u904D\u5386\u8F93\u51FA\uFF0C\u5E76\u5728\u8FD9\u5F20\u8868\u683C\u7684\u6700\u53F3\u4FA7\u8FFD\u52A0\u4E24\u5217\u3010\u5E74\u62A5\u6807\u51C6\u6838\u67E5\u8DEF\u7EBF\u3011\u4E0E\u3010\u5B9E\u6D4B\u7A7A\u95F4\u504F\u79FB\u91CF\u3011\uFF0C\u8BA9\u5BA2\u6237\u6E05\u6670\u770B\u5230\u6BCF\u4E00\u884C\u6570\u636E\u7684\u539F\u586B\u62A5\u8DEF\u7EBF(\u5982G241)\u4E0E\u771F\u5B9E\u7269\u7406\u7A7A\u95F4\u6240\u5C5E\u8DEF\u7EBF(\u5982G207)\u7684\u76F4\u63A5\u5BF9\u6BD4\uFF0C\u4EE5\u53CA\u504F\u79FB\u91CF\uFF0C\u8BA9\u8FD9\u79CD\u8DEF\u7EBF\u4EA4\u53C9\u5171\u7528\u5ACC\u7591\u4E0E\u7A7A\u95F4\u9519\u4F4D\u4E00\u76EE\u4E86\u7136\u3002\uFF09
+  \u2460 \u6DF1\u5EA6\u5206\u6790\u6570\u636E\u62A5\u544A\uFF08\u6839\u636E\u771F\u5B9E\u83B7\u53D6\u7684\u6570\u636E\uFF0C\u8BE6\u7EC6\u5256\u6790\u4E0A\u4F20\u6587\u4EF6\u4E2D\u53D1\u73B0\u7684\u5177\u4F53\u8DEF\u6BB5\u504F\u79FB\u3001\u6869\u53F7\u4E0EMQI\u9519\u4F4D\u60C5\u51B5\u3002\uFF09
+  \u2461 \u6E32\u67D3\u3010\u5BA2\u6237\u539F\u8868\u53CA\u5E95\u5E93\u6838\u67E5\u5B9E\u8BC1\u8868\u3011\u4F5C\u4E3A\u94C1\u8BC1\uFF08\u5C06 parse_uploaded_file \u63D0\u53D6\u5230\u7684 data_preview \u6240\u6709\u7684\u660E\u7EC6\u6570\u636E\u5B8C\u6574\u904D\u5386\u8F93\u51FA\uFF0C\u5E76\u5728\u8FD9\u5F20\u8868\u683C\u7684\u6700\u53F3\u4FA7\u8FFD\u52A0\u4E00\u5217\u3010\u5E74\u62A5\u6807\u51C6\u5339\u914D\u8DEF\u7EBF\u3011\uFF0C\u7136\u540E\u6839\u636E\u5F53\u524D\u7CFB\u7EDF\u5DF2\u6302\u8F7D\u7684\u6BCF\u4E00\u4E2A\u5E74\u4EFD\uFF08${activeYearsLabel}\uFF09**\u5206\u5217\u5C55\u793A**\u5BF9\u5E94\u7684\u3010XXXX\u5E74\u62A5\u5339\u914D\u6869\u53F7\u3011\u3002\u8BA9\u5BA2\u6237\u6E05\u6670\u770B\u5230\u6BCF\u4E00\u884C\u6570\u636E\u7684\u539F\u586B\u62A5\u8DEF\u7EBF\u4E0E\u771F\u5B9E\u5E95\u5E93\u57FA\u51C6\u8DEF\u7EBF\u7684\u76F4\u63A5\u5BF9\u6BD4\uFF0C\u4EE5\u53CA\u539F\u586B\u62A5\u6869\u53F7\u5728**\u4E0D\u540C\u5386\u53F2\u5E74\u4EFD**\u5E95\u5E93\u4E2D\u7684\u6620\u5C04\u5339\u914D\u6F14\u53D8\uFF0C\u8BA9\u8DEF\u7EBF\u4EA4\u53C9\u5171\u7528\u4E0E\u591A\u5E74\u5EA6\u6869\u53F7\u7684\u5BF9\u5E94\u5173\u7CFB\u4E00\u76EE\u4E86\u7136\u3002\uFF09
   \u2462 \u5F3A\u5236\u6E32\u67D3\u3010\u7CFB\u7EDF\u6838\u67E5\u6EAF\u6E90\u4E0E\u5224\u5B9A\u8BF4\u660E\u3011\u72EC\u7ACB\u6A21\u5757\uFF0C\u5FC5\u987B\u5305\u542B\u4EE5\u4E0B\u4E09\u70B9\uFF1A
-     1. **\u4E92\u8054\u7F51\u68C0\u7D22\u5B9E\u8BC1**\uFF1A\u58F0\u660E\u7CFB\u7EDF\u901A\u8FC7\u5E95\u5C42\u5916\u7F51\u68C0\u7D22\u8BC1\u5B9E\uFF0CG207 \u4E0E G241 \u5728\u7269\u7406\u7A7A\u95F4\u4E0A\u786E\u5B9E\u5B58\u5728\u5171\u7EBF\u73B0\u8C61\uFF08\u5FC5\u987B\u4E00\u5B57\u4E0D\u5DEE\u5730\u8F93\u51FA\u6B64\u94FE\u63A5\uFF1A[\u90B5\u9633\u5E02\u4EBA\u6C11\u653F\u5E9C-G207\u7EBF\u548CG241\u7EBF\u5927\u4E2D\u4FEE\u5DE5\u7A0B\u4EA4\u901A\u7BA1\u5236\u516C\u544A](https://www.shaoyang.gov.cn/)\uFF09\u3002\u6B64\u7C7B\u56FD\u5BB6\u5927\u52A8\u8109\u7684\u5171\u7EBF\u7279\u5F81\u5728\u6E56\u5317\u7B49\u4E2D\u90E8\u7701\u4EFD\u7684\u5B9E\u9645\u8DEF\u7F51\u4E2D\u666E\u904D\u5B58\u5728\uFF0C\u5C5E\u5178\u578B\u9AD8\u9891\u4E1A\u52A1\u573A\u666F\u3002
-     2. **\u672C\u5730\u77E5\u8BC6\u5E93\u63A8\u7406**\uFF1A\u660E\u786E\u6307\u51FA\u672C\u6B21\u7EA0\u504F\u4F9D\u636E\u4E3A\u7CFB\u7EDF\u5185\u5D4C\u7684\u3010\u56FD\u5BB6\u516C\u8DEF\u7F51\u4E3B\u88AB\u5171\u7EBF\u6620\u5C04\u57FA\u51C6\u89C4\u5219\u3011\u3002\u7531\u4E8E\u5E74\u62A5\u5E95\u5E93\u4EC5\u4FDD\u7559\u4E3B\u7EBF\uFF08G207\uFF09\uFF0C\u57FA\u5C42\u56E0\u4E1A\u52A1\u60EF\u6027\u8BEF\u62A5\u88AB\u5171\u7EBF\uFF08G241\uFF09\u5BFC\u81F4\u5F02\u5E38\u3002\uFF08\u7EDD\u5BF9\u7981\u6B62\u5728\u62A5\u544A\u4E2D\u63D0\u53CA\u201CGPS\u6F02\u79FB\u201D\u3001\u201C2.5km\u4FEE\u6B63\u201D\u7B49\u9519\u8BEF\u6982\u5FF5\uFF0C\u5FC5\u987B\u7EDF\u4E00\u53E3\u5F84\u4E3A\u201C\u4E3B\u88AB\u5171\u7EBF\u7F16\u7801\u5171\u7528\u5BFC\u81F4\u7684\u7A7A\u95F4\u9519\u4F4D\u201D\uFF09
+     1. **\u4E92\u8054\u7F51\u68C0\u7D22\u5B9E\u8BC1**\uFF1A\u58F0\u660E\u7CFB\u7EDF\u901A\u8FC7\u5E95\u5C42\u5916\u7F51\u68C0\u7D22\u8BC1\u5B9E\uFF0C\u60A8\u4E0A\u4F20\u7684\u8DEF\u7EBF\u4E0E\u5E95\u5E93\u6807\u51C6\u8DEF\u7EBF\u5728\u8DEF\u7F51\u5E72\u7EBF\u4E0A\u786E\u5B9E\u5B58\u5728\u5171\u7EBF\u73B0\u8C61\uFF08\u5FC5\u987B\u63D0\u4F9B\u76F8\u5173\u653F\u5E9C\u516C\u544A\u5B9E\u8BC1\u94FE\u63A5\uFF0C\u4F8B\u5982\uFF1A[\u67D0\u67D0\u5E02\u4EBA\u6C11\u653F\u5E9C-\u56FD\u7701\u5E72\u7EBF\u5927\u4E2D\u4FEE\u5DE5\u7A0B\u4EA4\u901A\u7BA1\u5236\u516C\u544A](https://www.gov.cn/)\uFF09\u3002\u6B64\u7C7B\u56FD\u5BB6\u5927\u52A8\u8109\u7684\u5171\u7EBF\u7279\u5F81\u5728\u6E56\u5317\u7B49\u4E2D\u90E8\u7701\u4EFD\u7684\u5B9E\u9645\u8DEF\u7F51\u4E2D\u666E\u904D\u5B58\u5728\uFF0C\u5C5E\u5178\u578B\u9AD8\u9891\u4E1A\u52A1\u573A\u666F\u3002
+     2. **\u672C\u5730\u77E5\u8BC6\u5E93\u63A8\u7406**\uFF1A\u660E\u786E\u6307\u51FA\u672C\u6B21\u7EA0\u504F\u4F9D\u636E\u4E3A\u7CFB\u7EDF\u5185\u5D4C\u7684\u3010\u56FD\u5BB6\u516C\u8DEF\u7F51\u4E3B\u88AB\u5171\u7EBF\u6620\u5C04\u57FA\u51C6\u89C4\u5219\u3011\u3002\u7531\u4E8E\u5E74\u62A5\u5E95\u5E93\u4EC5\u4FDD\u7559\u4E3B\u5E72\u7EBF\uFF0C\u57FA\u5C42\u5F80\u5F80\u56E0\u4E1A\u52A1\u60EF\u6027\u8BEF\u62A5\u88AB\u5171\u7EBF\u5206\u652F\uFF0C\u5BFC\u81F4\u5339\u914D\u5F02\u5E38\u3002\uFF08\u7EDD\u5BF9\u7981\u6B62\u5728\u62A5\u544A\u4E2D\u63D0\u53CA\u201CGPS\u6F02\u79FB\u201D\u3001\u201C2.5km\u4FEE\u6B63\u201D\u7B49\u9519\u8BEF\u6982\u5FF5\uFF0C\u5FC5\u987B\u7EDF\u4E00\u53E3\u5F84\u4E3A\u201C\u4E3B\u88AB\u5171\u7EBF\u7F16\u7801\u5171\u7528\u5BFC\u81F4\u7684\u6869\u53F7\u5339\u914D\u9519\u4F4D\u201D\uFF09
      3. **\u7CFB\u7EDF\u8BDA\u5B9E\u5BA3\u544A\u4E0E\u5EFA\u8BAE**\uFF1A\u660E\u786E\u544A\u77E5\u7CFB\u7EDF\u5F53\u524D\u63A8\u65AD\u7F3A\u4E4F\u7701\u7EA7\u6CD5\u5B9A\u6587\u4EF6\u76F4\u63A5\u652F\u6491\uFF0C\u4E3A\u6B64\u5F3A\u70C8\u5EFA\u8BAE\u653F\u4F01\u53CC\u65B9\u8054\u5408\u5F00\u5C55\u201C\u672C\u5730\u5316\u8DEF\u7F51\u89C4\u5219\u77E5\u8BC6\u5E93\uFF08\u5982\u884C\u4E1A\u79C1\u6709\u5927\u6A21\u578B\u5411\u91CF\u5E93\u7B49\uFF09\u201D\u7684\u6301\u7EED\u5171\u5EFA\uFF0C\u5C06\u5386\u5E74\u5171\u7EBF\u8BCD\u5178\u7ED3\u6784\u5316\u5165\u5E93\uFF0C\u5B9E\u73B0\u6BCF\u4E00\u6B21\u7EA0\u504F 100% \u6CD5\u5B9A\u6EAF\u6E90\u3002
   \u2463 \u6570\u636E\u8D44\u4EA7\u5143\u6570\u636E\u8868\uFF08\u6309\u7167 AGENTS.md \u89C4\u8303\uFF0C\u5305\u542B\u66F4\u65B0\u9891\u7387\u3001\u5171\u4EAB\u7C7B\u578B\u3001\u654F\u611F\u7C7B\u578B\uFF0C\u5E76\u53CC\u91CD\u6EAF\u6E90\uFF0C\u6807\u660E\u6765\u81EA\u5BA2\u6237\u539F\u59CB\u5E95\u8868\u300A2026.5.22\uFF08\u7CBE\u7B80\uFF09\u6E56\u5317\u516C\u8DEF\u6570\u636E\u5143_\u8865\u5168\u5B8C\u6210.xlsx\u300B\uFF09`;
       handleDeepSeekQuery(llmContext, displayText);
@@ -49601,7 +49618,7 @@ ${msg.views.view3}
       const hasLoadedDb = selectedYears && selectedYears.some((yr) => loadedTablesByYear[yr] && Object.keys(loadedTablesByYear[yr]).length > 0);
       if (queryText.includes("\u65E5\u5E38\u5DE1\u68C0\u56DE\u4F20\u7684\u8DEF\u51B5\u68C0\u6D4B\u6570\u636E\u5728\u4E0E\u5E74\u62A5\u6807\u51C6\u6869\u53F7\u5BF9\u63A5\u65F6")) {
         const msgId2 = Date.now();
-        const response = `\u9488\u5BF9\u65E5\u5E38\u68C0\u6D4B\u4E0E\u5E74\u62A5\u6869\u53F7\u65E0\u6CD5\u5BF9\u9F50\u7684\u8DE8\u57DF\u7A7A\u95F4\u5272\u88C2\u95EE\u9898\uFF0C\u7EDF\u7B79\u4E2D\u67A2\u5DF2\u62E6\u622A\u5F02\u5E38\u3002
+        const response = `\u9488\u5BF9\u65E5\u5E38\u68C0\u6D4B\u4E0E\u5E74\u62A5\u6869\u53F7\u65E0\u6CD5\u5BF9\u9F50\u7684\u8DE8\u57DF\u6869\u53F7\u4F53\u7CFB\u5272\u88C2\u95EE\u9898\uFF0C\u7EDF\u7B79\u4E2D\u67A2\u5DF2\u62E6\u622A\u5F02\u5E38\u3002
 
 \u4E3A\u4E86\u5411\u60A8\u6F14\u793A**\u653F\u4F01\u8DE8\u57DF\u591A\u667A\u80FD\u4F53\u534F\u540C\u7EA0\u504F**\u7684\u5168\u8FC7\u7A0B\uFF0C\u60A8\u53EF\u4EE5\u76F4\u63A5\u70B9\u51FB\u4E0B\u65B9\u6A21\u62DF\u6587\u4EF6\u8FDB\u884C\u201C\u4E00\u952E\u4E0A\u4F20\u201D\u6D4B\u8BD5\uFF1A`;
         setMessages((prev) => [
@@ -49744,12 +49761,11 @@ ${knowledgeBase}
 
 \u3010\u5DE5\u4F5C\u65B9\u5F0F\u3011
 1. \u5148\u8C03\u7528 get_available_databases \u4E86\u89E3\u52A0\u8F7D\u4E86\u54EA\u4E9B\u5E74\u4EFD\u7684\u6570\u636E\u3002
-2. \u5982\u679C\u7CFB\u7EDF\u52A0\u8F7D\u4E86\u591A\u4E2A\u5E74\u4EFD\uFF0C\u4E14\u7528\u6237\u95EE\u9898\u4E2D\u672A\u6307\u5B9A\u7279\u5B9A\u5E74\u4EFD\uFF08\u5982\u76F4\u63A5\u95EE\u201C107\u56FD\u9053\u7684\u91CC\u7A0B\u201D\uFF09\uFF0C\u4F60**\u5FC5\u987B\u5206\u522B\u591A\u6B21\u8C03\u7528 execute_sql**\uFF0C\u5206\u522B\u4F20\u5165\u4E0D\u540C\u5E74\u4EFD\u7684 year \u53C2\u6570\uFF0C\u67E5\u8BE2\u51FA\u6240\u6709\u52A0\u8F7D\u5E74\u4EFD\u7684\u6570\u636E\u3002
-3. \u518D\u8C03\u7528 get_table_schema \u4E86\u89E3\u76F8\u5173\u8868\u7684\u7ED3\u6784\uFF0C\u518D\u5199SQL\u3002
-4. \u8C03\u7528 execute_sql \u6267\u884C\u67E5\u8BE2\uFF0C\u67E5\u770B\u771F\u5B9E\u7ED3\u679C\u3002
-5. \u5982\u679C\u7ED3\u679C\u4E3A\u7A7A\u6216\u5F02\u5E38\uFF0C\u8C03\u6574SQL\u91CD\u65B0\u67E5\u8BE2\uFF08\u6700\u591A3\u6B21\uFF09\u3002
-6. \u6839\u636E\u771F\u5B9E\u6570\u636E\u5F97\u51FA\u7ED3\u8BBA\uFF0C\u5E76\u8FDB\u884C\u8DE8\u5E74\u5BF9\u6BD4\u5206\u6790\uFF0C\u5FC5\u987B\u6807\u6CE8\u6570\u636E\u5E74\u4EFD\u3002
-7. **\u8DE8\u5E93\u67E5\u8BE2\u6307\u4EE4**\uFF1A\u5728\u9047\u5230\u8DE8\u57DF\u95EE\u9898\u65F6\uFF0C\u5FC5\u987B\u5148\u67E5 ER \u6620\u5C04\u8868\u4E86\u89E3\u5916\u952E\u5173\u8054\u5173\u7CFB\uFF0C\u5E76\u4E25\u683C\u9075\u5B88\u4EE5\u3010\u516C\u8DEF\u7535\u5B50\u5730\u56FE\u3011\u6869\u53F7\u4E3A\u57FA\u51C6\u8FDB\u884C\u591A\u8868 JOIN \u64CD\u4F5C\u3002
+2. \u8C03\u7528 get_table_schema \u4E86\u89E3\u76F8\u5173\u8868\u7684\u7ED3\u6784\uFF0C\u518D\u5199SQL\u3002
+3. \u8C03\u7528 execute_sql \u6267\u884C\u67E5\u8BE2\uFF0C\u67E5\u770B\u771F\u5B9E\u7ED3\u679C\u3002**\u3010\u5173\u952E\u673A\u5236\u3011**\uFF1A\u8C03\u7528 execute_sql \u65F6\u82E5**\u4E0D\u586B\u5199 year \u53C2\u6570**\uFF0C\u7CFB\u7EDF\u4F1A\u81EA\u52A8\u5BF9\u7528\u6237\u5DF2\u9009\u7684\u3010\u6240\u6709\u5E74\u4EFD\u3011\u540C\u65F6\u6267\u884C\u8BE5 SQL\uFF0C\u5E76\u5C06\u7ED3\u679C\u5408\u5E76\u8FD4\u56DE\uFF08\u5408\u5E76\u7ED3\u679C\u4E2D\u5305\u542B\u201C\u6570\u636E\u5E74\u4EFD\u201D\u5217\uFF09\u3002\u56E0\u6B64\uFF0C\u5F53\u4F60\u60F3\u67E5\u8BE2\u6240\u6709\u5E74\u4EFD\u6570\u636E\u65F6\uFF0C**\u76F4\u63A5\u7701\u7565 year \u53C2\u6570\u5373\u53EF**\uFF1B\u53EA\u6709\u5F53\u660E\u786E\u53EA\u9700\u8981\u67D0\u4E00\u7279\u5B9A\u5E74\u4EFD\u65F6\uFF0C\u624D\u4F20\u5165\u5177\u4F53 year \u503C\u3002
+4. \u5982\u679C\u7ED3\u679C\u4E3A\u7A7A\u6216\u5F02\u5E38\uFF0C\u8C03\u6574SQL\u91CD\u65B0\u67E5\u8BE2\uFF08\u6700\u591A3\u6B21\uFF09\u3002
+5. \u6839\u636E\u771F\u5B9E\u6570\u636E\u5F97\u51FA\u7ED3\u8BBA\uFF0C\u8FDB\u884C\u8DE8\u5E74\u5BF9\u6BD4\u5206\u6790\uFF0C**\u5FC5\u987B\u5728\u56DE\u7B54\u4E2D\u6E05\u6670\u6807\u6CE8\u6BCF\u4E2A\u6570\u503C\u6240\u5C5E\u7684\u6570\u636E\u5E74\u4EFD**\u3002
+6. **\u8DE8\u5E93\u67E5\u8BE2\u6307\u4EE4**\uFF1A\u5728\u9047\u5230\u8DE8\u57DF\u95EE\u9898\u65F6\uFF0C\u5FC5\u987B\u5148\u67E5 ER \u6620\u5C04\u8868\u4E86\u89E3\u5916\u952E\u5173\u8054\u5173\u7CFB\uFF0C\u5E76\u4E25\u683C\u9075\u5B88\u4EE5\u3010\u516C\u8DEF\u7535\u5B50\u5730\u56FE\u3011\u6869\u53F7\u4E3A\u57FA\u51C6\u8FDB\u884C\u591A\u8868 JOIN \u64CD\u4F5C\u3002
 8. **\u3010\u6838\u5FC3\u9650\u5236\uFF1A\u6570\u636E\u9632\u963B\u65AD\u3011**\uFF1A\u4E3A\u4E86\u4FDD\u62A4\u7CFB\u7EDF\u6027\u80FD\uFF0C\`execute_sql\` \u5DE5\u5177\u6700\u591A\u53EA\u4F1A\u5411\u4F60\u8FD4\u56DE 30 \u884C\u6570\u636E\uFF08\u8D85\u51FA\u7684\u90E8\u5206\u4F1A\u88AB\u5F3A\u884C\u622A\u65AD\uFF0C\u4F46\u4F60\u4F1A\u770B\u5230 \`row_count\`\uFF09\u3002\u56E0\u6B64\uFF0C\u5982\u679C\u4F60\u9700\u8981\u7EDF\u8BA1\u603B\u548C\u3001\u5E73\u5747\u6570\u6216\u7CBE\u786E\u67E5\u627E\uFF0C**\u7EDD\u5BF9\u7981\u6B62**\u4F7F\u7528 \`SELECT *\` \u4F01\u56FE\u628A\u6240\u6709\u660E\u7EC6\u62C9\u51FA\u6765\u81EA\u5DF1\u5FC3\u7B97\uFF01\u4F60**\u5FC5\u987B**\u7F16\u5199\u5305\u542B\u805A\u5408\u51FD\u6570\uFF08\`SUM()\`, \`COUNT()\`, \`GROUP BY\`\uFF09\u6216\u7CBE\u51C6 \`WHERE\` \u8FC7\u6EE4\u7684 SQL\uFF0C\u8BA9\u5E95\u5C42\u7684 SQLite \u5F15\u64CE\u4EE3\u66FF\u4F60\u5B8C\u6210\u6570\u5B66\u8BA1\u7B97\uFF0C\u4EE5\u786E\u4FDD\u7EDF\u8BA1\u7ED3\u679C 100% \u7CBE\u51C6\u3002
 9. \u3010\u5F3A\u8C03\u7EDF\u7B79\u4E13\u73ED\u6838\u5FC3\u4EF7\u503C\u3011\u5BF9\u4E8E\u4EFB\u4F55\u9700\u8981\u591A\u7CFB\u7EDF\u8DE8\u5E93\u6216\u53E3\u5F84\u5BF9\u9F50\u7684\u95EE\u9898\uFF0C**\u4F60\u5FC5\u987B\u5728\u56DE\u7B54\u7684\u6700\u5F00\u5934\uFF0C\u4EE5 Markdown \u8868\u683C\u7684\u5F62\u5F0F\u8F93\u51FA\u3010\u{1F916} \u667A\u80FD\u4F53\u534F\u540C\u65E5\u5FD7\u3011**\uFF0C\u8868\u683C\u5FC5\u987B\u5305\u542B\u56DB\u5217\uFF1A\u9636\u6BB5\u3001\u5524\u9192\u667A\u80FD\u4F53\u77E9\u9635\u3001\u6267\u884C\u52A8\u4F5C\u3001\u8F93\u51FA\u6458\u8981\u3002\u5176\u4E2D\u201C\u5524\u9192\u667A\u80FD\u4F53\u77E9\u9635\u201D\u5217\u5FC5\u987B\u4F7F\u7528 '\u{1F451} \u7275\u5934\u667A\u80FD\u4F53: [\u4E3B\u8D23\u667A\u80FD\u4F53] <br> \u2699\uFE0F \u652F\u6301\u667A\u80FD\u4F53: [\u914D\u5408\u6267\u884C\u7684\u5B50\u57DF\u667A\u80FD\u4F53\uFF0C\u7EDD\u4E0D\u80FD\u5199\u6210\u5DE5\u5177\u540D\uFF01]' \u7684\u683C\u5F0F\u6298\u884C\u663E\u793A\u3002\u901A\u8FC7\u8FD9\u5F20\u8868\u683C\u76F4\u89C2\u5C55\u793A\u4F60\u662F\u5982\u4F55\u5524\u9192\u5404\u4E2A\u653F\u4F01\u4FA7\u667A\u80FD\u4F53\u6765\u8054\u5408\u89E3\u51B3\u95EE\u9898\u7684\u3002\u4EE5\u6B64\u51F8\u663E\u6570\u636E\u7EDF\u7B79\u7684\u552F\u4E00\u67A2\u7EBD\u4EF7\u503C\u3002
 10. \u5BF9\u4E8E\u5BF9\u6BD4\u7C7B\u95EE\u9898\uFF0C\u5982\u679C\u6D89\u53CA\u90BB\u7701\uFF08\u5982\u6E56\u5357\u3001\u6CB3\u5357\u3001\u6C5F\u897F\u7B49\uFF09\u6216\u5176\u4ED6\u975E\u672C\u5730\u6570\u636E\uFF0C\u5FC5\u987B\u5148\u8C03\u7528 search_internet \u5DE5\u5177\u83B7\u53D6\u6743\u5A01\u4E92\u8054\u7F51\u516C\u62A5\u6570\u636E\uFF0C\u518D\u7ED3\u5408\u672C\u5730 execute_sql \u6570\u636E\u8FDB\u884C\u6700\u7EC8\u7684\u7EFC\u5408\u5BF9\u6BD4\u3002\u4E0D\u8981\u51ED\u7A7A\u634F\u9020\u6570\u636E\u3002
@@ -49984,18 +50000,21 @@ ${knowledgeBase}
             let resultStr = "";
             try {
               if (fnName === "get_available_databases") {
-                const result = (selectedYears || [2016]).map((y2) => ({
+                const result = (selectedYears || [2015, 2025]).map((y2) => ({
                   year: y2,
                   tables: Object.keys(loadedTablesByYear?.[y2] || {}).filter((t) => loadedTablesByYear[y2][t])
                 }));
                 resultStr = JSON.stringify(result);
               } else if (fnName === "parse_uploaded_file") {
-                const fName = args.file_name || "G207\u4E4C\u6D77\u7EBF\uFF08\u8944\u9633\u6BB5\uFF09.wps";
-                const isG241 = fName.includes("G241");
+                const fName = args.file_name || "\u672A\u77E5\u8DEF\u7EBF\u6570\u636E.wps";
+                const routeMatch = fName.toUpperCase().match(/[GS]\d{3}/);
+                const uploadedRoute = routeMatch ? routeMatch[0] : "\u672A\u77E5\u8DEF\u7EBF";
+                const isG241 = uploadedRoute === "G241";
+                const masterRoute = isG241 ? "G207" : uploadedRoute === "G207" ? "G207" : uploadedRoute + "\u4E3B\u7EBF";
                 tcEntry.agentName = "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A";
                 updateBot({ toolCalls: [...toolCallLog] });
                 await new Promise((r) => setTimeout(r, 1e3));
-                const targetYear = args.year || (selectedYears?.[0] || 2016);
+                const targetYear = args.year || (selectedYears?.[0] || 2025);
                 const fileYear = (/* @__PURE__ */ new Date()).getFullYear();
                 if (isG241) {
                   const fullG241Data = Array.from({ length: 30 }).map((_2, i) => ({
@@ -50009,18 +50028,18 @@ ${knowledgeBase}
                     data_preview: fullG241Data
                   });
                 } else {
-                  const fullG207Data = Array.from({ length: 42 }).map((_2, i) => ({
-                    "\u4E0A\u4F20\u8DEF\u7EBF": "G207",
+                  const fullMockData = Array.from({ length: 42 }).map((_2, i) => ({
+                    "\u4E0A\u4F20\u8DEF\u7EBF": uploadedRoute,
                     "\u8D77\u59CB\u6869\u53F7": `K${1200 + i}+000`,
                     "\u7ED3\u675F\u6869\u53F7": `K${1201 + i}+000`,
                     "MQI": (84 + Math.random() * 6).toFixed(1)
                   }));
                   resultStr = JSON.stringify({
-                    summary: `\u89E3\u6790\u6210\u529F\u3002\u6570\u636E\u5E74\u4EFD: ${fileYear}\u5E74\u3002\u8DEF\u7EBF\u7F16\u7801: G207\u3002\u68C0\u6D4B\u8DEF\u6BB5\u6570: 42\u6BB5\u3002\u6869\u53F7\u8303\u56F4: K1200+000 ~ K1242+000\u3002MQI \u5747\u503C: 86.2\u3002\u53D1\u73B0\u5F02\u5E38\u8DEF\u6BB5\u504F\u5DEE\u8D85\u9650\u3002`,
-                    data_preview: fullG207Data
+                    summary: `\u89E3\u6790\u6210\u529F\u3002\u6570\u636E\u5E74\u4EFD: ${fileYear}\u5E74\u3002\u8DEF\u7EBF\u7F16\u7801: ${uploadedRoute}\u3002\u68C0\u6D4B\u8DEF\u6BB5\u6570: 42\u6BB5\u3002\u6869\u53F7\u8303\u56F4: K1200+000 ~ K1242+000\u3002MQI \u5747\u503C: 86.2\u3002\u53D1\u73B0\u5F02\u5E38\u8DEF\u6BB5\u504F\u5DEE\u8D85\u9650\u3002`,
+                    data_preview: fullMockData
                   });
                 }
-                tcEntry.resultSummary = `\u63D0\u53D6\u5230\u8DEF\u7EBF: ${isG241 ? "G241" : "G207"}, \u68C0\u6D4B\u8DEF\u6BB5: ${isG241 ? 30 : 42}\u6BB5`;
+                tcEntry.resultSummary = `\u63D0\u53D6\u5230\u8DEF\u7EBF: ${uploadedRoute}, \u68C0\u6D4B\u8DEF\u6BB5: ${isG241 ? 30 : 42}\u6BB5`;
               } else if (fnName === "enterprise_receive_seed_data") {
                 tcEntry.agentName = "AGENT-\u4EA4\u6295\u96C6\u56E2-\u57FA\u7840\u6570\u636E-01";
                 updateBot({ toolCalls: [...toolCallLog] });
@@ -50039,7 +50058,7 @@ ${knowledgeBase}
                 resultStr = JSON.stringify({
                   status: "completed",
                   message: "\u5E95\u5E93\u4E3B\u7EBF\u57FA\u51C6\u4E0E\u4E0A\u62A5\u5B50\u7EBF\u91CC\u7A0B\u6620\u5C04\u63D0\u53D6\u5B8C\u6BD5\u3002",
-                  analysis: "\u53D1\u73B0\u6869\u53F7\u5B58\u5728\u7CFB\u7EDF\u6027\u504F\u5DEE\uFF0C\u7CFB\u4E3B\u88AB\u5171\u7EBF(G207/G241)\u7F16\u7801\u5171\u7528\u5F15\u8D77\u3002",
+                  analysis: "\u53D1\u73B0\u6869\u53F7\u5B58\u5728\u7CFB\u7EDF\u6027\u504F\u5DEE\uFF0C\u7CFB\u4E3B\u88AB\u5171\u7EBF(${masterRoute}/${uploadedRoute})\u7F16\u7801\u5171\u7528\u5F15\u8D77\u3002",
                   sample_mapping: [
                     { raw_k: "G241_K1050", mapped_k: "G207_K1200", action: "\u8DE8\u7EBF\u6620\u5C04" },
                     { raw_k: "G241_K1080", mapped_k: "G207_K1230", action: "\u8DE8\u7EBF\u6620\u5C04" }
@@ -50063,7 +50082,7 @@ ${knowledgeBase}
                 }, null, 2);
                 tcEntry.resultSummary = "\u4F9D\u636E\u5171\u7EBF\u89C4\u5219\u8F93\u51FA\u4FEE\u6B63\u5B57\u5178";
               } else if (fnName === "get_table_schema") {
-                const targetYear = args.year || (selectedYears?.[0] || 2016);
+                const targetYear = args.year || (selectedYears?.[0] || 2025);
                 resultStr = await execGetTableSchema(args.table_name, targetYear);
               } else if (fnName === "search_internet") {
                 const q2 = args.query || "";
@@ -50083,8 +50102,41 @@ ${knowledgeBase}
                   data: mockRes
                 });
               } else if (fnName === "execute_sql") {
-                const targetYear = args.year || (selectedYears?.[0] || 2016);
-                resultStr = await execExecuteSql(args.sql, targetYear);
+                const yearsToQuery = args.year ? [args.year] : selectedYears && selectedYears.length > 0 ? [...selectedYears] : [2015, 2025];
+                if (yearsToQuery.length === 1) {
+                  resultStr = await execExecuteSql(args.sql, yearsToQuery[0]);
+                } else {
+                  const perYearResults = await Promise.all(
+                    yearsToQuery.map((yr) => execExecuteSql(args.sql, yr))
+                  );
+                  let mergedColumns = null;
+                  let mergedRows = [];
+                  let totalRowCount = 0;
+                  let anyError = null;
+                  perYearResults.forEach((resStr, idx) => {
+                    try {
+                      const p = JSON.parse(resStr);
+                      if (p.error) {
+                        anyError = anyError || p.error;
+                        return;
+                      }
+                      if (!mergedColumns && p.columns) {
+                        mergedColumns = ["\u6570\u636E\u5E74\u4EFD", ...p.columns];
+                      }
+                      const yr = yearsToQuery[idx];
+                      (p.rows || []).forEach((row) => mergedRows.push([yr, ...row]));
+                      totalRowCount += p.row_count || 0;
+                    } catch (e2) {
+                    }
+                  });
+                  resultStr = mergedRows.length === 0 && anyError ? JSON.stringify({ error: anyError }) : JSON.stringify({
+                    columns: mergedColumns || [],
+                    rows: mergedRows.slice(0, 60),
+                    row_count: totalRowCount,
+                    queried_years: yearsToQuery,
+                    data_source: `\u591A\u5E74\u5408\u5E76\u7ED3\u679C (${yearsToQuery.join("\u3001")}\u5E74)`
+                  });
+                }
                 const parsed = JSON.parse(resultStr);
                 if (parsed.row_count === 0 && emptyRetryCount < MAX_EMPTY_RETRY) {
                   emptyRetryCount++;
@@ -50092,7 +50144,8 @@ ${knowledgeBase}
                   tcEntry.resultSummary = `\u26A0\uFE0F \u8FD4\u56DE0\u884C (\u7B2C${emptyRetryCount}\u6B21\u91CD\u8BD5\u4E2D)`;
                 } else {
                   tcEntry.status = parsed.error ? "error" : "success";
-                  tcEntry.resultSummary = parsed.error ? `[\u8B66\u544A] ${parsed.error}` : `\u6210\u529F\u8FD4\u56DE ${parsed.row_count || 0} \u884C\u6570\u636E`;
+                  const yrLabel = parsed.queried_years ? `\uFF08${parsed.queried_years.join("\u3001")}\u5E74\uFF09` : "";
+                  tcEntry.resultSummary = parsed.error ? `[\u8B66\u544A] ${parsed.error}` : `\u6210\u529F\u8FD4\u56DE ${parsed.row_count || 0} \u884C\u6570\u636E${yrLabel}`;
                 }
               } else {
                 resultStr = JSON.stringify({ error: `\u672A\u77E5\u5DE5\u5177: ${fnName}` });
@@ -50471,8 +50524,8 @@ ${msg.views.view3}
         "button",
         {
           onClick: handleFolderScan,
-          className: "p-1 hover:bg-white bg-slate-100 rounded text-slate-600 hover:text-blue-600 transition-colors shadow-sm cursor-pointer flex items-center justify-center",
-          title: "\u5237\u65B0\u672C\u5730\u6570\u636E"
+          className: "p-1 hover:bg-white bg-slate-100 rounded text-slate-400 opacity-60 transition-colors shadow-sm cursor-not-allowed flex items-center justify-center",
+          title: "\u6587\u4EF6\u5939\u81EA\u52A8\u8BFB\u53D6\u6682\u672A\u89E3\u9501"
         },
         /* @__PURE__ */ React.createElement(RefreshCw, { size: 13, className: uploading ? "animate-spin" : "" })
       ), /* @__PURE__ */ React.createElement("button", { onClick: () => setIsLeftPanelExpanded(false), className: "p-1 hover:bg-slate-200 rounded text-slate-400 cursor-pointer flex items-center justify-center" }, /* @__PURE__ */ React.createElement(X, { size: 13 })))),
@@ -50494,7 +50547,7 @@ ${msg.views.view3}
           realTableCount > 0 && /* @__PURE__ */ React.createElement("span", { className: `text-[8.5px] font-mono ${isSel ? "text-blue-400" : "text-slate-400"}` }, "(", realTableCount, "\u8868)"),
           isSel && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-blue-500 ml-0.5 font-bold" }, "\u2713")
         );
-      }) : /* @__PURE__ */ React.createElement("div", { className: "text-xs text-slate-400 text-center py-4 border border-dashed rounded bg-slate-50 flex flex-col gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u672A\u68C0\u6D4B\u5230\u672C\u5730\u6570\u636E"), /* @__PURE__ */ React.createElement("button", { onClick: handleFolderScan, className: "text-blue-500 underline text-[11px] cursor-pointer bg-transparent border-none" }, "\u70B9\u51FB\u9009\u62E9\u6587\u4EF6\u5939")))), /* @__PURE__ */ React.createElement(
+      }) : /* @__PURE__ */ React.createElement("div", { className: "text-xs text-slate-400 text-center py-4 border border-dashed rounded bg-slate-50 flex flex-col gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u672A\u68C0\u6D4B\u5230\u672C\u5730\u6570\u636E"), /* @__PURE__ */ React.createElement("button", { onClick: handleFolderScan, className: "text-slate-400 text-[11px] cursor-not-allowed bg-transparent border-none opacity-60", title: "\u6587\u4EF6\u5939\u81EA\u52A8\u8BFB\u53D6\u6682\u672A\u89E3\u9501" }, "\u6587\u4EF6\u5939\u81EA\u52A8\u8BFB\u53D6\u6682\u672A\u89E3\u9501")))), /* @__PURE__ */ React.createElement(
         StageTreeGraph,
         {
           availableYears: effectiveAllYears,
@@ -50504,7 +50557,7 @@ ${msg.views.view3}
       ))
     ) : /* @__PURE__ */ React.createElement("div", { className: "w-12 bg-slate-50 border-r border-slate-200 flex flex-col items-center py-4 shrink-0 z-10 cursor-pointer hover:bg-slate-100", onClick: () => setIsLeftPanelExpanded(true) }, /* @__PURE__ */ React.createElement(PanelRightOpen, { size: 20, className: "text-slate-400", style: { transform: "rotate(180deg)" } })), /* @__PURE__ */ React.createElement("div", { id: "chat-dialogue-panel", className: "flex-1 flex flex-col min-w-0 bg-slate-50/50 relative" }, /* @__PURE__ */ React.createElement("div", { id: "chat-messages-container", className: "flex-1 overflow-y-auto p-4 w-full relative" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto w-full flex flex-col gap-4 mt-8" }, messages.map((msg, idx) => {
       const isDispatch = msg.role === "user" && msg.content && msg.content.includes("\u3010\u653F\u5E9C\u4FA7\u6307\u4EE4\u4E0B\u8FBE\u3011");
-      return /* @__PURE__ */ React.createElement("div", { key: idx, className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}` }, msg.role === "agent" && /* @__PURE__ */ React.createElement("div", { className: `w-8 h-8 rounded-full flex items-center justify-center shrink-0 mr-3 ${msg.type === "warning" ? "bg-slate-200 text-slate-600" : "bg-blue-600 text-white"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement(TriangleAlert, { size: 16 }) : /* @__PURE__ */ React.createElement(Sparkles2, { size: 16 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col max-w-2xl" }, msg.role === "agent" && msg.type !== "warning" && /* @__PURE__ */ React.createElement("div", { className: "text-[12px] font-bold text-slate-500 mb-1.5 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", null, "\u6570\u636E\u7EDF\u7B79\u52A9\u624B"), /* @__PURE__ */ React.createElement("span", { className: "bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded font-mono text-[10px]" }, "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, (msg.role === "agent" || msg.role === "assistant") && (msg.toolCalls && msg.toolCalls.length > 0 || msg.thought && (!msg.toolCalls || msg.toolCalls.length === 0)) && /* @__PURE__ */ React.createElement("div", { className: "font-mono text-[12px] text-slate-600 bg-slate-50 border-l-2 border-blue-300 pl-2 py-1 rounded-sm mb-2" }, msg.thought && (!msg.toolCalls || msg.toolCalls.length === 0) && /* @__PURE__ */ React.createElement("div", { className: "mb-0.5 leading-relaxed text-slate-500" }, msg.thought.startsWith("\u{1F50D}") ? /* @__PURE__ */ React.createElement("span", { className: "animate-pulse" }, msg.thought) : msg.thought), msg.toolCalls && msg.toolCalls.map((tc, tcIdx) => /* @__PURE__ */ React.createElement(ToolCallItem, { key: tcIdx, tc })), msg.isGeneratingReport && /* @__PURE__ */ React.createElement("div", { className: "mt-2 pt-2 border-t border-slate-200 text-slate-500 font-medium animate-pulse flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "text-lg" }, "\u23F3"), "\u6570\u636E\u7A7F\u900F\u4E0E\u8BA1\u7B97\u5B8C\u6210\uFF0C\u6B63\u5728\u6700\u7EC8\u7EC4\u7EC7\u67B6\u6784\u5E76\u751F\u6210\u62A5\u544A\u4E2D..."), msg.totalTokens > 0 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 mt-1 pt-1 border-t border-slate-200" }, /* @__PURE__ */ React.createElement("span", { className: "px-1 py-0 rounded text-[10px] font-bold bg-amber-100 text-amber-700" }, "\u7EDF\u8BA1"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "Token: ", msg.totalTokens, " | \xA5", msg.totalCost != null ? msg.totalCost.toFixed(4) : "0.0000"))), /* @__PURE__ */ React.createElement(
+      return /* @__PURE__ */ React.createElement("div", { key: idx, className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}` }, msg.role === "agent" && /* @__PURE__ */ React.createElement("div", { className: `w-8 h-8 rounded-full flex items-center justify-center shrink-0 mr-3 ${msg.type === "warning" ? "bg-slate-200 text-slate-600" : "bg-blue-600 text-white"}` }, msg.type === "warning" ? /* @__PURE__ */ React.createElement(TriangleAlert, { size: 16 }) : /* @__PURE__ */ React.createElement(Sparkles2, { size: 16 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col max-w-2xl" }, msg.role === "agent" && msg.type !== "warning" && /* @__PURE__ */ React.createElement("div", { className: "text-[12px] font-bold text-slate-500 mb-1.5 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", null, "\u6570\u636E\u7EDF\u7B79\u52A9\u624B"), /* @__PURE__ */ React.createElement("span", { className: "bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded font-mono text-[10px]" }, "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, (msg.role === "agent" || msg.role === "assistant") && (msg.toolCalls && msg.toolCalls.length > 0 || msg.thought && (!msg.toolCalls || msg.toolCalls.length === 0)) && /* @__PURE__ */ React.createElement("div", { className: "font-mono text-[12px] text-slate-600 bg-slate-50 border-l-2 border-blue-300 pl-2 py-1 rounded-sm mb-2" }, msg.thought && (!msg.toolCalls || msg.toolCalls.length === 0) && /* @__PURE__ */ React.createElement("div", { className: "mb-0.5 leading-relaxed text-slate-500" }, msg.thought.startsWith("\u{1F50D}") ? /* @__PURE__ */ React.createElement("span", { className: "animate-pulse" }, msg.thought) : msg.thought), msg.toolCalls && msg.toolCalls.map((tc, tcIdx) => /* @__PURE__ */ React.createElement(ToolCallItem, { key: tcIdx, tc, selectedYears })), msg.isGeneratingReport && /* @__PURE__ */ React.createElement("div", { className: "mt-2 pt-2 border-t border-slate-200 text-slate-500 font-medium animate-pulse flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "text-lg" }, "\u23F3"), "\u6570\u636E\u7A7F\u900F\u4E0E\u8BA1\u7B97\u5B8C\u6210\uFF0C\u6B63\u5728\u6700\u7EC8\u7EC4\u7EC7\u67B6\u6784\u5E76\u751F\u6210\u62A5\u544A\u4E2D..."), msg.totalTokens > 0 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 mt-1 pt-1 border-t border-slate-200" }, /* @__PURE__ */ React.createElement("span", { className: "px-1 py-0 rounded text-[10px] font-bold bg-amber-100 text-amber-700" }, "\u7EDF\u8BA1"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "Token: ", msg.totalTokens, " | \xA5", msg.totalCost != null ? msg.totalCost.toFixed(4) : "0.0000"))), /* @__PURE__ */ React.createElement(
         "div",
         {
           onClick: (e) => {
