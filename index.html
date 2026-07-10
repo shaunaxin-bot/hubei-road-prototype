@@ -2664,6 +2664,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 1. **思索链（Tool Calls）的精准指派**：
    - 当大模型针对某一张表（如 L29a）发起查询时，不仅要调用工具，还必须明确在工具上下文中注入该表的**主责智能体**（例如：\`AGENT-养护管理-02_路况检测评定\`），而不能笼统使用统筹智能体。
+2. **强制输出协同日志表格**：
+   - **必须在回答的正文开头，以 Markdown 表格的形式输出【🤖 智能体协同日志】**，表格必须包含：阶段、唤醒智能体矩阵、执行动作、输出摘要 四列。其中“唤醒智能体矩阵”列必须使用 \`👑 牵头: [主责智能体] <br> ⚙️ 支持: [执行智能体]\` 的格式折行显示。直观展示你唤醒了哪些智能体完成了数据探测与拉取。
 
 ---
 
@@ -2760,7 +2762,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   在评分结尾，查阅系统内是否按期提交了相应的分析报告（Item 8）。
 
 ## 前端思维链展示红线
-当大模型在执行此场景回答用户提问时，其输出的思维链必须写明具体的被唤醒智能体名称（如：\`调用：AGENT-安全应急-01\`），并输出真实的接口返回值或 SQL 过滤条数，严禁伪造“检查成功”进度条。
+当大模型在执行此场景回答用户提问时，**必须在回答的正文开头，以 Markdown 表格的形式输出【🤖 智能体协同日志】**，表格必须包含：阶段、唤醒智能体矩阵、执行动作、输出摘要 四列。其中“唤醒智能体矩阵”列必须使用 \`👑 牵头: [主责智能体] <br> ⚙️ 支持: [执行智能体]\` 的格式折行显示。通过这张表格直观展示你唤醒了哪些具体的业务处室智能体（如：\`AGENT-安全应急-01\`），并输出真实的接口返回值或 SQL 过滤条数，严禁伪造“检查成功”进度条。
 
 
 
@@ -2913,7 +2915,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 ## 七、前端思维链展示红线
 
 当大模型在执行此场景回答用户提问时：
-1. **必须显式输出被唤醒的智能体名称**（如：\`调用：AGENT-安全应急-01_预警\`）
+1. **必须在回答的正文开头，以 Markdown 表格的形式输出【🤖 智能体协同日志】**，表格必须包含：阶段、唤醒智能体矩阵、执行动作、输出摘要 四列。其中“唤醒智能体矩阵”列必须使用 \`👑 牵头: [主责智能体] <br> ⚙️ 支持: [执行智能体]\` 的格式折行显示。直观展示你唤醒了哪些智能体（如：\`AGENT-安全应急-01_预警\`）。
 2. **必须说明真实的数据输入**（如：\`输入：L21.路线ID = xxxxx\`）
 3. **必须引用本文件的层级分工表**（如：\`依据：二、分级响应体系 - 2.1红色预警为省级组织\`）
 4. **严禁伪造"检查成功"进度条**，必须输出真实接口返回值或SQL过滤条数
@@ -48049,7 +48051,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         title: "\u70B9\u51FB\u5C55\u5F00/\u6298\u53E0\u53C2\u6570"
       },
       /* @__PURE__ */ React.createElement("span", { className: "text-[10px]", style: { color: tc.status === "error" ? "#8b1c1c" : tc.status === "running" ? "#888" : "#8b1c1c" } }, tc.status === "running" ? "\u{1F504} \u6267\u884C\u4E2D" : tc.status === "error" ? "X \u5931\u8D25" : "\u2713 \u5DF2\u5B8C\u6210"),
-      /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-slate-400" }, "[\u653F\u5E9C\u4FA7\u667A\u80FD\u4F53]"),
+      /* @__PURE__ */ React.createElement("span", { className: `text-[10px] ${tc.agentName && (tc.agentName.includes("\u4EA4\u6295") || tc.agentName.includes("\u4EA4\u89C4") || tc.agentName.includes("\u8DEF\u6865")) ? "text-orange-500" : "text-slate-400"}` }, tc.agentName && (tc.agentName.includes("\u4EA4\u6295") || tc.agentName.includes("\u4EA4\u89C4") || tc.agentName.includes("\u8DEF\u6865")) ? "[\u4F01\u4E1A\u4FA7\u667A\u80FD\u4F53 (\u5F85\u5F00\u53D1)]" : "[\u653F\u5E9C\u4FA7\u667A\u80FD\u4F53]"),
       tc.agentName && /* @__PURE__ */ React.createElement("span", { className: "text-[10px]", style: { color: "#8b1c1c" } }, tc.agentName),
       /* @__PURE__ */ React.createElement("span", null, "\u8C03\u7528 ", tc.name, " ", tableInfo && /* @__PURE__ */ React.createElement("span", { style: { color: "#8b1c1c" } }, "(", tableInfo, ")")),
       tc.status === "success" && tc.resultSummary && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] ml-1 text-slate-500" }, "(", tc.resultSummary, ")")
@@ -49156,11 +49158,24 @@ ${code}
       }));
       return JSON.stringify(result);
     };
+    const fetchWithTimeout = async (url, options, timeout = 1500) => {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeout);
+      try {
+        const response = await fetch(url, { ...options, signal: controller.signal });
+        clearTimeout(id);
+        return response;
+      } catch (err) {
+        clearTimeout(id);
+        throw err;
+      }
+    };
     const execGetTableSchema = async (tableName, year) => {
       const targetYear = year || (selectedYears?.[0] || 2016);
-      const cleanTableName = tableName.split(" ")[0].replace(/[^a-zA-Z0-9_]/g, "");
+      const cleanTableName = (tableName || "").split(" ")[0].replace(/[^a-zA-Z0-9_]/g, "");
+      if (!cleanTableName) return JSON.stringify({ error: "\u8868\u540D\u4E0D\u80FD\u4E3A\u7A7A" });
       try {
-        const pragmaRes = await fetch("http://127.0.0.1:8000/api/execute_sql", {
+        const pragmaRes = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sql: `PRAGMA table_info("${cleanTableName}")`, year: targetYear })
@@ -49170,7 +49185,7 @@ ${code}
         if (pragmaData.error) return JSON.stringify({ error: pragmaData.error });
         const cols = (pragmaData.rows || []).map((r) => ({ cid: r[0], name: r[1], type: r[2] }));
         if (cols.length === 0) return JSON.stringify({ error: `\u8868 ${cleanTableName} \u4E0D\u5B58\u5728` });
-        const sampleRes = await fetch("http://127.0.0.1:8000/api/execute_sql", {
+        const sampleRes = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sql: `SELECT * FROM "${cleanTableName}" LIMIT 15`, year: targetYear })
@@ -49218,7 +49233,7 @@ ${code}
     const execExecuteSql = async (sql, year) => {
       const targetYear = year || (selectedYears?.[0] || 2016);
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/execute_sql", {
+        const res = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sql, year: targetYear })
@@ -49226,7 +49241,12 @@ ${code}
         if (res.ok) {
           const data = await res.json();
           if (!data.error) {
-            return JSON.stringify({ ...data, year: targetYear, data_source: `\u670D\u52A1\u5668\u6570\u636E\u5E93(${targetYear}\u5E74)` });
+            return JSON.stringify({
+              ...data,
+              rows: (data.rows || []).slice(0, 30),
+              year: targetYear,
+              data_source: `\u670D\u52A1\u5668\u6570\u636E\u5E93(${targetYear}\u5E74)`
+            });
           }
           return JSON.stringify({ error: data.error, sql_attempted: sql });
         }
@@ -49239,7 +49259,7 @@ ${code}
             if (execResult && execResult.length > 0) {
               return JSON.stringify({
                 columns: execResult[0].columns,
-                rows: execResult[0].values,
+                rows: execResult[0].values.slice(0, 30),
                 row_count: execResult[0].values.length,
                 year: targetYear,
                 data_source: `\u672C\u5730 SQLite Wasm (${targetYear}\u5E74)`
@@ -49558,6 +49578,7 @@ ${msg.views.view3}
 4. [\u751F\u6210\u62A5\u544A] \u7EFC\u5408\u4EE5\u4E0A\u5DE5\u5177\u83B7\u53D6\u7684\u6570\u636E\uFF0C\u751F\u6210\u6700\u7EC8\u7684\u62A5\u544A\u3002
 
 \u3010\u683C\u5F0F\u8981\u6C42\u3011\u6700\u7EC8\u62A5\u544A\u5FC5\u987B\u4E25\u683C\u91C7\u7528\u4EE5\u4E0B\u7ED3\u6784\uFF1A
+  (\u5728\u6700\u5F00\u5934\uFF0C\u4F60\u5FC5\u987B\u4E25\u683C\u9075\u7167\u4E3B\u7CFB\u7EDF\u63D0\u793A\u8BCD\u7684\u8981\u6C42\uFF0C\u4F18\u5148\u8F93\u51FA\u5305\u542B\u3010\u{1F916} \u667A\u80FD\u4F53\u534F\u540C\u65E5\u5FD7\u3011\u7684 Markdown \u8868\u683C\uFF0C\u603B\u7ED3\u6240\u6709\u7684\u653F\u4F01\u8DE8\u57DF\u4EA4\u4E92\u548C\u5DE5\u5177\u8C03\u7528)
   \u9996\u884C\u5F3A\u5236\u8F93\u51FA\u56FA\u5B9A\u6587\u5B57\u4F5C\u4E3A\u6536\u5C3E\u6807\u8BC6\uFF08\u5B8C\u5168\u4E00\u5B57\u4E0D\u5DEE\uFF09\uFF1A\u201C**\u3010\u653F\u5E9C\u4FA7\u5E74\u62A5\u603B\u7BA1\u667A\u80FD\u4F53\u3011\u63A5\u6536\u81EA [\u4F01\u4E1A\u4FA7\u5E95\u5C42\u5FAE\u670D\u52A1] \u7684\u7A7A\u95F4\u4FEE\u6B63\u5B57\u5178\u89E3\u6790\u5B8C\u6BD5\u3002\u5F00\u59CB\u6267\u884C\u5E95\u5C42\u6570\u636E\u91CD\u7EC4\u3002\u6700\u7EC8\u5206\u6790\u62A5\u544A\u5982\u4E0B\uFF1A**\u201D
   (\u5E74\u4EFD\u6838\u67E5\u673A\u5236)\uFF1A\u6838\u5BF9\u6587\u4EF6\u6807\u79F0\u7684\u201C\u6570\u636E\u5E74\u4EFD\u201D\u4E0E\u5F53\u524D\u7CFB\u7EDF\u8BBE\u5B9A\u7684\u5E74\u62A5\u5E74\u4EFD\uFF08${targetYear}\u5E74\uFF09\u3002\u5982\u679C\u53D1\u73B0\u5E74\u4EFD\u4E0D\u5339\u914D\uFF0C\u5FC5\u987B\u5728\u62A5\u544A\u5F00\u5934\u7D27\u8DDF\u4E00\u53E5\u6781\u5176\u9192\u76EE\u7684\u7EA2\u8272\u8B66\u544A\u6846\u660E\u786E\u6807\u6CE8\u51FA\u6765\uFF08\u683C\u5F0F\u793A\u4F8B\uFF1A\u{1F6D1} **\u3010\u7CFB\u7EDF\u62E6\u622A\uFF1A\u8DE8\u5E74\u4EFD\u6570\u636E\u9632\u51FB\u7A7F\u4FDD\u62A4\u3011** \u7ECF\u89E3\u6790\uFF0C\u4E0A\u4F20\u6587\u4EF6\u6807\u6CE8\u7684\u91C7\u96C6\u5E74\u4EFD\u4E3A ${(/* @__PURE__ */ new Date()).getFullYear()}\u5E74\uFF0C\u4F46\u5F53\u524D\u653F\u5E9C\u4FA7\u7CFB\u7EDF\u6FC0\u6D3B\u7684\u5E74\u62A5\u57FA\u51C6\u5E74\u4EFD\u4E3A ${targetYear}\u5E74\u3002\u7CFB\u7EDF\u4E25\u7981\u8DE8\u5E74\u4EFD\u6570\u636E\u76F4\u63A5\u6DF7\u5165\u4E3B\u5E93\u3002\u5904\u7F6E\u5EFA\u8BAE\uFF1A\u82E5\u662F\u57FA\u5C42\u586B\u62A5\u9519\u8BEF\uFF0C\u8BF7\u6253\u56DE\u91CD\u4F20\uFF1B\u82E5\u662F\u4F7F\u7528\u6700\u65B0\u6570\u636E\u6838\u67E5\u5386\u53F2\uFF0C\u8BF7\u5148\u5C06\u7CFB\u7EDF\u6570\u636E\u5E93\u5E74\u4EFD\u5207\u6362\u81F3\u5F53\u524D\u5E74\u4EFD\u540E\u518D\u6267\u884C\u6821\u9A8C\uFF09\u3002
   \u5C3E\u90E8\u5FC5\u987B\u5F3A\u5236\u8F93\u51FA\u4EBA\u5DE5\u6838\u9A8C\u63D0\u9192\uFF1A\u201C**\u26A0\uFE0F \u6570\u636E\u5B89\u5168\u63D0\u793A**\uFF1A\u5F53\u524D\u8DE8\u57DF\u534F\u540C\u7ED3\u679C\u5DF2\u7F6E\u4E8E\u3010\u5B89\u5168\u9694\u79BB\u6682\u5B58\u533A\u3011\u3002\u8BF7\u517B\u62A4\u5904\u4E13\u5458\u7ED3\u5408\u53F3\u4FA7\u300AL29a\u660E\u7EC6\u6570\u636E\u5E95\u76D8\u300B\u8FDB\u884C\u5FAE\u89C2\u62BD\u9A8C\u3002\u786E\u8BA4\u65E0\u8BEF\u540E\uFF0C\u70B9\u51FB\u786E\u8BA4\u5373\u53EF\u6B63\u5F0F\u5408\u5165\u4E1A\u52A1\u4E3B\u5E93\u3002\u201D
@@ -49729,8 +49750,9 @@ ${knowledgeBase}
 5. \u5982\u679C\u7ED3\u679C\u4E3A\u7A7A\u6216\u5F02\u5E38\uFF0C\u8C03\u6574SQL\u91CD\u65B0\u67E5\u8BE2\uFF08\u6700\u591A3\u6B21\uFF09\u3002
 6. \u6839\u636E\u771F\u5B9E\u6570\u636E\u5F97\u51FA\u7ED3\u8BBA\uFF0C\u5E76\u8FDB\u884C\u8DE8\u5E74\u5BF9\u6BD4\u5206\u6790\uFF0C\u5FC5\u987B\u6807\u6CE8\u6570\u636E\u5E74\u4EFD\u3002
 7. **\u8DE8\u5E93\u67E5\u8BE2\u6307\u4EE4**\uFF1A\u5728\u9047\u5230\u8DE8\u57DF\u95EE\u9898\u65F6\uFF0C\u5FC5\u987B\u5148\u67E5 ER \u6620\u5C04\u8868\u4E86\u89E3\u5916\u952E\u5173\u8054\u5173\u7CFB\uFF0C\u5E76\u4E25\u683C\u9075\u5B88\u4EE5\u3010\u516C\u8DEF\u7535\u5B50\u5730\u56FE\u3011\u6869\u53F7\u4E3A\u57FA\u51C6\u8FDB\u884C\u591A\u8868 JOIN \u64CD\u4F5C\u3002
-9. \u3010\u5F3A\u8C03\u7EDF\u7B79\u4E13\u73ED\u6838\u5FC3\u4EF7\u503C\u3011\u5BF9\u4E8E\u4EFB\u4F55\u9700\u8981\u591A\u7CFB\u7EDF\u8DE8\u5E93\u6216\u53E3\u5F84\u5BF9\u9F50\u7684\u95EE\u9898\uFF0C\u4F60\u5FC5\u987B\u5728\u56DE\u7B54\u7684\u6700\u5F00\u5934\u663E\u5F0F\u8F93\u51FA\u4E00\u6BB5\u89D2\u8272\u534F\u540C\u65E5\u5FD7\uFF0C\u5982\uFF1A'[AGENT-\u67D0\u67D0\u4E1A\u52A1\u5904\u5BA4] \u672C\u5730\u6570\u636E\u6743\u9650\u4E0D\u8DB3/\u6807\u51C6\u4E0D\u7EDF\u4E00\uFF0C\u5411\u3010AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6\u3011\u53D1\u8D77\u534F\u540C\u8BF7\u6C42...' \u63A5\u7740\u53E6\u8D77\u4E00\u884C\u8F93\u51FA\uFF1A'[AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6 \u4ECB\u5165] \u7EDF\u7B79\u4E2D\u67A2\u5DF2\u63A5\u7BA1\uFF0C\u62C9\u901A\u591A\u57DF\u6570\u636E\u89E3\u51B3\u75DB\u70B9\u3002' \u7136\u540E\u518D\u7ED9\u51FA\u4F60\u7684\u6B63\u5F0F\u56DE\u7B54\u3002\u4EE5\u6B64\u51F8\u663E\u6570\u636E\u7EDF\u7B79\u7684\u552F\u4E00\u67A2\u7EBD\u4EF7\u503C\u3002
-8. \u5BF9\u4E8E\u5BF9\u6BD4\u7C7B\u95EE\u9898\uFF0C\u5982\u679C\u6D89\u53CA\u90BB\u7701\uFF08\u5982\u6E56\u5357\u3001\u6CB3\u5357\u3001\u6C5F\u897F\u7B49\uFF09\u6216\u5176\u4ED6\u975E\u672C\u5730\u6570\u636E\uFF0C\u5FC5\u987B\u5148\u8C03\u7528 search_internet \u5DE5\u5177\u83B7\u53D6\u6743\u5A01\u4E92\u8054\u7F51\u516C\u62A5\u6570\u636E\uFF0C\u518D\u7ED3\u5408\u672C\u5730 execute_sql \u6570\u636E\u8FDB\u884C\u6700\u7EC8\u7684\u7EFC\u5408\u5BF9\u6BD4\u3002\u4E0D\u8981\u51ED\u7A7A\u634F\u9020\u6570\u636E\u3002
+8. **\u3010\u6838\u5FC3\u9650\u5236\uFF1A\u6570\u636E\u9632\u963B\u65AD\u3011**\uFF1A\u4E3A\u4E86\u4FDD\u62A4\u7CFB\u7EDF\u6027\u80FD\uFF0C\`execute_sql\` \u5DE5\u5177\u6700\u591A\u53EA\u4F1A\u5411\u4F60\u8FD4\u56DE 30 \u884C\u6570\u636E\uFF08\u8D85\u51FA\u7684\u90E8\u5206\u4F1A\u88AB\u5F3A\u884C\u622A\u65AD\uFF0C\u4F46\u4F60\u4F1A\u770B\u5230 \`row_count\`\uFF09\u3002\u56E0\u6B64\uFF0C\u5982\u679C\u4F60\u9700\u8981\u7EDF\u8BA1\u603B\u548C\u3001\u5E73\u5747\u6570\u6216\u7CBE\u786E\u67E5\u627E\uFF0C**\u7EDD\u5BF9\u7981\u6B62**\u4F7F\u7528 \`SELECT *\` \u4F01\u56FE\u628A\u6240\u6709\u660E\u7EC6\u62C9\u51FA\u6765\u81EA\u5DF1\u5FC3\u7B97\uFF01\u4F60**\u5FC5\u987B**\u7F16\u5199\u5305\u542B\u805A\u5408\u51FD\u6570\uFF08\`SUM()\`, \`COUNT()\`, \`GROUP BY\`\uFF09\u6216\u7CBE\u51C6 \`WHERE\` \u8FC7\u6EE4\u7684 SQL\uFF0C\u8BA9\u5E95\u5C42\u7684 SQLite \u5F15\u64CE\u4EE3\u66FF\u4F60\u5B8C\u6210\u6570\u5B66\u8BA1\u7B97\uFF0C\u4EE5\u786E\u4FDD\u7EDF\u8BA1\u7ED3\u679C 100% \u7CBE\u51C6\u3002
+9. \u3010\u5F3A\u8C03\u7EDF\u7B79\u4E13\u73ED\u6838\u5FC3\u4EF7\u503C\u3011\u5BF9\u4E8E\u4EFB\u4F55\u9700\u8981\u591A\u7CFB\u7EDF\u8DE8\u5E93\u6216\u53E3\u5F84\u5BF9\u9F50\u7684\u95EE\u9898\uFF0C**\u4F60\u5FC5\u987B\u5728\u56DE\u7B54\u7684\u6700\u5F00\u5934\uFF0C\u4EE5 Markdown \u8868\u683C\u7684\u5F62\u5F0F\u8F93\u51FA\u3010\u{1F916} \u667A\u80FD\u4F53\u534F\u540C\u65E5\u5FD7\u3011**\uFF0C\u8868\u683C\u5FC5\u987B\u5305\u542B\u56DB\u5217\uFF1A\u9636\u6BB5\u3001\u5524\u9192\u667A\u80FD\u4F53\u77E9\u9635\u3001\u6267\u884C\u52A8\u4F5C\u3001\u8F93\u51FA\u6458\u8981\u3002\u5176\u4E2D\u201C\u5524\u9192\u667A\u80FD\u4F53\u77E9\u9635\u201D\u5217\u5FC5\u987B\u4F7F\u7528 '\u{1F451} \u7275\u5934\u667A\u80FD\u4F53: [\u4E3B\u8D23\u667A\u80FD\u4F53] <br> \u2699\uFE0F \u652F\u6301\u667A\u80FD\u4F53: [\u914D\u5408\u6267\u884C\u7684\u5B50\u57DF\u667A\u80FD\u4F53\uFF0C\u7EDD\u4E0D\u80FD\u5199\u6210\u5DE5\u5177\u540D\uFF01]' \u7684\u683C\u5F0F\u6298\u884C\u663E\u793A\u3002\u901A\u8FC7\u8FD9\u5F20\u8868\u683C\u76F4\u89C2\u5C55\u793A\u4F60\u662F\u5982\u4F55\u5524\u9192\u5404\u4E2A\u653F\u4F01\u4FA7\u667A\u80FD\u4F53\u6765\u8054\u5408\u89E3\u51B3\u95EE\u9898\u7684\u3002\u4EE5\u6B64\u51F8\u663E\u6570\u636E\u7EDF\u7B79\u7684\u552F\u4E00\u67A2\u7EBD\u4EF7\u503C\u3002
+10. \u5BF9\u4E8E\u5BF9\u6BD4\u7C7B\u95EE\u9898\uFF0C\u5982\u679C\u6D89\u53CA\u90BB\u7701\uFF08\u5982\u6E56\u5357\u3001\u6CB3\u5357\u3001\u6C5F\u897F\u7B49\uFF09\u6216\u5176\u4ED6\u975E\u672C\u5730\u6570\u636E\uFF0C\u5FC5\u987B\u5148\u8C03\u7528 search_internet \u5DE5\u5177\u83B7\u53D6\u6743\u5A01\u4E92\u8054\u7F51\u516C\u62A5\u6570\u636E\uFF0C\u518D\u7ED3\u5408\u672C\u5730 execute_sql \u6570\u636E\u8FDB\u884C\u6700\u7EC8\u7684\u7EFC\u5408\u5BF9\u6BD4\u3002\u4E0D\u8981\u51ED\u7A7A\u634F\u9020\u6570\u636E\u3002
 
 \u3010\u8F93\u51FA\u8981\u6C42\u3011
 - \u7ED3\u679C\u5FC5\u987B\u5305\u542B\u6570\u636E\u5E74\u4EFD\u6807\u6CE8
@@ -49827,9 +49849,9 @@ ${knowledgeBase}
               const mockEnterpriseActions = [
                 { type: "tool", tc: { id: "gov-1", name: "\u611F\u77E5\u8D8A\u754C\u6570\u636E", agentName: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", argsStr: '{"action":"\u6821\u9A8C\u6869\u53F7\u8FB9\u754C"}', resultSummary: "\u53D1\u73B0\u68C0\u6D4B\u6869\u53F7(\u5982G241)\u4E0E\u6807\u51C6\u8DEF\u7F51\u754C\u9650\u4E0D\u5339\u914D", status: "running" } },
                 { type: "tool", tc: { id: "gov-2", name: "\u6267\u884C\u963B\u65AD", agentName: "AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6", argsStr: '{"action":"\u6390\u65AD\u5165\u5E93\u6D41\u7A0B","target":"\u5F02\u5E38\u5DE5\u5355\u5206\u53D1"}', resultSummary: "\u5DF2\u751F\u6210\u5F02\u5E38\u5DE5\u5355\u5E76\u8DE8\u57DF\u6253\u56DE\u7ED9\u68C0\u6D4B\u5355\u4F4D", status: "running" } },
-                { type: "tool", tc: { id: "ent-1", name: "\u63A5\u6536\u8D8A\u754C\u8B66\u544A", agentName: "AGENT-\u57FA\u7840\u6570\u636E(\u4F01\u4E1A\u4FA7)-01", argsStr: '{"target_system":"\u4F01\u4E1A\u7EA7\u751F\u4EA7\u6D41\u8F6C\u603B\u7EBF","payload":"\u89E3\u6790\u8D8A\u754C\u8B66\u544A"}', resultSummary: "\u6210\u529F\u7A7F\u900F\u4F01\u4E1A\u603B\u7EBF\uFF0C\u4E0B\u8FBE\u8B66\u544A\u6307\u4EE4", status: "running" } },
-                { type: "tool", tc: { id: "ent-2", name: "\u91CD\u65B0\u6620\u5C04\u5750\u6807", agentName: "AGENT-\u68C0\u6D4B\u8BBE\u5907(\u4F01\u4E1A\u4FA7)-02", argsStr: '{"target_system":"\u8DEF\u51B5\u68C0\u6D4B\u8F66\u5E95\u5C42\u786C\u4EF6\u7F51\u5173","action":"\u5F3A\u5236\u63A5\u53D7\u56FD\u5BB6\u4E3B\u88AB\u5171\u7EBF\u6620\u5C04\u57FA\u51C6\u89C4\u5219"}', resultSummary: "\u5DF2\u6D88\u9664\u5171\u7EBF\u7F16\u7801\u566A\u97F3\uFF0C\u91CD\u5B9A\u5411\u81F3\u4E3B\u7EBF\u57FA\u51C6", status: "running" } },
-                { type: "tool", tc: { id: "ent-3", name: "\u6570\u636E\u6253\u5305\u91CD\u4F20", agentName: "AGENT-\u8DEF\u9762\u5DE5\u7A0B(\u4F01\u4E1A\u4FA7)-03", argsStr: '{"target_system":"\u4F01\u4E1A\u5386\u53F2\u5927\u4FEE\u5DE5\u7A0B\u53F0\u8D26\u5E93","action":"\u91CD\u6784\u5408\u89C4\u6570\u636E\u5305"}', resultSummary: "\u9A8C\u8BC1\u65E0\u8BEF\uFF0C\u91CD\u4F20\u6210\u529F\uFF0C\u6570\u636E\u91CD\u65B0\u8FDB\u5165\u7701\u5385\u7F51\u5173", status: "running" } },
+                { type: "tool", tc: { id: "ent-1", name: "\u63A5\u6536\u8D8A\u754C\u8B66\u544A", agentName: "AGENT-\u4EA4\u6295\u96C6\u56E2-\u57FA\u7840\u6570\u636E-01", argsStr: '{"target_system":"\u4F01\u4E1A\u7EA7\u751F\u4EA7\u6D41\u8F6C\u603B\u7EBF","payload":"\u89E3\u6790\u8D8A\u754C\u8B66\u544A"}', resultSummary: "\u6210\u529F\u7A7F\u900F\u4F01\u4E1A\u603B\u7EBF\uFF0C\u4E0B\u8FBE\u8B66\u544A\u6307\u4EE4", status: "running" } },
+                { type: "tool", tc: { id: "ent-2", name: "\u91CD\u65B0\u6620\u5C04\u5750\u6807", agentName: "AGENT-\u4EA4\u89C4\u9662-\u68C0\u6D4B\u8BBE\u5907-02", argsStr: '{"target_system":"\u8DEF\u51B5\u68C0\u6D4B\u8F66\u5E95\u5C42\u786C\u4EF6\u7F51\u5173","action":"\u5F3A\u5236\u63A5\u53D7\u56FD\u5BB6\u4E3B\u88AB\u5171\u7EBF\u6620\u5C04\u57FA\u51C6\u89C4\u5219"}', resultSummary: "\u5DF2\u6D88\u9664\u5171\u7EBF\u7F16\u7801\u566A\u97F3\uFF0C\u91CD\u5B9A\u5411\u81F3\u4E3B\u7EBF\u57FA\u51C6", status: "running" } },
+                { type: "tool", tc: { id: "ent-3", name: "\u6570\u636E\u6253\u5305\u91CD\u4F20", agentName: "AGENT-\u8DEF\u6865\u516C\u53F8-\u8DEF\u9762\u5DE5\u7A0B-03", argsStr: '{"target_system":"\u4F01\u4E1A\u5386\u53F2\u5927\u4FEE\u5DE5\u7A0B\u53F0\u8D26\u5E93","action":"\u91CD\u6784\u5408\u89C4\u6570\u636E\u5305"}', resultSummary: "\u9A8C\u8BC1\u65E0\u8BEF\uFF0C\u91CD\u4F20\u6210\u529F\uFF0C\u6570\u636E\u91CD\u65B0\u8FDB\u5165\u7701\u5385\u7F51\u5173", status: "running" } },
                 { type: "tool", tc: { id: "gov-3", name: "\u5B89\u5168\u9694\u79BB\u590D\u6838", agentName: "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", argsStr: '{"action":"\u8DE8\u57DF\u6570\u636E\u6620\u5C04\u81F3\u6682\u5B58\u5BA1\u6838\u533A"}', resultSummary: "\u786E\u8BA4\u65B0\u6570\u636E\u5B8C\u5168\u5408\u89C4\uFF0C\u4E25\u7981\u76F4\u5199\u4E3B\u5E93", status: "running" } },
                 { type: "tool", tc: { id: "gov-4", name: "\u6B63\u5F0F\u843D\u5E93", agentName: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", argsStr: '{"action":"\u89E3\u9664\u963B\u65AD\u5E76\u843D\u5E93"}', resultSummary: "\u6682\u5B58\u533A\u6570\u636E\u6B63\u5F0F\u5199\u5165\u6838\u5FC3\u7269\u7406\u8868", status: "running" } }
               ];
@@ -49859,20 +49881,10 @@ ${knowledgeBase}
               if (queriedTableObj) break;
             }
             const hasEnterpriseTool = toolCallLog.some((tc) => tc.name && tc.name.startsWith("enterprise_"));
+            let ticketHtmlBlock = "";
             if (queryText.includes("\u3010\u6267\u884C\u65B9\u6848\u3011\u7528\u6237\u5DF2\u4E0A\u4F20\u6869\u53F7\u6570\u636E\u6587\u4EF6")) {
-              const req01WorkflowData = [
-                { side: "gov", agent: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", action: "\u611F\u77E5\u8D8A\u754C", desc: "\u53D1\u73B0\u68C0\u6D4B\u5355\u4F4D\u4E0A\u4F20\u7684\u68C0\u6D4B\u6869\u53F7\uFF08\u5982G241\uFF09\u4E0E\u6807\u51C6\u8DEF\u7F51\u754C\u9650\u4E0D\u5339\u914D\uFF08\u4E3B\u88AB\u5171\u7EBF\u7F16\u7801\u5171\u7528\uFF09\uFF0C\u5224\u5B9A\u4E3A\u8D8A\u754C\u65AD\u94FE\u3002" },
-                { side: "gov", agent: "AGENT-\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6", action: "\u963B\u65AD\u5165\u5E93", desc: "\u7ACB\u5373\u963B\u65AD\u5E95\u5C42\u843D\u5E93\u6D41\u7A0B\uFF0C\u751F\u6210\u5F02\u5E38\u7763\u529E\u5DE5\u5355\u5E76\u901A\u8FC7\u7F51\u5173\u6253\u56DE\u7ED9\u68C0\u6D4B\u5355\u4F4D\u3002" },
-                { side: "enterprise", agent: "AGENT-\u57FA\u7840\u6570\u636E(\u4F01\u4E1A\u4FA7)-01", action: "\u63A5\u6536\u6253\u56DE", desc: "\u76D1\u542C\u5E76\u63A5\u6536\u5230\u7701\u5385\u6253\u56DE\u7684\u6869\u53F7\u8D8A\u754C\u8B66\u544A\u3002" },
-                { side: "enterprise", agent: "AGENT-\u68C0\u6D4B\u8BBE\u5907(\u4F01\u4E1A\u4FA7)-02", action: "\u89C4\u5219\u4FEE\u6B63", desc: "\u5F3A\u5236\u4F9D\u636E\u300A\u56FD\u5BB6\u516C\u8DEF\u7F51\u4E3B\u88AB\u5171\u7EBF\u6620\u5C04\u57FA\u51C6\u89C4\u5219\u300B\u6D88\u9664\u5171\u7EBF\u7F16\u7801\u566A\u97F3\uFF0C\u5C06\u4E0A\u4F20\u5B50\u7EBF\u504F\u79FB\u6869\u53F7\u91CD\u5B9A\u5411\u81F3\u4E3B\u7EBF\u57FA\u51C6\u6869\u53F7\u3002" },
-                { side: "enterprise", agent: "AGENT-\u8DEF\u9762\u5DE5\u7A0B(\u4F01\u4E1A\u4FA7)-03", action: "\u5408\u89C4\u91CD\u4F20", desc: "\u91CD\u6784\u5408\u89C4\u7684\u6869\u53F7\u6570\u636E\u5305\u5E76\u5B8C\u6210\u4E8C\u6B21\u52A0\u5BC6\u4E0A\u4F20\u3002" },
-                { side: "gov", agent: "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u4E3B\u9AA8\u67B6", action: "\u5B89\u5168\u9694\u79BB", desc: "\u786E\u8BA4\u65B0\u6570\u636E\u683C\u5F0F\u5408\u89C4\u540E\uFF0C\u8DE8\u57DF\u6570\u636E\u6620\u5C04\u81F3\u6682\u5B58\u5BA1\u6838\u533A\uFF08\u9694\u79BB\u6C99\u7BB1\uFF09\uFF0C\u4E25\u7981\u76F4\u5199\u4E3B\u5E93\u3002" },
-                { side: "gov", agent: "\u517B\u62A4\u5904\u4E13\u5458", action: "\u4EBA\u5DE5\u5BA1\u6279", desc: "\u7ED3\u5408\u660E\u7EC6\u9762\u677F\u5728\u6682\u5B58\u5BA1\u6838\u533A\u8FDB\u884C\u5FAE\u89C2\u62BD\u68C0\u5E76\u70B9\u51FB\u201C\u6388\u6743\u901A\u8FC7\u201D\u3002" },
-                { side: "gov", agent: "AGENT-\u517B\u62A4\u7BA1\u7406-02_\u8DEF\u51B5\u68C0\u6D4B\u8BC4\u5B9A", action: "\u6B63\u5F0F\u843D\u5E93", desc: "\u83B7\u53D6\u6388\u6743\u5BA1\u6279\u540E\uFF0C\u89E3\u9664\u6700\u7EC8\u963B\u65AD\uFF0C\u6682\u5B58\u533A\u6570\u636E\u6B63\u5F0F\u5199\u5165\u300AL29a\uFF08\u516C\u8DEF\u65E5\u5E38\u8DEF\u51B5\u8BC4\u5B9A\u660E\u7EC6\u8868\uFF09\u300B\u7B49\u5E74\u62A5\u5E95\u5C42\u6838\u5FC3\u7269\u7406\u8868\u3002" }
-              ];
-              updateBot({ workflowData: req01WorkflowData });
-              const ticketHtml = `
-<div class="bg-white p-5 border border-red-200 shadow-sm rounded-sm mt-4 font-serif text-slate-800 mx-1">
+              ticketHtmlBlock = `
+<div class="bg-white p-5 border border-red-200 shadow-sm rounded-sm mt-4 font-serif text-slate-800 mx-1 mb-6">
   <div class="text-center mb-5">
     <h2 class="text-[#e53e3e] text-[22px] font-bold tracking-[0.2em] mb-2 font-serif">\u6E56\u5317\u7701\u666E\u901A\u516C\u8DEF\u8DEF\u51B5\u68C0\u6D4B\u5F02\u5E38\u6838\u67E5\u7763\u529E\u5355</h2>
     <div class="h-0.5 bg-[#e53e3e] w-[90%] mx-auto mb-0.5"></div>
@@ -49899,30 +49911,27 @@ ${knowledgeBase}
 `;
               const treeRegex = /```text[\s\S]*?【政府侧：日常入库检查】[\s\S]*?```/g;
               finalContent = finalContent.replace(treeRegex, "");
-              finalContent = ticketHtml + finalContent;
-            } else if (queriedTableObj) {
-              let subTableLines = queriedTableObj.subTables.map((st2) => `           \u2514\u2500 AGENT-${st2.microAgent}: ${st2.name}`).join("\n");
+            }
+            let treeTextBlock = "";
+            if (queriedTableObj && !finalContent.includes("\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A")) {
               let requester = "\u6570\u636E\u7EDF\u7B79-00_\u5168\u57DF\u4E3B\u9AA8\u67B6";
               const requesterMatch = finalContent.match(/\[(AGENT-[^\]]+)\]/);
               if (requesterMatch) {
                 requester = requesterMatch[1].replace("AGENT-", "");
               }
-              const domain = queriedTableObj.macroAgent.split("-")[0];
-              const treeText = `\`\`\`text
-\u3010\u5F53\u524D\u6570\u636E\u7A7F\u900F\u67B6\u6784 (Data Lineage)\u3011
- \u251C\u2500 \u9700\u6C42\u53D1\u8D77: [AGENT-${requester}]
- \u251C\u2500 \u8DE8\u57DF\u8C03\u7528: \u7A7F\u900F\u81F3\u3010${domain}\u3011\u6570\u636E\u57DF
- \u251C\u2500 \u7269\u7406\u6570\u636E\u8868: [${queriedTableObj.lcode}] ${queriedTableObj.name}
-      \u251C\u2500 \u7275\u5934\u65B9: AGENT-${queriedTableObj.macroAgent}
-      \u2514\u2500 \u6267\u884C\u65B9:
-${subTableLines}
-\`\`\`
-> \u{1F6E1}\uFE0F **\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A (Agent Trust Declaration)**: \u672C\u6B21\u56DE\u7B54\u7684\u6BCF\u4E00\u9879\u6570\u503C\u6307\u6807\uFF0C\u5747\u7531\u9700\u6C42\u65B9 \`[AGENT-${requester}]\` \u5B9E\u65F6\u8DE8\u57DF\u7A7F\u900F\u81F3\u7275\u5934\u65B9 \`[AGENT-${queriedTableObj.macroAgent}]\` \u7684\u5E95\u5C42\u7269\u7406\u8868 \`[${queriedTableObj.lcode}] ${queriedTableObj.name}\` \u83B7\u53D6\u3002\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u8DE8\u57DF\u7EDD\u5BF9\u6EAF\u6E90\u80FD\u529B\u3002
-> \u{1F4A1} **\u7275\u5934\u4E0E\u6267\u884C\u534F\u540C\u539F\u7406\u89E3\u6790**: \u7EDF\u7B79\u667A\u80FD\u4F53\u4E4B\u6240\u4EE5\u80FD\u77AC\u95F4\u5F97\u51FA\u4E0A\u8FF0\u7ED3\u679C\uFF0C\u662F\u56E0\u4E3A\u5E95\u5C42\u8D1F\u8D23\u4E0D\u540C\u4E1A\u52A1\u533A\u5757\u7684\u3010\u6267\u884C\u65B9\u667A\u80FD\u4F53\u3011\uFF08\u8BE6\u89C1\u4E0A\u65B9\u67B6\u6784\uFF09\u5728\u524D\u671F\u5DF2\u5B8C\u6210\u4E86\u591A\u6E90\u7269\u7406\u5E95\u8868\u7684\u6536\u96C6\u4E0E\u878D\u5408\uFF0C\u5E76\u7531\u3010\u7275\u5934\u65B9\u667A\u80FD\u4F53\u3011\u6C47\u7F16\u6210\u4E86\u4E2D\u592E\u5B8F\u89C2\u5927\u8868\uFF08\u8BFB\u5199\u5206\u79BB\uFF09\u3002\u672C\u6B21\u67E5\u8BE2\u76F4\u63A5\u57FA\u4E8E\u5B83\u4EEC\u6C47\u603B\u7684\u6210\u679C\u8FDB\u884C\u8DE8\u57DF\u7A7F\u900F\u5206\u6790\u3002
+              treeTextBlock = `> \u{1F6E1}\uFE0F **\u667A\u80FD\u4F53\u4FE1\u8D56\u5BA3\u544A (Agent Trust Declaration)**: \u672C\u6B21\u56DE\u7B54\u7684\u6BCF\u4E00\u9879\u6570\u503C\u6307\u6807\uFF0C\u5747\u7531\u9700\u6C42\u65B9 \`[AGENT-${requester}]\` \u5B9E\u65F6\u8DE8\u57DF\u7A7F\u900F\u81F3\u7275\u5934\u65B9 \`[AGENT-${queriedTableObj.macroAgent}]\` \u7684\u5E95\u5C42\u7269\u7406\u8868 \`[${queriedTableObj.lcode}] ${queriedTableObj.name}\` \u83B7\u53D6\u3002\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u8DE8\u57DF\u7EDD\u5BF9\u6EAF\u6E90\u80FD\u529B\u3002
+> \u{1F4A1} **\u7275\u5934\u4E0E\u6267\u884C\u534F\u540C\u539F\u7406\u89E3\u6790**: \u7EDF\u7B79\u667A\u80FD\u4F53\u4E4B\u6240\u4EE5\u80FD\u77AC\u95F4\u5F97\u51FA\u4E0A\u8FF0\u7ED3\u679C\uFF0C\u662F\u56E0\u4E3A\u5E95\u5C42\u8D1F\u8D23\u4E0D\u540C\u4E1A\u52A1\u533A\u5757\u7684\u3010\u6267\u884C\u65B9\u667A\u80FD\u4F53\u3011\u5728\u524D\u671F\u5DF2\u5B8C\u6210\u4E86\u591A\u6E90\u7269\u7406\u5E95\u8868\u7684\u6536\u96C6\u4E0E\u878D\u5408\uFF0C\u5E76\u7531\u3010\u7275\u5934\u65B9\u667A\u80FD\u4F53\u3011\u6C47\u7F16\u6210\u4E86\u4E2D\u592E\u5B8F\u89C2\u5927\u8868\uFF08\u8BFB\u5199\u5206\u79BB\uFF09\u3002\u672C\u6B21\u67E5\u8BE2\u76F4\u63A5\u57FA\u4E8E\u5B83\u4EEC\u6C47\u603B\u7684\u6210\u679C\u8FDB\u884C\u8DE8\u57DF\u7A7F\u900F\u5206\u6790\u3002
 
 `;
-              if (!finalContent.includes("\u3010\u5F53\u524D\u6570\u636E\u7A7F\u900F\u67B6\u6784")) {
-                finalContent = treeText + finalContent;
+            }
+            if (treeTextBlock || ticketHtmlBlock) {
+              const tableRegex = /\|.*\|\r?\n\|[-:\s|]+\|\r?\n(?:\|.*\|(?:\r?\n|$))*/;
+              const tableMatch = finalContent.match(tableRegex);
+              if (tableMatch) {
+                const insertIndex = tableMatch.index + tableMatch[0].length;
+                finalContent = finalContent.slice(0, insertIndex) + "\n\n" + treeTextBlock + ticketHtmlBlock + finalContent.slice(insertIndex);
+              } else {
+                finalContent = treeTextBlock + ticketHtmlBlock + finalContent;
               }
             }
             let actionPrompt = null;
@@ -50013,7 +50022,7 @@ ${subTableLines}
                 }
                 tcEntry.resultSummary = `\u63D0\u53D6\u5230\u8DEF\u7EBF: ${isG241 ? "G241" : "G207"}, \u68C0\u6D4B\u8DEF\u6BB5: ${isG241 ? 30 : 42}\u6BB5`;
               } else if (fnName === "enterprise_receive_seed_data") {
-                tcEntry.agentName = "AGENT-\u6570\u636E\u7EDF\u7B79(\u4F01\u4E1A\u4FA7)-01_\u57FA\u7840\u6570\u636E";
+                tcEntry.agentName = "AGENT-\u4EA4\u6295\u96C6\u56E2-\u57FA\u7840\u6570\u636E-01";
                 updateBot({ toolCalls: [...toolCallLog] });
                 await new Promise((r) => setTimeout(r, 1e3));
                 resultStr = JSON.stringify({
@@ -50024,7 +50033,7 @@ ${subTableLines}
                 }, null, 2);
                 tcEntry.resultSummary = "\u63A5\u6536\u653F\u52A1\u4FA7\u504F\u79BB\u79CD\u5B50\u6570\u636E";
               } else if (fnName === "enterprise_extract_gps_mapping") {
-                tcEntry.agentName = "AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-02_\u68C0\u6D4B\u8BBE\u5907";
+                tcEntry.agentName = "AGENT-\u4EA4\u89C4\u9662-\u68C0\u6D4B\u8BBE\u5907-02";
                 updateBot({ toolCalls: [...toolCallLog] });
                 await new Promise((r) => setTimeout(r, 1500));
                 resultStr = JSON.stringify({
@@ -50038,7 +50047,7 @@ ${subTableLines}
                 }, null, 2);
                 tcEntry.resultSummary = "\u63D0\u53D6\u5E95\u5E93\u4E3B\u88AB\u5171\u7EBF\u57FA\u51C6\u6620\u5C04";
               } else if (fnName === "enterprise_eliminate_noise_and_output_dict") {
-                tcEntry.agentName = "AGENT-\u517B\u62A4(\u4F01\u4E1A\u4FA7)-03_\u8DEF\u9762\u5DE5\u7A0B";
+                tcEntry.agentName = "AGENT-\u8DEF\u6865\u516C\u53F8-\u8DEF\u9762\u5DE5\u7A0B-03";
                 updateBot({ toolCalls: [...toolCallLog] });
                 await new Promise((r) => setTimeout(r, 1500));
                 resultStr = JSON.stringify({
