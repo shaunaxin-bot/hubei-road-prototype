@@ -13421,13 +13421,6 @@ $B_i = \\sum (M_i \\times \\omega_i) / \\sum \\omega_i$
   ];
   var TriangleAlert = createLucideIcon("triangle-alert", __iconNode17);
 
-  // node_modules/lucide-react/dist/esm/icons/x.mjs
-  var __iconNode18 = [
-    ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
-    ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
-  ];
-  var X = createLucideIcon("x", __iconNode18);
-
   // node_modules/xlsx/xlsx.mjs
   var XLSX = {};
   XLSX.version = "0.18.5";
@@ -45155,7 +45148,7 @@ $B_i = \\sum (M_i \\times \\omega_i) / \\sum \\omega_i$
   var Be = /^(`+|[^`])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*_]|\b_|$)|[^ ](?= {2,}\n)))/;
   var I = /[\p{P}\p{S}]/u;
   var Z = /[\s\p{P}\p{S}]/u;
-  var X2 = /[^\s\p{P}\p{S}]/u;
+  var X = /[^\s\p{P}\p{S}]/u;
   var De = d(/^((?![*_])punctSpace)/, "u").replace(/punctSpace/g, Z).getRegex();
   var pe = /(?!~)[\p{P}\p{S}]/u;
   var qe = /(?!~)[\s\p{P}\p{S}]/u;
@@ -45165,12 +45158,12 @@ $B_i = \\sum (M_i \\times \\omega_i) / \\sum \\omega_i$
   var Ze = d(ce, "u").replace(/punct/g, I).getRegex();
   var Ge = d(ce, "u").replace(/punct/g, pe).getRegex();
   var he = "^[^_*]*?__[^_*]*?\\*[^_*]*?(?=__)|[^*]+(?=[^*])|(?!\\*)punct(\\*+)(?=[\\s]|$)|notPunctSpace(\\*+)(?!\\*)(?=punctSpace|$)|(?!\\*)punctSpace(\\*+)(?=notPunctSpace)|[\\s](\\*+)(?!\\*)(?=punct)|(?!\\*)punct(\\*+)(?!\\*)(?=punct)|notPunctSpace(\\*+)(?=notPunctSpace)";
-  var Ne = d(he, "gu").replace(/notPunctSpace/g, X2).replace(/punctSpace/g, Z).replace(/punct/g, I).getRegex();
+  var Ne = d(he, "gu").replace(/notPunctSpace/g, X).replace(/punctSpace/g, Z).replace(/punct/g, I).getRegex();
   var Qe = d(he, "gu").replace(/notPunctSpace/g, ve).replace(/punctSpace/g, qe).replace(/punct/g, pe).getRegex();
-  var je = d("^[^_*]*?\\*\\*[^_*]*?_[^_*]*?(?=\\*\\*)|[^_]+(?=[^_])|(?!_)punct(_+)(?=[\\s]|$)|notPunctSpace(_+)(?!_)(?=punctSpace|$)|(?!_)punctSpace(_+)(?=notPunctSpace)|[\\s](_+)(?!_)(?=punct)|(?!_)punct(_+)(?!_)(?=punct)", "gu").replace(/notPunctSpace/g, X2).replace(/punctSpace/g, Z).replace(/punct/g, I).getRegex();
+  var je = d("^[^_*]*?\\*\\*[^_*]*?_[^_*]*?(?=\\*\\*)|[^_]+(?=[^_])|(?!_)punct(_+)(?=[\\s]|$)|notPunctSpace(_+)(?!_)(?=punctSpace|$)|(?!_)punctSpace(_+)(?=notPunctSpace)|[\\s](_+)(?!_)(?=punct)|(?!_)punct(_+)(?!_)(?=punct)", "gu").replace(/notPunctSpace/g, X).replace(/punctSpace/g, Z).replace(/punct/g, I).getRegex();
   var Fe = d(/^~~?(?:((?!~)punct)|[^\s~])/, "u").replace(/punct/g, I).getRegex();
   var Ue = "^[^~]+(?=[^~])|(?!~)punct(~~?)(?=[\\s]|$)|notPunctSpace(~~?)(?!~)(?=punctSpace|$)|(?!~)punctSpace(~~?)(?=notPunctSpace)|[\\s](~~?)(?!~)(?=punct)|(?!~)punct(~~?)(?!~)(?=punct)|notPunctSpace(~~?)(?=notPunctSpace)";
-  var Ke = d(Ue, "gu").replace(/notPunctSpace/g, X2).replace(/punctSpace/g, Z).replace(/punct/g, I).getRegex();
+  var Ke = d(Ue, "gu").replace(/notPunctSpace/g, X).replace(/punctSpace/g, Z).replace(/punct/g, I).getRegex();
   var We = d(/\\(punct)/, "gu").replace(/punct/g, I).getRegex();
   var Xe = d(/^<(scheme:[^\s\x00-\x1f<>]*|email)>/).replace("scheme", /[a-zA-Z][a-zA-Z0-9+.-]{1,31}/).replace("email", /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+(@)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+(?![-_])/).getRegex();
   var Je = d(K).replace("(?:-->|$)", "-->").getRegex();
@@ -50526,14 +50519,17 @@ ${msg.views.view3}
         {
           onClick: handleFolderScan,
           className: "p-1 hover:bg-white bg-slate-100 rounded text-slate-400 opacity-60 transition-colors shadow-sm cursor-not-allowed flex items-center justify-center",
-          title: "\u6587\u4EF6\u5939\u81EA\u52A8\u8BFB\u53D6\u6682\u672A\u89E3\u9501"
+          title: "\u91CD\u65B0\u626B\u63CF\u5E76\u6302\u8F7D\u672C\u5730\u5E74\u62A5\u6570\u636E\u5E93"
         },
         /* @__PURE__ */ React.createElement(RefreshCw, { size: 13, className: uploading ? "animate-spin" : "" })
-      ), /* @__PURE__ */ React.createElement("button", { onClick: () => setIsLeftPanelExpanded(false), className: "p-1 hover:bg-slate-200 rounded text-slate-400 cursor-pointer flex items-center justify-center" }, /* @__PURE__ */ React.createElement(X, { size: 13 })))),
+      ))),
       /* @__PURE__ */ React.createElement("div", { className: "flex-1 overflow-y-auto px-2 py-2" }, /* @__PURE__ */ React.createElement("div", { className: "mb-2" }, /* @__PURE__ */ React.createElement("div", { className: "text-[11px] font-bold text-slate-500 mb-1.5 px-1" }, "\u6570\u636E\u5E74\u4EFD\u8303\u56F4"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-1.5 px-1" }, effectiveAllYears.length > 0 ? effectiveAllYears.map((yr) => {
         const isSel = selectedYears.includes(yr);
         const yrTables = loadedTablesByYear[yr] || {};
-        const realTableCount = Object.values(yrTables).filter(Boolean).length;
+        const tableNames = Object.keys(yrTables).filter((k) => yrTables[k]);
+        const realTableCount = tableNames.length;
+        const tooltipText = realTableCount > 0 ? `\u5185\u90E8\u5305\u542B ${realTableCount} \u5F20\u8868\u683C\uFF1A
+` + tableNames.map((t) => `\u2022 ${t}`).join("\n") : "\u65E0\u6570\u636E";
         return /* @__PURE__ */ React.createElement(
           "div",
           {
@@ -50542,7 +50538,8 @@ ${msg.views.view3}
               if (isSel) setSelectedYears((prev) => prev.filter((y2) => y2 !== yr));
               else setSelectedYears((prev) => [...prev, yr].sort((a, b2) => a - b2));
             },
-            className: `flex items-center gap-0.5 px-1 py-0.5 cursor-pointer transition-colors ${isSel ? "text-blue-600 font-bold" : "text-slate-500 hover:text-slate-800"}`
+            className: `flex items-center gap-0.5 px-1 py-0.5 cursor-pointer transition-colors ${isSel ? "text-blue-600 font-bold" : "text-slate-500 hover:text-slate-800"}`,
+            title: tooltipText
           },
           /* @__PURE__ */ React.createElement("span", { className: "text-[10px]" }, yr, "\u5E74"),
           realTableCount > 0 && /* @__PURE__ */ React.createElement("span", { className: `text-[8.5px] font-mono ${isSel ? "text-blue-400" : "text-slate-400"}` }, "(", realTableCount, "\u8868)"),
@@ -61360,7 +61357,6 @@ lucide-react/dist/esm/icons/refresh-cw.mjs:
 lucide-react/dist/esm/icons/send.mjs:
 lucide-react/dist/esm/icons/sparkles.mjs:
 lucide-react/dist/esm/icons/triangle-alert.mjs:
-lucide-react/dist/esm/icons/x.mjs:
 lucide-react/dist/esm/lucide-react.mjs:
   (**
    * @license lucide-react v1.17.0 - ISC
