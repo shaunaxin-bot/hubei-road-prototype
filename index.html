@@ -50518,7 +50518,7 @@ ${msg.views.view3}
         "button",
         {
           onClick: handleFolderScan,
-          className: "p-1 hover:bg-white bg-slate-100 rounded text-slate-400 opacity-60 transition-colors shadow-sm cursor-not-allowed flex items-center justify-center",
+          className: "p-1 hover:bg-slate-200 bg-slate-100 rounded text-slate-500 transition-colors shadow-sm cursor-pointer flex items-center justify-center",
           title: "\u91CD\u65B0\u626B\u63CF\u5E76\u6302\u8F7D\u672C\u5730\u5E74\u62A5\u6570\u636E\u5E93"
         },
         /* @__PURE__ */ React.createElement(RefreshCw, { size: 13, className: uploading ? "animate-spin" : "" })
@@ -50528,8 +50528,16 @@ ${msg.views.view3}
         const yrTables = loadedTablesByYear[yr] || {};
         const tableNames = Object.keys(yrTables).filter((k) => yrTables[k]);
         const realTableCount = tableNames.length;
+        const allStandardTables = Object.keys(TABLE_MAPPING_RULES);
+        const displayNames = tableNames.map((k) => {
+          if (k.startsWith("table_")) {
+            const idx = parseInt(k.replace("table_", ""), 10);
+            return allStandardTables[idx] || k;
+          }
+          return k;
+        });
         const tooltipText = realTableCount > 0 ? `\u5185\u90E8\u5305\u542B ${realTableCount} \u5F20\u8868\u683C\uFF1A
-` + tableNames.map((t) => `\u2022 ${t}`).join("\n") : "\u65E0\u6570\u636E";
+` + displayNames.map((t) => `\u2022 ${t}`).join("\n") : "\u65E0\u6570\u636E";
         return /* @__PURE__ */ React.createElement(
           "div",
           {
@@ -50545,7 +50553,7 @@ ${msg.views.view3}
           realTableCount > 0 && /* @__PURE__ */ React.createElement("span", { className: `text-[8.5px] font-mono ${isSel ? "text-blue-400" : "text-slate-400"}` }, "(", realTableCount, "\u8868)"),
           isSel && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-blue-500 ml-0.5 font-bold" }, "\u2713")
         );
-      }) : /* @__PURE__ */ React.createElement("div", { className: "text-xs text-slate-400 text-center py-4 border border-dashed rounded bg-slate-50 flex flex-col gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u672A\u68C0\u6D4B\u5230\u672C\u5730\u6570\u636E"), /* @__PURE__ */ React.createElement("button", { onClick: handleFolderScan, className: "text-slate-400 text-[11px] cursor-not-allowed bg-transparent border-none opacity-60", title: "\u6587\u4EF6\u5939\u81EA\u52A8\u8BFB\u53D6\u6682\u672A\u89E3\u9501" }, "\u6587\u4EF6\u5939\u81EA\u52A8\u8BFB\u53D6\u6682\u672A\u89E3\u9501")))), /* @__PURE__ */ React.createElement(
+      }) : /* @__PURE__ */ React.createElement("div", { className: "text-xs text-slate-400 text-center py-4 border border-dashed rounded bg-slate-50 flex flex-col gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u672A\u68C0\u6D4B\u5230\u672C\u5730\u6570\u636E"), /* @__PURE__ */ React.createElement("button", { onClick: handleFolderScan, className: "text-blue-500 text-[11px] cursor-pointer hover:underline bg-transparent border-none", title: "\u91CD\u65B0\u626B\u63CF\u5E76\u6302\u8F7D\u672C\u5730\u5E74\u62A5\u6570\u636E\u5E93" }, "\u91CD\u65B0\u626B\u63CF\u5E76\u6302\u8F7D\u672C\u5730\u5E74\u62A5\u6570\u636E\u5E93")))), /* @__PURE__ */ React.createElement(
         StageTreeGraph,
         {
           availableYears: effectiveAllYears,
