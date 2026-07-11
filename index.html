@@ -48003,58 +48003,6 @@ Please report this to https://github.com/markedjs/marked.`, e) {
 
   // src/components/DeepQAAnnualReportAgentView.jsx
   var { useState: useState2, useEffect: useEffect2, useRef } = React;
-  var dict_lcodeToName = {
-    "T001": "\u300AT001\uFF08\u516C\u8DEF\u57FA\u672C\u60C5\u51B5\u6C47\u603B\u8868\uFF09\u300B",
-    "T1a": "\u300AT1a\uFF08\u516C\u8DEF\u5E74\u5E95\u5230\u8FBE\u6570\u5B8F\u89C2\u6C47\u603B\uFF09\u300B",
-    "T1b": "\u300AT1b\uFF08\u516C\u8DEF\u6309\u6280\u672F\u53CA\u8DEF\u9762\u7B49\u7EA7\u5206\u7C7B\uFF09\u300B",
-    "T2a": "\u300AT2a\uFF08\u6865\u6881\u5E74\u5E95\u5230\u8FBE\u6570\u5B8F\u89C2\u6C47\u603B\uFF09\u300B",
-    "T2b": "\u300AT2b\uFF08\u6865\u6881\u6309\u6280\u672F\u7B49\u7EA7\u5206\u7C7B\uFF09\u300B",
-    "T3": "\u300AT3\uFF08\u96A7\u9053\u5E74\u5E95\u5230\u8FBE\u6570\u5B8F\u89C2\u6C47\u603B\uFF09\u300B",
-    "L21": "\u300AL21\uFF08\u516C\u8DEF\u8DEF\u7EBF\u57FA\u672C\u60C5\u51B5\u660E\u7EC6\u8868\uFF09\u300B",
-    "L22": "\u300AL22\uFF08\u4E61\u9547/\u5EFA\u5236\u6751/\u81EA\u7136\u6751\u901A\u8FBE\u53CA\u5C5E\u6027\u8868\uFF09\u300B",
-    "L23": "\u300AL23\uFF08\u4E9A\u6D32\u516C\u8DEF\u7F51\u8DEF\u7EBF\u660E\u7EC6\u8868\uFF09\u300B",
-    "L24a": "\u300AL24a\uFF08\u516C\u8DEF\u6865\u6881\u57FA\u672C\u60C5\u51B5\u660E\u7EC6\u8868\uFF09\u300B",
-    "L24b": "\u300AL24b\uFF08\u516C\u8DEF\u6DB5\u6D1E\u660E\u7EC6\u8868\uFF09\u300B",
-    "L25": "\u300AL25\uFF08\u516C\u8DEF\u96A7\u9053\u57FA\u672C\u60C5\u51B5\u660E\u7EC6\u8868\uFF09\u300B",
-    "L26": "\u300AL26\uFF08\u516C\u8DEF\u6CBF\u7EBF\u670D\u52A1\u53CA\u6536\u8D39\u8BBE\u65BD\u660E\u7EC6\u8868\uFF09\u300B",
-    "L27": "\u300AL27\uFF08\u6613\u53D1\u5730\u8D28\u707E\u5BB3\u70B9\u660E\u7EC6\u8868\uFF09\u300B",
-    "L28": "\u300AL28\uFF08\u4EA4\u901A\u5DE5\u7A0B\u53CA\u6CBF\u7EBF\u8BBE\u65BD\u6C47\u603B\u8868\uFF09\u300B",
-    "L29a": "\u300AL29a\uFF08\u516C\u8DEF\u65E5\u5E38\u8DEF\u51B5\u8BC4\u5B9A\u660E\u7EC6\u8868\uFF09\u300B",
-    "L29b": "\u300AL29b\uFF08\u8DEF\u51B5\u8BC4\u5B9A\u5B8F\u89C2\u6C47\u603B\u8868\uFF09\u300B",
-    "L30a": "\u300AL30a\uFF08\u516C\u8DEF\u517B\u62A4\u4F5C\u4E1A\u7EDF\u8BA1\u8868\uFF09\u300B",
-    "L30b": "\u300AL30b\uFF08\u516C\u8DEF\u517B\u62A4\u5DE5\u7A0B\u7EDF\u8BA1\u8868\uFF09\u300B",
-    "L30c": "\u300AL30c\uFF08\u516C\u8DEF\u517B\u62A4\u8D44\u91D1\u7EDF\u8BA1\u8868\uFF09\u300B",
-    "L31a": "\u300AL31a\uFF08\u9AD8\u901F\u516C\u8DEF\u7BA1\u517B\u5355\u4F4D\u5C5E\u6027\u8868\uFF09\u300B",
-    "L31b": "\u300AL31b\uFF08\u56FD\u7701\u5E72\u7EBF\u516C\u8DEF\u7BA1\u517B\u5355\u4F4D\u5C5E\u6027\u8868\uFF09\u300B",
-    "L31c": "\u300AL31c\uFF08\u519C\u6751\u516C\u8DEF\u7BA1\u517B\u5355\u4F4D\u5C5E\u6027\u8868\uFF09\u300B",
-    "L32": "\u300AL32\uFF08\u516C\u8DEF\u5E94\u6025\u673A\u5177\u50A8\u5907\u5E93\u53CA\u5E94\u6025\u961F\u4F0D\u660E\u7EC6\u8868\uFF09\u300B"
-  };
-  var dict_lcodeToSubTables = {
-    "T001": ["\u516C\u8DEF\u91CC\u7A0B\u5E74\u5E95\u5230\u8FBE\u6570\uFF08\u6309\u6280\u672F\u7B49\u7EA7\u5206\uFF09", "\u516C\u8DEF\u91CC\u7A0B\u5E74\u5E95\u5230\u8FBE\u6570\uFF08\u6309\u8DEF\u9762\u7C7B\u578B\u5206\uFF09", "\u516C\u8DEF\u6865\u6881\u5E74\u5E95\u5230\u8FBE\u6570\uFF08\u6309\u4F7F\u7528\u5E74\u9650\u5206\uFF09", "\u516C\u8DEF\u6865\u6881\u3001\u6E21\u53E3\u5E74\u5E95\u5230\u8FBE\u6570\uFF08\u6309\u8DE8\u5F84\u5206\uFF09", "\u516C\u8DEF\u96A7\u9053\u5E74\u5E95\u5230\u8FBE\u6570"],
-    "T1a": ["\u516C\u8DEF\u5E74\u5E95\u5230\u8FBE\u6570(\u5B8F\u89C2\u6C47\u603B)"],
-    "T1b": ["\u516C\u8DEF\u6309\u6280\u672F\u53CA\u8DEF\u9762\u7B49\u7EA7\u5206\u7C7B"],
-    "T2a": ["\u6865\u6881\u5E74\u5E95\u5230\u8FBE\u6570(\u5B8F\u89C2\u6C47\u603B)"],
-    "T2b": ["\u6865\u6881\u6309\u6280\u672F\u7B49\u7EA7\u5206\u7C7B"],
-    "T3": ["\u96A7\u9053\u5E74\u5E95\u5230\u8FBE\u6570(\u5B8F\u89C2\u6C47\u603B)"],
-    "L21": ["02 \u8DEF\u7EBF\u660E\u7EC6", "07 \u516C\u8DEF\u6392\u6869", "08 \u89C2\u6D4B\u7AD9\u70B9", "\u519C\u6751\u516C\u8DEF\u5B89\u9632\u8BBE\u65BD\u660E\u7EC6\u8868", "\u56FD\u9053\u8DEF\u7EBF\u6570\u636E\u53D8\u66F4\u8868"],
-    "L22": ["\u4E61\u9547\u901A\u8FBE", "\u5EFA\u5236\u6751\u901A\u8FBE", "\u81EA\u7136\u6751\u901A\u8FBE"],
-    "L23": ["\u4E9A\u6D32\u516C\u8DEF\u7F51\u8DEF\u7EBF\u660E\u7EC6\u8868"],
-    "L24a": ["03 \u6865\u6881\u57FA\u672C\u60C5\u51B5\u6C47\u603B\u8868", "06 \u519C\u6751\u6865\u6881", "\u6865\u6881\u6570\u636E\u53D8\u66F4\u8868"],
-    "L24b": ["05 \u6DB5\u6D1E\u660E\u7EC6\u8868"],
-    "L25": ["04 \u96A7\u9053\u660E\u7EC6\u8868", "\u96A7\u9053\u6570\u636E\u53D8\u66F4\u8868"],
-    "L26": ["09 \u670D\u52A1\u8BBE\u65BD", "\u6536\u8D39\u7AD9", "\u670D\u52A1\u533A", "\u9AD8\u901F\u516C\u8DEF\u51FA\u5165\u53E3"],
-    "L27": ["11-1 \u707E\u6BC1\u9AD8\u901F", "11-2 \u707E\u6BC1\u666E\u901A", "11-3 \u707E\u6BC1\u53BF\u4E61"],
-    "L28": ["06 \u4EA4\u901A\u5DE5\u7A0B\u53CA\u6CBF\u7EBF\u8BBE\u65BD\u5E74"],
-    "L29a": ["12-1 \u8DEF\u51B5\u660E\u7EC6", "12-2 \u516C\u8DEF\u6280\u672F\u72B6\u51B5\u660E\u7EC6\u8868"],
-    "L29b": ["\u8DEF\u51B5\u8BC4\u5B9A\u5B8F\u89C2\u6C47\u603B\u8868"],
-    "L30a": ["13-1 \u517B\u62A4\u4F5C\u4E1A"],
-    "L30b": ["13-2 \u517B\u62A4\u5DE5\u7A0B", "13-3 \u517B\u62A4\u9AD8\u901F", "13-4 \u517B\u62A4\u666E\u901A", "13-5 \u517B\u62A4\u53BF\u4E61"],
-    "L30c": ["14-1 \u8D44\u91D1\u6765\u6E90", "14-2 \u516C\u8DEF\u517B\u62A4\u8D44\u91D1\u6295\u5165\u6765\u6E90\u7EDF\u8BA1\u8868\u4E8C\u2014\u666E\u901A\u56FD\u9053\u53CA\u7701\u9053", "14-3 \u516C\u8DEF\u517B\u62A4\u8D44\u91D1\u6295\u5165\u6765\u6E90\u7EDF\u8BA1\u8868\u4E09\u2014\u53BF\u3001\u4E61\u3001\u6751\u9053"],
-    "L31a": ["15-1 \u9AD8\u901F\u7BA1\u517B\u673A\u6784"],
-    "L31b": ["15-1 \u666E\u901A\u56FD\u7701\u9053\u7BA1\u517B\u673A\u6784", "\u4E61\u9547\u5C5E\u6027\u8868", "\u7BA1\u517B\u5355\u4F4D\u4EE3\u7801\u8868", "\u8054\u7CFB\u65B9\u5F0F\u8868"],
-    "L31c": ["\u5EFA\u5236\u6751\u5C5E\u6027", "\u81EA\u7136\u6751\u5C5E\u6027"],
-    "L32": ["16-1 \u516C\u8DEF\u4EA4\u901A\u5E94\u6025\u50A8\u5907\u7269\u8D44\u53CA\u88C5\u5907\u7EDF\u8BA1\u8868\u4E00\u2014\u9AD8\u901F\u516C\u8DEF", "16-2 \u516C\u8DEF\u4EA4\u901A\u5E94\u6025\u50A8\u5907\u7269\u8D44\u53CA\u88C5\u5907\u7EDF\u8BA1\u8868\u4E8C\u2014\u666E\u901A\u516C\u8DEF"]
-  };
   var AgentWorkflowVisualizer = ({ data, title }) => {
     if (!data || data.length === 0) return null;
     return /* @__PURE__ */ React.createElement("div", { className: "mb-2 mt-1 bg-transparent" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 pb-1.5 mb-2 border-b border-slate-200" }, /* @__PURE__ */ React.createElement(Database2, { size: 15, className: "text-slate-700" }), /* @__PURE__ */ React.createElement("h3", { className: "text-[13px] font-bold text-slate-800 m-0 p-0 tracking-wide" }, title || "\u653F\u4F01\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u5EA6\u94FE\u8DEF")), /* @__PURE__ */ React.createElement("div", { className: "relative border-l-[2px] border-slate-200 ml-[7px] pl-3.5 space-y-1.5" }, data.map((step, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: "relative flex flex-col group" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -left-[20px] top-[5px] w-[6px] h-[6px] rounded-full bg-slate-400" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center flex-wrap gap-1.5 mb-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11.5px] font-mono font-medium text-slate-700" }, "[", step.side === "gov" ? "\u653F\u5E9C\u4FA7" : "\u4F01\u4E1A\u4FA7", "] ", step.agent), /* @__PURE__ */ React.createElement("span", { className: "text-[11.5px] font-bold text-slate-800" }, "[", step.action, "]")), /* @__PURE__ */ React.createElement("div", { className: "text-[11px] text-slate-600 leading-snug" }, step.desc)))));
@@ -48089,6 +48037,40 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       const y2 = parsedArgs.year;
       if (tName) {
         const yearStr = y2 ? `${y2}\u5E74` : selectedYears.length > 0 ? selectedYears.join("\u3001") + "\u5E74" : "2016\u5E74";
+        const dict_lcodeToName = {
+          "T001": "\u300AT001\uFF08\u516C\u8DEF\u57FA\u672C\u60C5\u51B5\u6C47\u603B\u8868\uFF09\u300B",
+          "T1a": "\u300AT1a\uFF08\u516C\u8DEF\u5E74\u5E95\u5230\u8FBE\u6570\u5B8F\u89C2\u6C47\u603B\uFF09\u300B",
+          "T1b": "\u300AT1b\uFF08\u516C\u8DEF\u6309\u6280\u672F\u53CA\u8DEF\u9762\u7B49\u7EA7\u5206\u7C7B\uFF09\u300B",
+          "T2a": "\u300AT2a\uFF08\u6865\u6881\u5E74\u5E95\u5230\u8FBE\u6570\u5B8F\u89C2\u6C47\u603B\uFF09\u300B",
+          "T2b": "\u300AT2b\uFF08\u6865\u6881\u6309\u6280\u672F\u7B49\u7EA7\u53CA\u4F7F\u7528\u5E74\u9650\u5206\u7C7B\uFF09\u300B",
+          "T3": "\u300AT3\uFF08\u96A7\u9053\u5E74\u5E95\u5230\u8FBE\u6570\u5B8F\u89C2\u6C47\u603B\uFF09\u300B",
+          "L21": "\u300AL21\uFF08\u516C\u8DEF\u8DEF\u7EBF\u57FA\u672C\u60C5\u51B5\u660E\u7EC6\u8868\uFF09\u300B",
+          "L22": "\u300AL22\uFF08\u516C\u8DEF\u901A\u8FBE\u60C5\u51B5\u660E\u7EC6\u8868\uFF09\u300B",
+          "L23": "\u300AL23\uFF08\u4E9A\u6D32\u516C\u8DEF\u7F51\u8DEF\u7EBF\u660E\u7EC6\u8868\uFF09\u300B",
+          "L24a": "\u300AL24a\uFF08\u516C\u8DEF\u6865\u6881\u57FA\u672C\u60C5\u51B5\u660E\u7EC6\u8868\uFF09\u300B",
+          "L24b": "\u300AL24b\uFF08\u6DB5\u6D1E\u660E\u7EC6\u8868\uFF09\u300B",
+          "L25": "\u300AL25\uFF08\u516C\u8DEF\u96A7\u9053\u660E\u7EC6\u8868\uFF09\u300B",
+          "L26": "\u300AL26\uFF08\u4EA4\u901A\u8FD0\u8F93\u53CA\u76F8\u5173\u670D\u52A1\u8BBE\u65BD\u660E\u7EC6\u8868\uFF09\u300B",
+          "L27": "\u300AL27\uFF08\u707E\u6BC1\u635F\u5931\u660E\u7EC6\u8868\uFF09\u300B",
+          "L28": "\u300AL28\uFF08\u4EA4\u901A\u5DE5\u7A0B\u53CA\u6CBF\u7EBF\u8BBE\u65BD\u6C47\u603B\u8868\uFF09\u300B"
+        };
+        const dict_lcodeToSubTables = {
+          "T001": ["\u516C\u8DEF\u91CC\u7A0B\u5E74\u5E95\u5230\u8FBE\u6570\uFF08\u6309\u6280\u672F\u7B49\u7EA7\u5206\uFF09", "\u516C\u8DEF\u91CC\u7A0B\u5E74\u5E95\u5230\u8FBE\u6570\uFF08\u6309\u8DEF\u9762\u7C7B\u578B\u5206\uFF09", "\u516C\u8DEF\u6865\u6881\u5E74\u5E95\u5230\u8FBE\u6570\uFF08\u6309\u4F7F\u7528\u5E74\u9650\u5206\uFF09", "\u516C\u8DEF\u6865\u6881\u3001\u6E21\u53E3\u5E74\u5E95\u5230\u8FBE\u6570\uFF08\u6309\u8DE8\u5F84\u5206\uFF09", "\u516C\u8DEF\u96A7\u9053\u5E74\u5E95\u5230\u8FBE\u6570"],
+          "T1a": ["\u516C\u8DEF\u5E74\u5E95\u5230\u8FBE\u6570(\u5B8F\u89C2\u6C47\u603B)"],
+          "T1b": ["\u516C\u8DEF\u6309\u6280\u672F\u53CA\u8DEF\u9762\u7B49\u7EA7\u5206\u7C7B"],
+          "T2a": ["\u6865\u6881\u5E74\u5E95\u5230\u8FBE\u6570(\u5B8F\u89C2\u6C47\u603B)"],
+          "T2b": ["\u6865\u6881\u6309\u6280\u672F\u7B49\u7EA7\u53CA\u4F7F\u7528\u5E74\u9650\u5206\u7C7B"],
+          "T3": ["\u96A7\u9053\u5E74\u5E95\u5230\u8FBE\u6570(\u5B8F\u89C2\u6C47\u603B)"],
+          "L21": ["02 \u8DEF\u7EBF\u660E\u7EC6", "07 \u516C\u8DEF\u6392\u6869", "08 \u89C2\u6D4B\u7AD9\u70B9", "\u519C\u6751\u516C\u8DEF\u5B89\u9632\u8BBE\u65BD\u660E\u7EC6\u8868", "\u56FD\u9053\u8DEF\u7EBF\u6570\u636E\u53D8\u66F4\u8868"],
+          "L22": ["\u4E61\u9547\u901A\u8FBE", "\u5EFA\u5236\u6751\u901A\u8FBE", "\u81EA\u7136\u6751\u901A\u8FBE"],
+          "L23": ["\u4E9A\u6D32\u516C\u8DEF\u7F51\u8DEF\u7EBF\u660E\u7EC6\u8868"],
+          "L24a": ["03 \u6865\u6881\u57FA\u672C\u60C5\u51B5\u6C47\u603B\u8868", "06 \u519C\u6751\u6865\u6881", "\u6865\u6881\u6570\u636E\u53D8\u66F4\u8868"],
+          "L24b": ["05 \u6DB5\u6D1E\u660E\u7EC6\u8868"],
+          "L25": ["04 \u96A7\u9053\u660E\u7EC6\u8868", "\u96A7\u9053\u6570\u636E\u53D8\u66F4\u8868"],
+          "L26": ["09 \u670D\u52A1\u8BBE\u65BD", "\u6536\u8D39\u7AD9", "\u670D\u52A1\u533A", "\u9AD8\u901F\u516C\u8DEF\u51FA\u5165\u53E3"],
+          "L27": ["11-1 \u707E\u6BC1\u9AD8\u901F", "11-2 \u707E\u6BC1\u666E\u901A", "11-3 \u707E\u6BC1\u53BF\u4E61"],
+          "L28": ["06 \u4EA4\u901A\u5DE5\u7A0B\u53CA\u6CBF\u7EBF\u8BBE\u65BD\u5E74\u62A5"]
+        };
         let fullName = "";
         if (dict_lcodeToName[tName]) {
           const subs = dict_lcodeToSubTables[tName] || [];
@@ -50642,19 +50624,10 @@ ${msg.views.view3}
           "L27": ["11-1 \u707E\u6BC1\u9AD8\u901F", "11-2 \u707E\u6BC1\u666E\u901A", "11-3 \u707E\u6BC1\u53BF\u4E61"],
           "L28": ["06 \u4EA4\u901A\u5DE5\u7A0B\u53CA\u6CBF\u7EBF\u8BBE\u65BD\u5E74\u62A5"]
         };
-        const dict_subToLcode = {};
-        Object.keys(dict_lcodeToSubTables).forEach((lcode) => {
-          dict_lcodeToSubTables[lcode].forEach((sub) => {
-            dict_subToLcode[sub] = lcode;
-          });
-        });
         let tableNames = Object.keys(yrTables).filter((k) => yrTables[k] && k !== "__file_metadata__");
         if (yr !== 2025) {
           tableNames = ["01 \u516C\u8DEF\u91CC\u7A0B\u5E74\u5E95\u5230\u8FBE\u6570\uFF08\u6309\u6280\u672F\u7B49\u7EA7\u5206\uFF09", "02 \u8DEF\u7EBF\u660E\u7EC6", "03 \u6865\u6881\u57FA\u672C\u60C5\u51B5\u6C47\u603B\u8868", "04 \u96A7\u9053\u660E\u7EC6\u8868", "05 \u6DB5\u6D1E\u660E\u7EC6\u8868", "06 \u519C\u6751\u6865\u6881", "07 \u516C\u8DEF\u6392\u6869", "08 \u89C2\u6D4B\u7AD9\u70B9", "09 \u670D\u52A1\u8BBE\u65BD", "11-1 \u707E\u6BC1\u9AD8\u901F", "11-2 \u707E\u6BC1\u666E\u901A", "11-3 \u707E\u6BC1\u53BF\u4E61", "12-1 \u8DEF\u51B5\u660E\u7EC6", "13-1 \u4F01\u4E1A", "13-2 \u4E8B\u4E1A\u5355\u4F4D", "13-3 \u673A\u5173", "13-4 \u793E\u4F1A\u56E2\u4F53", "13-5 \u5176\u4ED6", "14-1 \u8D44\u91D1\u6765\u6E90", "15-1 \u56FD\u7701\u5E72\u7EBF\u516C\u8DEF\u7BA1\u517B\u673A\u6784", "15-1 \u4EA4\u901A\u8FD0\u8F93\u4E3B\u7BA1\u90E8\u95E8", "15-2 \u4E61\u9547\u53CA\u8054\u7CFB\u65B9\u5F0F", "\u5EFA\u5236\u6751\u901A\u8FBE", "\u81EA\u7136\u6751\u901A\u8FBE", "\u7BA1\u517B\u5355\u4F4D\u4EE3\u7801\u8868", "\u8054\u7CFB\u65B9\u5F0F\u8868", "\u6865\u6881\u6570\u636E\u53D8\u66F4\u8868", "\u96A7\u9053\u6570\u636E\u53D8\u66F4\u8868"];
           tableNames = tableNames.slice(1);
-          tableNames = tableNames.slice(1);
-        } else {
-          tableNames = ["02 \u8DEF\u7EBF\u660E\u7EC6"];
         }
         const realTableCount = tableNames.length;
         let fileMapping = window.__DB_META_BY_YEAR__?.[yr]?.fileMapping || {};
@@ -50672,41 +50645,45 @@ ${msg.views.view3}
           tablesByFile[file].push(t);
         });
         const fileCount = Object.keys(tablesByFile).length;
-        let tooltipText = "";
+        let tooltipText = "\u65E0\u6570\u636E";
         if (realTableCount > 0) {
-          let tooltipContent = "";
-          let subTableCount = 0;
-          const groupedByMajor = {};
-          tableNames.forEach((subName) => {
-            const majorLcode = dict_subToLcode[subName] || subName;
-            if (!groupedByMajor[majorLcode]) {
-              groupedByMajor[majorLcode] = [];
-            }
-            groupedByMajor[majorLcode].push(subName);
-          });
-          const allStandardCats = ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "L21", "L22", "L23", "L24a", "L24b", "L25", "L26", "L27", "L28"];
-          const majorKeys = Object.keys(groupedByMajor).sort((a, b2) => {
-            const idxA = allStandardCats.indexOf(a);
-            const idxB = allStandardCats.indexOf(b2);
-            if (idxA !== -1 && idxB !== -1) return idxA - idxB;
-            if (idxA !== -1) return -1;
-            if (idxB !== -1) return 1;
-            return a.localeCompare(b2);
-          });
-          majorKeys.forEach((parentName) => {
-            const displayName = dict_lcodeToName[parentName] || parentName;
-            let subs = groupedByMajor[parentName];
-            tooltipContent += `\u25A0 ${displayName}
+          if (yr !== 2025) {
+            const cats = ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "L21", "L22", "L23", "L24a", "L24b", "L25", "L26", "L27", "L28"];
+            let tooltipContent = "";
+            cats.forEach((parentName) => {
+              const displayName = lcodeToName[parentName] || parentName;
+              let subs = lcodeToSubTables[parentName] || [];
+              if (parentName === "L26") subs = subs.filter((s) => s !== "\u670D\u52A1\u533A" && s !== "\u6536\u8D39\u7AD9" && s !== "\u9AD8\u901F\u516C\u8DEF\u51FA\u5165\u53E3");
+              if (parentName === "L21") subs = subs.filter((s) => s !== "\u56FD\u9053\u8DEF\u7EBF\u6570\u636E\u53D8\u66F4\u8868" && s !== "\u519C\u6751\u516C\u8DEF\u5B89\u9632\u8BBE\u65BD\u660E\u7EC6\u8868");
+              if (parentName === "L22") subs = subs.filter((s) => s !== "\u4E61\u9547\u901A\u8FBE");
+              tooltipContent += `\u25A0 ${displayName}
 `;
-            subs.forEach((sub) => {
-              tooltipContent += `   \u21B3 ${sub}
+              subs.forEach((sub) => {
+                tooltipContent += `   \u21B3 ${sub}
 `;
-              subTableCount++;
+              });
             });
-          });
-          const fileName = Object.keys(tablesByFile)[0] || "\u9ED8\u8BA4\u6570\u636E\u96C6";
-          tooltipText = `\u6570\u636E\u6765\u6E90: ${fileName} (\u5305\u542B ${subTableCount} \u5F20\u5E95\u8868)
+            tooltipText = `\u6570\u636E\u6765\u6E90: \u6E56\u5317\u7701${yr}\u5E74\u516C\u8DEF\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5.xlsx (\u5305\u542B 27 \u5F20\u5E95\u8868)
 ` + tooltipContent;
+          } else {
+            let tooltipContent = "";
+            let subTableCount = 0;
+            const cats = tableNames;
+            cats.forEach((parentName) => {
+              const displayName = lcodeToName[parentName] || parentName;
+              let subs = ["02 \u8DEF\u7EBF\u660E\u7EC6"];
+              tooltipContent += `\u25A0 ${displayName}
+`;
+              subs.forEach((sub) => {
+                tooltipContent += `   \u21B3 ${sub}
+`;
+                subTableCount++;
+              });
+            });
+            const fileName = Object.keys(tablesByFile)[0] || "G207\u3001G247\u4FE1\u606F.xlsx";
+            tooltipText = `\u6570\u636E\u6765\u6E90: ${fileName} (\u5305\u542B ${subTableCount} \u5F20\u5E95\u8868)
+` + tooltipContent;
+          }
         }
         return /* @__PURE__ */ React.createElement(
           "div",
