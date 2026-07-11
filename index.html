@@ -50540,9 +50540,16 @@ ${msg.views.view3}
           if (!tablesByFile[file]) tablesByFile[file] = [];
           tablesByFile[file].push(t);
         });
-        let tooltipText = realTableCount > 0 ? `\u5185\u90E8\u5305\u542B ${realTableCount} \u5F20\u8868\u5355\uFF1A
-` : "\u65E0\u6570\u636E";
+        const fileCount = Object.keys(tablesByFile).length;
+        let tooltipText = "\u65E0\u6570\u636E";
         if (realTableCount > 0) {
+          if (fileCount === 1) {
+            tooltipText = `\u5185\u90E8\u5305\u542B ${realTableCount} \u5F20\u8868\u5355\uFF1A
+`;
+          } else {
+            tooltipText = `\u5171\u6C47\u805A ${fileCount} \u4E2A\u6570\u636E\u6587\u4EF6\uFF08\u6DB5\u76D6 ${realTableCount} \u5F20\u5E95\u8868\uFF09\uFF1A
+`;
+          }
           Object.keys(tablesByFile).forEach((file) => {
             tooltipText += `
 [${file}]
