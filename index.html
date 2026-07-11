@@ -48224,10 +48224,6 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       const stageTables = [];
       (stageObj.tables || []).forEach((t) => {
         if (!seenLcodes.has(t.lcode)) {
-          if (selectedYears && selectedYears.length > 0) {
-            const loaded = getLoadedYears(t.lcode);
-            if (loaded.length === 0) return;
-          }
           stageTables.push(t);
           seenLcodes.add(t.lcode);
         }
