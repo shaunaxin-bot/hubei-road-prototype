@@ -3146,7 +3146,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             reject(errWasm);
             return;
           }
-          const cacheKey = `hubei_${year}_db_v2`;
+          const cacheKey = `hubei_${year}_db_v3`;
           try {
             console.log(`\u6B63\u5728\u68C0\u67E5\u672C\u5730\u7F13\u5B58(IndexedDB)\u4E2D\u662F\u5426\u5B58\u5728 ${year} \u6570\u636E\u5E93...`);
             const cachedBuffer = await getDbCache(cacheKey);
@@ -3161,7 +3161,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           }
           try {
             console.log(`\u6B63\u5728\u5C1D\u8BD5\u4ECE\u76F8\u5BF9\u8DEF\u5F84\u81EA\u52A8\u4E0B\u8F7D\u6570\u636E\u5E93 hubei_${year}.db (\u7EA640MB\uFF0C\u9996\u6B21\u52A0\u8F7D\u8BF7\u7A0D\u5019)...`);
-            const response = await fetch(`./hubei_${year}.db`);
+            let response = await fetch(`./hubei_${year}.db`);
+            if (!response.ok) {
+              response = await fetch(`./public/hubei_${year}.db`);
+            }
             if (response.ok) {
               const buffer = await response.arrayBuffer();
               setDbCache(cacheKey, buffer).catch((e) => console.warn("\u5199\u5165\u7F13\u5B58\u5931\u8D25", e));
@@ -48696,16 +48699,9 @@ ${code}
           if (!window.__DBs__[targetYear]) {
             setLocalDbStatus(`\u23F3 \u6B63\u5728\u4E3A\u60A8\u62C9\u53D6 ${targetYear} \u5E74\u5EA6\u6570\u636E...`);
             try {
-              let response = await fetch(`./hubei_${targetYear}.db`);
-              if (!response.ok) {
-                response = await fetch(`./public/hubei_${targetYear}.db`);
-              }
-              if (response.ok) {
-                const buffer = await response.arrayBuffer();
-                const database = await loadDBByYear2(targetYear, new Uint8Array(buffer));
-                window.__DBs__[targetYear] = database;
-                newlyLoaded = true;
-              }
+              const database = await loadDBByYear2(targetYear);
+              window.__DBs__[targetYear] = database;
+              newlyLoaded = true;
               try {
                 let macroEntry = { "\u68C0\u6D4B\u5E74\u4EFD": targetYear, year: targetYear, totalMileage: 0, goodMileage: 0, goodRate: 0, totalBridges: 0, dangerBridges: 0 };
                 try {
