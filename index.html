@@ -48726,9 +48726,14 @@ ${code}
           }
         }
         if (newlyLoaded || selectedYears.length > 0) {
-          setLocalDbStatus(`\u2705 SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA \xB7 \u5F53\u524D\u5DF2\u6302\u8F7D\uFF1A${selectedYears.join("\u3001")} \u5E74`);
-          window.__DB__ = window.__DBs__[selectedYears[selectedYears.length - 1]];
-          setDb(window.__DB__);
+          const successfullyLoadedYears = selectedYears.filter((y2) => window.__DBs__[y2] != null);
+          if (successfullyLoadedYears.length > 0) {
+            setLocalDbStatus(`\u2705 SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA \xB7 \u5F53\u524D\u5DF2\u6302\u8F7D\uFF1A${successfullyLoadedYears.join("\u3001")} \u5E74`);
+            window.__DB__ = window.__DBs__[successfullyLoadedYears[successfullyLoadedYears.length - 1]];
+            setDb(window.__DB__);
+          } else {
+            setLocalDbStatus(`\u274C SQLite Wasm \u672C\u5730\u5E93\u6302\u8F7D\u5931\u8D25`);
+          }
         }
       });
     }, [selectedYears]);
