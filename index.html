@@ -3146,7 +3146,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             reject(errWasm);
             return;
           }
-          const cacheKey = `hubei_${year}_db_v1`;
+          const cacheKey = `hubei_${year}_db_v2`;
           try {
             console.log(`\u6B63\u5728\u68C0\u67E5\u672C\u5730\u7F13\u5B58(IndexedDB)\u4E2D\u662F\u5426\u5B58\u5728 ${year} \u6570\u636E\u5E93...`);
             const cachedBuffer = await getDbCache(cacheKey);
@@ -48689,58 +48689,48 @@ ${code}
     };
     useEffect2(() => {
       if (!selectedYears || selectedYears.length === 0) return;
-      const targetYear = selectedYears[selectedYears.length - 1];
-      Promise.resolve().then(() => (init_sqlite(), sqlite_exports)).then(({ loadDBByYear: loadDBByYear2 }) => {
-        setLocalDbStatus(`\u23F3 \u6B63\u5728\u4E3A\u60A8\u62C9\u53D6 ${targetYear} \u5E74\u5EA6\u6570\u636E...`);
-        loadDBByYear2(targetYear).then((database) => {
-          setDb(database);
-          window.__DB__ = database;
-          if (!window.__DBs__) window.__DBs__ = {};
-          window.__DBs__[targetYear] = database;
-          setLocalDbStatus(`\u2705 SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA \xB7 \u5DF2\u52A8\u6001\u6302\u8F7D ${targetYear} \u5E74\u62A5`);
-          try {
-            let macroEntry = { "\u68C0\u6D4B\u5E74\u4EFD": targetYear, year: targetYear, totalMileage: 0, goodMileage: 0, goodRate: 0, totalBridges: 0, dangerBridges: 0 };
+      Promise.resolve().then(() => (init_sqlite(), sqlite_exports)).then(async ({ loadDBByYear: loadDBByYear2 }) => {
+        if (!window.__DBs__) window.__DBs__ = {};
+        let newlyLoaded = false;
+        for (const targetYear of selectedYears) {
+          if (!window.__DBs__[targetYear]) {
+            setLocalDbStatus(`\u23F3 \u6B63\u5728\u4E3A\u60A8\u62C9\u53D6 ${targetYear} \u5E74\u5EA6\u6570\u636E...`);
             try {
-              const r29b = database.exec("SELECT col3, col4, col5, col9 FROM L29b WHERE col1 LIKE '%\u56FD\u9053%' AND col2 = '02' LIMIT 1");
-              if (r29b.length > 0 && r29b[0].values.length > 0) {
-                const row = r29b[0].values[0];
-                macroEntry.totalMileage = parseFloat(row[0]) || 0;
-                macroEntry.goodMileage = (parseFloat(row[1]) || 0) + (parseFloat(row[2]) || 0);
-                macroEntry.goodRate = parseFloat(row[3]) || 0;
+              const database = await loadDBByYear2(targetYear);
+              window.__DBs__[targetYear] = database;
+              newlyLoaded = true;
+              try {
+                let macroEntry = { "\u68C0\u6D4B\u5E74\u4EFD": targetYear, year: targetYear, totalMileage: 0, goodMileage: 0, goodRate: 0, totalBridges: 0, dangerBridges: 0 };
+                try {
+                  const r29b = database.exec("SELECT col3, col4, col5, col9 FROM L29b WHERE col1 LIKE '%\u56FD\u9053%' AND col2 = '02' LIMIT 1");
+                  if (r29b.length > 0 && r29b[0].values.length > 0) {
+                    const row = r29b[0].values[0];
+                    macroEntry.totalMileage = parseFloat(row[0]) || 0;
+                    macroEntry.goodMileage = (parseFloat(row[1]) || 0) + (parseFloat(row[2]) || 0);
+                    macroEntry.goodRate = parseFloat(row[3]) || 0;
+                  }
+                } catch (e) {
+                }
+                setParsedData((prev) => {
+                  if (prev && prev.find && prev.find((p) => p.year === targetYear)) return prev;
+                  return prev ? [...prev, macroEntry] : [macroEntry];
+                });
+              } catch (e) {
               }
-            } catch (e) {
+            } catch (err) {
+              console.error(`Failed to load DB for ${targetYear}:`, err);
             }
-            try {
-              const r2b = database.exec("SELECT col1 FROM T2b WHERE col0 LIKE '%1.\u56FD\u9053%' LIMIT 1");
-              if (r2b.length > 0 && r2b[0].values.length > 0) {
-                macroEntry.totalBridges = parseFloat(r2b[0].values[0][0]) || 0;
-              }
-            } catch (e) {
-            }
-            try {
-              const r2a = database.exec("SELECT col3 FROM T2a WHERE col0 LIKE '%1.\u56FD\u9053%' LIMIT 1");
-              if (r2a.length > 0 && r2a[0].values.length > 0) {
-                macroEntry.dangerBridges = parseFloat(r2a[0].values[0][0]) || 0;
-              }
-            } catch (e) {
-            }
-            setParsedData([macroEntry]);
-          } catch (e) {
-            console.error("Pre-extract error:", e);
           }
-          if (lastLoadedYearForMessage.current === targetYear) {
-            return;
-          }
-          lastLoadedYearForMessage.current = targetYear;
-        }).catch((e) => {
-          setLocalDbStatus(`\u274C ${targetYear} \u6570\u636E\u5E93\u52A0\u8F7D\u5931\u8D25: ${e.message}`);
-          setMessages((prev) => [...prev, {
-            role: "agent",
-            content: `\u274C ${targetYear} \u6570\u636E\u5E93\u52A0\u8F7D\u5931\u8D25\uFF0C\u8BF7\u786E\u4FDD public \u76EE\u5F55\u4E0B\u5B58\u5728 hubei_${targetYear}.db \u6587\u4EF6\u3002`
-          }]);
-        });
+        }
+        if (newlyLoaded || selectedYears.length > 0) {
+          setLocalDbStatus(`\u2705 SQLite Wasm \u672C\u5730\u5E93\u5C31\u7EEA \xB7 \u5F53\u524D\u5DF2\u6302\u8F7D\uFF1A${selectedYears.join("\u3001")} \u5E74`);
+          window.__DB__ = window.__DBs__[selectedYears[selectedYears.length - 1]];
+          setDb(window.__DB__);
+        }
       });
     }, [selectedYears]);
+    if (lastLoadedYearForMessage.current === selectedYears[selectedYears.length - 1]) return;
+    lastLoadedYearForMessage.current = selectedYears[selectedYears.length - 1];
     const handleFolderScan = async () => {
       alert("Github Pages \u9759\u6001\u7248\u672C\u5DF2\u81EA\u52A8\u5168\u91CF\u52A0\u8F7D\u5404\u4E2A\u5E74\u4EFD\u7684\u6570\u636E\uFF0C\u65E0\u9700\u518D\u624B\u52A8\u5237\u65B0\u3002");
     };
@@ -49230,7 +49220,16 @@ ${code}
       } else {
         targetYears = selectedYears || [2025];
       }
-      const cleanTableName = (tableName || "").split(" ")[0].replace(/[^a-zA-Z0-9_]/g, "");
+      let resolvedTableName = tableName || "";
+      const match = resolvedTableName.match(/([TL][0-9a-zA-Z]+)/);
+      if (match) {
+        resolvedTableName = match[1];
+      } else if (resolvedTableName.includes("G207") || resolvedTableName.includes("G247")) {
+        resolvedTableName = "L21";
+      } else {
+        resolvedTableName = resolvedTableName.split(" ")[0].replace(/[^a-zA-Z0-9_]/g, "");
+      }
+      const cleanTableName = resolvedTableName;
       if (!cleanTableName) return JSON.stringify({ error: "\u8868\u540D\u4E0D\u80FD\u4E3A\u7A7A" });
       if (window.__DBs__ && Object.keys(window.__DBs__).length > 0) {
         try {
@@ -49311,7 +49310,13 @@ ${code}
           for (const ty of targetYears) {
             const localDb = window.__DBs__[ty];
             if (!localDb) continue;
-            const execResult = localDb.exec(sql);
+            let execResult;
+            try {
+              execResult = localDb.exec(sql);
+            } catch (innerErr) {
+              console.warn(`SQL failed on year ${ty}:`, innerErr);
+              continue;
+            }
             if (execResult && execResult.length > 0) {
               if (!combinedColumns) {
                 combinedColumns = ["_\u6570\u636E\u5E74\u4EFD_"].concat(execResult[0].columns);
