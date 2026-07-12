@@ -49878,8 +49878,8 @@ ${knowledgeBase}
       let toolCallLog = [];
       let emptyRetryCount = 0;
       let iterCount = 0;
-      const MAX_ITER = 35;
-      const MAX_EMPTY_RETRY = 3;
+      const MAX_ITER = 100;
+      const MAX_EMPTY_RETRY = 10;
       let totalTokens = 0;
       let totalCost = 0;
       updateBot({ thought: "\u{1F50D} \u6B63\u5728\u5206\u6790\u95EE\u9898..." });
