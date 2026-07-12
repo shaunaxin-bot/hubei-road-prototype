@@ -49217,7 +49217,10 @@ ${code}
     const execGetTableSchema = async (tableName, year) => {
       let targetYears = [];
       if (year) {
-        targetYears = Array.isArray(year) ? year : String(year).split(",").map((y2) => parseInt(y2.trim()));
+        targetYears = Array.isArray(year) ? year : String(year).split(",").map((y2) => {
+          const match2 = String(y2).match(/\d{4}/);
+          return match2 ? parseInt(match2[0]) : 2025;
+        });
       } else {
         targetYears = selectedYears || [2025];
       }
@@ -49301,7 +49304,10 @@ ${code}
     const execExecuteSql = async (sql, year) => {
       let targetYears = [];
       if (year) {
-        targetYears = Array.isArray(year) ? year : String(year).split(",").map((y2) => parseInt(y2.trim()));
+        targetYears = Array.isArray(year) ? year : String(year).split(",").map((y2) => {
+          const match = String(y2).match(/\d{4}/);
+          return match ? parseInt(match[0]) : 2025;
+        });
       } else {
         targetYears = selectedYears || [2025];
       }
