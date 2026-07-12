@@ -48696,13 +48696,20 @@ ${code}
           if (!window.__DBs__[targetYear]) {
             setLocalDbStatus(`\u23F3 \u6B63\u5728\u4E3A\u60A8\u62C9\u53D6 ${targetYear} \u5E74\u5EA6\u6570\u636E...`);
             try {
-              const database = await loadDBByYear2(targetYear);
-              window.__DBs__[targetYear] = database;
-              newlyLoaded = true;
+              let response = await fetch(`./hubei_${targetYear}.db`);
+              if (!response.ok) {
+                response = await fetch(`./public/hubei_${targetYear}.db`);
+              }
+              if (response.ok) {
+                const buffer = await response.arrayBuffer();
+                const database = await loadDBByYear2(targetYear, new Uint8Array(buffer));
+                window.__DBs__[targetYear] = database;
+                newlyLoaded = true;
+              }
               try {
                 let macroEntry = { "\u68C0\u6D4B\u5E74\u4EFD": targetYear, year: targetYear, totalMileage: 0, goodMileage: 0, goodRate: 0, totalBridges: 0, dangerBridges: 0 };
                 try {
-                  const r29b = database.exec("SELECT col3, col4, col5, col9 FROM L29b WHERE col1 LIKE '%\u56FD\u9053%' AND col2 = '02' LIMIT 1");
+                  const r29b = window.__DBs__[targetYear].exec("SELECT col3, col4, col5, col9 FROM L29b WHERE col1 LIKE '%\u56FD\u9053%' AND col2 = '02' LIMIT 1");
                   if (r29b.length > 0 && r29b[0].values.length > 0) {
                     const row = r29b[0].values[0];
                     macroEntry.totalMileage = parseFloat(row[0]) || 0;
@@ -49652,17 +49659,46 @@ ${msg.views.view3}
         }
       }
     };
-    const handleReq01Upload = (uploadMsgId, fileName) => {
+    const handleReq01Upload = async (uploadMsgId, fileOrName) => {
       const targetYear = selectedYears?.[0] || 2025;
       const latestYear = Math.max(...selectedYears?.length ? selectedYears : [2025]);
       const activeYearsLabel = selectedYears && selectedYears.length > 0 ? selectedYears.join("\u3001") + "\u5E74" : targetYear + "\u5E74";
       let targetTable = "L29a";
-      if (fileName) {
+      let fileName = "";
+      if (typeof fileOrName === "string") {
+        fileName = fileOrName;
         const match = fileName.match(/([TL][0-9a-zA-Z]+)/i);
         if (match) targetTable = match[1].toUpperCase();
-        else if (fileName.includes("\u8DEF\u7EBF")) targetTable = "L21";
+        else if (fileName.includes("\u8DEF\u7EBF") || fileName.includes("G207") || fileName.includes("G247")) targetTable = "L21";
         else if (fileName.includes("\u6DB5\u6D1E")) targetTable = "L24b";
-        else if (fileName.includes("G207") || fileName.includes("G247")) targetTable = "L21";
+      } else if (fileOrName && fileOrName.name) {
+        fileName = fileOrName.name;
+        try {
+          const buf = await fileOrName.arrayBuffer();
+          const wb = readSync(buf, { type: "array" });
+          const sheet = wb.Sheets[wb.SheetNames[0]];
+          const json = utils.sheet_to_json(sheet, { header: 1 });
+          let headersStr = "";
+          for (let i = 0; i < Math.min(5, json.length); i++) {
+            if (json[i]) headersStr += json[i].join(" ");
+          }
+          if (headersStr.includes("\u6280\u672F\u7B49\u7EA7") || headersStr.includes("\u8DEF\u7EBF\u660E\u7EC6") || headersStr.includes("\u8DEF\u7EBF\u7F16\u7801")) {
+            targetTable = "L21";
+          } else if (headersStr.includes("MQI") || headersStr.includes("\u8DEF\u9762\u72B6\u51B5") || headersStr.includes("\u8DEF\u51B5\u660E\u7EC6")) {
+            targetTable = "L29a";
+          } else if (headersStr.includes("\u6DB5\u6D1E")) {
+            targetTable = "L24b";
+          } else {
+            const match = fileName.match(/([TL][0-9a-zA-Z]+)/i);
+            if (match) targetTable = match[1].toUpperCase();
+            else if (fileName.includes("\u8DEF\u7EBF") || fileName.includes("G207") || fileName.includes("G247")) targetTable = "L21";
+          }
+        } catch (e) {
+          console.warn("Failed to parse excel headers, falling back to filename", e);
+          const match = fileName.match(/([TL][0-9a-zA-Z]+)/i);
+          if (match) targetTable = match[1].toUpperCase();
+          else if (fileName.includes("\u8DEF\u7EBF") || fileName.includes("G207") || fileName.includes("G247")) targetTable = "L21";
+        }
       }
       window.__CURRENT_UPLOADED_TABLE__ = targetTable;
       setMessages((prev) => prev.map(
@@ -50793,7 +50829,7 @@ ${msg.views.view3}
                   inp.accept = "*/*";
                   inp.onchange = (e) => {
                     const f = e.target.files[0];
-                    if (f) handleReq01Upload(msg.id, f.name);
+                    if (f) handleReq01Upload(msg.id, f);
                   };
                   inp.click();
                 }
