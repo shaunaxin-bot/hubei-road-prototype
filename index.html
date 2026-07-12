@@ -2521,7 +2521,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 === 【跨域协同数据落库规范】 ===
 
-﻿# 跨域协同数据落库规范
+# 跨域协同数据落库规范
 
 **适用场景**：一切涉及外部系统（如CPMS、GIS）回传的空间修正字典、偏差自动计算结果、以及大模型自主纠偏产生的数据变更。
 
@@ -3024,7 +3024,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 *   **9（业务板块）**：代表规划计划、建设管理、工程技术、养护管理、收费运营、财务资产、农村公路，以及由安监处与应急中心协同支撑的安全应急，还有全新独立的法规审批九大核心业务板块。业务部门前期数据，形成了现有加载数据。
 
 **核心引擎与行动力：**
-有别于传统的查询统计系统，我是一个具备自主行动与执行能力的智能体（Agent）。我由客户私有化部署的 **DeepSeek-V3** 模型驱动，直连客户本地数据库（保障政务数据绝对不出域），并深度融合了数据统筹知识库（内含业务流程、计算口径及业务动作定义）。
+有别于传统的查询统计系统，我是一个具备自主行动与执行能力的智能体（Agent）。我由客户私有化部署的 **DeepSeek-V4** 模型驱动，直连客户本地数据库（保障政务数据绝对不出域），并深度融合了数据统筹知识库（内含业务流程、计算口径及业务动作定义）。
 
 **全域本体与无缝嵌入：**
 当前您所处的是智能体上下文对话窗口。它可作为标准化的智能插件（如悬浮调度卡、侧边栏），直接挂载并无缝嵌入至现有的任何系统（如 OA、大屏、管理系统、上报系统）中，不颠覆旧系统，而是以“即插即用”的方式，实现数据统筹助手对现有工作的深度赋能。
@@ -49224,14 +49224,49 @@ ${code}
       }
     };
     const execGetTableSchema = async (tableName, year) => {
-      const targetYear = year || (selectedYears?.[0] || 2025);
+      let targetYears = [];
+      if (year) {
+        targetYears = Array.isArray(year) ? year : String(year).split(",").map((y2) => parseInt(y2.trim()));
+      } else {
+        targetYears = selectedYears || [2025];
+      }
       const cleanTableName = (tableName || "").split(" ")[0].replace(/[^a-zA-Z0-9_]/g, "");
       if (!cleanTableName) return JSON.stringify({ error: "\u8868\u540D\u4E0D\u80FD\u4E3A\u7A7A" });
+      if (window.__DBs__ && Object.keys(window.__DBs__).length > 0) {
+        try {
+          let combinedCols = null;
+          let combinedSample = [];
+          for (const ty of targetYears) {
+            const localDb = window.__DBs__[ty];
+            if (!localDb) continue;
+            const pragmaRes = localDb.exec(`PRAGMA table_info("${cleanTableName}")`);
+            if (!pragmaRes || pragmaRes.length === 0) continue;
+            if (!combinedCols) {
+              combinedCols = pragmaRes[0].values.map((r) => ({ cid: r[0], name: r[1], type: r[2] }));
+            }
+            const sampleRes = localDb.exec(`SELECT * FROM "${cleanTableName}" LIMIT 5`);
+            if (sampleRes && sampleRes.length > 0) {
+              const sampleRows = sampleRes[0].values.map((rowArray) => {
+                let obj = { "_\u6570\u636E\u5E74\u4EFD_": ty };
+                combinedCols.forEach((c, i) => {
+                  obj[c.name] = rowArray[i];
+                });
+                return obj;
+              });
+              combinedSample = combinedSample.concat(sampleRows);
+            }
+          }
+          if (!combinedCols) return JSON.stringify({ error: `\u8868 ${cleanTableName} \u5728\u6240\u9009\u5E74\u4EFD\u5747\u4E0D\u5B58\u5728` });
+          return JSON.stringify({ table: cleanTableName, years: targetYears, columns: combinedCols, sample_rows: combinedSample });
+        } catch (err) {
+          return JSON.stringify({ error: "Local SQLite Error: " + err.message });
+        }
+      }
       try {
         const pragmaRes = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sql: `PRAGMA table_info("${cleanTableName}")`, year: targetYear })
+          body: JSON.stringify({ sql: `PRAGMA table_info("${cleanTableName}")`, year: targetYears[0] })
         });
         if (!pragmaRes.ok) throw new Error("Backend server error on PRAGMA");
         const pragmaData = await pragmaRes.json();
@@ -49241,7 +49276,7 @@ ${code}
         const sampleRes = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sql: `SELECT * FROM "${cleanTableName}" LIMIT 15`, year: targetYear })
+          body: JSON.stringify({ sql: `SELECT * FROM "${cleanTableName}" LIMIT 15`, year: targetYears[0] })
         });
         let sampleRows = [];
         if (sampleRes.ok) {
@@ -49256,40 +49291,64 @@ ${code}
             });
           }
         }
-        return JSON.stringify({ table: tableName, year: targetYear, columns: cols, sample_rows: sampleRows });
+        return JSON.stringify({ table: tableName, year: targetYears[0], columns: cols, sample_rows: sampleRows });
       } catch (e) {
-        if (window.__DBs__ && window.__DBs__[targetYear]) {
-          try {
-            const localDb = window.__DBs__[targetYear];
-            const pragmaRes = localDb.exec(`PRAGMA table_info("${cleanTableName}")`);
-            if (!pragmaRes || pragmaRes.length === 0) return JSON.stringify({ error: `\u8868 ${cleanTableName} \u4E0D\u5B58\u5728` });
-            const cols = pragmaRes[0].values.map((r) => ({ cid: r[0], name: r[1], type: r[2] }));
-            const sampleRes = localDb.exec(`SELECT * FROM "${cleanTableName}" LIMIT 15`);
-            let sampleRows = [];
-            if (sampleRes && sampleRes.length > 0) {
-              sampleRows = sampleRes[0].values.map((rowArray) => {
-                let obj = {};
-                cols.forEach((c, i) => {
-                  obj[c.name] = rowArray[i];
-                });
-                return obj;
-              });
-            }
-            return JSON.stringify({ table: cleanTableName, year: targetYear, columns: cols, sample_rows: sampleRows });
-          } catch (err) {
-            return JSON.stringify({ error: "Local SQLite Error: " + err.message });
-          }
-        }
         return JSON.stringify({ error: e.message || "Failed to fetch schema from server" });
       }
     };
     const execExecuteSql = async (sql, year) => {
-      const targetYear = year || (selectedYears?.[0] || 2025);
+      let targetYears = [];
+      if (year) {
+        targetYears = Array.isArray(year) ? year : String(year).split(",").map((y2) => parseInt(y2.trim()));
+      } else {
+        targetYears = selectedYears || [2025];
+      }
+      if (window.__DBs__ && Object.keys(window.__DBs__).length > 0) {
+        try {
+          let combinedColumns = null;
+          let combinedRows = [];
+          let totalRowCount = 0;
+          for (const ty of targetYears) {
+            const localDb = window.__DBs__[ty];
+            if (!localDb) continue;
+            const execResult = localDb.exec(sql);
+            if (execResult && execResult.length > 0) {
+              if (!combinedColumns) {
+                combinedColumns = ["_\u6570\u636E\u5E74\u4EFD_"].concat(execResult[0].columns);
+              }
+              const rowCount = execResult[0].values.length;
+              totalRowCount += rowCount;
+              const rowsWithYear = execResult[0].values.map((row) => [ty].concat(row));
+              combinedRows = combinedRows.concat(rowsWithYear.slice(0, 30));
+            }
+          }
+          if (combinedColumns) {
+            return JSON.stringify({
+              columns: combinedColumns,
+              rows: combinedRows.slice(0, 50),
+              // Hard cap total rows
+              row_count: totalRowCount,
+              years: targetYears,
+              data_source: `\u672C\u5730 SQLite Wasm (${targetYears.join(",")})`
+            });
+          } else {
+            return JSON.stringify({
+              columns: [],
+              rows: [],
+              row_count: 0,
+              years: targetYears,
+              data_source: `\u672C\u5730 SQLite Wasm (${targetYears.join(",")})`
+            });
+          }
+        } catch (err) {
+          return JSON.stringify({ error: "Local SQLite Error: " + err.message, sql_attempted: sql });
+        }
+      }
       try {
         const res = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sql, year: targetYear })
+          body: JSON.stringify({ sql, year: targetYears[0] })
         });
         if (res.ok) {
           const data = await res.json();
@@ -49297,39 +49356,14 @@ ${code}
             return JSON.stringify({
               ...data,
               rows: (data.rows || []).slice(0, 30),
-              year: targetYear,
-              data_source: `\u670D\u52A1\u5668\u6570\u636E\u5E93(${targetYear}\u5E74)`
+              year: targetYears[0],
+              data_source: `\u670D\u52A1\u5668\u6570\u636E\u5E93(${targetYears[0]}\u5E74)`
             });
           }
           return JSON.stringify({ error: data.error, sql_attempted: sql });
         }
         return JSON.stringify({ error: "Server returned non-ok status" });
       } catch (e) {
-        if (window.__DBs__ && window.__DBs__[targetYear]) {
-          try {
-            const localDb = window.__DBs__[targetYear];
-            const execResult = localDb.exec(sql);
-            if (execResult && execResult.length > 0) {
-              return JSON.stringify({
-                columns: execResult[0].columns,
-                rows: execResult[0].values.slice(0, 30),
-                row_count: execResult[0].values.length,
-                year: targetYear,
-                data_source: `\u672C\u5730 SQLite Wasm (${targetYear}\u5E74)`
-              });
-            } else {
-              return JSON.stringify({
-                columns: [],
-                rows: [],
-                row_count: 0,
-                year: targetYear,
-                data_source: `\u672C\u5730 SQLite Wasm (${targetYear}\u5E74)`
-              });
-            }
-          } catch (err) {
-            return JSON.stringify({ error: "Local SQLite Error: " + err.message, sql_attempted: sql });
-          }
-        }
         return JSON.stringify({ error: "Failed to fetch execute_sql from server: " + e.message, sql_attempted: sql });
       }
     };
