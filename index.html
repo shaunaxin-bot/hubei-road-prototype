@@ -50711,7 +50711,9 @@ ${msg.views.view3}
             let subTableCount = 0;
             const cats = tableNames;
             cats.forEach((parentName) => {
-              const displayName = lcodeToName[parentName] || parentName;
+              let displayCode = parentName;
+              if (displayCode === "\u8DEF\u6BB5") displayCode = "L21";
+              const displayName = lcodeToName[displayCode] || displayCode;
               let subs = ["02 \u8DEF\u7EBF\u660E\u7EC6"];
               tooltipContent += `\u25A0 ${displayName}
 `;
