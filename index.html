@@ -49224,6 +49224,8 @@ ${code}
         resolvedTableName = match[1];
       } else if (resolvedTableName.includes("G207") || resolvedTableName.includes("G247")) {
         resolvedTableName = "L21";
+      } else if (resolvedTableName === "\u8DEF\u6BB5") {
+        resolvedTableName = "L21";
       } else {
         resolvedTableName = resolvedTableName.split(" ")[0].replace(/[^a-zA-Z0-9_]/g, "");
       }
@@ -49660,6 +49662,7 @@ ${msg.views.view3}
         if (match) targetTable = match[1].toUpperCase();
         else if (fileName.includes("\u8DEF\u7EBF")) targetTable = "L21";
         else if (fileName.includes("\u6DB5\u6D1E")) targetTable = "L24b";
+        else if (fileName.includes("G207") || fileName.includes("G247")) targetTable = "L21";
       }
       window.__CURRENT_UPLOADED_TABLE__ = targetTable;
       setMessages((prev) => prev.map(
@@ -50089,10 +50092,11 @@ ${knowledgeBase}
             let resultStr = "";
             try {
               if (fnName === "get_available_databases") {
-                const result = (selectedYears || [2015, 2025]).map((y2) => ({
-                  year: y2,
-                  tables: Object.keys(loadedTablesByYear?.[y2] || {}).filter((t) => loadedTablesByYear[y2][t])
-                }));
+                const result = (selectedYears || [2015, 2025]).map((y2) => {
+                  let validTables = Object.keys(loadedTablesByYear?.[y2] || {}).filter((t) => loadedTablesByYear[y2][t]);
+                  validTables = validTables.map((t) => t === "\u8DEF\u6BB5" ? "L21" : t);
+                  return { year: y2, tables: validTables };
+                });
                 resultStr = JSON.stringify(result);
               } else if (fnName === "parse_uploaded_file") {
                 const fName = args.file_name || "\u672A\u77E5\u8DEF\u7EBF\u6570\u636E.wps";
