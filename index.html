@@ -47684,7 +47684,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     },
     "AGENT-\u6570\u636E\u7EDF\u7B79-00": {
       id: "AGENT-\u6570\u636E\u7EDF\u7B79-00",
-      name: "\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5",
+      name: "\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5 (\u4E2D\u67A2\u4E3B\u63A7 Hub)",
       docs: [
         "20260525\u5BA2\u6237\u9700\u6C42\u6E05\u5355.docx",
         "\uFF08\u5E74\u62A5\u6570\u636E\u9700\u6C42\uFF09\u6E56\u5317\u7701\u516C\u8DEF\u517B\u62A4\u5E74\u62A5\u6570\u636E \u7EDF\u8BA1\u5206\u6790\u9700\u6C42\u573A\u666F\u8868\uFF08\u6309\u90E8\u95E8\uFF09.docx",
@@ -50121,7 +50121,7 @@ ${knowledgeBase}
               for (const stageObj of STAGE_TREE_DATA) {
                 for (const tableObj of stageObj.tables) {
                   if (argsStr.includes(tableObj.lcode)) {
-                    agentName = `AGENT-${tableObj.macroAgent}`;
+                    agentName = tableObj.macroAgent.startsWith("AGENT-") ? tableObj.macroAgent : `AGENT-${tableObj.macroAgent}`;
                     foundTable = tableObj;
                     break;
                   }
