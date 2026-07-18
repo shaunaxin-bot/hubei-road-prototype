@@ -50264,6 +50264,7 @@ ${knowledgeBase}
                     resultStr = `\u6302\u8F7D ${yr} \u6570\u636E\u5E93\u5931\u8D25: ` + e.message;
                   }
                 }
+                tcEntry.resultSummary = resultStr;
               } else if (fnName === "get_table_schema") {
                 const targetYear = args.year || (selectedYears?.[0] || 2025);
                 resultStr = await execGetTableSchema(args.table_name, targetYear);
