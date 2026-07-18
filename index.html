@@ -48774,6 +48774,9 @@ ${code}
           console.log("[API Config] loaded from user localStorage settings.");
           setApiProvider(savedProvider);
           setApiKey(resolvedKey);
+          if (inlineConfig && inlineConfig.MAX_BUDGET_RMB) {
+            setMaxBudget(parseFloat(inlineConfig.MAX_BUDGET_RMB) || 1);
+          }
           return;
         }
       }
