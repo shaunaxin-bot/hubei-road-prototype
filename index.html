@@ -48777,6 +48777,9 @@ ${code}
           return;
         }
       }
+      applyConfig(inlineConfig);
+      const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+      if (!isLocalhost) return;
       fetch("http://localhost:8000/api/get_keys").then((r) => r.json()).then((serverConfig) => {
         console.log("[API Config] loaded dynamically from local server via absolute path.");
         applyConfig({ ...inlineConfig, ...serverConfig });
