@@ -602,6 +602,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
             background-color: #f8fafc; 
@@ -806,6 +807,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             margin-top: 0px !important;
             padding-top: 0px !important;
         }
+    
     
     
     
@@ -49952,6 +49954,17 @@ ${knowledgeBase}
           thought: `\u524D\u7F6E\u68C0\u67E5: API Key \u4E3A\u7A7A\uFF0C\u7EC8\u6B62\u8BF7\u6C42\u3002`
         });
         return;
+      }
+      let historyContext = "";
+      const historyMsgs = messagesRef.current.filter((m2) => m2.role === "user" || m2.role === "agent");
+      if (historyMsgs.length > 0) {
+        const recentHistory = historyMsgs.slice(-4);
+        historyContext = "\n\n\u3010\u7B80\u8981\u5386\u53F2\u5BF9\u8BDD\u4E0A\u4E0B\u6587\u3011\n" + recentHistory.map((m2) => {
+          let text = m2.content || "";
+          if (text.length > 300) text = text.substring(0, 300) + "...(\u4E3A\u8282\u7701Token\u5DF2\u622A\u65AD)";
+          return `${m2.role === "user" ? "\u7528\u6237" : "\u4F60"}: ${text}`;
+        }).join("\n") + "\n\n\u8BF7\u7ED3\u5408\u4E0A\u8FF0\u7B80\u8981\u5386\u53F2\u4E0A\u4E0B\u6587\uFF08\u5982\u6709\u9700\u8981\uFF09\u6765\u56DE\u7B54\u7528\u6237\u7684\u6700\u65B0\u95EE\u9898\u3002\u6700\u65B0\u95EE\u9898\u5982\u4E0B\uFF1A\n";
+        queryText = historyContext + queryText;
       }
       let messages2 = [
         { role: "system", content: systemPrompt },
