@@ -48167,8 +48167,8 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   var convertMarkdownTablesToHtml = (text) => {
     if (!text) return text;
     let processedText = text.replace(/\n{3,}/g, "\n\n");
-    processedText = processedText.replace(/^[ \t]*[#＃]{1,6}[ \t]+([^\n]*)$/gm, '<div class="font-bold text-slate-800 text-lg mt-3 mb-1">$1</div>');
-    processedText = processedText.replace(/^[ \t]*[*\\-][ \t]+([^\n]*)/gm, '<div class="relative pl-4 my-1"><span class="absolute left-0 text-blue-500 font-bold text-lg leading-none select-none" style="top: -2px;">\u2022</span>$1</div>');
+    processedText = processedText.replace(/^[ \t]*[#＃]{1,6}[ \t]+([^\r\n]*)/gm, '<div class="font-bold text-slate-800 text-lg mt-3 mb-1">$1</div>');
+    processedText = processedText.replace(/^[ \t]*[*\\-][ \t]+([^\r\n]*)/gm, '<div class="relative pl-4 mt-0.5 mb-1"><span class="absolute left-0 text-blue-500 font-bold text-lg leading-none select-none" style="top: -2px;">\u2022</span>$1</div>');
     processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<span class="font-bold">$1</span>');
     processedText = processedText.replace(/^[ \t]*---[ \t]*$/gm, '<hr class="my-3 border-slate-200 border-dashed" />');
     processedText = processedText.replace(/```[a-z]*\n([\s\S]*?)```/g, (match, code) => {
