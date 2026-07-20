@@ -48166,7 +48166,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   ];
   var convertMarkdownTablesToHtml = (text) => {
     if (!text) return text;
-    let processedText = text.replace(/\n{2,}/g, "\n");
+    let processedText = text.replace(/\n{3,}/g, "\n\n");
     processedText = processedText.replace(/^[ \t]*[#＃]{1,6}[ \t]+([^\n]*)$/gm, '<div class="font-bold text-slate-800 text-lg mt-3 mb-1">$1</div>');
     processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<span class="font-bold">$1</span>');
     processedText = processedText.replace(/^[ \t]*---[ \t]*$/gm, '<hr class="my-3 border-slate-200 border-dashed" />');
@@ -50956,7 +50956,7 @@ ${msg.views.view3}
             return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(
               "div",
               {
-                className: "whitespace-pre-wrap text-sm leading-snug",
+                className: "whitespace-pre-wrap text-sm leading-relaxed",
                 dangerouslySetInnerHTML: { __html: formatBadgeText(convertMarkdownTablesToHtml(msg.content), msg.id) }
               }
             ), /* @__PURE__ */ React.createElement(
@@ -50981,7 +50981,7 @@ ${msg.views.view3}
           return /* @__PURE__ */ React.createElement(React.Fragment, null, msg.workflowData && /* @__PURE__ */ React.createElement(AgentWorkflowVisualizer, { data: msg.workflowData, title: msg.workflowTitle }), /* @__PURE__ */ React.createElement(
             "div",
             {
-              className: `whitespace-pre-wrap leading-snug agent-message-content ${msg.isGreeting ? "text-[12.5px]" : "text-sm"}`,
+              className: `whitespace-pre-wrap leading-relaxed agent-message-content ${msg.isGreeting ? "text-[12.5px]" : "text-sm"}`,
               dangerouslySetInnerHTML: {
                 __html: formatBadgeText(convertMarkdownTablesToHtml(msg.content || ""), msg.id)
               }
