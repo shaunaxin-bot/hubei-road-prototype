@@ -48251,7 +48251,7 @@ ${code}
       tableHtml += "</tbody></table></div>";
       result.push(tableHtml);
     }
-    return result.join("\n").replace(/\n\s*(<div|<table|<pre|<hr|<h)/g, "$1").replace(/(<\/div>|<\/table>|<\/pre>|<\/hr>|<\/h[1-6]>)\s*\n/g, "$1").replace(/>\s*\n\s*</g, "><");
+    return result.join("\n").replace(/\n\s*(<div|<table|<pre|<hr|<h)/g, "$1").replace(/(<\/div>|<\/table>|<\/pre>|<\/hr>|<\/h[1-6]>)\s*\n/g, "$1").replace(/>\s*\n\s*</g, "><").replace(/\n\n/g, "<br/><br/>").replace(/\n/g, "<br/>");
   };
   function DeepQAAnnualReportAgentView({ isStandalone = false }) {
     const [hoveredPrompt, setHoveredPrompt] = useState2(null);
@@ -50982,7 +50982,7 @@ ${msg.views.view3}
           return /* @__PURE__ */ React.createElement(React.Fragment, null, msg.workflowData && /* @__PURE__ */ React.createElement(AgentWorkflowVisualizer, { data: msg.workflowData, title: msg.workflowTitle }), /* @__PURE__ */ React.createElement(
             "div",
             {
-              className: `whitespace-pre-wrap leading-snug agent-message-content ${msg.isGreeting ? "text-[12.5px]" : "text-sm"}`,
+              className: `leading-relaxed agent-message-content ${msg.isGreeting ? "text-[12.5px]" : "text-sm"}`,
               dangerouslySetInnerHTML: {
                 __html: formatBadgeText(convertMarkdownTablesToHtml(msg.content || ""), msg.id)
               }
