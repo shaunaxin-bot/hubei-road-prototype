@@ -6,6 +6,14 @@ $ghRepoDir = 'C:\AIprojects\roaddata\hubei\release'
 
 $srcHtml = Join-Path $projectDir '20260719-hubei-prototype.html'
 
+Write-Host "`n[1/5] Compiling Knowledge Base Schemas..." -ForegroundColor Cyan
+Set-Location $projectDir
+python compile_public_schema.py
+
+Write-Host "`n[2/5] Building Frontend and Injecting Schema..." -ForegroundColor Cyan
+npm run build
+python bundle_offline.py
+
 Write-Host "`n[3/5] Committing to Git..." -ForegroundColor Cyan
 Set-Location $repoDir
 git add -A
