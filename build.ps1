@@ -4,7 +4,7 @@ $projectDir = (Get-ChildItem -Path 'C:\AIprojects\roaddata\hubei' -Directory | W
 $repoDir = 'C:\AIprojects\roaddata'
 $ghRepoDir = 'C:\AIprojects\roaddata\hubei\release'
 
-$srcHtml = Join-Path $projectDir '20260705-hubei-prototype.html'
+$srcHtml = Join-Path $projectDir '20260719-hubei-prototype.html'
 
 Write-Host "`n[3/5] Committing to Git..." -ForegroundColor Cyan
 Set-Location $repoDir
