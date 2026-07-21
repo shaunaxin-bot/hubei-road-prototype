@@ -48315,10 +48315,12 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   var RoleGroupItem = ({ rInfo, groupSummaryText, group, selectedYears, isFinished, isGeneratingReport, isLastGroup }) => {
     const [isOpen, setIsOpen] = React.useState(!isFinished || isLastGroup && isGeneratingReport);
     React.useEffect(() => {
-      if (isLastGroup) {
-        setIsOpen(!!isGeneratingReport);
+      if (isLastGroup && isGeneratingReport) {
+        setIsOpen(true);
+      } else if (isFinished) {
+        setIsOpen(false);
       }
-    }, [isLastGroup, isGeneratingReport]);
+    }, [isFinished, isLastGroup, isGeneratingReport]);
     return /* @__PURE__ */ React.createElement("div", { className: "mb-0 border-none", style: { border: "none", padding: 0, margin: 0 } }, /* @__PURE__ */ React.createElement(
       "div",
       {
