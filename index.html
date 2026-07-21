@@ -52332,32 +52332,24 @@ ${msg.views.view3}
               }));
             });
           })(), tcs.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "relative flex items-center gap-2 mt-4 pt-2" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -left-[21px] top-[14px] w-[14px] h-[2px] bg-slate-300" }), /* @__PURE__ */ React.createElement("div", { className: "w-[10px] h-[10px] rounded-full bg-slate-800 shrink-0 z-10 shadow-[0_0_0_2px_white,0_0_0_3px_#1e293b] -ml-[6px]" }), /* @__PURE__ */ React.createElement("div", { className: "font-medium text-[12px] text-slate-900 break-words leading-tight" }, "[\u7EC8\u70B9] \u3010\u5206\u6790\u7ED3\u8BBA\u3011", (() => {
-            const sqlCalls = tcs.filter((tc) => tc.name === "execute_sql");
-            if (sqlCalls.length > 0) {
-              const lastSql = sqlCalls[sqlCalls.length - 1];
-              if (lastSql.resultSummary) {
-                let sum = lastSql.resultSummary;
-                const match = sum.match(/成功针对\s*\[(.*?)\]\s*的\s*\[(.*?)\]\s*进行聚合,\s*核心指标计算值为\s*(\d+)/);
-                if (match) {
-                  return `\u57FA\u4E8E\u4E1A\u52A1\u610F\u56FE\u4E0E\u7CFB\u7EDF\u5143\u6570\u636E\u7684\u6DF1\u5EA6\u8BED\u4E49\u6620\u5C04\uFF0C\u667A\u80FD\u4F53\u5DF2\u5728\u5E95\u5C42\u5B89\u5168\u9694\u79BB\u57DF\u5185\u5B8C\u6210\u4E86\u5BF9 ${match[1]} \u53CA ${match[2]} \u7684\u81EA\u52A8\u5316\u591A\u7EF4\u805A\u5408\u5206\u6790\u3002\u8BA1\u7B97\u5F97\u51FA\u8BE5\u6838\u5FC3\u89C2\u6D4B\u6307\u6807\u5F53\u524D\u503C\u4E3A ${match[3]}\u3002\u6574\u4E2A\u6570\u636E\u6EAF\u6E90\u94FE\u8DEF\u900F\u660E\u53EF\u5BA1\uFF0C\u5B8C\u5168\u7B26\u5408\u653F\u52A1\u6570\u636E\u6D41\u901A\u5B89\u5168\u5BA1\u8BA1\u89C4\u8303\u3002`;
+            const fullText = lastMsg?.content || lastMsg?.text || "";
+            if (!fullText) return "\u7ECF\u5168\u57DF\u653F\u52A1\u77E5\u8BC6\u5E93\u4E0E\u5E95\u5C42\u6570\u636E\u4E2D\u67A2\u534F\u540C\u63A2\u67E5\uFF0C\u672C\u6B21\u5206\u6790\u8BF7\u6C42\u7684\u6570\u636E\u63D0\u53D6\u4E0E\u5408\u89C4\u6821\u9A8C\u5DF2\u987A\u5229\u5B8C\u6210\u3002";
+            const summaryMatch = fullText.match(/(?:【分析结论】|\[分析结论\]|总结|结论)[：:]?\s*([^]+)/);
+            if (summaryMatch && !summaryMatch[1].includes("\u6682\u5B58\u533A") && summaryMatch[1].length > 10) {
+              return summaryMatch[1].split("\n").map((l3) => l3.replace(/[*#>`]/g, "").trim()).filter((l3) => l3)[0] || summaryMatch[1].trim();
+            }
+            const lines = fullText.split("\n").map((l3) => l3.replace(/[*#>`]/g, "").trim()).filter((l3) => l3);
+            const conclusionLine = lines.find((l3) => l3.startsWith("\u7EFC\u4E0A") || l3.startsWith("\u7ED3\u8BBA") || l3.startsWith("\u56E0\u6B64") || l3.startsWith("\u9488\u5BF9"));
+            if (conclusionLine && !conclusionLine.includes("\u6682\u5B58\u533A")) return conclusionLine;
+            if (lines.length > 0) {
+              for (let i = lines.length - 1; i >= 0; i--) {
+                if (lines[i].length > 10 && !lines[i].includes("\u6682\u5B58\u533A")) {
+                  return lines[i];
                 }
-                if (sum.includes("\u6210\u529F\u8FD4\u56DE")) {
-                  const rowMatch = sum.match(/成功返回\s*(\d+)\s*行数据/);
-                  if (rowMatch) {
-                    return `\u7ECF\u5927\u8BED\u8A00\u6A21\u578B\u4E0E\u6570\u636E\u6E90\u5E95\u5C42\u667A\u80FD\u4EE3\u7406\u7684\u534F\u540C\u63A2\u67E5\uFF0C\u7CFB\u7EDF\u6210\u529F\u5B8C\u6210\u5BF9\u76EE\u6807\u6570\u636E\u57DF\u7684\u903B\u8F91\u89E3\u6790\u4E0E\u5B89\u5168\u7A7F\u900F\u3002\u672C\u6B21\u4EFB\u52A1\u5171\u7CBE\u51C6\u6E05\u6D17\u5E76\u63D0\u53D6\u5230 ${rowMatch[1]} \u6761\u9AD8\u5EA6\u76F8\u5173\u7684\u5E95\u5C42\u7269\u7406\u8BB0\u5F55\uFF0C\u5168\u90E8\u6570\u636E\u5747\u5DF2\u901A\u8FC7\u7F51\u5173\u5B89\u5168\u6C99\u7BB1\u6821\u9A8C\uFF0C\u53EF\u653E\u5FC3\u7528\u4E8E\u4E0B\u65B9\u7684\u6DF1\u5EA6\u6BD4\u5BF9\u4E0E\u4E1A\u52A1\u51B3\u7B56\u652F\u6301\u3002`;
-                  }
-                }
-                return `\u7ECF\u667A\u80FD\u4F53\u7A7F\u900F\u63A2\u67E5\u53CD\u9988\uFF1A${sum}\uFF0C\u6570\u636E\u5DF2\u5165\u6808\u5E76\u901A\u8FC7\u4E00\u81F4\u6027\u6821\u9A8C\u3002`;
               }
             }
-            const fullText = lastMsg?.content || lastMsg?.text || "";
-            const summaryMatch = fullText.match(/(?:总结|结论)[：:]\s*([^\n]+)/);
-            if (summaryMatch && !summaryMatch[1].includes("\u6682\u5B58\u533A") && summaryMatch[1].length > 10) return summaryMatch[1].trim();
-            const lines = fullText.split("\n").map((l3) => l3.trim()).filter((l3) => l3);
-            const conclusionLine = lines.find((l3) => l3.startsWith("\u7EFC\u4E0A") || l3.startsWith("\u7ED3\u8BBA") || l3.startsWith("\u56E0\u6B64"));
-            if (conclusionLine && !conclusionLine.includes("\u6682\u5B58\u533A")) return conclusionLine;
-            if (lastMsg?.isMock) return "\u57FA\u4E8E\u6570\u636E\u7EDF\u7B79\u4EE3\u7406\u5BF9\u5E95\u5C42\u6570\u636E\u5E93\u7684\u9759\u9ED8\u7A7F\u900F\u5DE1\u68C0\uFF0C\u76EE\u524D\u5728 G107\u56FD\u9053\uFF08\u6E56\u5317\u7701\u5883\u5185\uFF09\u6682\u672A\u5339\u914D\u5230\u5BF9\u5E94\u7684\u516C\u8DEF\u96A7\u9053\u8D44\u4EA7\u53F0\u8D26\uFF08\u5F53\u524D\u53EF\u7528\u5E93\u5185\u5EA7\u6570\u4E3A0\uFF09\u3002\u5EFA\u8BAE\u4E1A\u52A1\u4E13\u5458\u89C6\u9700\u8865\u5145\u52A0\u8F7D\u66F4\u65B0\u5E74\u4EFD\u7684\u52A8\u6001\u96A7\u9053\u5E95\u56FE\u8FDB\u884C\u590D\u6838\u3002";
-            return "\u7ECF\u5168\u57DF\u653F\u52A1\u77E5\u8BC6\u5E93\u4E0E\u5E95\u5C42\u6570\u636E\u4E2D\u67A2\u7684\u7A7F\u900F\u5F0F\u534F\u540C\u63A2\u67E5\uFF0C\u672C\u6B21\u5206\u6790\u8BF7\u6C42\u7684\u8DE8\u7CFB\u7EDF\u6570\u636E\u63D0\u53D6\u3001\u903B\u8F91\u8BED\u4E49\u6E05\u6D17\u53CA\u6700\u7EC8\u5408\u89C4\u5BA1\u8BA1\u6D41\u7A0B\u5DF2\u5168\u90E8\u987A\u5229\u5B8C\u6210\u3002";
+            if (lastMsg?.isMock) return "\u57FA\u4E8E\u6570\u636E\u7EDF\u7B79\u4EE3\u7406\u5BF9\u5E95\u5C42\u6570\u636E\u5E93\u7684\u9759\u9ED8\u7A7F\u900F\u5DE1\u68C0\uFF0C\u76EE\u524D\u5728\u76EE\u6807\u8F96\u533A\u6682\u672A\u5339\u914D\u5230\u5BF9\u5E94\u7684\u8D44\u4EA7\u53F0\u8D26\uFF08\u53EF\u7528\u5E93\u5185\u8BB0\u5F55\u6570\u4E3A0\uFF09\u3002\u5EFA\u8BAE\u4E1A\u52A1\u4E13\u5458\u89C6\u9700\u8865\u5145\u52A0\u8F7D\u66F4\u65B0\u5E74\u4EFD\u7684\u52A8\u6001\u5E95\u56FE\u8FDB\u884C\u590D\u6838\u3002";
+            return "\u7ECF\u7A7F\u900F\u5F0F\u534F\u540C\u63A2\u67E5\uFF0C\u672C\u6B21\u5206\u6790\u8BF7\u6C42\u7684\u6570\u636E\u63D0\u53D6\u3001\u6E05\u6D17\u53CA\u5408\u89C4\u5BA1\u8BA1\u5DF2\u5168\u90E8\u5B8C\u6210\u3002";
           })())), /* @__PURE__ */ React.createElement("div", { className: "mt-4 border-t border-slate-200 pt-3 flex flex-col items-center" }, /* @__PURE__ */ React.createElement("div", { className: "text-[11px] text-slate-500 mb-1.5" }, "\u5DF2\u6682\u5B58 ", /* @__PURE__ */ React.createElement("span", { className: "font-bold text-slate-700" }, Object.keys(stagedConditions).length), " \u5904\u6838\u67E5\u6761\u4EF6\u4FEE\u6539"), /* @__PURE__ */ React.createElement(
             "button",
             {
