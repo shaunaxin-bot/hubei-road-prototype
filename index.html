@@ -52224,7 +52224,7 @@ ${msg.views.view3}
                 let chapterHeading = null;
                 const globalGroupIndex = groups.indexOf(group);
                 if (globalGroupIndex > 0 && groups[globalGroupIndex - 1].rInfo.department !== group.rInfo.department) {
-                  chapterHeading = /* @__PURE__ */ React.createElement("div", { className: "my-1 flex items-start gap-1 text-slate-500 font-normal leading-tight w-fit", style: { fontSize: "9px" } }, /* @__PURE__ */ React.createElement("span", { className: "shrink-0 mt-[1px]" }, "\u{1F504}"), /* @__PURE__ */ React.createElement("span", null, "\u3010\u8DE8\u57DF\u534F\u4F5C\u5207\u6362\u3011\uFF1A\u6D89\u53CA\u4E13\u4E1A\u6DF1\u6C34\u533A\uFF0C\u7531\u7275\u5934\u65B9 [", groups[globalGroupIndex - 1].rInfo.department, "] \u5411\u4E0B\u7A7F\u900F\uFF0C\u8C03\u5EA6 [", rInfo.department, "] \u4ECB\u5165\u3002"));
+                  chapterHeading = /* @__PURE__ */ React.createElement("div", { className: "my-1.5 flex items-start gap-1 text-blue-700 font-bold leading-tight w-fit", style: { fontSize: "11px" } }, /* @__PURE__ */ React.createElement("span", { className: "shrink-0 mt-[1px]" }, "\u{1F504}"), /* @__PURE__ */ React.createElement("span", null, "\u3010\u8DE8\u57DF\u534F\u4F5C\u5207\u6362\u3011\uFF1A\u6D89\u53CA\u4E13\u4E1A\u6DF1\u6C34\u533A\uFF0C\u7531\u7275\u5934\u65B9 [", groups[globalGroupIndex - 1].rInfo.department, "] \u5411\u4E0B\u7A7F\u900F\uFF0C\u8C03\u5EA6 [", rInfo.department, "] \u4ECB\u5165\u3002"));
                 }
                 const groupExpandedKey = `group-${cIdx}-${gi}`;
                 const groupExpanded = expandedToolCards[groupExpandedKey];
@@ -52316,7 +52316,7 @@ ${msg.views.view3}
                   } else {
                     mergedConclusionText = uniqueConclusions.map((c, i) => `(${i + 1}) ${c}`).join("  ");
                   }
-                  return /* @__PURE__ */ React.createElement("div", { className: "ml-6 mr-2 mb-1 text-[10.5px] text-slate-600 leading-relaxed flex items-start gap-1.5" }, /* @__PURE__ */ React.createElement("div", { className: "mt-[6px] w-[4px] h-[4px] rounded-full bg-slate-400 shrink-0" }), /* @__PURE__ */ React.createElement("div", null, mergedConclusionText));
+                  return /* @__PURE__ */ React.createElement("div", { className: "ml-6 mr-2 mb-1 text-[8.5px] text-slate-400 leading-relaxed flex items-start gap-1.5 font-normal" }, /* @__PURE__ */ React.createElement("div", { className: "mt-[5px] w-[3px] h-[3px] rounded-full bg-slate-300 shrink-0" }), /* @__PURE__ */ React.createElement("div", null, mergedConclusionText));
                 })(), groupExpanded && /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2 mt-1 border-l-[2px] border-slate-100 pl-3 ml-2 pb-2" }, group.calls.map((subTc, subIdx) => /* @__PURE__ */ React.createElement("div", { key: subIdx, className: "relative" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -left-[14px] top-[6px] w-[6px] h-[6px] rounded-full bg-slate-300" }), /* @__PURE__ */ React.createElement("div", { className: "mt-1 pt-1 text-[9px] flex-1 min-w-0 space-y-1" }, renderSecurityBadge(subTc), /* @__PURE__ */ React.createElement("div", { className: "bg-slate-50 border border-slate-200 text-slate-700 p-1.5 text-[9px] font-mono whitespace-pre-wrap break-all overflow-x-auto rounded-sm leading-tight" }, JSON.stringify({
                   "rpc_version": "2.0",
                   "agent_id": subTc.agentName || "unknown",
