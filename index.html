@@ -48312,8 +48312,13 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     if (!data || data.length === 0) return null;
     return /* @__PURE__ */ React.createElement("div", { className: "mb-2 mt-1 bg-transparent" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 pb-1.5 mb-2 border-b border-slate-200" }, /* @__PURE__ */ React.createElement(Database2, { size: 15, className: "text-slate-700" }), /* @__PURE__ */ React.createElement("h3", { className: "text-[13px] font-bold text-slate-800 m-0 p-0 tracking-wide" }, title || "\u653F\u4F01\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u5EA6\u94FE\u8DEF")), /* @__PURE__ */ React.createElement("div", { className: "relative border-l-[2px] border-slate-200 ml-[7px] pl-3.5 space-y-1.5" }, data.map((step, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: "relative flex flex-col group" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -left-[20px] top-[5px] w-[6px] h-[6px] rounded-full bg-slate-400" }), /* @__PURE__ */ React.createElement("div", { className: "flex items-center flex-wrap gap-1.5 mb-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "text-[11.5px] font-mono font-medium text-slate-700" }, "[", step.side === "gov" ? "\u653F\u5E9C\u4FA7" : "\u4F01\u4E1A\u4FA7", "] ", step.agent), /* @__PURE__ */ React.createElement("span", { className: "text-[11.5px] font-bold text-slate-800" }, "[", step.action, "]")), /* @__PURE__ */ React.createElement("div", { className: "text-[11px] text-slate-600 leading-snug" }, step.desc)))));
   };
-  var RoleGroupItem = ({ rInfo, groupSummaryText, group, selectedYears, isFinished }) => {
-    const [isOpen, setIsOpen] = React.useState(!isFinished);
+  var RoleGroupItem = ({ rInfo, groupSummaryText, group, selectedYears, isFinished, isGeneratingReport, isLastGroup }) => {
+    const [isOpen, setIsOpen] = React.useState(!isFinished || isLastGroup && isGeneratingReport);
+    React.useEffect(() => {
+      if (isLastGroup && isGeneratingReport) {
+        setIsOpen(true);
+      }
+    }, [isLastGroup, isGeneratingReport]);
     return /* @__PURE__ */ React.createElement("div", { className: "mb-0 border-none", style: { border: "none", padding: 0, margin: 0 } }, /* @__PURE__ */ React.createElement(
       "div",
       {
@@ -51562,7 +51567,9 @@ ${msg.views.view3}
               groupSummaryText,
               group,
               selectedYears,
-              isFinished
+              isFinished,
+              isGeneratingReport: msg.isGeneratingReport,
+              isLastGroup: gIdx === roleGroups.length - 1
             }
           );
         });
