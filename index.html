@@ -48418,7 +48418,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       }
     } catch (e) {
     }
-    return /* @__PURE__ */ React.createElement("div", { className: "mb-[2px] leading-[1.3] font-sans flex items-start gap-1 text-slate-600 font-normal", style: { fontSize: "8.5px" } }, !hideArrow && /* @__PURE__ */ React.createElement("span", { className: "mt-[1px] cursor-pointer", onClick: () => setIsOpen(!isOpen) }, isOpen ? /* @__PURE__ */ React.createElement(ChevronDown2, { size: 10 }) : /* @__PURE__ */ React.createElement(ChevronRight2, { size: 10 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full min-w-0" }, /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React.createElement("div", { className: "mb-[2px] leading-[1.3] flex items-start gap-1 text-slate-500 font-normal pl-[20px]", style: { fontSize: "10px" } }, !hideArrow && /* @__PURE__ */ React.createElement("span", { className: "mt-[1px] cursor-pointer", onClick: () => setIsOpen(!isOpen) }, isOpen ? /* @__PURE__ */ React.createElement(ChevronDown2, { size: 10 }) : /* @__PURE__ */ React.createElement(ChevronRight2, { size: 10 })), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col w-full min-w-0" }, /* @__PURE__ */ React.createElement(
       "div",
       {
         className: "cursor-pointer select-none flex items-center gap-1 transition-colors flex-wrap font-normal",
@@ -48426,10 +48426,10 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         title: "\u70B9\u51FB\u5C55\u5F00/\u6298\u53E0\u53C2\u6570"
       },
       /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 font-normal" }, tc.status === "running" ? "\u{1F504} \u6267\u884C\u4E2D" : tc.status === "error" ? "X \u5931\u8D25" : "\u2713 \u5DF2\u5B8C\u6210"),
-      tc.agentName && /* @__PURE__ */ React.createElement("span", { className: "text-slate-600 font-normal" }, tc.agentName),
-      /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-500" }, "\u8C03\u7528 ", tc.name, " ", tableInfo && /* @__PURE__ */ React.createElement("span", { style: { color: "#8b1c1c" } }, "(", tableInfo, ")")),
-      tc.status === "success" && tc.resultSummary && /* @__PURE__ */ React.createElement("span", { className: "ml-1 text-slate-400 font-normal" }, "(", tc.resultSummary, ")")
-    ), tc.status === "error" && tc.resultSummary && /* @__PURE__ */ React.createElement("div", { className: "text-[11px] mt-0.5 ml-1", style: { color: "#8b1c1c" } }, "(", tc.resultSummary, ")"), isOpen && (tc.argsStr || tc.args || tc.arguments) && /* @__PURE__ */ React.createElement("div", { className: "mt-1 ml-[4px] pl-[8px] border-l-2 border-slate-200 relative group" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center pr-2" }, renderSecurityBadge(tc), !isEditing && tc.status === "success" && /* @__PURE__ */ React.createElement(
+      tc.agentName && /* @__PURE__ */ React.createElement("span", { className: "text-slate-500 font-normal" }, tc.agentName),
+      /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-500" }, "\u8C03\u7528 ", tc.name, " ", tableInfo && /* @__PURE__ */ React.createElement("span", null, "(", tableInfo, ")")),
+      tc.status === "success" && tc.resultSummary && /* @__PURE__ */ React.createElement("span", { className: "ml-1 text-slate-500 font-normal" }, "(", tc.resultSummary, ")")
+    ), tc.status === "error" && tc.resultSummary && /* @__PURE__ */ React.createElement("div", { className: "mt-0.5 ml-1 text-slate-500" }, "(", tc.resultSummary, ")"), isOpen && (tc.argsStr || tc.args || tc.arguments) && /* @__PURE__ */ React.createElement("div", { className: "mt-1 ml-[4px] pl-[8px] border-l-2 border-slate-200 relative group" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center pr-2" }, renderSecurityBadge(tc), !isEditing && tc.status === "success" && /* @__PURE__ */ React.createElement(
       "button",
       {
         onClick: (e) => {
