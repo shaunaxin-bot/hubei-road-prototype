@@ -3,8 +3,9 @@ $date = Get-Date -Format 'yyyyMMdd'
 $projectDir = (Get-ChildItem -Path 'C:\AIprojects\roaddata\hubei' -Directory | Where-Object { $_.Name -match '^\d{8}$' } | Sort-Object Name -Descending | Select-Object -First 1).FullName
 $repoDir = 'C:\AIprojects\roaddata'
 $ghRepoDir = 'C:\AIprojects\roaddata\hubei\release'
+$projectDirName = Split-Path $projectDir -Leaf
 
-$srcHtml = Join-Path $projectDir '20260719-hubei-prototype.html'
+$srcHtml = Join-Path $projectDir "$projectDirName-hubei-prototype.html"
 
 Write-Host "`n[1/5] Compiling Knowledge Base Schemas..." -ForegroundColor Cyan
 Set-Location $projectDir
