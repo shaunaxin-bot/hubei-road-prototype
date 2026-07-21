@@ -48279,7 +48279,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   var agentOrgDict = {
     "AGENT-\u6570\u636E\u7EDF\u7B79-01_\u5E74\u62A5\u767B\u8BB0SOP\u7FA4": {
       block: "\u6570\u636E\u7EDF\u7B79\u677F\u5757",
-      department: "\u77E5\u8BC6\u89C4\u5219\u667A\u80FD\u4F53\u90E8\u95E8",
+      department: "\u77E5\u8BC6\u89C4\u5219\u90E8\u95E8",
       role: "\u4E13\u57DF\u6570\u636E\u6838\u67E5\u4EBA\u5458"
     }
   };
@@ -48295,6 +48295,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       block = match[1].trim();
       if (!block.endsWith("\u677F\u5757")) block += "\u677F\u5757";
       department = match[2].trim();
+      department = department.replace("\u667A\u80FD\u4F53", "");
       if (!department.endsWith("\u90E8\u95E8") && !department.endsWith("\u4E2D\u5FC3")) {
         department += "\u90E8\u95E8";
       }
