@@ -52331,25 +52331,27 @@ ${msg.views.view3}
                 }, null, 2)))))))));
               }));
             });
-          })(), tcs.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "relative flex items-center gap-2 mt-4 pt-2" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -left-[21px] top-[14px] w-[14px] h-[2px] bg-slate-300" }), /* @__PURE__ */ React.createElement("div", { className: "w-[10px] h-[10px] rounded-full bg-slate-800 shrink-0 z-10 shadow-[0_0_0_2px_white,0_0_0_3px_#1e293b] -ml-[6px]" }), /* @__PURE__ */ React.createElement("div", { className: "font-medium text-[12px] text-slate-900 break-words leading-tight" }, "[\u7EC8\u70B9] \u3010\u5206\u6790\u7ED3\u8BBA\u3011", (() => {
-            const fullText = lastMsg?.content || lastMsg?.text || "";
-            if (!fullText) return "\u7ECF\u5168\u57DF\u653F\u52A1\u77E5\u8BC6\u5E93\u4E0E\u5E95\u5C42\u6570\u636E\u4E2D\u67A2\u534F\u540C\u63A2\u67E5\uFF0C\u672C\u6B21\u5206\u6790\u8BF7\u6C42\u7684\u6570\u636E\u63D0\u53D6\u4E0E\u5408\u89C4\u6821\u9A8C\u5DF2\u987A\u5229\u5B8C\u6210\u3002";
-            const summaryMatch = fullText.match(/(?:【分析结论】|\[分析结论\]|总结|结论)[：:]?\s*([^]+)/);
-            if (summaryMatch && !summaryMatch[1].includes("\u6682\u5B58\u533A") && summaryMatch[1].length > 10) {
-              return summaryMatch[1].split("\n").map((l3) => l3.replace(/[*#>`]/g, "").trim()).filter((l3) => l3)[0] || summaryMatch[1].trim();
-            }
-            const lines = fullText.split("\n").map((l3) => l3.replace(/[*#>`]/g, "").trim()).filter((l3) => l3);
-            const conclusionLine = lines.find((l3) => l3.startsWith("\u7EFC\u4E0A") || l3.startsWith("\u7ED3\u8BBA") || l3.startsWith("\u56E0\u6B64") || l3.startsWith("\u9488\u5BF9"));
-            if (conclusionLine && !conclusionLine.includes("\u6682\u5B58\u533A")) return conclusionLine;
-            if (lines.length > 0) {
-              for (let i = lines.length - 1; i >= 0; i--) {
-                if (lines[i].length > 10 && !lines[i].includes("\u6682\u5B58\u533A")) {
-                  return lines[i];
+          })(), tcs.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "relative flex items-center gap-2 mt-4 pt-2" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -left-[21px] top-[14px] w-[14px] h-[2px] bg-slate-300" }), /* @__PURE__ */ React.createElement("div", { className: "w-[10px] h-[10px] rounded-full bg-slate-800 shrink-0 z-10 shadow-[0_0_0_2px_white,0_0_0_3px_#1e293b] -ml-[6px]" }), /* @__PURE__ */ React.createElement("div", { className: "font-medium text-[12px] text-slate-900 break-words leading-tight" }, "[\u7EC8\u70B9] \u3010\u5408\u89C4\u5BA1\u8BA1\u7ED3\u8BBA\u3011", (() => {
+            const sqlCalls = tcs.filter((tc) => tc.name === "execute_sql");
+            const searchCalls = tcs.filter((tc) => tc.name === "search_internet");
+            if (sqlCalls.length > 0 && searchCalls.length > 0) {
+              return `\u57FA\u4E8E\u8DE8\u57DF\u591A\u667A\u80FD\u4F53\u534F\u540C\uFF0C\u672C\u6B21\u63A2\u67E5\u6210\u529F\u6267\u884C\u4E86\u5916\u7F51\u6743\u5A01\u4FE1\u6E90\u6BD4\u5BF9\u4E0E ${sqlCalls.length} \u6B21\u5185\u7F51\u5E95\u5C42\u6570\u636E\u5E93\u7A7F\u900F\u626B\u63CF\u3002\u5185\u5916\u7F51\u6570\u636E\u6EAF\u6E90\u94FE\u8DEF\u900F\u660E\u5B8C\u6574\uFF0C\u6838\u5FC3\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709\u5145\u5206\u7684\u4EA4\u53C9\u9A8C\u8BC1\u652F\u6491\uFF0C\u5B8C\u5168\u7B26\u5408\u653F\u52A1\u6570\u636E\u5408\u89C4\u5BA1\u8BA1\u89C4\u8303\u3002`;
+            } else if (sqlCalls.length > 0) {
+              let rows = 0;
+              sqlCalls.forEach((tc) => {
+                if (tc.resultSummary) {
+                  const rowMatch = tc.resultSummary.match(/返回\s*(\d+)\s*行/);
+                  if (rowMatch) rows += parseInt(rowMatch[1]);
                 }
-              }
+              });
+              const rowStr = rows > 0 ? `\uFF0C\u5E76\u7CBE\u51C6\u63D0\u53D6\u4E86 ${rows} \u6761\u5E95\u5C42\u7269\u7406\u8BB0\u5F55` : "";
+              return `\u672C\u6B21\u5206\u6790\u4F9D\u6258\u6570\u636E\u7EDF\u7B79\u667A\u80FD\u4F53\uFF0C\u6210\u529F\u7A7F\u900F\u5E76\u5B8C\u6210\u4E86 ${sqlCalls.length} \u6B21\u5E95\u5C42\u4E1A\u52A1\u8868\u626B\u63CF${rowStr}\u3002\u6574\u4E2A\u8DE8\u57DF\u8C03\u6570\u4E0E\u89C4\u5219\u6E05\u6D17\u94FE\u8DEF\u5168\u7A0B\u5728\u5B89\u5168\u7F51\u5173\u5185\u95ED\u73AF\u6267\u884C\uFF0C\u6838\u5FC3\u6307\u6807\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u7EDD\u5BF9\u6EAF\u6E90\u80FD\u529B\u3002`;
+            } else if (searchCalls.length > 0) {
+              return `\u672C\u6B21\u5916\u8054\u63A2\u67E5\u4E25\u683C\u901A\u8FC7\u653F\u52A1\u5B89\u5168\u7F51\u5173\u8C03\u7528\u4E86\u6743\u5A01\u516C\u5F00\u4FE1\u6E90\u3002\u63D0\u53D6\u8FC7\u7A0B\u4E0E\u8BF7\u6C42 payload \u5168\u7A0B\u53D7\u63A7\uFF0C\u4FE1\u606F\u6EAF\u6E90\u8DEF\u5F84\u6E05\u6670\u53EF\u67E5\u3002`;
+            } else if (lastMsg?.isMock) {
+              return "\u7ECF\u5E95\u5C42\u6570\u636E\u6E90\u5B89\u5168\u9759\u9ED8\u5DE1\u68C0\uFF0C\u5F53\u524D\u76EE\u6807\u8F96\u533A\u6682\u672A\u5339\u914D\u5230\u5BF9\u5E94\u7684\u589E\u91CF\u7269\u7406\u8D44\u4EA7\u53F0\u8D26\uFF08\u8BB0\u5F55\u6570\u4E3A0\uFF09\u3002\u5BA1\u8BA1\u5224\u5B9A\u6570\u636E\u65AD\u5C42\uFF0C\u5EFA\u8BAE\u89C6\u9700\u52A0\u8F7D\u66F4\u65B0\u5E74\u4EFD\u7684\u52A8\u6001\u5E95\u56FE\u6570\u636E\u8FDB\u884C\u4E8C\u6B21\u590D\u6838\u3002";
             }
-            if (lastMsg?.isMock) return "\u57FA\u4E8E\u6570\u636E\u7EDF\u7B79\u4EE3\u7406\u5BF9\u5E95\u5C42\u6570\u636E\u5E93\u7684\u9759\u9ED8\u7A7F\u900F\u5DE1\u68C0\uFF0C\u76EE\u524D\u5728\u76EE\u6807\u8F96\u533A\u6682\u672A\u5339\u914D\u5230\u5BF9\u5E94\u7684\u8D44\u4EA7\u53F0\u8D26\uFF08\u53EF\u7528\u5E93\u5185\u8BB0\u5F55\u6570\u4E3A0\uFF09\u3002\u5EFA\u8BAE\u4E1A\u52A1\u4E13\u5458\u89C6\u9700\u8865\u5145\u52A0\u8F7D\u66F4\u65B0\u5E74\u4EFD\u7684\u52A8\u6001\u5E95\u56FE\u8FDB\u884C\u590D\u6838\u3002";
-            return "\u7ECF\u7A7F\u900F\u5F0F\u534F\u540C\u63A2\u67E5\uFF0C\u672C\u6B21\u5206\u6790\u8BF7\u6C42\u7684\u6570\u636E\u63D0\u53D6\u3001\u6E05\u6D17\u53CA\u5408\u89C4\u5BA1\u8BA1\u5DF2\u5168\u90E8\u5B8C\u6210\u3002";
+            return "\u57FA\u4E8E\u5168\u57DF\u653F\u52A1\u77E5\u8BC6\u5E93\u7684\u672C\u5730\u8BED\u4E49\u89E3\u6790\u4E0E\u5B89\u5168\u89C4\u5219\u5339\u914D\u5DF2\u987A\u5229\u5B8C\u6210\u3002\u6574\u4E2A\u77E5\u8BC6\u6EAF\u6E90\u4E0E\u903B\u8F91\u63A8\u6F14\u8FC7\u7A0B\u900F\u660E\u53EF\u5BA1\uFF0C\u7B26\u5408\u7CFB\u7EDF\u5E73\u53F0\u5408\u89C4\u5BA1\u8BA1\u6807\u51C6\u3002";
           })())), /* @__PURE__ */ React.createElement("div", { className: "mt-4 border-t border-slate-200 pt-3 flex flex-col items-center" }, /* @__PURE__ */ React.createElement("div", { className: "text-[11px] text-slate-500 mb-1.5" }, "\u5DF2\u6682\u5B58 ", /* @__PURE__ */ React.createElement("span", { className: "font-bold text-slate-700" }, Object.keys(stagedConditions).length), " \u5904\u6838\u67E5\u6761\u4EF6\u4FEE\u6539"), /* @__PURE__ */ React.createElement(
             "button",
             {
