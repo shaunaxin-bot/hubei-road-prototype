@@ -185,15 +185,16 @@
                         </div>
                     </div>
 
-                    <!-- 4. (数据决策) 探数：跨处室治理指标与多维分析 -->
+                    <!-- 4. (数据决策) 日常检测与年报桩号对齐 (桩号匹配问题) -->
                     <div onclick="selectScenario(4)" id="scen-card-4" class="palantir-card p-1.5 rounded cursor-pointer space-y-0.5 border-slate-200 hover:border-blue-400">
                         <div class="font-bold text-slate-900 text-[11px] flex items-center justify-between">
-                            <span class="truncate">📊 (数据决策) 探数：跨处室治理指标多维分析</span>
+                            <span class="truncate">📍 (桩号匹配) 日常检测与年报桩号对齐</span>
+                            <span class="text-[8.5px] bg-emerald-600 text-white px-1 rounded font-mono shrink-0">空间校验</span>
                         </div>
-                        <p class="text-[10px] text-slate-600 leading-tight">1+9 部门协同治理指标研判，跨处室数据血缘追溯与智能决策评估。</p>
+                        <p class="text-[9.5px] text-slate-600 leading-tight">日常巡检与年报桩号因参考系及误差对齐割裂，实现自上而下桩号传导与空间校正。</p>
                         <div class="text-[9px] text-slate-500 font-mono border-t border-slate-100 pt-0.5 flex justify-between">
-                            <span>1+9 处室 Agent 决策网</span>
-                            <span class="text-blue-600 font-bold">分析 ➔</span>
+                            <span>普通公路处 / 数据统筹</span>
+                            <span class="text-blue-600 font-bold">对齐 ➔</span>
                         </div>
                     </div>
                 </div>
@@ -1828,9 +1829,12 @@
                 if (label) label.innerText = '🔍 当前焦点场景：【3. 数据查询 - 42 张物理底表 ➔ 17 套国标 L 码一套表】';
             } else if (id === 4) {
                 switchWorkspace('main');
-                highlightLineageRole('role-0');
-                const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '📊 当前焦点场景：【4. 数据决策 - 1+9 部门协同治理指标与智能体决策网】';
+                highlightLineage('l29a');
+                const l29aEl = document.getElementById('ont-l29a');
+                const container = document.getElementById('lineageCanvas');
+                if (l29aEl && container) {
+                    l29aEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             }
         }
 
