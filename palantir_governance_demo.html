@@ -2157,22 +2157,24 @@
                         pathData = `M ${r1.right - cRect.left} ${y1} C ${loopX} ${y1}, ${loopX} ${y2}, ${r2.right - cRect.left} ${y2}`;
                     }
 
-                    let strokeColor = "#94a3b8"; // Clean uniform Palantir Slate Gray
-                    let strokeWidth = "1.25";
-                    let opacity = "0.45";
+                    let strokeColor = "#cbd5e1"; // Light Slate-300
+                    let strokeWidth = "0.75";
+                    let opacity = "0.22";
+                    let dashArray = 'stroke-dasharray="4 4"';
 
                     if (activeHighlightCode) {
                         if (activeHighlightCode === code || activeHighlightCode === roleId) {
                             strokeColor = "#2563eb"; // Sapphire Blue focus highlight on hover
-                            strokeWidth = "2.5";
-                            opacity = "1";
+                            strokeWidth = "2";
+                            opacity = "0.9";
+                            dashArray = '';
                         } else {
-                            opacity = "0.08";
+                            opacity = "0.04";
                         }
                     }
 
                     // Base Connection Line
-                    pathsHTML += `<path d="${pathData}" stroke="${strokeColor}" stroke-width="${strokeWidth}" opacity="${opacity}" fill="none" marker-end="url(#arrowhead)" />`;
+                    pathsHTML += `<path d="${pathData}" stroke="${strokeColor}" stroke-width="${strokeWidth}" ${dashArray} opacity="${opacity}" fill="none" />`;
                 }
             });
 
