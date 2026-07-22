@@ -51883,7 +51883,6 @@ ${msg.views.view3}
     ))))), /* @__PURE__ */ React.createElement("div", { className: "relative group" }, /* @__PURE__ */ React.createElement("button", { className: "px-2.5 py-1 rounded-md bg-slate-50 hover:bg-blue-50/80 text-slate-700 hover:text-blue-700 transition-all border border-slate-200/80 hover:border-blue-300/80 text-[10.5px] font-medium flex items-center gap-1 cursor-pointer select-none whitespace-nowrap shadow-2xs" }, "\uFF08\u6570\u636E\u7EDF\u7B79\uFF09\u63A2\u6570 ", /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-400" }, "\u25BE")), /* @__PURE__ */ React.createElement("div", { className: "absolute right-0 bottom-[100%] pb-1 hidden group-hover:block z-[60]" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-col bg-white border border-slate-200/90 rounded-xl shadow-2xl w-[520px] max-h-[380px] overflow-y-auto no-scrollbar" }, professionalPrompts.flatMap((group) => group.queries).map((q2, qIdx) => {
       const match = q2.text ? q2.text.match(/^【(.*?)】\((.*?)\)\s*(.*)$/) : null;
       const dept = match ? match[1] : "\u7EFC\u5408\u90E8\u95E8";
-      const date = match ? match[2] : "";
       const topic = match ? match[3] : q2.text;
       const cleanIntent = q2.intent ? q2.intent.replace(/^【.*?】/, "").trim() : "";
       return /* @__PURE__ */ React.createElement(
@@ -51891,12 +51890,11 @@ ${msg.views.view3}
         {
           key: `s3pro-${qIdx}`,
           onClick: () => handleDeepSeekQuery(q2.q),
-          className: "w-full text-left px-3.5 py-2.5 text-[10.5px] text-slate-700 hover:bg-blue-50/80 hover:text-blue-700 transition-colors border-b border-slate-100 last:border-0 cursor-pointer flex flex-col gap-1.5"
+          className: "w-full text-left px-3 py-2 text-[10.5px] text-slate-700 hover:bg-blue-50/80 hover:text-blue-700 transition-colors border-b border-slate-100 last:border-0 cursor-pointer flex flex-col gap-1"
         },
-        /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 text-[10px] font-bold border border-blue-200/80" }, "\u{1F3DB}\uFE0F \u8D23\u4EFB\u90E8\u95E8\uFF1A", dept), date && /* @__PURE__ */ React.createElement("span", { className: "text-[9.5px] text-slate-400 font-mono" }, "\u{1F4C5} ", date)),
-        /* @__PURE__ */ React.createElement("div", { className: "font-bold text-slate-800 text-[11px] flex items-start gap-1 leading-snug" }, /* @__PURE__ */ React.createElement("span", { className: "text-blue-600 shrink-0 mt-0.5" }, "\u2753"), /* @__PURE__ */ React.createElement("span", null, "\u95EE\u9898\u4E3B\u9898\uFF1A", topic)),
-        cleanIntent && /* @__PURE__ */ React.createElement("div", { className: "text-[9.5px] text-slate-600 leading-relaxed bg-slate-50/90 p-2 rounded-lg border border-slate-200/60" }, /* @__PURE__ */ React.createElement("span", { className: "font-semibold text-slate-700" }, "\u{1F4AC} \u3010\u5177\u4F53\u4E1A\u52A1\u9700\u6C42\u3011\uFF1A"), cleanIntent),
-        q2.docName && /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-400 leading-tight flex items-center gap-1 pt-0.5" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F4C4} \u6765\u6E90\u7269\u6599\uFF1A"), /* @__PURE__ */ React.createElement("span", { className: "font-medium text-slate-500" }, q2.docName))
+        /* @__PURE__ */ React.createElement("div", { className: "font-semibold text-slate-800 text-[11px] flex items-start gap-1.5 leading-snug" }, /* @__PURE__ */ React.createElement("span", { className: "inline-flex items-center shrink-0 px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 text-[9.5px] font-bold border border-blue-200/80 mt-0.5" }, dept), /* @__PURE__ */ React.createElement("span", { className: "text-slate-800 font-bold" }, topic)),
+        cleanIntent && /* @__PURE__ */ React.createElement("div", { className: "text-[9.5px] text-slate-600 leading-relaxed bg-slate-50/90 p-1.5 rounded border border-slate-200/60 mt-0.5" }, /* @__PURE__ */ React.createElement("span", { className: "font-semibold text-slate-700" }, "\u3010\u5177\u4F53\u9700\u6C42\u3011"), cleanIntent),
+        q2.docName && /* @__PURE__ */ React.createElement("div", { className: "text-[9px] text-slate-400 leading-tight flex items-center gap-1 pt-0.5" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F4C4} \u6765\u6E90\u6587\u6863\uFF1A"), /* @__PURE__ */ React.createElement("span", { className: "font-medium text-slate-500" }, q2.docName))
       );
     }))))), /* @__PURE__ */ React.createElement(
       "input",
