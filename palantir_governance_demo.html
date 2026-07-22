@@ -187,21 +187,8 @@
             </aside>
 
             <!-- 2. 中间：Palantir SVG 全景血缘拓扑大盘 (全量 42 张底表与 17 套国标 L 码矩阵) -->
-            <main id="mainLineageCanvasPanel" class="col-span-9 flex flex-col gap-2 min-h-0 overflow-hidden">
+            <main id="mainLineageCanvasPanel" class="col-span-9 flex flex-col min-h-0 overflow-hidden">
                 <div class="bg-white border border-slate-200 rounded shadow-2xs flex flex-col font-sans overflow-hidden relative flex-1 h-full">
-                    <div class="bg-slate-50 px-3 py-2 flex items-center justify-between border-b border-slate-200 text-xs shrink-0 font-bold text-slate-800">
-                        <span class="flex items-center gap-1.5">
-                            <span class="text-blue-600 font-bold">🌐 Palantir 全景血缘拓扑:</span>
-                            <span id="activeScenarioLabel" class="text-blue-900 font-mono font-bold text-[11px]">【1. 42张原始物理Excel底表】➔【2. 17套国标L码一套表】➔【3. 1+9数据统筹与处室 Agent】</span>
-                        </span>
-                        
-                        <div class="flex items-center gap-1.5">
-                            <button onclick="switchLineageMode('full')" id="mode-btn-full" class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-600 text-white shadow-2xs">🌐 42表全景矩阵图谱</button>
-                            <button onclick="switchLineageMode('2025')" id="mode-btn-2025" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">📅 2025年单表基线</button>
-                            <button onclick="switchLineageMode('2019')" id="mode-btn-2019" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">📂 28物理Tab表(历史)</button>
-                            <button onclick="toggleRightPanel()" id="toggleRightPanelBtn" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500 text-white hover:bg-amber-600 shadow-2xs">🤖 展开 AI 智能体日志 ◀</button>
-                        </div>
-                    </div>
                     
                     <div id="lineageCanvas" class="flex-1 lineage-container relative overflow-y-auto p-3 bg-white">
                         <svg id="svgOverlay" class="absolute inset-0 w-full h-full pointer-events-none z-20"></svg>
@@ -209,10 +196,9 @@
                         <div class="grid grid-cols-12 gap-3 relative z-10 text-xs">
                             
                             <!-- Column 1: Physical Sources (5 col) -->
-                            <div class="col-span-5 flex flex-col gap-1.5">
-                                <div class="font-bold text-center border-b border-slate-200 pb-1 text-slate-700 text-[11px] flex items-center justify-between">
-                                    <span>1. 物理底表源 (全量42张Excel)</span>
-                                    <span id="col1-year-badge" class="text-[9px] bg-blue-100 text-blue-800 px-1 py-0.5 rounded font-mono font-bold">全量 42 底表</span>
+                            <div class="col-span-5 flex flex-col gap-1">
+                                <div class="font-bold border-b border-slate-200 pb-1 text-slate-700 text-[11px]">
+                                    1. 物理底表源 (全量42张Excel)
                                 </div>
                                 <div class="space-y-0.5 flex-1 pr-0.5">
                                     <div id="src-excel-1" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full font-mono text-[8px] border-blue-400 cursor-pointer hover:shadow-xs w-fit">
@@ -429,10 +415,9 @@
                             </div>
 
                             <!-- Column 2: 17套国标L码一套表 (4 col) -->
-                            <div class="col-span-4 flex flex-col gap-1.5">
-                                <div class="font-bold text-center border-b border-slate-200 pb-1 text-slate-700 text-[11px] flex items-center justify-between">
-                                    <span>2. 17套国标L码年报一套表</span>
-                                    <span id="col2-version-badge" class="text-[9px] bg-emerald-100 text-emerald-800 px-1 py-0.5 rounded font-mono font-bold">全量 17 L码</span>
+                            <div class="col-span-4 flex flex-col gap-1">
+                                <div class="font-bold border-b border-slate-200 pb-1 text-slate-700 text-[11px]">
+                                    2. 17套国标L码一套表
                                 </div>
                                 <div class="space-y-1 flex-1">
                                     <div id="ont-l21" onclick="switchWorkspace('oma'); switchOntologyTier('l21');" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[8px] border-blue-400 cursor-pointer hover:shadow-xs w-fit">
@@ -492,10 +477,9 @@
                             </div>
 
                             <!-- Column 3: 1+9 部门与业务处室 Agent -->
-                            <div class="col-span-3 flex flex-col gap-1.5 pr-5">
-                                <div class="font-bold text-center border-b border-slate-200 pb-1 text-slate-700 text-[11px] flex items-center justify-between">
-                                    <span>3. 1+9 数据统筹与业务处室 (Agent)</span>
-                                    <span class="text-[9px] bg-amber-100 text-amber-900 px-1 py-0.5 rounded font-mono font-bold">1+9 架构</span>
+                            <div class="col-span-3 flex flex-col gap-1 pr-5">
+                                <div class="font-bold border-b border-slate-200 pb-1 text-slate-700 text-[11px]">
+                                    3. 1+9 部门与业务处室 Agent
                                 </div>
                                 <div class="space-y-1.5 flex-1">
                                     <div id="role-0" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-0')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-bold text-[8.5px] cursor-pointer hover:shadow-xs border-amber-300 bg-amber-50/40 w-fit">
