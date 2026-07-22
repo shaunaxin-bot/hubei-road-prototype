@@ -99,28 +99,23 @@
 <body class="bg-slate-50 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
 
     <!-- Header Navigation Bar -->
-    <header class="bg-white text-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-200 shrink-0 shadow-2xs">
-        <div class="flex items-center gap-3">
-            <button class="text-slate-500 hover:text-slate-800 font-bold text-base">≡</button>
-            <div class="flex items-center gap-2">
-                <span class="text-blue-600 font-bold text-sm">⚙️</span>
-                <h1 class="text-sm font-bold text-slate-900 tracking-tight">
-                    Palantir 全域治理大盘 <span class="text-blue-600 font-bold text-xs">【多年份拓扑动态演进与版本表现版】</span>
-                </h1>
-            </div>
+    <header class="bg-white text-slate-800 px-4 py-1.5 flex items-center justify-between border-b border-slate-200 shrink-0 shadow-2xs">
+        <div class="flex items-center gap-2">
+            <span class="text-blue-600 font-bold text-sm">⚙️</span>
+            <h1 class="text-sm font-bold text-slate-900 tracking-tight">
+                Palantir 全域治理大盘
+            </h1>
         </div>
 
-        <div class="flex items-center gap-2 text-xs">
-            <div class="flex items-center gap-1">
-                <button onclick="switchWorkspace('main')" id="nav-main" class="workspace-nav-active px-3 py-1 bg-white border border-slate-200 rounded hover:bg-slate-50">🌐 0. 首页全景图谱</button>
-                <button onclick="switchWorkspace('ds')" id="nav-ds" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">🔌 1. 接入智能体 (数据源)</button>
-                <button onclick="switchWorkspace('oma')" id="nav-oma" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">⚙️ 2. 本体智能体 (OMA)</button>
-                <button onclick="switchWorkspace('impact')" id="nav-impact" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">🔍 3. 影响面智能体 (Git)</button>
-                <button onclick="switchWorkspace('writeback')" id="nav-writeback" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">✍️ 4. 写回智能体 (审定)</button>
-            </div>
+        <div class="flex items-center gap-1.5 text-xs">
+            <button onclick="switchWorkspace('main')" id="nav-main" class="workspace-nav-active px-2.5 py-1 bg-white border border-slate-200 rounded hover:bg-slate-50">🌐 全景图谱</button>
+            <button onclick="switchWorkspace('ds')" id="nav-ds" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">🔌 数据源接入</button>
+            <button onclick="switchWorkspace('oma')" id="nav-oma" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">⚙️ 本体模型 (OMA)</button>
+            <button onclick="switchWorkspace('impact')" id="nav-impact" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">🔍 影响面分析</button>
+            <button onclick="switchWorkspace('writeback')" id="nav-writeback" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">✍️ 审定落库</button>
             
-            <button onclick="toggleEmbedModal()" class="ml-2 bg-blue-600 text-white font-bold px-3 py-1 rounded text-xs hover:bg-blue-700 shadow-2xs flex items-center gap-1">
-                <span>📦 智能体打包与嵌入</span>
+            <button onclick="toggleEmbedModal()" class="ml-1 bg-blue-600 text-white font-bold px-2.5 py-1 rounded text-xs hover:bg-blue-700 shadow-2xs">
+                <span>📦 打包导出</span>
             </button>
         </div>
     </header>
