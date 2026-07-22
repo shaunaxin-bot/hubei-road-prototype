@@ -48277,9 +48277,18 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     }
   };
   var parseAgentToRole = (agentString) => {
-    if (!agentString) return { block: "\u5168\u5C40\u7EDF\u7B79\u677F\u5757", department: "\u7EFC\u5408\u51B3\u7B56\u90E8\u95E8", role: "\u7CFB\u7EDF\u4E3B\u63A7\u4EBA\u5458" };
-    if (agentOrgDict[agentString]) return agentOrgDict[agentString];
-    let block = "\u672A\u77E5\u677F\u5757";
+    if (!agentString) return { side: "\u653F\u5E9C\u4FA7", block: "\u5168\u5C40\u7EDF\u7B79\u677F\u5757", department: "\u7EFC\u5408\u51B3\u7B56\u90E8\u95E8", role: "\u7CFB\u7EDF\u4E3B\u63A7\u4EBA\u5458" };
+    if (agentOrgDict[agentString]) return { side: "\u653F\u5E9C\u4FA7", ...agentOrgDict[agentString] };
+    const isEnterprise = agentString.includes("\u4EA4\u6295") || agentString.includes("\u4EA4\u89C4") || agentString.includes("\u8DEF\u6865") || agentString.includes("\u4F01\u4E1A") || agentString.includes("\u68C0\u6D4B\u8BBE\u5907") || agentString.startsWith("enterprise_") || agentString.startsWith("ENT-");
+    if (isEnterprise) {
+      return {
+        side: "\u4F01\u4E1A\u4FA7",
+        block: "\u4F01\u4E1A\u534F\u540C\u677F\u5757",
+        department: agentString,
+        role: "\u4F01\u4E8B\u4E1A\u5355\u4F4D\u4E13\u57DF\u8282\u70B9"
+      };
+    }
+    let block = "\u6570\u636E\u6CBB\u7406\u677F\u5757";
     let department = agentString.replace("AGENT-", "");
     let role = "\u4E13\u57DF\u6570\u636E\u6838\u67E5\u4EBA\u5458";
     const regex = /AGENT-([^-]+)-\d+_([^\(（]+)(?:[\(（](.+)[)）])?/;
@@ -48300,7 +48309,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         }
       }
     }
-    return { block, department, role };
+    return { side: "\u653F\u5E9C\u4FA7", block, department, role };
   };
   var AgentWorkflowVisualizer = ({ data, title }) => {
     if (!data || data.length === 0) return null;
@@ -48323,7 +48332,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         onClick: () => setIsOpen(!isOpen)
       },
       /* @__PURE__ */ React.createElement("span", { className: "shrink-0 font-mono text-slate-400 w-2.5 inline-block font-bold" }, "\u203A"),
-      /* @__PURE__ */ React.createElement("span", { className: "flex-1", style: { border: "none" } }, /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-700" }, "[", rInfo.block, "] ", rInfo.department, " ", rInfo.role ? `(${rInfo.role})` : "", "\uFF1A"), /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-500" }, groupSummaryText))
+      /* @__PURE__ */ React.createElement("span", { className: "flex-1", style: { border: "none" } }, /* @__PURE__ */ React.createElement("span", { className: `font-bold mr-1 ${rInfo.side === "\u4F01\u4E1A\u4FA7" ? "text-amber-700" : "text-blue-700"}` }, "[", rInfo.side || "\u653F\u5E9C\u4FA7", "]"), /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-700" }, "[", rInfo.block, "] ", rInfo.department, " ", rInfo.role ? `(${rInfo.role})` : "", "\uFF1A"), /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-500" }, groupSummaryText))
     ), isOpen && /* @__PURE__ */ React.createElement("div", { className: "pl-[8px] ml-[3px] flex flex-col mt-0 border-none", style: { gap: "0", border: "none", margin: "0", padding: "0" } }, group.calls.map((tc, tcIdx) => /* @__PURE__ */ React.createElement(ToolCallItem, { key: tcIdx, tc, selectedYears, hideArrow: true }))));
   };
   var ToolCallItem = ({ tc, selectedYears = [], hideArrow = false }) => {
