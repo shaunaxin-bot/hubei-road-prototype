@@ -1828,34 +1828,32 @@
                 }
             }
             if (id === 1) {
-                // Scenario 1: Emergency - Highlight L29a & L27
-                highlightLineage('l29a');
+                // 场景1 应急业务：气象预警 → L27(灾害点) + L29a(路况桩号) + L32(应急队伍)
+                highlightLineage(['l27', 'l29a', 'l32']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🚨 当前焦点场景：【1. 应急业务 - 汛期预警防御与应急处置】➔【L27/L29a/L32 应急响应链】';
+                if (label) label.innerText = '🚨 【应急业务】G107/G316 受灾路段 23 段 48.6km · L27 地灾点 7 处 · L29a 桩号 480 个 · L32 应急队伍 3 支';
             } else if (id === 2) {
-                // Scenario 2: Maintenance (Bridge Quality) - Highlight L24a & scroll canvas to L24a
+                // 场景2 养护业务：G107 长大桥 → L24a(桥梁健康) → 桥梁监测质量考核
                 switchWorkspace('main');
-                highlightLineage('l24a');
+                highlightLineage(['l24a']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🛠️ 当前焦点场景：【2. 养护业务 - 长大桥结构监测 4 大专业源】➔【L24a 桥梁健康检测本体】➔【5大 Agent 处室协同】';
+                if (label) label.innerText = '🛠️ 【养护业务】G107 沿线 12 座长大桥 · L24a 工况异常 97 条 · WIM 超限 34 次 · 质检均值 78.3 · 2 座重点复核';
                 const l24aEl = document.getElementById('ont-l24a');
-                const container = document.getElementById('lineageCanvas');
-                if (l24aEl && container) {
-                    l24aEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
+                if (l24aEl) l24aEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else if (id === 3) {
+                // 场景3 数据查询：国道养护里程与资金 → L30a(里程) + L30b(工程资金) + L30c(总资金)
                 switchWorkspace('main');
-                highlightLineage('l21');
+                highlightLineage(['l30a', 'l30b', 'l30c']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🔍 当前焦点场景：【3. 数据查询 - 42 张物理底表 ➔ 17 套国标 L 码一套表】';
+                if (label) label.innerText = '🔍 【数据查询】国道年均养护里程 6,842 km · 养护工程资金 28.7亿 · 养护资金总投入 41.3亿 · L30a/b/c 穿透';
             } else if (id === 4) {
+                // 场景4 桩号匹配：L21标准排桩 + L29a日常检测 → 偏差校正
                 switchWorkspace('main');
-                highlightLineage('l29a');
-                const l29aEl = document.getElementById('ont-l29a');
-                const container = document.getElementById('lineageCanvas');
-                if (l29aEl && container) {
-                    l29aEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
+                highlightLineage(['l21', 'l29a']);
+                const label = document.getElementById('activeScenarioLabel');
+                if (label) label.innerText = '📍 【桩号匹配】L21 标准排桩 ↔ L29a 日常检测 · 偏差 >50m 路段 86 处 · 空间校正关系表 → role-5/role-0 落库';
+                const l21El = document.getElementById('ont-l21');
+                if (l21El) l21El.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
 
@@ -2035,15 +2033,16 @@
             requestAnimationFrame(() => setTimeout(drawConnectorLines, 50));
         }
 
-        let activeHighlightCode = null;
+        let activeHighlightCode = null; // string | string[] | null
 
         function highlightLineage(code) {
-            activeHighlightCode = code;
+            // Accept single string or array of strings
+            activeHighlightCode = Array.isArray(code) ? code : [code];
             drawConnectorLines();
         }
 
         function highlightLineageRole(roleId) {
-            activeHighlightCode = roleId;
+            activeHighlightCode = [roleId];
             drawConnectorLines();
         }
 
@@ -2207,8 +2206,9 @@
                     let dashArray = 'stroke-dasharray="4 4"';
                     let extraClass = '';
 
-                    if (activeHighlightCode) {
-                        if (activeHighlightCode === code || activeHighlightCode === roleId) {
+                    if (activeHighlightCode && activeHighlightCode.length > 0) {
+                        const isHit = activeHighlightCode.includes(code) || activeHighlightCode.includes(roleId);
+                        if (isHit) {
                             strokeColor = "#2563eb"; // Sapphire Blue
                             strokeWidth = "1.75";    // Clearer 1.75px
                             opacity = "0.95";
