@@ -119,7 +119,7 @@
         <div id="view-main" style="display: grid;" class="h-full grid-cols-12 gap-3 min-h-0">
             
             <!-- 1. 最左边：场景智能体目录 -->
-            <aside class="col-span-3 bg-white border border-slate-200 rounded p-3 flex flex-col gap-2.5 shadow-2xs min-h-0 text-xs">
+            <aside class="col-span-2 bg-white border border-slate-200 rounded p-2.5 flex flex-col gap-2.5 shadow-2xs min-h-0 text-xs">
                 <div class="flex items-center justify-between pb-2 border-b border-slate-100 shrink-0">
                     <span class="font-bold text-xs text-slate-900 flex items-center gap-1">🎬 场景智能体目录</span>
                     <button onclick="toggleEmbedModal()" class="text-[9px] bg-slate-100 text-blue-700 border border-blue-200 px-1.5 py-0.2 rounded font-bold hover:bg-blue-50">📦 打包导出</button>
@@ -148,14 +148,13 @@
                             <span class="text-blue-600 font-bold">委派 ➔</span>
                         </div>
                     </div>
-
                     <div onclick="selectScenario(3)" id="scen-card-3" class="palantir-card p-2.5 rounded cursor-pointer space-y-1.5 border-slate-200 hover:border-blue-400">
                         <div class="font-bold text-slate-900 text-[11.5px] flex items-center justify-between">
-                            <span>📊 数据决策：17套国标 L 码本体与决策分析</span>
+                            <span>📊 数据决策：交通部 17 套年报规范表系列</span>
                         </div>
-                        <p class="text-[10.5px] text-slate-600 leading-normal">将 42 张物理底表汇聚为 17 套国标 L 码本体，包含特定年份 28 张底表树。</p>
+                        <p class="text-[10.5px] text-slate-600 leading-normal">将物理底表汇聚为 17 套国标年报规范，查看底层对应物理 Tab 表。</p>
                         <div class="text-[9.5px] text-slate-500 font-mono border-t border-slate-100 pt-1 flex justify-between">
-                            <span>[L21~L32] 17套本体</span>
+                            <span>[L21~L32] 17套规范系列</span>
                             <span class="text-blue-600 font-bold">点击查看 ➔</span>
                         </div>
                     </div>
@@ -173,127 +172,240 @@
                 </div>
             </aside>
 
-            <!-- 2. 中间：Palantir SVG 血缘图谱 (上, 支持年份基线切换) + 常驻 5 步推演控制台 (下) -->
-            <main class="col-span-5 flex flex-col gap-2 min-h-0 overflow-y-auto">
-                
-                <!-- SVG Canvas with Multi-Year Version Filter -->
-                <div class="bg-white border border-slate-200 rounded shadow-2xs flex flex-col font-sans overflow-hidden relative shrink-0 h-60">
-                    
-                    <!-- Lineage Header Bar with Year Selector Pills -->
-                    <div class="bg-slate-50 px-3 py-1.5 flex items-center justify-between border-b border-slate-200 text-xs shrink-0 font-bold text-slate-800">
+            <!-- 2. 中间：Palantir SVG 全景血缘拓扑大盘 (全量 42 张底表与 17 套国标 L 码矩阵) -->
+            <main class="col-span-7 flex flex-col gap-2 min-h-0 overflow-y-auto">
+                <div class="bg-white border border-slate-200 rounded shadow-2xs flex flex-col font-sans overflow-hidden relative flex-1 h-full min-h-[520px]">
+                    <div class="bg-slate-50 px-3 py-2 flex items-center justify-between border-b border-slate-200 text-xs shrink-0 font-bold text-slate-800">
                         <span class="flex items-center gap-1.5">
-                            <span>🌐 Palantir 血缘拓扑:</span>
-                            <span id="activeScenarioLabel" class="text-blue-700 font-mono font-bold">【1. 物理源】➔【2. 本体】➔【3. 处室】</span>
+                            <span class="text-blue-600 font-bold">🌐 Palantir 全景血缘拓扑:</span>
+                            <span id="activeScenarioLabel" class="text-blue-900 font-mono font-bold text-[11px]">【1. 42张原始物理Excel底表】➔【2. 17套国标L码一套表】➔【3. 9大业务处室】</span>
                         </span>
                         
-                        <div class="flex items-center gap-1">
-                            <span class="text-[10px] text-slate-500 font-mono font-bold">📅 拓扑年份:</span>
-                            <button onclick="switchLineageYear('2025')" id="year-btn-2025" class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-600 text-white shadow-2xs">2025年基线</button>
-                            <button onclick="switchLineageYear('2019')" id="year-btn-2019" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">2019年</button>
-                            <button onclick="switchLineageYear('2015')" id="year-btn-2015" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">2015年历史</button>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="switchLineageMode('full')" id="mode-btn-full" class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-600 text-white shadow-2xs">🌐 42表全景矩阵图谱</button>
+                            <button onclick="switchLineageMode('2025')" id="mode-btn-2025" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">📅 2025年单表基线</button>
+                            <button onclick="switchLineageMode('2019')" id="mode-btn-2019" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">📂 28物理Tab表(历史)</button>
                         </div>
                     </div>
                     
-                    <div id="lineageCanvas" class="flex-1 lineage-container relative overflow-y-auto p-2 bg-white">
+                    <div id="lineageCanvas" class="flex-1 lineage-container relative overflow-y-auto p-3 bg-white">
                         <svg id="svgOverlay" class="absolute inset-0 w-full h-full pointer-events-none z-20"></svg>
 
-                        <div class="grid grid-cols-3 gap-2 relative z-10 text-xs">
+                        <div class="grid grid-cols-3 gap-3 relative z-10 text-xs">
                             
-                            <!-- Column 1: Physical Sources with Year Badges -->
-                            <div class="bg-slate-50 border border-slate-200 rounded p-1.5 flex flex-col gap-1 shadow-2xs">
-                                <div class="font-bold text-center border-b border-slate-200 pb-0.5 text-slate-900 text-[10px] flex items-center justify-between">
-                                    <span>1. 物理底表源</span>
-                                    <span id="col1-year-badge" class="text-[9px] bg-blue-100 text-blue-800 px-1 rounded font-mono font-bold">2025库</span>
+                            <!-- Column 1: Physical Sources (全量 42 张物理底表分类展示) -->
+                            <div class="bg-slate-50 border border-slate-200 rounded-lg p-2 flex flex-col gap-1.5 shadow-2xs">
+                                <div class="font-bold text-center border-b border-slate-200 pb-1 text-slate-900 text-xs flex items-center justify-between">
+                                    <span>1. 物理底表源 (全量42张Excel)</span>
+                                    <span id="col1-year-badge" class="text-[9px] bg-blue-100 text-blue-800 px-1 py-0.5 rounded font-mono font-bold">全量 42 底表</span>
                                 </div>
-                                <div id="src-3" onclick="switchWorkspace('ds')" class="palantir-card p-1 rounded font-mono text-[9.5px] border-blue-400 cursor-pointer space-y-0.5">
-                                    <div class="font-bold">🛢️ 12-1路况明细.xlsx</div>
-                                    <div id="src-3-sub" class="text-[8.5px] text-blue-700 font-bold">hubei_2025.db (640行)</div>
+                                <div class="overflow-y-auto space-y-1.5 max-h-[640px] pr-1">
+                                    <div id="src-l21" onclick="open28TablesModal('2025')" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] border-blue-400 cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 路段/排桩/交调/安防 (L21)</div>
+                                        <div id="src-1-sub" class="text-[8.5px] text-slate-500">5张物理表 (222行~1.3万行)</div>
+                                    </div>
+                                    <div id="src-l22" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l22')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 乡镇/建制村/自然村通达 (L22)</div>
+                                        <div id="src-l22-sub" class="text-[8.5px] text-slate-500">3张物理表 (236行)</div>
+                                    </div>
+                                    <div id="src-l23" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l23')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 亚洲公路网路线明细表 (L23)</div>
+                                        <div class="text-[8.5px] text-slate-500">1张物理表 (10行)</div>
+                                    </div>
+                                    <div id="src-l24a" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] border-blue-400 cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 桥梁.xls / 农村桥梁 (L24a)</div>
+                                        <div id="src-2-sub" class="text-[8.5px] text-slate-500">2张物理表 (19,678行)</div>
+                                    </div>
+                                    <div id="src-l24b" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l24b')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 公路涵洞明细表.xls (L24b)</div>
+                                        <div class="text-[8.5px] text-slate-500">1张物理表 (21,004行)</div>
+                                    </div>
+                                    <div id="src-l25" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l25')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 隧道明细表.xls (L25)</div>
+                                        <div id="src-l25-sub" class="text-[8.5px] text-slate-500">1张物理表 (990行)</div>
+                                    </div>
+                                    <div id="src-l26" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l26')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 服务区/收费站/出入口 (L26)</div>
+                                        <div id="src-l26-sub" class="text-[8.5px] text-slate-500">4张物理表 (505行)</div>
+                                    </div>
+                                    <div id="src-l27" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l27')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 地质灾害/灾毁抢通11-1~3 (L27)</div>
+                                        <div id="src-l27-sub" class="text-[8.5px] text-slate-500">4张物理表 (24行)</div>
+                                    </div>
+                                    <div id="src-l28" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l28')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 06 交通工程及沿线设施 (L28)</div>
+                                        <div class="text-[8.5px] text-slate-500">1张物理表 (32行)</div>
+                                    </div>
+                                    <div id="src-l29a" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l29a')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] border-blue-400 cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 12-1/12-2 路况明细 (L29a)</div>
+                                        <div id="src-3-sub" class="text-[8.5px] text-blue-700 font-bold">2张物理表 (40,936行)</div>
+                                    </div>
+                                    <div id="src-l30a" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30a')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 13-1 日常养护作业统计 (L30a)</div>
+                                        <div class="text-[8.5px] text-slate-500">1张物理表 (40行)</div>
+                                    </div>
+                                    <div id="src-l30b" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 13-2~5 养护工程统计 (L30b)</div>
+                                        <div class="text-[8.5px] text-slate-500">4张物理表 (101行)</div>
+                                    </div>
+                                    <div id="src-l30c" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30c')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 14-1~3 养护资金投入 (L30c)</div>
+                                        <div class="text-[8.5px] text-slate-500">3张物理表 (40行)</div>
+                                    </div>
+                                    <div id="src-l31a" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31a')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 15-1 高速公路管养单位 (L31a)</div>
+                                        <div class="text-[8.5px] text-slate-500">1张物理表 (38行)</div>
+                                    </div>
+                                    <div id="src-l31b" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31b')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 15-2~4 国省干线管养 (L31b)</div>
+                                        <div class="text-[8.5px] text-slate-500">4张物理表 (76行)</div>
+                                    </div>
+                                    <div id="src-l31c" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31c')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 15-5 农路路长制/村属性 (L31c)</div>
+                                        <div class="text-[8.5px] text-slate-500">3张物理表 (48,580行)</div>
+                                    </div>
+                                    <div id="src-l32" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l32')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">🛢️ 16-1~2 应急储备物资 (L32)</div>
+                                        <div class="text-[8.5px] text-slate-500">2张物理表 (27行)</div>
+                                    </div>
                                 </div>
-                                <div id="src-2" onclick="switchWorkspace('ds')" class="palantir-card p-1 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5">
-                                    <div class="font-bold">🛢️ 桥梁.xls (L24a)</div>
-                                    <div id="src-2-sub" class="text-[8.5px] text-slate-500">hubei_2025.db (742行)</div>
-                                </div>
-                                <div id="src-1" onclick="switchWorkspace('ds')" class="palantir-card p-1 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5">
-                                    <div class="font-bold">🛢️ 路段.xls (L21)</div>
-                                    <div id="src-1-sub" class="text-[8.5px] text-slate-500">hubei_2025.db (512行)</div>
+                                
+                                <div class="mt-auto border-t border-slate-200 pt-1.5 text-[9px] text-slate-500 font-mono">
+                                    💡 全量42张原始物理底表清洗后挂载汇入17套国标L码表。
                                 </div>
                             </div>
 
-                            <!-- Column 2: 17 Ontologies with Evolution Version Badges -->
-                            <div class="bg-slate-50 border border-slate-200 rounded p-1.5 flex flex-col gap-1 shadow-2xs">
-                                <div class="font-bold text-center border-b border-slate-200 pb-0.5 text-slate-900 text-[10px] flex items-center justify-between">
-                                    <span>2. 17套年报本体</span>
-                                    <span id="col2-version-badge" class="text-[9px] bg-emerald-100 text-emerald-800 px-1 rounded font-mono font-bold">v2025规范</span>
+                            <!-- Column 2: 17套国标L码一套表 (全量17套完整显示) -->
+                            <div class="bg-slate-50 border border-slate-200 rounded-lg p-2 flex flex-col gap-1.5 shadow-2xs">
+                                <div class="font-bold text-center border-b border-slate-200 pb-1 text-slate-900 text-xs flex items-center justify-between">
+                                    <span>2. 17套国标L码年报一套表</span>
+                                    <span id="col2-version-badge" class="text-[9px] bg-emerald-100 text-emerald-800 px-1 py-0.5 rounded font-mono font-bold">全量 17 L码</span>
                                 </div>
-                                <div id="ont-l29a" onclick="switchWorkspace('oma')" class="palantir-card p-1 rounded font-mono text-[9.5px] border-blue-400 cursor-pointer space-y-0.5">
-                                    <div class="font-bold text-blue-900">📄 [L29a] 日常路况明细</div>
-                                    <div id="ont-l29a-tag" class="text-[8.5px] bg-blue-50 text-blue-700 px-1 rounded inline-block font-bold">双向规约/PCI</div>
+                                <div class="overflow-y-auto space-y-1.5 max-h-[640px] pr-1">
+                                    <div id="ont-l21" onclick="switchWorkspace('oma'); switchOntologyTier('l21');" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] border-blue-400 cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L21] 公路路线基本情况明细表</div>
+                                        <div id="ont-l21-tag" class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">1:N 全省拓扑主骨架</div>
+                                    </div>
+                                    <div id="ont-l22" onclick="switchWorkspace('oma'); switchOntologyTier('l22');" onmouseenter="highlightLineage('l22')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L22] 乡镇/建制村/自然村通达表</div>
+                                        <div id="ont-l22-tag" class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">建制村/自然村通达</div>
+                                    </div>
+                                    <div id="ont-l23" onclick="switchWorkspace('oma'); switchOntologyTier('l23');" onmouseenter="highlightLineage('l23')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L23] 亚洲公路网路线明细表</div>
+                                        <div class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">AH网段明细</div>
+                                    </div>
+                                    <div id="ont-l24a" onclick="switchWorkspace('oma'); switchOntologyTier('l24a');" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L24a] 公路桥梁基本情况明细表</div>
+                                        <div id="ont-l24a-tag" class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">BCI升维 (19,678座)</div>
+                                    </div>
+                                    <div id="ont-l24b" onclick="switchWorkspace('oma'); switchOntologyTier('l24b');" onmouseenter="highlightLineage('l24b')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L24b] 公路涵洞明细表</div>
+                                        <div class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">2.1万座涵洞构造物</div>
+                                    </div>
+                                    <div id="ont-l25" onclick="switchWorkspace('oma'); switchOntologyTier('l25');" onmouseenter="highlightLineage('l25')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L25] 公路隧道基本情况明细表</div>
+                                        <div id="ont-l25-tag" class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">990座隧道结构</div>
+                                    </div>
+                                    <div id="ont-l26" onclick="switchWorkspace('oma'); switchOntologyTier('l26');" onmouseenter="highlightLineage('l26')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L26] 公路沿线服务及收费设施</div>
+                                        <div id="ont-l26-tag" class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">收费站/服务区/出入口</div>
+                                    </div>
+                                    <div id="ont-l27" onclick="switchWorkspace('oma'); switchOntologyTier('l27');" onmouseenter="highlightLineage('l27')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L27] 易发地质灾害点明细表</div>
+                                        <div id="ont-l27-tag" class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">灾毁预警与抢通</div>
+                                    </div>
+                                    <div id="ont-l28" onclick="switchWorkspace('oma'); switchOntologyTier('l28');" onmouseenter="highlightLineage('l28')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L28] 交通工程及沿线设施汇总表</div>
+                                        <div class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">标志/护栏/标线/网屏</div>
+                                    </div>
+                                    <div id="ont-l29a" onclick="switchWorkspace('oma'); switchOntologyTier('l29a');" onmouseenter="highlightLineage('l29a')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] border-blue-400 cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-blue-900">📄 [L29a] 日常路况评定明细表</div>
+                                        <div id="ont-l29a-tag" class="text-[8px] bg-blue-50 text-blue-700 px-1 py-0.5 rounded inline-block font-bold">100m桩号/PCI=62.5</div>
+                                    </div>
+                                    <div id="ont-l30a" onclick="switchWorkspace('oma'); switchOntologyTier('l30a');" onmouseenter="highlightLineage('l30a')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L30a] 公路养护作业统计表</div>
+                                        <div class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">日常养护工程量</div>
+                                    </div>
+                                    <div id="ont-l30b" onclick="switchWorkspace('oma'); switchOntologyTier('l30b');" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L30b] 公路养护工程统计表</div>
+                                        <div class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">预防养护/大中修工程</div>
+                                    </div>
+                                    <div id="ont-l30c" onclick="switchWorkspace('oma'); switchOntologyTier('l30c');" onmouseenter="highlightLineage('l30c')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L30c] 公路养护资金统计表</div>
+                                        <div class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">资金拨付与投入来源</div>
+                                    </div>
+                                    <div id="ont-l31a" onclick="switchWorkspace('oma'); switchOntologyTier('l31a');" onmouseenter="highlightLineage('l31a')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L31a] 高速公路管养单位属性表</div>
+                                        <div class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">高速运营公司机构</div>
+                                    </div>
+                                    <div id="ont-l31b" onclick="switchWorkspace('oma'); switchOntologyTier('l31b');" onmouseenter="highlightLineage('l31b')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L31b] 国省干线管养单位属性表</div>
+                                        <div class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">公路段/站/人员名录</div>
+                                    </div>
+                                    <div id="ont-l31c" onclick="switchWorkspace('oma'); switchOntologyTier('l31c');" onmouseenter="highlightLineage('l31c')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L31c] 农村公路管养单位属性表</div>
+                                        <div class="text-[8px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">路长制/村级岗位属性</div>
+                                    </div>
+                                    <div id="ont-l32" onclick="switchWorkspace('oma'); switchOntologyTier('l32');" onmouseenter="highlightLineage('l32')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="font-bold text-slate-900">📄 [L32] 应急储备库及队伍明细表</div>
+                                        <div class="text-[8.5px] bg-slate-100 text-slate-700 px-1 py-0.5 rounded inline-block">应急队伍与抢险装备</div>
+                                    </div>
                                 </div>
-                                <div id="ont-l24a" onclick="switchWorkspace('oma')" class="palantir-card p-1 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5">
-                                    <div class="font-bold text-slate-900">📄 [L24a] 公路桥梁明细</div>
-                                    <div id="ont-l24a-tag" class="text-[8.5px] bg-slate-100 text-slate-700 px-1 rounded inline-block">BCI升维测值</div>
-                                </div>
-                                <div id="ont-l21" onclick="switchWorkspace('oma')" class="palantir-card p-1 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5">
-                                    <div class="font-bold text-slate-900">📄 [L21] 公路路线基本表</div>
-                                    <div id="ont-l21-tag" class="text-[8.5px] bg-slate-100 text-slate-700 px-1 rounded inline-block">1:N 拓扑树</div>
+
+                                <div class="mt-auto border-t border-slate-200 pt-1.5 text-[9px] text-slate-500 font-mono">
+                                    💡 17套国标L码为交通部年报官方一套表体系名称。
                                 </div>
                             </div>
 
-                            <!-- Column 3: 9 Business Departments -->
-                            <div class="bg-slate-50 border border-slate-200 rounded p-1.5 flex flex-col gap-1 shadow-2xs">
-                                <div class="font-bold text-center border-b border-slate-200 pb-0.5 text-slate-900 text-[10px]">3. 9大业务处室</div>
-                                <div id="role-4" onclick="switchWorkspace('writeback')" class="palantir-card p-1 rounded font-bold text-[9.5px] border-blue-400 cursor-pointer space-y-0.5">
-                                    <div class="text-blue-900">🛣️ 04 养护管理处</div>
-                                    <div class="text-[8.5px] text-blue-700 font-mono font-normal">权责: L29a 归口</div>
+                            <!-- Column 3: 9大业务处室 Agent (全量9个处室全显) -->
+                            <div class="bg-slate-50 border border-slate-200 rounded-lg p-2 flex flex-col gap-1.5 shadow-2xs">
+                                <div class="font-bold text-center border-b border-slate-200 pb-1 text-slate-900 text-xs">3. 9大业务处室 (执行Agent)</div>
+                                <div class="overflow-y-auto space-y-1.5 max-h-[640px] pr-1">
+                                    <div id="role-1" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-1')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-bold text-[9.5px] border-blue-400 cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="text-blue-900">📊 01 规划计划处</div>
+                                        <div class="text-[8.5px] text-slate-600 font-mono font-normal">权责: L21, L23, L31a, L31b</div>
+                                    </div>
+                                    <div id="role-2" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-2')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div>💰 02 财务资产处</div>
+                                        <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: L30c 养护资金投入</div>
+                                    </div>
+                                    <div id="role-3" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-3')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div>🛠️ 03 工程技术处</div>
+                                        <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: L24a, L24b, L25, L30b 桥隧工程</div>
+                                    </div>
+                                    <div id="role-4" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-4')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-bold text-[9.5px] border-blue-400 cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div class="text-blue-900">🛣️ 04 养护管理处</div>
+                                        <div class="text-[8.5px] text-blue-700 font-mono font-normal">权责: L28, L29a, L30a 路况评定与日常养护</div>
+                                    </div>
+                                    <div id="role-5" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-5')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div>🚜 05 农村公路处</div>
+                                        <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: L22, L31c 农路通达与监管</div>
+                                    </div>
+                                    <div id="role-6" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-6')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div>🚨 06 安全应急处</div>
+                                        <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: L27, L32 地灾与应急队伍</div>
+                                    </div>
+                                    <div id="role-7" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-7')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div>💻 07 科技信息处</div>
+                                        <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: 空间GIS全域基线底图</div>
+                                    </div>
+                                    <div id="role-8" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-8')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div>⚖️ 08 执法监督处</div>
+                                        <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: 双签落库与合规审定</div>
+                                    </div>
+                                    <div id="role-9" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-9')" onmouseleave="resetLineageHighlight()" class="palantir-card p-1.5 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5 hover:shadow-sm">
+                                        <div>🏢 09 运营管理处</div>
+                                        <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: L26 服务区与收费站</div>
+                                    </div>
                                 </div>
-                                <div id="role-3" onclick="switchWorkspace('writeback')" class="palantir-card p-1 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5">
-                                    <div>🛠️ 03 工程技术处</div>
-                                    <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: L24a 归口</div>
-                                </div>
-                                <div id="role-1" onclick="switchWorkspace('writeback')" class="palantir-card p-1 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5">
-                                    <div>📊 01 规划计划处</div>
-                                    <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: L21 归口</div>
+
+                                <div class="mt-auto border-t border-slate-200 pt-1.5 text-[9px] text-slate-500 font-mono">
+                                    💡 全量9大处室智能体协同审定。
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- EMBEDDED 5-STEP DEMO PANEL -->
-                <div class="bg-white border border-slate-200 rounded shadow-2xs p-3 flex flex-col gap-2 shrink-0">
-                    <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-base text-blue-600">🎬</span>
-                            <span class="font-bold text-xs text-slate-900">养护处【100米桩号路检智能体】基于年报本体 5 步动作推演控制台</span>
-                        </div>
-                        <button onclick="runStepByStepDemo()" class="bg-blue-600 text-white text-[10.5px] font-bold px-2.5 py-1 rounded hover:bg-blue-700 shadow-2xs flex items-center gap-1">
-                            <span>▶️ 自动一键推演全流程</span>
-                        </button>
-                    </div>
-
-                    <div class="grid grid-cols-5 gap-1.5 text-[10px]">
-                        <button onclick="goToDemoStep(1)" id="step-btn-1" class="p-1.5 rounded border border-blue-600 bg-blue-600 text-white font-bold text-center shadow-2xs">
-                            1. 绑定本体
-                        </button>
-                        <button onclick="goToDemoStep(2)" id="step-btn-2" class="p-1.5 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100">
-                            2. 桩号消噪
-                        </button>
-                        <button onclick="goToDemoStep(3)" id="step-btn-3" class="p-1.5 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100">
-                            3. 算子去重
-                        </button>
-                        <button onclick="goToDemoStep(4)" id="step-btn-4" class="p-1.5 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100">
-                            4. 拓扑派发
-                        </button>
-                        <button onclick="goToDemoStep(5)" id="step-btn-5" class="p-1.5 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100">
-                            5. 双签落库
-                        </button>
-                    </div>
-
-                    <div id="step-detail-card" class="border border-slate-200 rounded-lg p-2.5 bg-slate-50 text-xs">
-                        <!-- Content rendered dynamically -->
-                    </div>
-                </div>
-
             </main>
 
             <!-- 3. 右边：场景智能体对话框 -->
@@ -439,25 +551,49 @@
                         <tr class="bg-blue-50/40">
                             <td class="gov-table-td font-bold text-blue-900">hubei_2025.db</td>
                             <td class="gov-table-td font-bold text-blue-700">2025年 动态年报基线底图库</td>
-                            <td class="gov-table-td">77.8 KB</td>
+                            <td class="gov-table-td">76.0 KB</td>
                             <td class="gov-table-td text-emerald-700 font-bold">12ms</td>
-                            <td class="gov-table-td"><button onclick="open28TablesModal('2025')" class="text-blue-700 font-bold underline">查看 42 张底表树 ➔</button></td>
+                            <td class="gov-table-td"><button onclick="open28TablesModal('2025')" class="text-blue-700 font-bold underline">查看 1 张底表 (L21 222条) ➔</button></td>
                             <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢 (默认主库)</td>
                         </tr>
                         <tr>
                             <td class="gov-table-td font-bold text-slate-900">hubei_2019.db</td>
                             <td class="gov-table-td">2019年 统计年报历史数据库</td>
-                            <td class="gov-table-td">41.9 MB</td>
+                            <td class="gov-table-td">40.0 MB</td>
                             <td class="gov-table-td text-emerald-700 font-bold">15ms</td>
-                            <td class="gov-table-td"><button onclick="open28TablesModal('2019')" class="text-blue-700 font-bold underline">查看 28 张底表树 ➔</button></td>
+                            <td class="gov-table-td"><button onclick="open28TablesModal('2019')" class="text-blue-700 font-bold underline">查看 28 张底表 (L29a 40,936条) ➔</button></td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
+                        </tr>
+                        <tr>
+                            <td class="gov-table-td font-bold text-slate-900">hubei_2018.db</td>
+                            <td class="gov-table-td">2018年 统计年报历史数据库</td>
+                            <td class="gov-table-td">40.0 MB</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">15ms</td>
+                            <td class="gov-table-td"><button onclick="open28TablesModal('2018')" class="text-blue-700 font-bold underline">查看 28 张底表 (L29a 40,936条) ➔</button></td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
+                        </tr>
+                        <tr>
+                            <td class="gov-table-td font-bold text-slate-900">hubei_2017.db</td>
+                            <td class="gov-table-td">2017年 统计年报历史数据库</td>
+                            <td class="gov-table-td">40.0 MB</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">15ms</td>
+                            <td class="gov-table-td"><button onclick="open28TablesModal('2017')" class="text-blue-700 font-bold underline">查看 28 张底表 (L29a 40,936条) ➔</button></td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
+                        </tr>
+                        <tr>
+                            <td class="gov-table-td font-bold text-slate-900">hubei_2016.db</td>
+                            <td class="gov-table-td">2016年 统计年报历史数据库</td>
+                            <td class="gov-table-td">28.1 MB</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">14ms</td>
+                            <td class="gov-table-td"><button onclick="open28TablesModal('2016')" class="text-blue-700 font-bold underline">查看 28 张底表 (L29a 40,936条) ➔</button></td>
                             <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
                         </tr>
                         <tr>
                             <td class="gov-table-td font-bold text-slate-900">hubei_2015.db</td>
                             <td class="gov-table-td">2015年 统计年报历史数据库</td>
-                            <td class="gov-table-td">41.9 MB</td>
+                            <td class="gov-table-td">40.0 MB</td>
                             <td class="gov-table-td text-emerald-700 font-bold">15ms</td>
-                            <td class="gov-table-td"><button onclick="open28TablesModal('2015')" class="text-blue-700 font-bold underline">查看 28 张底表树 ➔</button></td>
+                            <td class="gov-table-td"><button onclick="open28TablesModal('2015')" class="text-blue-700 font-bold underline">查看 28 张底表 (L29a 40,936条) ➔</button></td>
                             <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
                         </tr>
                     </tbody>
@@ -508,9 +644,12 @@
                     <div class="flex items-center gap-1.5">
                         <span class="font-bold text-slate-900">📅 选择年报年份:</span>
                         <select id="evoYearSelect" onchange="renderSchemaEvolutionTable()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1 text-xs font-bold focus:outline-none focus:border-blue-600">
-                            <option value="2025">2025年 (最新年报基线底图库 hubei_2025.db)</option>
-                            <option value="2019">2019年 (历史年报归档库 hubei_2019.db)</option>
-                            <option value="2015">2015年 (历史年报基线库 hubei_2015.db)</option>
+                            <option value="2025">2025年 (最新年报基线底图库 hubei_2025.db - 76.0KB)</option>
+                            <option value="2019">2019年 (历史年报归档库 hubei_2019.db - 40.0MB)</option>
+                            <option value="2018">2018年 (历史年报归档库 hubei_2018.db - 40.0MB)</option>
+                            <option value="2017">2017年 (历史年报归档库 hubei_2017.db - 40.0MB)</option>
+                            <option value="2016">2016年 (历史年报归档库 hubei_2016.db - 28.1MB)</option>
+                            <option value="2015">2015年 (历史年报基线库 hubei_2015.db - 40.0MB)</option>
                         </select>
                     </div>
 
@@ -679,71 +818,69 @@
             </div>
 
             <div class="p-4 space-y-3 overflow-y-auto flex-1 font-mono text-[11.5px]">
-                <div class="bg-blue-50 border border-blue-200 p-2.5 rounded text-blue-900 text-xs">
-                    💡 提示：以下为从原始 Excel/SQLite 中解析出来的特定年份（28张物理底层汇总明细表与子表）完整骨架列表：
+                <div id="tables28ModalNotice" class="bg-blue-50 border border-blue-200 p-2.5 rounded text-blue-900 text-xs">
+                    💡 提示：以下为从原始 Excel/SQLite 中解析出来的特定年份（物理底层汇总明细表与子表）完整骨架列表：
                 </div>
 
-                <div class="space-y-2 font-mono">
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《T001 (公路基本情况汇总表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 公路里程年底到达数 (按技术等级分)</div>
-                    </div>
-
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《L21 (公路路线基本情况明细表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 02 路线明细<br/>↳ 07 公路排桩<br/>↳ 08 观测站点</div>
-                    </div>
-
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《L22 (乡镇/建制村/自然村通达及属性表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 建制村通达<br/>↳ 自然村通达</div>
-                    </div>
-
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《L24a (公路桥梁基本情况明细表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 03 桥梁基本情况汇总表<br/>↳ 06 农村桥梁明细<br/>↳ 桥梁数据变更表</div>
-                    </div>
-
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《L24b (公路涵洞明细表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 05 涵洞明细表</div>
-                    </div>
-
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《L25 (公路隧道基本情况明细表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 04 隧道明细表<br/>↳ 隧道数据变更表</div>
-                    </div>
-
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《L26 (公路沿线服务及收费设施明细表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 09 服务设施</div>
-                    </div>
-
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《L27 (易发地质灾害点明细表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 11-1 灾毁高速<br/>↳ 11-2 灾毁普通国省道<br/>↳ 11-3 灾毁县乡道</div>
-                    </div>
-
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《L29a (公路日常路况评定明细表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 12-1 100m路况明细 (国省干线)</div>
-                    </div>
-
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《L30a/L30b/L30c (养护作业、工程与资金统计表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 13-1 养护作业 / 13-2 养护工程 / 14-1 资金来源</div>
-                    </div>
-
-                    <div class="p-2 border rounded bg-slate-50 space-y-1">
-                        <div class="font-bold text-blue-900">■ 《L31a/L31b (管养单位属性表)》</div>
-                        <div class="pl-4 text-slate-700">↳ 15-1 高速公路管养机构<br/>↳ 15-1 普通国省道管养机构<br/>↳ 乡镇属性表与代码表</div>
-                    </div>
+                <div id="tables28ModalBodyContainer" class="space-y-2 font-mono">
+                    <!-- Dynamically filled by open28TablesModal(year) -->
                 </div>
             </div>
 
             <div class="bg-slate-50 border-t border-slate-200 px-4 py-2.5 flex items-center justify-between shrink-0">
-                <span class="text-[10.5px] text-slate-500 font-mono">数据校验状态: 28张底表完整探活并映射至17套国标L码</span>
-                <button onclick="close28TablesModal()" class="bg-slate-200 border text-slate-800 font-bold px-3 py-1 rounded hover:bg-slate-300">关闭窗口</button>
+                <span id="tables28ModalFooterStatus" class="text-[10.5px] text-slate-500 font-mono">数据校验状态: 28张底表完整探活并映射至17套国标L码</span>
+                <button onclick="close28TablesModal()" class="bg-slate-200 border text-slate-800 font-bold px-3 py-1 rounded hover:bg-slate-300 cursor-pointer">关闭窗口</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: 5-STEP ACTION DEMO MODAL -->
+    <div id="actionDemoModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg border border-slate-200 shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col text-xs max-h-[85vh]">
+            <div class="bg-gradient-to-r from-blue-700 to-indigo-700 text-white px-4 py-3 flex items-center justify-between font-bold shrink-0">
+                <div class="flex items-center gap-2">
+                    <span class="text-base">🎬</span>
+                    <span>养护处【100米桩号路检智能体】基于年报本体 5 步动作推演控制台</span>
+                </div>
+                <button onclick="closeActionDemoModal()" class="text-white hover:text-slate-200 font-bold text-base cursor-pointer">✕</button>
+            </div>
+
+            <div class="p-4 space-y-3 overflow-y-auto flex-1 font-mono text-[11.5px]">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                    <div class="text-slate-600 text-xs font-sans">
+                        💡 智能体通过 5 步连贯动作（绑定/消噪/去重/派发/落库），实现跨系统物理数据自动化治理与审定。
+                    </div>
+                    <button onclick="runStepByStepDemo()" class="bg-blue-600 text-white text-[11px] font-bold px-3 py-1 rounded hover:bg-blue-700 shadow-2xs flex items-center gap-1 shrink-0 cursor-pointer">
+                        <span>▶️ 自动一键推演全流程</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-5 gap-1.5 text-[10px]">
+                    <button onclick="goToDemoStep(1)" id="step-btn-1" class="p-2 rounded border border-blue-600 bg-blue-600 text-white font-bold text-center shadow-2xs cursor-pointer">
+                        1. 绑定本体
+                    </button>
+                    <button onclick="goToDemoStep(2)" id="step-btn-2" class="p-2 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100 cursor-pointer">
+                        2. 桩号消噪
+                    </button>
+                    <button onclick="goToDemoStep(3)" id="step-btn-3" class="p-2 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100 cursor-pointer">
+                        3. 算子去重
+                    </button>
+                    <button onclick="goToDemoStep(4)" id="step-btn-4" class="p-2 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100 cursor-pointer">
+                        4. 拓扑派发
+                    </button>
+                    <button onclick="goToDemoStep(5)" id="step-btn-5" class="p-2 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100 cursor-pointer">
+                        5. 双签落库
+                    </button>
+                </div>
+
+                <div id="step-detail-card" class="border border-slate-200 rounded-lg p-3 bg-slate-50 text-xs">
+                    <!-- Content rendered dynamically -->
+                </div>
+            </div>
+
+            <div class="bg-slate-50 border-t border-slate-200 px-4 py-2.5 flex items-center justify-between shrink-0">
+                <span class="text-[10.5px] text-slate-500 font-mono">智能体推演引擎就绪 (支持 CoT 实时日志追踪)</span>
+                <button onclick="closeActionDemoModal()" class="bg-slate-200 border text-slate-800 font-bold px-3 py-1 rounded hover:bg-slate-300 cursor-pointer">关闭窗口</button>
             </div>
         </div>
     </div>
@@ -873,33 +1010,66 @@
 
         const lineageYearData = {
             '2025': {
-                col1Badge: '2025主库',
+                col1Badge: '2025库 (L21系列 1个Tab单表)',
                 col2Badge: 'v2025规范',
-                src3Sub: 'hubei_2025.db (640行)',
-                src2Sub: 'hubei_2025.db (742行)',
-                src1Sub: 'hubei_2025.db (512行)',
-                ontL29aTag: '双向规约/PCI=62.5',
-                ontL24aTag: 'BCI升维(92.0)',
-                ontL21Tag: '1:N 全省拓扑树',
-                chatLog: '已切换至【2025年最新年报拓扑基线】：包含动态 42 张底表与 17 套最新国标 L 码本体，支持 BCI 升维与 100m 去重！'
+                src3Sub: '',
+                src2Sub: '',
+                src1Sub: 'L21系列 (1个Tab物理单表, 222行)',
+                ontL29aTag: '按需关联基线',
+                ontL24aTag: '按需关联基线',
+                ontL21Tag: 'L21系列 (1个Tab单表)',
+                chatLog: '已切换至【2025年最新年报拓扑基线】：L21为国标年报系列名。实测 hubei_2025.db 归属 L21 系列，内部仅包含 1 个 Tab / 1 张物理单表（222 行真实记录）。'
             },
             '2019': {
-                col1Badge: '2019历史库',
+                col1Badge: '2019库 (28张底表)',
                 col2Badge: 'v2019规范',
-                src3Sub: 'hubei_2019.db (41.9MB)',
-                src2Sub: 'hubei_2019.db (41.9MB)',
-                src1Sub: 'hubei_2019.db (41.9MB)',
+                src3Sub: '12-1路况明细 (L29a 40,936条)',
+                src2Sub: '桥梁.xls (L24a 19,678条)',
+                src1Sub: '路段.xls (L21 13,616条)',
                 ontL29aTag: '28张底表/12-1路况',
                 ontL24aTag: 'BCI初步引入列',
                 ontL21Tag: '2019全省路线树',
-                chatLog: '已切换至【2019年历史年报拓扑基线】：包含 28 张底层 Excel/SQLite 表，关联 2019 历史归档本体。'
+                chatLog: '已切换至【2019年历史年报拓扑基线】：真实物理库 hubei_2019.db (40.0MB) 包含 28 张底表（L29a 40,936行，L24a 19,678行）。'
+            },
+            '2018': {
+                col1Badge: '2018库 (28张底表)',
+                col2Badge: 'v2018规范',
+                src3Sub: '12-1路况明细 (L29a 40,936条)',
+                src2Sub: '桥梁.xls (L24a 19,678条)',
+                src1Sub: '路段.xls (L21 13,616条)',
+                ontL29aTag: '28张底表/12-1路况',
+                ontL24aTag: 'BCI指标对比列',
+                ontL21Tag: '2018全省路线树',
+                chatLog: '已切换至【2018年历史年报拓扑基线】：真实物理库 hubei_2018.db (40.0MB) 包含 28 张底表（L29a 40,936行，L24a 19,678行）。'
+            },
+            '2017': {
+                col1Badge: '2017库 (28张底表)',
+                col2Badge: 'v2017规范',
+                src3Sub: '12-1路况明细 (L29a 40,936条)',
+                src2Sub: '桥梁.xls (L24a 19,678条)',
+                src1Sub: '路段.xls (L21 13,616条)',
+                ontL29aTag: '28张底表/12-1路况',
+                ontL24aTag: 'BCI降维保护列',
+                ontL21Tag: '2017全省路线树',
+                chatLog: '已切换至【2017年历史年报拓扑基线】：真实物理库 hubei_2017.db (40.0MB) 包含 28 张底表（L29a 40,936行，L24a 19,678行）。'
+            },
+            '2016': {
+                col1Badge: '2016库 (28张底表)',
+                col2Badge: 'v2016规范',
+                src3Sub: '12-1路况明细 (L29a 40,936条)',
+                src2Sub: '桥梁.xls (L24a 19,678条)',
+                src1Sub: '路段.xls (L21 13,616条)',
+                ontL29aTag: '28张底表/12-1路况',
+                ontL24aTag: 'BCI早期样本列',
+                ontL21Tag: '2016全省路线树',
+                chatLog: '已切换至【2016年历史年报拓扑基线】：真实物理库 hubei_2016.db (28.1MB) 包含 28 张底表（L29a 40,936行）。'
             },
             '2015': {
-                col1Badge: '2015基线库',
+                col1Badge: '2015库 (28张底表)',
                 col2Badge: 'v2015历史',
-                src3Sub: 'hubei_2015.db (28张表)',
-                src2Sub: 'hubei_2015.db (桥梁明细)',
-                src1Sub: 'hubei_2015.db (路线明细)',
+                src3Sub: '12-1路况明细 (L29a 40,936条)',
+                src2Sub: '桥梁.xls (L24a 19,678条)',
+                src1Sub: '路段.xls (L21 13,616条)',
                 ontL29aTag: '28张底表/12-1路况',
                 ontL24aTag: 'BCI缺失降维保护',
                 ontL21Tag: '2015全省路线树',
@@ -908,7 +1078,7 @@
         };
 
         function switchLineageYear(year) {
-            ['2025', '2019', '2015'].forEach(y => {
+            ['2025', '2019', '2018', '2017', '2016', '2015'].forEach(y => {
                 const btn = document.getElementById('year-btn-' + y);
                 if (btn) {
                     if (y === year) {
@@ -923,12 +1093,39 @@
 
             const col1Badge = document.getElementById('col1-year-badge');
             const col2Badge = document.getElementById('col2-version-badge');
+            const src3El = document.getElementById('src-l29a');
+            const src2El = document.getElementById('src-l24a');
+            const src1El = document.getElementById('src-l21');
+            const src25El = document.getElementById('src-l25');
+            const src27El = document.getElementById('src-l27');
+            const src22El = document.getElementById('src-l22');
+            const src26El = document.getElementById('src-l26');
+
             const src3Sub = document.getElementById('src-3-sub');
             const src2Sub = document.getElementById('src-2-sub');
             const src1Sub = document.getElementById('src-1-sub');
             const ontL29aTag = document.getElementById('ont-l29a-tag');
             const ontL24aTag = document.getElementById('ont-l24a-tag');
             const ontL21Tag = document.getElementById('ont-l21-tag');
+
+            // 针对 2025 年仅 1 张底表 L21 进行物理节点显隐控制
+            if (year === '2025') {
+                if (src3El) src3El.style.display = 'none';
+                if (src2El) src2El.style.display = 'none';
+                if (src25El) src25El.style.display = 'none';
+                if (src27El) src27El.style.display = 'none';
+                if (src22El) src22El.style.display = 'none';
+                if (src26El) src26El.style.display = 'none';
+                if (src1El) src1El.style.display = 'block';
+            } else {
+                if (src3El) src3El.style.display = 'block';
+                if (src2El) src2El.style.display = 'block';
+                if (src25El) src25El.style.display = 'block';
+                if (src27El) src27El.style.display = 'block';
+                if (src22El) src22El.style.display = 'block';
+                if (src26El) src26El.style.display = 'block';
+                if (src1El) src1El.style.display = 'block';
+            }
 
             if (col1Badge) col1Badge.innerText = d.col1Badge;
             if (col2Badge) col2Badge.innerText = d.col2Badge;
@@ -965,6 +1162,21 @@
                 { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
                 { field: 'col62_bci', name: 'BCI 技术评分', std2015: '未采集', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '2019初步引入 🔄' }
             ],
+            '2018_l24a': [
+                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 🟢' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
+                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '未采集', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '2018过渡期列 🔄' }
+            ],
+            '2017_l24a': [
+                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 🟢' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
+                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '缺失 (未引入)', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '缺失智能降维 ⚠️' }
+            ],
+            '2016_l24a': [
+                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 🟢' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
+                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '缺失 (未引入)', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '缺失智能降维 ⚠️' }
+            ],
             '2015_l24a': [
                 { field: 'col1_bridge_code', name: '桥梁编码', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '历史基线 🟢' },
                 { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '历史基线 🟢' },
@@ -974,6 +1186,31 @@
                 { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
                 { field: 'col4_direction', name: '车道方向 (双向/上行)', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '去重必选列 🔴' },
                 { field: 'col12_pci', name: 'PCI 路面状况指数', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+            ],
+            '2019_l29a': [
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
+                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 🟢' },
+                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+            ],
+            '2018_l29a': [
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
+                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 🟢' },
+                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+            ],
+            '2017_l29a': [
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
+                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 🟢' },
+                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+            ],
+            '2016_l29a': [
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
+                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 🟢' },
+                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+            ],
+            '2015_l29a': [
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '历史基线 🟢' },
+                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史基线 🟢' },
+                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '历史基线 🟢' }
             ]
         };
 
@@ -1023,15 +1260,188 @@
         function open28TablesModal(year) {
             const modal = document.getElementById('tables28Modal');
             const title = document.getElementById('tables28ModalTitle');
-            if (modal) {
-                if (title) title.innerText = `数据来源: 湖北省 ${year} 年公路养护统计年报 (包含 28 张底层物理汇总明细表与子表全树)`;
-                modal.classList.remove('hidden');
+            const notice = document.getElementById('tables28ModalNotice');
+            const container = document.getElementById('tables28ModalBodyContainer');
+            const footer = document.getElementById('tables28ModalFooterStatus');
+
+            if (!modal) return;
+
+            if (year === '2025') {
+                if (title) title.innerText = `数据来源: 湖北省 2025 年动态年报基线底图库 hubei_2025.db`;
+                if (notice) notice.innerHTML = `💡 权威结构定义：<strong>【17套表】为交通部年报规范表系列名称</strong>；而所谓的“42张底表/28张底表”，物理上其实就是 <strong>1 个 Excel 文件里包含 28 个 Tab 页</strong>。实测 <strong>hubei_2025.db (76.0 KB)</strong> 物理上为 1 个 Excel 文件，内部包含且仅包含 1 个 Tab 页（物理 SQLite 表名 L21，共 <strong>222 行真实记录</strong>）。`;
+                if (container) {
+                    container.innerHTML = `
+                        <div class="p-3 border rounded-lg bg-blue-50/60 space-y-2 border-blue-200">
+                            <div class="font-bold text-blue-900 flex justify-between items-center text-xs">
+                                <span>■ L21 公路路线基本情况明细表 - 02 路线明细</span>
+                                <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-mono font-bold">1 个 Tab 物理单表 / 222 行记录 🟢</span>
+                            </div>
+                            <div class="pl-3 text-slate-700 font-mono text-[11px] leading-relaxed space-y-1">
+                                <div>• <strong>规范系列名称</strong>: <code>L21 公路路线基本情况明细表</code> (属于交通部 17 套年报规范表系列之一)</div>
+                                <div>• <strong>物理 Tab 页名</strong>: <code>02 路线明细</code> (SQLite 物理表名: <code>L21</code>)</div>
+                                <div>• <strong>物理行数记录</strong>: <code>222 行</code> (全省国省干线路线主骨架与基线编码)</div>
+                            </div>
+                        </div>
+                    `;
+                }
+                if (footer) footer.innerText = `数据校验状态: 2025基线主库在线 (76.0 KB, 1个Tab页 [L21-02路线明细], 222行, 探活12ms)`;
+            } else {
+                const yearSizeMap = { '2019': '40.0 MB', '2018': '40.0 MB', '2017': '40.0 MB', '2016': '28.1 MB', '2015': '40.0 MB' };
+                const sz = yearSizeMap[year] || '40.0 MB';
+                if (title) title.innerText = `数据来源: 湖北省 ${year} 年公路养护统计年报历史库 hubei_${year}.db`;
+                if (notice) notice.innerHTML = `💡 权威结构定义：<strong>【17套表】为交通部年报规范表系列名称</strong>；而所谓的“42张底表/28张底表”，物理上其实就是 <strong>1 个 Excel 文件里包含 28 个 Tab 页</strong>。实测 <strong>hubei_${year}.db (${sz})</strong> 物理上即为 1 个 Excel 文件，内部完整包含 28 个物理 Tab 页。`;
+                if (container) {
+                    container.innerHTML = `
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ T001 公路基本情况汇总表 - 01 综合信息汇总</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">5 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】01 综合信息汇总 (里程年底到达数)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ T1a 里程及等级汇总表 - 02 路线基础汇总</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">40 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】02 路线基础汇总 (国省干线及农路等级)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ T1b 里程及路面汇总表 - 03 路面铺装汇总</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">39 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】03 路面铺装汇总 (沥青/水泥/未铺装路面)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ T2a 桥梁结构汇总表 - 04 桥梁结构汇总</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">40 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】04 桥梁结构汇总 (特大/大/中/小桥汇总)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ T2b 隧道结构汇总表 - 05 隧道结构汇总</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">40 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】05 隧道结构汇总 (特长/长/中/短隧道)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ T3 养护作业汇总表 - 06 养护作业汇总</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">40 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】06 养护作业汇总 (日常养护与工程作业)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-blue-50/50 border-blue-200 space-y-1 col-span-2">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L21 公路路线基本情况明细表 - 02 路线明细</span>
+                                    <span class="text-blue-700 font-mono font-bold text-[10px]">13,616 行物理数据 🟢</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】02 路线明细 (SQLite物理表: L21 / 路段.xls / 排桩 / 观测站 / 安防 / 变更表)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L22 乡镇/建制村/自然村通达及属性表 - 01 乡镇与村级通达</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">236 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】01 乡镇与村级通达 (SQLite物理表: L22)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L23 亚洲公路网路线明细表 - 01 亚洲公路网路线明细</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">10 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】01 亚洲公路网路线明细 (SQLite物理表: L23)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-blue-50/50 border-blue-200 space-y-1 col-span-2">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L24a 公路桥梁基本情况明细表 - 03 桥梁明细</span>
+                                    <span class="text-blue-700 font-mono font-bold text-[10px]">19,678 行物理数据 🟢</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】03 桥梁明细 (SQLite物理表: L24a / 桥梁.xls / 农村桥梁.xls)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L24b 公路涵洞明细表 - 05 涵洞明细</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">21,004 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】05 涵洞明细 (SQLite物理表: L24b / 公路涵洞.xls)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L25 公路隧道基本情况明细表 - 04 隧道明细</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">990 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】04 隧道明细 (SQLite物理表: L25 / 隧道.xls)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L26 公路沿线服务及收费设施明细表 - 01 沿线服务与收费设施</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">505 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】01 沿线服务与收费设施 (SQLite物理表: L26 / 服务区 / 收费站)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L27 易发地质灾害点明细表 - 01 易发地质灾害点</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">24 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】01 易发地质灾害点 (SQLite物理表: L27 / 灾毁抢通表)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-blue-50/50 border-blue-200 space-y-1 col-span-2">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L29a 公路日常路况评定明细表 - 12-1 100m路况评定明细</span>
+                                    <span class="text-blue-700 font-mono font-bold text-[10px]">40,936 行物理数据 🟢</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】12-1 100m路况评定明细 (SQLite物理表: L29a / 12-1路况明细.xlsx)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L28 交通工程及沿线设施汇总表 - 06 交通工程设施</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">32 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】06 交通工程设施 (SQLite物理表: L28)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L30a/b/c 公路养护作业工程与资金 - 13-1/2/3 养护作业与工程</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">141 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】13-1/2/3 养护作业与工程 (SQLite物理表: L30a/b/c)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L31a/b/c 公路管养单位属性表 - 01 管养单位属性</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">114 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】01 管养单位属性 (SQLite物理表: L31a/b/c)</div>
+                            </div>
+                            <div class="p-2 border rounded bg-slate-50 space-y-1">
+                                <div class="font-bold text-blue-900 flex justify-between text-[11px]">
+                                    <span>■ L32 公路应急机具储备库及队伍 - 16-1 应急储备物资</span>
+                                    <span class="text-slate-500 font-mono text-[10px]">18 行</span>
+                                </div>
+                                <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】16-1 应急储备物资 (SQLite物理表: L32)</div>
+                            </div>
+                        </div>
+                    `;
+                }
+                if (footer) footer.innerText = `数据校验状态: 年报历史主库探活在线 ([套表名]-[Tab表名] 完整对应探活12ms)`;
             }
+
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
         }
 
         function close28TablesModal() {
             const modal = document.getElementById('tables28Modal');
-            if (modal) modal.classList.add('hidden');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+            }
         }
 
         const ontologyTiersData = {
@@ -1216,6 +1626,23 @@
             }
         }
 
+        function openActionDemoModal() {
+            const modal = document.getElementById('actionDemoModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+            }
+            goToDemoStep(1);
+        }
+
+        function closeActionDemoModal() {
+            const modal = document.getElementById('actionDemoModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+            }
+        }
+
         function selectScenario(id) {
             for (let i = 1; i <= 4; i++) {
                 const card = document.getElementById('scen-card-' + i);
@@ -1227,8 +1654,14 @@
                     }
                 }
             }
-            if (id === 1) runStepByStepDemo();
-            if (id === 3) open28TablesModal('2015');
+            if (id === 1) {
+                openActionDemoModal();
+                runStepByStepDemo();
+            } else if (id === 2) {
+                switchWorkspace('oma');
+            } else if (id === 3) {
+                open28TablesModal('2025');
+            }
         }
 
         function sendPresetQuery(queryText) {
@@ -1303,6 +1736,56 @@
             }
         }
 
+        function switchLineageMode(mode) {
+            ['full', '2025', '2019'].forEach(m => {
+                const btn = document.getElementById('mode-btn-' + m);
+                if (btn) {
+                    if (m === mode) {
+                        btn.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-blue-600 text-white shadow-2xs";
+                    } else {
+                        btn.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300";
+                    }
+                }
+            });
+
+            const col1Badge = document.getElementById('col1-year-badge');
+            const col2Badge = document.getElementById('col2-version-badge');
+            const label = document.getElementById('activeScenarioLabel');
+
+            if (mode === 'full') {
+                if (col1Badge) col1Badge.innerText = '全量 42 底表';
+                if (col2Badge) col2Badge.innerText = '全量 17 L码';
+                if (label) label.innerText = '【1. 42张原始物理Excel底表】➔【2. 17套国标L码一套表】➔【3. 9大业务处室】';
+            } else if (mode === '2025') {
+                if (col1Badge) col1Badge.innerText = '2025主库 (1Tab)';
+                if (col2Badge) col2Badge.innerText = 'v2025规范';
+                if (label) label.innerText = '【1. hubei_2025.db (L21物理单表)】➔【2. L21路线基本情况】➔【3. 01 规划计划处】';
+            } else if (mode === '2019') {
+                if (col1Badge) col1Badge.innerText = '历史库 (28Tab)';
+                if (col2Badge) col2Badge.innerText = 'v2019规范';
+                if (label) label.innerText = '【1. 历史年报数据库 (28张物理Tab)】➔【2. 17套国标L码表】➔【3. 9大业务处室】';
+            }
+
+            requestAnimationFrame(() => setTimeout(drawConnectorLines, 50));
+        }
+
+        let activeHighlightCode = null;
+
+        function highlightLineage(code) {
+            activeHighlightCode = code;
+            drawConnectorLines();
+        }
+
+        function highlightLineageRole(roleId) {
+            activeHighlightCode = roleId;
+            drawConnectorLines();
+        }
+
+        function resetLineageHighlight() {
+            activeHighlightCode = null;
+            drawConnectorLines();
+        }
+
         function drawConnectorLines() {
             const container = document.getElementById('lineageCanvas');
             const svg = document.getElementById('svgOverlay');
@@ -1313,14 +1796,56 @@
             svg.setAttribute('height', container.scrollHeight);
 
             const connections = [
-                ['src-3', 'ont-l29a', '#2563eb'],
-                ['ont-l29a', 'role-4', '#2563eb'],
+                ['src-l21', 'ont-l21', '#2563eb', 'l21', 'role-1'],
+                ['ont-l21', 'role-1', '#2563eb', 'l21', 'role-1'],
 
-                ['src-2', 'ont-l24a', '#2563eb'],
-                ['ont-l24a', 'role-3', '#2563eb'],
+                ['src-l22', 'ont-l22', '#10b981', 'l22', 'role-5'],
+                ['ont-l22', 'role-5', '#10b981', 'l22', 'role-5'],
 
-                ['src-1', 'ont-l21', '#94a3b8'],
-                ['ont-l21', 'role-1', '#94a3b8']
+                ['src-l23', 'ont-l23', '#2563eb', 'l23', 'role-1'],
+                ['ont-l23', 'role-1', '#2563eb', 'l23', 'role-1'],
+
+                ['src-l24a', 'ont-l24a', '#2563eb', 'l24a', 'role-3'],
+                ['ont-l24a', 'role-3', '#2563eb', 'l24a', 'role-3'],
+
+                ['src-l24b', 'ont-l24b', '#0284c7', 'l24b', 'role-3'],
+                ['ont-l24b', 'role-3', '#0284c7', 'l24b', 'role-3'],
+
+                ['src-l25', 'ont-l25', '#8b5cf6', 'l25', 'role-3'],
+                ['ont-l25', 'role-3', '#8b5cf6', 'l25', 'role-3'],
+
+                ['src-l26', 'ont-l26', '#f59e0b', 'l26', 'role-9'],
+                ['ont-l26', 'role-9', '#f59e0b', 'l26', 'role-9'],
+
+                ['src-l27', 'ont-l27', '#ef4444', 'l27', 'role-6'],
+                ['ont-l27', 'role-6', '#ef4444', 'l27', 'role-6'],
+
+                ['src-l28', 'ont-l28', '#10b981', 'l28', 'role-4'],
+                ['ont-l28', 'role-4', '#10b981', 'l28', 'role-4'],
+
+                ['src-l29a', 'ont-l29a', '#2563eb', 'l29a', 'role-4'],
+                ['ont-l29a', 'role-4', '#2563eb', 'l29a', 'role-4'],
+
+                ['src-l30a', 'ont-l30a', '#10b981', 'l30a', 'role-4'],
+                ['ont-l30a', 'role-4', '#10b981', 'l30a', 'role-4'],
+
+                ['src-l30b', 'ont-l30b', '#0284c7', 'l30b', 'role-3'],
+                ['ont-l30b', 'role-3', '#0284c7', 'l30b', 'role-3'],
+
+                ['src-l30c', 'ont-l30c', '#eab308', 'l30c', 'role-2'],
+                ['ont-l30c', 'role-2', '#eab308', 'l30c', 'role-2'],
+
+                ['src-l31a', 'ont-l31a', '#6366f1', 'l31a', 'role-1'],
+                ['ont-l31a', 'role-1', '#6366f1', 'l31a', 'role-1'],
+
+                ['src-l31b', 'ont-l31b', '#6366f1', 'l31b', 'role-1'],
+                ['ont-l31b', 'role-1', '#6366f1', 'l31b', 'role-1'],
+
+                ['src-l31c', 'ont-l31c', '#10b981', 'l31c', 'role-5'],
+                ['ont-l31c', 'role-5', '#10b981', 'l31c', 'role-5'],
+
+                ['src-l32', 'ont-l32', '#ef4444', 'l32', 'role-6'],
+                ['ont-l32', 'role-6', '#ef4444', 'l32', 'role-6']
             ];
 
             let pathsHTML = `
@@ -1328,14 +1853,17 @@
                     <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                         <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb" />
                     </marker>
+                    <marker id="arrowhead-active" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#0284c7" />
+                    </marker>
                 </defs>
             `;
 
-            connections.forEach(([fromId, toId, color]) => {
+            connections.forEach(([fromId, toId, defaultColor, code, roleId]) => {
                 const elFrom = document.getElementById(fromId);
                 const elTo = document.getElementById(toId);
 
-                if (elFrom && elTo) {
+                if (elFrom && elTo && elFrom.offsetParent !== null && elTo.offsetParent !== null) {
                     const r1 = elFrom.getBoundingClientRect();
                     const r2 = elTo.getBoundingClientRect();
 
@@ -1348,7 +1876,21 @@
                     const dx = Math.abs(x2 - x1) * 0.45;
                     const pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
 
-                    pathsHTML += `<path d="${pathData}" stroke="${color}" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />`;
+                    let strokeColor = defaultColor;
+                    let strokeWidth = "1.5";
+                    let opacity = "0.7";
+
+                    if (activeHighlightCode) {
+                        if (activeHighlightCode === code || activeHighlightCode === roleId) {
+                            strokeColor = "#0284c7";
+                            strokeWidth = "3";
+                            opacity = "1";
+                        } else {
+                            opacity = "0.15";
+                        }
+                    }
+
+                    pathsHTML += `<path d="${pathData}" stroke="${strokeColor}" stroke-width="${strokeWidth}" opacity="${opacity}" fill="none" marker-end="url(#arrowhead)" />`;
                 }
             });
 
@@ -1356,12 +1898,12 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            drawConnectorLines();
+            switchLineageMode('full');
             goToDemoStep(1);
             renderSchemaEvolutionTable();
         });
         window.addEventListener('load', () => {
-            drawConnectorLines();
+            switchLineageMode('full');
             goToDemoStep(1);
             renderSchemaEvolutionTable();
             setTimeout(drawConnectorLines, 200);
