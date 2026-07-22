@@ -1801,12 +1801,31 @@
                 }
             }
             if (id === 1) {
-                openActionDemoModal();
-                runStepByStepDemo();
+                // Scenario 1: Emergency - Highlight L29a & L27
+                highlightLineage('l29a');
+                const label = document.getElementById('activeScenarioLabel');
+                if (label) label.innerText = '🚨 当前焦点场景：【1. 应急业务 - 汛期预警防御与应急处置】➔【L27/L29a/L32 应急响应链】';
             } else if (id === 2) {
-                switchWorkspace('oma');
+                // Scenario 2: Maintenance (Bridge Quality) - Highlight L24a & scroll canvas to L24a
+                switchWorkspace('main');
+                highlightLineage('l24a');
+                const label = document.getElementById('activeScenarioLabel');
+                if (label) label.innerText = '🛠️ 当前焦点场景：【2. 养护业务 - 长大桥结构监测 4 大专业源】➔【L24a 桥梁健康检测本体】➔【5大 Agent 处室协同】';
+                const l24aEl = document.getElementById('ont-l24a');
+                const container = document.getElementById('lineageCanvas');
+                if (l24aEl && container) {
+                    l24aEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             } else if (id === 3) {
-                open28TablesModal('2025');
+                switchWorkspace('main');
+                highlightLineage('l21');
+                const label = document.getElementById('activeScenarioLabel');
+                if (label) label.innerText = '🔍 当前焦点场景：【3. 数据查询 - 42 张物理底表 ➔ 17 套国标 L 码一套表】';
+            } else if (id === 4) {
+                switchWorkspace('main');
+                highlightLineageRole('role-0');
+                const label = document.getElementById('activeScenarioLabel');
+                if (label) label.innerText = '📊 当前焦点场景：【4. 数据决策 - 1+9 部门协同治理指标与智能体决策网】';
             }
         }
 
