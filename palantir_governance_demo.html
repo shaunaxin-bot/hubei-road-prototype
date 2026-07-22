@@ -127,54 +127,54 @@
                     <button onclick="toggleEmbedModal()" class="text-[9px] bg-slate-100 text-blue-700 border border-blue-200 px-1.5 py-0.2 rounded font-bold hover:bg-blue-50">📦 打包导出</button>
                 </div>
 
-                <div class="flex-1 min-h-0 overflow-y-auto space-y-2 pr-0.5">
+                <div class="flex-1 min-h-0 overflow-y-auto space-y-1.5 pr-0.5">
                     <!-- 1. (应急业务) 汛期预警防御与应急处置 -->
-                    <div onclick="selectScenario(1)" id="scen-card-1" class="palantir-card p-2.5 rounded cursor-pointer space-y-1.5 scenario-card-active">
-                        <div class="font-bold text-slate-900 text-[11.5px] flex items-center justify-between">
-                            <span class="text-blue-900">🚨 (应急业务) 汛期预警防御与应急处置</span>
-                            <span class="text-[9px] bg-blue-600 text-white px-1 rounded font-mono">5步推演 🎬</span>
+                    <div onclick="selectScenario(1)" id="scen-card-1" class="palantir-card p-1.5 rounded cursor-pointer space-y-0.5 scenario-card-active">
+                        <div class="font-bold text-slate-900 text-[11px] flex items-center justify-between">
+                            <span class="text-blue-900 truncate">🚨 (应急业务) 汛期预警防御与应急处置</span>
+                            <span class="text-[8.5px] bg-blue-600 text-white px-1 rounded font-mono shrink-0">5步推演</span>
                         </div>
-                        <p class="text-[10.5px] text-slate-600 leading-normal">监测汛期地灾预警，触发 5 步智能体动作（绑定/消噪/去重/派发/落库）。</p>
-                        <div class="text-[9.5px] text-slate-500 font-mono border-t border-slate-100 pt-1 flex justify-between">
+                        <p class="text-[10px] text-slate-600 leading-tight">监测汛期地灾预警，触发 5 步智能体动作（绑定/消噪/去重/派发/落库）。</p>
+                        <div class="text-[9px] text-slate-500 font-mono border-t border-slate-100 pt-0.5 flex justify-between">
                             <span>[L27/L29a/L32] 应急响应链</span>
-                            <span class="text-blue-600 font-bold">点击推演 ➔</span>
+                            <span class="text-blue-600 font-bold">推演 ➔</span>
                         </div>
                     </div>
 
                     <!-- 2. (养护业务) 长大桥结构监测数据质量管理 -->
-                    <div onclick="selectScenario(2)" id="scen-card-2" class="palantir-card p-2.5 rounded cursor-pointer space-y-1.5 border-slate-200 hover:border-blue-400">
-                        <div class="font-bold text-slate-900 text-[11.5px] flex items-center justify-between">
-                            <span class="text-slate-900">🛠️ (养护业务) 长大桥结构监测数据质量管理</span>
-                            <span class="text-[9px] bg-amber-500 text-white px-1 rounded font-mono">5Agent 协同</span>
+                    <div onclick="selectScenario(2)" id="scen-card-2" class="palantir-card p-1.5 rounded cursor-pointer space-y-0.5 border-slate-200 hover:border-blue-400">
+                        <div class="font-bold text-slate-900 text-[11px] flex items-center justify-between">
+                            <span class="text-slate-900 truncate">🛠️ (养护业务) 长大桥结构监测质量管理</span>
+                            <span class="text-[8.5px] bg-amber-500 text-white px-1 rounded font-mono shrink-0">5Agent 协同</span>
                         </div>
-                        <p class="text-[10.5px] text-slate-600 leading-normal">工况日志/气象水文/WIM称重/定检施工 4 类专业源 ➔ L24a 桥梁本体双签。</p>
-                        <div class="text-[9.5px] text-slate-500 font-mono border-t border-slate-100 pt-1 flex justify-between">
+                        <p class="text-[10px] text-slate-600 leading-tight">工况日志/气象水文/WIM称重/定检施工 4 类专业源 ➔ L24a 桥梁本体双签。</p>
+                        <div class="text-[9px] text-slate-500 font-mono border-t border-slate-100 pt-0.5 flex justify-between">
                             <span>[L24a] 桥梁健康检测本体</span>
-                            <span class="text-blue-600 font-bold">点击查看 ➔</span>
+                            <span class="text-blue-600 font-bold">查看 ➔</span>
                         </div>
                     </div>
 
                     <!-- 3. (数据查询) 查数：国标年报 17 套一套表数据穿透 -->
-                    <div onclick="selectScenario(3)" id="scen-card-3" class="palantir-card p-2.5 rounded cursor-pointer space-y-1.5 border-slate-200 hover:border-blue-400">
-                        <div class="font-bold text-slate-900 text-[11.5px] flex items-center justify-between">
-                            <span>🔍 (数据查询) 查数：国标年报 17 套一套表穿透</span>
+                    <div onclick="selectScenario(3)" id="scen-card-3" class="palantir-card p-1.5 rounded cursor-pointer space-y-0.5 border-slate-200 hover:border-blue-400">
+                        <div class="font-bold text-slate-900 text-[11px] flex items-center justify-between">
+                            <span class="truncate">🔍 (数据查询) 查数：国标年报 17 套一套表穿透</span>
                         </div>
-                        <p class="text-[10.5px] text-slate-600 leading-normal">穿透全量 42 张 Excel 物理底表与 17 套国标 L 码一套表映射及库表结构。</p>
-                        <div class="text-[9.5px] text-slate-500 font-mono border-t border-slate-100 pt-1 flex justify-between">
+                        <p class="text-[10px] text-slate-600 leading-tight">穿透全量 42 张 Excel 物理底表与 17 套国标 L 码一套表映射及库表结构。</p>
+                        <div class="text-[9px] text-slate-500 font-mono border-t border-slate-100 pt-0.5 flex justify-between">
                             <span>[L21~L32] 17套规范系列</span>
-                            <span class="text-blue-600 font-bold">点击穿透 ➔</span>
+                            <span class="text-blue-600 font-bold">穿透 ➔</span>
                         </div>
                     </div>
 
                     <!-- 4. (数据决策) 探数：跨处室治理指标与多维分析 -->
-                    <div onclick="selectScenario(4)" id="scen-card-4" class="palantir-card p-2.5 rounded cursor-pointer space-y-1.5 border-slate-200 hover:border-blue-400">
-                        <div class="font-bold text-slate-900 text-[11.5px] flex items-center justify-between">
-                            <span>📊 (数据决策) 探数：跨处室治理指标多维分析</span>
+                    <div onclick="selectScenario(4)" id="scen-card-4" class="palantir-card p-1.5 rounded cursor-pointer space-y-0.5 border-slate-200 hover:border-blue-400">
+                        <div class="font-bold text-slate-900 text-[11px] flex items-center justify-between">
+                            <span class="truncate">📊 (数据决策) 探数：跨处室治理指标多维分析</span>
                         </div>
-                        <p class="text-[10.5px] text-slate-600 leading-normal">1+9 部门协同治理指标研判，跨处室数据血缘追溯与智能决策评估。</p>
-                        <div class="text-[9.5px] text-slate-500 font-mono border-t border-slate-100 pt-1 flex justify-between">
+                        <p class="text-[10px] text-slate-600 leading-tight">1+9 部门协同治理指标研判，跨处室数据血缘追溯与智能决策评估。</p>
+                        <div class="text-[9px] text-slate-500 font-mono border-t border-slate-100 pt-0.5 flex justify-between">
                             <span>1+9 处室 Agent 决策网</span>
-                            <span class="text-blue-600 font-bold">点击分析 ➔</span>
+                            <span class="text-blue-600 font-bold">分析 ➔</span>
                         </div>
                     </div>
                 </div>
@@ -208,7 +208,7 @@
                                     <span>1. 物理底表源 (全量42张Excel)</span>
                                     <span id="col1-year-badge" class="text-[9px] bg-blue-100 text-blue-800 px-1 py-0.5 rounded font-mono font-bold">全量 42 底表</span>
                                 </div>
-                                <div class="space-y-1 flex-1 overflow-y-auto max-h-[850px] pr-0.5">
+                                <div class="space-y-0.5 flex-1 overflow-y-auto max-h-[480px] pr-0.5">
                                     <div id="src-excel-1" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full font-mono text-[8px] border-blue-400 cursor-pointer hover:shadow-xs w-fit">
                                         <span class="font-bold text-slate-900 truncate">01. 路段.xls</span>
                                         <span class="text-[7.5px] bg-slate-100 text-slate-600 border border-slate-200 px-1 rounded">➔ L21</span>
