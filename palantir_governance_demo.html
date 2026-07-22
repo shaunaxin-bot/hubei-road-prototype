@@ -215,6 +215,32 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 左下角 AIP 智能问答对话框 -->
+                <div class="border-t border-slate-200 pt-2 shrink-0 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-[11px] text-slate-800 flex items-center gap-1">🤖 AIP 智能问答与图谱定位</span>
+                        <span id="aiStatusBadge" class="text-[8px] bg-slate-100 text-slate-500 border border-slate-200 px-1 rounded">就绪</span>
+                    </div>
+
+                    <!-- 提问结果输出区域 -->
+                    <div id="aiResponseBox" class="hidden bg-slate-50 border border-slate-200 rounded p-1.5 text-[9px] text-slate-700 leading-normal space-y-1">
+                        <div class="font-bold text-slate-900 border-b border-slate-200 pb-0.5 flex justify-between items-center">
+                            <span>🔍 AI 分析与图谱解算：</span>
+                            <button onclick="clearAiQuery()" class="text-[8px] text-slate-400 hover:text-slate-600">清除</button>
+                        </div>
+                        <p id="aiResponseText" class="text-slate-800"></p>
+                    </div>
+
+                    <!-- 输入提问表单 -->
+                    <form onsubmit="handleCustomAiQuery(event)" class="flex gap-1">
+                        <input type="text" id="customAiInput" placeholder="输入任意问题 (如: 查G107桥梁/汛期预警)..." 
+                               class="flex-1 bg-slate-50 border border-slate-200 rounded px-2 py-1 text-[9.5px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-400 font-sans" />
+                        <button type="submit" class="bg-slate-800 text-white font-bold text-[9.5px] px-2 py-1 rounded hover:bg-slate-700 shrink-0">
+                            提问 ➔
+                        </button>
+                    </form>
+                </div>
             </aside>
 
             <!-- 2. 中间：Palantir SVG 全景血缘拓扑大盘 (全量 42 张底表与 17 套国标 L 码矩阵) -->
@@ -1851,6 +1877,100 @@
                 const l21El = document.getElementById('ont-l21');
                 if (l21El) l21El.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
+        }
+
+        // 左下角 AIP 智能问答与图谱定位处理
+        function handleCustomAiQuery(e) {
+            if (e) e.preventDefault();
+            const input = document.getElementById('customAiInput');
+            if (!input || !input.value.trim()) return;
+            const query = input.value.trim();
+
+            const statusBadge = document.getElementById('aiStatusBadge');
+            const responseBox = document.getElementById('aiResponseBox');
+            const responseText = document.getElementById('aiResponseText');
+
+            if (statusBadge) {
+                statusBadge.innerText = '思考中...';
+                statusBadge.className = 'text-[8px] bg-slate-200 text-slate-800 border border-slate-300 px-1 rounded animate-pulse font-bold';
+            }
+
+            if (responseBox) responseBox.classList.remove('hidden');
+            if (responseText) responseText.innerHTML = `🤖 正在穿透检索全域 42 张底表与 17 套 L 码本体...`;
+
+            setTimeout(() => {
+                let targetCodes = ['l21'];
+                let targetElementId = 'ont-l21';
+                let replyMsg = '';
+
+                // 智能语义识别与血缘解算
+                if (/桥|监测|健康|WIM|重载|工况|考核|桥梁/i.test(query)) {
+                    targetCodes = ['l24a'];
+                    targetElementId = 'ont-l24a';
+                    replyMsg = `已定位桥梁检测分析拓扑。穿透物理底表 <span class="font-mono font-bold">src-10/11/43~46</span> ➔ 本体 <span class="font-mono font-bold">L24a(桥梁健康检测)</span>。涉及：工程技术处(03)/养护管理处(04)。`;
+                } else if (/气象|汛期|暴雨|预警|地灾|应急|灾害|救援|积水|险情/i.test(query)) {
+                    targetCodes = ['l27', 'l29a', 'l32'];
+                    targetElementId = 'ont-l27';
+                    replyMsg = `已启动气象灾害应急响应拓扑。穿透底表 <span class="font-mono font-bold">src-18~21</span> ➔ 应急三链本体 <span class="font-mono font-bold">L27(地灾)/L29a(路况桩号)/L32(应急队伍)</span>。涉及：安监处(06)/应急中心(12)。`;
+                } else if (/资金|预算|里程|养护费|财务|投入|工程|花费|国道/i.test(query)) {
+                    targetCodes = ['l30a', 'l30b', 'l30c'];
+                    targetElementId = 'ont-l30b';
+                    replyMsg = `已定位养护里程与资金穿透分析。关联底表 <span class="font-mono font-bold">src-25~32</span> ➔ 本体 <span class="font-mono font-bold">L30a(里程)/L30b(工程资金)/L30c(总资金)</span>。涉及：养护管理处(04)/财务资产处(02)。`;
+                } else if (/桩号|巡检|日常|参考系|校正|传导|对齐|偏差|路况/i.test(query)) {
+                    targetCodes = ['l21', 'l29a'];
+                    targetElementId = 'ont-l21';
+                    replyMsg = `已检索桩号匹配与空间对齐数据。关联底表 <span class="font-mono font-bold">src-2/23/24</span> ➔ 本体 <span class="font-mono font-bold">L21(标准排桩) ↔ L29a(日常检测)</span>。主责：普通公路处(05)/数据统筹(00)。`;
+                } else if (/交通|流量|断面|观测|车速|车流|拥堵/i.test(query)) {
+                    targetCodes = ['l23'];
+                    targetElementId = 'ont-l23';
+                    replyMsg = `已检索交通量与断面观测数据。关联物理底表 <span class="font-mono font-bold">src-13/14</span> ➔ 本体 <span class="font-mono font-bold">L23(交通量观测)</span>。主责处室：运营管理处(09)。`;
+                } else {
+                    // 任意其他问题的智能通用推荐与拓扑呈现
+                    targetCodes = ['l21', 'l29a', 'l24a'];
+                    targetElementId = 'ont-l29a';
+                    replyMsg = `已解算问题 "${query}"。定位关联数据链 <span class="font-mono font-bold">L21/L29a/L24a</span>，已在中间全景拓扑大盘精准高亮呈现血缘条带。`;
+                }
+
+                // 1. 自动切到主图谱
+                switchWorkspace('main');
+
+                // 2. 高亮对应图谱路径
+                highlightLineage(targetCodes);
+
+                // 3. 图谱平滑定位滚动
+                const el = document.getElementById(targetElementId);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                // 4. 更新顶部状态与气泡
+                const activeLabel = document.getElementById('activeScenarioLabel');
+                if (activeLabel) {
+                    activeLabel.innerHTML = `🤖 AIP 智能解算：【${query}】➔ 关联本体 [${targetCodes.join('/')}] 全流向拓扑已显示`;
+                }
+
+                if (statusBadge) {
+                    statusBadge.innerText = '图谱已显示';
+                    statusBadge.className = 'text-[8px] bg-slate-800 text-white border border-slate-900 px-1 rounded font-bold';
+                }
+
+                if (responseText) {
+                    responseText.innerHTML = replyMsg;
+                }
+            }, 300);
+        }
+
+        function clearAiQuery() {
+            const responseBox = document.getElementById('aiResponseBox');
+            const statusBadge = document.getElementById('aiStatusBadge');
+            const input = document.getElementById('customAiInput');
+            if (responseBox) responseBox.classList.add('hidden');
+            if (input) input.value = '';
+            if (statusBadge) {
+                statusBadge.innerText = '就绪';
+                statusBadge.className = 'text-[8px] bg-slate-100 text-slate-500 border border-slate-200 px-1 rounded';
+            }
+            resetLineageHighlight();
         }
 
         function sendPresetQuery(queryText) {
