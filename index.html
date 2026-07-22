@@ -51671,7 +51671,16 @@ ${msg.views.view3}
             className: "export-excel-btn text-blue-600 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
           },
           "[\u63D0\u53D6Excel\u6570\u636E\u8868]"
-        ))), msg.actionPrompt && msg.actionPrompt.status !== "dismissed" && /* @__PURE__ */ React.createElement("div", { className: "mt-3 pt-2.5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 print-hidden w-full" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] font-medium text-slate-500 flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u5207\u6362\u5BA1\u8BA1\u89C6\u89D2\uFF1A")), /* @__PURE__ */ React.createElement("div", { className: "inline-flex items-center p-1 bg-slate-100 rounded-lg text-[12px] w-full sm:w-auto" }, msg.actionPrompt.actions.map((action) => {
+        ))), msg.actionPrompt && msg.actionPrompt.status !== "dismissed" && (msg.actionPrompt.actions && msg.actionPrompt.actions.some((a) => a.id.startsWith("upload_") || a.id.startsWith("file_")) ? /* @__PURE__ */ React.createElement("div", { className: "mt-3 p-3 bg-blue-50/80 border border-blue-200/90 rounded-lg flex flex-col gap-2 print-hidden w-full shadow-xs" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] font-semibold text-blue-900 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement(Paperclip, { size: 14, className: "text-blue-600 shrink-0" }), /* @__PURE__ */ React.createElement("span", null, msg.actionPrompt.text || "\u8BF7\u9009\u62E9\u6A21\u62DF\u6570\u636E\u6587\u4EF6\u8FDB\u884C\u4E0A\u4F20\u6D4B\u8BD5\uFF1A")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-2 mt-1" }, msg.actionPrompt.actions.map((action) => /* @__PURE__ */ React.createElement(
+          "button",
+          {
+            key: action.id,
+            type: "button",
+            onClick: () => handleActionPromptClick(msg, action),
+            className: "px-3 py-1.5 rounded-md bg-white border border-blue-300 text-blue-700 hover:bg-blue-600 hover:text-white font-medium text-[11px] shadow-xs transition-all flex items-center gap-1.5 cursor-pointer select-none"
+          },
+          /* @__PURE__ */ React.createElement("span", null, "\u{1F4C4} ", action.label)
+        )))) : /* @__PURE__ */ React.createElement("div", { className: "mt-3 pt-2.5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 print-hidden w-full" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] font-medium text-slate-500 flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u5207\u6362\u5BA1\u8BA1\u89C6\u89D2\uFF1A")), /* @__PURE__ */ React.createElement("div", { className: "inline-flex items-center p-1 bg-slate-100 rounded-lg text-[12px] w-full sm:w-auto" }, msg.actionPrompt.actions.map((action) => {
           const targetTab = action.targetTab || (action.id === "generate_generic_export" ? "overview" : action.id === "open_audit_tools" ? "tools" : "reasoning");
           const isActive = isRightPanelExpanded && activeAuditMsgId === msg.id && rightAuditTab === targetTab;
           const simpleTitle = action.id === "generate_generic_export" ? "\u62A5\u544A" : action.id === "open_audit_tools" ? "\u5DE5\u5177" : "\u63A8\u6F14";
@@ -51687,7 +51696,7 @@ ${msg.views.view3}
             /* @__PURE__ */ React.createElement("span", null, simpleTitle),
             /* @__PURE__ */ React.createElement("span", { className: `text-[10px] ${isActive ? "text-blue-500 font-normal" : "text-slate-400 font-normal"}` }, "(", simpleRole, ")")
           );
-        }))), msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && !msg.hideDefaultTemplates && /* @__PURE__ */ React.createElement("div", { className: "mt-3 pt-2 border-t border-slate-100 space-y-2" }, /* @__PURE__ */ React.createElement(
+        })))), msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && !msg.hideDefaultTemplates && /* @__PURE__ */ React.createElement("div", { className: "mt-3 pt-2 border-t border-slate-100 space-y-2" }, /* @__PURE__ */ React.createElement(
           "details",
           {
             className: "group",
