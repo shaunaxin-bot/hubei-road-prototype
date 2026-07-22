@@ -48332,7 +48332,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         onClick: () => setIsOpen(!isOpen)
       },
       /* @__PURE__ */ React.createElement("span", { className: "shrink-0 font-mono text-slate-400 w-2.5 inline-block font-bold" }, "\u203A"),
-      /* @__PURE__ */ React.createElement("span", { className: "flex-1", style: { border: "none" } }, /* @__PURE__ */ React.createElement("span", { className: `font-bold mr-1 ${rInfo.side === "\u4F01\u4E1A\u4FA7" ? "text-amber-700" : "text-blue-700"}` }, "[", rInfo.side || "\u653F\u5E9C\u4FA7", "]"), /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-700" }, "[", rInfo.block, "] ", rInfo.department, " ", rInfo.role ? `(${rInfo.role})` : "", "\uFF1A"), /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-500" }, groupSummaryText))
+      /* @__PURE__ */ React.createElement("span", { className: "flex-1", style: { border: "none" } }, /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-700 mr-1" }, "[", rInfo.side || "\u653F\u5E9C\u4FA7", "]"), /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-700" }, "[", rInfo.block, "] ", rInfo.department, " ", rInfo.role ? `(${rInfo.role})` : "", "\uFF1A"), /* @__PURE__ */ React.createElement("span", { className: "font-normal text-slate-500" }, groupSummaryText))
     ), isOpen && /* @__PURE__ */ React.createElement("div", { className: "pl-[8px] ml-[3px] flex flex-col mt-0 border-none", style: { gap: "0", border: "none", margin: "0", padding: "0" } }, group.calls.map((tc, tcIdx) => /* @__PURE__ */ React.createElement(ToolCallItem, { key: tcIdx, tc, selectedYears, hideArrow: true }))));
   };
   var ToolCallItem = ({ tc, selectedYears = [], hideArrow = false }) => {
@@ -50158,7 +50158,7 @@ ${msg.views.view3}
       setMessages((prev) => prev.map(
         (m2) => m2.id === uploadMsgId ? { ...m2, isReq01Upload: false, content: m2.content + `
 
-*(\u{1F4CE} \u5DF2\u6210\u529F\u63A5\u6536\u6587\u4EF6\uFF1A${fileName || "\u6869\u53F7\u6570\u636E\u6587\u4EF6"})*` } : m2
+*(\u{1F4C1} \u5DF2\u6210\u529F\u63A5\u6536\u6587\u4EF6\uFF1A${fileName || "\u6869\u53F7\u6570\u636E\u6587\u4EF6"})*` } : m2
       ));
       const displayText = `\u5DF2\u4E0A\u4F20\uFF1A${fileName || "\u6869\u53F7\u6570\u636E\u6587\u4EF6"}
 \u6307\u4EE4\uFF1A\u8BF7\u6C42\u8DE8\u57DF\u6570\u636E\u6838\u67E5\u4E0E\u6869\u53F7\u4F53\u7CFB\u5339\u914D`;
@@ -51680,7 +51680,7 @@ ${msg.views.view3}
             className: "export-excel-btn text-blue-600 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
           },
           "[\u63D0\u53D6Excel\u6570\u636E\u8868]"
-        ))), msg.actionPrompt && msg.actionPrompt.status !== "dismissed" && (msg.actionPrompt.actions && msg.actionPrompt.actions.some((a) => a.id.startsWith("upload_") || a.id.startsWith("file_")) ? /* @__PURE__ */ React.createElement("div", { className: "mt-3 p-3 bg-blue-50/80 border border-blue-200/90 rounded-lg flex flex-col gap-2 print-hidden w-full shadow-xs" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] font-semibold text-blue-900 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "shrink-0 text-[13px]" }, "\u{1F4CE}"), /* @__PURE__ */ React.createElement("span", null, msg.actionPrompt.text || "\u8BF7\u9009\u62E9\u6A21\u62DF\u6570\u636E\u6587\u4EF6\u8FDB\u884C\u4E0A\u4F20\u6D4B\u8BD5\uFF1A")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-2 mt-1" }, msg.actionPrompt.actions.map((action) => /* @__PURE__ */ React.createElement(
+        ))), msg.actionPrompt && msg.actionPrompt.status !== "dismissed" && (msg.actionPrompt.actions && msg.actionPrompt.actions.some((a) => a.id.startsWith("upload_") || a.id.startsWith("file_")) ? /* @__PURE__ */ React.createElement("div", { className: "mt-3 p-3 bg-blue-50/80 border border-blue-200/90 rounded-lg flex flex-col gap-2 print-hidden w-full shadow-xs" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] font-semibold text-blue-900 flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "shrink-0 text-[13px]" }, "\u{1F4C1}"), /* @__PURE__ */ React.createElement("span", null, msg.actionPrompt.text || "\u8BF7\u9009\u62E9\u6A21\u62DF\u6570\u636E\u6587\u4EF6\u8FDB\u884C\u4E0A\u4F20\u6D4B\u8BD5\uFF1A")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap gap-2 mt-1" }, msg.actionPrompt.actions.map((action) => /* @__PURE__ */ React.createElement(
           "button",
           {
             key: action.id,
