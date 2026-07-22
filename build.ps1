@@ -7,11 +7,11 @@ $projectDirName = Split-Path $projectDir -Leaf
 
 $srcHtml = Join-Path $projectDir "$projectDirName-hubei-prototype.html"
 
-Write-Host "`n[1/5] Compiling Knowledge Base Schemas..." -ForegroundColor Cyan
+Write-Host "`n[1/4] Compiling Knowledge Base Schemas..." -ForegroundColor Cyan
 Set-Location $projectDir
 python compile_public_schema.py
 
-Write-Host "`n[2/5] Building Frontend and Injecting Schema..." -ForegroundColor Cyan
+Write-Host "`n[2/4] Building Frontend and Generating Offline HTML..." -ForegroundColor Cyan
 npm run build
 python bundle_offline.py
 
