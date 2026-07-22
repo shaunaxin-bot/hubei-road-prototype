@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palantir 全域治理大盘 (多年份拓扑动态演进与版本表现版)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .lineage-container {
+            background-color: #ffffff !important;
+            background-image: none !important;
+        }
+
+        .palantir-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.15s ease-in-out;
+        }
+        
+        .palantir-card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+        }
+
+        .scenario-card-active {
+            border-color: #2563eb !important;
+            background-color: #eff6ff !important;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.1) !important;
+        }
+
+        .workspace-nav-active {
+            background-color: #2563eb !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            border-color: #2563eb !important;
+        }
+
+        .gov-table-th {
+            background-color: #f8fafc;
+            color: #334155;
+            font-weight: 700;
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            font-size: 11px;
+        }
+
+        .gov-table-td {
+            border: 1px solid #e2e8f0;
+            padding: 6px 8px;
+            font-size: 11px;
+        }
+
+        .aip-chat-msg-ai {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 3.5px solid #2563eb;
+        }
+
+        .aip-chat-msg-user {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e3a8a;
+        }
+
+        .agent-banner-box {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-left: 4px solid #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
+
+    <!-- Header Navigation Bar -->
+    <header class="bg-white text-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-200 shrink-0 shadow-2xs">
+        <div class="flex items-center gap-3">
+            <button class="text-slate-500 hover:text-slate-800 font-bold text-base">≡</button>
+            <div class="flex items-center gap-2">
+                <span class="text-blue-600 font-bold text-sm">⚙️</span>
+                <h1 class="text-sm font-bold text-slate-900 tracking-tight">
+                    Palantir 全域治理大盘 <span class="text-blue-600 font-bold text-xs">【多年份拓扑动态演进与版本表现版】</span>
+                </h1>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs">
+            <div class="flex items-center gap-1">
+                <button onclick="switchWorkspace('main')" id="nav-main" class="workspace-nav-active px-3 py-1 bg-white border border-slate-200 rounded hover:bg-slate-50">🌐 0. 首页全景图谱</button>
+                <button onclick="switchWorkspace('ds')" id="nav-ds" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">🔌 1. 接入智能体 (数据源)</button>
+                <button onclick="switchWorkspace('oma')" id="nav-oma" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">⚙️ 2. 本体智能体 (OMA)</button>
+                <button onclick="switchWorkspace('impact')" id="nav-impact" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">🔍 3. 影响面智能体 (Git)</button>
+                <button onclick="switchWorkspace('writeback')" id="nav-writeback" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">✍️ 4. 写回智能体 (审定)</button>
+            </div>
+            
+            <button onclick="toggleEmbedModal()" class="ml-2 bg-blue-600 text-white font-bold px-3 py-1 rounded text-xs hover:bg-blue-700 shadow-2xs flex items-center gap-1">
+                <span>📦 智能体打包与嵌入</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <div class="flex-1 p-3 min-h-0 overflow-hidden relative">
+
+        <!-- TAB 0: MAIN HOMEPAGE (首页包含 SVG 血缘拓扑 + 年份选择演进控制器 + 常驻 5 步推演控制台) -->
+        <div id="view-main" style="display: grid;" class="h-full grid-cols-12 gap-3 min-h-0">
+            
+            <!-- 1. 最左边：场景智能体目录 -->
+            <aside class="col-span-3 bg-white border border-slate-200 rounded p-3 flex flex-col gap-2.5 shadow-2xs min-h-0 text-xs">
+                <div class="flex items-center justify-between pb-2 border-b border-slate-100 shrink-0">
+                    <span class="font-bold text-xs text-slate-900 flex items-center gap-1">🎬 场景智能体目录</span>
+                    <button onclick="toggleEmbedModal()" class="text-[9px] bg-slate-100 text-blue-700 border border-blue-200 px-1.5 py-0.2 rounded font-bold hover:bg-blue-50">📦 打包导出</button>
+                </div>
+
+                <div class="flex-1 min-h-0 overflow-y-auto space-y-2 pr-0.5">
+                    <div onclick="selectScenario(1)" id="scen-card-1" class="palantir-card p-2.5 rounded cursor-pointer space-y-1.5 scenario-card-active">
+                        <div class="font-bold text-slate-900 text-[11.5px] flex items-center justify-between">
+                            <span class="text-blue-900">🚨 应急业务：汛期预警与应急处置智能体</span>
+                            <span class="text-[9px] bg-blue-600 text-white px-1 rounded font-mono">5步推演 🎬</span>
+                        </div>
+                        <p class="text-[10.5px] text-slate-600 leading-normal">基于年报本体 L29a，进行 5 步动作实操推演（绑定/消噪/去重/派发/落库）。</p>
+                        <div class="text-[9.5px] text-slate-500 font-mono border-t border-slate-100 pt-1 flex justify-between">
+                            <span>[L29a] 100m路况本体</span>
+                            <span class="text-blue-600 font-bold">点击推演 ➔</span>
+                        </div>
+                    </div>
+
+                    <div onclick="selectScenario(2)" id="scen-card-2" class="palantir-card p-2.5 rounded cursor-pointer space-y-1.5 border-slate-200 hover:border-blue-400">
+                        <div class="font-bold text-slate-900 text-[11.5px] flex items-center justify-between">
+                            <span>🛠️ 养护业务：100米路检与危旧桥梁提维</span>
+                        </div>
+                        <p class="text-[10.5px] text-slate-600 leading-normal">巴河特大桥修缮后 BCI 升维校验，03 工程处双签物理写回。</p>
+                        <div class="text-[9.5px] text-slate-500 font-mono border-t border-slate-100 pt-1 flex justify-between">
+                            <span>[L24a] 桥梁明细表</span>
+                            <span class="text-blue-600 font-bold">委派 ➔</span>
+                        </div>
+                    </div>
+
+                    <div onclick="selectScenario(3)" id="scen-card-3" class="palantir-card p-2.5 rounded cursor-pointer space-y-1.5 border-slate-200 hover:border-blue-400">
+                        <div class="font-bold text-slate-900 text-[11.5px] flex items-center justify-between">
+                            <span>📊 数据决策：17套国标 L 码本体与决策分析</span>
+                        </div>
+                        <p class="text-[10.5px] text-slate-600 leading-normal">将 42 张物理底表汇聚为 17 套国标 L 码本体，包含特定年份 28 张底表树。</p>
+                        <div class="text-[9.5px] text-slate-500 font-mono border-t border-slate-100 pt-1 flex justify-between">
+                            <span>[L21~L32] 17套本体</span>
+                            <span class="text-blue-600 font-bold">点击查看 ➔</span>
+                        </div>
+                    </div>
+
+                    <div onclick="selectScenario(4)" id="scen-card-4" class="palantir-card p-2.5 rounded cursor-pointer space-y-1.5 border-slate-200 hover:border-blue-400">
+                        <div class="font-bold text-slate-900 text-[11.5px] flex items-center justify-between">
+                            <span>🚨 应急处：汛期预警与地灾处置</span>
+                        </div>
+                        <p class="text-[10.5px] text-slate-600 leading-normal">监测地质灾害隐患点，触发应急机具与队伍抢通预案。</p>
+                        <div class="text-[9.5px] text-slate-500 font-mono border-t border-slate-100 pt-1 flex justify-between">
+                            <span>[L27/L32] 应急本体</span>
+                            <span class="text-blue-600 font-bold">委派 ➔</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 2. 中间：Palantir SVG 血缘图谱 (上, 支持年份基线切换) + 常驻 5 步推演控制台 (下) -->
+            <main class="col-span-5 flex flex-col gap-2 min-h-0 overflow-y-auto">
+                
+                <!-- SVG Canvas with Multi-Year Version Filter -->
+                <div class="bg-white border border-slate-200 rounded shadow-2xs flex flex-col font-sans overflow-hidden relative shrink-0 h-60">
+                    
+                    <!-- Lineage Header Bar with Year Selector Pills -->
+                    <div class="bg-slate-50 px-3 py-1.5 flex items-center justify-between border-b border-slate-200 text-xs shrink-0 font-bold text-slate-800">
+                        <span class="flex items-center gap-1.5">
+                            <span>🌐 Palantir 血缘拓扑:</span>
+                            <span id="activeScenarioLabel" class="text-blue-700 font-mono font-bold">【1. 物理源】➔【2. 本体】➔【3. 处室】</span>
+                        </span>
+                        
+                        <div class="flex items-center gap-1">
+                            <span class="text-[10px] text-slate-500 font-mono font-bold">📅 拓扑年份:</span>
+                            <button onclick="switchLineageYear('2025')" id="year-btn-2025" class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-600 text-white shadow-2xs">2025年基线</button>
+                            <button onclick="switchLineageYear('2019')" id="year-btn-2019" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">2019年</button>
+                            <button onclick="switchLineageYear('2015')" id="year-btn-2015" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">2015年历史</button>
+                        </div>
+                    </div>
+                    
+                    <div id="lineageCanvas" class="flex-1 lineage-container relative overflow-y-auto p-2 bg-white">
+                        <svg id="svgOverlay" class="absolute inset-0 w-full h-full pointer-events-none z-20"></svg>
+
+                        <div class="grid grid-cols-3 gap-2 relative z-10 text-xs">
+                            
+                            <!-- Column 1: Physical Sources with Year Badges -->
+                            <div class="bg-slate-50 border border-slate-200 rounded p-1.5 flex flex-col gap-1 shadow-2xs">
+                                <div class="font-bold text-center border-b border-slate-200 pb-0.5 text-slate-900 text-[10px] flex items-center justify-between">
+                                    <span>1. 物理底表源</span>
+                                    <span id="col1-year-badge" class="text-[9px] bg-blue-100 text-blue-800 px-1 rounded font-mono font-bold">2025库</span>
+                                </div>
+                                <div id="src-3" onclick="switchWorkspace('ds')" class="palantir-card p-1 rounded font-mono text-[9.5px] border-blue-400 cursor-pointer space-y-0.5">
+                                    <div class="font-bold">🛢️ 12-1路况明细.xlsx</div>
+                                    <div id="src-3-sub" class="text-[8.5px] text-blue-700 font-bold">hubei_2025.db (640行)</div>
+                                </div>
+                                <div id="src-2" onclick="switchWorkspace('ds')" class="palantir-card p-1 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5">
+                                    <div class="font-bold">🛢️ 桥梁.xls (L24a)</div>
+                                    <div id="src-2-sub" class="text-[8.5px] text-slate-500">hubei_2025.db (742行)</div>
+                                </div>
+                                <div id="src-1" onclick="switchWorkspace('ds')" class="palantir-card p-1 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5">
+                                    <div class="font-bold">🛢️ 路段.xls (L21)</div>
+                                    <div id="src-1-sub" class="text-[8.5px] text-slate-500">hubei_2025.db (512行)</div>
+                                </div>
+                            </div>
+
+                            <!-- Column 2: 17 Ontologies with Evolution Version Badges -->
+                            <div class="bg-slate-50 border border-slate-200 rounded p-1.5 flex flex-col gap-1 shadow-2xs">
+                                <div class="font-bold text-center border-b border-slate-200 pb-0.5 text-slate-900 text-[10px] flex items-center justify-between">
+                                    <span>2. 17套年报本体</span>
+                                    <span id="col2-version-badge" class="text-[9px] bg-emerald-100 text-emerald-800 px-1 rounded font-mono font-bold">v2025规范</span>
+                                </div>
+                                <div id="ont-l29a" onclick="switchWorkspace('oma')" class="palantir-card p-1 rounded font-mono text-[9.5px] border-blue-400 cursor-pointer space-y-0.5">
+                                    <div class="font-bold text-blue-900">📄 [L29a] 日常路况明细</div>
+                                    <div id="ont-l29a-tag" class="text-[8.5px] bg-blue-50 text-blue-700 px-1 rounded inline-block font-bold">双向规约/PCI</div>
+                                </div>
+                                <div id="ont-l24a" onclick="switchWorkspace('oma')" class="palantir-card p-1 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5">
+                                    <div class="font-bold text-slate-900">📄 [L24a] 公路桥梁明细</div>
+                                    <div id="ont-l24a-tag" class="text-[8.5px] bg-slate-100 text-slate-700 px-1 rounded inline-block">BCI升维测值</div>
+                                </div>
+                                <div id="ont-l21" onclick="switchWorkspace('oma')" class="palantir-card p-1 rounded font-mono text-[9.5px] cursor-pointer space-y-0.5">
+                                    <div class="font-bold text-slate-900">📄 [L21] 公路路线基本表</div>
+                                    <div id="ont-l21-tag" class="text-[8.5px] bg-slate-100 text-slate-700 px-1 rounded inline-block">1:N 拓扑树</div>
+                                </div>
+                            </div>
+
+                            <!-- Column 3: 9 Business Departments -->
+                            <div class="bg-slate-50 border border-slate-200 rounded p-1.5 flex flex-col gap-1 shadow-2xs">
+                                <div class="font-bold text-center border-b border-slate-200 pb-0.5 text-slate-900 text-[10px]">3. 9大业务处室</div>
+                                <div id="role-4" onclick="switchWorkspace('writeback')" class="palantir-card p-1 rounded font-bold text-[9.5px] border-blue-400 cursor-pointer space-y-0.5">
+                                    <div class="text-blue-900">🛣️ 04 养护管理处</div>
+                                    <div class="text-[8.5px] text-blue-700 font-mono font-normal">权责: L29a 归口</div>
+                                </div>
+                                <div id="role-3" onclick="switchWorkspace('writeback')" class="palantir-card p-1 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5">
+                                    <div>🛠️ 03 工程技术处</div>
+                                    <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: L24a 归口</div>
+                                </div>
+                                <div id="role-1" onclick="switchWorkspace('writeback')" class="palantir-card p-1 rounded font-bold text-[9.5px] cursor-pointer space-y-0.5">
+                                    <div>📊 01 规划计划处</div>
+                                    <div class="text-[8.5px] text-slate-500 font-mono font-normal">权责: L21 归口</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EMBEDDED 5-STEP DEMO PANEL -->
+                <div class="bg-white border border-slate-200 rounded shadow-2xs p-3 flex flex-col gap-2 shrink-0">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-base text-blue-600">🎬</span>
+                            <span class="font-bold text-xs text-slate-900">养护处【100米桩号路检智能体】基于年报本体 5 步动作推演控制台</span>
+                        </div>
+                        <button onclick="runStepByStepDemo()" class="bg-blue-600 text-white text-[10.5px] font-bold px-2.5 py-1 rounded hover:bg-blue-700 shadow-2xs flex items-center gap-1">
+                            <span>▶️ 自动一键推演全流程</span>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-5 gap-1.5 text-[10px]">
+                        <button onclick="goToDemoStep(1)" id="step-btn-1" class="p-1.5 rounded border border-blue-600 bg-blue-600 text-white font-bold text-center shadow-2xs">
+                            1. 绑定本体
+                        </button>
+                        <button onclick="goToDemoStep(2)" id="step-btn-2" class="p-1.5 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100">
+                            2. 桩号消噪
+                        </button>
+                        <button onclick="goToDemoStep(3)" id="step-btn-3" class="p-1.5 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100">
+                            3. 算子去重
+                        </button>
+                        <button onclick="goToDemoStep(4)" id="step-btn-4" class="p-1.5 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100">
+                            4. 拓扑派发
+                        </button>
+                        <button onclick="goToDemoStep(5)" id="step-btn-5" class="p-1.5 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100">
+                            5. 双签落库
+                        </button>
+                    </div>
+
+                    <div id="step-detail-card" class="border border-slate-200 rounded-lg p-2.5 bg-slate-50 text-xs">
+                        <!-- Content rendered dynamically -->
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- 3. 右边：场景智能体对话框 -->
+            <aside class="col-span-4 bg-white border border-slate-200 rounded flex flex-col shadow-2xs min-h-0 overflow-hidden text-xs">
+                <div class="bg-slate-100 text-slate-900 border-b border-slate-200 px-3 py-2 flex items-center justify-between shrink-0 font-bold">
+                    <div class="flex items-center gap-1.5"><span class="text-sm">🤖</span><span>路检智能体运行日志 (Live Agent CoT)</span></div>
+                    <span id="agentLiveStatus" class="text-[9px] bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-mono font-bold">STEP 1 / 5</span>
+                </div>
+
+                <div id="chatHistoryBox" class="flex-1 overflow-y-auto p-3 space-y-2.5 bg-slate-50 min-h-0">
+                    <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
+                        <div class="font-bold text-slate-900 flex items-center justify-between">
+                            <span>🤖 100米路检智能体 (养护处):</span>
+                            <span class="text-[9px] text-slate-400 font-mono">17:41</span>
+                        </div>
+                        <p class="text-slate-700 leading-relaxed font-mono">
+                            您好！已为您在 Palantir 血缘拓扑图中支持<strong>【多年份拓扑基线动态演进与版本表达】</strong>！点击 `2025年` / `2019年` / `2015年` 按钮可查看拓扑演变！
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-2 bg-white border-t border-slate-200 flex items-center gap-1.5 shrink-0">
+                    <input id="userChatInput" type="text" placeholder="向路检智能体下达指令..." onkeydown="if(event.key==='Enter') sendUserMessage()" class="flex-1 bg-slate-50 border border-slate-200 px-2.5 py-1.5 rounded text-xs focus:outline-none focus:border-blue-600" />
+                    <button onclick="sendUserMessage()" class="bg-blue-600 text-white font-bold px-3 py-1.5 rounded text-xs hover:bg-blue-700">发送</button>
+                </div>
+            </aside>
+
+        </div>
+
+        <!-- TAB 1: 🔌 1. 接入智能体详细页面 -->
+        <div id="view-ds" style="display: none;" class="h-full bg-white border border-slate-200 rounded p-4 flex flex-col space-y-5 overflow-y-auto">
+            
+            <div class="pb-3 border-b border-slate-200 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">🔌</span>
+                    <div>
+                        <h2 class="text-base font-extrabold text-slate-900">1. 数据源接入与探活控制台 (📄 原始 Excel 年报骨架数据流与 28 张底表查看)</h2>
+                        <p class="text-xs text-slate-500 font-mono">Annual Report Data Pipeline: 42 Physical Excel Sheets ➔ SQLite Auto-Ingestion ➔ 17 L-Code Ontologies</p>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="open28TablesModal('2015')" class="bg-blue-600 text-white font-bold px-3 py-1 rounded text-xs hover:bg-blue-700 shadow-2xs flex items-center gap-1">
+                        <span>📂 查验 2015 年 28 张底表明细树 ➔</span>
+                    </button>
+                    <button onclick="switchWorkspace('main')" class="bg-slate-100 border border-slate-200 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">返回主图谱 ➔</button>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3.5 text-xs space-y-1.5">
+                <div class="font-bold text-blue-900 text-sm flex items-center gap-1.5">
+                    <span>💡 年报数据物理渊源与“骨架年报”构建原理：</span>
+                </div>
+                <p class="text-blue-800 leading-relaxed">
+                    年报数据的原始形态是基层填报的 <strong>42 张物理 Excel 统计表</strong>（如《路段.xls》、《桥梁.xls》、《12-1路况明细.xlsx》等）。
+                    <strong>接入智能体构建了“骨架年报”数据流水线</strong>，预留了解析、校验、转码和物理 SQLite 落库的扩展接口！
+                </p>
+            </div>
+
+            <!-- RESERVED PIPELINE EXCEL SLOTS -->
+            <div class="border-2 border-blue-600 rounded-lg p-4 bg-white space-y-3 shadow-md">
+                <div class="font-bold text-slate-900 text-sm border-b border-blue-100 pb-2 flex justify-between items-center">
+                    <span class="flex items-center gap-2 text-blue-900 font-extrabold text-base">
+                        <span>📄 原始 Excel 年报骨架数据流与 4 大预留扩展功能槽 (Excel Pipeline Extension Slots)</span>
+                    </span>
+                    <button onclick="open28TablesModal('2015')" class="text-xs bg-blue-600 text-white px-2 py-0.5 rounded font-bold hover:bg-blue-700">
+                        📂 点击查验 2015年 28 张底表树 ➔
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-4 gap-3 text-xs font-mono">
+                    <div class="p-3 bg-blue-50/60 border border-blue-200 rounded-lg space-y-1.5">
+                        <div class="font-bold text-blue-900 flex justify-between">
+                            <span>📂 预留功能 1</span>
+                            <span class="text-[9px] bg-blue-600 text-white px-1 rounded font-bold">UPLOAD</span>
+                        </div>
+                        <div class="font-bold text-slate-800 text-[11.5px]">42张 Excel 原始表一键上传解析</div>
+                        <p class="text-[10.5px] text-slate-600 font-sans">支持拖拽上传基层《桥梁.xls》、《路段.xls》等原始表格，自动解析 Sheet 结构。</p>
+                        <button onclick="alert('📂 [预留扩展槽 1]: Excel 解析驱动器就绪，可拖拽上传全省 42 张原始年报表！')" class="w-full bg-blue-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
+                            测试上传解析器 ➔
+                        </button>
+                    </div>
+
+                    <div class="p-3 bg-blue-50/60 border border-blue-200 rounded-lg space-y-1.5">
+                        <div class="font-bold text-blue-900 flex justify-between">
+                            <span>🔗 预留功能 2</span>
+                            <span class="text-[9px] bg-blue-600 text-white px-1 rounded font-bold">MAPPER</span>
+                        </div>
+                        <div class="font-bold text-slate-800 text-[11.5px]">Excel 表头 ➔ 国标 L 码映射</div>
+                        <p class="text-[10.5px] text-slate-600 font-sans">自动将非标 Excel 字段名转换为国标 17 套 L 码本体属性主键。</p>
+                        <button onclick="alert('🔗 [预留扩展槽 2]: L 码字段映射器就绪，自动关联 L24a/L29a 17 套本体！')" class="w-full bg-blue-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
+                            测试 L 码映射器 ➔
+                        </button>
+                    </div>
+
+                    <div class="p-3 bg-blue-50/60 border border-blue-200 rounded-lg space-y-1.5">
+                        <div class="font-bold text-blue-900 flex justify-between">
+                            <span>🛡️ 预留功能 3</span>
+                            <span class="text-[9px] bg-blue-600 text-white px-1 rounded font-bold">VALIDATOR</span>
+                        </div>
+                        <div class="font-bold text-slate-800 text-[11.5px]">42 表合规校验与空间消噪</div>
+                        <p class="text-[10.5px] text-slate-600 font-sans">校验表间逻辑关联，自动消除共线桩号与里程重复计算。</p>
+                        <button onclick="alert('🛡️ [预留扩展槽 3]: 空间消噪与数据合规校验引擎就绪！')" class="w-full bg-blue-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
+                            测试校验引擎 ➔
+                        </button>
+                    </div>
+
+                    <div class="p-3 bg-blue-50/60 border border-blue-200 rounded-lg space-y-1.5">
+                        <div class="font-bold text-blue-900 flex justify-between">
+                            <span>🌿 预留功能 4</span>
+                            <span class="text-[9px] bg-blue-600 text-white px-1 rounded font-bold">SQLITE GEN</span>
+                        </div>
+                        <div class="font-bold text-slate-800 text-[11.5px]">多年份 Excel 增量转 SQL 库</div>
+                        <p class="text-[10.5px] text-slate-600 font-sans">将历年 Excel 增量对比并自动生成 `hubei_2026.db` 实体数据库。</p>
+                        <button onclick="alert('🌿 [预留扩展槽 4]: 物理 SQLite 库自动生成合流器就绪！')" class="w-full bg-blue-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
+                            测试 SQLite 合流器 ➔
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mounted SQLite Databases List -->
+            <div class="border border-slate-200 rounded-lg p-3.5 bg-white space-y-2.5 shadow-xs">
+                <div class="font-bold text-slate-900 text-xs flex justify-between items-center border-b border-slate-100 pb-1.5">
+                    <span class="font-bold text-blue-900 flex items-center gap-1.5">
+                        <span class="text-sm">🛢️</span>
+                        <span>由原始 Excel 汇聚落库的湖北全省年报物理数据库清单 (Mounted Annual Report Databases)</span>
+                    </span>
+                    <span class="text-[9.5px] bg-emerald-600 text-white px-2 py-0.5 rounded font-mono font-bold">ALL ONLINE 12ms</span>
+                </div>
+
+                <table class="w-full text-[11px] border-collapse font-mono">
+                    <thead>
+                        <tr>
+                            <th class="gov-table-th">物理数据库文件名 (File)</th>
+                            <th class="gov-table-th">年报版本/年份 (Year)</th>
+                            <th class="gov-table-th">物理文件大小 (Size)</th>
+                            <th class="gov-table-th">探活响应心跳</th>
+                            <th class="gov-table-th">包含底表树</th>
+                            <th class="gov-table-th">驱动挂载状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-blue-50/40">
+                            <td class="gov-table-td font-bold text-blue-900">hubei_2025.db</td>
+                            <td class="gov-table-td font-bold text-blue-700">2025年 动态年报基线底图库</td>
+                            <td class="gov-table-td">77.8 KB</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">12ms</td>
+                            <td class="gov-table-td"><button onclick="open28TablesModal('2025')" class="text-blue-700 font-bold underline">查看 42 张底表树 ➔</button></td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢 (默认主库)</td>
+                        </tr>
+                        <tr>
+                            <td class="gov-table-td font-bold text-slate-900">hubei_2019.db</td>
+                            <td class="gov-table-td">2019年 统计年报历史数据库</td>
+                            <td class="gov-table-td">41.9 MB</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">15ms</td>
+                            <td class="gov-table-td"><button onclick="open28TablesModal('2019')" class="text-blue-700 font-bold underline">查看 28 张底表树 ➔</button></td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
+                        </tr>
+                        <tr>
+                            <td class="gov-table-td font-bold text-slate-900">hubei_2015.db</td>
+                            <td class="gov-table-td">2015年 统计年报历史数据库</td>
+                            <td class="gov-table-td">41.9 MB</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">15ms</td>
+                            <td class="gov-table-td"><button onclick="open28TablesModal('2015')" class="text-blue-700 font-bold underline">查看 28 张底表树 ➔</button></td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- TAB 2: ⚙️ 2. 本体智能体详细页面 -->
+        <div id="view-oma" style="display: none;" class="h-full bg-white border border-slate-200 rounded p-4 flex flex-col space-y-5 overflow-y-auto">
+            
+            <div class="pb-3 border-b border-slate-200 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">⚙️</span>
+                    <div>
+                        <h2 class="text-base font-extrabold text-slate-900">2. 本体管理 OMA 5D 控制台 (🏛️ 湖北公路 17 套年报本体 3 层细分与跨年份数据字典演进)</h2>
+                        <p class="text-xs text-slate-500 font-mono">Multi-Year Schema Evolution Inspector: Single Table Content Reading & Data Dictionary Alignment (2015~2025)</p>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="open28TablesModal('2015')" class="bg-blue-600 text-white font-bold px-3 py-1 rounded text-xs hover:bg-blue-700 shadow-2xs flex items-center gap-1">
+                        <span>📂 查验特定年份 28 张底表明细树 ➔</span>
+                    </button>
+                    <button onclick="switchWorkspace('main')" class="bg-slate-100 border border-slate-200 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">返回主图谱 ➔</button>
+                </div>
+            </div>
+
+            <!-- Schema Evolution Inspector Card -->
+            <div class="border-2 border-blue-600 rounded-lg p-4 bg-white space-y-3 shadow-md">
+                <div class="font-bold text-slate-900 text-sm border-b border-blue-100 pb-2 flex justify-between items-center">
+                    <span class="flex items-center gap-2 text-blue-900 font-extrabold text-base">
+                        <span>🔍 跨年份单表内容读取与数据字典动态演进对照检视器 (Multi-Year Evolution Inspector)</span>
+                    </span>
+                    <button onclick="open28TablesModal('2015')" class="text-xs bg-blue-600 text-white px-2 py-0.5 rounded font-bold hover:bg-blue-700">
+                        📂 点击打开 28 张底表全树 ➔
+                    </button>
+                </div>
+
+                <div class="bg-blue-50/70 border border-blue-200 rounded-lg p-3 text-xs space-y-1">
+                    <div class="font-bold text-blue-900">💡 为什么需要“跨年份单表与数据字典对应”？</div>
+                    <p class="text-blue-800 leading-relaxed text-[11px]">
+                        每年的年报物理单表结构与国家标准可能存在演进漂移（如 2015 年未采集某些新指标字段，或 2025 年拆分了子表）。
+                        <strong>智能体通过感知跨年份单表与全量数据字典的映射演进关系</strong>，自动进行字段补全或降维提示，确保 100% 准确对比！
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-3 text-xs font-mono pt-1">
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-bold text-slate-900">📅 选择年报年份:</span>
+                        <select id="evoYearSelect" onchange="renderSchemaEvolutionTable()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1 text-xs font-bold focus:outline-none focus:border-blue-600">
+                            <option value="2025">2025年 (最新年报基线底图库 hubei_2025.db)</option>
+                            <option value="2019">2019年 (历史年报归档库 hubei_2019.db)</option>
+                            <option value="2015">2015年 (历史年报基线库 hubei_2015.db)</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-bold text-slate-900">📄 选择年报物理单表:</span>
+                        <select id="evoTableSelect" onchange="renderSchemaEvolutionTable()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1 text-xs font-bold focus:outline-none focus:border-blue-600">
+                            <option value="l24a">《L24a 公路桥梁基本情况明细表》(物理表: 桥梁.xls)</option>
+                            <option value="l29a">《L29a 公路日常路况评定明细表》(物理表: 12-1明细.xlsx)</option>
+                            <option value="l21">《L21 公路路线基本情况明细表》(物理表: 路段.xls)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="schema-evo-table-box" class="pt-2"></div>
+            </div>
+
+            <!-- Ontology as Business Abstraction Card -->
+            <div class="border border-slate-200 rounded-lg p-3.5 bg-white space-y-2.5 shadow-xs">
+                <div class="font-bold text-slate-900 text-xs border-b border-slate-100 pb-1.5 flex justify-between">
+                    <span>🏛️ 本体核心本质解构：“本体就是抽象的业务” (Ontology as Business Abstraction)</span>
+                    <span class="text-blue-700 font-mono font-bold">3-Tier Bridge</span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3 font-mono text-xs">
+                    <div class="p-2.5 bg-slate-50 border rounded space-y-1">
+                        <div class="font-bold text-blue-900 text-[11px]">1. 现实现实世界 (资产)</div>
+                        <p class="text-[10px] text-slate-600">巴河特大桥、G318 国道、100米路况段等基础设施。</p>
+                    </div>
+                    <div class="p-2.5 bg-blue-600 text-white rounded space-y-1">
+                        <div class="font-bold text-[11px]">2. Palantir 本体 (抽象业务)</div>
+                        <p class="text-[10px] text-blue-50">《L24a 桥梁本体类》+ 5D 要素 + 双签写回算子。</p>
+                    </div>
+                    <div class="p-2.5 bg-slate-50 border rounded space-y-1">
+                        <div class="font-bold text-slate-900 text-[11px]">3. 底层物理数据库 (技术)</div>
+                        <p class="text-[10px] text-slate-600">SQLite `hubei_2025.db` ~ `hubei_2015.db` + 42张底表。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5D Building Blocks -->
+            <div class="border border-blue-200 rounded-lg p-3.5 bg-white space-y-2.5">
+                <div class="font-bold text-slate-900 text-xs flex justify-between items-center border-b border-slate-100 pb-1.5">
+                    <span>🏛️ 湖北公路年报本体【五大核心要素】结构化拆解 (Building Blocks)</span>
+                    <span class="text-[9.5px] bg-blue-600 text-white px-1.5 py-0.5 rounded font-mono">5D SPEC</span>
+                </div>
+                <div class="grid grid-cols-5 gap-2.5 text-xs">
+                    <div class="p-2.5 bg-blue-50/60 border border-blue-200 rounded space-y-1">
+                        <div class="font-bold text-blue-900">要素 1: 实体对象</div>
+                        <p class="text-[10px] text-slate-600">现实资产对象，如《L21路线》、《L24a桥梁》、《L29a 100m路况段》。</p>
+                    </div>
+                    <div class="p-2.5 bg-blue-50/60 border border-blue-200 rounded space-y-1">
+                        <div class="font-bold text-blue-900">要素 2: 属性与主键</div>
+                        <p class="text-[10px] text-slate-600">为对象赋予物理测值（主键 `bridge_code+year`, BCI=92.0, PCI=62.5）。</p>
+                    </div>
+                    <div class="p-2.5 bg-blue-50/60 border border-blue-200 rounded space-y-1">
+                        <div class="font-bold text-blue-900">要素 3: 关系链路</div>
+                        <p class="text-[10px] text-slate-600">对象间 1:N 拓扑树（一条 G318 国道包含 1:N 座巴河特大桥与 100m 路段）。</p>
+                    </div>
+                    <div class="p-2.5 bg-blue-50/60 border border-blue-200 rounded space-y-1">
+                        <div class="font-bold text-blue-900">要素 4: 写回算子</div>
+                        <p class="text-[10px] text-slate-600">允许 Agent/专员发起的物理写回 Action 算子（如 `l24a_bci_update()`）。</p>
+                    </div>
+                    <div class="p-2.5 bg-blue-50/60 border border-blue-200 rounded space-y-1">
+                        <div class="font-bold text-blue-900">要素 5: 密级与权责</div>
+                        <p class="text-[10px] text-slate-600">安全密级规约（RESTRICTED）与 👑 宏观写权限归口处室 Agent。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3-Tier Drill-down -->
+            <div class="border rounded-lg p-3.5 bg-white space-y-3 shadow-2xs">
+                <div class="font-bold text-xs text-slate-900 border-b border-slate-100 pb-1.5 flex items-center justify-between">
+                    <span>🏛️ 本体对象 3 层逐级细分与穿透机制 (3-Tier Hierarchy)</span>
+                    <span class="text-[10px] text-blue-700 font-mono font-bold">三层穿透点选查验</span>
+                </div>
+
+                <div class="flex gap-2 text-xs">
+                    <button onclick="switchOntologyTier('l24a')" id="tier-btn-l24a" class="px-3 py-1.5 rounded font-bold bg-blue-600 text-white border border-blue-600 shadow-2xs">
+                        📄 《L24a（公路桥梁基本情况明细表类）》 [包含 2 张物理表]
+                    </button>
+                    <button onclick="switchOntologyTier('l29a')" id="tier-btn-l29a" class="px-3 py-1.5 rounded font-bold bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200">
+                        📄 《L29a（公路日常路况评定明细表类）》 [包含 2 张物理表]
+                    </button>
+                    <button onclick="switchOntologyTier('l21')" id="tier-btn-l21" class="px-3 py-1.5 rounded font-bold bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200">
+                        📄 《L21（公路路线基本情况明细表类）》 [包含 3 张物理表]
+                    </button>
+                </div>
+
+                <div id="tier-level2-box" class="space-y-2 pt-2 border-t border-slate-100"></div>
+                <div id="tier-level3-box" class="space-y-2 pt-2 border-t border-slate-100"></div>
+            </div>
+
+            <!-- 17 Ontologies Table -->
+            <div class="border rounded p-3 bg-white space-y-2">
+                <div class="font-bold text-xs text-slate-900 flex justify-between items-center">
+                    <span>📑 湖北公路 17 套国标 L 码本体五大要素全量对照表 (Full Ontology Mapping)</span>
+                    <span class="text-[10px] text-slate-500 font-mono font-bold">17 Ontologies Single Source of Truth</span>
+                </div>
+                <table class="w-full text-[11px] border-collapse font-mono">
+                    <thead>
+                        <tr>
+                            <th class="gov-table-th">Level 1: 本体表类 (SQLite表)</th>
+                            <th class="gov-table-th">Level 2: 包含的具体物理底表</th>
+                            <th class="gov-table-th">Level 3: 真实数据典型记录 (巴河特大桥等)</th>
+                            <th class="gov-table-th">要素 4: 绑定的 Action 算子</th>
+                            <th class="gov-table-th">要素 5: 👑 写权限归口 Agent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="gov-table-td font-bold text-blue-700">L24a 公路桥梁明细表类</td>
+                            <td class="gov-table-td">1. 桥梁.xls<br/>2. 农村桥梁.xls</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">HUB-BRG-G318-001 (巴河特大桥, BCI=92.0)</td>
+                            <td class="gov-table-td font-bold">l24a_bci_update_operator()</td>
+                            <td class="gov-table-td font-bold text-slate-900"><code>AGENT-工程技术-01_桥梁结构监测</code></td>
+                        </tr>
+                        <tr>
+                            <td class="gov-table-td font-bold text-blue-700">L29a 日常路况评定表类</td>
+                            <td class="gov-table-td">1. 12-1技术状况明细一.xlsx<br/>2. 12-2明细表.xlsx</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">HUB-SEC-G318-420 (G318 K420+100, PCI=62.5)</td>
+                            <td class="gov-table-td font-bold">l29a_pci_eval_operator()</td>
+                            <td class="gov-table-td font-bold text-slate-900"><code>AGENT-养护管理-02_路况检测评定</code></td>
+                        </tr>
+                        <tr>
+                            <td class="gov-table-td font-bold text-blue-700">L21 公路路线基本表类</td>
+                            <td class="gov-table-td">1. 路段.xls<br/>2. 公路排桩.xls<br/>3. 交通量站点.xls</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">HUB-RTE-G318 (G318 沪聂线湖北段, 1042.8km)</td>
+                            <td class="gov-table-td font-bold">l21_route_sync_operator()</td>
+                            <td class="gov-table-td font-bold text-slate-900"><code>AGENT-规划计划-02_计划管理</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- TAB 3: 🔍 3. 影响面智能体详细页面 -->
+        <div id="view-impact" style="display: none;" class="h-full bg-white border border-slate-200 rounded p-4 flex flex-col space-y-4 overflow-y-auto">
+            <div class="pb-3 border-b border-slate-200 flex items-center justify-between shrink-0">
+                <h2 class="text-base font-extrabold text-slate-900">3. Git 分支与下游影响面控制台 (🤖 影响面推演智能体 Impact Agent 工作区)</h2>
+                <button onclick="switchWorkspace('main')" class="bg-slate-100 border border-slate-200 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">返回主图谱 ➔</button>
+            </div>
+            <div class="agent-banner-box p-3 rounded text-xs font-mono">🌿 dev-hubei-2026 沙盒分支: 下游破坏风险评估得分 0.05 (准许 Merge)。</div>
+        </div>
+
+        <!-- TAB 4: ✍️ 4. 写回智能体详细页面 -->
+        <div id="view-writeback" style="display: none;" class="h-full bg-white border border-slate-200 rounded p-4 flex flex-col space-y-4 overflow-y-auto">
+            <div class="pb-3 border-b border-slate-200 flex items-center justify-between shrink-0">
+                <h2 class="text-base font-extrabold text-slate-900">4. 本体双向写回沉淀控制台 (🤖 双签写回审定智能体 Writeback Agent 工作区)</h2>
+                <button onclick="switchWorkspace('main')" class="bg-slate-100 border border-slate-200 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">返回主图谱 ➔</button>
+            </div>
+            <div class="agent-banner-box p-3 rounded text-xs font-mono">✍️ 校验处室 Agent 双签授权，物理写入底层 SQL 库《L29a》并归档 v2.1 版本。</div>
+        </div>
+
+    </div>
+
+    <!-- MODAL: 28 TABLES SPECIFIC YEAR TREE MODAL -->
+    <div id="tables28Modal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg border border-slate-200 shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col text-xs max-h-[85vh]">
+            <div class="bg-blue-600 text-white px-4 py-3 flex items-center justify-between font-bold shrink-0">
+                <div class="flex items-center gap-2">
+                    <span class="text-base">📑</span>
+                    <span id="tables28ModalTitle">数据来源: 湖北省 2015 年公路养护统计年报 (包含 28 张物理底表全树明细)</span>
+                </div>
+                <button onclick="close28TablesModal()" class="text-white hover:text-slate-200 font-bold text-base">✕</button>
+            </div>
+
+            <div class="p-4 space-y-3 overflow-y-auto flex-1 font-mono text-[11.5px]">
+                <div class="bg-blue-50 border border-blue-200 p-2.5 rounded text-blue-900 text-xs">
+                    💡 提示：以下为从原始 Excel/SQLite 中解析出来的特定年份（28张物理底层汇总明细表与子表）完整骨架列表：
+                </div>
+
+                <div class="space-y-2 font-mono">
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《T001 (公路基本情况汇总表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 公路里程年底到达数 (按技术等级分)</div>
+                    </div>
+
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《L21 (公路路线基本情况明细表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 02 路线明细<br/>↳ 07 公路排桩<br/>↳ 08 观测站点</div>
+                    </div>
+
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《L22 (乡镇/建制村/自然村通达及属性表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 建制村通达<br/>↳ 自然村通达</div>
+                    </div>
+
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《L24a (公路桥梁基本情况明细表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 03 桥梁基本情况汇总表<br/>↳ 06 农村桥梁明细<br/>↳ 桥梁数据变更表</div>
+                    </div>
+
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《L24b (公路涵洞明细表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 05 涵洞明细表</div>
+                    </div>
+
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《L25 (公路隧道基本情况明细表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 04 隧道明细表<br/>↳ 隧道数据变更表</div>
+                    </div>
+
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《L26 (公路沿线服务及收费设施明细表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 09 服务设施</div>
+                    </div>
+
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《L27 (易发地质灾害点明细表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 11-1 灾毁高速<br/>↳ 11-2 灾毁普通国省道<br/>↳ 11-3 灾毁县乡道</div>
+                    </div>
+
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《L29a (公路日常路况评定明细表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 12-1 100m路况明细 (国省干线)</div>
+                    </div>
+
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《L30a/L30b/L30c (养护作业、工程与资金统计表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 13-1 养护作业 / 13-2 养护工程 / 14-1 资金来源</div>
+                    </div>
+
+                    <div class="p-2 border rounded bg-slate-50 space-y-1">
+                        <div class="font-bold text-blue-900">■ 《L31a/L31b (管养单位属性表)》</div>
+                        <div class="pl-4 text-slate-700">↳ 15-1 高速公路管养机构<br/>↳ 15-1 普通国省道管养机构<br/>↳ 乡镇属性表与代码表</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 border-t border-slate-200 px-4 py-2.5 flex items-center justify-between shrink-0">
+                <span class="text-[10.5px] text-slate-500 font-mono">数据校验状态: 28张底表完整探活并映射至17套国标L码</span>
+                <button onclick="close28TablesModal()" class="bg-slate-200 border text-slate-800 font-bold px-3 py-1 rounded hover:bg-slate-300">关闭窗口</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AGENT EMBEDDING MODAL -->
+    <div id="agentEmbedModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg border border-slate-200 shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col text-xs">
+            <div class="bg-slate-100 text-slate-900 border-b border-slate-200 px-4 py-3 flex items-center justify-between font-bold">
+                <div class="flex items-center gap-2">
+                    <span class="text-base text-blue-600">📦</span>
+                    <span>湖北公路全域智能体打包与跨系统嵌入向导 (Agent SDK Exporter)</span>
+                </div>
+                <button onclick="toggleEmbedModal()" class="text-slate-400 hover:text-slate-700 font-bold">✕</button>
+            </div>
+
+            <div class="p-4 space-y-4 overflow-y-auto max-h-[75vh]">
+                <div class="p-3 bg-slate-50 border border-slate-200 rounded font-mono">
+                    <div class="font-bold text-slate-900">🚀 湖北公路年报本体与路检智能体 SDK 一键打包：</div>
+                    <div class="text-[11px] text-slate-600">包含养护处 100米路检 5 步动作算法与 17 套 L 码年报本体字典。</div>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="border border-slate-200 rounded p-3 space-y-1.5 bg-slate-50">
+                        <div class="font-bold text-slate-900 flex justify-between">
+                            <span>1. 🌐 HTML iFrame 代码嵌入</span>
+                            <button onclick="copyCode('code-iframe')" class="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded font-bold hover:bg-blue-700">📋 复制 Code</button>
+                        </div>
+                        <textarea id="code-iframe" readonly class="w-full bg-white text-blue-900 p-2 rounded font-mono text-[10.5px] h-14 border border-slate-200 focus:outline-none"><iframe src="https://hubei.gov.cn/aip/agents/embed?agent_id=HUB-ANNUAL-ONTOLOGY-MAINT&token=HUB-2026" width="100%" height="650" frameborder="0"></iframe></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 border-t border-slate-200 px-4 py-2.5 flex items-center justify-between shrink-0">
+                <span class="text-[10.5px] text-slate-500 font-mono">打包版本: v2.1-annual-ontology-sdk</span>
+                <button onclick="toggleEmbedModal()" class="bg-slate-200 border text-slate-800 font-bold px-3 py-1 rounded hover:bg-slate-300">关闭窗口</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        const stepDetails = {
+            1: {
+                title: "步骤 1：锁定年报本体《L29a 日常路况明细表类》 (Binding Ontologies)",
+                html: `
+                    <div class="space-y-1.5 font-mono text-[11px]">
+                        <div class="font-bold text-blue-900">📌 动作细节：智能体绑定年报本体对象</div>
+                        <div>• 🎯 锁定目标年报本体: <span class="font-bold text-blue-700">《L29a 公路日常路况评定明细表类》</span></div>
+                        <div>• 🔑 唯一锁定主键 (PK): <span class="font-bold text-emerald-700">HUB-SEC-G318-K420+100_2026</span></div>
+                        <div>• 👑 写权限归口 Agent: <span class="font-bold text-slate-800">🛣️ 04 养护管理处 Agent</span></div>
+                    </div>
+                `,
+                chatLog: `
+                    <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
+                        <div class="font-bold text-slate-900">🤖 [步骤 1/5] 年报本体绑定完成:</div>
+                        <div class="text-slate-700 font-mono">• 锁定年报本体: <code>《L29a 日常路况明细表》</code><br/>• 主键: <code>HUB-SEC-G318-K420+100_2026</code></div>
+                    </div>
+                `
+            },
+            2: {
+                title: "步骤 2：消除 G241 桩号噪音并重定向至 G318 年报基准 (Spatial Alignment)",
+                html: `
+                    <div class="space-y-1.5 font-mono text-[11px]">
+                        <div class="font-bold text-blue-900">📌 动作细节：底层物理表消除偏移噪音</div>
+                        <div>• 🛢️ 物理底表文件: <span class="font-bold text-slate-800">《12-1 公路技术状况明细表.xlsx》</span></div>
+                        <div>• ⚠️ 原始实测桩号: <span class="text-red-600 font-bold">G241 K12+400 (偏移共线噪音)</span></div>
+                        <div>• 🛠️ 重映射基准桩号: <span class="text-emerald-700 font-bold">G318 K420+100 (年报国标基准桩号)</span></div>
+                    </div>
+                `,
+                chatLog: `
+                    <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
+                        <div class="font-bold text-slate-900">🤖 [步骤 2/5] 空间重映射完成:</div>
+                        <div class="text-slate-700 font-mono">• 消除 G241 共线噪音 ➔ 重定向至 <code>G318 K420+100</code> 年报基准！</div>
+                    </div>
+                `
+            },
+            3: {
+                title: "步骤 3：注入双向去重 SQL 规约并算得 PCI=62.5 差路段 (Calculation Rules)",
+                html: `
+                    <div class="space-y-1.5 font-mono text-[11px]">
+                        <div class="font-bold text-blue-900">📌 动作细节：执行年报本体计算红线</div>
+                        <div>• ⚠️ 强制 SQL 注入: <span class="text-amber-900 font-bold">WHERE (col4 LIKE '%双向%' OR col4 LIKE '%上行%')</span></div>
+                        <div>• 📊 路况评定测值: <span class="text-red-600 font-extrabold">PCI = 62.5 (网裂差路段预警)</span></div>
+                    </div>
+                `,
+                chatLog: `
+                    <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
+                        <div class="font-bold text-slate-900">🤖 [步骤 3/5] 算子去重完成:</div>
+                        <div class="text-slate-700 font-mono">• SQL 注入: <code>WHERE col4 LIKE '%双向%'</code> 剔除下行记录！<br/>• 得分: <strong class="text-red-600">PCI = 62.5 (差路段)</strong></div>
+                    </div>
+                `
+            },
+            4: {
+                title: "步骤 4：顺着 Pavement_BelongsTo_Route 关系链联动工程处 (Link Propagation)",
+                html: `
+                    <div class="space-y-1.5 font-mono text-[11px]">
+                        <div class="font-bold text-blue-900">📌 动作细节：基于本体 Link 拓扑派发</div>
+                        <div>• 🌳 向上本体拓扑: <span class="font-bold text-blue-700">L29a ➔ Pavement_BelongsTo_Route ➔ L21 G318 国道</span></div>
+                        <div>• 🤝 跨处室派发: <span class="font-bold text-slate-900">下发《G318 K420 段大修申请》给 03 工程处 Agent</span></div>
+                    </div>
+                `,
+                chatLog: `
+                    <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
+                        <div class="font-bold text-slate-900">🤖 [步骤 4/5] 拓扑派发完成:</div>
+                        <div class="text-slate-700 font-mono">• 顺着本体树联动 <code>🛠️ 03 工程技术处 Agent</code> 申请大修项目！</div>
+                    </div>
+                `
+            },
+            5: {
+                title: "步骤 5：沙箱校验并通过 l29a_pci_eval_operator() 物理落库 (Action Writeback)",
+                html: `
+                    <div class="space-y-1.5 font-mono text-[11px]">
+                        <div class="font-bold text-blue-900">📌 动作细节：执行 Action 写回沉淀</div>
+                        <div>• 🌿 Git 沙盒校验: <span class="font-bold text-slate-800">dev-hubei-2026 (允许 Merge)</span></div>
+                        <div>• ✍️ 双签审定: <span class="text-emerald-700 font-bold">养护处主管【授权审批通过】</span></div>
+                        <div>• 💾 物理落库: <span class="text-blue-700 font-bold">l29a_pci_eval_operator() 写入《L29a》数据库</span></div>
+                    </div>
+                `,
+                chatLog: `
+                    <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
+                        <div class="font-bold text-emerald-900">🎉 [步骤 5/5] 双签物理落库成功！</div>
+                        <div class="text-slate-700 font-mono">• 正式写入物理表 <code>《L29a》</code>，基线版本归档为 <code>v2.1</code>！</div>
+                    </div>
+                `
+            }
+        };
+
+        const lineageYearData = {
+            '2025': {
+                col1Badge: '2025主库',
+                col2Badge: 'v2025规范',
+                src3Sub: 'hubei_2025.db (640行)',
+                src2Sub: 'hubei_2025.db (742行)',
+                src1Sub: 'hubei_2025.db (512行)',
+                ontL29aTag: '双向规约/PCI=62.5',
+                ontL24aTag: 'BCI升维(92.0)',
+                ontL21Tag: '1:N 全省拓扑树',
+                chatLog: '已切换至【2025年最新年报拓扑基线】：包含动态 42 张底表与 17 套最新国标 L 码本体，支持 BCI 升维与 100m 去重！'
+            },
+            '2019': {
+                col1Badge: '2019历史库',
+                col2Badge: 'v2019规范',
+                src3Sub: 'hubei_2019.db (41.9MB)',
+                src2Sub: 'hubei_2019.db (41.9MB)',
+                src1Sub: 'hubei_2019.db (41.9MB)',
+                ontL29aTag: '28张底表/12-1路况',
+                ontL24aTag: 'BCI初步引入列',
+                ontL21Tag: '2019全省路线树',
+                chatLog: '已切换至【2019年历史年报拓扑基线】：包含 28 张底层 Excel/SQLite 表，关联 2019 历史归档本体。'
+            },
+            '2015': {
+                col1Badge: '2015基线库',
+                col2Badge: 'v2015历史',
+                src3Sub: 'hubei_2015.db (28张表)',
+                src2Sub: 'hubei_2015.db (桥梁明细)',
+                src1Sub: 'hubei_2015.db (路线明细)',
+                ontL29aTag: '28张底表/12-1路况',
+                ontL24aTag: 'BCI缺失降维保护',
+                ontL21Tag: '2015全省路线树',
+                chatLog: '已切换至【2015年历史年报拓扑基线】：包含 28 张物理底表（如《T001》、《L24a 03桥梁汇总》），触发 BCI 缺失列逻辑降维保护！'
+            }
+        };
+
+        function switchLineageYear(year) {
+            ['2025', '2019', '2015'].forEach(y => {
+                const btn = document.getElementById('year-btn-' + y);
+                if (btn) {
+                    if (y === year) {
+                        btn.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-blue-600 text-white shadow-2xs";
+                    } else {
+                        btn.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300";
+                    }
+                }
+            });
+
+            const d = lineageYearData[year] || lineageYearData['2025'];
+
+            const col1Badge = document.getElementById('col1-year-badge');
+            const col2Badge = document.getElementById('col2-version-badge');
+            const src3Sub = document.getElementById('src-3-sub');
+            const src2Sub = document.getElementById('src-2-sub');
+            const src1Sub = document.getElementById('src-1-sub');
+            const ontL29aTag = document.getElementById('ont-l29a-tag');
+            const ontL24aTag = document.getElementById('ont-l24a-tag');
+            const ontL21Tag = document.getElementById('ont-l21-tag');
+
+            if (col1Badge) col1Badge.innerText = d.col1Badge;
+            if (col2Badge) col2Badge.innerText = d.col2Badge;
+            if (src3Sub) src3Sub.innerText = d.src3Sub;
+            if (src2Sub) src2Sub.innerText = d.src2Sub;
+            if (src1Sub) src1Sub.innerText = d.src1Sub;
+            if (ontL29aTag) ontL29aTag.innerText = d.ontL29aTag;
+            if (ontL24aTag) ontL24aTag.innerText = d.ontL24aTag;
+            if (ontL21Tag) ontL21Tag.innerText = d.ontL21Tag;
+
+            const box = document.getElementById('chatHistoryBox');
+            if (box) {
+                box.innerHTML += `
+                    <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
+                        <div class="font-bold text-blue-900">🤖 AIP 拓扑版本感知响应:</div>
+                        <div class="text-slate-700 font-mono">${d.chatLog}</div>
+                    </div>
+                `;
+                box.scrollTop = box.scrollHeight;
+            }
+
+            requestAnimationFrame(() => setTimeout(drawConnectorLines, 50));
+        }
+
+        const schemaEvolutionData = {
+            '2025_l24a': [
+                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 🟢' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
+                { field: 'col62_bci', name: 'BCI 综合评定技术得分', std2015: '未采集该细分列', std2025: 'FLOAT (最新升维)', dict: 'L24a_BCI_Score', status: '2025最新升维 🆕' },
+                { field: 'col15_maintain_dept', name: '管养单位 Agent', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L24a_Maintain_Agent', status: '保持一致 🟢' }
+            ],
+            '2019_l24a': [
+                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 🟢' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
+                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '未采集', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '2019初步引入 🔄' }
+            ],
+            '2015_l24a': [
+                { field: 'col1_bridge_code', name: '桥梁编码', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '历史基线 🟢' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '历史基线 🟢' },
+                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '缺失 (未引入)', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '缺失智能降维 ⚠️' }
+            ],
+            '2025_l29a': [
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
+                { field: 'col4_direction', name: '车道方向 (双向/上行)', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '去重必选列 🔴' },
+                { field: 'col12_pci', name: 'PCI 路面状况指数', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+            ]
+        };
+
+        function renderSchemaEvolutionTable() {
+            const year = document.getElementById('evoYearSelect') ? document.getElementById('evoYearSelect').value : '2025';
+            const table = document.getElementById('evoTableSelect') ? document.getElementById('evoTableSelect').value : 'l24a';
+            const key = year + '_' + table;
+
+            const box = document.getElementById('schema-evo-table-box');
+            if (!box) return;
+
+            const rows = schemaEvolutionData[key] || schemaEvolutionData['2025_l24a'];
+
+            let html = `
+                <table class="w-full text-[11px] border-collapse font-mono">
+                    <thead>
+                        <tr>
+                            <th class="gov-table-th">物理 SQL 字段名 (col_name)</th>
+                            <th class="gov-table-th">物理业务含义</th>
+                            <th class="gov-table-th">${year}年 物理存储标准</th>
+                            <th class="gov-table-th">映射的全量数据字典 (Dictionary)</th>
+                            <th class="gov-table-th">跨年份演进与降维状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            rows.forEach(r => {
+                html += `
+                    <tr>
+                        <td class="gov-table-td font-bold text-blue-700">${r.field}</td>
+                        <td class="gov-table-td font-bold text-slate-900">${r.name}</td>
+                        <td class="gov-table-td text-slate-600">${r.std2025}</td>
+                        <td class="gov-table-td font-bold text-emerald-700">${r.dict}</td>
+                        <td class="gov-table-td font-bold">${r.status}</td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+            box.innerHTML = html;
+        }
+
+        function open28TablesModal(year) {
+            const modal = document.getElementById('tables28Modal');
+            const title = document.getElementById('tables28ModalTitle');
+            if (modal) {
+                if (title) title.innerText = `数据来源: 湖北省 ${year} 年公路养护统计年报 (包含 28 张底层物理汇总明细表与子表全树)`;
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function close28TablesModal() {
+            const modal = document.getElementById('tables28Modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        const ontologyTiersData = {
+            l24a: {
+                title: "📄 《L24a 公路桥梁基本情况明细表类》",
+                tables: [
+                    { name: "🛢️ 物理底表 1: 《桥梁.xls》", desc: "省干线国省道养护桥梁明细物理文件", rowsCount: "742 行" },
+                    { name: "🛢️ 物理底表 2: 《农村桥梁.xls》", desc: "县乡村道农村三四类桥梁明细物理文件", rowsCount: "150 行" }
+                ],
+                rows: [
+                    { pk: "HUB-BRG-G318-001", name: "巴河特大桥", route: "G318 沪聂线", len: "1,240m", metric: "BCI = 92.0 (一类健康桥)", lead: "AGENT-工程技术-01" },
+                    { pk: "HUB-BRG-G107-022", name: "汉江特大桥", route: "G107 京港线", len: "2,150m", metric: "BCI = 88.5 (二类桥)", lead: "AGENT-工程技术-01" },
+                    { pk: "HUB-BRG-X002-054", name: "黄州陡坡桥", route: "X002 县道", len: "45m", metric: "BCI = 64.0 (三类桥)", lead: "AGENT-农村公路-01" }
+                ]
+            },
+            l29a: {
+                title: "📄 《L29a 公路日常路况评定明细表类》",
+                tables: [
+                    { name: "🛢️ 物理底表 1: 《12-1 公路技术状况明细表一—高速公路、普通国、省道.xlsx》", desc: "国省干线 100m 单元物理文件", rowsCount: "640 行" },
+                    { name: "🛢️ 物理底表 2: 《12-2 公路技术状况明细表.xlsx》", desc: "农村公路路况评定明细物理文件", rowsCount: "202 行" }
+                ],
+                rows: [
+                    { pk: "HUB-SEC-G318-420", name: "G318 K420+100段", route: "G318 沪聂线", len: "0.10km (100m)", metric: "PCI = 62.5 (差路段)", lead: "AGENT-养护管理-02" },
+                    { pk: "HUB-SEC-G107-110", name: "G107 K110+200段", route: "G107 京港线", len: "0.10km (100m)", metric: "PCI = 89.0 (优良段)", lead: "AGENT-养护管理-02" },
+                    { pk: "HUB-SEC-S201-085", name: "S201 K85+500段", route: "S201 省道", len: "0.10km (100m)", metric: "PCI = 74.2 (合格段)", lead: "AGENT-养护管理-02" }
+                ]
+            },
+            l21: {
+                title: "📄 《L21 公路路线基本情况明细表类》",
+                tables: [
+                    { name: "🛢️ 物理底表 1: 《路段.xls》", desc: "全省国省干线路线基础明细文件", rowsCount: "512 行" },
+                    { name: "🛢️ 物理底表 2: 《公路排桩.xls》", desc: "标准空间参考系排桩明细物理文件", rowsCount: "320 行" },
+                    { name: "🛢️ 物理底表 3: 《交通量观测站点.xls》", desc: "自动交调站点观测明细文件", rowsCount: "210 行" }
+                ],
+                rows: [
+                    { pk: "HUB-RTE-G318", name: "G318 沪聂线湖北段", route: "G318 国道", len: "1,042.8km", metric: "行政等级: 国道 (全线通畅)", lead: "AGENT-规划计划-02" },
+                    { pk: "HUB-RTE-G107", name: "G107 京港线湖北段", route: "G107 国道", len: "892.4km", metric: "行政等级: 国道 (全线通畅)", lead: "AGENT-规划计划-02" },
+                    { pk: "HUB-RTE-S201", name: "S201 汪黄线湖北段", route: "S201 省道", len: "245.1km", metric: "行政等级: 省道 (全线通畅)", lead: "AGENT-规划计划-02" }
+                ]
+            }
+        };
+
+        function goToDemoStep(stepNum) {
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.getElementById('step-btn-' + i);
+                if (btn) {
+                    if (i === stepNum) {
+                        btn.className = "p-1.5 rounded border border-blue-600 bg-blue-600 text-white font-bold text-center shadow-2xs";
+                    } else {
+                        btn.className = "p-1.5 rounded border border-slate-200 bg-slate-50 text-slate-700 font-bold text-center hover:bg-slate-100";
+                    }
+                }
+            }
+
+            const data = stepDetails[stepNum];
+            if (!data) return;
+
+            const detailCard = document.getElementById('step-detail-card');
+            if (detailCard) detailCard.innerHTML = data.html;
+
+            const statusEl = document.getElementById('agentLiveStatus');
+            if (statusEl) statusEl.innerText = `STEP ${stepNum} / 5`;
+
+            const box = document.getElementById('chatHistoryBox');
+            if (box) {
+                box.innerHTML += data.chatLog;
+                box.scrollTop = box.scrollHeight;
+            }
+        }
+
+        let isRunningDemo = false;
+        function runStepByStepDemo() {
+            if (isRunningDemo) return;
+            isRunningDemo = true;
+            let current = 1;
+            goToDemoStep(1);
+
+            const interval = setInterval(() => {
+                current++;
+                if (current <= 5) {
+                    goToDemoStep(current);
+                } else {
+                    clearInterval(interval);
+                    isRunningDemo = false;
+                }
+            }, 1200);
+        }
+
+        function switchOntologyTier(code) {
+            ['l24a', 'l29a', 'l21'].forEach(c => {
+                const btn = document.getElementById('tier-btn-' + c);
+                if (btn) {
+                    if (c === code) {
+                        btn.className = "px-3 py-1.5 rounded font-bold bg-blue-600 text-white border border-blue-600 shadow-2xs";
+                    } else {
+                        btn.className = "px-3 py-1.5 rounded font-bold bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200";
+                    }
+                }
+            });
+
+            const data = ontologyTiersData[code];
+            if (!data) return;
+
+            // Level 2
+            const level2Box = document.getElementById('tier-level2-box');
+            if (level2Box) {
+                let tablesHTML = `
+                    <div class="font-bold text-xs text-slate-900 flex items-center justify-between">
+                        <span>第二层 (Level 2): ${data.title} 包含的具体物理底表文件 (${data.tables.length} 张文件)</span>
+                        <span class="text-[10px] text-blue-700 font-mono font-bold font-mono">Source Files Ingested</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 text-xs">
+                `;
+                data.tables.forEach(tbl => {
+                    tablesHTML += `
+                        <div class="border border-slate-200 rounded p-2.5 bg-slate-50 space-y-1">
+                            <div class="font-bold text-slate-900 text-[11.5px]">${tbl.name}</div>
+                            <div class="text-[10.5px] text-slate-600">${tbl.desc}</div>
+                            <div class="text-[9.5px] text-blue-700 font-mono font-bold border-t border-slate-200 pt-1 flex justify-between">
+                                <span>包含记录数: ${tbl.rowsCount}</span>
+                                <span>已挂载本体 🟢</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                tablesHTML += `</div>`;
+                level2Box.innerHTML = tablesHTML;
+            }
+
+            // Level 3
+            const level3Box = document.getElementById('tier-level3-box');
+            if (level3Box) {
+                let rowsHTML = `
+                    <div class="font-bold text-xs text-slate-900 flex items-center justify-between">
+                        <span>第三层 (Level 3): 表里的真实数据记录行与物理测值 (Data Records Content Inspector)</span>
+                        <span class="text-[10px] text-emerald-700 font-mono font-bold">Real Rows Preview</span>
+                    </div>
+                    <table class="w-full text-[11px] border-collapse font-mono">
+                        <thead>
+                            <tr>
+                                <th class="gov-table-th">物理主键 (PK)</th>
+                                <th class="gov-table-th">名称/标段实体</th>
+                                <th class="gov-table-th">路线编码</th>
+                                <th class="gov-table-th">里程/长度</th>
+                                <th class="gov-table-th">真实物理测值与指标 (Metric)</th>
+                                <th class="gov-table-th">👑 写权限归口 Agent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+                data.rows.forEach(r => {
+                    rowsHTML += `
+                        <tr>
+                            <td class="gov-table-td font-bold text-blue-700">${r.pk}</td>
+                            <td class="gov-table-td font-bold text-slate-900">${r.name}</td>
+                            <td class="gov-table-td">${r.route}</td>
+                            <td class="gov-table-td">${r.len}</td>
+                            <td class="gov-table-td font-bold text-emerald-700">${r.metric}</td>
+                            <td class="gov-table-td text-slate-600">${r.lead}</td>
+                        </tr>
+                    `;
+                });
+                rowsHTML += `
+                        </tbody>
+                    </table>
+                `;
+                level3Box.innerHTML = rowsHTML;
+            }
+        }
+
+        function toggleEmbedModal() {
+            const modal = document.getElementById('agentEmbedModal');
+            if (modal) modal.classList.toggle('hidden');
+        }
+
+        function copyCode(id) {
+            const textarea = document.getElementById(id);
+            if (textarea) {
+                textarea.select();
+                document.execCommand('copy');
+                alert('📋 嵌入代码已成功复制至剪贴板！');
+            }
+        }
+
+        function selectScenario(id) {
+            for (let i = 1; i <= 4; i++) {
+                const card = document.getElementById('scen-card-' + i);
+                if (card) {
+                    if (i === id) {
+                        card.className = "palantir-card p-2.5 rounded cursor-pointer space-y-1.5 scenario-card-active";
+                    } else {
+                        card.className = "palantir-card p-2.5 rounded cursor-pointer space-y-1.5 border-slate-200 hover:border-blue-400";
+                    }
+                }
+            }
+            if (id === 1) runStepByStepDemo();
+            if (id === 3) open28TablesModal('2015');
+        }
+
+        function sendPresetQuery(queryText) {
+            document.getElementById('userChatInput').value = queryText;
+            sendUserMessage();
+        }
+
+        function sendUserMessage() {
+            const input = document.getElementById('userChatInput');
+            const box = document.getElementById('chatHistoryBox');
+            if (!input || !box || !input.value.trim()) return;
+
+            const userText = input.value.trim();
+            input.value = '';
+
+            const userMsgHTML = `
+                <div class="aip-chat-msg-user p-2.5 rounded text-[11px] space-y-0.5 ml-4">
+                    <div class="font-bold flex justify-between">
+                        <span>👤 场景指令:</span>
+                        <span class="text-[9px] text-slate-500 font-mono">17:41</span>
+                    </div>
+                    <div>${userText}</div>
+                </div>
+            `;
+            box.innerHTML += userMsgHTML;
+            box.scrollTop = box.scrollHeight;
+
+            setTimeout(() => {
+                const aiResponseHTML = `
+                    <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
+                        <div class="font-bold text-slate-900">🤖 AIP 场景智能体响应:</div>
+                        <div class="text-slate-700 leading-relaxed font-mono">
+                            指令 "${userText}" 已基于多年份拓扑动态演进引擎处理完成。
+                        </div>
+                    </div>
+                `;
+                box.innerHTML += aiResponseHTML;
+                box.scrollTop = box.scrollHeight;
+            }, 400);
+        }
+
+        function switchWorkspace(target) {
+            ['main', 'ds', 'oma', 'impact', 'writeback'].forEach(id => {
+                const viewEl = document.getElementById('view-' + id);
+                const navEl = document.getElementById('nav-' + id);
+                if (viewEl) viewEl.style.display = 'none';
+                if (navEl) navEl.className = "px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold";
+            });
+
+            const targetView = document.getElementById('view-' + target);
+            const targetNav = document.getElementById('nav-' + target);
+
+            if (targetView) {
+                if (target === 'main') {
+                    targetView.style.display = 'grid';
+                } else {
+                    targetView.style.display = 'flex';
+                }
+            }
+
+            if (targetNav) {
+                targetNav.className = "workspace-nav-active px-3 py-1 bg-blue-600 text-white rounded font-bold border border-blue-600 shadow-2xs";
+            }
+
+            if (target === 'oma') {
+                switchOntologyTier('l24a');
+                renderSchemaEvolutionTable();
+            }
+
+            if (target === 'main') {
+                requestAnimationFrame(() => setTimeout(drawConnectorLines, 50));
+            }
+        }
+
+        function drawConnectorLines() {
+            const container = document.getElementById('lineageCanvas');
+            const svg = document.getElementById('svgOverlay');
+            if (!container || !svg) return;
+
+            const cRect = container.getBoundingClientRect();
+            svg.setAttribute('width', cRect.width);
+            svg.setAttribute('height', container.scrollHeight);
+
+            const connections = [
+                ['src-3', 'ont-l29a', '#2563eb'],
+                ['ont-l29a', 'role-4', '#2563eb'],
+
+                ['src-2', 'ont-l24a', '#2563eb'],
+                ['ont-l24a', 'role-3', '#2563eb'],
+
+                ['src-1', 'ont-l21', '#94a3b8'],
+                ['ont-l21', 'role-1', '#94a3b8']
+            ];
+
+            let pathsHTML = `
+                <defs>
+                    <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb" />
+                    </marker>
+                </defs>
+            `;
+
+            connections.forEach(([fromId, toId, color]) => {
+                const elFrom = document.getElementById(fromId);
+                const elTo = document.getElementById(toId);
+
+                if (elFrom && elTo) {
+                    const r1 = elFrom.getBoundingClientRect();
+                    const r2 = elTo.getBoundingClientRect();
+
+                    const x1 = r1.right - cRect.left;
+                    const y1 = r1.top + r1.height / 2 - cRect.top + container.scrollTop;
+
+                    const x2 = r2.left - cRect.left;
+                    const y2 = r2.top + r2.height / 2 - cRect.top + container.scrollTop;
+
+                    const dx = Math.abs(x2 - x1) * 0.45;
+                    const pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+
+                    pathsHTML += `<path d="${pathData}" stroke="${color}" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />`;
+                }
+            });
+
+            svg.innerHTML = pathsHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            drawConnectorLines();
+            goToDemoStep(1);
+            renderSchemaEvolutionTable();
+        });
+        window.addEventListener('load', () => {
+            drawConnectorLines();
+            goToDemoStep(1);
+            renderSchemaEvolutionTable();
+            setTimeout(drawConnectorLines, 200);
+        });
+        window.addEventListener('resize', drawConnectorLines);
+    </script>
+</body>
+</html>
