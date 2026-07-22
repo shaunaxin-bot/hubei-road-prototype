@@ -49242,6 +49242,7 @@ ${code}
     };
     const [currentRoundToolCalls, setCurrentRoundToolCalls] = useState2([]);
     const [currentRoundThought, setCurrentRoundThought] = useState2("");
+    const [hoveredQueryInfo, setHoveredQueryInfo] = useState2(null);
     const messagesRef = useRef(messages);
     useEffect2(() => {
       messagesRef.current = messages;
