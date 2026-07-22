@@ -48965,7 +48965,8 @@ ${code}
         const saved = localStorage.getItem("deepqa_standalone_messages");
         if (saved) {
           try {
-            return JSON.parse(saved);
+            const parsed = JSON.parse(saved);
+            return parsed.map((m2) => m2.isGreeting || m2.id === 1 ? { ...m2, content: dict_agent_greeting_default.content } : m2);
           } catch (e) {
             console.error(e);
           }
