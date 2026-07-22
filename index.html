@@ -51670,18 +51670,21 @@ ${msg.views.view3}
             className: "export-excel-btn text-blue-600 hover:text-blue-800 font-bold hover:underline cursor-pointer select-none text-[12px]"
           },
           "[\u63D0\u53D6Excel\u6570\u636E\u8868]"
-        ))), msg.actionPrompt && msg.actionPrompt.status !== "dismissed" && /* @__PURE__ */ React.createElement("div", { className: "mt-3.5 p-3.5 bg-gradient-to-r from-slate-50 via-blue-50/40 to-slate-50 border border-blue-100/90 rounded-xl shadow-2xs print-hidden w-full" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-2.5 pb-2 border-b border-blue-100/60" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement(Sparkles2, { size: 15, className: "text-blue-600 animate-pulse" }), /* @__PURE__ */ React.createElement("span", { className: "text-[13px] font-bold text-slate-800 tracking-wide" }, "\u{1F50D} \u6DF1\u5EA6\u6838\u67E5\u4E0E\u5408\u89C4\u5BA1\u8BA1\u89C6\u89D2"), /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-500 font-normal hidden sm:inline" }, "\uFF08\u70B9\u51FB\u5207\u5165\u53F3\u4FA7\u4FA7\u8FB9\u680F\u5BF9\u5E94\u7684\u5BA1\u8BA1\u7EF4\u5EA6\uFF09"))), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-2.5" }, msg.actionPrompt.actions.map((action) => {
+        ))), msg.actionPrompt && msg.actionPrompt.status !== "dismissed" && /* @__PURE__ */ React.createElement("div", { className: "mt-3 pt-2.5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 print-hidden w-full" }, /* @__PURE__ */ React.createElement("div", { className: "text-[12px] font-medium text-slate-500 flex items-center gap-1" }, /* @__PURE__ */ React.createElement("span", null, "\u5207\u6362\u5BA1\u8BA1\u89C6\u89D2\uFF1A")), /* @__PURE__ */ React.createElement("div", { className: "inline-flex items-center p-1 bg-slate-100 rounded-lg text-[12px] w-full sm:w-auto" }, msg.actionPrompt.actions.map((action) => {
           const targetTab = action.targetTab || (action.id === "generate_generic_export" ? "overview" : action.id === "open_audit_tools" ? "tools" : "reasoning");
           const isActive = isRightPanelExpanded && activeAuditMsgId === msg.id && rightAuditTab === targetTab;
+          const simpleTitle = action.id === "generate_generic_export" ? "\u62A5\u544A" : action.id === "open_audit_tools" ? "\u5DE5\u5177" : "\u63A8\u6F14";
+          const simpleRole = action.id === "generate_generic_export" ? "\u9886\u5BFC/\u5904\u5BA4" : action.id === "open_audit_tools" ? "\u6838\u67E5/\u5BA1\u8BA1" : "\u4E13\u5BB6/\u76D1\u7BA1";
           return /* @__PURE__ */ React.createElement(
-            "div",
+            "button",
             {
               key: action.id,
+              type: "button",
               onClick: () => handleActionPromptClick(msg, action),
-              className: `text-left p-2.5 rounded-lg border transition-all duration-200 flex flex-col justify-between cursor-pointer select-none ${isActive ? "bg-blue-600 border-blue-600 text-white shadow-md ring-2 ring-blue-300/60" : "bg-white border-slate-200/90 text-slate-800 hover:border-blue-300 hover:bg-blue-50/60 hover:shadow-xs"}`
+              className: `flex-1 sm:flex-initial px-3 py-1 rounded-md transition-all duration-150 flex items-center justify-center gap-1 cursor-pointer select-none border-0 ${isActive ? "bg-white text-blue-700 shadow-xs font-bold" : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 font-medium"}`
             },
-            /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-1" }, /* @__PURE__ */ React.createElement("span", { className: `text-[13px] font-bold ${isActive ? "text-white" : "text-slate-800"}` }, action.label), isActive && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] bg-white/20 text-white px-1.5 py-0.5 rounded-full font-medium" }, "\u2713 \u5F53\u524D\u89C6\u89D2")), /* @__PURE__ */ React.createElement("div", { className: `text-[10px] font-semibold mb-1.5 px-1.5 py-0.5 rounded inline-block ${isActive ? "bg-blue-500 text-blue-100" : "bg-slate-100 text-blue-700 border border-slate-200/60"}` }, "\u{1F464} ", action.role || "\u9002\u7528\u89D2\u8272\u4E13\u5458")),
-            /* @__PURE__ */ React.createElement("div", { className: `text-[11px] leading-tight ${isActive ? "text-blue-100" : "text-slate-500"}` }, action.desc || "\u67E5\u770B\u5BF9\u5E94\u7EF4\u5EA6\u5206\u6790\u4FE1\u606F")
+            /* @__PURE__ */ React.createElement("span", null, simpleTitle),
+            /* @__PURE__ */ React.createElement("span", { className: `text-[10px] ${isActive ? "text-blue-500 font-normal" : "text-slate-400 font-normal"}` }, "(", simpleRole, ")")
           );
         }))), msg.role === "agent" && msg.sqlResult && msg.type !== "warning" && !msg.hideDefaultTemplates && /* @__PURE__ */ React.createElement("div", { className: "mt-3 pt-2 border-t border-slate-100 space-y-2" }, /* @__PURE__ */ React.createElement(
           "details",
