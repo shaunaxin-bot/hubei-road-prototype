@@ -122,10 +122,10 @@
 
         <div class="flex items-center gap-1.5 text-xs">
             <button onclick="switchWorkspace('main')" id="nav-main" class="workspace-nav-active px-2.5 py-1 bg-white border border-slate-200 rounded hover:bg-slate-50">🌐 全景图谱</button>
-            <button onclick="switchWorkspace('ds')" id="nav-ds" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">🔌 数据源接入</button>
-            <button onclick="switchWorkspace('oma')" id="nav-oma" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">⚙️ 本体模型 (OMA)</button>
-            <button onclick="switchWorkspace('impact')" id="nav-impact" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">🔍 影响面分析</button>
-            <button onclick="switchWorkspace('writeback')" id="nav-writeback" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">✍️ 审定落库</button>
+            <button onclick="switchWorkspace('ds')" id="nav-ds" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">🔌 数据接入</button>
+            <button onclick="switchWorkspace('oma')" id="nav-oma" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">⚙️ 业务模型</button>
+            <button onclick="switchWorkspace('impact')" id="nav-impact" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">🔍 数据稽核</button>
+            <button onclick="switchWorkspace('writeback')" id="nav-writeback" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold">⚖️ 合规审计</button>
             
             <button onclick="toggleEmbedModal()" class="ml-1 bg-blue-600 text-white font-bold px-2.5 py-1 rounded text-xs hover:bg-blue-700 shadow-2xs">
                 <span>📦 打包导出</span>
@@ -611,7 +611,7 @@
                 <div class="flex items-center gap-2">
                     <span class="text-xl">🔌</span>
                     <div>
-                        <h2 class="text-base font-extrabold text-slate-900">1. 数据源接入与探活控制台 (📄 原始 Excel 年报骨架数据流与 28 张底表查看)</h2>
+                        <h2 class="text-base font-extrabold text-slate-900">1. 数据接入控制台 (📄 42 张底表解析与 17 套国标一套表自动化接入)</h2>
                         <p class="text-xs text-slate-500 font-mono">Annual Report Data Pipeline: 42 Physical Excel Sheets ➔ SQLite Auto-Ingestion ➔ 17 L-Code Ontologies</p>
                     </div>
                 </div>
@@ -778,7 +778,7 @@
                 <div class="flex items-center gap-2">
                     <span class="text-xl">⚙️</span>
                     <div>
-                        <h2 class="text-base font-extrabold text-slate-900">2. 本体管理 OMA 5D 控制台 (🏛️ 湖北公路 17 套年报本体 3 层细分与跨年份数据字典演进)</h2>
+                        <h2 class="text-base font-extrabold text-slate-900">2. 业务模型控制台 (🏛️ 湖北公路 17 套年报一套表与 3 层结构字典演进)</h2>
                         <p class="text-xs text-slate-500 font-mono">Multi-Year Schema Evolution Inspector: Single Table Content Reading & Data Dictionary Alignment (2015~2025)</p>
                     </div>
                 </div>
@@ -958,7 +958,7 @@
         <!-- TAB 3: 🔍 3. 影响面智能体详细页面 -->
         <div id="view-impact" style="display: none;" class="h-full bg-white border border-slate-200 rounded p-4 flex flex-col space-y-4 overflow-y-auto">
             <div class="pb-3 border-b border-slate-200 flex items-center justify-between shrink-0">
-                <h2 class="text-base font-extrabold text-slate-900">3. Git 分支与下游影响面控制台 (🤖 影响面推演智能体 Impact Agent 工作区)</h2>
+                <h2 class="text-base font-extrabold text-slate-900">3. 数据稽核与影响面分析控制台 (🤖 影响面推演智能体 Impact Agent 工作区)</h2>
                 <button onclick="switchWorkspace('main')" class="bg-slate-100 border border-slate-200 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">返回主图谱 ➔</button>
             </div>
             <div class="agent-banner-box p-3 rounded text-xs font-mono">🌿 dev-hubei-2026 沙盒分支: 下游破坏风险评估得分 0.05 (准许 Merge)。</div>
@@ -967,7 +967,7 @@
         <!-- TAB 4: ✍️ 4. 写回智能体详细页面 -->
         <div id="view-writeback" style="display: none;" class="h-full bg-white border border-slate-200 rounded p-4 flex flex-col space-y-4 overflow-y-auto">
             <div class="pb-3 border-b border-slate-200 flex items-center justify-between shrink-0">
-                <h2 class="text-base font-extrabold text-slate-900">4. 本体双向写回沉淀控制台 (🤖 双签写回审定智能体 Writeback Agent 工作区)</h2>
+                <h2 class="text-base font-extrabold text-slate-900">4. 合规审计与审定落库控制台 (🤖 双签写回审定智能体 Writeback Agent 工作区)</h2>
                 <button onclick="switchWorkspace('main')" class="bg-slate-100 border border-slate-200 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">返回主图谱 ➔</button>
             </div>
             <div class="agent-banner-box p-3 rounded text-xs font-mono">✍️ 校验处室 Agent 双签授权，物理写入底层 SQL 库《L29a》并归档 v2.1 版本。</div>
