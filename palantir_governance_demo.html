@@ -30,6 +30,19 @@
             scrollbar-width: none !important;
         }
 
+        @keyframes activeDashFlow {
+            from {
+                stroke-dashoffset: 24;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .active-flowing-line {
+            animation: activeDashFlow 1.2s linear infinite;
+        }
+
         .lineage-container {
             background-color: #ffffff !important;
             background-image: none !important;
@@ -2161,20 +2174,22 @@
                     let strokeWidth = "0.75";
                     let opacity = "0.22";
                     let dashArray = 'stroke-dasharray="4 4"';
+                    let extraClass = '';
 
                     if (activeHighlightCode) {
                         if (activeHighlightCode === code || activeHighlightCode === roleId) {
-                            strokeColor = "#2563eb"; // Sapphire Blue focus highlight on hover
-                            strokeWidth = "2";
-                            opacity = "0.9";
-                            dashArray = '';
+                            strokeColor = "#2563eb"; // Elegant Blue
+                            strokeWidth = "1.25";    // Thinner 1.25px
+                            opacity = "0.85";
+                            dashArray = 'stroke-dasharray="6 3"';
+                            extraClass = 'class="active-flowing-line"';
                         } else {
                             opacity = "0.04";
                         }
                     }
 
                     // Base Connection Line
-                    pathsHTML += `<path d="${pathData}" stroke="${strokeColor}" stroke-width="${strokeWidth}" ${dashArray} opacity="${opacity}" fill="none" />`;
+                    pathsHTML += `<path d="${pathData}" stroke="${strokeColor}" stroke-width="${strokeWidth}" ${dashArray} ${extraClass} opacity="${opacity}" fill="none" />`;
                 }
             });
 
