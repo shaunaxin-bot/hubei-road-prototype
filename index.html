@@ -49835,6 +49835,10 @@ ${code}
         actionPrompt: { ...m2.actionPrompt, status: "resolving", resolvingActionId: action.id }
       } : m2));
       if (action.id === "generate_generic_export" || action.id === "open_audit_tools" || action.id === "open_audit_reasoning") {
+        setMessages((prev) => prev.map((m2) => m2.id === msg.id ? {
+          ...m2,
+          actionPrompt: { ...m2.actionPrompt, status: "pending" }
+        } : m2));
         setActiveAuditMsgId(msg.id);
         setIsRightPanelExpanded(true);
         if (action.id === "generate_generic_export") {
@@ -50958,11 +50962,16 @@ ${knowledgeBase}
         }
       } catch (err) {
         console.error("Agentic Loop error:", err);
-        updateBot({
-          content: `\u274C \u67E5\u8BE2\u51FA\u9519\uFF1A${err.message}
+        const isNetworkErr = err.message && (err.message.includes("Failed to fetch") || err.message.includes("network") || err.message.includes("Network"));
+        const errorText = isNetworkErr ? `\u274C \u67E5\u8BE2\u51FA\u9519\uFF1A\u7F51\u7EDC\u8FDE\u63A5\u4E0D\u7A33\u5B9A\u6216\u4EE3\u7406\u8282\u70B9\u65AD\u5F00 (Failed to fetch)\u3002
 
-\u8BF7\u68C0\u67E5 API Key \u662F\u5426\u6B63\u786E\uFF0C\u6216\u7A0D\u540E\u91CD\u8BD5\u3002`,
-          thought: `\u9519\u8BEF\u8BE6\u60C5: ${err.message}`
+\u8BF7\u68C0\u67E5\u7F51\u7EDC\u8FDE\u63A5\u3001VPN \u72B6\u6001\u6216 API \u4EE3\u7406\u8282\u70B9\u540E\u91CD\u8BD5\u3002` : `\u274C \u67E5\u8BE2\u51FA\u9519\uFF1A${err.message}
+
+\u8BF7\u68C0\u67E5 API Key \u662F\u5426\u6B63\u786E\uFF0C\u6216\u7A0D\u540E\u91CD\u8BD5\u3002`;
+        updateBot({
+          content: errorText,
+          thought: `\u9519\u8BEF\u8BE6\u60C5: ${err.message}`,
+          isGeneratingReport: false
         });
       } finally {
         updateBot({ isStreaming: false });
@@ -52331,11 +52340,11 @@ ${msg.views.view3}
                 }, null, 2)))))))));
               }));
             });
-          })(), tcs.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "relative flex items-center gap-2 mt-4 pt-2" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -left-[21px] top-[14px] w-[14px] h-[2px] bg-slate-300" }), /* @__PURE__ */ React.createElement("div", { className: "w-[10px] h-[10px] rounded-full bg-slate-800 shrink-0 z-10 shadow-[0_0_0_2px_white,0_0_0_3px_#1e293b] -ml-[6px]" }), /* @__PURE__ */ React.createElement("div", { className: "font-medium text-[12px] text-slate-900 break-words leading-tight" }, "[\u7EC8\u70B9] \u3010\u5408\u89C4\u5BA1\u8BA1\u7ED3\u8BBA\u3011", (() => {
+          })(), tcs.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "relative flex items-center gap-2 mt-4 pt-2" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -left-[21px] top-[14px] w-[14px] h-[2px] bg-slate-300" }), /* @__PURE__ */ React.createElement("div", { className: "w-[10px] h-[10px] rounded-full bg-slate-800 shrink-0 z-10 shadow-[0_0_0_2px_white,0_0_0_3px_#1e293b] -ml-[6px]" }), /* @__PURE__ */ React.createElement("div", { className: "font-medium text-[12px] text-slate-900 break-words leading-tight" }, "[\u7EC8\u70B9] \u3010\u63A8\u7406\u7ED3\u8BBA\u3011", (() => {
             const sqlCalls = tcs.filter((tc) => tc.name === "execute_sql");
             const searchCalls = tcs.filter((tc) => tc.name === "search_internet");
             if (sqlCalls.length > 0 && searchCalls.length > 0) {
-              return `\u57FA\u4E8E\u8DE8\u57DF\u591A\u667A\u80FD\u4F53\u534F\u540C\uFF0C\u672C\u6B21\u63A2\u67E5\u6210\u529F\u6267\u884C\u4E86\u5916\u7F51\u6743\u5A01\u4FE1\u6E90\u6BD4\u5BF9\u4E0E ${sqlCalls.length} \u6B21\u5185\u7F51\u5E95\u5C42\u6570\u636E\u5E93\u7A7F\u900F\u626B\u63CF\u3002\u5185\u5916\u7F51\u6570\u636E\u6EAF\u6E90\u94FE\u8DEF\u900F\u660E\u5B8C\u6574\uFF0C\u6838\u5FC3\u4E1A\u52A1\u7ED3\u8BBA\u62E5\u6709\u5145\u5206\u7684\u4EA4\u53C9\u9A8C\u8BC1\u652F\u6491\uFF0C\u5B8C\u5168\u7B26\u5408\u653F\u52A1\u6570\u636E\u5408\u89C4\u5BA1\u8BA1\u89C4\u8303\u3002`;
+              return `\u901A\u8FC7\u5C06\u672C\u5730\u5E95\u5C42\u7269\u7406\u8868\u7684 ${sqlCalls.length} \u6B21\u7A7F\u900F\u67E5\u8BE2\u7ED3\u679C\u4E0E\u5916\u7F51\u68C0\u7D22\u4E8B\u5B9E\u8FDB\u884C\u4EA4\u53C9\u63A8\u7406\uFF0C\u7CFB\u7EDF\u5DF2\u5B8C\u6210\u591A\u7EF4\u6570\u636E\u7684\u903B\u8F91\u5BF9\u9F50\uFF0C\u5E76\u751F\u6210\u4E86\u6700\u7EC8\u7684\u7EFC\u5408\u89E3\u7B54\u94FE\u6761\u6295\u9012\u81F3\u4E3B\u754C\u9762\u3002`;
             } else if (sqlCalls.length > 0) {
               let rows = 0;
               sqlCalls.forEach((tc) => {
@@ -52344,14 +52353,14 @@ ${msg.views.view3}
                   if (rowMatch) rows += parseInt(rowMatch[1]);
                 }
               });
-              const rowStr = rows > 0 ? `\uFF0C\u5E76\u7CBE\u51C6\u63D0\u53D6\u4E86 ${rows} \u6761\u5E95\u5C42\u7269\u7406\u8BB0\u5F55` : "";
-              return `\u672C\u6B21\u5206\u6790\u4F9D\u6258\u6570\u636E\u7EDF\u7B79\u667A\u80FD\u4F53\uFF0C\u6210\u529F\u7A7F\u900F\u5E76\u5B8C\u6210\u4E86 ${sqlCalls.length} \u6B21\u5E95\u5C42\u4E1A\u52A1\u8868\u626B\u63CF${rowStr}\u3002\u6574\u4E2A\u8DE8\u57DF\u8C03\u6570\u4E0E\u89C4\u5219\u6E05\u6D17\u94FE\u8DEF\u5168\u7A0B\u5728\u5B89\u5168\u7F51\u5173\u5185\u95ED\u73AF\u6267\u884C\uFF0C\u6838\u5FC3\u6307\u6807\u62E5\u6709 100% \u7269\u7406\u4E8B\u5B9E\u652F\u6491\u4E0E\u7EDD\u5BF9\u6EAF\u6E90\u80FD\u529B\u3002`;
+              const rowStr = rows > 0 ? `\uFF0C\u6210\u529F\u63D0\u53D6\u5E76\u6E05\u6D17\u4E86 ${rows} \u6761\u6838\u5FC3\u8BB0\u5F55` : "";
+              return `\u57FA\u4E8E\u5BF9\u5E95\u5C42\u4E1A\u52A1\u5E93\u7684 ${sqlCalls.length} \u6B21\u6DF1\u5EA6\u626B\u63CF\u8FD0\u7B97${rowStr}\uFF0C\u903B\u8F91\u5F15\u64CE\u5DF2\u5B8C\u6210\u6240\u6709\u6570\u636E\u7684\u805A\u5408\u6821\u9A8C\uFF0C\u5E76\u636E\u6B64\u63A8\u7406\u5F62\u6210\u4E86\u786E\u5207\u7684\u6700\u7EC8\u7B54\u590D\u3002`;
             } else if (searchCalls.length > 0) {
-              return `\u672C\u6B21\u5916\u8054\u63A2\u67E5\u4E25\u683C\u901A\u8FC7\u653F\u52A1\u5B89\u5168\u7F51\u5173\u8C03\u7528\u4E86\u6743\u5A01\u516C\u5F00\u4FE1\u6E90\u3002\u63D0\u53D6\u8FC7\u7A0B\u4E0E\u8BF7\u6C42 payload \u5168\u7A0B\u53D7\u63A7\uFF0C\u4FE1\u606F\u6EAF\u6E90\u8DEF\u5F84\u6E05\u6670\u53EF\u67E5\u3002`;
+              return `\u6839\u636E\u5916\u7F51\u6743\u5A01\u516C\u5F00\u4FE1\u6E90\u7684\u68C0\u7D22\u53CD\u9988\uFF0C\u7CFB\u7EDF\u5DF2\u63D0\u53D6\u5173\u952E\u4FE1\u606F\u788E\u7247\u5E76\u5B8C\u6210\u4E0A\u4E0B\u6587\u8BED\u4E49\u878D\u5408\uFF0C\u63A8\u7406\u51FA\u4E86\u6700\u7EC8\u7684\u54A8\u8BE2\u89E3\u7B54\u3002`;
             } else if (lastMsg?.isMock) {
-              return "\u7ECF\u5E95\u5C42\u6570\u636E\u6E90\u5B89\u5168\u9759\u9ED8\u5DE1\u68C0\uFF0C\u5F53\u524D\u76EE\u6807\u8F96\u533A\u6682\u672A\u5339\u914D\u5230\u5BF9\u5E94\u7684\u589E\u91CF\u7269\u7406\u8D44\u4EA7\u53F0\u8D26\uFF08\u8BB0\u5F55\u6570\u4E3A0\uFF09\u3002\u5BA1\u8BA1\u5224\u5B9A\u6570\u636E\u65AD\u5C42\uFF0C\u5EFA\u8BAE\u89C6\u9700\u52A0\u8F7D\u66F4\u65B0\u5E74\u4EFD\u7684\u52A8\u6001\u5E95\u56FE\u6570\u636E\u8FDB\u884C\u4E8C\u6B21\u590D\u6838\u3002";
+              return "\u7ECF\u9759\u9ED8\u63A2\u6D4B\u5E95\u5C42\u8D44\u4EA7\u5E93\uFF0C\u672A\u53D1\u73B0\u5339\u914D\u7684\u589E\u91CF\u5B9E\u4F53\u8BB0\u5F55\uFF08\u5339\u914D\u6570\u4E3A0\uFF09\u3002\u63A8\u7406\u5F15\u64CE\u5DF2\u6839\u636E\u8BE5\u4E8B\u5B9E\u72B6\u6001\u751F\u6210\u4E86\u76F8\u5E94\u7684\u5F02\u5E38\u8BF4\u660E\u53CD\u9988\u7ED9\u7528\u6237\u3002";
             }
-            return "\u57FA\u4E8E\u5168\u57DF\u653F\u52A1\u77E5\u8BC6\u5E93\u7684\u672C\u5730\u8BED\u4E49\u89E3\u6790\u4E0E\u5B89\u5168\u89C4\u5219\u5339\u914D\u5DF2\u987A\u5229\u5B8C\u6210\u3002\u6574\u4E2A\u77E5\u8BC6\u6EAF\u6E90\u4E0E\u903B\u8F91\u63A8\u6F14\u8FC7\u7A0B\u900F\u660E\u53EF\u5BA1\uFF0C\u7B26\u5408\u7CFB\u7EDF\u5E73\u53F0\u5408\u89C4\u5BA1\u8BA1\u6807\u51C6\u3002";
+            return "\u57FA\u4E8E\u5BF9\u5168\u57DF\u653F\u52A1\u77E5\u8BC6\u5E93\u7684\u8BED\u4E49\u5339\u914D\u4E0E\u903B\u8F91\u63A8\u6F14\uFF0C\u7CFB\u7EDF\u5DF2\u63D0\u70BC\u51FA\u6838\u5FC3\u5173\u952E\u4FE1\u606F\uFF0C\u5E76\u6210\u529F\u6784\u5EFA\u4E86\u6700\u7EC8\u7684\u56DE\u590D\u94FE\u8DEF\u3002";
           })())), /* @__PURE__ */ React.createElement("div", { className: "mt-4 border-t border-slate-200 pt-3 flex flex-col items-center" }, /* @__PURE__ */ React.createElement("div", { className: "text-[11px] text-slate-500 mb-1.5" }, "\u5DF2\u6682\u5B58 ", /* @__PURE__ */ React.createElement("span", { className: "font-bold text-slate-700" }, Object.keys(stagedConditions).length), " \u5904\u6838\u67E5\u6761\u4EF6\u4FEE\u6539"), /* @__PURE__ */ React.createElement(
             "button",
             {
