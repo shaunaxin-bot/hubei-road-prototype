@@ -173,10 +173,10 @@
                             "请帮我梳理一下武汉市境内 G107 国道沿线所有的重点长大桥梁，我要看本季度它们的结构监测数据质量考核情况，并生成一份考核总单。"
                         </p>
                         <div class="bg-slate-50 border border-slate-200 rounded px-1.5 py-1 text-[8.5px] text-slate-700 leading-tight">
-                            📋 <span class="font-bold">结论：</span>识别武汉境内 G107 沿线 12 座长大桥梁（L24a），工况日志 97 条异常（src-43），WIM 超限 34 次（src-45），本季度质检评分均值 78.3，2 座桥梁列入重点复核清单。
+                            📋 <span class="font-bold">结论：</span>识别武汉境内 G107 沿线 12 座长大桥梁（L24a），工况日志 97 条异常（src-43），WIM 超限 34 次（src-45），核验养护工程施工台账 18 卷（L30b），本季度质检评分均值 78.3，2 座桥梁列入重点复核清单。
                         </div>
                         <div class="text-[8.5px] text-slate-400 font-mono border-t border-slate-100 pt-0.5 flex justify-between">
-                            <span>底表 src-10/11/43~46、L24a→role-3/role-4/role-0</span>
+                            <span>底表 src-10/11/43~46、L24a+L30b→role-3/role-4/role-0</span>
                             <span class="text-slate-800 font-bold">考核 ➔</span>
                         </div>
                     </div>
@@ -1855,11 +1855,11 @@
                 const label = document.getElementById('activeScenarioLabel');
                 if (label) label.innerText = '🚨 【应急业务】G107/G316 受灾路段 23 段 48.6km · L27 地灾点 7 处 · L29a 桩号 480 个 · L32 应急队伍 3 支';
             } else if (id === 2) {
-                // 场景2 养护业务：G107 长大桥 → L24a(桥梁健康) → 桥梁监测质量考核
+                // 场景2 养护业务：G107 长大桥 → L24a(桥梁资产) + L30b(养护工程) → 桥梁监测与养护质量考核
                 switchWorkspace('main');
-                highlightLineage(['l24a']);
+                highlightLineage(['l24a', 'l30b']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🛠️ 【养护业务】G107 沿线 12 座长大桥 · L24a 工况异常 97 条 · WIM 超限 34 次 · 质检均值 78.3 · 2 座重点复核';
+                if (label) label.innerText = '🛠️ 【养护业务】G107 沿线 12 座长大桥 · L24a 桥梁资产 + L30b 养护工程 · 工况异常 97 条 · WIM 超限 34 次 · 2 座重点复核';
                 const l24aEl = document.getElementById('ont-l24a');
                 if (l24aEl) l24aEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else if (id === 3) {
