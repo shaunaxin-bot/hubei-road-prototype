@@ -2011,96 +2011,145 @@
                 </div>
             `;
             box.innerHTML += userMsgHTML;
-            box.scrollTop = box.scrollHeight;
+            box.                ['ont-l32', 'role-12', '#ef4444', 'l32', 'role-12'],
+                ['role-12', 'role-6', '#ef4444', 'l32', 'role-12'],
 
-            setTimeout(() => {
-                const aiResponseHTML = `
-                    <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
-                        <div class="font-bold text-slate-900">🤖 AIP 场景智能体响应:</div>
-                        <div class="text-slate-700 leading-relaxed font-mono">
-                            指令 "${userText}" 已基于多年份拓扑动态演进引擎处理完成。
-                        </div>
-                    </div>
-                `;
-                box.innerHTML += aiResponseHTML;
-                box.scrollTop = box.scrollHeight;
-            }, 400);
-        }
+                // 挂载子节点的 SVG 拓扑分支线 (Sub-Node SVG Branches)
+                ['src-excel-43', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
+                ['src-excel-44', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
+                ['src-excel-45', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
+                ['ont-l24a', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
 
-        let isRightPanelCollapsed = true;
+                ['src-excel-46', 'ont-l30b-sub', '#0284c7', 'l30b', 'role-3'],
+                ['ont-l30b', 'ont-l30b-sub', '#0284c7', 'l30b', 'role-3'],
 
-        function toggleRightPanel() {
-            isRightPanelCollapsed = !isRightPanelCollapsed;
-            const rightPanel = document.getElementById('rightCotChatPanel');
-            const mainCanvas = document.getElementById('mainLineageCanvasPanel');
-            const btn = document.getElementById('toggleRightPanelBtn');
+                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections)
+                ['role-10', 'role-9', '#10b981', 'l26', 'role-10'],
+                ['role-10', 'role-4', '#10b981', 'l29a', 'role-10'],
+                ['role-10', 'role-6', '#ef4444', 'l32', 'role-10'],
+                ['role-10', 'role-0', '#f59e0b', 'l21', 'role-10']
+            ];
 
-            if (isRightPanelCollapsed) {
-                if (rightPanel) rightPanel.style.display = 'none';
-                if (mainCanvas) mainCanvas.className = "col-span-9 flex flex-col gap-2 min-h-0 overflow-y-auto";
-                if (btn) btn.innerHTML = "🤖 展开 AI 智能体日志 ◀";
-            } else {
-                if (rightPanel) rightPanel.style.display = 'flex';
-                if (mainCanvas) mainCanvas.className = "col-span-6 flex flex-col gap-2 min-h-0 overflow-y-auto";
-                if (btn) btn.innerHTML = "▶ 收起日志";
-            }
+            let pathsHTML = `
+                <defs>
+                    <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb" />
+                    </marker>
+                    <marker id="arrowhead-active" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#0284c7" />
+                    </marker>
+                </defs>
+            `;
 
-            requestAnimationFrame(() => setTimeout(drawConnectorLines, 100));
-        }
+            // 1. 绘制标准的节点连线
+            connections.forEach(([fromId, toId, defaultColor, code, roleId]) => {
+                const elFrom = document.getElementById(fromId);
+                const elTo = document.getElementById(toId);
 
-        function switchWorkspace(target) {
-            ['main', 'ds', 'oma', 'impact', 'writeback'].forEach(id => {
-                const viewEl = document.getElementById('view-' + id);
-                const navEl = document.getElementById('nav-' + id);
-                if (viewEl) viewEl.style.display = 'none';
-                if (navEl) navEl.className = "px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold";
+                if (elFrom && elTo && elFrom.offsetParent !== null && elTo.offsetParent !== null) {
+                    const r1 = elFrom.getBoundingClientRect();
+                    const r2 = elTo.getBoundingClientRect();
+
+                    let x1 = r1.right - cRect.left;
+                    let y1 = r1.top + r1.height / 2 - cRect.top + container.scrollTop;
+
+                    let x2 = r2.left - cRect.left;
+                    let y2 = r2.top + r2.height / 2 - cRect.top + container.scrollTop;
+
+                    let pathData = '';
+                    if (x2 > x1 + 10) {
+                        const dx = Math.abs(x2 - x1) * 0.45;
+                        pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+                    } else {
+                        // 子节点或同列线
+                        const maxX = cRect.width - 15;
+                        const loopX = Math.min(Math.max(r1.right, r2.right) - cRect.left + 18, maxX);
+                        pathData = `M ${r1.right - cRect.left} ${y1} C ${loopX} ${y1}, ${loopX} ${y2}, ${r2.right - cRect.left} ${y2}`;
+                    }
+
+                    let strokeColor = "#cbd5e1";
+                    let strokeWidth = "0.75";
+                    let opacity = "0.2";
+                    let dashArray = 'stroke-dasharray="4 4"';
+                    let extraClass = '';
+
+                    if (activeHighlightCode && activeHighlightCode.length > 0) {
+                        const isHit = activeHighlightCode.includes(code) || activeHighlightCode.includes(roleId);
+                        if (isHit) {
+                            strokeColor = "#2563eb";
+                            strokeWidth = "1.75";
+                            opacity = "0.95";
+                            dashArray = 'stroke-dasharray="8 4"';
+                            extraClass = 'class="active-flowing-line"';
+                        } else {
+                            opacity = "0.04";
+                        }
+                    }
+
+                    pathsHTML += `<path d="${pathData}" stroke="${strokeColor}" stroke-width="${strokeWidth}" ${dashArray} ${extraClass} opacity="${opacity}" fill="none" />`;
+                }
             });
 
-            const targetView = document.getElementById('view-' + target);
-            const targetNav = document.getElementById('nav-' + target);
+            // 2. 当存在“多本体组合”时，直接在 SVG 图谱画板上绘制【多本体跨节点弧形桥接线】与【组合包围框】
+            if (activeHighlightCode && activeHighlightCode.length > 1) {
+                const hitOntEls = [];
+                activeHighlightCode.forEach(c => {
+                    const el = document.getElementById(`ont-${c}`);
+                    if (el && el.offsetParent !== null) hitOntEls.push({ code: c, el: el });
+                });
 
-            if (targetView) {
-                if (target === 'main') {
-                    targetView.style.display = 'grid';
-                } else {
-                    targetView.style.display = 'flex';
-                }
-            }
+                if (hitOntEls.length > 1) {
+                    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
 
-            if (targetNav) {
-                targetNav.className = "workspace-nav-active px-3 py-1 bg-blue-600 text-white rounded font-bold border border-blue-600 shadow-2xs";
-            }
+                    // 计算所有被组合本体的外包围矩形
+                    hitOntEls.forEach(({ el }) => {
+                        const r = el.getBoundingClientRect();
+                        const x = r.left - cRect.left;
+                        const y = r.top - cRect.top + container.scrollTop;
+                        minX = Math.min(minX, x);
+                        minY = Math.min(minY, y);
+                        maxX = Math.max(maxX, x + r.width);
+                        maxY = Math.max(maxY, y + r.height);
+                    });
 
-            if (target === 'oma') {
-                switchOntologyTier('l24a');
-                renderSchemaEvolutionTable();
-            }
+                    // 绘制 SVG 组合包围框 (SVG Multi-Ontology Cluster Box)
+                    const pad = 6;
+                    const boxX = minX - pad;
+                    const boxY = minY - pad;
+                    const boxW = (maxX - minX) + pad * 2;
+                    const boxH = (maxY - minY) + pad * 2;
 
-            if (target === 'main') {
-                requestAnimationFrame(() => setTimeout(drawConnectorLines, 50));
-            }
-        }
+                    pathsHTML += `
+                        <g class="svg-multi-combo-group">
+                            <rect x="${boxX}" y="${boxY}" width="${boxW}" height="${boxH}" rx="8" ry="8" 
+                                  fill="#eff6ff" fill-opacity="0.35" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="6 3" class="active-flowing-line" />
+                            <rect x="${boxX}" y="${boxY - 14}" width="165" height="15" rx="4" fill="#2563eb" />
+                            <text x="${boxX + 5}" y="${boxY - 3}" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace">🔗 多本体联合推演集群</text>
+                        </g>
+                    `;
 
-        let currentLineageYearMode = 'full';
+                    // 在组合本体节点之间画 SVG 双向弧形桥接线 (Inter-Ontology SVG Bridge Line)
+                    for (let i = 0; i < hitOntEls.length - 1; i++) {
+                        const rA = hitOntEls[i].el.getBoundingClientRect();
+                        const rB = hitOntEls[i+1].el.getBoundingClientRect();
+                        const xA = rA.left - cRect.left + rA.width / 2;
+                        const yA = rA.top - cRect.top + container.scrollTop + rA.height / 2;
+                        const xB = rB.left - cRect.left + rB.width / 2;
+                        const yB = rB.top - cRect.top + container.scrollTop + rB.height / 2;
 
-        function switchLineageMode(mode) {
-            currentLineageYearMode = mode;
-            ['full', '2025', '2019'].forEach(m => {
-                const btn = document.getElementById('mode-btn-' + m);
-                if (btn) {
-                    if (m === mode) {
-                        btn.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-blue-600 text-white shadow-2xs";
-                    } else {
-                        btn.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-700 hover:bg-slate-300";
+                        const arcX = Math.min(xA, xB) - 28;
+                        const bridgePath = `M ${xA} ${yA} C ${arcX} ${yA}, ${arcX} ${yB}, ${xB} ${yB}`;
+
+                        pathsHTML += `
+                            <path d="${bridgePath}" stroke="#0284c7" stroke-width="2" stroke-dasharray="4 2" fill="none" opacity="0.9" class="active-flowing-line" />
+                            <circle cx="${arcX}" cy="${(yA + yB)/2}" r="3" fill="#0284c7" class="animate-ping" />
+                        `;
                     }
                 }
-            });
+            }
 
-            const col1Badge = document.getElementById('col1-year-badge');
-            const col2Badge = document.getElementById('col2-version-badge');
-            const label = document.getElementById('activeScenarioLabel');
-
-            // Apply opacity and border highlights to cards
+            svg.innerHTML = pathsHTML;
+        }   // Apply opacity and border highlights to cards
             for (let i = 1; i <= 42; i++) {
                 const el = document.getElementById('src-excel-' + i);
                 if (el) {
