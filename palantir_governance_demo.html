@@ -2344,10 +2344,10 @@
                 for (let i = 0; i < hitOntEls.length - 1; i++) {
                     const rA = hitOntEls[i].el.getBoundingClientRect();
                     const rB = hitOntEls[i+1].el.getBoundingClientRect();
-                    const xA = rA.left - cRect.left + rA.width / 2;
-                    const yA = rA.top - cRect.top + container.scrollTop + rA.height / 2;
-                    const xB = rB.left - cRect.left + rB.width / 2;
-                    const yB = rB.top - cRect.top + container.scrollTop + rB.height / 2;
+                    const xA = rA.left - svgRect.left + (rA.width / 2);
+                    const yA = rA.top - svgRect.top + (rA.height / 2);
+                    const xB = rB.left - svgRect.left + (rB.width / 2);
+                    const yB = rB.top - svgRect.top + (rB.height / 2);
 
                     const arcX = Math.min(xA, xB) - 28;
                     const bridgePath = `M ${xA} ${yA} C ${arcX} ${yA}, ${arcX} ${yB}, ${xB} ${yB}`;
