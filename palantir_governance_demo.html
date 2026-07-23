@@ -246,10 +246,10 @@
 
             <!-- 2. 中间：Palantir SVG 全景血缘拓扑大盘 (全量 42 张底表与 17 套国标 L 码矩阵) -->
             <main id="mainLineageCanvasPanel" class="col-span-9 flex flex-col min-h-0 overflow-hidden">
-                <div class="bg-white border border-slate-200 rounded shadow-2xs flex flex-col font-sans overflow-hidden relative flex-1 h-full">
+                <div id="lineageCanvasWrapper" class="bg-white border border-slate-200 rounded shadow-2xs flex flex-col font-sans overflow-hidden relative flex-1 h-full">
+                    <svg id="svgOverlay" class="absolute inset-0 w-full h-full pointer-events-none z-20" style="top:0;left:0;"></svg>
                     
                     <div id="lineageCanvas" class="flex-1 lineage-container relative overflow-y-auto p-3 bg-white">
-                        <svg id="svgOverlay" class="absolute inset-0 w-full h-full pointer-events-none z-20"></svg>
 
                         <div class="grid grid-cols-12 gap-3 relative z-10 text-xs">
                             
@@ -2188,12 +2188,14 @@
 
         function drawConnectorLines() {
             const container = document.getElementById('lineageCanvas');
+            const wrapper = document.getElementById('lineageCanvasWrapper');
             const svg = document.getElementById('svgOverlay');
             if (!container || !svg) return;
 
-            const cRect = container.getBoundingClientRect();
+            // SVG now lives in the non-scrolling wrapper, so use wrapper rect as coordinate origin
+            const cRect = (wrapper || container).getBoundingClientRect();
             svg.setAttribute('width', cRect.width);
-            svg.setAttribute('height', container.scrollHeight);
+            svg.setAttribute('height', cRect.height);
 
             const connections = [
                 // Column 1 (42张Excel) -> Column 2 (L码套表)
@@ -2294,11 +2296,12 @@
                     const r1 = elFrom.getBoundingClientRect();
                     const r2 = elTo.getBoundingClientRect();
 
+                    // Coordinates relative to non-scrolling wrapper – no scrollTop needed
                     let x1 = r1.right - cRect.left;
-                    let y1 = r1.top + r1.height / 2 - cRect.top + container.scrollTop;
+                    let y1 = r1.top + r1.height / 2 - cRect.top;
 
                     let x2 = r2.left - cRect.left;
-                    let y2 = r2.top + r2.height / 2 - cRect.top + container.scrollTop;
+                    let y2 = r2.top + r2.height / 2 - cRect.top;
 
                     let pathData = '';
                     if (x2 > x1 + 10) {
@@ -2482,15 +2485,10 @@
 
         function closeLineageFullscreenModal() {
             const modal = document.getElementById('lineageFullscreenModal');
-            const targetContainer = document.getElementById('mainLineageCanvasPanel');
+            const wrapper = document.getElementById('lineageCanvasWrapper');
             const canvasEl = document.getElementById('lineageCanvas');
-            if (modal && targetContainer && canvasEl) {
-                const innerBox = targetContainer.querySelector('.bg-white.border');
-                if (innerBox) {
-                    innerBox.appendChild(canvasEl);
-                } else {
-                    targetContainer.appendChild(canvasEl);
-                }
+            if (modal && wrapper && canvasEl) {
+                wrapper.appendChild(canvasEl);
                 modal.classList.add('hidden');
                 modal.style.display = 'none';
                 requestAnimationFrame(() => setTimeout(drawConnectorLines, 100));
@@ -2511,7 +2509,7 @@
 
             const canvas = document.getElementById('lineageCanvas');
             if (canvas) {
-                canvas.addEventListener('scroll', drawConnectorLines);
+                canvas.addEventListener('scroll', () => requestAnimationFrame(drawConnectorLines));
             }
         });
         window.addEventListener('resize', drawConnectorLines);
