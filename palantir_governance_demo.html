@@ -576,10 +576,24 @@
                                     3. 1+9+3 政企部门协同
                                 </div>
                                 <div class="space-y-1.5 flex-1">
+                                    <!-- 1. 数据统筹分组 -->
+                                    <div class="text-[9px] font-bold text-amber-700 bg-amber-50/80 px-2 py-0.5 rounded border border-amber-200/60 flex items-center justify-between">
+                                        <span>🏛️ 1 数据统筹</span>
+                                        <span class="text-[8px] font-normal text-amber-600">归口与汇总</span>
+                                    </div>
                                     <div id="role-0" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-0')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
                                         <span class="text-slate-900">🏛️ 00 数据统筹部门</span>
-                                        <span class="text-[8px] bg-slate-100 text-slate-700 px-1 rounded font-bold">主骨架</span>
+                                        <span class="text-[8px] bg-amber-100 text-amber-800 px-1 rounded font-bold">主骨架</span>
                                     </div>
+
+                                    <!-- 分割线 1：数据统筹 ➔ 9 大政府部门 -->
+                                    <div class="my-2 border-t-2 border-slate-200/80 pt-1.5 flex items-center justify-between">
+                                        <span class="font-bold text-[9px] text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60 flex items-center gap-1">
+                                            <span>🏛️ 9 政府部门 / 业务处室</span>
+                                        </span>
+                                        <span class="text-[8px] text-slate-400 font-mono">业务管辖</span>
+                                    </div>
+
                                     <div id="role-1" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-1')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
                                         <span class="text-slate-900">🏛️ 01 规划计划处</span>
                                     </div>
@@ -608,10 +622,10 @@
                                         <span class="text-slate-900">🏛️ 09 运营管理处</span>
                                     </div>
 
-                                    <!-- 1+9 与 3 政企/直属单位分割线 -->
-                                    <div class="my-1.5 border-t-2 border-dashed border-slate-300 pt-1 pb-0.5 flex items-center justify-between">
-                                        <span class="font-bold text-[9px] text-slate-500 flex items-center gap-1">
-                                            <span>🏭 3 大政企/直属单位</span>
+                                    <!-- 分割线 2：9 大政府部门 ➔ 3 大企事业/直属单位 -->
+                                    <div class="my-2 border-t-2 border-slate-200/80 pt-1.5 flex items-center justify-between">
+                                        <span class="font-bold text-[9px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60 flex items-center gap-1">
+                                            <span>🏭 3 企事业 / 直属单位</span>
                                         </span>
                                         <span class="text-[8px] text-slate-400 font-mono">协同落库</span>
                                     </div>
