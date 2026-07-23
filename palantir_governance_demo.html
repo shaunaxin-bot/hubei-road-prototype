@@ -1997,14 +1997,33 @@
                 // 1. 自动切到主图谱
                 switchWorkspace('main');
 
-                // 2. 高亮对应图谱路径
+                // 2. 高亮对应图谱路径 (SVG 连线)
                 highlightLineage(targetCodes);
 
-                // 3. 图谱平滑定位滚动
-                const el = document.getElementById(targetElementId);
-                if (el) {
-                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // 3. 高亮 HTML 卡片节点 (增加视觉光环与动画)
+                // 移除所有旧高亮
+                document.querySelectorAll('.ai-target-highlight').forEach(node => {
+                    node.classList.remove('ai-target-highlight', 'ring-4', 'ring-blue-500', 'bg-blue-100', 'scale-105', 'shadow-lg');
+                });
+
+                targetCodes.forEach(code => {
+                    const card = document.getElementById('ont-' + code);
+                    if (card) {
+                        card.classList.add('ai-target-highlight', 'ring-4', 'ring-blue-500', 'bg-blue-100', 'scale-105', 'shadow-lg');
+                    }
+                });
+
+                // 4. 精确平滑滚动居中并刷新动线
+                const canvas = document.getElementById('lineageCanvas');
+                const targetEl = document.getElementById(targetElementId);
+                if (canvas && targetEl) {
+                    const targetTop = targetEl.offsetTop - canvas.clientHeight / 2 + targetEl.clientHeight / 2;
+                    canvas.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
                 }
+
+                // 延迟刷新动线，确保滚动停止后连线 100% 对齐
+                setTimeout(drawConnectorLines, 200);
+                setTimeout(drawConnectorLines, 500);
 
                 // 4. 更新顶部状态与气泡
                 const activeLabel = document.getElementById('activeScenarioLabel');
