@@ -2000,20 +2000,7 @@
                 // 2. 高亮对应图谱路径 (SVG 连线)
                 highlightLineage(targetCodes);
 
-                // 3. 高亮 HTML 卡片节点 (增加视觉光环与动画)
-                // 移除所有旧高亮
-                document.querySelectorAll('.ai-target-highlight').forEach(node => {
-                    node.classList.remove('ai-target-highlight', 'ring-4', 'ring-blue-500', 'bg-blue-100', 'scale-105', 'shadow-lg');
-                });
-
-                targetCodes.forEach(code => {
-                    const card = document.getElementById('ont-' + code);
-                    if (card) {
-                        card.classList.add('ai-target-highlight', 'ring-4', 'ring-blue-500', 'bg-blue-100', 'scale-105', 'shadow-lg');
-                    }
-                });
-
-                // 4. 精确平滑滚动居中并刷新动线
+                // 3. 精确平滑滚动居中并刷新动线
                 const canvas = document.getElementById('lineageCanvas');
                 const targetEl = document.getElementById(targetElementId);
                 if (canvas && targetEl) {
@@ -2323,38 +2310,6 @@
         function highlightLineage(code) {
             // Accept single string or array of strings
             activeHighlightCode = Array.isArray(code) ? code : [code];
-
-            const hitSet = new Set(activeHighlightCode);
-
-            // 1. 全局卡片节点强对比视觉处理 (命中大幅突出，未命中极度暗化)
-            const allOntCodes = ['l21', 'l22', 'l23', 'l24a', 'l24b', 'l25', 'l26', 'l27', 'l28', 'l29a', 'l30a', 'l30b', 'l30c', 'l31a', 'l31b', 'l31c', 'l32'];
-
-            allOntCodes.forEach(c => {
-                const el = document.getElementById('ont-' + c);
-                if (el) {
-                    if (hitSet.has(c)) {
-                        el.style.opacity = '1';
-                        el.classList.add('ring-4', 'ring-blue-600', 'bg-blue-100', 'scale-110', 'shadow-xl', 'z-20', 'font-extrabold');
-                    } else {
-                        el.style.opacity = '0.15';
-                        el.classList.remove('ring-4', 'ring-blue-600', 'bg-blue-100', 'scale-110', 'shadow-xl', 'z-20', 'font-extrabold');
-                    }
-                }
-            });
-
-            // 2. 42 张底表卡片高亮与淡化
-            for (let i = 1; i <= 46; i++) {
-                const srcEl = document.getElementById('src-excel-' + i);
-                if (srcEl) {
-                    // 如果有高亮项，非命中底表适当暗化
-                    if (activeHighlightCode && activeHighlightCode.length > 0) {
-                        srcEl.style.opacity = '0.35';
-                    } else {
-                        srcEl.style.opacity = '1';
-                    }
-                }
-            }
-
             drawConnectorLines();
         }
 
@@ -2365,19 +2320,6 @@
 
         function resetLineageHighlight() {
             activeHighlightCode = null;
-            // 还原所有 DOM 节点的暗化与高亮
-            const allOntCodes = ['l21', 'l22', 'l23', 'l24a', 'l24b', 'l25', 'l26', 'l27', 'l28', 'l29a', 'l30a', 'l30b', 'l30c', 'l31a', 'l31b', 'l31c', 'l32'];
-            allOntCodes.forEach(c => {
-                const el = document.getElementById('ont-' + c);
-                if (el) {
-                    el.style.opacity = '1';
-                    el.classList.remove('ring-4', 'ring-blue-600', 'bg-blue-100', 'scale-110', 'shadow-xl', 'z-20', 'font-extrabold');
-                }
-            });
-            for (let i = 1; i <= 46; i++) {
-                const srcEl = document.getElementById('src-excel-' + i);
-                if (srcEl) srcEl.style.opacity = '1';
-            }
             drawConnectorLines();
         }
 
