@@ -3549,15 +3549,15 @@
             goToDemoStep(1);
             renderSchemaEvolutionTable();
             if (typeof switchStudioScenario === 'function') switchStudioScenario(1);
-            if (typeof loadOntologyToEditor === 'function') loadOntologyToEditor('l24a');
+            if (typeof loadOntologyToEditor === 'function') loadOntologyToEditor('l27');
         });
         window.addEventListener('load', () => {
             switchBaseline('full');
             goToDemoStep(1);
             renderSchemaEvolutionTable();
             if (typeof switchStudioScenario === 'function') switchStudioScenario(1);
-            if (typeof loadOntologyToEditor === 'function') loadOntologyToEditor('l24a');
-            selectScenario(2);
+            if (typeof loadOntologyToEditor === 'function') loadOntologyToEditor('l27');
+            if (typeof selectScenario === 'function') selectScenario(1);
             setTimeout(drawConnectorLines, 200);
 
             const canvas = document.getElementById('lineageCanvas');
