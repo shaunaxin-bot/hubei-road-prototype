@@ -2415,7 +2415,8 @@
                 ['role-10', 'role-0', '#f59e0b', 'l21', 'role-10']   // 高速企业 ➔ 00 数据统筹 (政企数据归口与年报主表落库)
             ];
 
-            // Duplicate function removed to allow primary drawConnectorLines to take effect
+            svg.innerHTML = pathsHTML;
+        }
 
         function openLineageFullscreenModal() {
             const modal = document.getElementById('lineageFullscreenModal');
