@@ -2049,7 +2049,63 @@
                 </div>
             `;
             box.innerHTML += userMsgHTML;
-            box.                ['ont-l32', 'role-12', '#ef4444', 'l32', 'role-12'],
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function drawConnectorLines() {
+            const container = document.getElementById('lineageCanvas');
+            const svg = document.getElementById('svgOverlay');
+            if (!container || !svg) return;
+
+            const cRect = container.getBoundingClientRect();
+            svg.setAttribute('width', cRect.width);
+            svg.setAttribute('height', container.scrollHeight);
+
+            const connections = [
+                // Column 1 (42张Excel) -> Column 2 (L码套表)
+                ['src-excel-1', 'ont-l21', '#2563eb', 'l21', 'role-0'],
+                ['src-excel-2', 'ont-l21', '#2563eb', 'l21', 'role-0'],
+                ['src-excel-3', 'ont-l21', '#2563eb', 'l21', 'role-0'],
+                ['src-excel-4', 'ont-l22', '#2563eb', 'l22', 'role-0'],
+                ['src-excel-5', 'ont-l23', '#2563eb', 'l23', 'role-0'],
+                ['src-excel-6', 'ont-l24a', '#2563eb', 'l24a', 'role-3'],
+                ['src-excel-7', 'ont-l24b', '#2563eb', 'l24b', 'role-3'],
+                ['src-excel-8', 'ont-l25', '#2563eb', 'l25', 'role-3'],
+                ['src-excel-9', 'ont-l26', '#2563eb', 'l26', 'role-9'],
+                ['src-excel-10', 'ont-l27', '#ef4444', 'l27', 'role-6'],
+                ['src-excel-11', 'ont-l28a', '#2563eb', 'l28a', 'role-1'],
+                ['src-excel-12', 'ont-l28b', '#2563eb', 'l28b', 'role-1'],
+                ['src-excel-13', 'ont-l29a', '#ef4444', 'l29a', 'role-4'],
+                ['src-excel-14', 'ont-l29b', '#2563eb', 'l29b', 'role-4'],
+                ['src-excel-15', 'ont-l30a', '#10b981', 'l30a', 'role-3'],
+                ['src-excel-16', 'ont-l30b', '#10b981', 'l30b', 'role-3'],
+                ['src-excel-17', 'ont-l30c', '#10b981', 'l30c', 'role-3'],
+                ['src-excel-18', 'ont-l31a', '#10b981', 'l31a', 'role-3'],
+                ['src-excel-19', 'ont-l31b', '#10b981', 'l31b', 'role-3'],
+                ['src-excel-20', 'ont-l31c', '#10b981', 'l31c', 'role-3'],
+                ['src-excel-21', 'ont-l32', '#ef4444', 'l32', 'role-6'],
+
+                // Column 2 (L码套表) -> Column 3 (10大业务处室 Agent)
+                ['ont-l21', 'role-0', '#2563eb', 'l21', 'role-0'],
+                ['ont-l22', 'role-0', '#2563eb', 'l22', 'role-0'],
+                ['ont-l23', 'role-0', '#2563eb', 'l23', 'role-0'],
+                ['ont-l24a', 'role-3', '#2563eb', 'l24a', 'role-3'],
+                ['ont-l24b', 'role-3', '#2563eb', 'l24b', 'role-3'],
+                ['ont-l25', 'role-3', '#2563eb', 'l25', 'role-3'],
+                ['ont-l26', 'role-9', '#2563eb', 'l26', 'role-9'],
+                ['ont-l27', 'role-6', '#ef4444', 'l27', 'role-6'],
+                ['ont-l28a', 'role-1', '#2563eb', 'l28a', 'role-1'],
+                ['ont-l28b', 'role-1', '#2563eb', 'l28b', 'role-1'],
+                ['ont-l29a', 'role-4', '#ef4444', 'l29a', 'role-4'],
+                ['ont-l29b', 'role-4', '#2563eb', 'l29b', 'role-4'],
+                ['ont-l30a', 'role-3', '#10b981', 'l30a', 'role-3'],
+                ['ont-l30b', 'role-3', '#10b981', 'l30b', 'role-3'],
+                ['ont-l30c', 'role-3', '#10b981', 'l30c', 'role-3'],
+                ['ont-l31a', 'role-3', '#10b981', 'l31a', 'role-3'],
+                ['ont-l31b', 'role-3', '#10b981', 'l31b', 'role-3'],
+                ['ont-l31c', 'role-3', '#10b981', 'l31c', 'role-3'],
+                ['ont-l32', 'role-6', '#ef4444', 'l32', 'role-6'],
+                ['ont-l32', 'role-12', '#ef4444', 'l32', 'role-12'],
                 ['role-12', 'role-6', '#ef4444', 'l32', 'role-12'],
 
                 // 挂载子节点的 SVG 拓扑分支线 (Sub-Node SVG Branches)
@@ -2162,7 +2218,14 @@
             }
 
             svg.innerHTML = pathsHTML;
-        }   // Apply opacity and border highlights to cards
+        }
+
+        function switchBaseline(mode) {
+            const col1Badge = document.getElementById('col1BaselineBadge');
+            const col2Badge = document.getElementById('col2BaselineBadge');
+            const label = document.getElementById('activeScenarioLabel');
+
+            // Apply opacity and border highlights to cards
             for (let i = 1; i <= 42; i++) {
                 const el = document.getElementById('src-excel-' + i);
                 if (el) {
