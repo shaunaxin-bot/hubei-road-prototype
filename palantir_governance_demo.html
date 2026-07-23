@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -2302,7 +2302,26 @@
             activeHighlightCode = null;
             drawConnectorLines();
         }
-function openLineageFullscreenModal() {
+
+        function switchWorkspace(mode) {
+            const workspaces = ['main', 'ds', 'oma', 'impact', 'writeback'];
+            workspaces.forEach(w => {
+                const panel = document.getElementById('workspace-' + w);
+                const nav = document.getElementById('nav-' + w);
+                if (panel) panel.style.display = (w === mode) ? '' : 'none';
+                if (nav) {
+                    nav.className = nav.className.replace('workspace-nav-active', '').trim();
+                    if (w === mode) nav.className += ' workspace-nav-active';
+                }
+            });
+            setTimeout(drawConnectorLines, 100);
+        }
+
+        function switchOntologyTier(tier) {
+            highlightLineage(tier);
+        }
+
+        function openLineageFullscreenModal() {
             const modal = document.getElementById('lineageFullscreenModal');
             const targetContainer = document.getElementById('fullscreenCanvasContainer');
             const canvasEl = document.getElementById('lineageCanvas');
