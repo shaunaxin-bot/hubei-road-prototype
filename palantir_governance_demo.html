@@ -1932,23 +1932,38 @@
             }
             if (id === 1) {
                 // 场景1 应急业务：气象预警 → L27(灾害点) + L29a(路况桩号) + L32(应急队伍) + 跨委办局协同 (15气象局/16应急厅/17资规厅/18交管局)
+                switchWorkspace('main');
                 highlightLineage(['l27', 'l29a', 'l32', 'role-15', 'role-16', 'role-17', 'role-18', 'role-12']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🚨 【应急业务跨委办局协同】15 气象局预警 ➔ 17 自然资源厅地灾点(L27) ➔ 18 公安交管局封路管制(L29a) ➔ 16 应急管理厅 ↔ 12 应急处置中心(L32)';
+                if (label) label.innerText = '🚨 【场景1：应急业务跨委办局协同】15 气象局预警 ➔ 17 自然资源厅地灾点(L27) ➔ 18 公安交管局封路(L29a) ➔ 16 应急管理厅 ↔ 12 应急处置中心(L32)';
+                
+                const infoContent = document.getElementById('multi-combo-info-content');
+                if (infoContent) {
+                    infoContent.innerHTML = `
+                        <div class="space-y-0.5 mt-0.5">
+                            <div>⛈️ <span class="font-bold text-slate-900">外部感知链：</span>15 气象局暴雨预警 + 17 自然资源厅 📄 [L27] 地质灾害点</div>
+                            <div>🚧 <span class="font-bold text-blue-800">交通管制与路况：</span>18 公安交管局对 G107 K120+500 实施封路 📄 [L29a] 路况桩号</div>
+                            <div class="text-rose-900 font-bold bg-rose-50 p-0.5 rounded border border-rose-200">🚨 <span class="font-bold">三链联动处置：</span>16 应急管理厅指令 ↔ 12 应急处置中心派出 3 支队伍 📄 [L32] 抢通险情</div>
+                        </div>
+                    `;
+                }
+
+                const l27El = document.getElementById('ont-l27');
+                if (l27El) l27El.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else if (id === 2) {
                 // 场景2 长大桥梁：年报骨架 L24a + L28(监测) + L30b(工程) ➔ 10高速/13检测/19设计院/20监测设备商/04养护处
                 switchWorkspace('main');
                 highlightLineage(['l24a', 'l28', 'l30b', 'role-10', 'role-13', 'role-19', 'role-20', 'role-4', 'role-3']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🌉 【长大桥梁多方协同】10 高速企业 ➔ 20 监测设备商(L28) ➔ 13 专检测企业 ➔ 19 设计科研院所复核 ➔ 04 养护处加固(L30b)';
+                if (label) label.innerText = '🌉 【场景2：长大桥梁多方协同演进】10 高速企业 ➔ 20 监测设备商(L28) ➔ 13 专检测企业 ➔ 19 设计科研院所复核 ➔ 04 养护处加固(L30b)';
                 
                 const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
                     infoContent.innerHTML = `
                         <div class="space-y-0.5 mt-0.5">
                             <div>🏛️ <span class="font-bold text-slate-900">年报骨架基线：</span>📄 [L24a] 公路桥梁 (12座长大桥，2座四类危桥)</div>
-                            <div>🔄 <span class="font-bold text-emerald-800">动态养护与监测：</span>📄 [L28] 结构物监测 + [L30b] 养护工程台账</div>
-                            <div class="text-blue-900 font-bold bg-blue-100/80 p-0.5 rounded border border-blue-200">🧬 <span class="font-bold">多方协同成果：</span>20监测设备预警 ➔ 19设计院方案复核 ➔ 14施工加固，评分 78.3 ➔ 92.0</div>
+                            <div>📡 <span class="font-bold text-emerald-800">动态监测与验算：</span>📄 [L28] 20 监测设备商 + 19 设计科研院所极限承载力复核</div>
+                            <div class="text-blue-900 font-bold bg-blue-100/80 p-0.5 rounded border border-blue-200">🧬 <span class="font-bold">多方协同成果：</span>04 养护处加固投入 4,200万元 📄 [L30b]，质检评分 78.3 ➔ 92.0 (+17.5%)</div>
                         </div>
                     `;
                 }
@@ -1960,13 +1975,39 @@
                 switchWorkspace('main');
                 highlightLineage(['l29a', 'l30a', 'l30b', 'role-11', 'role-13', 'role-14', 'role-21', 'role-4']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🛣️ 【路检桩号AI自动巡检协同】21 AI自动巡检服务商(激光雷达车) ➔ 13 专检测企业标定 ➔ 📄 L29a 路况桩号 ➔ 14 养护施工修补(L30a)';
+                if (label) label.innerText = '🛣️ 【场景3：路检桩号AI自动巡检协同】21 AI自动巡检服务商(激光雷达车) ➔ 13 专检测企业标定 ➔ 📄 L29a 路况桩号 ➔ 14 养护施工修补(L30a)';
+                
+                const infoContent = document.getElementById('multi-combo-info-content');
+                if (infoContent) {
+                    infoContent.innerHTML = `
+                        <div class="space-y-0.5 mt-0.5">
+                            <div>🚗 <span class="font-bold text-slate-900">AI 自动感知：</span>21 AI巡检服务商车载相机/激光雷达 ➔ 自动化采集路面破损</div>
+                            <div>📍 <span class="font-bold text-indigo-800">桩号匹配标定：</span>13 专检测企业标定 📄 [L29a] 路况桩号 (480个点位)</div>
+                            <div class="text-emerald-900 font-bold bg-emerald-50 p-0.5 rounded border border-emerald-200">🔧 <span class="font-bold">养护闭环修补：</span>04 养护处派发台账 📄 [L30a]，14 养护施工企业完成坑槽补修</div>
+                        </div>
+                    `;
+                }
+
+                const l29aEl = document.getElementById('ont-l29a');
+                if (l29aEl) l29aEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else if (id === 4) {
                 // 场景4 桩号匹配：L21标准排桩 + L29a日常检测 → 偏差校正
                 switchWorkspace('main');
-                highlightLineage(['l21', 'l29a']);
+                highlightLineage(['l21', 'l29a', 'role-5', 'role-0']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '📍 【桩号匹配】L21 标准排桩 ↔ L29a 日常检测 · 偏差 >50m 路段 86 处 · 空间校正关系表 → role-5/role-0 落库';
+                if (label) label.innerText = '📍 【场景4：桩号空间坐标偏差校正】📄 L21 标准排桩 ↔ 📄 L29a 日常检测 · 偏差 >50m 路段 86 处 · 校正落库 ➔ 00数据统筹/05农路处';
+                
+                const infoContent = document.getElementById('multi-combo-info-content');
+                if (infoContent) {
+                    infoContent.innerHTML = `
+                        <div class="space-y-0.5 mt-0.5">
+                            <div>📏 <span class="font-bold text-slate-900">空间参考对齐：</span>📄 [L21] 标准排桩 ↔ 📄 [L29a] 业务部门日常检测桩号</div>
+                            <div>🔍 <span class="font-bold text-amber-800">偏差智能诊断：</span>AI 自动解算 86 处路线改扩建导致的桩号偏移 (>50m)</div>
+                            <div class="text-purple-900 font-bold bg-purple-50 p-0.5 rounded border border-purple-200">💾 <span class="font-bold">映射关系落库：</span>生成通用空间校正映射表，供 00 数据统筹部门全域同步</div>
+                        </div>
+                    `;
+                }
+
                 const l21El = document.getElementById('ont-l21');
                 if (l21El) l21El.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
@@ -1995,42 +2036,89 @@
                 let targetCodes = ['l21'];
                 let targetElementId = 'ont-l21';
                 let replyMsg = '';
+                let aiScenarioTitle = `🤖 【AIP 智能问答】"${query}" ➔ 物理本体图谱解析`;
+                let aiInfoHtml = '';
 
                 // 智能语义识别与血缘解算
                 if (/桥|监测|健康|WIM|重载|工况|考核|桥梁/i.test(query)) {
-                    targetCodes = ['l24a'];
+                    targetCodes = ['l24a', 'l28', 'l30b', 'role-10', 'role-13', 'role-19', 'role-20', 'role-4'];
                     targetElementId = 'ont-l24a';
-                    replyMsg = `已定位桥梁检测分析拓扑。穿透物理底表 <span class="font-mono font-bold">src-10/11/43~46</span> ➔ 本体 <span class="font-mono font-bold">L24a(桥梁健康检测)</span>。涉及：工程技术处(03)/养护管理处(04)。`;
+                    replyMsg = `已定位桥梁健康与监测拓扑。穿透物理底表 <span class="font-mono font-bold">src-10/11/43~46</span> ➔ 本体 <span class="font-mono font-bold">L24a(桥梁)/L28(监测)/L30b(工程)</span>。涉及：03工程处/04养护处/20监测设备商/19设计院。`;
+                    aiScenarioTitle = `🤖 【AIP 问答穿透】全省公路桥梁健康检测、监测与加固台账联动`;
+                    aiInfoHtml = `
+                        <div class="space-y-0.5 mt-0.5">
+                            <div>🔍 <span class="font-bold text-slate-900">问答意图解算：</span>穿透 42 张底表中的桥梁健康定检与传感器监测数据</div>
+                            <div>🌉 <span class="font-bold text-blue-800">关联本体节点：</span>📄 [L24a] 桥梁骨架 ↔ 📄 [L28] 结构物监测 ↔ 📄 [L30b] 养护工程</div>
+                            <div class="text-blue-900 font-bold bg-blue-100/80 p-0.5 rounded border border-blue-200">🤝 <span class="font-bold">协同 Agent：</span>03 工程技术处 · 04 养护处 · 20 监测设备商 · 19 设计科研院所</div>
+                        </div>
+                    `;
                 } else if (/气象|汛期|暴雨|预警|地灾|应急|灾害|救援|积水|险情/i.test(query)) {
-                    targetCodes = ['l27', 'l29a', 'l32'];
+                    targetCodes = ['l27', 'l29a', 'l32', 'role-15', 'role-16', 'role-17', 'role-18', 'role-12'];
                     targetElementId = 'ont-l27';
-                    replyMsg = `已启动气象灾害应急响应拓扑。穿透底表 <span class="font-mono font-bold">src-18~21</span> ➔ 应急三链本体 <span class="font-mono font-bold">L27(地灾)/L29a(路况桩号)/L32(应急队伍)</span>。涉及：安监处(06)/应急中心(12)。`;
+                    replyMsg = `已启动气象灾害应急响应拓扑。穿透底表 <span class="font-mono font-bold">src-18~21</span> ➔ 应急三链本体 <span class="font-mono font-bold">L27(地灾)/L29a(路况)/L32(队伍)</span>。涉及：15气象局/17资规厅/18交管局/16应急厅/12应急中心。`;
+                    aiScenarioTitle = `🤖 【AIP 问答穿透】跨委办局气象预警、地灾隐患与路况抢通联动`;
+                    aiInfoHtml = `
+                        <div class="space-y-0.5 mt-0.5">
+                            <div>⛈️ <span class="font-bold text-slate-900">外部气象地灾：</span>15 气象局预警 + 17 自然资源厅 📄 [L27] 地质灾害隐患点</div>
+                            <div>🚧 <span class="font-bold text-rose-800">现场交通管制：</span>18 公安交管局封路管制 📄 [L29a] 路况桩号</div>
+                            <div class="text-rose-900 font-bold bg-rose-50 p-0.5 rounded border border-rose-200">🚨 <span class="font-bold">应急抢通指挥：</span>16 应急管理厅 ↔ 12 应急处置中心 📄 [L32] 抢险队伍</div>
+                        </div>
+                    `;
                 } else if (/资金|预算|里程|养护费|财务|投入|工程|花费|国道/i.test(query)) {
-                    targetCodes = ['l30a', 'l30b', 'l30c'];
+                    targetCodes = ['l30a', 'l30b', 'l30c', 'role-2', 'role-4'];
                     targetElementId = 'ont-l30b';
-                    replyMsg = `已定位养护里程与资金穿透分析。关联底表 <span class="font-mono font-bold">src-25~32</span> ➔ 本体 <span class="font-mono font-bold">L30a(里程)/L30b(工程资金)/L30c(总资金)</span>。涉及：养护管理处(04)/财务资产处(02)。`;
+                    replyMsg = `已定位养护里程与资金穿透分析。关联底表 <span class="font-mono font-bold">src-25~32</span> ➔ 本体 <span class="font-mono font-bold">L30a(里程)/L30b(工程资金)/L30c(总资金)</span>。涉及：04养护管理处/02财务资产处。`;
+                    aiScenarioTitle = `🤖 【AIP 问答穿透】全省国道养护里程、工程预算与资金穿透`;
+                    aiInfoHtml = `
+                        <div class="space-y-0.5 mt-0.5">
+                            <div>💰 <span class="font-bold text-slate-900">资金穿透问答：</span>关联 📄 [L30a] 经常性养护 + 📄 [L30b] 养护工程 + 📄 [L30c] 资金汇总</div>
+                            <div>📊 <span class="font-bold text-emerald-800">业务执行主体：</span>02 财务资产处 (拨款审计) ↔ 04 养护管理处 (工程验收)</div>
+                            <div class="text-emerald-900 font-bold bg-emerald-50 p-0.5 rounded border border-emerald-200">📈 <span class="font-bold">计算结果：</span>普通国道 12,480km 养护投入 41.3 亿元，全流程勾稽一致</div>
+                        </div>
+                    `;
                 } else if (/桩号|巡检|日常|参考系|校正|传导|对齐|偏差|路况/i.test(query)) {
-                    targetCodes = ['l21', 'l29a'];
+                    targetCodes = ['l21', 'l29a', 'role-11', 'role-13', 'role-21', 'role-5', 'role-0'];
                     targetElementId = 'ont-l21';
-                    replyMsg = `已检索桩号匹配与空间对齐数据。关联底表 <span class="font-mono font-bold">src-2/23/24</span> ➔ 本体 <span class="font-mono font-bold">L21(标准排桩) ↔ L29a(日常检测)</span>。主责：普通公路处(05)/数据统筹(00)。`;
-                } else if (/交通|流量|断面|观测|车速|车流|拥堵/i.test(query)) {
-                    targetCodes = ['l23'];
-                    targetElementId = 'ont-l23';
-                    replyMsg = `已检索交通量与断面观测数据。关联物理底表 <span class="font-mono font-bold">src-13/14</span> ➔ 本体 <span class="font-mono font-bold">L23(交通量观测)</span>。主责处室：运营管理处(09)。`;
+                    replyMsg = `已检索桩号匹配与空间对齐数据。关联底表 <span class="font-mono font-bold">src-2/23/24</span> ➔ 本体 <span class="font-mono font-bold">L21(标准排桩) ↔ L29a(日常检测)</span>。主责：21AI巡检/13检测/05农路处/00数据统筹。`;
+                    aiScenarioTitle = `🤖 【AIP 问答穿透】AI 自动巡检桩号匹配与空间坐标参考系校正`;
+                    aiInfoHtml = `
+                        <div class="space-y-0.5 mt-0.5">
+                            <div>📍 <span class="font-bold text-slate-900">桩号对齐问答：</span>匹配 📄 [L21] 标准排桩参考系与 📄 [L29a] 日常检测桩号</div>
+                            <div>🚗 <span class="font-bold text-indigo-800">巡检数据来源：</span>21 AI自动巡检服务商 (激光车) ➔ 13 专检测企业标定</div>
+                            <div class="text-purple-900 font-bold bg-purple-50 p-0.5 rounded border border-purple-200">🔧 <span class="font-bold">校正与落库：</span>识别偏差 >50m 路段 86 处，自动生成纠偏表并存入 00 数据统筹</div>
+                        </div>
+                    `;
                 } else {
-                    // 任意其他问题的智能通用推荐与拓扑呈现
-                    targetCodes = ['l21', 'l29a', 'l24a'];
+                    // 通用问答
+                    targetCodes = ['l21', 'l29a', 'l24a', 'role-0'];
                     targetElementId = 'ont-l29a';
                     replyMsg = `已解算问题 "${query}"。定位关联数据链 <span class="font-mono font-bold">L21/L29a/L24a</span>，已在中间全景拓扑大盘精准高亮呈现血缘条带。`;
+                    aiScenarioTitle = `🤖 【AIP 智能解析】"${query}"`;
+                    aiInfoHtml = `
+                        <div class="space-y-0.5 mt-0.5">
+                            <div>🔍 <span class="font-bold text-slate-900">AI 智能解析：</span>针对检索词 "${query}" 提炼全域数据关系</div>
+                            <div>🔗 <span class="font-bold text-blue-800">本体拓扑高亮：</span>已定位关联本体节点 📄 [L21]、📄 [L29a]、📄 [L24a]</div>
+                            <div class="text-slate-900 font-bold bg-slate-100 p-0.5 rounded border border-slate-300">💡 <span class="font-bold">数据治理建议：</span>跨部门数据项由 00 数据统筹部门统一标准后全域共享</div>
+                        </div>
+                    `;
                 }
 
                 // 1. 自动切到主图谱
                 switchWorkspace('main');
 
-                // 2. 高亮对应图谱路径 (SVG 连线)
+                // 2. 更新本体列顶部的说明横幅与组合提示框！
+                const label = document.getElementById('activeScenarioLabel');
+                if (label) label.innerText = aiScenarioTitle;
+
+                const infoContent = document.getElementById('multi-combo-info-content');
+                if (infoContent && aiInfoHtml) {
+                    infoContent.innerHTML = aiInfoHtml;
+                }
+
+                // 3. 高亮对应图谱路径 (SVG 连线)
                 highlightLineage(targetCodes);
 
-                // 3. 精确平滑滚动居中并刷新动线
+                // 4. 精确平滑滚动居中并刷新动线
                 const canvas = document.getElementById('lineageCanvas');
                 const targetEl = document.getElementById(targetElementId);
                 if (canvas && targetEl) {
