@@ -620,9 +620,9 @@
                                         <span class="text-slate-900">09 运营管理处</span>
                                     </div>
 
-                                    <!-- 5个事业单位 -->
+                                    <!-- 8个企事业单位/服务商 -->
                                     <div class="mt-2.5 mb-1 pt-1.5 border-t border-slate-200/80 text-[9.5px] font-bold text-slate-700 flex items-center justify-between">
-                                        <span>5个事业单位</span>
+                                        <span>8个企事业单位/服务商</span>
                                         <span class="text-[8px] font-normal text-slate-400">协同落库</span>
                                     </div>
 
@@ -640,6 +640,15 @@
                                     </div>
                                     <div id="role-14" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-14')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
                                         <span class="text-slate-900">14 养护施工企业</span>
+                                    </div>
+                                    <div id="role-19" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-19')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">19 设计与科研院所</span>
+                                    </div>
+                                    <div id="role-20" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-20')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">20 监测设备厂商</span>
+                                    </div>
+                                    <div id="role-21" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">21 AI自动巡检服务商</span>
                                     </div>
 
                                     <!-- 跨委办局协同 -->
@@ -1927,19 +1936,19 @@
                 const label = document.getElementById('activeScenarioLabel');
                 if (label) label.innerText = '🚨 【应急业务跨委办局协同】15 气象局预警 ➔ 17 自然资源厅地灾点(L27) ➔ 18 公安交管局封路管制(L29a) ➔ 16 应急管理厅 ↔ 12 应急处置中心(L32)';
             } else if (id === 2) {
-                // 场景2 养护业务：年报骨架 L24a + 动态养护叠加 L30b ➔ 演进对比 L24a-Delta
+                // 场景2 长大桥梁：年报骨架 L24a + L28(监测) + L30b(工程) ➔ 10高速/13检测/19设计院/20监测设备商/04养护处
                 switchWorkspace('main');
-                highlightLineage(['l24a', 'l30b']);
+                highlightLineage(['l24a', 'l28', 'l30b', 'role-10', 'role-13', 'role-19', 'role-20', 'role-4', 'role-3']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🛠️ 【年报骨架 + 养护叠加演进】基线 L24a 桥梁骨架 (12座) ➔ 叠加 L30b 养护工程 (4200万元) ➔ 演进解算 L24a-Delta：危桥摘牌 · 质检 78.3 ➔ 92.0 (+17.5%)';
+                if (label) label.innerText = '🌉 【长大桥梁多方协同】10 高速企业 ➔ 20 监测设备商(L28) ➔ 13 专检测企业 ➔ 19 设计科研院所复核 ➔ 04 养护处加固(L30b)';
                 
                 const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
                     infoContent.innerHTML = `
                         <div class="space-y-0.5 mt-0.5">
                             <div>🏛️ <span class="font-bold text-slate-900">年报骨架基线：</span>📄 [L24a] 公路桥梁 (12座长大桥，2座四类危桥)</div>
-                            <div>🔄 <span class="font-bold text-emerald-800">动态养护叠加：</span>📄 [L30b] 养护工程台账 (投入 4,200万元)</div>
-                            <div class="text-blue-900 font-bold bg-blue-100/80 p-0.5 rounded border border-blue-200">🧬 <span class="font-bold">演进对比结果：</span>危桥摘牌加固全覆盖，质检评分 78.3 ➔ 92.0 (+17.5%)</div>
+                            <div>🔄 <span class="font-bold text-emerald-800">动态养护与监测：</span>📄 [L28] 结构物监测 + [L30b] 养护工程台账</div>
+                            <div class="text-blue-900 font-bold bg-blue-100/80 p-0.5 rounded border border-blue-200">🧬 <span class="font-bold">多方协同成果：</span>20监测设备预警 ➔ 19设计院方案复核 ➔ 14施工加固，评分 78.3 ➔ 92.0</div>
                         </div>
                     `;
                 }
@@ -1947,11 +1956,11 @@
                 const l24aEl = document.getElementById('ont-l24a');
                 if (l24aEl) l24aEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else if (id === 3) {
-                // 场景3 数据查询：国道养护里程与资金 → L30a(里程) + L30b(工程资金) + L30c(总资金)
+                // 场景3 路检桩号：国道养护里程与路况 ➔ L29a(路况/桩号) + L30a(养护) ➔ 11农路/13检测/14施工/21AI巡检/04养护处
                 switchWorkspace('main');
-                highlightLineage(['l30a', 'l30b', 'l30c']);
+                highlightLineage(['l29a', 'l30a', 'l30b', 'role-11', 'role-13', 'role-14', 'role-21', 'role-4']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🔍 【数据查询】国道年均养护里程 6,842 km · 养护工程资金 28.7亿 · 养护资金总投入 41.3亿 · L30a/b/c 穿透';
+                if (label) label.innerText = '🛣️ 【路检桩号AI自动巡检协同】21 AI自动巡检服务商(激光雷达车) ➔ 13 专检测企业标定 ➔ 📄 L29a 路况桩号 ➔ 14 养护施工修补(L30a)';
             } else if (id === 4) {
                 // 场景4 桩号匹配：L21标准排桩 + L29a日常检测 → 偏差校正
                 switchWorkspace('main');
@@ -2165,7 +2174,10 @@
                 ['role-15', 'role-6', '#ef4444', 'l27', 'role-15'],
                 ['role-17', 'role-6', '#ef4444', 'l27', 'role-17'],
                 ['role-18', 'role-8', '#3b82f6', 'l29a', 'role-18'],
-                ['role-16', 'role-12', '#ef4444', 'l32', 'role-16']
+                ['role-16', 'role-12', '#ef4444', 'l32', 'role-16'],
+                ['role-19', 'role-3', '#2563eb', 'l28', 'role-19'],
+                ['role-20', 'role-4', '#059669', 'l28', 'role-20'],
+                ['role-21', 'role-4', '#059669', 'l29a', 'role-21']
             ];
 
             let pathsHTML = `
