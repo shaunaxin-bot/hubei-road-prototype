@@ -2193,10 +2193,9 @@
 
             // 1. 取得 SVG 容器在视口 (Viewport) 中的屏幕绝对位置
             const svgRect = svg.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
 
-            svg.setAttribute('width', containerRect.width);
-            svg.setAttribute('height', containerRect.height);
+            svg.setAttribute('width', svgRect.width);
+            svg.setAttribute('height', svgRect.height);
 
             const connections = [
                 // Column 1 (42张Excel) -> Column 2 (L码套表)
