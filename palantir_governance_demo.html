@@ -641,6 +641,25 @@
                                     <div id="role-14" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-14')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
                                         <span class="text-slate-900">14 养护施工企业</span>
                                     </div>
+
+                                    <!-- 跨委办局协同 -->
+                                    <div class="mt-2.5 mb-1 pt-1.5 border-t border-slate-200/80 text-[9.5px] font-bold text-slate-700 flex items-center justify-between">
+                                        <span>跨委办局协同</span>
+                                        <span class="text-[8px] font-normal text-slate-400">外部对接</span>
+                                    </div>
+
+                                    <div id="role-15" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-15')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">15 气象局</span>
+                                    </div>
+                                    <div id="role-16" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-16')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">16 应急管理厅</span>
+                                    </div>
+                                    <div id="role-17" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-17')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">17 自然资源厅</span>
+                                    </div>
+                                    <div id="role-18" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-18')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">18 公安交管局</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1903,10 +1922,10 @@
                 }
             }
             if (id === 1) {
-                // 场景1 应急业务：气象预警 → L27(灾害点) + L29a(路况桩号) + L32(应急队伍)
-                highlightLineage(['l27', 'l29a', 'l32']);
+                // 场景1 应急业务：气象预警 → L27(灾害点) + L29a(路况桩号) + L32(应急队伍) + 跨委办局协同 (15气象局/16应急厅/17资规厅/18交管局)
+                highlightLineage(['l27', 'l29a', 'l32', 'role-15', 'role-16', 'role-17', 'role-18', 'role-12']);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🚨 【应急业务】G107/G316 受灾路段 23 段 48.6km · L27 地灾点 7 处 · L29a 桩号 480 个 · L32 应急队伍 3 支';
+                if (label) label.innerText = '🚨 【应急业务跨委办局协同】15 气象局预警 ➔ 17 自然资源厅地灾点(L27) ➔ 18 公安交管局封路管制(L29a) ➔ 16 应急管理厅 ↔ 12 应急处置中心(L32)';
             } else if (id === 2) {
                 // 场景2 养护业务：年报骨架 L24a + 动态养护叠加 L30b ➔ 演进对比 L24a-Delta
                 switchWorkspace('main');
@@ -2142,7 +2161,11 @@
                 ['role-10', 'role-6', '#ef4444', 'l32', 'role-10'],
                 ['role-10', 'role-0', '#f59e0b', 'l21', 'role-10'],
                 ['role-13', 'role-4', '#10b981', 'l29a', 'role-13'],
-                ['role-14', 'role-4', '#10b981', 'l30b', 'role-14']
+                ['role-14', 'role-4', '#10b981', 'l30b', 'role-14'],
+                ['role-15', 'role-6', '#ef4444', 'l27', 'role-15'],
+                ['role-17', 'role-6', '#ef4444', 'l27', 'role-17'],
+                ['role-18', 'role-8', '#3b82f6', 'l29a', 'role-18'],
+                ['role-16', 'role-12', '#ef4444', 'l32', 'role-16']
             ];
 
             let pathsHTML = `
