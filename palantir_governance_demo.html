@@ -490,6 +490,14 @@
                                     <div id="ont-l24a" onclick="switchWorkspace('oma'); switchOntologyTier('l24a');" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
                                         <span class="font-bold text-slate-800">📄 [L24a] 公路桥梁明细表</span>
                                     </div>
+                                    <!-- 显式展出：L24a 挂载子节点 -->
+                                    <div id="ont-l24a-sub" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="ml-3 pl-1.5 border-l-2 border-amber-300 my-0.5">
+                                        <div class="palantir-card inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-mono text-[8.5px] bg-amber-50/80 border-amber-300 text-amber-900 cursor-pointer hover:shadow-xs w-fit">
+                                            <span>↳ 🔗 <span class="font-bold">L24a-Sub</span> 结构监测/WIM超限工频日志</span>
+                                            <span class="text-[7.5px] bg-amber-200 text-amber-950 px-1 rounded font-bold">挂载子节点</span>
+                                        </div>
+                                    </div>
+
                                     <div id="ont-l24b" onclick="switchWorkspace('oma'); switchOntologyTier('l24b');" onmouseenter="highlightLineage('l24b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
                                         <span class="font-bold text-slate-800">📄 [L24b] 公路涵洞明细表</span>
                                     </div>
@@ -514,6 +522,13 @@
                                     </div>
                                     <div id="ont-l30b" onclick="switchWorkspace('oma'); switchOntologyTier('l30b');" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
                                         <span class="font-bold text-slate-800">📄 [L30b] 养护工程统计表</span>
+                                    </div>
+                                    <!-- 显式展出：L30b 挂载子节点 -->
+                                    <div id="ont-l30b-sub" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="ml-3 pl-1.5 border-l-2 border-emerald-300 my-0.5">
+                                        <div class="palantir-card inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-mono text-[8.5px] bg-emerald-50/80 border-emerald-300 text-emerald-900 cursor-pointer hover:shadow-xs w-fit">
+                                            <span>↳ 🔗 <span class="font-bold">L30b-Sub</span> 养护施工派单与工序质检台账</span>
+                                            <span class="text-[7.5px] bg-emerald-200 text-emerald-950 px-1 rounded font-bold">挂载子节点</span>
+                                        </div>
                                     </div>
                                     <div id="ont-l30c" onclick="switchWorkspace('oma'); switchOntologyTier('l30c');" onmouseenter="highlightLineage('l30c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
                                         <span class="font-bold text-slate-800">📄 [L30c] 养护资金统计表</span>
