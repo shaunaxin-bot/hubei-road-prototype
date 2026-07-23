@@ -599,12 +599,12 @@
                                 </div>
                                 
                                 <!-- 简单推演与变化对比文本框 -->
-                                <div id="multi-combo-info-box" class="bg-blue-50/90 border border-blue-300 rounded p-1.5 text-[9px] text-blue-900 space-y-0.5 shadow-2xs my-1">
-                                    <div class="font-bold text-[9.5px] text-blue-950 flex items-center gap-1">
-                                        <span>💡 【多本体组合推演与变化对比】</span>
+                                <div id="multi-combo-info-box" class="bg-slate-50 border border-slate-300 rounded p-1.5 text-[9px] text-slate-800 space-y-0.5 shadow-2xs my-1">
+                                    <div class="font-bold text-[9.5px] text-slate-900 flex items-center gap-1">
+                                        <span>【多本体组合推演与变化对比】</span>
                                     </div>
                                     <div id="multi-combo-info-content" class="text-[8.5px] text-slate-700 leading-tight">
-                                        点击场景卡片（如场景 2 养护业务），此处将直观展现 [年报骨架] 与 [养护叠加] 的组合推演与变化结论。
+                                        点击场景卡片（如场景 2 养护业务），此处将直观展现本体网络对实际业务数据流转的拉通与赋能。
                                     </div>
                                 </div>
 
@@ -1624,7 +1624,7 @@
                             <input type="checkbox" ${ag.checked ? 'checked' : ''} class="rounded border-slate-300 text-sky-600">
                             <span class="text-[9.5px] font-bold text-slate-900">${ag.name}</span>
                         </label>
-                        <span class="text-[8px] px-1 rounded font-mono font-bold ${ag.roleType === '归口主导' ? 'bg-sky-100 text-sky-900 border border-sky-300' : 'bg-slate-200 text-slate-800'}">
+                        <span class="text-[8px] px-1 rounded font-mono font-bold ${ag.roleType === '归口主导' ? 'bg-red-800 text-white border border-red-900' : 'bg-slate-200 text-slate-800'}">
                             ${ag.roleType}
                         </span>
                     </div>
@@ -1979,7 +1979,7 @@
                     <div class="bg-slate-100/70 border border-slate-200 rounded p-1.5 space-y-1">
                         <div class="flex items-center justify-between font-bold text-[9.5px] text-slate-900 border-b border-slate-200/60 pb-0.5">
                             <span>支持处室: ${s.office}</span>
-                            <span class="text-[8px] px-1 rounded font-mono ${s.type === '归口主导' ? 'bg-sky-50 text-sky-800 border border-sky-200 font-bold' : 'bg-slate-100 text-slate-600 border border-slate-200'}">${s.type}</span>
+                            <span class="text-[8px] px-1 rounded font-mono ${s.type === '归口主导' ? 'bg-red-800 text-white font-bold' : 'bg-slate-100 text-slate-600 border border-slate-200'}">${s.type}</span>
                         </div>
                         <div class="space-y-1 pt-0.5">
                             ${s.tables.map(t => `
@@ -2113,7 +2113,7 @@
                         <input type="checkbox" checked onclick="event.stopPropagation()" class="rounded border-slate-300 text-slate-900">
                         <span class="text-[9.5px] font-bold text-slate-900">${r.name}</span>
                     </div>
-                    <span class="text-[8px] px-1 rounded font-mono font-bold ${r.type === '归口主导' ? 'bg-slate-800 text-white' : 'bg-slate-200 text-slate-700'}">${r.type}</span>
+                    <span class="text-[8px] px-1 rounded font-mono font-bold ${r.type === '归口主导' ? 'bg-red-800 text-white' : 'bg-slate-200 text-slate-700'}">${r.type}</span>
                 </div>
                 `;
             }).join('');
@@ -2911,10 +2911,10 @@
                 const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
                     infoContent.innerHTML = `
-                        <div class="space-y-0.5 mt-0.5">
-                            <div>⛈️ <span class="font-bold text-slate-900">外部感知链：</span>15 气象局暴雨预警 + 17 自然资源厅  [L27] 地质灾害点</div>
-                            <div>🚧 <span class="font-bold text-sky-800">交通管制与路况：</span>18 公安交管局对 G107 K120+500 实施封路  [L29a] 路况桩号</div>
-                            <div class="text-rose-900 font-bold bg-rose-50 p-0.5 rounded border border-rose-200">🚨 <span class="font-bold">三链联动处置：</span>16 应急管理厅指令 ↔ 12 应急处置中心派出 3 支队伍  [L32] 抢通险情</div>
+                        <div class="space-y-0.5 mt-0.5 text-slate-700">
+                            <div><span class="font-bold">外部感知链：</span>气象局/资源厅 ↔ <span class="font-bold text-slate-900">[L27] 地质灾害本体</span></div>
+                            <div><span class="font-bold">交通管制链：</span>交管局封路 ↔ <span class="font-bold text-slate-900">[L29a] 路况桩号本体</span></div>
+                            <div class="font-bold bg-slate-100 p-0.5 rounded border border-slate-200"><span class="font-bold">多本体跨域联动：</span>基于本体网络拉通应急指令，多部门联合抢通 [L32] 险情</div>
                         </div>
                     `;
                 }
@@ -2931,10 +2931,10 @@
                 const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
                     infoContent.innerHTML = `
-                        <div class="space-y-0.5 mt-0.5">
-                            <div> <span class="font-bold text-slate-900">年报骨架基线：</span> [L24a] 公路桥梁 (12座长大桥，2座四类危桥)</div>
-                            <div>📡 <span class="font-bold text-emerald-800">动态监测与验算：</span> [L28] 20 监测设备商 + 19 设计科研院所极限承载力复核</div>
-                            <div class="text-sky-900 font-bold bg-blue-100/80 p-0.5 rounded border border-sky-200">🧬 <span class="font-bold">多方协同成果：</span>04 养护处加固投入 4,200万元  [L30b]，质检评分 78.3 ➔ 92.0 (+17.5%)</div>
+                        <div class="space-y-0.5 mt-0.5 text-slate-700">
+                            <div><span class="font-bold">基线与感知：</span><span class="font-bold text-slate-900">[L24a] 桥梁本体</span> 提供基线，监测设备接入动态数据</div>
+                            <div><span class="font-bold">专业计算复核：</span>科研院所基于本体拓扑开展极限承载力验算</div>
+                            <div class="font-bold bg-slate-100 p-0.5 rounded border border-slate-200"><span class="font-bold">本体承载协同：</span>本体串联管养全过程，养护处精准加固 [L30b]，大幅提升质检评分</div>
                         </div>
                     `;
                 }
@@ -2951,10 +2951,10 @@
                 const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
                     infoContent.innerHTML = `
-                        <div class="space-y-0.5 mt-0.5">
-                            <div>🚗 <span class="font-bold text-slate-900">AI 自动感知：</span>21 AI巡检服务商车载相机/激光雷达 ➔ 自动化采集路面破损</div>
-                            <div>📍 <span class="font-bold text-indigo-800">桩号匹配标定：</span>13 专检测企业标定  [L29a] 路况桩号 (480个点位)</div>
-                            <div class="text-emerald-900 font-bold bg-emerald-50 p-0.5 rounded border border-emerald-200">🔧 <span class="font-bold">养护闭环修补：</span>04 养护处派发台账  [L30a]，14 养护施工企业完成坑槽补修</div>
+                        <div class="space-y-0.5 mt-0.5 text-slate-700">
+                            <div><span class="font-bold">AI 自动感知：</span>巡检设备自动化采集路面破损</div>
+                            <div><span class="font-bold">空间参考对齐：</span>自动匹配至 <span class="font-bold text-slate-900">[L29a] 路况桩号本体</span></div>
+                            <div class="font-bold bg-slate-100 p-0.5 rounded border border-slate-200"><span class="font-bold">本体驱动业务闭环：</span>以本体为枢纽派发任务，实现数据到养护 [L30a] 的自动化流转</div>
                         </div>
                     `;
                 }
@@ -2971,10 +2971,10 @@
                 const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
                     infoContent.innerHTML = `
-                        <div class="space-y-0.5 mt-0.5">
-                            <div>📏 <span class="font-bold text-slate-900">空间参考对齐：</span> [L21] 标准排桩 ↔  [L29a] 业务部门日常检测桩号</div>
-                            <div> <span class="font-bold text-amber-800">偏差智能诊断：</span>AI 自动解算 86 处路线改扩建导致的桩号偏移 (>50m)</div>
-                            <div class="text-purple-900 font-bold bg-purple-50 p-0.5 rounded border border-purple-200"> <span class="font-bold">映射关系落库：</span>生成通用空间校正映射表，供 00 数据统筹部门全域同步</div>
+                        <div class="space-y-0.5 mt-0.5 text-slate-700">
+                            <div><span class="font-bold">空间参考对齐：</span><span class="font-bold text-slate-900">[L21] 标准排桩</span> ↔ <span class="font-bold text-slate-900">[L29a] 日常检测桩号</span></div>
+                            <div><span class="font-bold">偏差智能诊断：</span>基于本体空间关系，自动解算路线改扩建导致的桩号偏移</div>
+                            <div class="font-bold bg-slate-100 p-0.5 rounded border border-slate-200"><span class="font-bold">本体资产沉淀：</span>生成通用空间校正映射表落库，赋能全域数据空间拉通</div>
                         </div>
                     `;
                 }
