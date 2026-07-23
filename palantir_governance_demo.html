@@ -1854,55 +1854,51 @@
             if (textarea) {
                 textarea.select();
                 document.execCommand('copy');
-                alert('📋 嵌入代码已成功复制至剪贴板！');                    if (activeHighlightCode && activeHighlightCode.length > 0) {
-                        const isHit = activeHighlightCode.includes(code) || activeHighlightCode.includes(roleId);
-                        if (isHit) {
-                            pathsHTML += `
-                                <g>
-                                    <path d="${pathData}" stroke="#2563eb" stroke-width="2.5" opacity="0.4" fill="none" />
-                                    <path d="${pathData}" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="10 6" fill="none" opacity="1">
-                                        <animate attributeName="stroke-dashoffset" from="32" to="0" dur="0.75s" repeatCount="indefinite" />
-                                    </path>
-                                </g>
-                            `;
-                        } else {
-                            pathsHTML += `<path d="${pathData}" stroke="#cbd5e1" stroke-width="0.75" stroke-dasharray="4 4" opacity="0.05" fill="none" />`;
-                        }
+                alert('📋 嵌入代码已成功复制至剪贴板！');
+            }
+        }
+
+        function openActionDemoModal() {
+            const modal = document.getElementById('actionDemoModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+            }
+            goToDemoStep(1);
+        }
+
+        function closeActionDemoModal() {
+            const modal = document.getElementById('actionDemoModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+            }
+        }
+
+        function selectScenario(id) {
+            for (let i = 1; i <= 4; i++) {
+                const card = document.getElementById('scen-card-' + i);
+                if (card) {
+                    if (i === id) {
+                        card.className = "palantir-card p-1.5 rounded cursor-pointer space-y-1 scenario-card-active";
                     } else {
-                        pathsHTML += `<path d="${pathData}" stroke="#cbd5e1" stroke-width="0.75" stroke-dasharray="4 4" opacity="0.25" fill="none" />`;
+                        card.className = "palantir-card p-1.5 rounded cursor-pointer space-y-1 border-slate-200 hover:border-slate-400";
                     }
                 }
-            });
-
-            // C. 顶层：跨本体双向弧形发光桥接线与演进连线
-            if (activeHighlightCode && activeHighlightCode.length > 1) {
-                const hitOntEls = [];
-                activeHighlightCode.forEach(c => {
-                    const el = document.getElementById(`ont-${c}`);
-                    if (el && el.offsetParent !== null) hitOntEls.push({ code: c, el: el });
-                });
-
-                for (let i = 0; i < hitOntEls.length - 1; i++) {
-                    const rA = hitOntEls[i].el.getBoundingClientRect();
-                    const rB = hitOntEls[i+1].el.getBoundingClientRect();
-                    const xA = rA.left - cRect.left + rA.width / 2;
-                    const yA = rA.top - cRect.top + container.scrollTop + rA.height / 2;
-                    const xB = rB.left - cRect.left + rB.width / 2;
-                    const yB = rB.top - cRect.top + container.scrollTop + rB.height / 2;
-
-                    const arcX = Math.min(xA, xB) - 28;
-                    const bridgePath = `M ${xA} ${yA} C ${arcX} ${yA}, ${arcX} ${yB}, ${xB} ${yB}`;
-
-                    pathsHTML += `
-                        <g>
-                            <path d="${bridgePath}" stroke="#0284c7" stroke-width="2.2" stroke-dasharray="8 5" fill="none" opacity="0.95">
-                                <animate attributeName="stroke-dashoffset" from="26" to="0" dur="0.75s" repeatCount="indefinite" />
-                            </path>
-                            <circle cx="${arcX}" cy="${(yA + yB)/2}" r="3" fill="#0284c7" class="animate-ping" />
-                        </g>
-                    `;
-                }
-            }ontent = document.getElementById('multi-combo-info-content');
+            }
+            if (id === 1) {
+                // 场景1 应急业务：气象预警 → L27(灾害点) + L29a(路况桩号) + L32(应急队伍)
+                highlightLineage(['l27', 'l29a', 'l32']);
+                const label = document.getElementById('activeScenarioLabel');
+                if (label) label.innerText = '🚨 【应急业务】G107/G316 受灾路段 23 段 48.6km · L27 地灾点 7 处 · L29a 桩号 480 个 · L32 应急队伍 3 支';
+            } else if (id === 2) {
+                // 场景2 养护业务：年报骨架 L24a + 动态养护叠加 L30b ➔ 演进对比 L24a-Delta
+                switchWorkspace('main');
+                highlightLineage(['l24a', 'l30b']);
+                const label = document.getElementById('activeScenarioLabel');
+                if (label) label.innerText = '🛠️ 【年报骨架 + 养护叠加演进】基线 L24a 桥梁骨架 (12座) ➔ 叠加 L30b 养护工程 (4200万元) ➔ 演进解算 L24a-Delta：危桥摘牌 · 质检 78.3 ➔ 92.0 (+17.5%)';
+                
+                const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
                     infoContent.innerHTML = `
                         <div class="space-y-0.5 mt-0.5">
