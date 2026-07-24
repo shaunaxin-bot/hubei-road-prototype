@@ -690,7 +690,7 @@
                             </div>
 
                             <!-- Column 3: 1+10+X+Y 政企协同生态 Agent -->
-                            <div class="col-span-3 flex flex-col gap-1 pr-32">
+                            <div class="col-span-3 flex flex-col gap-1 pr-1">
                                 <div class="font-bold border-b border-slate-200 pb-1 text-slate-700 text-[11.5px]">
                                     1+10+X+Y 政企协同生态
                                 </div>
@@ -1486,7 +1486,7 @@
 
         
         // 全量 17 套国标 L 码本体定义库
-                                                                                        const all17Ontologies = [
+                                                                                                        const all17Ontologies = [
             { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
             { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '08 农村公路处' },
             { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
@@ -1494,7 +1494,7 @@
             { key: 'l24b', name: 'L24b（公路涵洞明细表）', leadOffice: '03 工程技术处' },
             { key: 'l25', name: 'L25（公路隧道基本情况明细表）', leadOffice: '03 工程技术处' },
             { key: 'l26', name: 'L26（公路沿线服务及收费设施明细表）', leadOffice: '05 费收处' },
-            { key: 'l27', name: 'L27地质灾害点明细表', leadOffice: '10 执法监督处' },
+            { key: 'l27', name: 'L27地质灾害点明细表', leadOffice: '03 工程技术处' },
             { key: 'l28', name: 'L28交通量及沿线设施汇总表', leadOffice: '04 养护管理处' },
             { key: 'l29a', name: 'L29a日常路况评定明细表', leadOffice: '04 养护管理处' },
             { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '04 养护管理处' },
@@ -1515,7 +1515,7 @@
                 description: '气象暴雨预警 ➔ 地灾点排查(L27) ➔ 桩号路况封路(L29a) ➔ 应急处置(L32)',
                 // 涵盖的本体清单
                 ontologies: [
-                    { key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '06 运营管理处' },
+                    { key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '03 工程技术处' },
                     { key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处' },
                     { key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '06 运营管理处' }
                 ],
@@ -1696,7 +1696,7 @@
                 description: '气象暴雨预警 ➔ 地灾点排查(L27) ➔ 桩号路况封路(L29a) ➔ 应急处置(L32)',
                 ontologies: [
                     {
-                        key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '06 运营管理处',
+                        key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '03 工程技术处',
                         supports: [
                             {
                                 office: '10 执法监督处',
@@ -2912,6 +2912,9 @@
                 if (infoContent) {
                     infoContent.innerHTML = `
                         <div class="space-y-0.5 mt-0.5 text-slate-700">
+                            ['role-10', 'ont-l27', '#ef4444', 'scen', 'l27'] /* 10 执法监督处 -> L27 (场景1联动) */,
+                            ['role-10', 'ont-l29a', '#ef4444', 'scen', 'l29a'] /* 10 执法监督处 -> L29a (场景1联动) */,
+                            ['role-10', 'ont-l32', '#ef4444', 'scen', 'l32'] /* 10 执法监督处 -> L32 (场景1联动) */,
                             <div><span class="font-bold">基线与感知：</span><span class="font-bold text-slate-900">[L24a] 桥梁本体</span> 提供基线，监测设备接入动态数据</div>
                             <div><span class="font-bold">专业计算复核：</span>科研院所基于本体拓扑开展极限承载力验算</div>
                             <div class="font-bold bg-slate-100 p-0.5 rounded border border-slate-200"><span class="font-bold">本体承载协同：</span>本体串联管养全过程，养护处精准加固 [L30b]，大幅提升质检评分</div>
@@ -3193,7 +3196,7 @@
                 ['src-excel-41', 'ont-l32', '#2563eb', 'l32', ''],
                 ['src-excel-42', 'ont-l32', '#2563eb', 'l32', ''],
 
-                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
+                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
                 ['ont-l21', 'role-1', '#ef4444', 'l21', 'role-1'], // 主导
                 ['ont-l21', 'role-8', '#2563eb', 'l21', 'role-8'], // 支持
                 ['ont-l21', 'role-9', '#2563eb', 'l21', 'role-9'], // 支持
@@ -3206,7 +3209,7 @@
                 ['ont-l25', 'role-3', '#ef4444', 'l25', 'role-3'], // 主导
                 ['ont-l26', 'role-5', '#ef4444', 'l26', 'role-5'], // 主导
                 ['ont-l26', 'role-6', '#2563eb', 'l26', 'role-6'], // 支持
-                ['ont-l27', 'role-10', '#ef4444', 'l27', 'role-10'], // 主导
+                ['ont-l27', 'role-3', '#ef4444', 'l27', 'role-3'], // 主导
                 ['ont-l28', 'role-4', '#ef4444', 'l28', 'role-4'], // 主导
                 ['ont-l29a', 'role-4', '#ef4444', 'l29a', 'role-4'], // 主导
                 ['ont-l30a', 'role-4', '#ef4444', 'l30a', 'role-4'], // 主导
@@ -3230,7 +3233,7 @@
                 ['ont-l30b', 'ont-l30b-sub', '#0284c7', 'l30b', 'role-3'],
                 ['ont-l30b', 'ont-l24a-delta', '#10b981', 'l30b', 'role-3'],
 
-                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
+                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
                 ['role-16', 'role-10', '#ef4444', 'scen', 'role-10'] /* 16 气象局 -> 10 执法监督处: 气象灾害预警/恶劣天气监测推流 */,
                 ['role-10', 'role-0', '#ef4444', 'scen', 'role-0'] /* 10 执法监督处 -> 00 数据统筹部门: 空间锚点确权与管辖匹配 */,
                 ['role-0', 'role-4', '#ef4444', 'scen', 'role-4'] /* 00 数据统筹部门 -> 04 养护管理处: 灾前风险点位巡查指令 */,
@@ -3259,7 +3262,17 @@
                 ['role-11', 'role-20', '#f59e0b', 'scen', 'role-20'] /* 23 交投集团 -> 24 交规院: 分发映射重定向规则 */,
                 ['role-20', 'role-15', '#ef4444', 'scen', 'role-15'] /* 24 交规院 -> 25 路桥公司: 下发数据重构指令 */,
                 ['role-15', 'role-0', '#ef4444', 'scen', 'role-0'] /* 25 路桥公司 -> 00 数据统筹部门: 数据重构与二次上传 */,
-                ['role-4', 'role-0', '#ef4444', 'scen', 'role-0'] /* 04 养护管理处 -> 00 数据统筹部门: 人工授权审批落库 */
+                ['role-4', 'role-0', '#ef4444', 'scen', 'role-0'] /* 04 养护管理处 -> 00 数据统筹部门: 人工授权审批落库 */,
+                ['role-10', 'ont-l27', '#ef4444', 'scen', 'l27'] /* 10 执法监督处 -> L27 (场景1联动) */,
+                ['role-10', 'ont-l29a', '#ef4444', 'scen', 'l29a'] /* 10 执法监督处 -> L29a (场景1联动) */,
+                ['role-10', 'ont-l32', '#ef4444', 'scen', 'l32'] /* 10 执法监督处 -> L32 (场景1联动) */,
+                ['role-12', 'role-4', '#2563eb', 'scen', 'role-4'] /* 12 农路管养企业 -> 04 养护管理处 */,
+                ['role-12', 'role-8', '#2563eb', 'scen', 'role-8'] /* 12 农路管养企业 -> 08 农村公路处 */,
+                ['role-14', 'role-4', '#2563eb', 'scen', 'role-4'] /* 14 专检机构 -> 04 养护管理处 */,
+                ['role-21', 'role-4', '#2563eb', 'scen', 'role-4'] /* 21 监测设备厂商 -> 04 养护管理处 */,
+                ['role-22', 'role-4', '#2563eb', 'scen', 'role-4'] /* 22 各地市州交通局 -> 04 养护管理处 */,
+                ['role-19', 'role-1', '#2563eb', 'scen', 'role-1'] /* 19 公安交管局 -> 01 规划计划处 */,
+                ['role-19', 'role-4', '#2563eb', 'scen', 'role-4'] /* 19 公安交管局 -> 04 养护管理处 */
             ];
 
             let pathsHTML = `
@@ -3284,7 +3297,7 @@
                 const elFrom = document.getElementById(fromId);
                 const elTo = document.getElementById(toId);
 
-                if (elFrom && elTo && elFrom.offsetParent !== null && elTo.offsetParent !== null) {
+                if (elFrom && elTo) {
                     const r1 = elFrom.getBoundingClientRect();
                     const r2 = elTo.getBoundingClientRect();
 
@@ -3301,8 +3314,7 @@
                         pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
                     } else {
                         const maxX = svgRect.width - 5;
-                        const verticalDist = Math.abs(y2 - y1);
-                        const bulge = Math.min(Math.max(45, verticalDist * 0.35), 200); // Dynamic sweeping arc
+                        const bulge = 40; // Restored compact loop arc
                         const loopX = Math.min(Math.max(r1.right, r2.right) - svgRect.left + bulge, maxX);
                         pathData = `M ${r1.right - svgRect.left} ${y1} C ${loopX} ${y1}, ${loopX} ${y2}, ${r2.right - svgRect.left} ${y2}`;
                     }
@@ -3349,10 +3361,10 @@
                                 `;
                             }
                         } else {
-                            pathsHTML += `<path d="${pathData}" stroke="#cbd5e1" stroke-width="0.75" stroke-dasharray="4 4" opacity="0.05" fill="none" />`;
+                            pathsHTML += `<path d="${pathData}" stroke="#cbd5e1" stroke-width="1" opacity="0.15" fill="none" />`;
                         }
                     } else {
-                        pathsHTML += `<path d="${pathData}" stroke="#cbd5e1" stroke-width="0.75" stroke-dasharray="4 4" opacity="0.25" fill="none" />`;
+                        pathsHTML += `<path d="${pathData}" stroke="#cbd5e1" stroke-width="1" opacity="0.15" fill="none" />`;
                     }
                 }
             });
@@ -3476,12 +3488,23 @@
 
         function highlightLineageRole(roleId, lock = false) {
             if (isLineageLocked && !lock) return;
-            const codes = (typeof ROLE_LINEAGE_MAPPINGS !== 'undefined' && ROLE_LINEAGE_MAPPINGS[roleId]) ? ROLE_LINEAGE_MAPPINGS[roleId] : [roleId];
+            
+            let codes = new Set();
+            function collectCodes(id) {
+                if (codes.has(id)) return;
+                codes.add(id);
+                if (typeof ROLE_LINEAGE_MAPPINGS !== 'undefined' && ROLE_LINEAGE_MAPPINGS[id]) {
+                    ROLE_LINEAGE_MAPPINGS[id].forEach(child => collectCodes(child));
+                }
+            }
+            collectCodes(roleId);
+            
+            const codesArray = Array.from(codes);
             if (lock) {
                 isLineageLocked = true;
-                lockedCode = codes;
+                lockedCode = codesArray;
             }
-            activeHighlightCode = codes;
+            activeHighlightCode = codesArray;
             drawConnectorLines();
         }
 
@@ -3494,18 +3517,18 @@
             drawConnectorLines();
         }
 
-                                                                                        const ROLE_LINEAGE_MAPPINGS = {
+                                                                                                                                                                const ROLE_LINEAGE_MAPPINGS = {
             'role-0': ["role-0", "l31a", "l31b"],
             'role-1': ["role-1", "l21", "l23"],
             'role-2': ["role-2", "l24a", "l30b"],
-            'role-3': ["role-3", "l24a", "l24b", "l25", "l30b"],
+            'role-3': ["role-3", "l24a", "l24b", "l25", "l27", "l30b"],
             'role-4': ["role-4", "l28", "l29a", "l30a"],
             'role-5': ["role-5", "l26"],
-            'role-6': ["role-6", "l26"],
+            'role-6': ["role-6", "l26", "l29a", "l32"],
             'role-7': ["role-7", "l30c"],
             'role-8': ["role-8", "l21", "l22", "l24a", "l31c"],
             'role-9': ["role-9", "l21", "l31b"],
-            'role-10': ["role-10", "l27"],
+            'role-10': ["role-10", "l27", "l29a", "l32"],
             'role-11': ["role-11", "role-6", "role-4"],
             'role-12': ["role-12", "role-4", "role-8"],
             'role-13': ["role-13", "role-10", "l32"],
@@ -3514,8 +3537,8 @@
             'role-16': ["role-16", "role-13"],
             'role-17': ["role-17", "role-13"],
             'role-18': ["role-18", "role-13"],
-            'role-19': ["role-19", "role-10"],
-            'role-20': ["role-20", "role-3"],
+            'role-19': ["role-19", "role-1", "role-4"],
+            'role-20': ["role-20", "role-1"],
             'role-21': ["role-21", "role-4"],
             'role-22': ["role-22", "role-4"]
         };
