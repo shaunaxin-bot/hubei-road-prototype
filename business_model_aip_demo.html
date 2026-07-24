@@ -747,9 +747,8 @@
                                         <span>8个企事业单位/服务商</span>
                                         <span class="text-[8px] font-normal text-slate-400">协同落库</span>
                                     </div>
-
                                     <div id="role-11" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-11')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-900">11 高速运营企业</span>
+                                        <span class="text-slate-900">11 高速运营/管养企业</span>
                                     </div>
                                     <div id="role-12" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-12')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
                                         <span class="text-slate-900">12 农路管养企业</span>
@@ -758,7 +757,7 @@
                                         <span class="text-slate-900">13 应急处置服务中心</span>
                                     </div>
                                     <div id="role-14" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-14')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-900">14 专检测企业</span>
+                                        <span class="text-slate-900">14 专业检测企业</span>
                                     </div>
                                     <div id="role-15" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-15')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
                                         <span class="text-slate-900">15 养护施工企业</span>
@@ -770,15 +769,14 @@
                                         <span class="text-slate-900">21 监测设备厂商</span>
                                     </div>
                                     <div id="role-22" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-900">22 AI自动巡检服务商</span>
+                                        <span class="text-slate-900">22 AI自动巡检</span>
                                     </div>
 
                                     <!-- X个外部委办局 -->
                                     <div class="mt-2.5 mb-1 pt-1.5 border-t border-slate-200/80 text-[9.5px] font-bold text-slate-700 flex items-center justify-between">
-                                        <span>X个外部委办局</span>
+                                        <span>4个外部委办局</span>
                                         <span class="text-[8px] font-normal text-slate-400">跨域对接</span>
                                     </div>
-
                                     <div id="role-16" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-16')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
                                         <span class="text-slate-900">16 气象局</span>
                                     </div>
@@ -791,6 +789,7 @@
                                     <div id="role-19" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-19')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
                                         <span class="text-slate-900">19 公安交管局</span>
                                     </div>
+</div>
                                 </div>
                             </div>
                         </div>
@@ -1487,7 +1486,7 @@
 
         
         // 全量 17 套国标 L 码本体定义库
-                const all17Ontologies = [
+                                                                                        const all17Ontologies = [
             { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
             { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '08 农村公路处' },
             { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
@@ -1495,9 +1494,9 @@
             { key: 'l24b', name: 'L24b（公路涵洞明细表）', leadOffice: '03 工程技术处' },
             { key: 'l25', name: 'L25（公路隧道基本情况明细表）', leadOffice: '03 工程技术处' },
             { key: 'l26', name: 'L26（公路沿线服务及收费设施明细表）', leadOffice: '05 费收处' },
-            { key: 'l27', name: 'L27（易发地质灾害点明细表）', leadOffice: '10 执法监督处' },
-            { key: 'l28', name: 'L28（交通工程及沿线设施汇总表）', leadOffice: '04 养护管理处' },
-            { key: 'l29a', name: 'L29a（公路日常路况评定明细表）', leadOffice: '04 养护管理处' },
+            { key: 'l27', name: 'L27地质灾害点明细表', leadOffice: '10 执法监督处' },
+            { key: 'l28', name: 'L28交通量及沿线设施汇总表', leadOffice: '04 养护管理处' },
+            { key: 'l29a', name: 'L29a日常路况评定明细表', leadOffice: '04 养护管理处' },
             { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '04 养护管理处' },
             { key: 'l30b', name: 'L30b（公路养护工程统计表）', leadOffice: '03 工程技术处' },
             { key: 'l30c', name: 'L30c（公路养护资金统计表）', leadOffice: '07 财务资产处' },
@@ -1516,7 +1515,7 @@
                 description: '气象暴雨预警 ➔ 地灾点排查(L27) ➔ 桩号路况封路(L29a) ➔ 应急处置(L32)',
                 // 涵盖的本体清单
                 ontologies: [
-                    { key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '10 执法监督处' },
+                    { key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '06 运营管理处' },
                     { key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处' },
                     { key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '06 运营管理处' }
                 ],
@@ -1697,9 +1696,7 @@
                 description: '气象暴雨预警 ➔ 地灾点排查(L27) ➔ 桩号路况封路(L29a) ➔ 应急处置(L32)',
                 ontologies: [
                     {
-                        key: 'l27',
-                        name: 'L27 地质灾害与险情点明细表 [年报基线]',
-                        leadOffice: '10 执法监督处 (归口主导)',
+                        key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '06 运营管理处',
                         supports: [
                             {
                                 office: '10 执法监督处',
@@ -1725,9 +1722,7 @@
                         ]
                     },
                     {
-                        key: 'l29a',
-                        name: 'L29a 日常路况评定明细表 [年报基线]',
-                        leadOffice: '04 养护管理处 (归口主导)',
+                        key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处',
                         supports: [
                             {
                                 office: '04 养护管理处',
@@ -1747,9 +1742,7 @@
                         ]
                     },
                     {
-                        key: 'l32',
-                        name: 'L32 应急储备库及队伍表 [年报基线]',
-                        leadOffice: '10 执法监督处 (归口主导)',
+                        key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '06 运营管理处',
                         supports: [
                             {
                                 office: '16 应急管理厅',
@@ -1776,9 +1769,7 @@
                 description: '长大桥健康监测(L24a) ➔ 物联高频采样(L28/L24a-Sub) ➔ 养护工程加固(L30b/L30b-Sub)',
                 ontologies: [
                     {
-                        key: 'l24a',
-                        name: 'L24a 公路桥梁基本情况明细表 [年报基线]',
-                        leadOffice: '04 养护管理处 (归口主导)',
+                        key: 'l24a', name: 'L24a 公路桥梁基本情况明细表 [年报基线]', leadOffice: '03 工程技术处',
                         supports: [
                             {
                                 office: '10 高速公路运营企业',
@@ -1808,9 +1799,7 @@
                         ]
                     },
                     {
-                        key: 'l28',
-                        name: 'L28 沿线设施汇总表 (含高频监测) [新增演进]',
-                        leadOffice: '04 养护管理处 (归口主导)',
+                        key: 'l28', name: 'L28 沿线设施汇总表 (含高频监测) [新增演进]', leadOffice: '04 养护管理处',
                         supports: [
                             {
                                 office: '19 设计与科研院所',
@@ -1829,9 +1818,7 @@
                         ]
                     },
                     {
-                        key: 'l30b',
-                        name: 'L30b 养护工程统计表 [新增演进]',
-                        leadOffice: '04 养护管理处 (归口主导)',
+                        key: 'l30b', name: 'L30b 养护工程统计表 [新增演进]', leadOffice: '03 工程技术处',
                         supports: [
                             {
                                 office: '13 专检测企业',
@@ -1862,9 +1849,7 @@
                 description: '日常路况评定(L29a) ➔ 养护作业(L30a) ➔ AI自动巡检图像物联',
                 ontologies: [
                     {
-                        key: 'l29a',
-                        name: 'L29a 日常路况评定明细表 [年报基线]',
-                        leadOffice: '04 养护管理处 (归口主导)',
+                        key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处',
                         supports: [
                             {
                                 office: '04 养护管理处',
@@ -1884,9 +1869,7 @@
                         ]
                     },
                     {
-                        key: 'l30a',
-                        name: 'L30a 养护作业统计表 [年报基线]',
-                        leadOffice: '04 养护管理处 (归口主导)',
+                        key: 'l30a', name: 'L30a 养护作业统计表 [年报基线]', leadOffice: '04 养护管理处',
                         supports: [
                             {
                                 office: '11 农路管养企业',
@@ -1908,9 +1891,7 @@
                 description: '路线基本情况(L21) ➔ 排桩数据(L21-Sub) ➔ GIS 空间坐标去噪中枢',
                 ontologies: [
                     {
-                        key: 'l21',
-                        name: 'L21 公路路线基本情况明细表 [年报基线]',
-                        leadOffice: '00 数据统筹部门 (归口主导)',
+                        key: 'l21', name: 'L21 公路路线基本情况明细表 [年报基线]', leadOffice: '01 规划计划处',
                         supports: [
                             {
                                 office: '05 农村公路处',
@@ -2903,7 +2884,7 @@
             if (id === 1) {
                 // 场景1 应急业务：气象预警 → L27(灾害点) + L29a(路况桩号) + L32(应急队伍) + 跨委办局协同 (15气象局/16应急厅/17资规厅/18交管局)
                 switchWorkspace('main');
-                highlightLineage(['l27', 'l29a', 'l32', 'role-15', 'role-16', 'role-17', 'role-18', 'role-12'], true);
+                highlightLineage(['l27', 'l29a', 'l32', 'role-16', 'role-17', 'role-18', 'role-19', 'role-12'], true);
                 const label = document.getElementById('activeScenarioLabel');
                 if (label) label.innerText = '🚨 【场景1：应急业务跨委办局协同】15 气象局预警 ➔ 17 自然资源厅地灾点(L27) ➔ 18 公安交管局封路(L29a) ➔ 16 应急管理厅 ↔ 12 应急处置中心(L32)';
                 
@@ -3023,13 +3004,13 @@
                         </div>
                     `;
                 } else if (/气象|汛期|暴雨|预警|地灾|应急|灾害|救援|积水|险情/i.test(query)) {
-                    targetCodes = ['l27', 'l29a', 'l32', 'role-15', 'role-16', 'role-17', 'role-18', 'role-12'];
+                    targetCodes = ['l27', 'l29a', 'l32', 'role-16', 'role-17', 'role-18', 'role-19', 'role-12'];
                     targetElementId = 'ont-l27';
                     replyMsg = `已启动气象灾害应急响应拓扑。穿透底表 <span class="font-mono font-bold">src-18~21</span> ➔ 应急三链本体 <span class="font-mono font-bold">L27(地灾)/L29a(路况)/L32(队伍)</span>。涉及：15气象局/17资规厅/18交管局/16应急厅/12应急中心。`;
                     aiScenarioTitle = `🤖 【AIP 问答穿透】跨委办局气象预警、地灾隐患与路况抢通联动`;
                     aiInfoHtml = `
                         <div class="space-y-0.5 mt-0.5">
-                            <div>⛈️ <span class="font-bold text-slate-900">外部气象地灾：</span>15 气象局预警 + 17 自然资源厅  [L27] 地质灾害隐患点</div>
+                            <div>⛈️ <span class="font-bold text-slate-900">外部气象地灾：</span>16 气象局预警 + 18 自然资源厅  [L27] 地质灾害隐患点</div>
                             <div>🚧 <span class="font-bold text-rose-800">现场交通管制：</span>18 公安交管局封路管制  [L29a] 路况桩号</div>
                             <div class="text-rose-900 font-bold bg-rose-50 p-0.5 rounded border border-rose-200">🚨 <span class="font-bold">应急抢通指挥：</span>16 应急管理厅 ↔ 12 应急处置中心  [L32] 抢险队伍</div>
                         </div>
@@ -3178,40 +3159,41 @@
                 ['src-excel-7', 'ont-l22', '#2563eb', 'l22', 'role-0'],
                 ['src-excel-8', 'ont-l22', '#2563eb', 'l22', 'role-0'],
                 ['src-excel-9', 'ont-l23', '#2563eb', 'l23', 'role-0'],
-                ['src-excel-10', 'ont-l24a', '#2563eb', 'l24a', 'role-3'],
-                ['src-excel-11', 'ont-l24a', '#2563eb', 'l24a', 'role-3'],
-                ['src-excel-12', 'ont-l24b', '#2563eb', 'l24b', 'role-3'],
-                ['src-excel-13', 'ont-l25', '#2563eb', 'l25', 'role-3'],
-                ['src-excel-14', 'ont-l26', '#2563eb', 'l26', 'role-9'],
-                ['src-excel-15', 'ont-l26', '#2563eb', 'l26', 'role-9'],
-                ['src-excel-16', 'ont-l26', '#2563eb', 'l26', 'role-9'],
-                ['src-excel-17', 'ont-l26', '#2563eb', 'l26', 'role-9'],
-                ['src-excel-18', 'ont-l27', '#ef4444', 'l27', 'role-6'],
-                ['src-excel-19', 'ont-l27', '#ef4444', 'l27', 'role-6'],
-                ['src-excel-20', 'ont-l27', '#ef4444', 'l27', 'role-6'],
-                ['src-excel-21', 'ont-l27', '#ef4444', 'l27', 'role-6'],
-                ['src-excel-22', 'ont-l28', '#2563eb', 'l28', 'role-19'],
-                ['src-excel-23', 'ont-l29a', '#ef4444', 'l29a', 'role-4'],
-                ['src-excel-24', 'ont-l29a', '#ef4444', 'l29a', 'role-4'],
-                ['src-excel-25', 'ont-l30a', '#10b981', 'l30a', 'role-4'],
-                ['src-excel-26', 'ont-l30b', '#10b981', 'l30b', 'role-4'],
-                ['src-excel-27', 'ont-l30b', '#10b981', 'l30b', 'role-4'],
-                ['src-excel-28', 'ont-l30b', '#10b981', 'l30b', 'role-4'],
-                ['src-excel-29', 'ont-l30b', '#10b981', 'l30b', 'role-4'],
-                ['src-excel-30', 'ont-l30c', '#10b981', 'l30c', 'role-4'],
-                ['src-excel-31', 'ont-l30c', '#10b981', 'l30c', 'role-4'],
-                ['src-excel-32', 'ont-l30c', '#10b981', 'l30c', 'role-4'],
-                ['src-excel-33', 'ont-l31a', '#10b981', 'l31a', 'role-3'],
-                ['src-excel-34', 'ont-l31b', '#10b981', 'l31b', 'role-3'],
-                ['src-excel-35', 'ont-l31b', '#10b981', 'l31b', 'role-3'],
-                ['src-excel-36', 'ont-l31b', '#10b981', 'l31b', 'role-3'],
-                ['src-excel-37', 'ont-l31b', '#10b981', 'l31b', 'role-3'],
-                ['src-excel-38', 'ont-l31c', '#10b981', 'l31c', 'role-3'],
-                ['src-excel-39', 'ont-l31c', '#10b981', 'l31c', 'role-3'],
-                ['src-excel-40', 'ont-l31c', '#10b981', 'l31c', 'role-3'],
-                ['src-excel-41', 'ont-l32', '#ef4444', 'l32', 'role-6'],
-                ['src-excel-42', 'ont-l32', '#ef4444', 'l32', 'role-6'],
-                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
+                ['src-excel-10', 'ont-l24a', '#2563eb', 'l24a', 'role-0'],
+                ['src-excel-11', 'ont-l24a', '#2563eb', 'l24a', 'role-0'],
+                ['src-excel-12', 'ont-l24b', '#2563eb', 'l24b', 'role-0'],
+                ['src-excel-13', 'ont-l25', '#2563eb', 'l25', 'role-0'],
+                ['src-excel-14', 'ont-l26', '#2563eb', 'l26', 'role-0'],
+                ['src-excel-15', 'ont-l26', '#2563eb', 'l26', 'role-0'],
+                ['src-excel-16', 'ont-l26', '#2563eb', 'l26', 'role-0'],
+                ['src-excel-17', 'ont-l26', '#2563eb', 'l26', 'role-0'],
+                ['src-excel-18', 'ont-l27', '#2563eb', 'l27', 'role-0'],
+                ['src-excel-19', 'ont-l27', '#2563eb', 'l27', 'role-0'],
+                ['src-excel-20', 'ont-l27', '#2563eb', 'l27', 'role-0'],
+                ['src-excel-21', 'ont-l27', '#2563eb', 'l27', 'role-0'],
+                ['src-excel-22', 'ont-l28', '#2563eb', 'l28', 'role-0'],
+                ['src-excel-23', 'ont-l29a', '#2563eb', 'l29a', 'role-0'],
+                ['src-excel-24', 'ont-l29a', '#2563eb', 'l29a', 'role-0'],
+                ['src-excel-25', 'ont-l30a', '#2563eb', 'l30a', 'role-0'],
+                ['src-excel-26', 'ont-l30b', '#2563eb', 'l30b', 'role-0'],
+                ['src-excel-27', 'ont-l30b', '#2563eb', 'l30b', 'role-0'],
+                ['src-excel-28', 'ont-l30b', '#2563eb', 'l30b', 'role-0'],
+                ['src-excel-29', 'ont-l30b', '#2563eb', 'l30b', 'role-0'],
+                ['src-excel-30', 'ont-l30c', '#2563eb', 'l30c', 'role-0'],
+                ['src-excel-31', 'ont-l30c', '#2563eb', 'l30c', 'role-0'],
+                ['src-excel-32', 'ont-l30c', '#2563eb', 'l30c', 'role-0'],
+                ['src-excel-33', 'ont-l31a', '#2563eb', 'l31a', 'role-0'],
+                ['src-excel-34', 'ont-l31b', '#2563eb', 'l31b', 'role-0'],
+                ['src-excel-35', 'ont-l31b', '#2563eb', 'l31b', 'role-0'],
+                ['src-excel-36', 'ont-l31b', '#2563eb', 'l31b', 'role-0'],
+                ['src-excel-37', 'ont-l31b', '#2563eb', 'l31b', 'role-0'],
+                ['src-excel-38', 'ont-l31c', '#2563eb', 'l31c', 'role-0'],
+                ['src-excel-39', 'ont-l31c', '#2563eb', 'l31c', 'role-0'],
+                ['src-excel-40', 'ont-l31c', '#2563eb', 'l31c', 'role-0'],
+                ['src-excel-41', 'ont-l32', '#2563eb', 'l32', 'role-0'],
+                ['src-excel-42', 'ont-l32', '#2563eb', 'l32', 'role-0'],
+
+                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
                 ['ont-l21', 'role-1', '#ef4444', 'l21', 'role-1'], // 主导
                 ['ont-l21', 'role-8', '#2563eb', 'l21', 'role-8'], // 支持
                 ['ont-l21', 'role-9', '#2563eb', 'l21', 'role-9'], // 支持
@@ -3227,7 +3209,6 @@
                 ['ont-l27', 'role-10', '#ef4444', 'l27', 'role-10'], // 主导
                 ['ont-l28', 'role-4', '#ef4444', 'l28', 'role-4'], // 主导
                 ['ont-l29a', 'role-4', '#ef4444', 'l29a', 'role-4'], // 主导
-                ['ont-l29a', 'role-10', '#2563eb', 'l29a', 'role-10'], // 支持
                 ['ont-l30a', 'role-4', '#ef4444', 'l30a', 'role-4'], // 主导
                 ['ont-l30b', 'role-3', '#ef4444', 'l30b', 'role-3'], // 主导
                 ['ont-l30b', 'role-2', '#2563eb', 'l30b', 'role-2'], // 支持
@@ -3237,7 +3218,7 @@
                 ['ont-l31b', 'role-9', '#2563eb', 'l31b', 'role-9'], // 支持
                 ['ont-l31c', 'role-8', '#ef4444', 'l31c', 'role-8'], // 主导
                 ['ont-l32', 'role-6', '#ef4444', 'l32', 'role-6'], // 主导
-                ['ont-l32', 'role-10', '#2563eb', 'l32', 'role-10'], // 支持
+                ['ont-l32', 'role-13', '#2563eb', 'l32', 'role-13'], // 支持
 
                 // 挂载子节点的 SVG 拓扑分支线 (Sub-Node SVG Branches)
                 ['src-excel-43', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
@@ -3249,7 +3230,7 @@
                 ['ont-l30b', 'ont-l30b-sub', '#0284c7', 'l30b', 'role-3'],
                 ['ont-l30b', 'ont-l24a-delta', '#10b981', 'l30b', 'role-3'],
 
-                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
+                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
                 ['role-16', 'role-10', '#ef4444', 'scen', 'role-10'] /* 16 气象局 -> 10 执法监督处: 气象灾害预警/恶劣天气监测推流 */,
                 ['role-10', 'role-0', '#ef4444', 'scen', 'role-0'] /* 10 执法监督处 -> 00 数据统筹部门: 空间锚点确权与管辖匹配 */,
                 ['role-0', 'role-4', '#ef4444', 'scen', 'role-4'] /* 00 数据统筹部门 -> 04 养护管理处: 灾前风险点位巡查指令 */,
@@ -3511,21 +3492,21 @@
             drawConnectorLines();
         }
 
-                const ROLE_LINEAGE_MAPPINGS = {
+                                                                                        const ROLE_LINEAGE_MAPPINGS = {
             'role-0': ["role-0", "l31a", "l31b"],
             'role-1': ["role-1", "l21", "l23"],
             'role-2': ["role-2", "l24a", "l30b"],
             'role-3': ["role-3", "l24a", "l24b", "l25", "l30b"],
             'role-4': ["role-4", "l28", "l29a", "l30a"],
             'role-5': ["role-5", "l26"],
-            'role-6': ["role-6", "l26", "l32"],
+            'role-6': ["role-6", "l26"],
             'role-7': ["role-7", "l30c"],
             'role-8': ["role-8", "l21", "l22", "l24a", "l31c"],
             'role-9': ["role-9", "l21", "l31b"],
-            'role-10': ["role-10", "l27", "l29a", "l32"],
+            'role-10': ["role-10", "l27"],
             'role-11': ["role-11", "role-6", "role-4"],
             'role-12': ["role-12", "role-4", "role-8"],
-            'role-13': ["role-13", "role-10"],
+            'role-13': ["role-13", "role-10", "l32"],
             'role-14': ["role-14", "role-4"],
             'role-15': ["role-15", "role-4"],
             'role-16': ["role-16", "role-13"],
