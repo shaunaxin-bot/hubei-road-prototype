@@ -7,9 +7,12 @@ $projectDirName = Split-Path $projectDir -Leaf
 
 $srcHtml = Join-Path $projectDir "$projectDirName-hubei-prototype.html"
 
-Write-Host "`n[1/4] Compiling Knowledge Base Schemas..." -ForegroundColor Cyan
+Write-Host "`n[1/4] Compiling Knowledge Base Schemas & AIP Linkages..." -ForegroundColor Cyan
 Set-Location $projectDir
 python compile_public_schema.py
+python compile_linkages.py
+python compile_internal_linkages.py
+python compile_ontology_lines.py
 
 Write-Host "`n[2/4] Building Frontend and Generating Offline HTML..." -ForegroundColor Cyan
 npm run build
