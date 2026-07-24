@@ -3310,7 +3310,14 @@
                         const isHit = activeHighlightCode.includes(code) || activeHighlightCode.includes(roleId);
                         if (isHit) {
                             let isLead = false;
-                            if (code && typeof all17Ontologies !== 'undefined' && roleId && roleId.startsWith('role-')) {
+                            let isOntologyToRole = false;
+
+                            if (fromId.startsWith('ont-') && toId.startsWith('role-')) {
+                                isOntologyToRole = true;
+                            }
+
+                            // Only Ontology->Role lines can be considered "Lead" red lines
+                            if (isOntologyToRole && code && typeof all17Ontologies !== 'undefined' && roleId && roleId.startsWith('role-')) {
                                 const ontInfo = all17Ontologies.find(o => o.key === code);
                                 if (ontInfo) {
                                     const roleNumStr = roleId.replace('role-', '');
