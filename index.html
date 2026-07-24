@@ -49811,8 +49811,16 @@ ${code}
               combinedSample = combinedSample.concat(sampleRows);
             }
           }
+          let schemaMarkdown = "";
+          if (window.__NIANBAO_SCHEMA__) {
+            const regex = new RegExp(`## ${cleanTableName}[\\s\\S]*?(?=\\n## |\\n---$)`, "i");
+            const match2 = window.__NIANBAO_SCHEMA__.match(regex);
+            if (match2) {
+              schemaMarkdown = match2[0];
+            }
+          }
           if (!combinedCols) return JSON.stringify({ error: `\u8868 ${cleanTableName} \u5728\u6240\u9009\u5E74\u4EFD\u5747\u4E0D\u5B58\u5728` });
-          return JSON.stringify({ table: cleanTableName, years: targetYears, columns: combinedCols, sample_rows: combinedSample });
+          return JSON.stringify({ table: cleanTableName, years: targetYears, schema_dict: schemaMarkdown, columns: combinedCols, sample_rows: combinedSample });
         } catch (err) {
           return JSON.stringify({ error: "Local SQLite Error: " + err.message });
         }
@@ -49846,7 +49854,15 @@ ${code}
             });
           }
         }
-        return JSON.stringify({ table: tableName, year: targetYears[0], columns: cols, sample_rows: sampleRows });
+        let schemaMarkdown = "";
+        if (window.__NIANBAO_SCHEMA__) {
+          const regex = new RegExp(`## ${cleanTableName}[\\s\\S]*?(?=\\n## |\\n---$)`, "i");
+          const match2 = window.__NIANBAO_SCHEMA__.match(regex);
+          if (match2) {
+            schemaMarkdown = match2[0];
+          }
+        }
+        return JSON.stringify({ table: tableName, year: targetYears[0], schema_dict: schemaMarkdown, columns: cols, sample_rows: sampleRows });
       } catch (e) {
         return JSON.stringify({ error: e.message || "Failed to fetch schema from server" });
       }
