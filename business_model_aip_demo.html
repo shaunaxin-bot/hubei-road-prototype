@@ -690,7 +690,7 @@
                             </div>
 
                             <!-- Column 3: 1+10+X+Y 政企协同生态 Agent -->
-                            <div class="col-span-3 flex flex-col gap-1 pr-16">
+                            <div class="col-span-3 flex flex-col gap-1 pr-32">
                                 <div class="font-bold border-b border-slate-200 pb-1 text-slate-700 text-[11.5px]">
                                     1+10+X+Y 政企协同生态
                                 </div>
@@ -3301,7 +3301,9 @@
                         pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
                     } else {
                         const maxX = svgRect.width - 5;
-                        const loopX = Math.min(Math.max(r1.right, r2.right) - svgRect.left + 25, maxX);
+                        const verticalDist = Math.abs(y2 - y1);
+                        const bulge = Math.min(Math.max(45, verticalDist * 0.35), 200); // Dynamic sweeping arc
+                        const loopX = Math.min(Math.max(r1.right, r2.right) - svgRect.left + bulge, maxX);
                         pathData = `M ${r1.right - svgRect.left} ${y1} C ${loopX} ${y1}, ${loopX} ${y2}, ${r2.right - svgRect.left} ${y2}`;
                     }
 
