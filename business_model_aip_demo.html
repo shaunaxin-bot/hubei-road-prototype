@@ -3300,9 +3300,9 @@
                         const dx = Math.abs(x2 - x1) * 0.45;
                         pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
                     } else {
-                        const maxX = svgRect.width - 15;
-                        const loopX = Math.min(Math.max(r1.right, r2.right) - svgRect.left + 18, maxX);
-                        pathData = `M ${r1.right - svgRect.left} ${y1} C ${loopX} ${y1}, ${loopX} ${y2}, ${r2.right - svgRect.left} ${y2}`;
+                        const minX = 15;
+                        const loopX = Math.max(Math.min(r1.left, r2.left) - svgRect.left - 30, minX);
+                        pathData = `M ${r1.left - svgRect.left} ${y1} C ${loopX} ${y1}, ${loopX} ${y2}, ${r2.left - svgRect.left} ${y2}`;
                     }
 
                     if (activeHighlightCode && activeHighlightCode.length > 0) {
