@@ -50566,7 +50566,7 @@ ${knowledgeBase}
       };
       const url = MODEL_ENDPOINTS[apiProvider] || MODEL_ENDPOINTS["deepseek"];
       const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` };
-      let modelName = "deepseek-chat";
+      let modelName = "deepseek-v4-pro";
       if (apiProvider === "openai") modelName = "gpt-4o-mini";
       else if (apiProvider === "zhipu") modelName = "glm-4-flash";
       const nianbaoHeaderMatch = window.__NIANBAO_SCHEMA__ ? window.__NIANBAO_SCHEMA__.match(/^[\\s\\S]*?(?=\\n---)/) : null;
@@ -51457,7 +51457,7 @@ ${msg.views.view3}
           modelName = "gemini-1.5-flash";
           url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
         } else if (apiProvider === "deepseek") {
-          modelName = "deepseek-chat";
+          modelName = "deepseek-v4-pro";
           url = "https://api.deepseek.com/v1/chat/completions";
         }
         let headers = { "Content-Type": "application/json" };
