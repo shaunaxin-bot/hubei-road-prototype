@@ -50658,7 +50658,8 @@ ${knowledgeBase}
           }
           const controller = new AbortController();
           const timeoutId = setTimeout(() => controller.abort(), 12e4);
-          let fetchTimerCount = 0;
+          let fetchTimerCount = 1;
+          updateBot({ fetchTimer: fetchTimerCount });
           const fetchTimerId = setInterval(() => {
             fetchTimerCount++;
             updateBot({ fetchTimer: fetchTimerCount });
@@ -51839,7 +51840,7 @@ ${msg.views.view3}
             }
           );
         });
-      })(), msg.isGeneratingReport && /* @__PURE__ */ React.createElement("div", { className: "mt-2 pt-2 border-t border-slate-200 text-slate-900 font-normal flex items-start gap-1.5", style: { fontSize: "11px" } }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] mt-[1.5px]" }, "\u23F3"), /* @__PURE__ */ React.createElement("span", null, msg.thought ? msg.thought.startsWith("\u{1F50D}") ? msg.thought.replace("\u{1F50D}", "").trim() : msg.thought : "\u6570\u636E\u7A7F\u900F\u4E0E\u8BA1\u7B97\u5B8C\u6210\uFF0C\u6B63\u5728\u5206\u6790\u5E76\u751F\u6210\u62A5\u544A\u4E2D...", msg.fetchTimer > 0 && /* @__PURE__ */ React.createElement("span", { className: "text-blue-600 font-bold ml-2" }, " (\u7528\u65F6: ", msg.fetchTimer, "s)"))), msg.totalTokens > 0 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 mt-1 pt-1 border-t border-slate-200" }, /* @__PURE__ */ React.createElement("span", { className: "px-1 py-0 rounded border border-slate-200 text-[10px] font-bold bg-slate-100 text-slate-600" }, "\u7EDF\u8BA1"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "Token: ", msg.totalTokens, " | \xA5", msg.totalCost != null ? msg.totalCost.toFixed(4) : "0.0000"))), /* @__PURE__ */ React.createElement(
+      })(), msg.isGeneratingReport && /* @__PURE__ */ React.createElement("div", { className: "mt-2 pt-2 border-t border-slate-200 text-slate-900 font-normal flex items-start gap-1.5", style: { fontSize: "11px" } }, /* @__PURE__ */ React.createElement("span", { className: "text-[11px] mt-[1.5px]" }, "\u23F3[v2]"), /* @__PURE__ */ React.createElement("span", null, msg.thought ? msg.thought.startsWith("\u{1F50D}") ? msg.thought.replace("\u{1F50D}", "").trim() : msg.thought : "\u6570\u636E\u7A7F\u900F\u4E0E\u8BA1\u7B97\u5B8C\u6210\uFF0C\u6B63\u5728\u5206\u6790\u5E76\u751F\u6210\u62A5\u544A\u4E2D...", msg.fetchTimer > 0 && /* @__PURE__ */ React.createElement("span", { className: "text-blue-600 font-bold ml-2" }, " (\u8017\u65F6: ", msg.fetchTimer, "s)"))), msg.totalTokens > 0 && /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 mt-1 pt-1 border-t border-slate-200" }, /* @__PURE__ */ React.createElement("span", { className: "px-1 py-0 rounded border border-slate-200 text-[10px] font-bold bg-slate-100 text-slate-600" }, "\u7EDF\u8BA1"), /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "Token: ", msg.totalTokens, " | \xA5", msg.totalCost != null ? msg.totalCost.toFixed(4) : "0.0000"))), /* @__PURE__ */ React.createElement(
         "div",
         {
           onClick: (e) => {
