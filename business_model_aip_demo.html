@@ -368,6 +368,27 @@
                 <div id="lineageCanvasWrapper" class="bg-white border border-slate-200 rounded shadow-2xs flex flex-col font-sans overflow-hidden relative flex-1 h-full">
                     <svg id="svgOverlay" class="absolute inset-0 w-full h-full pointer-events-none z-20" style="top:0;left:0;"></svg>
                     
+                    <!-- 流线图例 Legend -->
+                    <div class="absolute bottom-4 right-6 z-30 bg-white/95 backdrop-blur-md border border-slate-200 rounded shadow-lg p-2.5 text-[10px] text-slate-700 pointer-events-none flex flex-col gap-1.5 min-w-[180px]">
+                        <div class="font-bold border-b border-slate-200 pb-1 mb-0.5 text-slate-800">📌 流线溯源图例</div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-[1.5px] bg-blue-600"></div>
+                            <span>物理表映射 / 业务支持</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-[2px] bg-red-600"></div>
+                            <span class="font-bold text-red-800">L码客户归口 (主导)</span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-0.5">
+                            <div class="w-6 h-[1.5px] bg-emerald-600"></div>
+                            <span>常规协同场景流转</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-[3px] bg-emerald-600"></div>
+                            <span class="font-bold text-emerald-800">高优闭环/预警调度流转</span>
+                        </div>
+                    </div>
+
                     <div id="lineageCanvas" class="flex-1 lineage-container overflow-y-auto p-3 pb-16 bg-white">
 
                         <div class="grid grid-cols-12 gap-3 relative z-10 text-xs">
@@ -1486,7 +1507,7 @@
 
         
         // 全量 17 套国标 L 码本体定义库
-                                                                                                                                                const all17Ontologies = [
+                                                                                                                                                        const all17Ontologies = [
             { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
             { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '08 农村公路处' },
             { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
@@ -3196,7 +3217,7 @@
                 ['src-excel-41', 'ont-l32', '#2563eb', 'l32', ''],
                 ['src-excel-42', 'ont-l32', '#2563eb', 'l32', ''],
 
-                                                                                                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
+                                                                                                                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
                 ['ont-l21', 'role-1', '#ef4444', 'l21', 'role-1'], // 主导
                 ['ont-l21', 'role-8', '#2563eb', 'l21', 'role-8'], // 支持
                 ['ont-l21', 'role-9', '#2563eb', 'l21', 'role-9'], // 支持
@@ -3232,7 +3253,7 @@
                 ['ont-l30b', 'ont-l30b-sub', '#0284c7', 'l30b', 'role-3'],
                 ['ont-l30b', 'ont-l24a-delta', '#10b981', 'l30b', 'role-3'],
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
+                                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
                 ['role-16', 'role-10', '#10b981', 'scen', 'role-10', 'high'] /* 16 气象局 -> 10 执法监督处: 气象灾害预警/恶劣天气监测推流 */,
                 ['role-10', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 10 执法监督处 -> 00 数据统筹部门: 空间锚点确权与管辖匹配 */,
                 ['role-0', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 00 数据统筹部门 -> 04 养护管理处: 灾前风险点位巡查指令 */,
@@ -3530,7 +3551,7 @@
             drawConnectorLines();
         }
 
-                                                                                                                                                                                                                                const ROLE_LINEAGE_MAPPINGS = {
+                                                                                                                                                                                                                                        const ROLE_LINEAGE_MAPPINGS = {
             'role-0': ["role-0", "l31a", "l31b"],
             'role-1': ["role-1", "l21", "l23"],
             'role-2': ["role-2", "l24a", "l30b"],
