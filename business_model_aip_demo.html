@@ -213,33 +213,19 @@
                                 <span id="editorOntBranchCount" class="text-sky-900 font-mono">2 个分支</span>
                             </div>
                             <div id="editorOntBranchContainer" class="p-1 bg-sky-50/80 border border-sky-200 rounded text-[9.5px] space-y-1">
-                                <div onclick="handleLeftElementClick('l27')" class="p-1 bg-white border border-sky-200 rounded flex flex-col gap-0.5 shadow-2xs hover:border-sky-400 cursor-pointer transition-all">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center gap-1 cursor-pointer">
-                                            <input type="checkbox" checked onclick="event.stopPropagation()" class="rounded border-slate-300 text-sky-800 focus:ring-0">
-                                            <span class="font-bold text-slate-900 text-[9.5px]">L27 地质灾害与险情点明细表</span>
-                                        </div>
-                                        <span class="text-[8px] bg-slate-100 text-slate-700 font-mono px-1 rounded font-bold">年报基线</span>
-                                    </div>
-                                    <div class="text-[8.5px] text-sky-900 font-mono flex items-center justify-between pt-0.5 border-t border-slate-100">
-                                        <span class="font-bold">归口主导处室：</span>
-                                        <span class="font-extrabold text-sky-950">10 执法监督处 (归口主导)</span>
-                                    </div>
-                                </div>
-                                <div onclick="handleLeftElementClick('l32')" class="p-1 bg-white border border-sky-200 rounded flex flex-col gap-0.5 shadow-2xs hover:border-sky-400 cursor-pointer transition-all">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center gap-1 cursor-pointer">
-                                            <input type="checkbox" checked onclick="event.stopPropagation()" class="rounded border-slate-300 text-sky-800 focus:ring-0">
-                                            <span class="font-bold text-slate-900 text-[9.5px]">L32 应急储备库及队伍表</span>
-                                        </div>
-                                        <span class="text-[8px] bg-slate-100 text-slate-700 font-mono px-1 rounded font-bold">年报基线</span>
-                                    </div>
-                                    <div class="text-[8.5px] text-sky-900 font-mono flex items-center justify-between pt-0.5 border-t border-slate-100">
-                                        <span class="font-bold">归口主导处室：</span>
-                                        <span class="font-extrabold text-sky-950">04 养护管理处 (归口主导)</span>
-                                    </div>
-                                </div>
+                                <!-- Dynamically populated -->
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- 2.5 场景规则 (Guardrails) -->
+                    <div class="bg-white border border-slate-300 rounded p-1.5 space-y-1 shadow-2xs flex flex-col" style="max-height: 250px;">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-0.5 shrink-0">
+                            <span class="font-bold text-[10px] text-slate-900">2.5 场景业务规则 (Scenario Guardrails)</span>
+                            <span class="text-[8px] bg-sky-100 text-sky-800 font-bold px-1 py-0.2 rounded">真实知识库同步</span>
+                        </div>
+                        <div id="scenarioRulesContainer" class="overflow-y-auto pr-1 text-[9px] text-slate-800" style="scrollbar-width: thin;">
+                            <div class="text-center py-4 text-slate-400 italic">加载规则中...</div>
                         </div>
                     </div>
 
@@ -1506,6 +1492,25 @@
             if (ontSelect) ontSelect.value = scen.defaultOnt;
             if (typeof loadOntologyToEditor === 'function') {
                 loadOntologyToEditor(scen.defaultOnt);
+            }
+
+            // Fetch and render actual scenario rules from python backend
+            const rulesContainer = document.getElementById('scenarioRulesContainer');
+            if (rulesContainer) {
+                rulesContainer.innerHTML = '<div class="text-center py-4 text-slate-400 italic">加载规则中...</div>';
+                fetch('/api/scenario/rules?scen_num=' + scenNum)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.markdown) {
+                            rulesContainer.innerHTML = renderMarkdown(data.markdown);
+                        } else {
+                            rulesContainer.innerHTML = '<div class="text-center py-4 text-slate-400 italic">未能加载到对应的场景规则文档</div>';
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        rulesContainer.innerHTML = '<div class="text-center py-4 text-red-500 italic">加载失败，请确保后台 server.py 已启动</div>';
+                    });
             }
 
             if (typeof selectScenario === 'function') {
