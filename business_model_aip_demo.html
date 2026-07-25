@@ -70,10 +70,10 @@
         }
 
         .workspace-nav-active {
-            background-color: #2563eb !important;
+            background-color: #0284c7 !important; /* sky-600 */
             color: #ffffff !important;
-            font-weight: 700 !important;
-            border-color: #2563eb !important;
+            border-color: #0284c7 !important;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
         }
 
         .gov-table-th {
@@ -122,12 +122,10 @@
         </div>
 
         <div class="flex items-center gap-1.5 text-xs">
-            <button onclick="switchWorkspace('ds')" id="nav-ds" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold"> 数据接入</button>
-            <button onclick="switchWorkspace('oma')" id="nav-oma" class="workspace-nav-active px-3 py-1 bg-sky-600 text-white font-bold rounded shadow-2xs border border-sky-600"> 业务模型</button>
-            <button onclick="switchWorkspace('impact')" id="nav-impact" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold"> 数据稽核</button>
-            <button onclick="switchWorkspace('writeback')" id="nav-writeback" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold"> 合规审计</button>
-            
-            
+            <button onclick="switchWorkspace('ds')" id="nav-ds" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold transition-all"> 数据接入</button>
+            <button onclick="switchWorkspace('km')" id="nav-km" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold transition-all"> 业务规则</button>
+            <button onclick="switchWorkspace('oma')" id="nav-oma" class="workspace-nav-active px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold transition-all"> 业务模型</button>
+            <button onclick="switchWorkspace('publish')" id="nav-publish" class="px-3 py-1 bg-white text-slate-700 border border-slate-200 rounded hover:bg-slate-50 font-bold transition-all"> 智能体发布</button>
         </div>
     </header>
 
@@ -620,28 +618,31 @@
                                 </div>
                                 
                                 <!-- 简单推演与变化对比文本框 -->
-                                <div id="multi-combo-info-box" class="bg-slate-50 border border-slate-300 rounded p-1.5 text-[9px] text-slate-800 space-y-0.5 shadow-2xs my-1">
-                                    <div class="font-bold text-[9.5px] text-slate-900 flex items-center gap-1">
+                                <div id="multi-combo-info-box" class="bg-slate-50 border border-slate-300 rounded p-1 text-[8.5px] text-slate-800 space-y-0.5 shadow-2xs my-0.5">
+                                    <div class="font-bold text-[9px] text-slate-900 flex items-center gap-1">
                                         <span>【多本体组合推演与变化对比】</span>
                                     </div>
-                                    <div id="multi-combo-info-content" class="text-[8.5px] text-slate-700 leading-tight">
+                                    <div id="multi-combo-info-content" class="text-[8px] text-slate-700 leading-tight">
                                         点击场景卡片（如场景 2 养护业务），此处将直观展现本体网络对实际业务数据流转的拉通与赋能。
                                     </div>
                                 </div>
 
-                                <div class="space-y-1 flex-1">
-                                    <div id="ont-l21" onclick="switchWorkspace('oma'); switchOntologyTier('l21');" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] border-blue-400 cursor-pointer hover:shadow-xs w-fit">
+                                <div class="space-y-0 flex-1">
+                                    <div id="ont-l21" onclick="switchWorkspace('oma'); switchOntologyTier('l21'); toggleKnowledgeDrawer('l21');" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-blue-400 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-blue-900">📄 [L21] 公路路线基本情况</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 3</span>
                                     </div>
-                                    <div id="ont-l22" onclick="switchWorkspace('oma'); switchOntologyTier('l22');" onmouseenter="highlightLineage('l22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l22" onclick="switchWorkspace('oma'); switchOntologyTier('l22'); toggleKnowledgeDrawer('l22');" onmouseenter="highlightLineage('l22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L22] 乡镇/建制村/自然村通达及属性表</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 1</span>
                                     </div>
-                                    <div id="ont-l23" onclick="switchWorkspace('oma'); switchOntologyTier('l23');" onmouseenter="highlightLineage('l23')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l23" onclick="switchWorkspace('oma'); switchOntologyTier('l23'); toggleKnowledgeDrawer('l23');" onmouseenter="highlightLineage('l23')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L23] 亚洲公路网明细</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 1</span>
                                     </div>
-                                    <div id="ont-l24a" onclick="switchWorkspace('oma'); switchOntologyTier('l24a');" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l24a" onclick="switchWorkspace('oma'); switchOntologyTier('l24a'); toggleKnowledgeDrawer('l24a');" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L24a] 公路桥梁明细表</span>
-                                        <span class="text-[7.5px] bg-slate-200 text-slate-700 px-1 rounded font-bold">🏛️ 年报骨架</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 4</span>
                                     </div>
                                     <!-- 显式展出：L24a 挂载子节点 -->
                                     <div id="ont-l24a-sub" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="ml-3 pl-1.5 border-l-2 border-amber-300 my-0.5">
@@ -651,31 +652,39 @@
                                         </div>
                                     </div>
 
-                                    <div id="ont-l24b" onclick="switchWorkspace('oma'); switchOntologyTier('l24b');" onmouseenter="highlightLineage('l24b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l24b" onclick="switchWorkspace('oma'); switchOntologyTier('l24b'); toggleKnowledgeDrawer('l24b');" onmouseenter="highlightLineage('l24b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L24b] 公路涵洞明细表</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 1</span>
                                     </div>
-                                    <div id="ont-l25" onclick="switchWorkspace('oma'); switchOntologyTier('l25');" onmouseenter="highlightLineage('l25')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l25" onclick="switchWorkspace('oma'); switchOntologyTier('l25'); toggleKnowledgeDrawer('l25');" onmouseenter="highlightLineage('l25')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L25] 公路隧道明细表</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 2</span>
                                     </div>
-                                    <div id="ont-l26" onclick="switchWorkspace('oma'); switchOntologyTier('l26');" onmouseenter="highlightLineage('l26')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l26" onclick="switchWorkspace('oma'); switchOntologyTier('l26'); toggleKnowledgeDrawer('l26');" onmouseenter="highlightLineage('l26')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L26] 服务及收费设施</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 1</span>
                                     </div>
-                                    <div id="ont-l27" onclick="switchWorkspace('oma'); switchOntologyTier('l27');" onmouseenter="highlightLineage('l27')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l27" onclick="switchWorkspace('oma'); switchOntologyTier('l27'); toggleKnowledgeDrawer('l27');" onmouseenter="highlightLineage('l27')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L27] 地质灾害点明细表</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors" title="点击查看绑定的业务规则">📚 规则 x 1</span>
                                     </div>
-                                    <div id="ont-l28" onclick="switchWorkspace('oma'); switchOntologyTier('l28');" onmouseenter="highlightLineage('l28')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l28" onclick="switchWorkspace('oma'); switchOntologyTier('l28'); toggleKnowledgeDrawer('l28');" onmouseenter="highlightLineage('l28')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L28] 沿线设施汇总表</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 1</span>
                                     </div>
-                                    <div id="ont-l29a" onclick="switchWorkspace('oma'); switchOntologyTier('l29a');" onmouseenter="highlightLineage('l29a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] border-blue-400 cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l29a" onclick="switchWorkspace('oma'); switchOntologyTier('l29a'); toggleKnowledgeDrawer('l29a');" onmouseenter="highlightLineage('l29a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-blue-400 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-blue-900">📄 [L29a] 日常路况评定明细</span>
                                         <span id="ont-l29a-tag" class="text-[8px] bg-blue-50 text-blue-700 px-1 rounded font-bold">100m桩号</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 5</span>
                                     </div>
-                                    <div id="ont-l30a" onclick="switchWorkspace('oma'); switchOntologyTier('l30a');" onmouseenter="highlightLineage('l30a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l30a" onclick="switchWorkspace('oma'); switchOntologyTier('l30a'); toggleKnowledgeDrawer('l30a');" onmouseenter="highlightLineage('l30a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L30a] 养护作业统计表</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 2</span>
                                     </div>
-                                    <div id="ont-l30b" onclick="switchWorkspace('oma'); switchOntologyTier('l30b');" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] border-amber-400 cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l30b" onclick="switchWorkspace('oma'); switchOntologyTier('l30b'); toggleKnowledgeDrawer('l30b');" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-amber-400 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L30b] 养护工程统计表</span>
                                         <span class="text-[7.5px] bg-amber-100 text-amber-900 border border-amber-300 px-1 rounded font-bold">🔄 动态养护叠加</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 2</span>
                                     </div>
                                     <!-- 显式展出：L30b 挂载子节点 -->
                                     <div id="ont-l30b-sub" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="ml-3 pl-1.5 border-l-2 border-amber-400 my-0.5">
@@ -691,20 +700,25 @@
                                             <span class="text-[7.5px] bg-amber-600 text-white px-1.5 rounded font-bold animate-pulse">演进对比 +17.5%</span>
                                         </div>
                                     </div>
-                                    <div id="ont-l30c" onclick="switchWorkspace('oma'); switchOntologyTier('l30c');" onmouseenter="highlightLineage('l30c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l30c" onclick="switchWorkspace('oma'); switchOntologyTier('l30c'); toggleKnowledgeDrawer('l30c');" onmouseenter="highlightLineage('l30c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L30c] 养护资金统计表</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 1</span>
                                     </div>
-                                    <div id="ont-l31a" onclick="switchWorkspace('oma'); switchOntologyTier('l31a');" onmouseenter="highlightLineage('l31a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l31a" onclick="switchWorkspace('oma'); switchOntologyTier('l31a'); toggleKnowledgeDrawer('l31a');" onmouseenter="highlightLineage('l31a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L31a] 高速管养单位属性</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 1</span>
                                     </div>
-                                    <div id="ont-l31b" onclick="switchWorkspace('oma'); switchOntologyTier('l31b');" onmouseenter="highlightLineage('l31b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l31b" onclick="switchWorkspace('oma'); switchOntologyTier('l31b'); toggleKnowledgeDrawer('l31b');" onmouseenter="highlightLineage('l31b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L31b] 国省干线管养单位</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 1</span>
                                     </div>
-                                    <div id="ont-l31c" onclick="switchWorkspace('oma'); switchOntologyTier('l31c');" onmouseenter="highlightLineage('l31c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l31c" onclick="switchWorkspace('oma'); switchOntologyTier('l31c'); toggleKnowledgeDrawer('l31c');" onmouseenter="highlightLineage('l31c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L31c] 农村公路管养单位</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 1</span>
                                     </div>
-                                    <div id="ont-l32" onclick="switchWorkspace('oma'); switchOntologyTier('l32');" onmouseenter="highlightLineage('l32')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                    <div id="ont-l32" onclick="switchWorkspace('oma'); switchOntologyTier('l32'); toggleKnowledgeDrawer('l32');" onmouseenter="highlightLineage('l32')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
                                         <span class="font-bold text-slate-800">📄 [L32] 应急储备库及队伍</span>
+                                        <span class="text-[8px] bg-red-50 text-red-700 border border-red-400 px-1.5 py-0.5 rounded-full font-bold shadow-2xs hover:bg-red-100 transition-colors">📚 规则 x 1</span>
                                     </div>
                                 </div>
                             </div>
@@ -1506,7 +1520,7 @@
 
         
         // 全量 17 套国标 L 码本体定义库
-                                                                                                                                                                const all17Ontologies = [
+                                                                                                                                                                                        const all17Ontologies = [
             { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
             { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '08 农村公路处' },
             { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
@@ -1520,10 +1534,10 @@
             { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '04 养护管理处' },
             { key: 'l30b', name: 'L30b（公路养护工程统计表）', leadOffice: '03 工程技术处' },
             { key: 'l30c', name: 'L30c（公路养护资金统计表）', leadOffice: '07 财务资产处' },
-            { key: 'l31a', name: 'L31a（高速公路管养单位属性表）', leadOffice: '00 数据统筹中枢' },
-            { key: 'l31b', name: 'L31b（国省干线公路管养单位属性表）', leadOffice: '00 数据统筹中枢' },
+            { key: 'l31a', name: 'L31a（高速公路管养单位属性表）', leadOffice: '00 数据统筹部门' },
+            { key: 'l31b', name: 'L31b（国省干线公路管养单位属性表）', leadOffice: '00 数据统筹部门' },
             { key: 'l31c', name: 'L31c（农村公路管养单位属性表）', leadOffice: '08 农村公路处' },
-            { key: 'l32', name: 'L32（公路应急机具储备库及应急队伍明细表）', leadOffice: '00 数据统筹中枢' }
+            { key: 'l32', name: 'L32（公路应急机具储备库及应急队伍明细表）', leadOffice: '00 数据统筹部门' }
         ];
 
         // 灵活多智能体与场景-多本体映射库 (场景2精准定义为 2 个本体)
@@ -3216,7 +3230,7 @@
                 ['src-excel-41', 'ont-l32', '#2563eb', 'l32', ''],
                 ['src-excel-42', 'ont-l32', '#2563eb', 'l32', ''],
 
-                                                                                                                                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
+                                                                                                                                                                                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
                 ['ont-l21', 'role-1', '#ef4444', 'l21', 'role-1'], // 主导
                 ['ont-l21', 'role-8', '#2563eb', 'l21', 'role-8'], // 支持
                 ['ont-l21', 'role-9', '#2563eb', 'l21', 'role-9'], // 支持
@@ -3252,36 +3266,36 @@
                 ['ont-l30b', 'ont-l30b-sub', '#0284c7', 'l30b', 'role-3'],
                 ['ont-l30b', 'ont-l24a-delta', '#10b981', 'l30b', 'role-3'],
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
                 ['role-16', 'role-10', '#10b981', 'scen', 'role-10', 'high'] /* 16 气象局 -> 10 执法监督处: 气象灾害预警/恶劣天气监测推流 */,
-                ['role-10', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 10 执法监督处 -> 00 数据统筹中枢: 空间锚点确权与管辖匹配 */,
-                ['role-0', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 00 数据统筹中枢 -> 04 养护管理处: 灾前风险点位巡查指令 */,
-                ['role-0', 'role-3', '#10b981', 'scen', 'role-3', 'high'] /* 00 数据统筹中枢 -> 03 工程技术处: 高位桥隧边坡专项防范 */,
-                ['role-0', 'role-8', '#10b981', 'scen', 'role-8', 'high'] /* 00 数据统筹中枢 -> 08 农村公路处: 沿河临崖村道封路避险 */,
+                ['role-10', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 10 执法监督处 -> 00 数据统筹部门: 空间锚点确权与管辖匹配 */,
+                ['role-0', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 00 数据统筹部门 -> 04 养护管理处: 灾前风险点位巡查指令 */,
+                ['role-0', 'role-3', '#10b981', 'scen', 'role-3', 'high'] /* 00 数据统筹部门 -> 03 工程技术处: 高位桥隧边坡专项防范 */,
+                ['role-0', 'role-8', '#10b981', 'scen', 'role-8', 'high'] /* 00 数据统筹部门 -> 08 农村公路处: 沿河临崖村道封路避险 */,
                 ['role-10', 'role-19', '#10b981', 'scen', 'role-19', 'high'] /* 10 执法监督处 -> 18 公安交管局: 警路企气会商与交通分流管控 */,
                 ['role-10', 'role-13', '#10b981', 'scen', 'role-13', 'high'] /* 10 执法监督处 -> 12 应急处置中心: 应急资源调度与跨省/区保障 */,
                 ['role-13', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 12 应急处置中心 -> 15 养护施工企业: 多方联动公路抢通与装备前置 */,
                 ['role-10', 'role-2', '#10b981', 'scen', 'role-2', 'high'] /* 10 执法监督处 -> 02 建设市场处: 在建工程应急避险 */,
                 ['role-10', 'role-17', '#10b981', 'scen', 'role-17', 'high'] /* 10 执法监督处 -> 16 应急管理厅: 政警路企联合指挥与协同处置 */,
                 ['role-10', 'role-7', '#10b981', 'scen', 'role-7', 'medium'] /* 10 执法监督处 -> 07 财务资产处: 抢险资金核算清算 */,
-                ['role-0', 'role-1', '#10b981', 'scen', 'role-1', 'medium'] /* 00 数据统筹中枢 -> 01 规划计划处: 全年路网受损影响评估 */,
+                ['role-0', 'role-1', '#10b981', 'scen', 'role-1', 'medium'] /* 00 数据统筹部门 -> 01 规划计划处: 全年路网受损影响评估 */,
                 ['role-21', 'role-3', '#10b981', 'scen', 'role-3', 'high'] /* 21 监测设备厂商/产权单位 -> 03 工程技术处: 数据上传质量自动化考核采集 */,
-                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 03 工程技术处 -> 00 数据统筹中枢: 空间锚定与底账核实 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 03 工程技术处 -> 00 数据统筹部门: 空间锚定与底账核实 */,
                 ['role-3', 'role-13', '#10b981', 'scen', 'role-13', 'high'] /* 03 工程技术处 -> 12 应急处置中心: 分级预警处置闭环协查 */,
                 ['role-3', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 03 工程技术处 -> 04 养护管理处: 日常运维防伪与现场协查 */,
                 ['role-3', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 03 工程技术处 -> 15 养护施工企业: 下发异常工况超时督办 */,
                 ['role-3', 'role-6', '#10b981', 'scen', 'role-6', 'medium'] /* 03 工程技术处 -> 06 运营管理处: 不可抗力断电免责查证 */,
-                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'medium'] /* 03 工程技术处 -> 00 数据统筹中枢: 封闭施工免责扩展核查 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'medium'] /* 03 工程技术处 -> 00 数据统筹部门: 封闭施工免责扩展核查 */,
                 ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 03 工程技术处 -> 交通运输部(外部): 省级日常监测质量考核报告推送 */,
-                ['role-22', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 22 各地市州交通局 -> 00 数据统筹中枢: 年报底表数据逐级汇聚上报 */,
+                ['role-22', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 22 各地市州交通局 -> 00 数据统筹部门: 年报底表数据逐级汇聚上报 */,
                 ['role-4', 'role-7', '#10b981', 'scen', 'role-7', 'high'] /* 04 养护管理处 -> 07 财务资产处: 提供养护工程与资金核销业务依据 */,
                 ['role-1', 'role-18', '#10b981', 'scen', 'role-18', 'medium'] /* 01 规划计划处 -> 17 自然资源厅: 路线变更与国土空间规划数据对齐 */,
-                ['role-0', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 00 数据统筹中枢 -> 交通运输部(外部): 省级路网年报脱敏直报 */,
+                ['role-0', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 00 数据统筹部门 -> 交通运输部(外部): 省级路网年报脱敏直报 */,
                 ['role-4', 'role-11', '#10b981', 'scen', 'role-11', 'high'] /* 04 养护管理处 -> 23 交投集团: 发送越界警告与打回指令 */,
                 ['role-11', 'role-20', '#10b981', 'scen', 'role-20', 'medium'] /* 23 交投集团 -> 24 交规院: 分发映射重定向规则 */,
                 ['role-20', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 24 交规院 -> 25 路桥公司: 下发数据重构指令 */,
-                ['role-15', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 25 路桥公司 -> 00 数据统筹中枢: 数据重构与二次上传 */,
-                ['role-4', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 04 养护管理处 -> 00 数据统筹中枢: 人工授权审批落库 */,
+                ['role-15', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 25 路桥公司 -> 00 数据统筹部门: 数据重构与二次上传 */,
+                ['role-4', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 04 养护管理处 -> 00 数据统筹部门: 人工授权审批落库 */,
                 ['role-10', 'ont-l27', '#10b981', 'scen', 'l27', 'high'] /* 10 执法监督处 -> L27 (场景1联动) */,
                 ['role-10', 'ont-l29a', '#10b981', 'scen', 'l29a', 'high'] /* 10 执法监督处 -> L29a (场景1联动) */,
                 ['role-10', 'ont-l32', '#10b981', 'scen', 'l32', 'high'] /* 10 执法监督处 -> L32 (场景1联动) */,
@@ -3550,7 +3564,7 @@
             drawConnectorLines();
         }
 
-                                                                                                                                                                                                                                                const ROLE_LINEAGE_MAPPINGS = {
+                                                                                                                                                                                                                                                                        const ROLE_LINEAGE_MAPPINGS = {
             'role-0': ["role-0", "l31a", "l31b"],
             'role-1': ["role-1", "l21", "l23"],
             'role-2': ["role-2", "l24a", "l30b"],
@@ -3590,7 +3604,7 @@
         }
 
         function switchWorkspace(mode) {
-            const workspaces = ['main', 'ds', 'oma', 'impact', 'writeback'];
+            const workspaces = ['main', 'ds', 'km', 'oma', 'publish'];
             workspaces.forEach(w => {
                 const panel = document.getElementById('workspace-' + w);
                 const nav = document.getElementById('nav-' + w);
@@ -3689,6 +3703,327 @@
                 document.addEventListener('DOMContentLoaded', forceInitStudio);
             }
         })();
+    </script>
+    <!-- 知识库侧边抽屉 (Palantir Object 360 View Demo) -->
+    <div id="knowledgeDrawer" class="fixed top-0 right-0 h-full w-[450px] bg-white shadow-2xl border-l border-slate-200 transform transition-transform duration-300 z-50 flex flex-col">
+        <!-- 头部 Header -->
+        <div class="flex items-center justify-between p-3 border-b border-slate-200 bg-slate-50">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-slate-200 flex items-center justify-center text-slate-700 text-lg shadow-inner">
+                    📄
+                </div>
+                <div>
+                    <div class="font-bold text-slate-800 text-sm">L27 地质灾害与险情点明细表</div>
+                    <div class="text-[10px] text-slate-500 font-mono">Ontology Object 360 View</div>
+                </div>
+            </div>
+            <button onclick="closeKnowledgeDrawer()" class="text-slate-400 hover:text-slate-700 w-6 h-6 rounded hover:bg-slate-200 flex items-center justify-center">✕</button>
+        </div>
+        
+        <!-- Tab 导航栏 -->
+        <div class="flex text-[11px] font-bold border-b border-slate-200 bg-white px-2">
+            <div onclick="switchObjectTab('tab-properties')" id="nav-tab-properties" class="px-3 py-2 cursor-pointer border-b-2 border-blue-600 text-blue-700">概览 (Properties)</div>
+            <div onclick="switchObjectTab('tab-actions')" id="nav-tab-actions" class="px-3 py-2 cursor-pointer border-b-2 border-transparent text-slate-500 hover:text-slate-700">动作 (Actions)</div>
+            <div onclick="switchObjectTab('tab-rules')" id="nav-tab-rules" class="px-3 py-2 cursor-pointer border-b-2 border-transparent text-slate-500 hover:text-slate-700">规则 (Rules)</div>
+            <div onclick="switchObjectTab('tab-audit')" id="nav-tab-audit" class="px-3 py-2 cursor-pointer border-b-2 border-transparent text-slate-500 hover:text-slate-700">日志 (Audit)</div>
+        </div>
+
+        <!-- 内容区 -->
+        <div class="flex-1 overflow-y-auto p-4 bg-slate-50/50">
+            
+            <!-- Tab 1: 概览 (Properties) -->
+            <div id="tab-properties" class="space-y-4">
+                <div class="bg-white border border-slate-200 rounded p-3 shadow-2xs">
+                    <div class="font-bold text-slate-700 text-xs mb-3 pb-2 border-b border-slate-100">核心属性统计</div>
+                    <div class="grid grid-cols-2 gap-3 text-[10px]">
+                        <div><div class="text-slate-400">当前活跃灾害点</div><div class="font-bold text-slate-800 text-lg">124 <span class="text-xs font-normal">处</span></div></div>
+                        <div><div class="text-slate-400">红色高危预警</div><div class="font-bold text-red-600 text-lg">5 <span class="text-xs font-normal">处</span></div></div>
+                        <div><div class="text-slate-400">主导归口部门</div><div class="font-bold text-slate-800">10 执法监督处</div></div>
+                        <div><div class="text-slate-400">底层数据来源</div><div class="font-bold text-slate-800">18. 地质灾害表.xls</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: 动作 (Actions) -->
+            <div id="tab-actions" class="space-y-3 hidden">
+                <div class="bg-slate-100 border border-slate-200 text-slate-700 p-2 rounded text-[10px]">
+                    💡 <b>Action 提示：</b> 这些动作硬绑定在当前 L27 本体上。大模型只能调用这些受规则保护的 Action，不能直接执行原生 SQL 修改数据。
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-3 shadow-2xs hover:border-slate-400 cursor-pointer transition-colors group">
+                    <div class="flex items-center justify-between mb-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-600">⚡</span>
+                            <span class="font-bold text-slate-800 text-xs">下发紧急巡查工单</span>
+                        </div>
+                        <span class="text-[8px] bg-slate-100 text-slate-500 px-1 border border-slate-200 rounded">授权: 04养护处</span>
+                    </div>
+                    <div class="text-[10px] text-slate-500 ml-6">RPA 登录地市养护 OA，向该灾害点下发“即刻巡查并设立物理围挡”工单。</div>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-3 shadow-2xs hover:border-slate-400 cursor-pointer transition-colors group">
+                    <div class="flex items-center justify-between mb-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-600">⚡</span>
+                            <span class="font-bold text-slate-800 text-xs">调取物联传感数据</span>
+                        </div>
+                        <span class="text-[8px] bg-slate-100 text-slate-500 px-1 border border-slate-200 rounded">授权: 03工程处</span>
+                    </div>
+                    <div class="text-[10px] text-slate-500 ml-6">穿透该灾害点的传感器，调取“边坡深层水平位移计”实时数据。</div>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-3 shadow-2xs hover:border-slate-400 cursor-pointer transition-colors group">
+                    <div class="flex items-center justify-between mb-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-600">⚡</span>
+                            <span class="font-bold text-slate-800 text-xs">下发停工撤离指令</span>
+                        </div>
+                        <span class="text-[8px] bg-slate-100 text-slate-500 px-1 border border-slate-200 rounded">AGENT-建设市场</span>
+                    </div>
+                    <div class="text-[10px] text-slate-500 ml-6">基于暴雨灾害区标段清单，强制下发撤离电子指令。</div>
+                </div>
+            </div>
+
+            <!-- Tab 3: 规则 (Rules) -->
+            <div id="tab-rules" class="space-y-4 hidden">
+                <!-- 规则分类切换 Toggle -->
+                <div class="flex bg-slate-100 p-0.5 rounded text-[10px] font-bold shadow-inner border border-slate-200">
+                    <div id="rule-tab-btn-universal" onclick="switchRuleTab('universal')" class="flex-1 text-center py-1 rounded bg-white text-slate-800 shadow-2xs cursor-pointer">全局通用规则 (Universal)</div>
+                    <div id="rule-tab-btn-scenario" onclick="switchRuleTab('scenario')" class="flex-1 text-center py-1 rounded text-slate-500 hover:text-slate-700 cursor-pointer transition-colors">场景联动规则 (Scenario)</div>
+                </div>
+
+                <div id="rule-content-container" class="space-y-3">
+                    <div class="text-[10px] text-slate-400 text-center py-4">加载中...</div>
+                </div>
+            </div>
+
+            <!-- Tab 4: 审计日志 (Audit) -->
+            <div id="tab-audit" class="space-y-0 hidden">
+                <!-- Timeline Item -->
+                <div class="flex gap-3">
+                    <div class="flex flex-col items-center">
+                        <div class="w-2 h-2 rounded-full bg-blue-500 mt-1"></div>
+                        <div class="w-0.5 h-full bg-slate-200 my-1"></div>
+                    </div>
+                    <div class="pb-4">
+                        <div class="text-[9px] text-slate-400 font-mono mb-0.5">2026-07-25 08:10</div>
+                        <div class="bg-white border border-slate-200 rounded p-2 text-[10px] shadow-2xs">
+                            <span class="font-bold text-slate-700">大模型 (AGENT-预警)</span> 调用了 <span class="font-mono bg-slate-100 px-1 text-blue-600">调取物联传感数据</span>。
+                            <div class="mt-1 text-slate-500">交叉比对确认险情真实性，生成《险情定级报告》。</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Timeline Item -->
+                <div class="flex gap-3">
+                    <div class="flex flex-col items-center">
+                        <div class="w-2 h-2 rounded-full bg-slate-300 mt-1"></div>
+                        <div class="w-0.5 h-full bg-slate-200 my-1"></div>
+                    </div>
+                    <div class="pb-4">
+                        <div class="text-[9px] text-slate-400 font-mono mb-0.5">2026-07-25 08:05</div>
+                        <div class="bg-white border border-slate-200 rounded p-2 text-[10px] shadow-2xs opacity-80">
+                            <span class="font-bold text-slate-700">AGENT-数据统筹</span> <span class="text-slate-500">查询 L21路线表，锁定了本灾害点 (L27) 处于受灾干线辐射范围内。</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Timeline Item -->
+                <div class="flex gap-3">
+                    <div class="flex flex-col items-center">
+                        <div class="w-2 h-2 rounded-full bg-slate-300 mt-1"></div>
+                    </div>
+                    <div class="pb-2">
+                        <div class="text-[9px] text-slate-400 font-mono mb-0.5">2026-07-25 08:00</div>
+                        <div class="bg-white border border-slate-200 rounded p-2 text-[10px] shadow-2xs opacity-70">
+                            <span class="font-bold text-slate-700">省气象局</span> <span class="text-slate-500">发送红色暴雨预警数据流。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <script>
+        function switchObjectTab(tabId) {
+            // Hide all tabs
+            const tabs = ['tab-properties', 'tab-actions', 'tab-rules', 'tab-audit'];
+            tabs.forEach(t => document.getElementById(t).classList.add('hidden'));
+            
+            // Reset all nav styles
+            const navs = ['nav-tab-properties', 'nav-tab-actions', 'nav-tab-rules', 'nav-tab-audit'];
+            navs.forEach(n => {
+                const el = document.getElementById(n);
+                el.className = "px-3 py-2 cursor-pointer border-b-2 border-transparent text-slate-500 hover:text-slate-700";
+            });
+            
+            // Show active tab
+            document.getElementById(tabId).classList.remove('hidden');
+            // Set active nav style
+            const activeNav = document.getElementById('nav-' + tabId);
+            activeNav.className = "px-3 py-2 cursor-pointer border-b-2 border-blue-600 text-blue-700";
+        }
+
+        let currentRuleData = { universal: [], scenario: [] };
+        let activeRuleTab = 'universal';
+
+        async function fetchAllRules() {
+            try {
+                const res = await fetch('/api/ontology/rules_all');
+                if (res.ok) {
+                    const data = await res.json();
+                    for (const [lcode, count] of Object.entries(data)) {
+                        const ontDiv = document.getElementById('ont-' + lcode);
+                        if (ontDiv) {
+                            const spans = ontDiv.querySelectorAll('span');
+                            for (const span of spans) {
+                                if (span.innerText.includes('📚 规则')) {
+                                    if (count > 0) {
+                                        span.innerText = '📚 规则 x ' + count;
+                                        span.style.display = 'inline-block';
+                                    } else {
+                                        span.style.display = 'none';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (e) { console.error('Failed to fetch rules_all', e); }
+        }
+        document.addEventListener('DOMContentLoaded', fetchAllRules);
+
+        function switchRuleTab(tabName) {
+            activeRuleTab = tabName;
+            const btnUniv = document.getElementById('rule-tab-btn-universal');
+            const btnScen = document.getElementById('rule-tab-btn-scenario');
+            if (tabName === 'universal') {
+                btnUniv.className = "flex-1 text-center py-1 rounded bg-white text-slate-800 shadow-2xs cursor-pointer";
+                btnScen.className = "flex-1 text-center py-1 rounded text-slate-500 hover:text-slate-700 cursor-pointer transition-colors";
+            } else {
+                btnScen.className = "flex-1 text-center py-1 rounded bg-white text-slate-800 shadow-2xs cursor-pointer";
+                btnUniv.className = "flex-1 text-center py-1 rounded text-slate-500 hover:text-slate-700 cursor-pointer transition-colors";
+            }
+            renderRules();
+        }
+
+        function renderMarkdown(text) {
+            // Handle Warning/Important blocks if any exist (though currently plain markdown)
+            // But we will format normal text with bullet points, bold, and code.
+            
+            let html = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            
+            // Bold
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-800">$1</strong>');
+            
+            // Code
+            html = html.replace(/`(.*?)`/g, '<code class="font-mono bg-slate-100 text-red-600 px-1 rounded">$1</code>');
+            
+            // Highlight specific words (like the mockup's red tags)
+            html = html.replace(/(AGENT-[a-zA-Z0-9_\u4e00-\u9fa5\-]+)/g, '<span class="bg-red-50 text-red-600 px-1 rounded text-[10px]">$1</span>');
+            html = html.replace(/(场景\d+_[^\s\(\)\[\]\.\,]+)/g, '<span class="bg-red-50 text-red-600 px-1 rounded text-[10px]">$1</span>');
+            
+            // Bullets
+            html = html.replace(/^(\s*)-\s+(.*)$/gm, '<li class="ml-4 list-disc marker:text-slate-400 py-0.5">$2</li>');
+            html = html.replace(/(<li.*<\/li>\n?)+/g, '<ul class="my-1">$&</ul>');
+            
+            // Line breaks
+            html = html.replace(/\n(?!(<ul|<li|<\/ul))/g, '<br/>');
+            
+            return html;
+        }
+
+        function renderRules() {
+            const container = document.getElementById('rule-content-container');
+            const rules = currentRuleData[activeRuleTab] || [];
+            
+            let html = '';
+            
+            if (activeRuleTab === 'universal') {
+                html += `
+                <div class="bg-slate-50 border border-slate-200 text-slate-700 p-2 rounded text-[10px] mb-4">
+                    💡 <b>全局通用规则：</b> 这些是业务基线口径（出自 <code>02_RuleEngine</code>）。只要对该本体发起查询，规则始终强制生效。
+                </div>`;
+            } else {
+                html += `
+                <div class="bg-slate-50 border border-slate-200 text-slate-700 p-2 rounded text-[10px] mb-4">
+                    💡 <b>场景联动规则：</b> 这些是多智能体协同口径（出自 <code>03_WorkflowBuilder</code>）。仅在特定工作流场景中触发。
+                </div>`;
+            }
+
+            if (rules.length === 0) {
+                html += `<div class="text-[10px] text-slate-400 text-center py-4">未在本地 Markdown 知识库中找到相关约束</div>`;
+            } else {
+                rules.forEach((r, idx) => {
+                    const ruleId = `BR-${activeRuleTab.toUpperCase().substring(0,6)}-00${idx+1}`;
+                    
+                    // Determine styling based on content (Mockup replication)
+                    let borderClass = "border-l-4 border-amber-600 bg-amber-50/20";
+                    let labelText = "WARNING";
+                    let labelColor = "text-amber-600";
+                    if (r.snippet.includes("必须") || r.snippet.includes("强制")) {
+                        borderClass = "border-l-4 border-purple-600 bg-purple-50/20";
+                        labelText = "IMPORTANT";
+                        labelColor = "text-purple-600";
+                    } else if (activeRuleTab === 'universal') {
+                        borderClass = "border-l-4 border-blue-600 bg-blue-50/20";
+                        labelText = "UNIVERSAL";
+                        labelColor = "text-blue-600";
+                    }
+                    
+                    const formattedSnippet = renderMarkdown(r.snippet);
+                    
+                    html += `
+                    <div class="${borderClass} rounded-r p-3 mb-4 shadow-sm">
+                        <div class="font-bold ${labelColor} text-[10px] mb-0.5">${labelText}</div>
+                        <div class="font-bold text-slate-800 text-[11px] mb-2">${ruleId}: ${r.section}</div>
+                        
+                        <div class="text-[10px] text-slate-700 space-y-1">
+                            <div class="flex gap-2 items-start mb-2 pb-2 border-b border-white/50">
+                                <span class="font-bold text-slate-600 whitespace-nowrap">来源文献:</span> 
+                                <span class="bg-white/80 text-slate-800 px-1 rounded border border-slate-200 break-all font-mono">${r.file}</span>
+                            </div>
+                            <div class="leading-relaxed">
+                                ${formattedSnippet}
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            }
+            container.innerHTML = html;
+        }
+
+        async function toggleKnowledgeDrawer(ontologyId) {
+            const headerTitle = document.querySelector('#knowledgeDrawer .font-bold.text-slate-800.text-sm');
+            if (headerTitle) {
+                headerTitle.innerText = '[' + ontologyId.toUpperCase() + '] 业务口径与规则模型';
+            }
+            
+            document.getElementById('knowledgeDrawer').classList.remove('translate-x-full');
+            
+            // Fetch real rules
+            try {
+                const res = await fetch('/api/ontology/rules?l_code=' + ontologyId);
+                if (res.ok) {
+                    currentRuleData = await res.json();
+                } else {
+                    currentRuleData = { 
+                        universal: [{file: "后端服务未响应", section: "API 请求失败", snippet: `无法连接到 Python 后端 (HTTP ${res.status})。请**务必重启 server.py**，否则系统无法读取真实的 Markdown 规则！`}], 
+                        scenario: [] 
+                    };
+                }
+            } catch (e) {
+                console.error(e);
+                currentRuleData = { 
+                    universal: [{file: "后端服务未连接", section: "API 无法连接", snippet: "网络请求失败，请检查 `server.py` 是否已在后台运行并重启它！只有重启 Python 服务才能加载真实的 Markdown 规则！"}], 
+                    scenario: [] 
+                };
+            }
+            
+            // Switch to rules tab by default when opened
+            switchObjectTab('tab-rules');
+            switchRuleTab('universal');
+            document.getElementById('knowledgeDrawer').classList.remove('translate-x-full');
+        }
+        function closeKnowledgeDrawer() {
+            document.getElementById('knowledgeDrawer').classList.add('translate-x-full');
+        }
     </script>
 </body>
 </html>
