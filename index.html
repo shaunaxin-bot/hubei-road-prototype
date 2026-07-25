@@ -50642,6 +50642,7 @@ ${knowledgeBase}
       const MAX_EMPTY_RETRY = 10;
       let totalTokens = 0;
       let totalCost = 0;
+      let fetchTimerId = null;
       updateBot({ thought: "\u{1F50D} \u6B63\u5728\u5206\u6790\u95EE\u9898..." });
       try {
         while (iterCount < MAX_ITER) {
@@ -50660,7 +50661,8 @@ ${knowledgeBase}
           const timeoutId = setTimeout(() => controller.abort(), 12e4);
           let fetchTimerCount = 1;
           updateBot({ fetchTimer: fetchTimerCount });
-          const fetchTimerId = setInterval(() => {
+          if (fetchTimerId) clearInterval(fetchTimerId);
+          fetchTimerId = setInterval(() => {
             fetchTimerCount++;
             updateBot({ fetchTimer: fetchTimerCount });
           }, 1e3);
@@ -50674,13 +50676,14 @@ ${knowledgeBase}
             });
           } finally {
             clearTimeout(timeoutId);
-            clearInterval(fetchTimerId);
           }
           if (!res.ok) {
+            clearInterval(fetchTimerId);
             const errText = await res.text();
             throw new Error(`API Error ${res.status}: ${errText.substring(0, 200)}`);
           }
           const data = await res.json();
+          clearInterval(fetchTimerId);
           if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
           let iterTokens = 0;
           let iterCost = 0;
@@ -51206,6 +51209,7 @@ ${knowledgeBase}
           updateBot({ content: (updateBot.content || "") + "\n\n\u26A0\uFE0F \u5DF2\u8FBE\u5230\u6700\u5927\u67E5\u8BE2\u8F6E\u6570\uFF0C\u4EE5\u4E0A\u4E3A\u5F53\u524D\u5206\u6790\u7ED3\u679C\u3002" });
         }
       } catch (err) {
+        if (fetchTimerId) clearInterval(fetchTimerId);
         console.error("Agentic Loop error:", err);
         const isNetworkErr = err.message && (err.message.includes("Failed to fetch") || err.message.includes("network") || err.message.includes("Network"));
         const errorText = isNetworkErr ? `\u274C \u67E5\u8BE2\u51FA\u9519\uFF1A\u7F51\u7EDC\u8FDE\u63A5\u4E0D\u7A33\u5B9A\u6216\u4EE3\u7406\u8282\u70B9\u65AD\u5F00 (Failed to fetch)\u3002
@@ -51219,6 +51223,7 @@ ${knowledgeBase}
           isGeneratingReport: false
         });
       } finally {
+        if (fetchTimerId) clearInterval(fetchTimerId);
         updateBot({ isStreaming: false });
       }
     };
