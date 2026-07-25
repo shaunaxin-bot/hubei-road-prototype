@@ -50658,6 +50658,11 @@ ${knowledgeBase}
           }
           const controller = new AbortController();
           const timeoutId = setTimeout(() => controller.abort(), 12e4);
+          let fetchTimerCount = 0;
+          const fetchTimerId = setInterval(() => {
+            fetchTimerCount++;
+            updateBot({ thought: `\u{1F50D} \u6B63\u5728\u5206\u6790\u95EE\u9898 (${fetchTimerCount}s)...` });
+          }, 1e3);
           let res;
           try {
             res = await fetch(url, {
@@ -50668,6 +50673,7 @@ ${knowledgeBase}
             });
           } finally {
             clearTimeout(timeoutId);
+            clearInterval(fetchTimerId);
           }
           if (!res.ok) {
             const errText = await res.text();

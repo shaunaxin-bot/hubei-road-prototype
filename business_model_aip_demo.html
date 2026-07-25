@@ -1517,7 +1517,7 @@
 
         
         // 全量 17 套国标 L 码本体定义库
-                                                                                                                                                                                                        const all17Ontologies = [
+                                                                                                                                                                                                                                const all17Ontologies = [
             { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
             { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '08 农村公路处' },
             { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
@@ -3227,7 +3227,7 @@
                 ['src-excel-41', 'ont-l32', '#2563eb', 'l32', ''],
                 ['src-excel-42', 'ont-l32', '#2563eb', 'l32', ''],
 
-                                                                                                                                                                                                                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
+                                                                                                                                                                                                                                                                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
                 ['ont-l21', 'role-1', '#ef4444', 'l21', 'role-1'], // 主导
                 ['ont-l21', 'role-8', '#2563eb', 'l21', 'role-8'], // 支持
                 ['ont-l21', 'role-9', '#2563eb', 'l21', 'role-9'], // 支持
@@ -3263,7 +3263,7 @@
                 ['ont-l30b', 'ont-l30b-sub', '#0284c7', 'l30b', 'role-3'],
                 ['ont-l30b', 'ont-l24a-delta', '#10b981', 'l30b', 'role-3'],
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
                 ['role-16', 'role-10', '#10b981', 'scen', 'role-10', 'high'] /* 16 气象局 -> 10 执法监督处: 气象灾害预警/恶劣天气监测推流 */,
                 ['role-10', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 10 执法监督处 -> 00 数据统筹部门: 空间锚点确权与管辖匹配 */,
                 ['role-0', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 00 数据统筹部门 -> 04 养护管理处: 灾前风险点位巡查指令 */,
@@ -3561,7 +3561,7 @@
             drawConnectorLines();
         }
 
-                                                                                                                                                                                                                                                                                        const ROLE_LINEAGE_MAPPINGS = {
+                                                                                                                                                                                                                                                                                                                const ROLE_LINEAGE_MAPPINGS = {
             'role-0': ["role-0", "l31a", "l31b"],
             'role-1': ["role-1", "l21", "l23"],
             'role-2': ["role-2", "l24a", "l30b"],
