@@ -614,7 +614,7 @@
                                         <span id="ont-l21-tag" class="text-[8px] bg-blue-50 text-blue-700 px-1 rounded font-bold">主骨架</span>
                                     </div>
                                     <div id="ont-l22" onclick="switchWorkspace('oma'); switchOntologyTier('l22');" onmouseenter="highlightLineage('l22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L22] 节点通达表</span>
+                                        <span class="font-bold text-slate-800">📄 [L22] 乡镇/建制村/自然村通达及属性表</span>
                                     </div>
                                     <div id="ont-l23" onclick="switchWorkspace('oma'); switchOntologyTier('l23');" onmouseenter="highlightLineage('l23')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
                                         <span class="font-bold text-slate-800">📄 [L23] 亚洲公路网明细</span>
@@ -1486,7 +1486,7 @@
 
         
         // 全量 17 套国标 L 码本体定义库
-                                                                                                                const all17Ontologies = [
+                                                                                                                                                const all17Ontologies = [
             { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
             { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '08 农村公路处' },
             { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
@@ -1503,7 +1503,7 @@
             { key: 'l31a', name: 'L31a（高速公路管养单位属性表）', leadOffice: '00 数据统筹部门' },
             { key: 'l31b', name: 'L31b（国省干线公路管养单位属性表）', leadOffice: '00 数据统筹部门' },
             { key: 'l31c', name: 'L31c（农村公路管养单位属性表）', leadOffice: '08 农村公路处' },
-            { key: 'l32', name: 'L32（公路应急机具储备库及应急队伍明细表）', leadOffice: '06 运营管理处' }
+            { key: 'l32', name: 'L32（公路应急机具储备库及应急队伍明细表）', leadOffice: '00 数据统筹部门' }
         ];
 
         // 灵活多智能体与场景-多本体映射库 (场景2精准定义为 2 个本体)
@@ -3196,7 +3196,7 @@
                 ['src-excel-41', 'ont-l32', '#2563eb', 'l32', ''],
                 ['src-excel-42', 'ont-l32', '#2563eb', 'l32', ''],
 
-                                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
+                                                                                                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
                 ['ont-l21', 'role-1', '#ef4444', 'l21', 'role-1'], // 主导
                 ['ont-l21', 'role-8', '#2563eb', 'l21', 'role-8'], // 支持
                 ['ont-l21', 'role-9', '#2563eb', 'l21', 'role-9'], // 支持
@@ -3208,7 +3208,6 @@
                 ['ont-l24b', 'role-3', '#ef4444', 'l24b', 'role-3'], // 主导
                 ['ont-l25', 'role-3', '#ef4444', 'l25', 'role-3'], // 主导
                 ['ont-l26', 'role-5', '#ef4444', 'l26', 'role-5'], // 主导
-                ['ont-l26', 'role-6', '#2563eb', 'l26', 'role-6'], // 支持
                 ['ont-l27', 'role-3', '#ef4444', 'l27', 'role-3'], // 主导
                 ['ont-l28', 'role-4', '#ef4444', 'l28', 'role-4'], // 主导
                 ['ont-l29a', 'role-4', '#ef4444', 'l29a', 'role-4'], // 主导
@@ -3220,7 +3219,7 @@
                 ['ont-l31b', 'role-0', '#ef4444', 'l31b', 'role-0'], // 主导
                 ['ont-l31b', 'role-9', '#2563eb', 'l31b', 'role-9'], // 支持
                 ['ont-l31c', 'role-8', '#ef4444', 'l31c', 'role-8'], // 主导
-                ['ont-l32', 'role-6', '#ef4444', 'l32', 'role-6'], // 主导
+                ['ont-l32', 'role-0', '#ef4444', 'l32', 'role-0'], // 主导
                 ['ont-l32', 'role-13', '#2563eb', 'l32', 'role-13'], // 支持
 
                 // 挂载子节点的 SVG 拓扑分支线 (Sub-Node SVG Branches)
@@ -3233,46 +3232,46 @@
                 ['ont-l30b', 'ont-l30b-sub', '#0284c7', 'l30b', 'role-3'],
                 ['ont-l30b', 'ont-l24a-delta', '#10b981', 'l30b', 'role-3'],
 
-                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
-                ['role-16', 'role-10', '#ef4444', 'scen', 'role-10'] /* 16 气象局 -> 10 执法监督处: 气象灾害预警/恶劣天气监测推流 */,
-                ['role-10', 'role-0', '#ef4444', 'scen', 'role-0'] /* 10 执法监督处 -> 00 数据统筹部门: 空间锚点确权与管辖匹配 */,
-                ['role-0', 'role-4', '#ef4444', 'scen', 'role-4'] /* 00 数据统筹部门 -> 04 养护管理处: 灾前风险点位巡查指令 */,
-                ['role-0', 'role-3', '#ef4444', 'scen', 'role-3'] /* 00 数据统筹部门 -> 03 工程技术处: 高位桥隧边坡专项防范 */,
-                ['role-0', 'role-8', '#ef4444', 'scen', 'role-8'] /* 00 数据统筹部门 -> 08 农村公路处: 沿河临崖村道封路避险 */,
-                ['role-10', 'role-19', '#ef4444', 'scen', 'role-19'] /* 10 执法监督处 -> 18 公安交管局: 警路企气会商与交通分流管控 */,
-                ['role-10', 'role-13', '#ef4444', 'scen', 'role-13'] /* 10 执法监督处 -> 12 应急处置中心: 应急资源调度与跨省/区保障 */,
-                ['role-13', 'role-15', '#ef4444', 'scen', 'role-15'] /* 12 应急处置中心 -> 15 养护施工企业: 多方联动公路抢通与装备前置 */,
-                ['role-10', 'role-2', '#ef4444', 'scen', 'role-2'] /* 10 执法监督处 -> 02 建设市场处: 在建工程应急避险 */,
-                ['role-10', 'role-17', '#ef4444', 'scen', 'role-17'] /* 10 执法监督处 -> 16 应急管理厅: 政警路企联合指挥与协同处置 */,
-                ['role-10', 'role-7', '#f59e0b', 'scen', 'role-7'] /* 10 执法监督处 -> 07 财务资产处: 抢险资金核算清算 */,
-                ['role-0', 'role-1', '#f59e0b', 'scen', 'role-1'] /* 00 数据统筹部门 -> 01 规划计划处: 全年路网受损影响评估 */,
-                ['role-21', 'role-3', '#ef4444', 'scen', 'role-3'] /* 21 监测设备厂商/产权单位 -> 03 工程技术处: 数据上传质量自动化考核采集 */,
-                ['role-3', 'role-0', '#ef4444', 'scen', 'role-0'] /* 03 工程技术处 -> 00 数据统筹部门: 空间锚定与底账核实 */,
-                ['role-3', 'role-13', '#ef4444', 'scen', 'role-13'] /* 03 工程技术处 -> 12 应急处置中心: 分级预警处置闭环协查 */,
-                ['role-3', 'role-4', '#ef4444', 'scen', 'role-4'] /* 03 工程技术处 -> 04 养护管理处: 日常运维防伪与现场协查 */,
-                ['role-3', 'role-15', '#ef4444', 'scen', 'role-15'] /* 03 工程技术处 -> 15 养护施工企业: 下发异常工况超时督办 */,
-                ['role-3', 'role-6', '#f59e0b', 'scen', 'role-6'] /* 03 工程技术处 -> 06 运营管理处: 不可抗力断电免责查证 */,
-                ['role-3', 'role-0', '#f59e0b', 'scen', 'role-0'] /* 03 工程技术处 -> 00 数据统筹部门: 封闭施工免责扩展核查 */,
-                ['role-3', 'role-0', '#ef4444', 'scen', 'role-0'] /* 03 工程技术处 -> 交通运输部(外部): 省级日常监测质量考核报告推送 */,
-                ['role-22', 'role-0', '#ef4444', 'scen', 'role-0'] /* 22 各地市州交通局 -> 00 数据统筹部门: 年报底表数据逐级汇聚上报 */,
-                ['role-4', 'role-7', '#ef4444', 'scen', 'role-7'] /* 04 养护管理处 -> 07 财务资产处: 提供养护工程与资金核销业务依据 */,
-                ['role-1', 'role-18', '#f59e0b', 'scen', 'role-18'] /* 01 规划计划处 -> 17 自然资源厅: 路线变更与国土空间规划数据对齐 */,
-                ['role-0', 'role-0', '#ef4444', 'scen', 'role-0'] /* 00 数据统筹部门 -> 交通运输部(外部): 省级路网年报脱敏直报 */,
-                ['role-4', 'role-11', '#ef4444', 'scen', 'role-11'] /* 04 养护管理处 -> 23 交投集团: 发送越界警告与打回指令 */,
-                ['role-11', 'role-20', '#f59e0b', 'scen', 'role-20'] /* 23 交投集团 -> 24 交规院: 分发映射重定向规则 */,
-                ['role-20', 'role-15', '#ef4444', 'scen', 'role-15'] /* 24 交规院 -> 25 路桥公司: 下发数据重构指令 */,
-                ['role-15', 'role-0', '#ef4444', 'scen', 'role-0'] /* 25 路桥公司 -> 00 数据统筹部门: 数据重构与二次上传 */,
-                ['role-4', 'role-0', '#ef4444', 'scen', 'role-0'] /* 04 养护管理处 -> 00 数据统筹部门: 人工授权审批落库 */,
-                ['role-10', 'ont-l27', '#ef4444', 'scen', 'l27'] /* 10 执法监督处 -> L27 (场景1联动) */,
-                ['role-10', 'ont-l29a', '#ef4444', 'scen', 'l29a'] /* 10 执法监督处 -> L29a (场景1联动) */,
-                ['role-10', 'ont-l32', '#ef4444', 'scen', 'l32'] /* 10 执法监督处 -> L32 (场景1联动) */,
-                ['role-12', 'role-4', '#2563eb', 'scen', 'role-4'] /* 12 农路管养企业 -> 04 养护管理处 */,
-                ['role-12', 'role-8', '#2563eb', 'scen', 'role-8'] /* 12 农路管养企业 -> 08 农村公路处 */,
-                ['role-14', 'role-4', '#2563eb', 'scen', 'role-4'] /* 14 专检机构 -> 04 养护管理处 */,
-                ['role-21', 'role-4', '#2563eb', 'scen', 'role-4'] /* 21 监测设备厂商 -> 04 养护管理处 */,
-                ['role-22', 'role-4', '#2563eb', 'scen', 'role-4'] /* 22 各地市州交通局 -> 04 养护管理处 */,
-                ['role-19', 'role-1', '#2563eb', 'scen', 'role-1'] /* 19 公安交管局 -> 01 规划计划处 */,
-                ['role-19', 'role-4', '#2563eb', 'scen', 'role-4'] /* 19 公安交管局 -> 04 养护管理处 */
+                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
+                ['role-16', 'role-10', '#10b981', 'scen', 'role-10', 'high'] /* 16 气象局 -> 10 执法监督处: 气象灾害预警/恶劣天气监测推流 */,
+                ['role-10', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 10 执法监督处 -> 00 数据统筹部门: 空间锚点确权与管辖匹配 */,
+                ['role-0', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 00 数据统筹部门 -> 04 养护管理处: 灾前风险点位巡查指令 */,
+                ['role-0', 'role-3', '#10b981', 'scen', 'role-3', 'high'] /* 00 数据统筹部门 -> 03 工程技术处: 高位桥隧边坡专项防范 */,
+                ['role-0', 'role-8', '#10b981', 'scen', 'role-8', 'high'] /* 00 数据统筹部门 -> 08 农村公路处: 沿河临崖村道封路避险 */,
+                ['role-10', 'role-19', '#10b981', 'scen', 'role-19', 'high'] /* 10 执法监督处 -> 18 公安交管局: 警路企气会商与交通分流管控 */,
+                ['role-10', 'role-13', '#10b981', 'scen', 'role-13', 'high'] /* 10 执法监督处 -> 12 应急处置中心: 应急资源调度与跨省/区保障 */,
+                ['role-13', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 12 应急处置中心 -> 15 养护施工企业: 多方联动公路抢通与装备前置 */,
+                ['role-10', 'role-2', '#10b981', 'scen', 'role-2', 'high'] /* 10 执法监督处 -> 02 建设市场处: 在建工程应急避险 */,
+                ['role-10', 'role-17', '#10b981', 'scen', 'role-17', 'high'] /* 10 执法监督处 -> 16 应急管理厅: 政警路企联合指挥与协同处置 */,
+                ['role-10', 'role-7', '#10b981', 'scen', 'role-7', 'medium'] /* 10 执法监督处 -> 07 财务资产处: 抢险资金核算清算 */,
+                ['role-0', 'role-1', '#10b981', 'scen', 'role-1', 'medium'] /* 00 数据统筹部门 -> 01 规划计划处: 全年路网受损影响评估 */,
+                ['role-21', 'role-3', '#10b981', 'scen', 'role-3', 'high'] /* 21 监测设备厂商/产权单位 -> 03 工程技术处: 数据上传质量自动化考核采集 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 03 工程技术处 -> 00 数据统筹部门: 空间锚定与底账核实 */,
+                ['role-3', 'role-13', '#10b981', 'scen', 'role-13', 'high'] /* 03 工程技术处 -> 12 应急处置中心: 分级预警处置闭环协查 */,
+                ['role-3', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 03 工程技术处 -> 04 养护管理处: 日常运维防伪与现场协查 */,
+                ['role-3', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 03 工程技术处 -> 15 养护施工企业: 下发异常工况超时督办 */,
+                ['role-3', 'role-6', '#10b981', 'scen', 'role-6', 'medium'] /* 03 工程技术处 -> 06 运营管理处: 不可抗力断电免责查证 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'medium'] /* 03 工程技术处 -> 00 数据统筹部门: 封闭施工免责扩展核查 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 03 工程技术处 -> 交通运输部(外部): 省级日常监测质量考核报告推送 */,
+                ['role-22', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 22 各地市州交通局 -> 00 数据统筹部门: 年报底表数据逐级汇聚上报 */,
+                ['role-4', 'role-7', '#10b981', 'scen', 'role-7', 'high'] /* 04 养护管理处 -> 07 财务资产处: 提供养护工程与资金核销业务依据 */,
+                ['role-1', 'role-18', '#10b981', 'scen', 'role-18', 'medium'] /* 01 规划计划处 -> 17 自然资源厅: 路线变更与国土空间规划数据对齐 */,
+                ['role-0', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 00 数据统筹部门 -> 交通运输部(外部): 省级路网年报脱敏直报 */,
+                ['role-4', 'role-11', '#10b981', 'scen', 'role-11', 'high'] /* 04 养护管理处 -> 23 交投集团: 发送越界警告与打回指令 */,
+                ['role-11', 'role-20', '#10b981', 'scen', 'role-20', 'medium'] /* 23 交投集团 -> 24 交规院: 分发映射重定向规则 */,
+                ['role-20', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 24 交规院 -> 25 路桥公司: 下发数据重构指令 */,
+                ['role-15', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 25 路桥公司 -> 00 数据统筹部门: 数据重构与二次上传 */,
+                ['role-4', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 04 养护管理处 -> 00 数据统筹部门: 人工授权审批落库 */,
+                ['role-10', 'ont-l27', '#10b981', 'scen', 'l27', 'high'] /* 10 执法监督处 -> L27 (场景1联动) */,
+                ['role-10', 'ont-l29a', '#10b981', 'scen', 'l29a', 'high'] /* 10 执法监督处 -> L29a (场景1联动) */,
+                ['role-10', 'ont-l32', '#10b981', 'scen', 'l32', 'high'] /* 10 执法监督处 -> L32 (场景1联动) */,
+                ['role-12', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 12 农路管养企业 -> 04 养护管理处 */,
+                ['role-12', 'role-8', '#10b981', 'scen', 'role-8', 'normal'] /* 12 农路管养企业 -> 08 农村公路处 */,
+                ['role-14', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 14 专检机构 -> 04 养护管理处 */,
+                ['role-21', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 21 监测设备厂商 -> 04 养护管理处 */,
+                ['role-22', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 22 各地市州交通局 -> 04 养护管理处 */,
+                ['role-19', 'role-1', '#10b981', 'scen', 'role-1', 'normal'] /* 19 公安交管局 -> 01 规划计划处 */,
+                ['role-19', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 19 公安交管局 -> 04 养护管理处 */
             ];
 
             let pathsHTML = `
@@ -3293,7 +3292,7 @@
                 </defs>
             `;
 
-            connections.forEach(([fromId, toId, defaultColor, code, roleId]) => {
+            connections.forEach(([fromId, toId, defaultColor, code, roleId, priority]) => {
                 const elFrom = document.getElementById(fromId);
                 const elTo = document.getElementById(toId);
 
@@ -3346,6 +3345,20 @@
                                     <g>
                                         <path d="${pathData}" stroke="#991b1b" stroke-width="1.5" opacity="0.4" fill="none" />
                                         <path d="${pathData}" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="10 6" fill="none" opacity="1">
+                                            <animate attributeName="stroke-dashoffset" from="32" to="0" dur="0.75s" repeatCount="indefinite" />
+                                        </path>
+                                    </g>
+                                `;
+                            } else if (code === 'scen') {
+                                // For scenarios, use emerald green, but vary thickness based on priority
+                                let strokeWidth = 1.0;
+                                let bgOpacity = 0.4;
+                                if (priority === 'high') { strokeWidth = 2.5; bgOpacity = 0.8; }
+                                
+                                pathsHTML += `
+                                    <g>
+                                        <path d="${pathData}" stroke="#10b981" stroke-width="${strokeWidth}" opacity="${bgOpacity}" fill="none" />
+                                        <path d="${pathData}" stroke="#059669" stroke-width="${strokeWidth}" stroke-dasharray="10 6" fill="none" opacity="1">
                                             <animate attributeName="stroke-dashoffset" from="32" to="0" dur="0.75s" repeatCount="indefinite" />
                                         </path>
                                     </g>
@@ -3517,16 +3530,16 @@
             drawConnectorLines();
         }
 
-                                                                                                                                                                                const ROLE_LINEAGE_MAPPINGS = {
+                                                                                                                                                                                                                                const ROLE_LINEAGE_MAPPINGS = {
             'role-0': ["role-0", "l31a", "l31b"],
             'role-1': ["role-1", "l21", "l23"],
             'role-2': ["role-2", "l24a", "l30b"],
             'role-3': ["role-3", "l24a", "l24b", "l25", "l27", "l30b"],
-            'role-4': ["role-4", "l21", "l22", "l24a", "l28", "l29a", "l30a"],
+            'role-4': ["role-4", "l28", "l29a", "l30a"],
             'role-5': ["role-5", "l26"],
             'role-6': ["role-6", "l26", "l29a", "l32"],
             'role-7': ["role-7", "l30c"],
-            'role-8': ["role-8", "l31c"],
+            'role-8': ["role-8", "l21", "l22", "l24a", "l31c"],
             'role-9': ["role-9", "l21", "l31b"],
             'role-10': ["role-10", "l27", "l29a", "l32"],
             'role-11': ["role-11", "role-6", "role-4"],
