@@ -41,46 +41,46 @@
   .hero{
     background: var(--card-bg);
     color: var(--ink-black);
-    padding: 14px 24px 10px;
+    padding: 16px 24px 12px;
     border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow-sm);
   }
-  .hero-title{font-size:28px;font-weight:800;line-height:1.15;margin:0 0 6px;color:var(--ink-black);}
+  .hero-title{font-size:28px;font-weight:800;line-height:1.15;margin:0 0 8px;color:var(--ink-black);}
+  
   .hero-pills{
-    display:flex;gap:8px;margin-top:6px;padding-top:6px;
-    border-top:1px solid var(--line);
+    display:flex;gap:8px;margin-top:4px;padding-top:4px;
   }
   .hero-pill{
-    font-size:12.5px;color:var(--blue-primary);padding:2px 10px;
+    font-size:12.5px;color:var(--blue-primary);padding:3px 10px;
     background: var(--blue-light);
     border:1px solid var(--blue-border);border-radius:12px;font-weight:600;
   }
   .stat-strip{
-    margin-top:8px;
+    margin-top:10px;
     display:grid;grid-template-columns:repeat(5,1fr);
     background: var(--bg-page);
     border-radius: 6px;
     border: 1px solid var(--line);
   }
-  .stat-cell{padding:6px 10px;border-right:1px solid var(--line);}
+  .stat-cell{padding:8px 10px;border-right:1px solid var(--line);}
   .stat-cell:last-child{border-right:none;}
   .stat-cell .num{font-size:20px;font-weight:800;color:var(--blue-primary);line-height:1.1;}
   .stat-cell .num small{font-size:11.5px;font-weight:700;color:var(--red-primary);margin-left:2px;}
-  .stat-cell .label{font-size:12.5px;color:var(--ink-dark);margin-top:1px;font-weight:700;}
+  .stat-cell .label{font-size:12.5px;color:var(--ink-dark);margin-top:2px;font-weight:700;}
   .stat-cell .caption{font-size:11px;color:var(--red-primary);margin-top:1px;font-weight:600;}
   .stat-source{font-size:11.5px;color:var(--muted);padding:4px 0 0;}
 
   /* SECTION */
-  .section{padding:10px 24px 0;}
+  .section{padding:12px 24px 0;}
   
   .part-head{
     display:flex;align-items:center;gap:8px;
-    margin-bottom:6px;padding-bottom:3px;
+    margin-bottom:8px;padding-bottom:4px;
     border-bottom:2.5px solid var(--blue-primary);
   }
   .part-title{font-size:20px;font-weight:800;color:var(--ink-black);letter-spacing:0.5px;}
 
-  .sec-head{display:flex;align-items:center;gap:6px;margin:8px 0 6px;}
+  .sec-head{display:flex;align-items:center;gap:6px;margin:10px 0 6px;}
   .sec-num{
     font-size:11.5px;font-weight:800;color:var(--red-primary);
     background: var(--red-light);
@@ -279,6 +279,51 @@
     width:28px;height:28px;border-radius:50%;background:var(--red-primary);color:#fff;
     display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex:0 0 auto;
   }
+
+  /* FLYWHEEL VISUAL CARD */
+  .flywheel-container{
+    margin-top:12px;background:var(--card-bg);border:1.5px solid var(--blue-primary);
+    border-radius:8px;padding:12px 16px;box-shadow:var(--shadow-sm);
+  }
+  .fw-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .fw-title{font-size:15px;font-weight:800;color:var(--ink-black);display:flex;align-items:center;gap:6px;}
+  .fw-title span{font-size:11px;color:#FFF;background:var(--blue-primary);padding:2px 6px;border-radius:4px;font-weight:700;}
+  .fw-motto{font-size:12px;color:var(--blue-primary);font-weight:700;background:var(--blue-light);padding:3px 8px;border-radius:4px;border:1px solid var(--blue-border);}
+
+  .fw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative;}
+  .fw-step{
+    background:var(--bg-page);border:1px solid var(--line);border-radius:6px;padding:10px;
+    position:relative;display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .fw-step.first-step{border:1.5px solid var(--blue-primary);background:var(--blue-light);}
+  .fw-step-num{font-size:10px;font-weight:800;color:var(--red-primary);letter-spacing:0.5px;margin-bottom:2px;}
+  .fw-step-name{font-size:13px;font-weight:800;color:var(--ink-black);margin-bottom:4px;line-height:1.25;}
+  .fw-step-desc{font-size:11.5px;color:var(--muted);line-height:1.35;}
+  .fw-step-desc b{color:var(--ink-black);}
+  
+  /* Arrow connector between flywheel steps */
+  .fw-arrow{
+    position:absolute;right:-10px;top:50%;transform:translateY(-50%);z-index:2;
+    width:16px;height:16px;background:var(--blue-primary);color:#FFF;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;
+  }
+  .fw-step:last-child .fw-arrow{display:none;}
+
+  /* Feedback loop line at the bottom */
+  .fw-loop-back{
+    margin-top:8px;background:var(--red-light);border:1px dashed var(--red-border);
+    border-radius:6px;padding:6px 12px;display:flex;align-items:center;justify-content:space-between;
+    font-size:12px;font-weight:700;color:var(--red-primary);
+  }
+  .fw-loop-tag{background:var(--red-primary);color:#FFF;padding:1px 6px;border-radius:3px;font-size:10.5px;}
+
+  /* Cross penetration badges */
+  .fw-penetration{
+    display:flex;gap:12px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);
+  }
+  .fw-p-item{display:flex;align-items:center;gap:4px;}
+  .fw-p-item b{color:var(--ink-black);}
+
   .burst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;}
   .burst-card{background:var(--card-bg);border-radius:6px;padding:10px 12px;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
   .burst-label{font-size:10.5px;font-weight:800;letter-spacing:1px;color:var(--red-primary);margin-bottom:2px;}
@@ -333,6 +378,7 @@
   <!-- HERO -->
   <div class="hero">
     <div class="hero-title">安责险数据运营平台</div>
+
     <div class="hero-pills">
       <span class="hero-pill">数据主权归客户</span>
       <span class="hero-pill">数据运营效果平台负责</span>
@@ -341,8 +387,8 @@
     <div class="stat-strip">
       <div class="stat-cell">
         <div class="num">4<small>+1</small></div>
-        <div class="label">智能体数据运营体系</div>
-        <div class="caption" style="color:var(--muted);">4类专用集群 + 1中枢</div>
+        <div class="label">智能体数据运营主体</div>
+        <div class="caption" style="color:var(--muted);">4类数据运营主体集群 + 1中枢</div>
       </div>
       <div class="stat-cell">
         <div class="num">40<small>万元</small></div>
@@ -461,7 +507,7 @@
       <!-- 第一层：应用层 -->
       <div class="arch-tier tier-app">
         <div class="tier-tag">第一层 · 应用层</div>
-        <div class="tier-desc">场景服务矩阵——优先聚焦资金充沛的商业与施工实体（ToB），以 ToG 行政杠杆撬动全域覆盖，向四大主体输出轻量化数据运营服务。</div>
+        <div class="tier-desc">场景服务矩阵——优先聚焦资金充沛的商业与施工实体（ToB），以 ToG 行政杠杆撬动全域覆盖，向四大业务主体输出服务，由智能体作为数据运营主体承接自动化运营。</div>
         
         <div class="app-grid">
           <div class="app-col tob">
@@ -495,11 +541,11 @@
 
       <!-- 第二层：核心层 -->
       <div class="arch-tier tier-engine">
-        <div class="tier-tag">第二层 · 核心层</div>
-        <div class="tier-desc">数据智能运营引擎——以 1 个智能体数据运营中枢为核心，调度 4 类专用智能体集群，按照商业 ROI 与资金池充沛度依次优先开发落地。</div>
+        <div class="tier-tag">第二层 · 核心层（智能体数据运营主体）</div>
+        <div class="tier-desc">数据智能运营引擎——智能体是具体的数据运营主体。以 1 个智能体数据运营中枢为核心，调度 4 类专用智能体集群（数据运营主体），按照商业 ROI 与资金池充沛度依次优先开发落地。</div>
         
         <div class="engine-hub-wrap">
-          <div class="engine-hub"><span class="hub-count">1</span>智能体数据运营中枢 · 全局任务编排 / 智能体调度 / 政企数据隔离与汇总</div>
+          <div class="engine-hub"><span class="hub-count">1</span>智能体数据运营中枢 · 全局任务编排 / 智能体（数据运营主体）调度 / 政企数据隔离与汇总</div>
           <div class="hub-drop"></div>
         </div>
         
@@ -528,7 +574,7 @@
       <!-- 第三层：基础层 -->
       <div class="arch-tier tier-foundation">
         <div class="tier-tag">第三层 · 基础层</div>
-        <div class="tier-desc">数据治理 AIP 底座——统一全域风险标准，汇聚风险资产，筑牢数据安全体系，保障客户数据主权，夯实合规可控的数据运营根基。</div>
+        <div class="tier-desc">数据治理 AIP 底座——打通部门与层级隔阂的第一级枢纽。统一全域风险标准，归集风险资产，保障客户数据主权，夯实合规可控的数据运营根基。</div>
         
         <div class="base-platform">
           <div>
@@ -630,25 +676,87 @@
   <!-- 第五章 -->
   <div class="section">
     <div class="part-head">
-      <div class="part-title">第五章 模式升级与爆发力评估</div>
+      <div class="part-title">第五章 范式升级与爆发力评估</div>
     </div>
 
-    <div class="sec-head"><div class="sec-num">一</div><div class="sec-title">建设与运营模式对比</div></div>
+    <!-- 范式对比 -->
+    <div class="sec-head"><div class="sec-num">一</div><div class="sec-title">传统运营 vs 数据运营<span class="sub">信息系统 (记录型系统) 与 行动系统 (响应型系统) 的本质区别</span></div></div>
     <div class="model-grid">
       <div class="model-col old">
-        <h4>传统建设模式</h4>
-        <div class="model-row"><div class="mk"></div><div class="mt">高门槛一次性交付<span class="ms">政府项目预算审批周期长、怕建了没用，市场渗透率不足 10%</span></div></div>
-        <div class="model-row"><div class="mk"></div><div class="mt">卖软件授权，收固定服务费<span class="ms">平台收益与客户价值脱钩，增长天花板低</span></div></div>
-        <div class="model-row"><div class="mk"></div><div class="mt">数据资产归属平台方<span class="ms">客户失去数据主权，形成强依赖</span></div></div>
-        <div class="model-row"><div class="mk"></div><div class="mt">场景单一，难以横向复制<span class="ms">每个行业需重新开发，复制成本极高</span></div></div>
+        <h4>传统运营 —— 信息系统 (记录型系统)</h4>
+        <div class="model-row"><div class="mk"></div><div class="mt">数据可读但不可用（数据孤岛）<span class="ms">各局/部门语义不通，概念对不上；人工看报表滞后易遗漏，数据沦为静态废渣</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">天级响应，决策摩擦大（人力线性增长）<span class="ms">依赖开会发文、电话催办整改，跨部门协调困难，缺乏闭环追踪</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">预算耗尽，年年重来（无资产沉淀）<span class="ms">依赖一次性采购预算，规模越大越笨重，边际成本极高</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">数据与金融/保险机制割裂<span class="ms">隐患排查与保费精算完全脱节，事故降低利润被独吞，施工/路网无获得感</span></div></div>
       </div>
       <div class="vs">VS</div>
       <div class="model-col new">
-        <h4>零首付 · 买结果 · 数据主权</h4>
-        <div class="model-row"><div class="mk"></div><div class="mt">零首付，决策风险归零<span class="ms">无需预算审批流程，区域覆盖率从低位直接拉至 100%</span></div></div>
-        <div class="model-row"><div class="mk"></div><div class="mt">卖硬指标结果，按效分润<span class="ms">理赔周期 7天→24小时、核保成本降 95%、帮企业省百万保费</span></div></div>
-        <div class="model-row"><div class="mk"></div><div class="mt">客户自持数据主权<span class="ms">数据安全可控，收益上限与数据运营金融杠杆深度挂钩</span></div></div>
-        <div class="model-row"><div class="mk"></div><div class="mt">底座能力横向裂变<span class="ms">基于数据治理 AIP，公路→重卡→城轨→水利→化工，扩张边际成本趋近于零</span></div></div>
+        <h4>数据运营 —— 行动系统 (响应型系统)</h4>
+        <div class="model-row"><div class="mk"></div><div class="mt">数据治理 AIP：内核是统一语义的业务模型<span class="ms">打通概念壁垒，“地图不会开车——智能体才是数据运营主体”，目标导向自动感知与决策</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">秒级自闭环，决策摩擦趋近于 0<span class="ms">智能体纵向穿透层级、横向跨局协同，分钟级响应，全天候自动抓隐患与核保</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">智能体飞轮：越跑越便宜（越用越值钱）<span class="ms"><b>隐患闭环 → 动态降保费 → 资金反哺系统与数据接入</b>，资产越积越厚，甩掉慢预算</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">卖硬指标结果分润，客户自持数据主权<span class="ms">直接兑现降赔与降保费硬指标；数据变核心资产，深度挂钩金融与保费溢价</span></div></div>
+      </div>
+    </div>
+
+    <!-- 形象的“数据运营·智能体正向飞轮”可视化区域 -->
+    <div class="flywheel-container">
+      <div class="fw-header">
+        <div class="fw-title">数据运营 · 智能体正向飞轮 <span>自造血闭环</span></div>
+        <div class="fw-motto">“数据治理 AIP 统一语义 (第一级枢纽) → 资金反哺系统 → 资产越积越厚”</div>
+      </div>
+
+      <div class="fw-grid">
+        <!-- 步骤 1 -->
+        <div class="fw-step first-step">
+          <div>
+            <div class="fw-step-num">第一步 · 第一级枢纽 (绝对前提)</div>
+            <div class="fw-step-name">数据治理 AIP 业务模型</div>
+            <div class="fw-step-desc"><b>打通隔阂/统一语义：</b>解决“鸡同鸭讲”，建立“一桥一档/一企一档”，将多方数据映射为同一业务实体。</div>
+          </div>
+          <div class="fw-arrow">➔</div>
+        </div>
+
+        <!-- 步骤 2 -->
+        <div class="fw-step">
+          <div>
+            <div class="fw-step-num">第二步 · 行动系统闭环</div>
+            <div class="fw-step-name">智能体（数据运营主体）自主执行</div>
+            <div class="fw-step-desc"><b>决策摩擦趋近于 0：</b>全天候抓隐患、自动化精算核保、秒级推派工单，“地图不会开车，智能体是数据运营主体”。</div>
+          </div>
+          <div class="fw-arrow">➔</div>
+        </div>
+
+        <!-- 步骤 3 -->
+        <div class="fw-step">
+          <div>
+            <div class="fw-step-num">第三步 · 商业结果兑现</div>
+            <div class="fw-step-name">赔付率下降 · 省出保费资金</div>
+            <div class="fw-step-desc"><b>真金白银落地：</b>帮保险公司降赔付、帮施工企业省保费，兑现可量化的风险控制硬指标。</div>
+          </div>
+          <div class="fw-arrow">➔</div>
+        </div>
+
+        <!-- 步骤 4 -->
+        <div class="fw-step">
+          <div>
+            <div class="fw-step-num">第四步 · 飞轮加速与裂变</div>
+            <div class="fw-step-name">资金反哺与数据接入</div>
+            <div class="fw-step-desc"><b>资产越用越值钱：</b>省下的钱反哺加装物联传感器，覆盖扩大 → 智能体更聪明 → 边际成本趋零。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 反哺增强线 -->
+      <div class="fw-loop-back">
+        <div><span class="fw-loop-tag">正反馈增强闭环</span> 资金与效果反哺：让数据从“报表原料”变成“金融资产”，摆脱传统采购对财政慢预算的依赖！</div>
+        <div>↺ 飞轮加速运转中</div>
+      </div>
+
+      <!-- 穿透能力说明 -->
+      <div class="fw-penetration">
+        <div class="fw-p-item"><b>横向破局：</b>打通交投（P2 级）、施工（P1 级）、保险（P0 级）、应急（P3 级）部门冰墙</div>
+        <div class="fw-p-item" style="margin-left:auto;"><b>纵向穿透：</b>省级监管规则秒级直达工地作业面，防瞒报与信息衰减</div>
       </div>
     </div>
 
