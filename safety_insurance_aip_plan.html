@@ -142,6 +142,7 @@
   .tier-a .pain-tag{color:var(--red-primary);background:var(--red-light);}
   .pain-card h4{margin:2px 0 4px;font-size:14px;color:var(--ink-black);font-weight:700;}
   .pain-card p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.35;}
+  .pain-card p b{color:var(--red-primary);}
   .callout{
     margin:8px 0 0;background:var(--red-light);border-radius:4px;
     padding:6px 12px;font-size:13px;color:var(--ink-black);font-weight:600;text-align:center;line-height:1.35;border:1px solid var(--red-border);
@@ -304,13 +305,17 @@
   .td-rate{font-size:11px;color:var(--muted);}
   .rev-note{font-size:11px;color:var(--muted);margin-top:4px;}
 
+  /* FOOTER */
   .footer-band{
     margin:12px 24px 0;
     background:var(--card-bg);color:var(--ink-black);text-align:center;
-    padding:12px 16px;border-radius:6px;border:1px solid var(--line);
+    padding:14px 16px;border-radius:6px;border:1px solid var(--line);
     font-size:15px;font-weight:700;line-height:1.35;box-shadow:var(--shadow-sm);
   }
-  .footer-band span{color:var(--red-primary);}
+  .footer-core-motto{
+    font-size:15.5px;font-weight:800;color:var(--blue-primary);margin-bottom:6px;letter-spacing:0.3px;
+  }
+  .footer-core-motto span{color:var(--red-primary);}
   .footer-scenes{font-size:12px;font-weight:400;color:var(--muted);margin-bottom:6px;line-height:1.4;}
   .footer-scenes .fs{
     display:inline-block;margin:0 2px;padding:1px 6px;
@@ -319,6 +324,7 @@
     background: var(--bg-page);
   }
   .footer-line{width:28px;height:2px;background:var(--red-primary);margin:0 auto 6px;}
+  .footer-sub-text{font-size:13.5px;color:var(--ink-dark);font-weight:700;}
 </style>
 </head>
 <body>
@@ -426,22 +432,22 @@
     </div>
     <div class="pain-grid">
       <div class="pain-card tier-f">
-        <span class="pain-tag">对应：基础层（数据治理 AIP）</span>
-        <h4>基础层痛点 · 全域数据割裂，风险底座缺失</h4>
-        <p>监管台账、保险承保、企业现场三方数据相互封闭，缺失统一的数据治理标准与底座。风险数据无法融合汇聚，隐患实际处于“感知盲区”，这是行业防控失效的根因。</p>
+        <span class="pain-tag">对应：P1 施工与安服生态痛点</span>
+        <h4>P1 痛点 · 安全投入纯属成本，缺乏保费分润与返还</h4>
+        <p>施工企业与第三方安服安全投入纯属成本支出。即使隐患排查再好、出险率降到零，<b>省下的赔付利润全被保险公司独吞，P1 缺乏保费分润与直接经济回报</b>，导致安全风控动力不足。</p>
       </div>
       <div class="pain-card tier-e">
-        <span class="pain-tag">对应：核心层（数据智能运营引擎）</span>
-        <h4>核心层痛点 · 缺少中枢与智能体，风控引擎失灵</h4>
-        <p>缺乏调度中枢与业务专用智能体，传统模式只能依赖人工巡检与经验判断，精算模型缺乏实时风险输入，核保定价失准，隐患识别滞后，主动预警能力形同虚设。</p>
+        <span class="pain-tag">对应：P2 路网与基础设施痛点</span>
+        <h4>P2 痛点 · 海量物联数据沉淀，无法转化为资产溢价</h4>
+        <p>运营单位沉淀了巨量结构健康与物联数据，但与保险金融精算完全割裂。<b>数据无法转化为续保折扣与金融溢价</b>，导致投入巨大的传感设施沦为静态数据废渣。</p>
       </div>
       <div class="pain-card tier-a">
-        <span class="pain-tag">对应：应用层（场景服务矩阵）</span>
-        <h4>应用层痛点 · 政企场景脱节，变现与运营闭环断裂</h4>
-        <p>政企各端场景没有打通，导致核保、理赔、应急处置、监管追溯四大业务环节相互割裂——风险信号无法在各方间流转，无法形成商业变现与数据运营效果闭环。</p>
+        <span class="pain-tag">对应：P0/P3 保险与监管痛点</span>
+        <h4>P0/P3 痛点 · 核保凭经验、监管靠抽查，场景与商业断裂</h4>
+        <p>保险核保精算缺乏实时风险数据支撑，赔付率居高不下；监管部门面对庞大辖区只能被动抽查。<b>政企场景脱节导致风控无法变现，数据运营效果闭环断裂。</b></p>
       </div>
     </div>
-    <div class="callout">三层矛盾层层递进：<b>基础数据割裂</b> → <b>风控引擎失灵</b> → <b>商业与运营闭环断裂</b>——安责险必须从“事后赔付”全面升级为<b>“全域数据驱动的主动风险管控与数据运营”</b></div>
+    <div class="callout">行业核心死穴：<b>P1 风控无分润</b> + <b>P2 数据无溢价</b> + <b>P0 精算无输入</b>——安责险必须通过<b>合作智能体打通数据运营与后端保费增量分润</b></div>
   </div>
 
   <!-- 第三章 -->
@@ -563,7 +569,7 @@
             <div class="erc-pool">资金来源：≤21% 事故预防费 + 出险赔偿金</div>
           </div>
           <div class="erc-body">
-            <b>收款动作：</b>平台向财险公司提供动态核保精算与风控智能体能力。国家规定保险中介佣金上限≤5%，打掉中间回扣后，风控资金得以真实留存。
+            <b>收款动作：</b>平台向财险公司提供动态核保精算与风控智能体能力。政策规定中介佣金上限≤5%（斩断回扣），促使风控资金真实留存。
             <br>• <b>服务提成：</b>按保费规模提取 <b>3%–5%</b> 精算/风控服务费。
             <br>• <b>减损分润：</b>降低出险率，省下的赔偿金按 <b>20%–30%</b> 抽成。
           </div>
@@ -577,15 +583,15 @@
           <div class="erc-head">
             <span class="erc-tag">P1 次高优先级</span>
             <div class="erc-title">建设施工及第三方生态</div>
-            <div class="erc-pool">资金来源：1.5%–3% 安全生产费 + 省保费差额</div>
+            <div class="erc-pool">资金来源：1.5%–3.0% 安全生产费用（刚性预付）</div>
           </div>
           <div class="erc-body">
-            <b>收款动作：</b>打通“财资136号文”安全费刚性预付资金。
-            <br>• <b>软件/服务采购：</b>施工企业用安全费据实列支采购风控智能体。
-            <br>• <b>降保费分成：</b>通过隐患智治帮企业下浮保费，提取省下金额的 <b>20%–30%</b>。
+            <b>收款动作：</b>打通“财资136号文”安全费刚性预付资金（开工首月预付≥50%）。
+            <br>• <b>智能体采购（直接变现）：</b>施工/安服企业直接动用<b>安全生产费</b>据实采购风控与培训智能体。
+            <br>• <b>未来保费分润（突破性增益）：</b>改变过去“纯成本”现状，通过智能体帮企业下浮保费，<b>将省下保费的 20%–30% 返还分润给 P1 合作生态</b>。
           </div>
         </div>
-        <div class="erc-mode">收钱模式：安全费用采购 + 节约保费分成</div>
+        <div class="erc-mode">收钱模式：安全费用直接采购 + 未来节约保费分润</div>
       </div>
 
       <!-- 3. 路网运营单位 -->
@@ -594,13 +600,13 @@
           <div class="erc-head">
             <span class="erc-tag">P2 核心数据源</span>
             <div class="erc-title">路网与基础设施运营单位</div>
-            <div class="erc-pool">资金来源：交投养护工程预算 + 降赔打折收益</div>
+            <div class="erc-pool">资金来源：交投养护工程预算 + 资产保费打折收益</div>
           </div>
           <div class="erc-body">
-            <b>收款动作：</b>继承 AIP 32个智能体底座，为交投/路桥国企提供基础设施监测与养护，通过提供物联风险数据获得保险续保折扣，从中提取服务溢价。
+            <b>收款动作：</b>继承 AIP 32个智能体底座，为交投/路桥国企提供基础设施监测与养护。凭物联风险画像向保险公司换取<b>续保折扣与资产溢价分润</b>（打破过去有数据无溢价痛点）。
           </div>
         </div>
-        <div class="erc-mode">收钱模式：养护风控升级 + 保费让利分成</div>
+        <div class="erc-mode">收钱模式：养护风控升级 + 保费让利溢价分成</div>
       </div>
 
       <!-- 4. 应急管理部门 -->
@@ -612,8 +618,8 @@
             <div class="erc-pool">资金策略：全额免费部署（绕开政府慢预算）</div>
           </div>
           <div class="erc-body">
-            <b>变现策略说明：</b>传统的 ToG 软件采购涉及财政预算编制、立项审批与招投标，<b>项目周期长（常需 1–2 年），短时间内无法实现财务变现与回款</b>。
-            <br>因此，本方案<b>战略性放弃向政府直接收钱</b>，采用全额免费方式将系统“赠予”政府。直接绕开长周期审批，作为<b>快捷切入点</b>换取全域监管背书与官方唯一合规通道，<b>反向强制逼迫辖区内的保险公司（P0）与施工企业（P1）全员接入并向 B 端快速变现。</b>
+            <b>变现策略说明：</b>传统的 ToG 软件采购涉及财政预算编制与招投标，<b>周期长（1–2年），短期内无法实现财务回款</b>。
+            <br>本方案<b>战略性放弃向政府收钱</b>，全额免费“赠予”政府。绕开长周期审批，换取全域监管背书与官方唯一合规通道，<b>反向强制逼迫辖区内的 P0 与 P1 全员接入并向 B 端快速变现。</b>
           </div>
         </div>
         <div class="erc-mode">战略定位：ToG 全额免费，快速撬动 ToB 闭环变现</div>
@@ -717,7 +723,7 @@
             <div class="td-name">2. 建设施工及第三方服务生态（ToB · P1 预算池）</div>
             <div class="td-rate">资金来源：1.5%–3.0% 安全生产费用（刚性预付）+ 省保费差额</div>
           </td>
-          <td><b>安全费</b>据实采购服务<br>+ <b>20%–30%</b> 降保费分成</td>
+          <td><b>安全费</b>据实采购服务<br>+ <b>20%–30%</b> 未来降保费分成</td>
           <td><b>200 万 – 500 万</b></td>
           <td><b>2,000 万 – 5,000 万</b></td>
         </tr>
@@ -726,7 +732,7 @@
             <div class="td-name">3. 路网与基础设施运营单位（ToB · P2 数据源）</div>
             <div class="td-rate">资金来源：交投养护工程专项预算 + 保费下浮让利</div>
           </td>
-          <td><b>AIP 智能体</b>养护升级<br>+ <b>保费折扣</b>服务分成</td>
+          <td><b>AIP 智能体</b>养护升级<br>+ <b>未来保费折扣</b>溢价分成</td>
           <td><b>含于上述 B 端分成</b></td>
           <td><b>含于上述 B 端分成</b></td>
         </tr>
@@ -753,9 +759,12 @@
 
   <!-- 底部 Banner -->
   <div class="footer-band">
+    <div class="footer-core-motto">
+      让保险公司降赔付、施工企业拿安全费省保费、路网国企把数据变资产、监管部门零成本抓安全
+    </div>
     <div class="footer-scenes">从公路安责险出发，向<span class="fs">应急管理</span><span class="fs">轨道交通</span><span class="fs">水利水电</span><span class="fs">港口航运</span><span class="fs">能源基建</span><span class="fs">矿山安全</span><span class="fs">化工园区</span><span class="fs">住建 / 国资</span>延伸</div>
     <div class="footer-line"></div>
-    依托数据治理 AIP，<span>开启安责险持续数据运营新时代</span>
+    <div class="footer-sub-text">依托数据治理 AIP，开启安责险持续数据运营新时代</div>
   </div>
 
 </div>
