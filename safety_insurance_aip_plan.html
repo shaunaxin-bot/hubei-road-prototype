@@ -128,9 +128,16 @@
   }
   .flow-strip span{color:var(--red-primary);margin:0 4px;font-weight:800;}
 
-  /* 02 PAIN */
+  /* 02 PAIN - 修正痛点名称与架构三层1:1对应 */
   .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
   .pain-card{background:var(--card-bg);border-radius:8px;padding:10px 12px;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+  .pain-card.tier-f{border-top:3px solid var(--ink-dark);}
+  .pain-card.tier-e{border-top:3px solid var(--blue-primary);}
+  .pain-card.tier-a{border-top:3px solid var(--red-primary);}
+  .pain-tag{font-size:9px;font-weight:800;letter-spacing:0.5px;margin-bottom:2px;display:inline-block;padding:1px 4px;border-radius:3px;}
+  .tier-f .pain-tag{color:var(--ink-dark);background:var(--line);}
+  .tier-e .pain-tag{color:var(--blue-primary);background:var(--blue-light);}
+  .tier-a .pain-tag{color:var(--red-primary);background:var(--red-light);}
   .pain-card h4{margin:0 0 6px;font-size:12.5px;color:var(--ink-black);font-weight:700;}
   .pain-card p{margin:0;font-size:11px;color:var(--muted);line-height:1.4;}
   .callout{
@@ -212,7 +219,7 @@
     padding:4px 12px;border-radius:12px;text-decoration:none;white-space:nowrap;
   }
 
-  /* 04 ECO - 彻底重构为【变现路径与收钱逻辑】 */
+  /* 04 ECO */
   .eco-revenue-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;}
   .eco-rev-card{
     background:var(--card-bg);border-radius:8px;padding:10px 12px;
@@ -231,14 +238,19 @@
   .p3 .erc-tag{color:var(--muted);background:#FFF;border:1px solid var(--line);}
   
   .erc-title{font-size:12.5px;font-weight:800;color:var(--ink-black);}
-  .erc-pool{font-size:10px;color:var(--red-primary);font-weight:700;margin-top:2px;background:var(--red-light);padding:2px 4px;border-radius:3px;}
-  
+  .erc-pool{font-size:10px;font-weight:700;margin-top:2px;padding:2px 4px;border-radius:3px;}
+  .p0 .erc-pool{color:var(--red-primary);background:var(--red-light);}
+  .p1 .erc-pool{color:var(--blue-primary);background:var(--blue-light);}
+  .p2 .erc-pool{color:var(--ink-dark);background:var(--line);}
+  .p3 .erc-pool{color:var(--muted);background:#FFF;border:1px solid var(--line);}
+
   .erc-body{font-size:10.5px;color:var(--muted);line-height:1.4;margin:6px 0;}
   .erc-body b{color:var(--ink-black);}
-  .erc-mode{
-    font-size:10px;font-weight:700;color:var(--blue-primary);
-    background:var(--blue-light);padding:4px 6px;border-radius:4px;border:1px solid var(--blue-border);
-  }
+  .erc-mode{font-size:10px;font-weight:700;padding:4px 6px;border-radius:4px;}
+  .p0 .erc-mode{color:var(--blue-primary);background:var(--blue-light);border:1px solid var(--blue-border);}
+  .p1 .erc-mode{color:var(--blue-primary);background:var(--blue-light);border:1px solid var(--blue-border);}
+  .p2 .erc-mode{color:var(--ink-dark);background:var(--line);border:1px solid var(--line-strong);}
+  .p3 .erc-mode{color:var(--muted);background:#FFF;border:1px solid var(--line);}
 
   /* 05 MODEL */
   .model-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;}
@@ -384,26 +396,29 @@
     <div class="flow-strip">政策闭环：合规投入 <span>→</span> 风险防控 <span>→</span> 保费优化 <span>→</span> 长效数据运营</div>
   </div>
 
-  <!-- 第二章 -->
+  <!-- 第二章：痛点名称与第三章架构三层 1:1 精确对齐 -->
   <div class="section">
     <div class="part-head">
       <div class="part-title">第二章 行业痛点与现存矛盾</div>
     </div>
     <div class="pain-grid">
-      <div class="pain-card">
-        <h4>数据层 · 三方孤岛，风险盲区</h4>
-        <p>监管台账、保险承保、企业现场三方数据相互封闭，标准各异，无法贯通。风险信息无法汇聚为统一画像，安全隐患实际处于"感知盲区"，这是行业防控失效的底层根因。</p>
+      <div class="pain-card tier-f">
+        <span class="pain-tag">对应：基础层（数据治理 AIP）</span>
+        <h4>基础层痛点 · 全域数据割裂，风险底座缺失</h4>
+        <p>监管台账、保险承保、企业现场三方数据相互封闭，缺失统一的数据治理标准与底座。风险数据无法融合汇聚，隐患实际处于“感知盲区”，这是行业防控失效的根因。</p>
       </div>
-      <div class="pain-card">
-        <h4>能力层 · 手段落后，防控失效</h4>
-        <p>在数据孤岛之上，传统模式只能依赖人工巡检与经验判断，精算模型缺乏实时风险输入，核保定价失准，隐患识别滞后，主动预警能力形同虚设，只能事后止损。</p>
+      <div class="pain-card tier-e">
+        <span class="pain-tag">对应：核心层（数据智能运营引擎）</span>
+        <h4>核心层痛点 · 缺少中枢与智能体，风控引擎失灵</h4>
+        <p>缺乏调度中枢与业务专用智能体，传统模式只能依赖人工巡检与经验判断，精算模型缺乏实时风险输入，核保定价失准，隐患识别滞后，主动预警能力形同虚设。</p>
       </div>
-      <div class="pain-card">
-        <h4>协同层 · 四环断裂，闭环缺失</h4>
-        <p>数据不通、能力不足，最终导致核保、理赔、应急处置、监管追溯四大业务环节相互割裂——风险信号无法在各方之间流转，运营闭环无从建立，事故损失持续累积。</p>
+      <div class="pain-card tier-a">
+        <span class="pain-tag">对应：应用层（场景服务矩阵）</span>
+        <h4>应用层痛点 · 政企场景脱节，变现与运营闭环断裂</h4>
+        <p>政企各端场景没有打通，导致核保、理赔、应急处置、监管追溯四大业务环节相互割裂——风险信号无法在各方间流转，无法形成商业变现与数据运营效果闭环。</p>
       </div>
     </div>
-    <div class="callout">三层矛盾层层递进：<b>数据孤岛</b> → <b>防控失效</b> → <b>数据运营闭环断裂</b>——安责险必须从"事后赔付"全面升级为<b>"全域数据驱动的主动风险管控与数据运营"</b></div>
+    <div class="callout">三层矛盾层层递进：<b>基础数据割裂</b> → <b>风控引擎失灵</b> → <b>商业与运营闭环断裂</b>——安责险必须从“事后赔付”全面升级为<b>“全域数据驱动的主动风险管控与数据运营”</b></div>
   </div>
 
   <!-- 第三章 -->
@@ -438,7 +453,7 @@
             </div>
           </div>
           <div class="app-col tog">
-            <div class="app-col-title"><span>ToG 行政杠杆</span></div>
+            <div class="app-col-title"><span>ToG 行政杠杆（全额免费）</span></div>
             <div class="app-box">
               应急与行业监管部门
               <small>应急管理厅/局、交通运输厅/局/公路中心</small>
@@ -508,7 +523,7 @@
     </div>
   </div>
 
-  <!-- 第四章：彻底重写为“价值落地与变现路径” -->
+  <!-- 第四章 -->
   <div class="section">
     <div class="part-head">
       <div class="part-title">第四章 价值落地与商业变现路径</div>
@@ -565,19 +580,19 @@
         <div class="erc-mode">收钱模式：养护风控升级 + 保费让利分成</div>
       </div>
 
-      <!-- 4. 应急管理部门 -->
+      <!-- 4. 应急管理部门（全额免费杠杆） -->
       <div class="eco-rev-card p3">
         <div>
           <div class="erc-head">
             <span class="erc-tag">P3 行政杠杆</span>
             <div class="erc-title">应急与行业监管部门</div>
-            <div class="erc-pool">资金策略：零首付免费部署（免费开门砖）</div>
+            <div class="erc-pool">资金策略：全额免费部署（零财政预算）</div>
           </div>
           <div class="erc-body">
-            <b>变现杠杆：</b>不指望直接从政府收钱。通过免费部署换取全域行政背书与监管合规直报授权，<b>反向强制逼迫辖区内的保险、施工企业必须接入平台付费。</b>
+            <b>变现杠杆：</b>全额免费向政府提供全域监管与合规直报系统。不指望从政府收一分钱，而是以“免费”换取全域行政背书与官方唯一合规通道，<b>反向强制逼迫辖区内的保险公司与施工企业全员接入并向 B 端付费。</b>
           </div>
         </div>
-        <div class="erc-mode">变现杠杆：零首付换授权，强闭环撬动 B 端</div>
+        <div class="erc-mode">战略定位：ToG 全额免费，撬动 ToB 闭环付费</div>
       </div>
     </div>
   </div>
@@ -673,16 +688,16 @@
           <td>20% – 30%</td><td>400 万 – 1,000 万</td><td>4,000 万 – 1 亿</td>
         </tr>
         <tr>
-          <td><div class="td-name">帮企业降保费结果分成</div><div class="td-rate">帮助企业获保费下浮折扣，提取节省金额</div></td>
+          <td><div class="td-name">帮施工/养护企业降保费分成</div><div class="td-rate">帮助企业获保费下浮折扣，提取节省金额</div></td>
           <td>20% – 30%</td><td>200 万 – 500 万</td><td>2,000 万 – 5,000 万</td>
         </tr>
         <tr>
-          <td><div class="td-name">政府端智能体服务费</div><div class="td-rate">应急 / 交通部门零首付部署后按年付费</div></td>
-          <td>年度服务费</td><td>300 万 – 500 万</td><td>3,000 万 – 5,000 万</td>
+          <td><div class="td-name">应急 / 交通监管端平台部署</div><div class="td-rate">全额免费部署（撬动 B 端 100% 渗透率的开门砖）</div></td>
+          <td><b>全额免费</b></td><td><b>¥ 0 （免费杠杆）</b></td><td><b>¥ 0 （免费杠杆）</b></td>
         </tr>
         <tr>
           <td><b>合计年收益潜在空间</b></td>
-          <td>—</td><td><b>1,500 万 – 3,500 万</b></td><td><b>1.5 亿 – 3.5 亿</b></td>
+          <td>—</td><td><b>1,200 万 – 3,000 万</b></td><td><b>1.2 亿 – 3.0 亿</b></td>
         </tr>
       </table>
       <div class="rev-note">* 以上为商业模式测算假设，具体收益比例以合同约定为准；保费下浮折扣幅度以保险机构精算备案为准。</div>
