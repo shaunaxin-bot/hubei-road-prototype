@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>安责险数据运营平台</title>
+<title>面向安责险的安全生产责任数据运营平台</title>
 <style>
   :root{
     /* 配色方案：黑灰白为主，深蓝/深红为点缀 */
@@ -255,6 +255,25 @@
   .p2 .erc-mode{color:var(--ink-dark);background:var(--line);border:1px solid var(--line-strong);}
   .p3 .erc-mode{color:var(--muted);background:#FFF;border:1px solid var(--line);}
 
+  /* CASH FLOW STYLES */
+  .cf-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px; margin-bottom: 8px; }
+  .cf-card { background: var(--card-bg); border-radius: 6px; padding: 10px 12px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .cf-card.highlight { border: 1.5px solid var(--red-primary); background: var(--red-light); }
+  .cf-tag { font-size: 10px; font-weight: 800; padding: 1px 5px; border-radius: 3px; display: inline-block; margin-bottom: 4px; }
+  .cf-tag.p1 { color: var(--blue-primary); background: var(--blue-light); }
+  .cf-tag.p0 { color: var(--red-primary); background: #FFF; border: 1px solid var(--red-border); }
+  .cf-tag.p3 { color: var(--muted); background: var(--line); }
+  .cf-title { font-size: 13.5px; font-weight: 800; color: var(--ink-black); margin-bottom: 4px; }
+  .cf-days { font-size: 16px; font-weight: 800; color: var(--blue-primary); margin-bottom: 4px; }
+  .cf-days span { font-size: 11px; font-weight: normal; color: var(--muted); }
+  .cf-body { font-size: 11.5px; color: var(--muted); line-height: 1.35; }
+  .cf-body b { color: var(--ink-black); }
+  .cf-summary-strip {
+    background: var(--blue-light); border: 1px solid var(--blue-border); border-radius: 6px;
+    padding: 8px 12px; font-size: 12px; color: var(--ink-dark); line-height: 1.4; margin-top: 6px;
+  }
+  .cf-summary-strip b { color: var(--red-primary); }
+
   /* 05 MODEL */
   .model-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;}
   .model-col{border-radius:6px;padding:10px 12px;border:1px solid var(--line);}
@@ -377,7 +396,7 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-title">安责险数据运营平台</div>
+    <div class="hero-title">面向安责险的安全生产责任数据运营平台</div>
 
     <div class="hero-pills">
       <span class="hero-pill">数据主权归客户</span>
@@ -437,7 +456,7 @@
       <div class="card">
         <h4>应急管理部、财政部《企业安全生产费用提取和使用管理办法》（财资〔2022〕136 号）</h4>
         <div class="core">核心变革：安全投入由 <b>"成本支出"</b> 转为 <b>"风险能力投资"</b></div>
-        <div class="mech"><b>监管机制：</b>专款专用、足额提取——项目开工 1 个月内预付 ≥ 50% 安全费用，据实完投使用，超范围禁用。</div>
+        <div class="mech"><b>监管机制：</b>专款专用、足额提取——项目开工 1 个月内预付 ≥ 50% 安全费用，据实完投使用，超范围禁用。核心资金切口正是撬动施工单位开工首月刚性预付的 ≥ 50% 安全生产费用。</div>
         <div class="rate-label">行业计提标准</div>
         <table class="rate">
           <tr><th>矿山工程</th><th>铁路/房建/轨交</th><th>水利/电力工程</th><th>化工/危化工程</th><th>公路/市政/航道</th><th>货运/客运运输</th></tr>
@@ -458,10 +477,10 @@
         <div class="lk-item">
           <div class="lk-label">通道二 · 政策鼓励</div>
           <div class="lk-title">安全费用的合规延伸用途</div>
-          <div class="lk-body">136号文明确，安全生产费用可用于<b>智能监测设备加装、重大隐患整改、数字化风控系统建设</b>（含物联感知、监测预警平台等），为平台服务费用提供合规列支依据。</div>
+          <div class="lk-body">136号文明确，安全生产费用可用于<b>智能监测设备加装、质监直报包服务、数字化风控系统建设</b>（含地质基础档案、监测预警平台等），为平台服务费用提供开工首月预付 ≥50% 节点下的合规列支依据。</div>
         </div>
         <div class="lk-item">
-          <div class="lk-label">通道三 · 待核实数据</div>
+          <div class="lk-label">通道三 · 动态精算</div>
           <div class="lk-title">动态费率与企业降本</div>
           <div class="lk-body">27号文确立<b>费率与风险挂钩的动态精算机制</b>：企业事故发生率下降，可通过续保费率优化实现安全投入与数据运营降本的良性循环。</div>
           <span class="lk-flag">具体折扣幅度以保险机构精算备案为准</span>
@@ -478,9 +497,9 @@
     </div>
     <div class="pain-grid">
       <div class="pain-card tier-f">
-        <span class="pain-tag">对应：P1 施工与安服生态痛点</span>
-        <h4>P1 痛点 · 安全投入纯属成本，缺乏保费分润与返还</h4>
-        <p>施工企业与第三方安服安全投入纯属成本支出。即使隐患排查再好、出险率降到零，<b>省下的赔付利润全被保险公司独吞，P1 缺乏保费分润与直接经济回报</b>，导致安全风控动力不足。</p>
+        <span class="pain-tag">对应：基础层（数据就绪 AIP）</span>
+        <h4>基础层痛点 · 数据未就绪，全域割裂无底座</h4>
+        <p>监管台账、保险承保、企业现场三方数据相互封闭，缺乏统一的数据就绪标准与底座。原始数据未就绪导致隐患实际处于“感知盲区”，这是行业防控失效的根因。</p>
       </div>
       <div class="pain-card tier-e">
         <span class="pain-tag">对应：P2 路网与基础设施痛点</span>
@@ -560,7 +579,7 @@
           </div>
           <div class="agent-domain">
             <div class="ad-head"><span class="ad-name">路网运营智能体集群</span><span class="ad-tag-p2">P2 数据源</span></div>
-            <div class="ad-list">物联采集智能体 · 结构画像智能体 · 隐患巡检智能体 · 监测预警智能体 · 防灾减损智能体 (源自 AIP 底座)</div>
+            <div class="ad-list">物联采集智能体 · 结构画像智能体 · 隐患巡检智能体 · 监测预警智能体 · 防灾减损智能体 (源自数据就绪 AIP 底座)</div>
           </div>
           <div class="agent-domain">
             <div class="ad-head"><span class="ad-name">应急与行业监管智能体集群</span><span class="ad-tag-p3">P3 行政杠杆</span></div>
@@ -574,14 +593,14 @@
       <!-- 第三层：基础层 -->
       <div class="arch-tier tier-foundation">
         <div class="tier-tag">第三层 · 基础层</div>
-        <div class="tier-desc">数据治理 AIP 底座——打通部门与层级隔阂的第一级枢纽。统一全域风险标准，归集风险资产，保障客户数据主权，夯实合规可控的数据运营根基。</div>
+        <div class="tier-desc">数据就绪 AIP 底座——打通部门与层级隔阂的第一级枢纽。统一全域风险标准，归集风险资产，保障客户数据主权，夯实合规可控的数据运营根基。</div>
         
         <div class="base-platform">
           <div>
             <div class="bp-tag">底座原型 · 已落地验证 (P2 级数据与能力沉淀)</div>
-            <div class="bp-name">湖北公路数据治理 AIP 平台</div>
-            <div class="bp-desc">继承湖北公路数据治理 AIP 平台实践，底层预置开发就绪的 32 个专业智能体（涵盖桥隧/边坡结构健康监测、隐患排查、过桥快速评价、应急指挥调度等）及 1 个数据统筹 Hub，以此硬核底座构建安责险数据运营体系。</div>
-            <div class="bp-aip-note"><b>* AIP 概念释义：</b> AIP（Agent Intelligence Platform / 智能体业务模型工作平台）是驱动业务模型自动化运行与智能体协同的高能中台底座。</div>
+            <div class="bp-name">湖北公路数据就绪 AIP 平台</div>
+            <div class="bp-desc">继承湖北公路数据就绪 AIP 平台实践，底层预置开发就绪的 32 个专业智能体（涵盖桥隧/边坡结构健康监测、隐患排查、过桥快速评价、应急指挥调度等）及 1 个数据统筹 Hub，以此硬核底座构建安责险数据运营体系。</div>
+            <div class="bp-aip-note"><b>* 数据就绪 AIP 概念释义：</b> 数据就绪 AIP（AI-Ready Platform）是将政企险三方割裂的原始工程与现场数据，转化为 AI 智能体可直接调度、保险精算可直接计算、监管可直接审验的“就绪态数据资产”与高能中台底座。</div>
           </div>
           <a class="bp-link" href="https://shaunaxin-bot.github.io/hubei-road-prototype/?mode=standalone&view=deepqa" target="_blank" rel="noopener">查看底座原型 ↗</a>
         </div>
@@ -612,15 +631,15 @@
           <div class="erc-head">
             <span class="erc-tag">P0 最高优先级</span>
             <div class="erc-title">保险与金融机构</div>
-            <div class="erc-pool">资金来源：≤21% 事故预防费 + 出险赔偿金</div>
+            <div class="erc-pool">资金来源：≤21% 事故预防服务费划拨派单 + 理赔降赔对赌资金池</div>
           </div>
           <div class="erc-body">
-            <b>收款动作：</b>平台向财险公司提供动态核保精算与风控智能体能力。政策规定中介佣金上限≤5%（斩断回扣），促使风控资金真实留存。
-            <br>• <b>服务提成：</b>按保费规模提取 <b>3%–5%</b> 精算/风控服务费。
-            <br>• <b>减损分润：</b>降低出险率，省下的赔偿金按 <b>20%–30%</b> 抽成。
+            <b>收款动作：</b>平台向财险共管体提供 AIP 风控智能体派单与减损结算服务，严格遵守中介佣金上限≤5% 红线。
+            <br>• <b>派单结算：</b>从 21% 事故预防服务费中按预防工单与隐患排查服务据实结算。
+            <br>• <b>减损分润：</b>基于 AIP 智能体下压的动态赔付率，按照赔付节约资金的 <b>20%–30%</b> 进行理赔超额降赔分成。
           </div>
         </div>
-        <div class="erc-mode">收钱模式：保费技术抽成 + 风险减损结果分润</div>
+        <div class="erc-mode">收钱模式：事故预防费按工单结算 + 20%-30% 理赔降赔分成</div>
       </div>
 
       <!-- 2. 施工及第三方安服 -->
@@ -629,15 +648,15 @@
           <div class="erc-head">
             <span class="erc-tag">P1 次高优先级</span>
             <div class="erc-title">建设施工及第三方生态</div>
-            <div class="erc-pool">资金来源：1.5%–3.0% 安全生产费用（刚性预付）</div>
+            <div class="erc-pool">资金来源：建安费 1.5%–3.0% 安全生产费用（开工首月预付 ≥50%）</div>
           </div>
           <div class="erc-body">
             <b>收款动作：</b>打通“财资136号文”安全费刚性预付资金（开工首月预付≥50%）。
-            <br>• <b>智能体采购（直接变现）：</b>施工/安服企业直接动用<b>安全生产费</b>据实采购风控与培训智能体。
-            <br>• <b>未来保费分润（突破性增益）：</b>改变过去“纯成本”现状，通过智能体帮企业下浮保费，<b>将省下保费的 20%–30% 返还分润给 P1 合作生态</b>。
+            <br>• <b>智能体采购（直接变现）：</b>施工/安服企业动用<b>安全生产费</b>采购危大工程/特种作业风控智能体与质监直报服务，合规列支安全费。
+            <br>• <b>保费下浮凭证（增益）：</b>通过智能体风控凭证帮企业下浮保费，将省下保费的 20%–30% 返还分润给 P1 合作生态。
           </div>
         </div>
-        <div class="erc-mode">收钱模式：安全费用直接采购 + 未来节约保费分润</div>
+        <div class="erc-mode">收钱模式：首月 50% 安全费列支采购 + 安责险打折凭证</div>
       </div>
 
       <!-- 3. 路网运营单位 -->
@@ -649,7 +668,7 @@
             <div class="erc-pool">资金来源：交投养护工程预算 + 资产保费打折收益</div>
           </div>
           <div class="erc-body">
-            <b>收款动作：</b>继承 AIP 32个智能体底座，为交投/路桥国企提供基础设施监测与养护。凭物联风险画像向保险公司换取<b>续保折扣与资产溢价分润</b>（打破过去有数据无溢价痛点）。
+            <b>收款动作：</b>继承数据就绪 AIP 32个智能体底座，为交投/路桥国企提供地质基础档案托管与基础设施监测。凭物联风险画像向保险公司换取<b>续保折扣与资产溢价分润</b>（打破过去有数据无溢价痛点）。
           </div>
         </div>
         <div class="erc-mode">收钱模式：养护风控升级 + 保费让利溢价分成</div>
@@ -665,11 +684,68 @@
           </div>
           <div class="erc-body">
             <b>变现策略说明：</b>传统的 ToG 软件采购涉及财政预算编制与招投标，<b>周期长（1–2年），短期内无法实现财务回款</b>。
-            <br>本方案<b>战略性放弃向政府收钱</b>，全额免费“赠予”政府。绕开长周期审批，换取全域监管背书与官方唯一合规通道，<b>反向强制逼迫辖区内的 P0 与 P1 全员接入并向 B 端快速变现。</b>
+            <br>本方案<b>战略性放弃向政府收钱</b>，全额免费“赠予”政府。绕开长周期审批，换取全域监管背书与质监直报通道，<b>反向强制逼迫辖区内的 P0 与 P1 全员接入并向 B 端快速变现。</b>
           </div>
         </div>
         <div class="erc-mode">战略定位：ToG 全额免费，快速撬动 ToB 闭环变现</div>
       </div>
+    </div>
+  </div>
+
+  <!-- 第四章（续）：现金流模型与账期对冲机制 -->
+  <div class="section">
+    <div class="part-head">
+      <div class="part-title">第四章（续）现金流模型与账期对冲机制</div>
+    </div>
+    
+    <div class="arch-note" style="margin-bottom:8px;">
+      以<b>“刚性预付 + 流水分成”</b>彻底斩断传统 ToG/ToB IT 企业的垫资坏账死穴，实现极佳的现金流自造血。
+    </div>
+
+    <div class="cf-grid">
+      <!-- P1 施工端 -->
+      <div class="cf-card highlight">
+        <span class="cf-tag p1">P1 刚性预付（首要现金流）</span>
+        <div class="cf-title">施工企业·安全费用列支</div>
+        <div class="cf-days" style="color:var(--red-primary);">15 – 30 天 <span>(极速现金流)</span></div>
+        <div class="cf-body">
+          <b>回款逻辑：</b>依据财资 136 号文，开工首月建设单位必须预付 <b>≥50% 安全生产费</b>。施工方直接动用刚性预付资金采购智能体，<b>开工 30 天内实现 100% 现金到账</b>。
+        </div>
+      </div>
+
+      <!-- P0 保险端 -->
+      <div class="cf-card">
+        <span class="cf-tag p0">P0 派单与减损</span>
+        <div class="cf-title">保险公司·预防费与降赔</div>
+        <div class="cf-days">30 – 60 天 <span>(按月/按季结算)</span></div>
+        <div class="cf-body">
+          <b>回款逻辑：</b>3%–5% 技术服务费随保费收取按季划拨（来自 21% 事故预防费）；赔付率降低分润（20%–30%）按半年度/年度理赔对赌池直接扣划。
+        </div>
+      </div>
+
+      <!-- P2 路网端 -->
+      <div class="cf-card">
+        <span class="cf-tag p1">P2 资产增益</span>
+        <div class="cf-title">路网国企·续保折扣分成</div>
+        <div class="cf-days">30 – 90 天 <span>(随续保节点)</span></div>
+        <div class="cf-body">
+          <b>回款逻辑：</b>凭地质基础档案与 AIP 物联风控数据，在年度保费下浮协议达成时，按约定的保费节省金额直接兑现溢价分润。
+        </div>
+      </div>
+
+      <!-- P3 监管端 -->
+      <div class="cf-card">
+        <span class="cf-tag p3">P3 免费杠杆</span>
+        <div class="cf-title">应急/交通监管端</div>
+        <div class="cf-days" style="color:var(--muted);">0 天 <span>(零应收/零坏账)</span></div>
+        <div class="cf-body">
+          <b>回款逻辑：</b>全额免费部署，<b>彻底放弃向政府要钱</b>。绕开 1–3 年的 ToG 慢财政审批与坏账隐患，以零账期风险换取全域独家行政入口。
+        </div>
+      </div>
+    </div>
+
+    <div class="cf-summary-strip">
+      <b>💡 现金流对冲结论：</b> 传统 ToG 软件公司账期长达 12–36 个月且面临极高坏账率；本方案利用 <b>P1 施工开工首月 ≥50% 刚性预付安全费</b>，在项目启动前 30 天内即锁定现金流，用 B 端的预付费和流水抽成实现<b>“T+30 自造血”</b>，彻底打消了垫资与账期拖垮公司的后顾之忧！
     </div>
   </div>
 
@@ -692,10 +768,10 @@
       <div class="vs">VS</div>
       <div class="model-col new">
         <h4>数据运营 —— 行动系统 (响应型系统)</h4>
-        <div class="model-row"><div class="mk"></div><div class="mt">数据治理 AIP：内核是统一语义的业务模型<span class="ms">打通概念壁垒，“地图不会开车——智能体才是数据运营主体”，目标导向自动感知与决策</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">数据就绪 AIP：内核是统一语义的业务模型<span class="ms">打通概念壁垒，“地图不会开车——智能体才是数据运营主体”，目标导向自动感知与决策</span></div></div>
         <div class="model-row"><div class="mk"></div><div class="mt">秒级自闭环，决策摩擦趋近于 0<span class="ms">智能体纵向穿透层级、横向跨局协同，分钟级响应，全天候自动抓隐患与核保</span></div></div>
-        <div class="model-row"><div class="mk"></div><div class="mt">智能体飞轮：越跑越便宜（越用越值钱）<span class="ms"><b>隐患闭环 → 动态降保费 → 资金反哺系统与数据接入</b>，资产越积越厚，甩掉慢预算</span></div></div>
-        <div class="model-row"><div class="mk"></div><div class="mt">卖硬指标结果分润，客户自持数据主权<span class="ms">直接兑现降赔与降保费硬指标；数据变核心资产，深度挂钩金融与保费溢价</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">智能体正向飞轮：AIP 智能体运营分成<span class="ms"><b>隐患闭环 → 动态降保费 → 资金反哺系统与数据接入</b>，资产越积越厚，甩掉慢预算</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">卖硬指标结果分润，客户自持数据主权<span class="ms">直接兑现降赔与降保费硬指标；地质基础档案变核心资产，深度挂钩金融与保费溢价</span></div></div>
       </div>
     </div>
 
@@ -703,7 +779,7 @@
     <div class="flywheel-container">
       <div class="fw-header">
         <div class="fw-title">数据运营 · 智能体正向飞轮 <span>自造血闭环</span></div>
-        <div class="fw-motto">“数据治理 AIP 统一语义 (第一级枢纽) → 资金反哺系统 → 资产越积越厚”</div>
+        <div class="fw-motto">“数据就绪 AIP 统一语义 (第一级枢纽) → 资金反哺系统 → 资产越积越厚”</div>
       </div>
 
       <div class="fw-grid">
@@ -711,8 +787,8 @@
         <div class="fw-step first-step">
           <div>
             <div class="fw-step-num">第一步 · 第一级枢纽 (绝对前提)</div>
-            <div class="fw-step-name">数据治理 AIP 业务模型</div>
-            <div class="fw-step-desc"><b>打通隔阂/统一语义：</b>解决“鸡同鸭讲”，建立“一桥一档/一企一档”，将多方数据映射为同一业务实体。</div>
+            <div class="fw-step-name">数据就绪 AIP 业务模型</div>
+            <div class="fw-step-desc"><b>打通隔阂/统一语义：</b>解决“鸡同鸭讲”，建立地质基础档案，将多方数据映射为同一业务实体。</div>
           </div>
           <div class="fw-arrow">➔</div>
         </div>
@@ -756,7 +832,7 @@
       <!-- 穿透能力说明 -->
       <div class="fw-penetration">
         <div class="fw-p-item"><b>横向破局：</b>打通交投（P2 级）、施工（P1 级）、保险（P0 级）、应急（P3 级）部门冰墙</div>
-        <div class="fw-p-item" style="margin-left:auto;"><b>纵向穿透：</b>省级监管规则秒级直达工地作业面，防瞒报与信息衰减</div>
+        <div class="fw-p-item" style="margin-left:auto;"><b>纵向穿透：</b>省级监管规则秒级直达工地作业面，质监直报防瞒报与信息衰减</div>
       </div>
     </div>
 
@@ -775,7 +851,7 @@
       <div class="burst-card">
         <div class="burst-label">裂变能力</div>
         <div class="burst-title">极高横向复制速度</div>
-        <div class="burst-body">借助<b>数据治理 AIP（智能体业务模型工作平台）</b>，数据底座一次建成，风险模型跨场景直接复用——公路路网的行驶数据与事故记录，是重卡动态车险定价（即将随自动驾驶商业化爆发）的天然原料；向城轨、化工园区延伸时，同样无需重新建设，且零首付模式彻底绕开政府项目预算审批壁垒，万亿级市场依次落地。</div>
+        <div class="burst-body">借助<b>数据就绪 AIP（智能体数据就绪平台）</b>，数据底座一次建成，风险模型跨场景直接复用——公路路网的行驶数据与事故记录，是重卡动态车险定价（即将随自动驾驶商业化爆发）的天然原料；向城轨、化工园区延伸时，同样无需重新建设，且零首付模式彻底绕开政府项目预算审批壁垒，万亿级市场依次落地。</div>
       </div>
     </div>
   </div>
@@ -798,7 +874,7 @@
         <div class="tsm-badge">可服务市场</div>
         <div class="tsm-name">全国公路交通安责险及事故预防服务资金</div>
         <div class="tsm-num">50–80 亿元 / 年</div>
-        <div class="tsm-sub">其中政策硬性要求提取 ≤21% 作为事故预防服务资金（约 10–16 亿元），天然需要数据运营精准投放</div>
+        <div class="tsm-sub">其中政策硬性要求提取 ≤21% 作为事故预防服务资金（约 10–16 亿元），天然需要数据运营精准投放与派单</div>
       </div>
       <div class="tsm-card">
         <div class="tsm-badge">可占有市场</div>
@@ -808,61 +884,169 @@
       </div>
     </div>
 
-    <div class="sec-head"><div class="sec-num">二</div><div class="sec-title">收益测算（对齐四大单位变现路径 · 以湖北省为基准）</div></div>
+    <div class="sec-head"><div class="sec-num">二</div><div class="sec-title">收益测算（对齐四大单位变现路径 · 以湖北省公路大盘为基准）</div></div>
     <div class="rev-section">
       <table class="rev">
         <tr>
-          <th style="width:35%">付费单位对象与资金来源</th>
-          <th style="width:20%">收费模式 / 分润标准</th>
+          <th style="width:32%">付费单位对象与资金来源</th>
+          <th style="width:23%">收费模式与算账逻辑</th>
           <th style="width:22%">湖北单省年收益测算</th>
           <th style="width:23%">全国 10 省推广预期</th>
         </tr>
         <tr>
           <td>
             <div class="td-name">1. 保险与金融精算机构（ToB · P0 资金池）</div>
-            <div class="td-rate">资金来源：保费规模 + ≤21% 事故预防服务费 + 降赔资金池</div>
+            <div class="td-rate">基数：全省公路安责险年保费 1.5–2.0 亿元<br>资金来源：≤21% 事故预防费 + 减损资金池</div>
           </td>
-          <td><b>3%–5%</b> 保费服务费<br>+ <b>20%–30%</b> 降赔抽成</td>
-          <td><b>1,000 万 – 2,500 万</b></td>
-          <td><b>1.0 亿 – 2.5 亿</b></td>
+          <td><b>AIP 派单服务</b>：切取 21% 事故预防费（3,150万池）中的 30%–40% 工单费<br>+ <b>降赔分成</b>：提取理赔节约资金（~1,350万）的 20%–30%</td>
+          <td><b>1,200 万 – 1,600 万</b><br><small style="color:var(--muted); font-weight:normal;">(派单 900-1200万 + 减损 300-400万)</small></td>
+          <td><b>1.2 亿 – 1.6 亿</b></td>
         </tr>
         <tr>
           <td>
             <div class="td-name">2. 建设施工及第三方服务生态（ToB · P1 预算池）</div>
-            <div class="td-rate">资金来源：1.5%–3.0% 安全生产费用（刚性预付）+ 省保费差额</div>
+            <div class="td-rate">基数：全省年建安费 1,000 亿元<br>资金来源：1.5%–3.0% 安全生产费用（开工首月预付 ≥50% 达 7.5 亿元）</div>
           </td>
-          <td><b>安全费</b>据实采购服务<br>+ <b>20%–30%</b> 未来降保费分成</td>
-          <td><b>200 万 – 500 万</b></td>
-          <td><b>2,000 万 – 5,000 万</b></td>
+          <td><b>智能体服务采购</b>：重点标段（50–80个）按 10–30万/标段 据实列支安全费采购<br>+ <b>保费打折分润</b>：协助下浮保费后的分成</td>
+          <td><b>800 万 – 1,500 万</b><br><small style="color:var(--muted); font-weight:normal;">(直接从首月 ≥50% 预付安全费列支)</small></td>
+          <td><b>8,000 万 – 1.5 亿</b></td>
         </tr>
         <tr>
           <td>
             <div class="td-name">3. 路网与基础设施运营单位（ToB · P2 数据源）</div>
             <div class="td-rate">资金来源：交投养护工程专项预算 + 保费下浮让利</div>
           </td>
-          <td><b>AIP 智能体</b>养护升级<br>+ <b>未来保费折扣</b>溢价分成</td>
-          <td><b>含于上述 B 端分成</b></td>
-          <td><b>含于上述 B 端分成</b></td>
+          <td><b>地质基础档案与物联监测</b>：以 AIP 智能体实现资产风控升级，通过保险续保折扣兑现溢价</td>
+          <td><b>含于上述 P0 / P1 体系</b><br><small style="color:var(--muted); font-weight:normal;">(不重复计费，通过降保费分润兑现)</small></td>
+          <td><b>含于上述 P0 / P1 体系</b></td>
         </tr>
         <tr>
           <td>
             <div class="td-name">4. 应急与行业监管部门（ToG · P3 行政杠杆）</div>
-            <div class="td-rate">战略定位：全额免费部署（绕开政府慢预算审批）</div>
+            <div class="td-rate">战略定位：全额免费部署（彻底绕开政府慢预算）</div>
           </td>
-          <td><b>全额免费提供</b><br>（撬动 B 端 100% 接入）</td>
+          <td><b>质监直报服务全额免费</b><br>构建省厅/质监局无感直报监管通道，反向撬动全辖区 B 端 100% 接入</td>
           <td><b>¥ 0 （免费杠杆）</b></td>
           <td><b>¥ 0 （免费杠杆）</b></td>
         </tr>
         <tr>
           <td><b>合计年收益潜在空间</b></td>
-          <td>—</td>
-          <td><b>1,200 万 – 3,000 万</b></td>
-          <td><b>1.2 亿 – 3.0 亿</b></td>
+          <td><b>P0 (事故预防费/降赔) + P1 (首月预付安全费) 双轮驱动</b></td>
+          <td><b>2,000 万 – 3,100 万</b></td>
+          <td><b>2.0 亿 – 3.1 亿</b></td>
         </tr>
       </table>
-      <div class="rev-note">* 说明：由于 ToG 项目立项审批与财政采购周期较长（通常需 1–2 年），短期内难以见效，故通过 ToG 免费部署快速建立合规监管通道，直接从现金流充沛、决策链条短的 B 端（保险与施工企业）实现第一波资金落地与持续收益分润。</div>
+      <div class="rev-note">* 说明：本测算严格依据湖北省公路建安费大盘（~1,000亿）与安责险保费大盘（~1.5-2.0亿）推算，彻底抛弃传统 ToG 慢预算采购模式，所有收入均落脚于开工首月预付 ≥50% 的企业安全生产费用及保司法定 21% 事故预防费。</div>
     </div>
 
+  </div>
+
+  <!-- 附录：全行业场景 P0–P3 落地动作与安培矩阵（默认收起且干练呈现） -->
+  <div class="section" id="appendix-section">
+    <div class="part-head">
+      <div class="part-title">附录 · 全行业场景 P0–P3 落地动作与安培矩阵</div>
+    </div>
+    <div class="arch-note" style="margin-bottom:8px;">
+      以“安培”为核心切入点，系统拆解全行业六大场景下 P0（保险）、P1（企业）、P2（资产）、P3（监管）的落地动作与商业变现链路。
+    </div>
+
+    <!-- 默认收起 -->
+    <details style="background:var(--card-bg); border:1.5px solid var(--blue-primary); border-radius:8px; padding:12px 16px; box-shadow:var(--shadow-sm); cursor:pointer;">
+      <summary style="font-size:15px; font-weight:800; color:var(--blue-primary); outline:none; user-select:none;">
+        📎 点击展开：六大场景 P0–P3 落地动作与“安培”解构矩阵
+      </summary>
+
+      <!-- 链路示意图 -->
+      <div style="background:var(--bg-page); border:1px solid var(--line); border-radius:6px; padding:10px; margin:12px 0 16px; text-align:center; font-size:12.5px; font-weight:700; color:var(--ink-dark);">
+        <span style="color:var(--red-primary);">[P3 监管/执法]</span> (零成本无感看板/一键在线消案) ➔ 
+        <span style="color:var(--blue-primary);">[安培 (智能体)]</span> ◄─ 
+        <span style="color:var(--red-primary);">[P0 保险公司]</span> (保费折扣/21%防灾派单)<br>
+        ▲ 动用安全生产费极速买单 (T+1~T+7) | 沉淀合规风控数据资产 (P2)
+      </div>
+
+      <!-- 场景 1 -->
+      <div class="card" style="margin-bottom:10px; border-left:4px solid var(--red-primary);">
+        <h4 style="color:var(--red-primary);">🥇 1. 化工/危化品园区特殊作业场景（极速高毛利）</h4>
+        <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>园区安全培训中心（应急局指导），将“动火/受限空间作业前 3 分钟动态微课 + 活体考勤”设为开工强制卡口。</div>
+        <ul class="clean-list">
+          <li><b>P1 (执行/企业)：</b>凭智能体生成的《特殊作业安培与预警台账》，据实冲抵 2.0%–4.5% 预提安全费（T+1~T+7 即时划扣）。</li>
+          <li><b>P3 (监管/执法)：</b>向园区应急局免费下发“高危作业实时风险热力图”，实现非现场零感监管与电子整改单下发。</li>
+          <li><b>P0 (保险公司)：</b>打通危化品安责险，隐患闭环率直接联动续保费率（最高下浮 10%–20%），保司将 21% 预防费定向派单。</li>
+          <li><b>P2 (数据/资产)：</b>将园区高危作业合规数据沉淀为“园区安全数据资产”，协助做产权登记与质押融资。</li>
+        </ul>
+      </div>
+
+      <!-- 场景 2 -->
+      <div class="card" style="margin-bottom:10px; border-left:4px solid var(--blue-primary);">
+        <h4 style="color:var(--blue-primary);">🥈 2. 建筑工程与市政房建场景（危大工程/快速变现）</h4>
+        <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>住建局/建筑安全协会指定工具，将“塔吊/深基坑/高支模班前交底与微课”打包进开工必备软件。</div>
+        <ul class="clean-list">
+          <li><b>P1 (执行/企业)：</b>凭借《危大工程全员安培与隐患闭环报告》，从开工首月预付 ≥50% 的安全费（造价 2.5%）专户划拨服务费。</li>
+          <li><b>P3 (监管/执法)：</b>向住建质监站接入“危大工程动态合规看板”，查到隐患在线触发“定向安培整改”，免二次现场复查。</li>
+          <li><b>P0 (保险公司)：</b>对接建筑安责险，输出风控报告，帮施工方争取 5%–15% 保费下浮折扣。</li>
+          <li><b>P2 (数据/资产)：</b>基坑、塔吊及现场安全闭环数据打包为“施工安全数据资产包”，作为企业项目授信依据。</li>
+        </ul>
+      </div>
+
+      <!-- 场景 3 -->
+      <div class="card" style="margin-bottom:10px; border-left:4px solid var(--red-primary);">
+        <h4 style="color:var(--red-primary);">🥉 3. 交通/应急行政执法与违规企业消案场景（极速催化剂）</h4>
+        <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>执法大队《限期整改决定书》二维码，企业扫码直接进入“以培促改”与隐患整改消案专区。</div>
+        <ul class="clean-list">
+          <li><b>P1 (执行/企业)：</b>企业在 24–72 小时限期内动用预提安全费（T+1~T+7 秒级支付），完成定向补课与隐患整改打卡。</li>
+          <li><b>P3 (监管/执法)：</b>执法大队一键接收《执法隐患整改与安培闭环报告》，免现场复查直接在线消案，执法风险归零。</li>
+          <li><b>P0 (保险公司)：</b>数据实时同步保司，企业因完成“执法闭环消案”，保司不冻结续保折扣、不出险不涨费，倒逼极速付款。</li>
+          <li><b>P2 (数据/资产)：</b>沉淀区域“企业合规履约信用分”，接入交通/应急信用评价体系，服务于政府招投标。</li>
+        </ul>
+      </div>
+
+      <!-- 场景 4 -->
+      <div class="card" style="margin-bottom:10px; border-left:4px solid var(--ink-dark);">
+        <h4>🏅 4. 交通基础设施日常养护与检测场景（长线现金流压舱石）</h4>
+        <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>公路局/交投养护大队“班组每日出勤签到 + 占道/高空作业安全防范微课”。</div>
+        <ul class="clean-list">
+          <li><b>P1 (执行/企业)：</b>养护公司凭智能体生成的《财资 136 号文合规台账》，按月从 1.5%–2% 养护包干预算中列支划拨。</li>
+          <li><b>P3 (监管/执法)：</b>向公路局/交投免费提供“养护作业路段安全态势看板”，解决常态化占道巡查人力不足问题。</li>
+          <li><b>P0 (保险公司)：</b>联动雇主责任险与公众责任险，凭高频打卡数据争取保费优惠或冲抵保司防灾预算。</li>
+          <li><b>P2 (数据/资产)：</b>整合养护检测与安全履约数据，形成“公路资产健康与安全运营档案”，服务于 REITs 评价。</li>
+        </ul>
+      </div>
+
+      <!-- 场景 5 -->
+      <div class="card" style="margin-bottom:10px; border-left:4px solid var(--blue-primary);">
+        <h4 style="color:var(--blue-primary);">🎖️ 5. 道路运输与“两客一危一重”场景（高频流速之王）</h4>
+        <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>车载 ADAS/DMS 预警闭环端 + 运管驾驶员每月例行安培小程序。</div>
+        <ul class="clean-list">
+          <li><b>P1 (执行/企业)：</b>客货运公司凭智能体生成的《驾驶员违法以培促改台账》，按单/按月从 1.0%–1.5% 安全费极速划扣。</li>
+          <li><b>P3 (监管/执法)：</b>向运管/交警直报“高风险驾驶员矫正闭环流”，作为恢复安全信用分与解除出车限制的凭证。</li>
+          <li><b>P0 (保险公司)：</b>打通重卡/危运车险，根据消警率与高危行为减少率，给予 10%+ 续保保费直降，强力撬动客户付费。</li>
+          <li><b>P2 (数据/资产)：</b>车队风控与合规数据转化为“运力安全信用资产”，协助获得低息“运费贷”或车辆融资租赁支持。</li>
+        </ul>
+      </div>
+
+      <!-- 场景 6 -->
+      <div class="card" style="margin-bottom:10px; border-left:4px solid var(--line-strong);">
+        <h4>🎗️ 6. 交通基础设施新建与改扩建工程场景（体量与利润天花板）</h4>
+        <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>施工总包部“实名制通道 + 进场安全教育 + 进洞/上桥作业前微课交底”。</div>
+        <ul class="clean-list">
+          <li><b>P1 (执行/企业)：</b>施工总包凭智能体《安全生产费合规列支审计包》，动用首月预付 ≥50% 的专项安全费（造价 1.5%）。</li>
+          <li><b>P3 (监管/执法)：</b>向交质监站免费提供“大工程重大危险源（高墩/隧道爆破/深水）无感监督包”。</li>
+          <li><b>P0 (保险公司)：</b>对接建安险及工程安责险，将 PINN 模型与安培闭环结合，降低出险率并共享保司防灾基金。</li>
+          <li><b>P2 (数据/资产)：</b>结构监测与安培合规数据打包为“基础设施地质与质量基础档案”，为未来资产划转与入表奠基。</li>
+        </ul>
+      </div>
+
+      <!-- 总结面板 -->
+      <div class="callout" style="margin-top:12px; background:var(--blue-light); border-color:var(--blue-border); text-align:left;">
+        <b>💡 总结：用“安培”打通 P0–P3 的商业逻辑</b><br>
+        • <b>安培：</b>最低成本接入现场和作业人员的轻量级工具，用“微课/打卡”撬动场景入口。<br>
+        • <b>P1 (企业)：</b>用“财资 136 号文合规台账”帮企业合法花掉预提安全费，解决付费路径。<br>
+        • <b>P3 (监管)：</b>免费提供无感看板与消案工具，借行政监督倒逼企业刚性买单。<br>
+        • <b>P0 (保险)：</b>用真实闭环数据换取保费折扣与防灾资金派单，为企业提供超额 ROI。<br>
+        • <b>P2 (资产)：</b>将合规与风控数据沉淀为数据资产，实现中长期资产评估与融资赋能。
+      </div>
+
+    </details>
   </div>
 
   <!-- 底部 Banner -->
@@ -872,7 +1056,7 @@
     </div>
     <div class="footer-scenes">从公路安责险出发，向<span class="fs">应急管理</span><span class="fs">轨道交通</span><span class="fs">水利水电</span><span class="fs">港口航运</span><span class="fs">能源基建</span><span class="fs">矿山安全</span><span class="fs">化工园区</span><span class="fs">住建 / 国资</span>延伸</div>
     <div class="footer-line"></div>
-    <div class="footer-sub-text">依托数据治理 AIP，开启安责险持续数据运营新时代</div>
+    <div class="footer-sub-text">依托数据就绪 AIP，开启安全生产责任持续数据运营新时代</div>
   </div>
 
 </div>
