@@ -98,7 +98,7 @@
   }
   .core b{color:var(--red-primary);}
   
-  /* 精修后的列表结构：彻底消除换行错乱 */
+  /* 温和规范的列表结构 */
   .clean-list{list-style:none;padding:0;margin:0;}
   .clean-list li{
     font-size:12px;
@@ -242,7 +242,10 @@
     margin:8px 0 0;background:var(--red-light);border-radius:4px;
     padding:6px 12px;font-size:13px;color:var(--ink-black);font-weight:600;text-align:center;line-height:1.35;border:1px solid var(--red-border);
   }
-  .callout b{color:var(--red-primary);}
+  .callout.gentle{
+    background:var(--blue-light);border-color:var(--blue-border);color:var(--ink-dark);
+  }
+  .callout b{color:var(--blue-primary);}
 
   /* 03 ARCH */
   .arch-note{font-size:12px;color:var(--muted);margin-bottom:6px;}
@@ -353,7 +356,7 @@
   /* CASH FLOW STYLES */
   .cf-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px; margin-bottom: 8px; }
   .cf-card { background: var(--card-bg); border-radius: 6px; padding: 10px 12px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
-  .cf-card.highlight { border: 1.5px solid var(--red-primary); background: var(--red-light); }
+  .cf-card.highlight { border: 1.5px solid var(--blue-primary); background: var(--blue-light); }
   .cf-tag { font-size: 10px; font-weight: 800; padding: 1px 5px; border-radius: 3px; display: inline-block; margin-bottom: 4px; }
   .cf-tag.p1 { color: var(--blue-primary); background: var(--blue-light); }
   .cf-tag.p0 { color: var(--red-primary); background: #FFF; border: 1px solid var(--red-border); }
@@ -367,7 +370,7 @@
     background: var(--blue-light); border: 1px solid var(--blue-border); border-radius: 6px;
     padding: 8px 12px; font-size: 12px; color: var(--ink-dark); line-height: 1.4; margin-top: 6px;
   }
-  .cf-summary-strip b { color: var(--red-primary); }
+  .cf-summary-strip b { color: var(--blue-primary); }
 
   /* 05 MODEL */
   .model-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;}
@@ -383,14 +386,14 @@
   .model-row:last-child{border-bottom:none;}
   .model-row .mk{width:5px;height:5px;border-radius:50%;margin-top:5px;flex:0 0 auto;}
   .old .mk{background:var(--muted);}
-  .new .mk{background:var(--red-primary);}
+  .new .mk{background:var(--blue-primary);}
   .old .model-row .mt{color:var(--ink-main);}
   .new .model-row .mt{color:var(--ink-black);font-weight:600;}
   .model-row .ms{display:block;font-size:11px;margin-top:1px;font-weight:normal;}
   .old .ms{color:var(--muted);}
   .new .ms{color:var(--muted);}
   .vs{
-    width:28px;height:28px;border-radius:50%;background:var(--red-primary);color:#fff;
+    width:28px;height:28px;border-radius:50%;background:var(--blue-primary);color:#fff;
     display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex:0 0 auto;
   }
 
@@ -410,7 +413,7 @@
     position:relative;display:flex;flex-direction:column;justify-content:space-between;
   }
   .fw-step.first-step{border:1.5px solid var(--blue-primary);background:var(--blue-light);}
-  .fw-step-num{font-size:10px;font-weight:800;color:var(--red-primary);letter-spacing:0.5px;margin-bottom:2px;}
+  .fw-step-num{font-size:10px;font-weight:800;color:var(--blue-primary);letter-spacing:0.5px;margin-bottom:2px;}
   .fw-step-name{font-size:13px;font-weight:800;color:var(--ink-black);margin-bottom:4px;line-height:1.25;}
   .fw-step-desc{font-size:11.5px;color:var(--muted);line-height:1.35;}
   .fw-step-desc b{color:var(--ink-black);}
@@ -425,11 +428,11 @@
 
   /* Feedback loop line at the bottom */
   .fw-loop-back{
-    margin-top:8px;background:var(--red-light);border:1px dashed var(--red-border);
+    margin-top:8px;background:var(--blue-light);border:1px dashed var(--blue-border);
     border-radius:6px;padding:6px 12px;display:flex;align-items:center;justify-content:space-between;
-    font-size:12px;font-weight:700;color:var(--red-primary);
+    font-size:12px;font-weight:700;color:var(--blue-primary);
   }
-  .fw-loop-tag{background:var(--red-primary);color:#FFF;padding:1px 6px;border-radius:3px;font-size:10.5px;}
+  .fw-loop-tag{background:var(--blue-primary);color:#FFF;padding:1px 6px;border-radius:3px;font-size:10.5px;}
 
   /* Cross penetration badges */
   .fw-penetration{
@@ -440,7 +443,7 @@
 
   .burst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;}
   .burst-card{background:var(--card-bg);border-radius:6px;padding:10px 12px;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
-  .burst-label{font-size:10.5px;font-weight:800;letter-spacing:1px;color:var(--red-primary);margin-bottom:2px;}
+  .burst-label{font-size:10.5px;font-weight:800;letter-spacing:1px;color:var(--blue-primary);margin-bottom:2px;}
   .burst-title{font-size:13.5px;font-weight:700;color:var(--ink-black);margin-bottom:4px;line-height:1.25;}
   .burst-body{font-size:12px;color:var(--muted);line-height:1.35;}
   .burst-body b{color:var(--blue-primary);}
@@ -448,7 +451,7 @@
   /* 06 MARKET */
   .tsm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px;}
   .tsm-card{border-radius:6px;padding:10px 12px;background:var(--card-bg);border:1px solid var(--line);box-shadow:var(--shadow-sm);}
-  .tsm-badge{font-size:10.5px;font-weight:700;letter-spacing:1px;color:var(--red-primary);margin-bottom:2px;}
+  .tsm-badge{font-size:10.5px;font-weight:700;letter-spacing:1px;color:var(--blue-primary);margin-bottom:2px;}
   .tsm-name{font-size:12.5px;font-weight:700;color:var(--ink-black);margin-bottom:4px;}
   .tsm-num{font-size:17px;font-weight:800;color:var(--blue-primary);line-height:1.1;margin-bottom:2px;}
   .tsm-sub{font-size:11px;color:var(--muted);line-height:1.3;}
@@ -459,7 +462,7 @@
   table.rev th:not(:first-child){text-align:center;}
   table.rev td{padding:6px 10px;border-bottom:1px solid var(--line);color:var(--ink-main);vertical-align:top;}
   table.rev td:not(:first-child){text-align:center;}
-  table.rev tr:last-child td{border-bottom:none;background:var(--red-light);font-weight:700;color:var(--red-primary);}
+  table.rev tr:last-child td{border-bottom:none;background:var(--blue-light);font-weight:700;color:var(--blue-primary);}
   .td-name{font-weight:700;color:var(--ink-black);margin-bottom:1px;font-size:12.5px;}
   .td-rate{font-size:11px;color:var(--muted);}
   .rev-note{font-size:11px;color:var(--muted);margin-top:4px;}
@@ -474,7 +477,7 @@
   .footer-core-motto{
     font-size:15.5px;font-weight:800;color:var(--blue-primary);margin-bottom:6px;letter-spacing:0.3px;
   }
-  .footer-core-motto span{color:var(--red-primary);}
+  .footer-core-motto span{color:var(--blue-primary);}
   .footer-scenes{font-size:12px;font-weight:400;color:var(--muted);margin-bottom:6px;line-height:1.4;}
   .footer-scenes .fs{
     display:inline-block;margin:0 2px;padding:1px 6px;
@@ -482,7 +485,7 @@
     font-size:11px;font-weight:600;color:var(--ink-black);
     background: var(--bg-page);
   }
-  .footer-line{width:28px;height:2px;background:var(--red-primary);margin:0 auto 6px;}
+  .footer-line{width:28px;height:2px;background:var(--blue-primary);margin:0 auto 6px;}
   .footer-sub-text{font-size:13.5px;color:var(--ink-dark);font-weight:700;}
 </style>
 </head>
@@ -517,12 +520,12 @@
       <div class="stat-cell">
         <div class="num">5<small>%</small></div>
         <div class="label">渠道中介佣金上限</div>
-        <div class="caption">斩断回扣红线 (≤5%)</div>
+        <div class="caption">合规服务红线 (≤5%)</div>
       </div>
       <div class="stat-cell">
         <div class="num">50<small>%</small></div>
         <div class="label">开工首月预付安全费</div>
-        <div class="caption">136号文刚性预付 (≥50%)</div>
+        <div class="caption">136号文规范预付 (≥50%)</div>
       </div>
     </div>
     <div class="stat-source">* 数据来源：应急管理部等七部门《安责险实施办法》（应急〔2025〕27 号）与财政部《企业安全费办法》（财资〔2022〕136 号）</div>
@@ -534,26 +537,26 @@
       <div class="part-title">第一章 政策驱动演进与关键联动机制</div>
     </div>
     
-    <!-- 关键数字爆破 Banner -->
-    <div class="callout" style="margin-top:4px; margin-bottom:8px; background:var(--red-light); border-color:var(--red-border); text-align:left;">
-      <span style="font-size:15px; font-weight:800; color:var(--red-primary);">💥 核心政策爆发点：最低死亡伤残保障额度从 30万元 ➔ 40万元（↑ +33% 刚性升级）</span><br>
-      <span style="font-size:12px; color:var(--ink-main);">政策硬性压实企业主体责任，大幅提高事故出险成本，倒逼企业与保司从“事后被动赔付”全面转向“事前持续数据风控”。</span>
+    <!-- 关键数字 Banner (温和中性表述) -->
+    <div class="callout gentle" style="margin-top:4px; margin-bottom:8px; text-align:left;">
+      <span style="font-size:14.5px; font-weight:800; color:var(--blue-primary);">📋 核心政策提质要求：最低死亡伤残保障额度从 30万元 提升至 40万元（↑ +33%）</span><br>
+      <span style="font-size:12px; color:var(--ink-main);">政策进一步压实企业主体责任，引导企业与保险机构由传统的“事后赔付”向“事前风险预防与持续数据化治理”转型。</span>
     </div>
 
-    <div class="sec-head"><div class="sec-num">一</div><div class="sec-title">政策演进与新旧对比<span class="sub">从“被动合规”向“持续数据运营”的重大升级</span></div></div>
+    <div class="sec-head"><div class="sec-num">一</div><div class="sec-title">政策演进与新旧对比<span class="sub">从“合规报备”向“持续数据化运营”的深度升级</span></div></div>
     <div class="policy-grid">
       <!-- 27号文新旧对比 -->
       <div class="card">
         <div>
           <h4>《安全生产责任保险实施办法》（应急〔2025〕27 号）新旧对比</h4>
-          <div class="core">核心变革：从 <b>事后赔付/形式合规</b> → <b>事前预防、全域管控、持续数据运营</b></div>
+          <div class="core">核心变革：由 <b>事后管理/常规风控</b> 向 <b>事前预防、全域覆盖、持续数据运营</b> 升级</div>
         </div>
         <table class="policy-compare">
           <tr><th>核心指标</th><th>旧版要求（传统模式）</th><th>新规要求（2025新政）</th></tr>
-          <tr><td><b>最低保障额度</b></td><td>30 万元</td><td><b style="color:var(--red-primary);">40 万元 (↑ +33%)</b></td></tr>
+          <tr><td><b>最低保障额度</b></td><td>30 万元</td><td><b style="color:var(--blue-primary);">40 万元 (↑ +33%)</b></td></tr>
           <tr><td><b>保障覆盖范围</b></td><td>存在地区与工种差异</td><td><b>全体从业人员 100% 覆盖</b></td></tr>
-          <tr><td><b>事故预防服务</b></td><td>地方差异大、易流于形式</td><td><b>保费 ≤21% 专款专用</b></td></tr>
-          <tr><td><b>渠道中介佣金</b></td><td>市场混乱、高额回扣</td><td><b style="color:var(--red-primary);">硬性封顶 ≤5%</b></td></tr>
+          <tr><td><b>事故预防服务</b></td><td>地方执行存在差异</td><td><b>保费 ≤21% 专款专用</b></td></tr>
+          <tr><td><b>渠道中介佣金</b></td><td>市场标准不一</td><td><b style="color:var(--blue-primary);">规范封顶 ≤5%</b></td></tr>
         </table>
       </div>
 
@@ -561,20 +564,20 @@
       <div class="card">
         <div>
           <h4>《企业安全生产费用提取和使用管理办法》（财资〔2022〕136 号）资金用途演进</h4>
-          <div class="core">核心变革：安全投入由 <b>"一次性硬件成本"</b> 转为 <b>"持续数字化风控资产投资"</b></div>
+          <div class="core">核心变革：安全投入由 <b>"一次性设备投入"</b> 拓展为 <b>"持续性数字化风控服务投资"</b></div>
         </div>
         <ul class="clean-list" style="margin-top:4px;">
           <li>
-            <span class="item-title">过去（硬件时代）：</span>
-            <span class="item-content">主要用于设备一次性采购与偏工程建设支出（投入大、维护差、形成数据孤岛、资产迅速贬值）。</span>
+            <span class="item-title">传统设备导向：</span>
+            <span class="item-content">过去主要用于硬件设备单次采购与工程建设支出（维护成本高、易形成数据孤岛）。</span>
           </li>
           <li>
-            <span class="item-title">现在（数据运营时代）：</span>
-            <span class="item-content">明确可用于<b>安责险保费合规列支、数字化风控系统建设、质监直报服务与持续风险治理</b>。</span>
+            <span class="item-title">数字化风控导向：</span>
+            <span class="item-content">现已明确支持<b>安责险保费合规列支、数字化风控系统建设、质监直报服务与持续风险治理</b>。</span>
           </li>
           <li>
-            <span class="item-title">刚性预付机制：</span>
-            <span class="item-content">项目开工 1 个月内预付 <b>≥ 50% 安全生产费用</b>（造价 1.5%–3.0%），据实完投使用，提供极速现金流。</span>
+            <span class="item-title">资金预付保障：</span>
+            <span class="item-content">项目开工 1 个月内预付 <b>≥ 50% 安全生产费用</b>（按造价 1.5%–3.0% 提取），保障风控服务顺畅落地。</span>
           </li>
         </ul>
       </div>
@@ -587,7 +590,7 @@
         <div class="tl-node">
           <div class="tl-year">2017 年</div>
           <div class="tl-title">制度建立</div>
-          <div class="tl-desc">安责险强制推行<br>确立高危行业底线</div>
+          <div class="tl-desc">安责险全面推行<br>确立高危行业底线</div>
         </div>
         <div class="tl-arrow">➔</div>
         <div class="tl-node">
@@ -603,7 +606,7 @@
         </div>
       </div>
       <div style="margin-top:8px; text-align:center; font-size:11.5px; color:var(--blue-primary); font-weight:700; background:var(--blue-light); padding:5px; border-radius:4px;">
-        💡 政策终局：数据治理 AIP (AI-Ready Platform) ➔ 智能体数据运营主体（自动化派单） ➔ RaaS 结果交付（卖降赔/降保费硬指标）
+        💡 政策终局：数据治理 AIP (AI-Ready Platform) ➔ 智能体数据运营主体（自动化派单） ➔ RaaS 结果交付（输出降赔/降保费硬指标）
       </div>
     </div>
 
@@ -654,7 +657,7 @@
         <p>保险核保精算缺乏实时风险数据支撑，赔付率居高不下；监管部门面对庞大辖区只能被动抽查。<b>政企场景脱节导致风控无法变现，数据运营效果闭环断裂。</b></p>
       </div>
     </div>
-    <div class="callout">行业核心死穴：<b>P1 风控无分润</b> + <b>P2 数据无溢价</b> + <b>P0 精算无输入</b>——安责险必须通过<b>合作智能体打通数据运营与后端保费增量分润</b></div>
+    <div class="callout gentle">核心业务关键：<b>P1 风控缺少联动</b> + <b>P2 数据缺乏溢价</b> + <b>P0 精算缺乏输入</b>——安责险需通过<b>合作智能体打通数据运营与后端保费优化分润</b></div>
   </div>
 
   <!-- 第三章 -->
@@ -668,7 +671,7 @@
       <!-- 第一层：应用层 -->
       <div class="arch-tier tier-app">
         <div class="tier-tag">第一层 · 应用层</div>
-        <div class="tier-desc">场景服务矩阵——优先聚焦资金充沛的商业与施工实体（ToB），以 ToG 行政杠杆撬动全域覆盖，向四大业务主体输出服务，由智能体作为数据运营主体承接自动化运营。</div>
+        <div class="tier-desc">场景服务矩阵——优先聚焦资金充沛的商业与施工实体（ToB），以 ToG 行政服务推动全域覆盖，向四大业务主体输出服务，由智能体作为数据运营主体承接自动化运营。</div>
         
         <div class="app-grid">
           <div class="app-col tob">
@@ -689,7 +692,7 @@
             </div>
           </div>
           <div class="app-col tog">
-            <div class="app-col-title"><span>ToG 行政杠杆（全额免费）</span></div>
+            <div class="app-col-title"><span>ToG 行政杠杆（公共公益服务）</span></div>
             <div class="app-box">
               应急与行业监管部门
               <small>应急管理厅/局、交通运输厅/局/质监站</small>
@@ -728,8 +731,8 @@
           </div>
           <!-- 4. 行政监管业务 -->
           <div class="agent-domain">
-            <div class="ad-head"><span class="ad-name">🏛️ 行政监管业务【FREE】</span><span class="ad-tag-p3">P3 行政杠杆</span></div>
-            <div class="ad-list"><b>全域无感监管与质监直报：</b>免费下发质监直报包，以零财政预算换取独家监督与消案入口，强制辖区保司与企业 100% 接入。</div>
+            <div class="ad-head"><span class="ad-name">🏛️ 行政监管业务【FREE】</span><span class="ad-tag-p3">P3 行政服务</span></div>
+            <div class="ad-list"><b>全域无感监管与质监直报：</b>向监管部门提供免费质监直报包，以高效无感监管建立信任通道，引导辖区保司与企业全员接入。</div>
           </div>
         </div>
       </div>
@@ -768,7 +771,7 @@
     <div class="part-head">
       <div class="part-title">第四章 价值落地与商业变现路径</div>
     </div>
-    <div class="callout" style="margin-bottom:8px;">明确各方资金池来源与收费动作——以商业变现为核心，彻底打通<b>“谁出钱、从哪出钱、按什么模式收钱”</b>的商业闭环</div>
+    <div class="callout gentle" style="margin-bottom:8px;">明确各方资金池来源与服务模式——以可持续运营为核心，打通<b>“服务对象、预算来源与合作模式”</b>的商业闭环</div>
     
     <div class="eco-revenue-grid">
       <!-- 1. 保险机构 -->
@@ -777,15 +780,15 @@
           <div class="erc-head">
             <span class="erc-tag">P0 最高优先级</span>
             <div class="erc-title">保险与金融机构</div>
-            <div class="erc-pool">资金来源：≤21% 事故预防服务费划拨派单 + 理赔降赔对赌资金池</div>
+            <div class="erc-pool">资金来源：≤21% 事故预防服务费划拨派单 + 理赔降赔优化资金池</div>
           </div>
           <div class="erc-body">
-            <b>收款动作：</b>平台向财险共管体提供 AIP 风控智能体派单与减损结算服务，严格遵守中介佣金上限≤5% 红线。
+            <b>服务合作：</b>平台向财险共管体提供 AIP 风控智能体派单与减损结算服务，严格遵守中介佣金上限≤5% 红线。
             <br>• <b>派单结算：</b>从 21% 事故预防服务费中按预防工单与隐患排查服务据实结算。
             <br>• <b>减损分润：</b>基于 AIP 智能体下压的动态赔付率，按照赔付节约资金的 <b>20%–30%</b> 进行理赔超额降赔分成。
           </div>
         </div>
-        <div class="erc-mode">收钱模式：事故预防费按工单结算 + 20%-30% 理赔降赔分成</div>
+        <div class="erc-mode">合作模式：事故预防费按工单结算 + 20%-30% 理赔降赔分成</div>
       </div>
 
       <!-- 2. 施工及第三方安服 -->
@@ -797,12 +800,12 @@
             <div class="erc-pool">资金来源：建安费 1.5%–3.0% 安全生产费用（开工首月预付 ≥50%）</div>
           </div>
           <div class="erc-body">
-            <b>收款动作：</b>打通“财资136号文”安全费刚性预付资金（开工首月预付≥50%）。
-            <br>• <b>智能体采购（直接变现）：</b>施工/安服企业动用<b>安全生产费</b>采购危大工程/特种作业风控智能体与质监直报服务，合规列支安全费。
-            <br>• <b>保费下浮凭证（增益）：</b>通过智能体风控凭证帮企业下浮保费，将省下保费的 20%–30% 返还分润给 P1 合作生态。
+            <b>服务合作：</b>打通“财资136号文”安全费预付资金（开工首月预付≥50%）。
+            <br>• <b>智能体采购：</b>施工/安服企业动用<b>安全生产费</b>采购危大工程/特种作业风控智能体与质监直报服务，合规列支安全费。
+            <br>• <b>保费下浮凭证：</b>通过智能体风控凭证帮企业优化保费支出，将节省保费的 20%–30% 返还分润给 P1 合作生态。
           </div>
         </div>
-        <div class="erc-mode">收钱模式：首月 50% 安全费列支采购 + 安责险打折凭证</div>
+        <div class="erc-mode">合作模式：首月 50% 安全费列支采购 + 安责险优化凭证</div>
       </div>
 
       <!-- 3. 路网运营单位 -->
@@ -814,10 +817,10 @@
             <div class="erc-pool">资金来源：交投养护工程预算 + 资产保费打折收益</div>
           </div>
           <div class="erc-body">
-            <b>收款动作：</b>继承数据治理 AIP 32个智能体底座，为交投/路桥国企提供地质基础档案托管与基础设施监测。凭物联风险画像向保险公司换取<b>续保折扣与资产溢价分润</b>（打破过去有数据无溢价痛点）。
+            <b>服务合作：</b>继承数据治理 AIP 32个智能体底座，为交投/路桥国企提供地质基础档案托管与基础设施监测。凭物联风险画像向保险公司争取<b>续保折扣与资产溢价分润</b>（打破过去有数据无溢价痛点）。
           </div>
         </div>
-        <div class="erc-mode">收钱模式：养护风控升级 + 保费让利溢价分成</div>
+        <div class="erc-mode">合作模式：养护风控升级 + 保费让利溢价分成</div>
       </div>
 
       <!-- 4. 应急管理部门 -->
@@ -826,14 +829,14 @@
           <div class="erc-head">
             <span class="erc-tag">P3 行政杠杆</span>
             <div class="erc-title">应急与行业监管部门</div>
-            <div class="erc-pool">资金策略：全额免费部署（绕开政府慢预算）</div>
+            <div class="erc-pool">资金策略：全额免费部署（公共公益服务模式）</div>
           </div>
           <div class="erc-body">
-            <b>变现策略说明：</b>传统的 ToG 软件采购涉及财政预算编制与招投标，<b>周期长（1–2年），短期内无法实现财务回款</b>。
-            <br>本方案<b>战略性放弃向政府收钱</b>，全额免费“赠予”政府。绕开长周期审批，换取全域监管背书与质监直报通道，<b>反向强制逼迫辖区内的 P0 与 P1 全员接入并向 B 端快速变现。</b>
+            <b>服务合作说明：</b>鉴于政企合作的公共服务属性，平台将监管端工具<b>全额免费“提供”给监管部门</b>。
+            <br>绕开长周期审批，换取监管背书与质监直报通道，<b>以无感监管服务引导辖区内的 P0 与 P1 全员接入，向 B 端提供专业服务。</b>
           </div>
         </div>
-        <div class="erc-mode">战略定位：ToG 全额免费，快速撬动 ToB 闭环变现</div>
+        <div class="erc-mode">战略定位：ToG 公益免费，顺畅带动 ToB 服务闭环</div>
       </div>
     </div>
   </div>
@@ -845,7 +848,7 @@
     </div>
     
     <div class="arch-note" style="margin-bottom:8px;">
-      以<b>“刚性预付 + 流水分成”</b>彻底斩断传统 ToG/ToB IT 企业的垫资坏账死穴，实现极佳的现金流自造血。
+      以<b>“预付机制 + 运营分成”</b>建立良好的财务流转结构，打通现金流自造血能力。
     </div>
 
     <div class="cf-grid">
@@ -853,9 +856,9 @@
       <div class="cf-card highlight">
         <span class="cf-tag p1">P1 刚性预付（首要现金流）</span>
         <div class="cf-title">施工企业·安全费用列支</div>
-        <div class="cf-days" style="color:var(--red-primary);">15 – 30 天 <span>(极速现金流)</span></div>
+        <div class="cf-days" style="color:var(--blue-primary);">15 – 30 天 <span>(高效现金流)</span></div>
         <div class="cf-body">
-          <b>回款逻辑：</b>依据财资 136 号文，开工首月建设单位必须预付 <b>≥50% 安全生产费</b>。施工方直接动用刚性预付资金采购智能体，<b>开工 30 天内实现 100% 现金到账</b>。
+          <b>回款逻辑：</b>依据财资 136 号文，开工首月建设单位预付 <b>≥50% 安全生产费</b>。施工方直接动用预付资金采购智能体，<b>开工 30 天内实现服务结算</b>。
         </div>
       </div>
 
@@ -865,7 +868,7 @@
         <div class="cf-title">保险公司·预防费与降赔</div>
         <div class="cf-days">30 – 60 天 <span>(按月/按季结算)</span></div>
         <div class="cf-body">
-          <b>回款逻辑：</b>3%–5% 技术服务费随保费收取按季划拨（来自 21% 事故预防费）；赔付率降低分润（20%–30%）按半年度/年度理赔对赌池直接扣划。
+          <b>回款逻辑：</b>技术服务费随保费收取按季划拨（来自 21% 事故预防费）；赔付率降低分润（20%–30%）按半年度/年度理赔对赌池直接扣划。
         </div>
       </div>
 
@@ -883,15 +886,15 @@
       <div class="cf-card">
         <span class="cf-tag p3">P3 免费杠杆</span>
         <div class="cf-title">应急/交通监管端</div>
-        <div class="cf-days" style="color:var(--muted);">0 天 <span>(零应收/零坏账)</span></div>
+        <div class="cf-days" style="color:var(--muted);">0 天 <span>(零账期风险)</span></div>
         <div class="cf-body">
-          <b>回款逻辑：</b>全额免费部署，<b>彻底放弃向政府要钱</b>。绕开 1–3 年的 ToG 慢财政审批与坏账隐患，以零账期风险换取全域独家行政入口。
+          <b>回款逻辑：</b>全额公益免费部署，<b>不增加政府财政负担</b>。绕开 ToG 预算审批与坏账隐患，以零账期风险换取全域规范服务入口。
         </div>
       </div>
     </div>
 
     <div class="cf-summary-strip">
-      <b>💡 现金流对冲结论：</b> 传统 ToG 软件公司账期长达 12–36 个月且面临极高坏账率；本方案利用 <b>P1 施工开工首月 ≥50% 刚性预付安全费</b>，在项目启动前 30 天内即锁定现金流，用 B 端的预付费和流水抽成实现<b>“T+30 自造血”</b>，彻底打消了垫资与账期拖垮公司的后顾之忧！
+      <b>💡 财务健康度结论：</b> 区别于传统 ToG 软件项目长周期的回款逻辑；本方案利用 <b>P1 施工开工首月 ≥50% 预付安全费</b>，在项目启动初期即锁定服务现金流，用 B 端的预付费和流水分成实现<b>“T+30 自造血”</b>，确保商业运营的稳健与可持续！
     </div>
   </div>
 
@@ -916,8 +919,8 @@
         <h4>数据运营 —— 行动系统 (响应型系统)</h4>
         <div class="model-row"><div class="mk"></div><div class="mt">数据治理 AIP：内核是统一语义的业务模型<span class="ms">打通概念壁垒，“地图不会开车——智能体才是数据运营主体”，目标导向自动感知与决策</span></div></div>
         <div class="model-row"><div class="mk"></div><div class="mt">秒级自闭环，决策摩擦趋近于 0<span class="ms">智能体纵向穿透层级、横向跨局协同，分钟级响应，全天候自动抓隐患与核保</span></div></div>
-        <div class="model-row"><div class="mk"></div><div class="mt">智能体正向飞轮：AIP 智能体运营分成<span class="ms"><b>隐患闭环 → 动态降保费 → 资金反哺系统与数据接入</b>，资产越积越厚，甩掉慢预算</span></div></div>
-        <div class="model-row"><div class="mk"></div><div class="mt">卖硬指标结果分润，客户自持数据主权<span class="ms">直接兑现降赔与降保费硬指标；地质基础档案变核心资产，深度挂钩金融与保费溢价</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">智能体正向飞轮：AIP 智能体运营分成<span class="ms"><b>隐患闭环 → 动态降保费 → 资金反哺系统与数据接入</b>，资产越积越厚，摆脱慢预算</span></div></div>
+        <div class="model-row"><div class="mk"></div><div class="mt">输出结果价值，客户自持数据主权<span class="ms">直接兑现降赔与降保费指标；地质基础档案变核心资产，深度挂钩金融与保费溢价</span></div></div>
       </div>
     </div>
 
@@ -934,7 +937,7 @@
           <div>
             <div class="fw-step-num">第一步 · 第一级枢纽 (绝对前提)</div>
             <div class="fw-step-name">数据治理 AIP 业务模型</div>
-            <div class="fw-step-desc"><b>打通隔阂/统一语义：</b>解决“鸡同鸭讲”，建立地质基础档案，将多方数据映射为同一业务实体。</div>
+            <div class="fw-step-desc"><b>打通隔阂/统一语义：</b>解决“语义不通”，建立地质基础档案，将多方数据映射为同一业务实体。</div>
           </div>
           <div class="fw-arrow">➔</div>
         </div>
@@ -944,7 +947,7 @@
           <div>
             <div class="fw-step-num">第二步 · 行动系统闭环</div>
             <div class="fw-step-name">智能体（数据运营主体）自主执行</div>
-            <div class="fw-step-desc"><b>决策摩擦趋近于 0：</b>全天候抓隐患、自动化精算核保、秒级推派工单，“地图不会开车，智能体是数据运营主体”。</div>
+            <div class="fw-step-desc"><b>决策摩擦趋近于 0：</b>全天候抓隐患、自动化精算核保、秒级推派工单，“地图不会开车，智能体才是数据运营主体”。</div>
           </div>
           <div class="fw-arrow">➔</div>
         </div>
@@ -953,8 +956,8 @@
         <div class="fw-step">
           <div>
             <div class="fw-step-num">第三步 · 商业结果兑现</div>
-            <div class="fw-step-name">赔付率下降 · 省出保费资金</div>
-            <div class="fw-step-desc"><b>真金白银落地：</b>帮保险公司降赔付、帮施工企业省保费，兑现可量化的风险控制硬指标。</div>
+            <div class="fw-step-name">赔付率下降 · 节省保费支出</div>
+            <div class="fw-step-desc"><b>真实价值落地：</b>协助保险公司降赔付、协助施工企业优化保费，兑现可量化的风险控制指标。</div>
           </div>
           <div class="fw-arrow">➔</div>
         </div>
@@ -964,21 +967,21 @@
           <div>
             <div class="fw-step-num">第四步 · 飞轮加速与裂变</div>
             <div class="fw-step-name">资金反哺与数据接入</div>
-            <div class="fw-step-desc"><b>资产越用越值钱：</b>省下的钱反哺加装物联传感器，覆盖扩大 → 智能体更聪明 → 边际成本趋零。</div>
+            <div class="fw-step-desc"><b>资产越用越有价值：</b>收益反哺加装物联传感器，覆盖扩大 → 智能体更精准 → 边际成本递减。</div>
           </div>
         </div>
       </div>
 
       <!-- 反哺增强线 -->
       <div class="fw-loop-back">
-        <div><span class="fw-loop-tag">正反馈增强闭环</span> 资金与效果反哺：让数据从“报表原料”变成“金融资产”，摆脱传统采购对财政慢预算的依赖！</div>
+        <div><span class="fw-loop-tag">正反馈增强闭环</span> 资金与效果反哺：让数据从“静态报表”变成“动态资产”，实现可持续的健康自造血！</div>
         <div>↺ 飞轮加速运转中</div>
       </div>
 
       <!-- 穿透能力说明 -->
       <div class="fw-penetration">
-        <div class="fw-p-item"><b>横向破局：</b>打通交投（P2 级）、施工（P1 级）、保险（P0 级）、应急（P3 级）部门冰墙</div>
-        <div class="fw-p-item" style="margin-left:auto;"><b>纵向穿透：</b>省级监管规则秒级直达工地作业面，质监直报防瞒报与信息衰减</div>
+        <div class="fw-p-item"><b>横向协同：</b>打通交投（P2 级）、施工（P1 级）、保险（P0 级）、应急（P3 级）部门壁垒</div>
+        <div class="fw-p-item" style="margin-left:auto;"><b>纵向穿透：</b>省级监管规则秒级直达工地作业面，质监直报提升信息透明度</div>
       </div>
     </div>
 
@@ -986,18 +989,18 @@
     <div class="burst-grid">
       <div class="burst-card">
         <div class="burst-label">穿透力</div>
-        <div class="burst-title">破局高天花板、低渗透率</div>
-        <div class="burst-body">政府及企业客户因预算审批周期长、决策链条复杂，市场渗透率长期不足 10%。零首付将客户决策风险降为零，绕开预算审批壁垒，区域安责险覆盖率可迅速拉至 <b>100%</b>，瞬间吃满区域市场容量。</div>
+        <div class="burst-title">提升市场渗透率</div>
+        <div class="burst-body">针对政府及企业客户预算周期长、决策链条复杂的痛点，零首付合作模式降低了客户尝试门槛，有助于快速提升区域安责险覆盖率，高效释放区域市场容量。</div>
       </div>
       <div class="burst-card">
         <div class="burst-label">溢价空间</div>
         <div class="burst-title">杠杆放大效应</div>
-        <div class="burst-body">平台不卖"死软件"，而是卖<b>可量化的硬结果</b>：理赔周期 7天→24小时内、单桥核保边际成本降低 95%、帮企业直接省下百万级保费。客户极其愿意将省出的真金白银按比例分润，收益上限与数据运营金融杠杆深度挂钩。</div>
+        <div class="burst-body">平台不提供"静态软件"，而是输出<b>可量化的运营效果</b>：理赔周期 7天→24小时内、单桥核保效率显著提升、帮企业直接优化保费。客户基于效果付费分润，收益上限与数据运营价值深度挂钩。</div>
       </div>
       <div class="burst-card">
-        <div class="burst-label">裂变能力</div>
-        <div class="burst-title">极高横向复制速度</div>
-        <div class="burst-body">借助<b>数据治理 AIP（AI-Ready Platform）</b>，数据底座一次建成，风险模型跨场景直接复用——公路路网的行驶数据与事故记录，是重卡动态车险定价（即将随自动驾驶商业化爆发）的天然原料；向城轨、化工园区延伸时，同样无需重新建设，且零首付模式彻底绕开政府项目预算审批壁垒，万亿级市场依次落地。</div>
+        <div class="burst-label">复制能力</div>
+        <div class="burst-title">横向扩展复制速度</div>
+        <div class="burst-body">借助<b>数据治理 AIP (AI-Ready Platform)</b>，底层数据资产一次建成，风险模型跨场景直接复用——公路路网行驶与事故数据，可直接服务重卡车险定价；向城轨、化工园区延伸时同样无需重复建设，横向扩展空间巨大。</div>
       </div>
     </div>
   </div>
@@ -1069,11 +1072,11 @@
         <tr>
           <td>
             <div class="td-name">4. 应急与行业监管部门（ToG · P3 行政杠杆）</div>
-            <div class="td-rate">战略定位：全额免费部署（彻底绕开政府慢预算）</div>
+            <div class="td-rate">战略定位：全额免费部署（公共公益服务模式）</div>
           </td>
-          <td><b>质监直报服务全额免费</b><br>构建省厅/质监局无感直报监管通道，反向撬动全辖区 B 端 100% 接入</td>
-          <td><b>¥ 0 （免费杠杆）</b></td>
-          <td><b>¥ 0 （免费杠杆）</b></td>
+          <td><b>质监直报服务全额免费</b><br>构建省厅/质监局无感直报监管通道，顺畅引导全辖区 B 端 100% 接入</td>
+          <td><b>¥ 0 （公益杠杆）</b></td>
+          <td><b>¥ 0 （公益杠杆）</b></td>
         </tr>
         <tr>
           <td><b>合计年收益潜在空间</b></td>
@@ -1082,7 +1085,7 @@
           <td><b>2.0 亿 – 3.1 亿</b></td>
         </tr>
       </table>
-      <div class="rev-note">* 说明：本测算严格依据湖北省公路建安费大盘（~1,000亿）与安责险保费大盘（~1.5-2.0亿）推算，彻底抛弃传统 ToG 慢预算采购模式，所有收入均落脚于开工首月预付 ≥50% 的企业安全生产费用及保司法定 21% 事故预防费。</div>
+      <div class="rev-note">* 说明：本测算严格依据湖北省公路建安费大盘（~1,000亿）与安责险保费大盘（~1.5-2.0亿）推算，所有收入均落脚于开工首月预付 ≥50% 的企业安全生产费用及保司法定 21% 事故预防费。</div>
     </div>
 
   </div>
@@ -1107,17 +1110,17 @@
         <span style="color:var(--red-primary);">[P3 监管/执法]</span> (零成本无感看板/一键在线消案) ➔ 
         <span style="color:var(--blue-primary);">[安培 (智能体)]</span> ◄─ 
         <span style="color:var(--red-primary);">[P0 保险公司]</span> (保费折扣/21%防灾派单)<br>
-        ▲ 动用安全生产费极速买单 (T+1~T+7) | 沉淀合规风控数据资产 (P2)
+        ▲ 动用安全生产费合规结算 (T+1~T+7) | 沉淀合规风控数据资产 (P2)
       </div>
 
       <!-- 场景 1 -->
       <div class="card" style="margin-bottom:10px; border-left:4px solid var(--red-primary);">
-        <h4 style="color:var(--red-primary);">🥇 1. 化工/危化品园区特殊作业场景（极速高毛利）</h4>
-        <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>园区安全培训中心（应急局指导），将“动火/受限空间作业前 3 分钟动态微课 + 活体考勤”设为开工强制卡口。</div>
+        <h4 style="color:var(--red-primary);">🥇 1. 化工/危化品园区特殊作业场景（高效高毛利）</h4>
+        <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>园区安全培训中心（应急局指导），将“动火/受限空间作业前 3 分钟动态微课 + 活体考勤”设为开工必要卡口。</div>
         <ul class="clean-list">
-          <li><span class="item-title">P1 (执行/企业)：</span><span class="item-content">凭智能体生成的《特殊作业安培与预警台账》，据实冲抵 2.0%–4.5% 预提安全费（T+1~T+7 即时划扣）。</span></li>
-          <li><span class="item-title">P3 (监管/执法)：</span><span class="item-content">向园区应急局免费下发“高危作业实时风险热力图”，实现非现场零感监管与电子整改单下发。</span></li>
-          <li><span class="item-title">P0 (保险公司)：</span><span class="item-content">打通危化品安责险，隐患闭环率直接联动续保费率（最高下浮 10%–20%），保司将 21% 预防费定向派单。</span></li>
+          <li><span class="item-title">P1 (执行/企业)：</span><span class="item-content">凭智能体生成的《特殊作业安培与预警台账》，据实冲抵 2.0%–4.5% 预提安全费（T+1~T+7 结算）。</span></li>
+          <li><span class="item-title">P3 (监管/执法)：</span><span class="item-content">向园区应急局提供“高危作业实时风险热力图”，实现非现场高效监管与电子整改单下发。</span></li>
+          <li><span class="item-title">P0 (保险公司)：</span><span class="item-content">打通危化品安责险，隐患闭环率直接联动续保费率（下浮 10%–20%），保司将 21% 预防费定向派单。</span></li>
           <li><span class="item-title">P2 (数据/资产)：</span><span class="item-content">将园区高危作业合规数据沉淀为“园区安全数据资产”，协助做产权登记与质押融资。</span></li>
         </ul>
       </div>
@@ -1125,7 +1128,7 @@
       <!-- 场景 2 -->
       <div class="card" style="margin-bottom:10px; border-left:4px solid var(--blue-primary);">
         <h4 style="color:var(--blue-primary);">🥈 2. 建筑工程与市政房建场景（危大工程/快速变现）</h4>
-        <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>住建局/建筑安全协会指定工具，将“塔吊/深基坑/高支模班前交底与微课”打包进开工必备软件。</div>
+        <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>住建局/建筑安全协会指导工具，将“塔吊/深基坑/高支模班前交底与微课”打包进开工必备软件。</div>
         <ul class="clean-list">
           <li><span class="item-title">P1 (执行/企业)：</span><span class="item-content">凭借《危大工程全员安培与隐患闭环报告》，从开工首月预付 ≥50% 的安全费（造价 2.5%）专户划拨服务费。</span></li>
           <li><span class="item-title">P3 (监管/执法)：</span><span class="item-content">向住建质监站接入“危大工程动态合规看板”，查到隐患在线触发“定向安培整改”，免二次现场复查。</span></li>
@@ -1136,12 +1139,12 @@
 
       <!-- 场景 3 -->
       <div class="card" style="margin-bottom:10px; border-left:4px solid var(--red-primary);">
-        <h4 style="color:var(--red-primary);">🥉 3. 交通/应急行政执法与违规企业消案场景（极速催化剂）</h4>
+        <h4 style="color:var(--red-primary);">🥉 3. 交通/应急行政执法与违规企业消案场景（合规催化剂）</h4>
         <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>执法大队《限期整改决定书》二维码，企业扫码直接进入“以培促改”与隐患整改消案专区。</div>
         <ul class="clean-list">
-          <li><span class="item-title">P1 (执行/企业)：</span><span class="item-content">企业在 24–72 小时限期内动用预提安全费（T+1~T+7 秒级支付），完成定向补课与隐患整改打卡。</span></li>
-          <li><span class="item-title">P3 (监管/执法)：</span><span class="item-content">执法大队一键接收《执法隐患整改与安培闭环报告》，免现场复查直接在线消案，执法风险归零。</span></li>
-          <li><span class="item-title">P0 (保险公司)：</span><span class="item-content">数据实时同步保司，企业因完成“执法闭环消案”，保司不冻结续保折扣、不出险不涨费，倒逼极速付款。</span></li>
+          <li><span class="item-title">P1 (执行/企业)：</span><span class="item-content">企业在 24–72 小时限期内动用预提安全费（T+1~T+7 支付），完成定向补课与隐患整改打卡。</span></li>
+          <li><span class="item-title">P3 (监管/执法)：</span><span class="item-content">执法大队一键接收《执法隐患整改与安培闭环报告》，免现场复查直接在线消案，提升执法效率。</span></li>
+          <li><span class="item-title">P0 (保险公司)：</span><span class="item-content">数据实时同步保司，企业因完成“执法闭环消案”，保司不冻结续保折扣、不出险不涨费，保障资金顺畅划扣。</span></li>
           <li><span class="item-title">P2 (数据/资产)：</span><span class="item-content">沉淀区域“企业合规履约信用分”，接入交通/应急信用评价体系，服务于政府招投标。</span></li>
         </ul>
       </div>
@@ -1163,9 +1166,9 @@
         <h4 style="color:var(--blue-primary);">🎖️ 5. 道路运输与“两客一危一重”场景（高频流速之王）</h4>
         <div class="mech" style="margin-bottom:6px;"><b>📍 安培植入点：</b>车载 ADAS/DMS 预警闭环端 + 运管驾驶员每月例行安培小程序。</div>
         <ul class="clean-list">
-          <li><span class="item-title">P1 (执行/企业)：</span><span class="item-content">客货运公司凭智能体生成的《驾驶员违法以培促改台账》，按单/按月从 1.0%–1.5% 安全费极速划扣。</span></li>
+          <li><span class="item-title">P1 (执行/企业)：</span><span class="item-content">客货运公司凭智能体生成的《驾驶员违法以培促改台账》，按单/按月从 1.0%–1.5% 安全费划扣。</span></li>
           <li><span class="item-title">P3 (监管/执法)：</span><span class="item-content">向运管/交警直报“高风险驾驶员矫正闭环流”，作为恢复安全信用分与解除出车限制的凭证。</span></li>
-          <li><span class="item-title">P0 (保险公司)：</span><span class="item-content">打通重卡/危运车险，根据消警率与高危行为减少率，给予 10%+ 续保保费直降，强力撬动客户付费。</span></li>
+          <li><span class="item-title">P0 (保险公司)：</span><span class="item-content">打通重卡/危运车险，根据消警率与高危行为减少率，给予 10%+ 续保保费直降，引导客户积极参与。</span></li>
           <li><span class="item-title">P2 (数据/资产)：</span><span class="item-content">车队风控与合规数据转化为“运力安全信用资产”，协助获得低息“运费贷”或车辆融资租赁支持。</span></li>
         </ul>
       </div>
@@ -1183,11 +1186,11 @@
       </div>
 
       <!-- 总结面板 -->
-      <div class="callout" style="margin-top:12px; background:var(--blue-light); border-color:var(--blue-border); text-align:left;">
+      <div class="callout gentle" style="margin-top:12px; text-align:left;">
         <b>💡 总结：用“安培”打通 P0–P3 的商业逻辑</b><br>
         • <b>安培：</b>最低成本接入现场和作业人员的轻量级工具，用“微课/打卡”撬动场景入口。<br>
         • <b>P1 (企业)：</b>用“财资 136 号文合规台账”帮企业合法花掉预提安全费，解决付费路径。<br>
-        • <b>P3 (监管)：</b>免费提供无感看板与消案工具，借行政监督倒逼企业刚性买单。<br>
+        • <b>P3 (监管)：</b>免费提供无感看板与消案工具，借行政服务引导企业刚性买单。<br>
         • <b>P0 (保险)：</b>用真实闭环数据换取保费折扣与防灾资金派单，为企业提供超额 ROI。<br>
         • <b>P2 (资产)：</b>将合规与风控数据沉淀为数据资产，实现中长期资产评估与融资赋能。
       </div>
@@ -1198,7 +1201,7 @@
   <!-- 底部 Banner -->
   <div class="footer-band">
     <div class="footer-core-motto">
-      让保险公司降赔付、施工企业拿安全费省保费、路网国企把数据变资产、监管部门零成本抓安全
+      协助保险公司降低赔付、协助施工企业优化保费、助力路网国企盘活数据资产、助力监管部门提质增效
     </div>
     <div class="footer-scenes">从公路安责险出发，向<span class="fs">应急管理</span><span class="fs">轨道交通</span><span class="fs">水利水电</span><span class="fs">港口航运</span><span class="fs">能源基建</span><span class="fs">矿山安全</span><span class="fs">化工园区</span><span class="fs">住建 / 国资</span>延伸</div>
     <div class="footer-line"></div>
