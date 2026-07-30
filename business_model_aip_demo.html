@@ -425,8 +425,8 @@
                             <div class="col-span-5 flex flex-col gap-1">
 
 <div class="mt-1 mb-1 border-b-2 border-solid border-slate-300 pb-1 flex items-center justify-between">
-    <span class="font-bold text-[14px] text-slate-800 flex items-center gap-1">
-        <span>1. 物理源表与底座（ODS层）</span>
+    <span class="font-extrabold text-[12px] text-slate-800 flex items-center gap-1">
+        <span>🧱 板块一：静态基线数据 (Static Data)</span>
     </span>
     <span class="text-[8px] bg-slate-100 text-slate-500 px-1 rounded">交通部第三版规范</span>
 </div>
@@ -3206,10 +3206,8 @@ if (scen.exts && scen.exts.length > 0) {
                     const colorClasses = isXlsx ? 
                         'bg-indigo-50 border-indigo-300 hover:border-indigo-500 text-indigo-900' : 
                         'bg-amber-50 border-amber-300 hover:border-amber-500 text-amber-900';
-const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                     const pillHtml = `<div id="${ext.id}" onclick="handleLeftElementClick('${ext.ontKey || scenData.defaultOnt}')" onmouseenter="highlightLineage('${ext.ontKey || scenData.defaultOnt}')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border cursor-pointer hover:shadow-xs transition-all ${colorClasses}">
                         <span class="font-bold truncate leading-none">${ext.name.replace(/\.[a-z]+$/, '')}</span>
-                        <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5 border border-blue-100"><span>🔗</span><span>${ontTag}</span></span>
                     </div>`;
                     
                     if (isXlsx) bizHtml += pillHtml;
@@ -3553,7 +3551,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 ['src-excel-26', 'ont-l30b', '#2563eb', 'l30b', ''],
                 ['src-excel-27', 'ont-l30b', '#2563eb', 'l30b', ''],
                 ['src-excel-28', 'ont-l30b', '#2563eb', 'l30b', ''],
-                ['src-excel-29', 'ont-l30c', '#2563eb', 'l30c', ''],
+                ['src-excel-29', 'ont-l30b', '#2563eb', 'l30b', ''],
                 ['src-excel-30', 'ont-l30c', '#2563eb', 'l30c', ''],
                 ['src-excel-31', 'ont-l30c', '#2563eb', 'l30c', ''],
                 ['src-excel-32', 'ont-l30c', '#2563eb', 'l30c', ''],
@@ -3561,60 +3559,114 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 ['src-excel-34', 'ont-l31b', '#2563eb', 'l31b', ''],
                 ['src-excel-35', 'ont-l31b', '#2563eb', 'l31b', ''],
                 ['src-excel-36', 'ont-l31b', '#2563eb', 'l31b', ''],
-                ['src-excel-37', 'ont-l31c', '#2563eb', 'l31c', ''],
+                ['src-excel-37', 'ont-l31b', '#2563eb', 'l31b', ''],
                 ['src-excel-38', 'ont-l31c', '#2563eb', 'l31c', ''],
                 ['src-excel-39', 'ont-l31c', '#2563eb', 'l31c', ''],
                 ['src-excel-40', 'ont-l31c', '#2563eb', 'l31c', ''],
                 ['src-excel-41', 'ont-l32', '#2563eb', 'l32', ''],
                 ['src-excel-42', 'ont-l32', '#2563eb', 'l32', ''],
-                
-                // Column 2 (L码套表) -> Column 3 (组织架构)
-                ['ont-l21', 'role-00', '#2563eb', 'l21', '00'],
-                ['ont-l22', 'role-08', '#2563eb', 'l22', '08'],
-                ['ont-l23', 'role-01', '#2563eb', 'l23', '01'],
-                ['ont-l24a', 'role-03', '#2563eb', 'l24a', '03'],
-                ['ont-l24b', 'role-03', '#2563eb', 'l24b', '03'],
-                ['ont-l25', 'role-03', '#2563eb', 'l25', '03'],
-                ['ont-l26', 'role-06', '#2563eb', 'l26', '06'],
-                ['ont-l27', 'role-17', '#2563eb', 'l27', '17'],
-                ['ont-l28', 'role-20', '#2563eb', 'l28', '20'],
-                ['ont-l29a', 'role-10', '#2563eb', 'l29a', '10'],
-                ['ont-l30a', 'role-04', '#2563eb', 'l30a', '04'],
-                ['ont-l30b', 'role-03', '#2563eb', 'l30b', '03'],
-                ['ont-l30c', 'role-07', '#2563eb', 'l30c', '07'],
-                ['ont-l31a', 'role-11', '#2563eb', 'l31a', '11'],
-                ['ont-l31b', 'role-02', '#2563eb', 'l31b', '02'],
-                ['ont-l31c', 'role-08', '#2563eb', 'l31c', '08'],
-                ['ont-l32', 'role-16', '#2563eb', 'l32', '16'],
-                ['ont-l32', 'role-12', '#2563eb', 'l32', '12']
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
+                ['ont-l21', 'role-1', '#ef4444', 'l21', 'role-1'], // 主导
+                ['ont-l21', 'role-8', '#2563eb', 'l21', 'role-8'], // 支持
+                ['ont-l21', 'role-9', '#2563eb', 'l21', 'role-9'], // 支持
+                ['ont-l22', 'role-8', '#ef4444', 'l22', 'role-8'], // 主导
+                ['ont-l23', 'role-1', '#ef4444', 'l23', 'role-1'], // 主导
+                ['ont-l24a', 'role-3', '#ef4444', 'l24a', 'role-3'], // 主导
+                ['ont-l24a', 'role-8', '#2563eb', 'l24a', 'role-8'], // 支持
+                ['ont-l24a', 'role-2', '#2563eb', 'l24a', 'role-2'], // 支持
+                ['ont-l24b', 'role-3', '#ef4444', 'l24b', 'role-3'], // 主导
+                ['ont-l25', 'role-3', '#ef4444', 'l25', 'role-3'], // 主导
+                ['ont-l26', 'role-5', '#ef4444', 'l26', 'role-5'], // 主导
+                ['ont-l27', 'role-3', '#ef4444', 'l27', 'role-3'], // 主导
+                ['ont-l28', 'role-4', '#ef4444', 'l28', 'role-4'], // 主导
+                ['ont-l29a', 'role-4', '#ef4444', 'l29a', 'role-4'], // 主导
+                ['ont-l30a', 'role-4', '#ef4444', 'l30a', 'role-4'], // 主导
+                ['ont-l30b', 'role-3', '#ef4444', 'l30b', 'role-3'], // 主导
+                ['ont-l30b', 'role-2', '#2563eb', 'l30b', 'role-2'], // 支持
+                ['ont-l30c', 'role-7', '#ef4444', 'l30c', 'role-7'], // 主导
+                ['ont-l31a', 'role-0', '#ef4444', 'l31a', 'role-0'], // 主导
+                ['ont-l31b', 'role-0', '#ef4444', 'l31b', 'role-0'], // 主导
+                ['ont-l31b', 'role-9', '#2563eb', 'l31b', 'role-9'], // 支持
+                ['ont-l31c', 'role-8', '#ef4444', 'l31c', 'role-8'], // 主导
+                ['ont-l32', 'role-0', '#ef4444', 'l32', 'role-0'], // 主导
+                ['ont-l32', 'role-13', '#2563eb', 'l32', 'role-13'], // 支持
+
+                // 挂载子节点的 SVG 拓扑分支线 (Sub-Node SVG Branches)
+                ['src-excel-43', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
+                ['src-excel-44', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
+                ['src-excel-45', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
+                ['ont-l24a', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
+
+                ['src-excel-46', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
+                ['ont-l30b', 'ont-l30b-sub', '#0284c7', 'l30b', 'role-3'],
+                ['ont-l30b', 'ont-l24a-delta', '#10b981', 'l30b', 'role-3'],
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
+                ['role-16', 'role-10', '#10b981', 'scen', 'role-10', 'high'] /* 16 气象局 -> 10 执法监督处: 气象灾害预警/恶劣天气监测推流 */,
+                ['role-10', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 10 执法监督处 -> 00 数据统筹部门: 空间锚点确权与管辖匹配 */,
+                ['role-0', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 00 数据统筹部门 -> 04 养护管理处: 灾前风险点位巡查指令 */,
+                ['role-0', 'role-3', '#10b981', 'scen', 'role-3', 'high'] /* 00 数据统筹部门 -> 03 工程技术处: 高位桥隧边坡专项防范 */,
+                ['role-0', 'role-8', '#10b981', 'scen', 'role-8', 'high'] /* 00 数据统筹部门 -> 08 农村公路处: 沿河临崖村道封路避险 */,
+                ['role-10', 'role-19', '#10b981', 'scen', 'role-19', 'high'] /* 10 执法监督处 -> 18 公安交管局: 警路企气会商与交通分流管控 */,
+                ['role-10', 'role-13', '#10b981', 'scen', 'role-13', 'high'] /* 10 执法监督处 -> 12 应急处置中心: 应急资源调度与跨省/区保障 */,
+                ['role-13', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 12 应急处置中心 -> 15 养护施工企业: 多方联动公路抢通与装备前置 */,
+                ['role-10', 'role-2', '#10b981', 'scen', 'role-2', 'high'] /* 10 执法监督处 -> 02 建设市场处: 在建工程应急避险 */,
+                ['role-10', 'role-17', '#10b981', 'scen', 'role-17', 'high'] /* 10 执法监督处 -> 16 应急管理厅: 政警路企联合指挥与协同处置 */,
+                ['role-10', 'role-7', '#10b981', 'scen', 'role-7', 'medium'] /* 10 执法监督处 -> 07 财务资产处: 抢险资金核算清算 */,
+                ['role-0', 'role-1', '#10b981', 'scen', 'role-1', 'medium'] /* 00 数据统筹部门 -> 01 规划计划处: 全年路网受损影响评估 */,
+                ['role-21', 'role-3', '#10b981', 'scen', 'role-3', 'high'] /* 21 监测设备厂商/产权单位 -> 03 工程技术处: 数据上传质量自动化考核采集 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 03 工程技术处 -> 00 数据统筹部门: 空间锚定与底账核实 */,
+                ['role-3', 'role-13', '#10b981', 'scen', 'role-13', 'high'] /* 03 工程技术处 -> 12 应急处置中心: 分级预警处置闭环协查 */,
+                ['role-3', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 03 工程技术处 -> 04 养护管理处: 日常运维防伪与现场协查 */,
+                ['role-3', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 03 工程技术处 -> 15 养护施工企业: 下发异常工况超时督办 */,
+                ['role-3', 'role-6', '#10b981', 'scen', 'role-6', 'medium'] /* 03 工程技术处 -> 06 运营管理处: 不可抗力断电免责查证 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'medium'] /* 03 工程技术处 -> 00 数据统筹部门: 封闭施工免责扩展核查 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 03 工程技术处 -> 交通运输部(外部): 省级日常监测质量考核报告推送 */,
+                ['role-22', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 22 各地市州交通局 -> 00 数据统筹部门: 年报底表数据逐级汇聚上报 */,
+                ['role-4', 'role-7', '#10b981', 'scen', 'role-7', 'high'] /* 04 养护管理处 -> 07 财务资产处: 提供养护工程与资金核销业务依据 */,
+                ['role-1', 'role-18', '#10b981', 'scen', 'role-18', 'medium'] /* 01 规划计划处 -> 17 自然资源厅: 路线变更与国土空间规划数据对齐 */,
+                ['role-0', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 00 数据统筹部门 -> 交通运输部(外部): 省级路网年报脱敏直报 */,
+                ['role-4', 'role-11', '#10b981', 'scen', 'role-11', 'high'] /* 04 养护管理处 -> 23 交投集团: 发送越界警告与打回指令 */,
+                ['role-11', 'role-20', '#10b981', 'scen', 'role-20', 'medium'] /* 23 交投集团 -> 24 交规院: 分发映射重定向规则 */,
+                ['role-20', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 24 交规院 -> 25 路桥公司: 下发数据重构指令 */,
+                ['role-15', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 25 路桥公司 -> 00 数据统筹部门: 数据重构与二次上传 */,
+                ['role-4', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 04 养护管理处 -> 00 数据统筹部门: 人工授权审批落库 */,
+                ['role-10', 'ont-l27', '#10b981', 'scen', 'l27', 'high'] /* 10 执法监督处 -> L27 (场景1联动) */,
+                ['role-10', 'ont-l29a', '#10b981', 'scen', 'l29a', 'high'] /* 10 执法监督处 -> L29a (场景1联动) */,
+                ['role-10', 'ont-l32', '#10b981', 'scen', 'l32', 'high'] /* 10 执法监督处 -> L32 (场景1联动) */,
+                ['role-12', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 12 农路管养企业 -> 04 养护管理处 */,
+                ['role-12', 'role-8', '#10b981', 'scen', 'role-8', 'normal'] /* 12 农路管养企业 -> 08 农村公路处 */,
+                ['role-14', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 14 专检机构 -> 04 养护管理处 */,
+                ['role-21', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 21 监测设备厂商 -> 04 养护管理处 */,
+                ['role-22', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 22 各地市州交通局 -> 04 养护管理处 */,
+                ['role-19', 'role-1', '#10b981', 'scen', 'role-1', 'normal'] /* 19 公安交管局 -> 01 规划计划处 */,
+                ['role-19', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 19 公安交管局 -> 04 养护管理处 */
             ];
-            
-            // Dynamically add lines for the active ODS dynamic pills
-            const dynamicContainers = [document.getElementById('ods-iot-container'), document.getElementById('ods-biz-container')];
-            dynamicContainers.forEach(container => {
-                if (container) {
-                    Array.from(container.children).forEach(child => {
-                        const onclickStr = child.getAttribute('onclick') || '';
-                        const match = onclickStr.match(/handleLeftElementClick\('([^']+)'\)/);
-                        if (match && match[1]) {
-                            const ontKey = match[1];
-                            const isBiz = container.id === 'ods-biz-container';
-                            connections.push([child.id, 'ont-' + ontKey, isBiz ? '#6366f1' : '#d97706', ontKey, '']);
-                        }
-                    });
-                }
-            });
 
-            let pathsHTML = '';
-            const isHovering = activeHighlightCode && activeHighlightCode.length > 0;
+            let pathsHTML = `
+                <defs>
+                    <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb" />
+                    </marker>
+                    <marker id="arrowhead-active" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#0284c7" />
+                    </marker>
+                    <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="2" result="blur" />
+                        <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
+            `;
 
-            connections.forEach(conn => {
-                const [fromId, toId, baseColor, code, roleId] = conn;
+            connections.forEach(([fromId, toId, defaultColor, code, roleId, priority]) => {
                 const elFrom = document.getElementById(fromId);
                 const elTo = document.getElementById(toId);
 
-                // Check offsetWidth to safely skip hidden elements (display: none)
-                if (elFrom && elTo && elFrom.offsetWidth > 0 && elTo.offsetWidth > 0) {
+                if (elFrom && elTo) {
                     const r1 = elFrom.getBoundingClientRect();
                     const r2 = elTo.getBoundingClientRect();
 
