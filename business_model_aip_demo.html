@@ -155,7 +155,7 @@
                         <div class="font-bold text-[10px] text-slate-900 border-b border-slate-200 pb-0.5">1. 业务应用场景</div>
                         <div id="studioScenarioList" class="space-y-0.5 text-[9.5px]">
                             <div class="flex flex-col gap-1 p-1.5 rounded transition-all border border-slate-700 bg-slate-100 font-bold">
-                                <span class="text-[10px] text-slate-900">🚨 安全生产责任数据运营业务</span>
+                                <span class="text-[10px] text-slate-900"> 安全生产责任数据运营业务</span>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
                                         <input type="radio" name="studioScenRadio" value="scen-1" checked onclick="event.stopPropagation(); handleLeftElementClick('l27');">
@@ -197,7 +197,7 @@
                                 <div class="flex items-center gap-1.5">
                                     <input type="radio" name="studioScenRadio" value="scen-4" onclick="event.stopPropagation()">
                                     <div class="flex flex-col gap-0.5">
-                                        <span class="text-[10px] text-slate-900">📍 公路资产数据运营业务</span>
+                                        <span class="text-[10px] text-slate-900"> 公路资产数据运营业务</span>
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"日常巡检桩号与年报标准桩号存在误差，请生成空间校正清单。"</span>
                                     </div>
                                 </div>
@@ -207,14 +207,14 @@
                                 <div class="flex items-center gap-1.5">
                                     <input type="radio" name="studioScenRadio" value="scen-2" onclick="event.stopPropagation()">
                                     <div class="flex flex-col gap-0.5">
-                                        <span class="text-[10px] text-slate-900">🛠️ 结构安全数据运营业务</span>
+                                        <span class="text-[10px] text-slate-900"> 结构安全数据运营业务</span>
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"梳理武汉 G107 沿线长大桥梁，生成本季度结构监测考核总单。"</span>
                                     </div>
                                 </div>
                                 <span class="text-[8.5px] text-slate-600 font-mono">可选</span>
                             </div>
                             <div class="flex flex-col gap-1 p-1.5 rounded transition-all border border-slate-200 bg-white hover:bg-slate-50">
-                                <span class="text-[10px] text-slate-900 font-bold">🔍 行政监管数据运营场景</span>
+                                <span class="text-[10px] text-slate-900 font-bold"> 行政监管数据运营场景</span>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-100">
                                     <div class="flex items-center gap-1.5">
                                         <input type="radio" name="studioScenRadio" value="scen-3" onclick="event.stopPropagation(); handleLeftElementClick('l21');">
@@ -342,7 +342,7 @@
                     <div class="bg-white border border-slate-300 rounded p-1.5 space-y-1 shadow-2xs">
                         <div class="flex items-center justify-between border-b border-slate-200 pb-0.5">
                             <span class="font-bold text-[10px] text-slate-900">5. 物理文件数据核查网格 (AI 智能核查诊断)</span>
-                            <button onclick="runAllAICheck()" class="text-[8.5px] bg-sky-600 hover:bg-sky-700 text-white font-bold px-1.5 py-0.2 rounded shadow-2xs transition-all">🤖 AI 一键全量核查</button>
+                            <button onclick="runAllAICheck()" class="text-[8.5px] bg-sky-600 hover:bg-sky-700 text-white font-bold px-1.5 py-0.2 rounded shadow-2xs transition-all"> AI 一键全量核查</button>
                         </div>
                         <div class="border border-slate-300 rounded overflow-hidden">
                             <table class="w-full text-left text-[9px] font-sans border-collapse">
@@ -391,7 +391,7 @@
                         <!-- Legend Content -->
                         <div id="legendContent" class="hidden bg-white/95 backdrop-blur-md border border-slate-200 rounded shadow-lg p-2.5 text-[10px] text-slate-700 pointer-events-auto flex flex-col gap-1.5 min-w-[180px] transition-all">
                             <div class="font-bold border-b border-slate-200 pb-1 mb-0.5 text-slate-800 flex justify-between items-center">
-                                <span>📌 流线溯源图例</span>
+                                <span>流线溯源图例</span>
                                 <button onclick="document.getElementById('legendContent').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 cursor-pointer text-xs" title="收起">✕</button>
                             </div>
                             <div class="flex items-center gap-2">
@@ -413,7 +413,7 @@
                         </div>
                         <!-- Toggle Button -->
                         <button onclick="document.getElementById('legendContent').classList.toggle('hidden')" class="bg-white border border-slate-200 rounded shadow-md px-3 py-1.5 text-[10px] font-bold text-slate-700 hover:bg-slate-50 transition-colors pointer-events-auto cursor-pointer flex items-center gap-1" title="展开/收起图例">
-                            <span>📌 图例</span>
+                            <span>图例</span>
                         </button>
                     </div>
 
@@ -429,48 +429,50 @@
                                         <span>1. 原始数据层</span>
                                     </span>
                                 </div>
-<div class="font-bold text-[12px] text-slate-800 mb-1 mt-2 flex items-center">
-    <span>静态数据</span>
+<div class="mt-4 mb-2 border-b-2 border-solid border-slate-300 pb-1 flex items-center justify-between">
+    <span class="font-bold text-[12px] text-slate-800">
+        静态数据
+    </span>
 </div>
 <div class="flex flex-col gap-1.5">
 
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        📂 A1.路线
+        A1.路线
     </div>
     <div class="flex flex-wrap gap-1 flex-1 content-start items-start">
         <div class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border border-indigo-200 bg-indigo-50/50 cursor-pointer hover:shadow-xs">
-    <span class="font-bold text-indigo-900 truncate leading-none">🟢 [GIS] 路线全要素映射表</span>
+    <span class="font-bold text-indigo-900 truncate leading-none">[GIS] 路线全要素映射表</span>
     
 </div>
 <div class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border border-indigo-200 bg-indigo-50/50 cursor-pointer hover:shadow-xs">
-    <span class="font-bold text-indigo-900 truncate leading-none">🟢 [DB] 路网拓扑基准表</span>
+    <span class="font-bold text-indigo-900 truncate leading-none">[DB] 路网拓扑基准表</span>
     
 </div>
 <div id="src-excel-1" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">路段</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L21</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L21</span></span>
 </div>
 <div id="src-excel-5" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">国道路线数据变更</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L21</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L21</span></span>
 </div>
 <div id="src-excel-6" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">乡镇通达表</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L22</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L22</span></span>
 </div>
 <div id="src-excel-7" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">建制村通达表</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L22</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L22</span></span>
 </div>
 <div id="src-excel-8" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">自然村通达表</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L22</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L22</span></span>
 </div>
 <div id="src-excel-9" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l23')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">亚洲公路网路线明细</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L23</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L23</span></span>
 </div>
     </div>
 </div>
@@ -478,12 +480,12 @@
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        📂 A2.路基
+        A2.路基
     </div>
     <div class="flex flex-wrap gap-1 flex-1 content-start items-start">
         <div id="src-excel-2" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">公路排桩</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L21</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L21</span></span>
 </div>
     </div>
 </div>
@@ -491,16 +493,16 @@
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        📂 A3.路面
+        A3.路面
     </div>
     <div class="flex flex-wrap gap-1 flex-1 content-start items-start">
         <div id="src-excel-23" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l29a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">路况明细-国省道</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L29A</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L29A</span></span>
 </div>
 <div id="src-excel-24" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l29a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">技术状况-农路</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L29A</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L29A</span></span>
 </div>
     </div>
 </div>
@@ -508,32 +510,32 @@
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        📂 A4.构筑物
+        A4.构筑物
     </div>
     <div class="flex flex-wrap gap-1 flex-1 content-start items-start">
         <div class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border border-indigo-200 bg-indigo-50/50 cursor-pointer hover:shadow-xs">
-    <span class="font-bold text-indigo-900 truncate leading-none">🟢 [DB] 桥隧生命周期台账</span>
-    <span class="text-[7px] text-indigo-600 bg-white px-1 py-[1px] rounded leading-none flex items-center">🔗CBMS</span>
+    <span class="font-bold text-indigo-900 truncate leading-none">[DB] 桥隧生命周期台账</span>
+    <span class="text-[7px] text-indigo-600 bg-white px-1 py-[1px] rounded leading-none flex items-center">CBMS</span>
 </div>
 <div class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border border-indigo-200 bg-indigo-50/50 cursor-pointer hover:shadow-xs">
-    <span class="font-bold text-indigo-900 truncate leading-none">🟢 [DB] 桥梁部件级清单库</span>
-    <span class="text-[7px] text-indigo-600 bg-white px-1 py-[1px] rounded leading-none flex items-center">🔗CBMS</span>
+    <span class="font-bold text-indigo-900 truncate leading-none">[DB] 桥梁部件级清单库</span>
+    <span class="text-[7px] text-indigo-600 bg-white px-1 py-[1px] rounded leading-none flex items-center">CBMS</span>
 </div>
 <div id="src-excel-10" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">桥梁</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L24A</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L24A</span></span>
 </div>
 <div id="src-excel-11" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">农村桥梁</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L24A</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L24A</span></span>
 </div>
 <div id="src-excel-12" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l24b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">公路涵洞</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L24B</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L24B</span></span>
 </div>
 <div id="src-excel-13" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l25')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">隧道</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L25</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L25</span></span>
 </div>
     </div>
 </div>
@@ -541,44 +543,44 @@
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        📂 A5.设施
+        A5.设施
     </div>
     <div class="flex flex-wrap gap-1 flex-1 content-start items-start">
         <div class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border border-indigo-200 bg-indigo-50/50 cursor-pointer hover:shadow-xs">
-    <span class="font-bold text-indigo-900 truncate leading-none">🟢 [DB] 交调站网设备元数据表</span>
-    <span class="text-[7px] text-indigo-600 bg-white px-1 py-[1px] rounded leading-none flex items-center">🔗交调</span>
+    <span class="font-bold text-indigo-900 truncate leading-none">[DB] 交调站网设备元数据表</span>
+    <span class="text-[7px] text-indigo-600 bg-white px-1 py-[1px] rounded leading-none flex items-center">交调</span>
 </div>
 <div class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border border-indigo-200 bg-indigo-50/50 cursor-pointer hover:shadow-xs">
-    <span class="font-bold text-indigo-900 truncate leading-none">🟢 [DB] 标准车当量系数</span>
-    <span class="text-[7px] text-indigo-600 bg-white px-1 py-[1px] rounded leading-none flex items-center">🔗交调</span>
+    <span class="font-bold text-indigo-900 truncate leading-none">[DB] 标准车当量系数</span>
+    <span class="text-[7px] text-indigo-600 bg-white px-1 py-[1px] rounded leading-none flex items-center">交调</span>
 </div>
 <div id="src-excel-3" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">交通量观测站点</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L21</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L21</span></span>
 </div>
 <div id="src-excel-4" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">农村公路安防设施</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L21</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L21</span></span>
 </div>
 <div id="src-excel-14" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l26')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">沿线服务设施</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L26</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L26</span></span>
 </div>
 <div id="src-excel-15" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l26')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">收费站</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L26</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L26</span></span>
 </div>
 <div id="src-excel-16" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l26')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">服务区</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L26</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L26</span></span>
 </div>
 <div id="src-excel-17" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l26')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">高速公路出入口</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L26</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L26</span></span>
 </div>
 <div id="src-excel-22" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l28')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">06 交通工程沿线设施</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L28</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L28</span></span>
 </div>
     </div>
 </div>
@@ -586,12 +588,12 @@
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        📂 A6.环境
+        A6.环境
     </div>
     <div class="flex flex-wrap gap-1 flex-1 content-start items-start">
         <div id="src-excel-18" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l27')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">易发地质灾害点</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L27</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L27</span></span>
 </div>
     </div>
 </div>
@@ -599,28 +601,28 @@
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        📂 A7.综合
+        A7.综合
     </div>
     <div class="flex flex-wrap gap-1 flex-1 content-start items-start">
         <div id="src-excel-19" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l27')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">灾毁统计-高速</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L27</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L27</span></span>
 </div>
 <div id="src-excel-20" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l27')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">灾毁统计-国省道</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L27</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L27</span></span>
 </div>
 <div id="src-excel-21" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l27')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">灾毁统计-农路</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L27</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L27</span></span>
 </div>
 <div id="src-excel-41" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l32')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">高速应急物资</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L32</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L32</span></span>
 </div>
 <div id="src-excel-42" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l32')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">普通公路应急</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L32</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L32</span></span>
 </div>
     </div>
 </div>
@@ -628,40 +630,40 @@
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        📂 A8.养护
+        A8.养护
     </div>
     <div class="flex flex-wrap gap-1 flex-1 content-start items-start">
         <div id="src-excel-25" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">日常养护作业</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L30A</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L30A</span></span>
 </div>
 <div id="src-excel-26" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">养护工程(季报)</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L30B</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L30B</span></span>
 </div>
 <div id="src-excel-27" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">养护工程-高速</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L30B</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L30B</span></span>
 </div>
 <div id="src-excel-28" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">养护工程-国省道</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L30B</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L30B</span></span>
 </div>
 <div id="src-excel-29" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">养护工程-农路</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L30B</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L30B</span></span>
 </div>
 <div id="src-excel-30" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">养护资金投入</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L30C</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L30C</span></span>
 </div>
 <div id="src-excel-31" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">资金投入-国省道</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L30C</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L30C</span></span>
 </div>
 <div id="src-excel-32" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l30c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">资金投入-农路</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L30C</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L30C</span></span>
 </div>
     </div>
 </div>
@@ -669,28 +671,28 @@
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        🏢 C.机构人员
+         C.机构人员
     </div>
     <div class="flex flex-wrap gap-1 flex-1 content-start items-start">
         <div id="src-excel-33" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">高速管养单位</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L31A</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L31A</span></span>
 </div>
 <div id="src-excel-34" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">国省干线管养</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L31B</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L31B</span></span>
 </div>
 <div id="src-excel-35" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">机构职工表</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L31B</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L31B</span></span>
 </div>
 <div id="src-excel-36" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">农路岗位表</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L31B</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L31B</span></span>
 </div>
 <div id="src-excel-38" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">路长制执行表</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L31C</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L31C</span></span>
 </div>
     </div>
 </div>
@@ -698,51 +700,51 @@
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        🗺️ D.行政区划
+         D.行政区划
     </div>
     <div class="flex flex-wrap gap-1 flex-1 content-start items-start">
         <div id="src-excel-37" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">乡镇属性表</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L31B</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L31B</span></span>
 </div>
 <div id="src-excel-39" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">建制村属性</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L31C</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L31C</span></span>
 </div>
 <div id="src-excel-40" onclick="open28TablesModal('2019')" onmouseenter="highlightLineage('l31c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border bg-white border-slate-200 cursor-pointer hover:shadow-xs hover:border-blue-400">
     <span class="font-bold text-slate-800 truncate leading-none">自然村属性</span>
-    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span>🔗</span><span>年报L31C</span></span>
+    <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5"><span></span><span>年报L31C</span></span>
 </div>
     </div>
 </div>
 
 </div>
 
-<div class="mt-2 mb-1 border-b-2 border-dashed border-amber-400 pb-1 flex items-center justify-between">
-    <span class="font-bold text-[12px] text-slate-800 flex items-center gap-1">
-        <span>动态数据</span>
+<div class="mt-4 mb-2 border-b-2 border-solid border-slate-300 pb-1 flex items-center justify-between">
+    <span class="font-bold text-[12px] text-slate-800">
+        动态数据
     </span>
 </div>
 
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        🔄 IoT动态
+        IoT动态
     </div>
     <div id="ods-iot-container" class="flex flex-wrap gap-1 flex-1 content-start items-start"></div>
 </div>
 
 
-<div class="mt-2 mb-1 border-b-2 border-solid border-indigo-400 pb-1 flex items-center justify-between">
-    <span class="font-bold text-[12px] text-slate-800 flex items-center gap-1">
-        <span>业务数据</span>
+<div class="mt-4 mb-2 border-b-2 border-solid border-slate-300 pb-1 flex items-center justify-between">
+    <span class="font-bold text-[12px] text-slate-800">
+        业务数据
     </span>
 </div>
 
 
 <div class="flex items-start gap-1">
     <div class="font-bold text-slate-600 text-[8.5px] w-14 shrink-0 pt-[3px] border-r border-slate-200 text-right pr-1">
-        📋 审批台账
+         审批台账
     </div>
     <div id="ods-biz-container" class="flex flex-wrap gap-1 flex-1 content-start items-start"></div>
 </div>
@@ -768,96 +770,96 @@
 
                                 <div class="space-y-0 flex-1">
                                     <div id="ont-l21" onclick="switchWorkspace('oma'); switchOntologyTier('l21'); toggleKnowledgeDrawer('l21');" onmouseenter="highlightLineage('l21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-blue-400 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-blue-900">📄 [L21] 公路路线基本情况</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 3</span>
+                                        <span class="font-bold text-blue-900">[L21] 公路路线基本情况</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 3</span>
                                     </div>
                                     <div id="ont-l22" onclick="switchWorkspace('oma'); switchOntologyTier('l22'); toggleKnowledgeDrawer('l22');" onmouseenter="highlightLineage('l22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L22] 乡镇/建制村/自然村通达及属性表</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L22] 乡镇/建制村/自然村通达及属性表</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 1</span>
                                     </div>
                                     <div id="ont-l23" onclick="switchWorkspace('oma'); switchOntologyTier('l23'); toggleKnowledgeDrawer('l23');" onmouseenter="highlightLineage('l23')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L23] 亚洲公路网明细</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L23] 亚洲公路网明细</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 1</span>
                                     </div>
                                     <div id="ont-l24a" onclick="switchWorkspace('oma'); switchOntologyTier('l24a'); toggleKnowledgeDrawer('l24a');" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L24a] 公路桥梁明细表</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 4</span>
+                                        <span class="font-bold text-slate-800">[L24a] 公路桥梁明细表</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 4</span>
                                     </div>
                                     <!-- 显式展出：L24a 挂载子节点 -->
                                     <div id="ont-l24a-sub" onmouseenter="highlightLineage('l24a')" onmouseleave="resetLineageHighlight()" class="ml-3 pl-1.5 border-l-2 border-amber-300 my-0.5">
                                         <div class="palantir-card inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-mono text-[8.5px] bg-amber-50/80 border-amber-300 text-amber-900 cursor-pointer hover:shadow-xs w-fit">
-                                            <span>↳ 🔗 <span class="font-bold">L24a-Sub</span> 结构监测/WIM超限工频日志</span>
+                                            <span>↳ <span class="font-bold">L24a-Sub</span> 结构监测/WIM超限工频日志</span>
                                             <span class="text-[7.5px] bg-amber-200 text-amber-950 px-1 rounded font-bold">挂载子节点</span>
                                         </div>
                                     </div>
 
                                     <div id="ont-l24b" onclick="switchWorkspace('oma'); switchOntologyTier('l24b'); toggleKnowledgeDrawer('l24b');" onmouseenter="highlightLineage('l24b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L24b] 公路涵洞明细表</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L24b] 公路涵洞明细表</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 1</span>
                                     </div>
                                     <div id="ont-l25" onclick="switchWorkspace('oma'); switchOntologyTier('l25'); toggleKnowledgeDrawer('l25');" onmouseenter="highlightLineage('l25')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L25] 公路隧道明细表</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 2</span>
+                                        <span class="font-bold text-slate-800">[L25] 公路隧道明细表</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 2</span>
                                     </div>
                                     <div id="ont-l26" onclick="switchWorkspace('oma'); switchOntologyTier('l26'); toggleKnowledgeDrawer('l26');" onmouseenter="highlightLineage('l26')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L26] 服务及收费设施</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L26] 服务及收费设施</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 1</span>
                                     </div>
                                     <div id="ont-l27" onclick="switchWorkspace('oma'); switchOntologyTier('l27'); toggleKnowledgeDrawer('l27');" onmouseenter="highlightLineage('l27')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L27] 地质灾害点明细表</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors" title="点击查看绑定的业务规则">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L27] 地质灾害点明细表</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors" title="点击查看绑定的业务规则">规则 x 1</span>
                                     </div>
                                     <div id="ont-l28" onclick="switchWorkspace('oma'); switchOntologyTier('l28'); toggleKnowledgeDrawer('l28');" onmouseenter="highlightLineage('l28')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L28] 沿线设施汇总表</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L28] 沿线设施汇总表</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 1</span>
                                     </div>
                                     <div id="ont-l29a" onclick="switchWorkspace('oma'); switchOntologyTier('l29a'); toggleKnowledgeDrawer('l29a');" onmouseenter="highlightLineage('l29a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-blue-400 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-blue-900">📄 [L29a] 日常路况评定明细</span>
+                                        <span class="font-bold text-blue-900">[L29a] 日常路况评定明细</span>
                                         <span id="ont-l29a-tag" class="text-[8px] bg-blue-50 text-blue-700 px-1 rounded font-bold">100m桩号</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 5</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 5</span>
                                     </div>
                                     <div id="ont-l30a" onclick="switchWorkspace('oma'); switchOntologyTier('l30a'); toggleKnowledgeDrawer('l30a');" onmouseenter="highlightLineage('l30a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L30a] 养护作业统计表</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 2</span>
+                                        <span class="font-bold text-slate-800">[L30a] 养护作业统计表</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 2</span>
                                     </div>
                                     <div id="ont-l30b" onclick="switchWorkspace('oma'); switchOntologyTier('l30b'); toggleKnowledgeDrawer('l30b');" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-amber-400 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L30b] 养护工程统计表</span>
-                                        <span class="text-[7.5px] bg-amber-100 text-amber-900 border border-amber-300 px-1 rounded font-bold">🔄 动态养护叠加</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 2</span>
+                                        <span class="font-bold text-slate-800">[L30b] 养护工程统计表</span>
+                                        <span class="text-[7.5px] bg-amber-100 text-amber-900 border border-amber-300 px-1 rounded font-bold">动态养护叠加</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 2</span>
                                     </div>
                                     <!-- 显式展出：L30b 挂载子节点 -->
                                     <div id="ont-l30b-sub" onmouseenter="highlightLineage('l30b')" onmouseleave="resetLineageHighlight()" class="ml-3 pl-1.5 border-l-2 border-amber-400 my-0.5">
                                         <div class="palantir-card inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-mono text-[8.5px] bg-amber-50/80 border-amber-300 text-amber-900 cursor-pointer hover:shadow-xs w-fit">
-                                            <span>↳ 🔗 <span class="font-bold">L30b-Sub</span> 养护施工派单与工序质检台账</span>
+                                            <span>↳ <span class="font-bold">L30b-Sub</span> 养护施工派单与工序质检台账</span>
                                             <span class="text-[7.5px] bg-amber-200 text-amber-950 px-1 rounded font-bold">挂载子节点</span>
                                         </div>
                                     </div>
                                     <!-- 显式展出：养护工程叠加演进变化对比节点 (Evolution Delta) -->
                                     <div id="ont-l24a-delta" onmouseenter="highlightLineage(['l24a','l30b'])" onmouseleave="resetLineageHighlight()" class="ml-3 pl-1.5 border-l-2 border-amber-500 my-1">
                                         <div class="palantir-card inline-flex items-center gap-1.5 px-2 py-1 rounded-md font-mono text-[8.5px] bg-amber-100/90 border-amber-500 text-amber-950 cursor-pointer hover:shadow-md w-fit">
-                                            <span>🧬 <span class="font-bold">L24a-Delta 演进变化</span> 养护工程实施后技术状况与危桥摘牌对比</span>
+                                            <span> <span class="font-bold">L24a-Delta 演进变化</span> 养护工程实施后技术状况与危桥摘牌对比</span>
                                             <span class="text-[7.5px] bg-amber-600 text-white px-1.5 rounded font-bold animate-pulse">演进对比 +17.5%</span>
                                         </div>
                                     </div>
                                     <div id="ont-l30c" onclick="switchWorkspace('oma'); switchOntologyTier('l30c'); toggleKnowledgeDrawer('l30c');" onmouseenter="highlightLineage('l30c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L30c] 养护资金统计表</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L30c] 养护资金统计表</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 1</span>
                                     </div>
                                     <div id="ont-l31a" onclick="switchWorkspace('oma'); switchOntologyTier('l31a'); toggleKnowledgeDrawer('l31a');" onmouseenter="highlightLineage('l31a')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2 py-0 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L31a] 高速管养单位属性</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L31a] 高速管养单位属性</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 1</span>
                                     </div>
                                     <div id="ont-l31b" onclick="switchWorkspace('oma'); switchOntologyTier('l31b'); toggleKnowledgeDrawer('l31b');" onmouseenter="highlightLineage('l31b')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L31b] 国省干线管养单位</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L31b] 国省干线管养单位</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 1</span>
                                     </div>
                                     <div id="ont-l31c" onclick="switchWorkspace('oma'); switchOntologyTier('l31c'); toggleKnowledgeDrawer('l31c');" onmouseenter="highlightLineage('l31c')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L31c] 农村公路管养单位</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L31c] 农村公路管养单位</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 1</span>
                                     </div>
                                     <div id="ont-l32" onclick="switchWorkspace('oma'); switchOntologyTier('l32'); toggleKnowledgeDrawer('l32');" onmouseenter="highlightLineage('l32')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[9.5px] border-slate-300 bg-white cursor-pointer hover:shadow-md hover:border-slate-400 transition-all w-fit">
-                                        <span class="font-bold text-slate-800">📄 [L32] 应急储备库及队伍</span>
-                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">📚 规则 x 1</span>
+                                        <span class="font-bold text-slate-800">[L32] 应急储备库及队伍</span>
+                                        <span class="text-[8px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-300 px-1 py-[1px] rounded shadow-sm hover:bg-indigo-100 transition-colors">规则 x 1</span>
                                     </div>
                                 </div>
                             </div>
@@ -975,14 +977,14 @@
             <!-- 3. 右边：场景智能体对话框 (默认收起，给予图谱最大宽屏空间) -->
             <aside id="rightCotChatPanel" style="display: none;" class="col-span-3 bg-white border border-slate-200 rounded flex flex-col shadow-2xs min-h-0 overflow-hidden text-xs">
                 <div class="bg-slate-100 text-slate-900 border-b border-slate-200 px-3 py-2 flex items-center justify-between shrink-0 font-bold">
-                    <div class="flex items-center gap-1.5"><span class="text-sm">🤖</span><span>路检智能体运行日志 (Live Agent CoT)</span></div>
+                    <div class="flex items-center gap-1.5"><span class="text-sm"></span><span>路检智能体运行日志 (Live Agent CoT)</span></div>
                     <button onclick="toggleRightPanel()" class="text-[10px] text-slate-700 hover:text-slate-900 font-mono">▶ 收起</button>
                 </div>
 
                 <div id="chatHistoryBox" class="flex-1 overflow-y-auto p-3 space-y-2.5 bg-slate-50 min-h-0">
                     <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
                         <div class="font-bold text-slate-900 flex items-center justify-between">
-                            <span>🤖 100米路检智能体 (养护处):</span>
+                            <span> 100米路检智能体 (养护处):</span>
                             <span class="text-[9px] text-slate-600 font-mono">17:41</span>
                         </div>
                         <p class="text-slate-700 leading-tight font-mono">
@@ -990,10 +992,10 @@
                         </p>
                         <div class="pt-1 flex flex-wrap gap-1">
                             <button onclick="sendPresetQuery('查询 G318 K105+200 ~ K108+500 桩号区间的全量桥梁、隧道、路况及地灾点')" class="bg-sky-50 text-blue-700 border border-sky-200 px-1.5 py-0.5 rounded text-[9.5px] hover:bg-blue-100 font-mono text-left">
-                                📍 桩号穿透: G318 K105~K108 全量资产
+                                 桩号穿透: G318 K105~K108 全量资产
                             </button>
                             <button onclick="sendPresetQuery('07科技信息处: 将全省 K 桩号自动转换为 WGS84 高精 3D GIS 坐标')" class="bg-slate-100 text-slate-700 border border-slate-200 px-1.5 py-0.5 rounded text-[9.5px] hover:bg-slate-200 font-mono text-left">
-                                🗺️ 桩号升维: K桩号 ➔ 3D GIS 坐标
+                                 桩号升维: K桩号 ➔ 3D GIS 坐标
                             </button>
                         </div>
                     </div>
@@ -1020,7 +1022,7 @@
                 </div>
                 <div class="flex gap-2">
                     <button onclick="open28TablesModal('2015')" class="bg-sky-600 text-white font-bold px-3 py-1 rounded text-xs hover:bg-blue-700 shadow-2xs flex items-center gap-1">
-                        <span>📂 查验 2015 年 28 张底表明细树 ➔</span>
+                        <span>查验 2015 年 28 张底表明细树 ➔</span>
                     </button>
                     <button onclick="switchWorkspace('main')" class="bg-slate-100 border border-slate-200 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">返回主图谱 ➔</button>
                 </div>
@@ -1043,55 +1045,55 @@
                         <span> 原始 Excel 年报骨架数据流与 4 大预留扩展功能槽 (Excel Pipeline Extension Slots)</span>
                     </span>
                     <button onclick="open28TablesModal('2015')" class="text-xs bg-sky-600 text-white px-2 py-0.5 rounded font-bold hover:bg-blue-700">
-                        📂 点击查验 2015年 28 张底表树 ➔
+                        点击查验 2015年 28 张底表树 ➔
                     </button>
                 </div>
 
                 <div class="grid grid-cols-4 gap-3 text-xs font-mono">
                     <div class="p-3 bg-sky-50/60 border border-sky-200 rounded-lg space-y-1">
                         <div class="font-bold text-sky-900 flex justify-between">
-                            <span>📂 预留功能 1</span>
+                            <span>预留功能 1</span>
                             <span class="text-[9px] bg-sky-600 text-white px-1 rounded font-bold">UPLOAD</span>
                         </div>
                         <div class="font-bold text-slate-900 text-[11.5px]">42张 Excel 原始表一键上传解析</div>
                         <p class="text-[10.5px] text-slate-600 font-sans">支持拖拽上传基层《桥梁.xls》、《路段.xls》等原始表格，自动解析 Sheet 结构。</p>
-                        <button onclick="alert('📂 [预留扩展槽 1]: Excel 解析驱动器就绪，可拖拽上传全省 42 张原始年报表！')" class="w-full bg-sky-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
+                        <button onclick="alert('[预留扩展槽 1]: Excel 解析驱动器就绪，可拖拽上传全省 42 张原始年报表！')" class="w-full bg-sky-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
                             测试上传解析器 ➔
                         </button>
                     </div>
 
                     <div class="p-3 bg-sky-50/60 border border-sky-200 rounded-lg space-y-1">
                         <div class="font-bold text-sky-900 flex justify-between">
-                            <span>🔗 预留功能 2</span>
+                            <span>预留功能 2</span>
                             <span class="text-[9px] bg-sky-600 text-white px-1 rounded font-bold">MAPPER</span>
                         </div>
                         <div class="font-bold text-slate-900 text-[11.5px]">Excel 表头 ➔ 国标 L 码映射</div>
                         <p class="text-[10.5px] text-slate-600 font-sans">自动将非标 Excel 字段名转换为国标 17 套 L 码本体属性主键。</p>
-                        <button onclick="alert('🔗 [预留扩展槽 2]: L 码字段映射器就绪，自动关联 L24a/L29a 17 套本体！')" class="w-full bg-sky-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
+                        <button onclick="alert('[预留扩展槽 2]: L 码字段映射器就绪，自动关联 L24a/L29a 17 套本体！')" class="w-full bg-sky-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
                             测试 L 码映射器 ➔
                         </button>
                     </div>
 
                     <div class="p-3 bg-sky-50/60 border border-sky-200 rounded-lg space-y-1">
                         <div class="font-bold text-sky-900 flex justify-between">
-                            <span>🛡️ 预留功能 3</span>
+                            <span> 预留功能 3</span>
                             <span class="text-[9px] bg-sky-600 text-white px-1 rounded font-bold">VALIDATOR</span>
                         </div>
                         <div class="font-bold text-slate-900 text-[11.5px]">42 表合规校验与空间消噪</div>
                         <p class="text-[10.5px] text-slate-600 font-sans">校验表间逻辑关联，自动消除共线桩号与里程重复计算。</p>
-                        <button onclick="alert('🛡️ [预留扩展槽 3]: 空间消噪与数据合规校验引擎就绪！')" class="w-full bg-sky-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
+                        <button onclick="alert(' [预留扩展槽 3]: 空间消噪与数据合规校验引擎就绪！')" class="w-full bg-sky-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
                             测试校验引擎 ➔
                         </button>
                     </div>
 
                     <div class="p-3 bg-sky-50/60 border border-sky-200 rounded-lg space-y-1">
                         <div class="font-bold text-sky-900 flex justify-between">
-                            <span>🌿 预留功能 4</span>
+                            <span> 预留功能 4</span>
                             <span class="text-[9px] bg-sky-600 text-white px-1 rounded font-bold">SQLITE GEN</span>
                         </div>
                         <div class="font-bold text-slate-900 text-[11.5px]">多年份 Excel 增量转 SQL 库</div>
                         <p class="text-[10.5px] text-slate-600 font-sans">将历年 Excel 增量对比并自动生成 `hubei_2026.db` 实体数据库。</p>
-                        <button onclick="alert('🌿 [预留扩展槽 4]: 物理 SQLite 库自动生成合流器就绪！')" class="w-full bg-sky-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
+                        <button onclick="alert(' [预留扩展槽 4]: 物理 SQLite 库自动生成合流器就绪！')" class="w-full bg-sky-600 text-white text-[10px] font-bold py-1 rounded hover:bg-blue-700">
                             测试 SQLite 合流器 ➔
                         </button>
                     </div>
@@ -1102,7 +1104,7 @@
             <div class="border border-slate-200 rounded-lg p-3.5 bg-white space-y-2.5 shadow-xs">
                 <div class="font-bold text-slate-900 text-xs flex justify-between items-center border-b border-slate-100 pb-1.5">
                     <span class="font-bold text-sky-900 flex items-center gap-1.5">
-                        <span class="text-sm">🛢️</span>
+                        <span class="text-sm"></span>
                         <span>由原始 Excel 汇聚落库的湖北全省年报物理数据库清单 (Mounted Annual Report Databases)</span>
                     </span>
                     <span class="text-[9.5px] bg-emerald-600 text-white px-2 py-0.5 rounded font-mono font-bold">ALL ONLINE 12ms</span>
@@ -1126,7 +1128,7 @@
                             <td class="gov-table-td">76.0 KB</td>
                             <td class="gov-table-td text-emerald-700 font-bold">12ms</td>
                             <td class="gov-table-td"><button onclick="open28TablesModal('2025')" class="text-blue-700 font-bold underline">查看 1 张底表 (L21 222条) ➔</button></td>
-                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢 (默认主库)</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE (默认主库)</td>
                         </tr>
                         <tr>
                             <td class="gov-table-td font-bold text-slate-900">hubei_2019.db</td>
@@ -1134,7 +1136,7 @@
                             <td class="gov-table-td">40.0 MB</td>
                             <td class="gov-table-td text-emerald-700 font-bold">15ms</td>
                             <td class="gov-table-td"><button onclick="open28TablesModal('2019')" class="text-blue-700 font-bold underline">查看 28 张底表 (L29a 40,936条) ➔</button></td>
-                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE </td>
                         </tr>
                         <tr>
                             <td class="gov-table-td font-bold text-slate-900">hubei_2018.db</td>
@@ -1142,7 +1144,7 @@
                             <td class="gov-table-td">40.0 MB</td>
                             <td class="gov-table-td text-emerald-700 font-bold">15ms</td>
                             <td class="gov-table-td"><button onclick="open28TablesModal('2018')" class="text-blue-700 font-bold underline">查看 28 张底表 (L29a 40,936条) ➔</button></td>
-                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE </td>
                         </tr>
                         <tr>
                             <td class="gov-table-td font-bold text-slate-900">hubei_2017.db</td>
@@ -1150,7 +1152,7 @@
                             <td class="gov-table-td">40.0 MB</td>
                             <td class="gov-table-td text-emerald-700 font-bold">15ms</td>
                             <td class="gov-table-td"><button onclick="open28TablesModal('2017')" class="text-blue-700 font-bold underline">查看 28 张底表 (L29a 40,936条) ➔</button></td>
-                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE </td>
                         </tr>
                         <tr>
                             <td class="gov-table-td font-bold text-slate-900">hubei_2016.db</td>
@@ -1158,7 +1160,7 @@
                             <td class="gov-table-td">28.1 MB</td>
                             <td class="gov-table-td text-emerald-700 font-bold">14ms</td>
                             <td class="gov-table-td"><button onclick="open28TablesModal('2016')" class="text-blue-700 font-bold underline">查看 28 张底表 (L29a 40,936条) ➔</button></td>
-                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE </td>
                         </tr>
                         <tr>
                             <td class="gov-table-td font-bold text-slate-900">hubei_2015.db</td>
@@ -1166,7 +1168,7 @@
                             <td class="gov-table-td">40.0 MB</td>
                             <td class="gov-table-td text-emerald-700 font-bold">15ms</td>
                             <td class="gov-table-td"><button onclick="open28TablesModal('2015')" class="text-blue-700 font-bold underline">查看 28 张底表 (L29a 40,936条) ➔</button></td>
-                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE 🟢</td>
+                            <td class="gov-table-td text-emerald-700 font-bold">ONLINE </td>
                         </tr>
                     </tbody>
                 </table>
@@ -1187,7 +1189,7 @@
                 </div>
                 <div class="flex gap-2">
                     <button onclick="open28TablesModal('2015')" class="bg-sky-600 text-white font-bold px-3 py-1 rounded text-xs hover:bg-blue-700 shadow-2xs flex items-center gap-1">
-                        <span>📂 查验特定年份 28 张底表明细树 ➔</span>
+                        <span>查验特定年份 28 张底表明细树 ➔</span>
                     </button>
                     <button onclick="switchWorkspace('main')" class="bg-slate-100 border border-slate-200 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">返回主图谱 ➔</button>
                 </div>
@@ -1200,7 +1202,7 @@
                         <span> 跨年份单表内容读取与数据字典动态演进对照检视器 (Multi-Year Evolution Inspector)</span>
                     </span>
                     <button onclick="open28TablesModal('2015')" class="text-xs bg-sky-600 text-white px-2 py-0.5 rounded font-bold hover:bg-blue-700">
-                        📂 点击打开 28 张底表全树 ➔
+                        点击打开 28 张底表全树 ➔
                     </button>
                 </div>
 
@@ -1214,7 +1216,7 @@
 
                 <div class="flex items-center gap-3 text-xs font-mono pt-1">
                     <div class="flex items-center gap-1.5">
-                        <span class="font-bold text-slate-900">📅 选择年报年份:</span>
+                        <span class="font-bold text-slate-900"> 选择年报年份:</span>
                         <select id="evoYearSelect" onchange="renderSchemaEvolutionTable()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1 text-xs font-bold focus:outline-none focus:border-sky-500">
                             <option value="2025">2025年 (最新年报基线底图库 hubei_2025.db - 76.0KB)</option>
                             <option value="2019">2019年 (历史年报归档库 hubei_2019.db - 40.0MB)</option>
@@ -1286,7 +1288,7 @@
                     </div>
                     <div class="p-2.5 bg-sky-50/60 border border-sky-200 rounded space-y-1">
                         <div class="font-bold text-sky-900">要素 5: 密级与权责</div>
-                        <p class="text-[10px] text-slate-600">安全密级规约（RESTRICTED）与 👑 宏观写权限归口处室 Agent。</p>
+                        <p class="text-[10px] text-slate-600">安全密级规约（RESTRICTED）与  宏观写权限归口处室 Agent。</p>
                     </div>
                 </div>
             </div>
@@ -1317,7 +1319,7 @@
             <!-- 17 Ontologies Table -->
             <div class="border rounded p-3 bg-white space-y-2">
                 <div class="font-bold text-xs text-slate-900 flex justify-between items-center">
-                    <span>📑 湖北公路 17 套国标 L 码本体五大要素全量对照表 (Full Ontology Mapping)</span>
+                    <span> 湖北公路 17 套国标 L 码本体五大要素全量对照表 (Full Ontology Mapping)</span>
                     <span class="text-[10px] text-slate-700 font-mono font-bold">17 Ontologies Single Source of Truth</span>
                 </div>
                 <table class="w-full text-[11px] border-collapse font-mono">
@@ -1327,7 +1329,7 @@
                             <th class="gov-table-th">Level 2: 包含的具体物理底表</th>
                             <th class="gov-table-th">Level 3: 真实数据典型记录 (巴河特大桥等)</th>
                             <th class="gov-table-th">要素 4: 绑定的 Action 算子</th>
-                            <th class="gov-table-th">要素 5: 👑 写权限归口 Agent</th>
+                            <th class="gov-table-th">要素 5:  写权限归口 Agent</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1361,19 +1363,19 @@
         <!-- TAB 3:  3. 影响面智能体详细页面 -->
         <div id="view-impact" style="display: none;" class="h-full bg-white border border-slate-200 rounded p-4 flex flex-col space-y-4 overflow-y-auto">
             <div class="pb-3 border-b border-slate-200 flex items-center justify-between shrink-0">
-                <h2 class="text-base font-extrabold text-slate-900">3. 数据稽核与影响面分析控制台 (🤖 影响面推演智能体 Impact Agent 工作区)</h2>
+                <h2 class="text-base font-extrabold text-slate-900">3. 数据稽核与影响面分析控制台 ( 影响面推演智能体 Impact Agent 工作区)</h2>
                 <button onclick="switchWorkspace('main')" class="bg-slate-100 border border-slate-200 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">返回主图谱 ➔</button>
             </div>
-            <div class="agent-banner-box p-3 rounded text-xs font-mono">🌿 dev-hubei-2026 沙盒分支: 下游破坏风险评估得分 0.05 (准许 Merge)。</div>
+            <div class="agent-banner-box p-3 rounded text-xs font-mono"> dev-hubei-2026 沙盒分支: 下游破坏风险评估得分 0.05 (准许 Merge)。</div>
         </div>
 
-        <!-- TAB 4: ✍️ 4. 写回智能体详细页面 -->
+        <!-- TAB 4: ✍ 4. 写回智能体详细页面 -->
         <div id="view-writeback" style="display: none;" class="h-full bg-white border border-slate-200 rounded p-4 flex flex-col space-y-4 overflow-y-auto">
             <div class="pb-3 border-b border-slate-200 flex items-center justify-between shrink-0">
-                <h2 class="text-base font-extrabold text-slate-900">4. 合规审计与审定落库控制台 (🤖 双签写回审定智能体 Writeback Agent 工作区)</h2>
+                <h2 class="text-base font-extrabold text-slate-900">4. 合规审计与审定落库控制台 ( 双签写回审定智能体 Writeback Agent 工作区)</h2>
                 <button onclick="switchWorkspace('main')" class="bg-slate-100 border border-slate-200 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">返回主图谱 ➔</button>
             </div>
-            <div class="agent-banner-box p-3 rounded text-xs font-mono">✍️ 校验处室 Agent 双签授权，物理写入底层 SQL 库《L29a》并归档 v2.1 版本。</div>
+            <div class="agent-banner-box p-3 rounded text-xs font-mono">✍ 校验处室 Agent 双签授权，物理写入底层 SQL 库《L29a》并归档 v2.1 版本。</div>
         </div>
 
     </div>
@@ -1383,7 +1385,7 @@
         <div class="bg-white rounded-lg border border-slate-200 shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col text-xs max-h-[85vh]">
             <div class="bg-sky-600 text-white px-4 py-3 flex items-center justify-between font-bold shrink-0">
                 <div class="flex items-center gap-2">
-                    <span class="text-base">📑</span>
+                    <span class="text-base"></span>
                     <span id="tables28ModalTitle">数据来源: 湖北省 2015 年公路养护统计年报 (包含 28 张物理底表全树明细)</span>
                 </div>
                 <button onclick="close28TablesModal()" class="text-white hover:text-slate-200 font-bold text-base">✕</button>
@@ -1411,7 +1413,7 @@
         <div class="bg-white rounded-lg border border-slate-200 shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col text-xs max-h-[85vh]">
             <div class="bg-gradient-to-r from-blue-700 to-indigo-700 text-white px-4 py-3 flex items-center justify-between font-bold shrink-0">
                 <div class="flex items-center gap-2">
-                    <span class="text-base">🎬</span>
+                    <span class="text-base"></span>
                     <span>养护处【100米桩号路检智能体】基于年报本体 5 步动作推演控制台</span>
                 </div>
                 <button onclick="closeActionDemoModal()" class="text-white hover:text-slate-200 font-bold text-base cursor-pointer">✕</button>
@@ -1423,7 +1425,7 @@
                          智能体通过 5 步连贯动作（绑定/消噪/去重/派发/落库），实现跨系统物理数据自动化治理与审定。
                     </div>
                     <button onclick="runStepByStepDemo()" class="bg-sky-600 text-white text-[11px] font-bold px-3 py-1 rounded hover:bg-blue-700 shadow-2xs flex items-center gap-1 shrink-0 cursor-pointer">
-                        <span>▶️ 自动一键推演全流程</span>
+                        <span>▶ 自动一键推演全流程</span>
                     </button>
                 </div>
 
@@ -1478,7 +1480,7 @@
                     <div class="border border-slate-200 rounded p-3 space-y-1 bg-slate-50">
                         <div class="font-bold text-slate-900 flex justify-between">
                             <span>1.  HTML iFrame 代码嵌入</span>
-                            <button onclick="copyCode('code-iframe')" class="text-[10px] bg-sky-600 text-white px-2 py-0.5 rounded font-bold hover:bg-blue-700">📋 复制 Code</button>
+                            <button onclick="copyCode('code-iframe')" class="text-[10px] bg-sky-600 text-white px-2 py-0.5 rounded font-bold hover:bg-blue-700"> 复制 Code</button>
                         </div>
                         <textarea id="code-iframe" readonly class="w-full bg-white text-sky-900 p-2 rounded font-mono text-[10.5px] h-14 border border-slate-200 focus:outline-none"><iframe src="https://hubei.gov.cn/aip/agents/embed?agent_id=HUB-ANNUAL-ONTOLOGY-MAINT&token=HUB-2026" width="100%" height="650" frameborder="0"></iframe></textarea>
                     </div>
@@ -1499,7 +1501,7 @@
             { 
                 id: 'scen-1', 
                 num: 1, 
-                name: '🚨 安全生产责任数据运营业务',
+                name: ' 安全生产责任数据运营业务',
                 desc: '"1. 化工/危化品园区特殊作业场景（高效高毛利）"', 
                 defaultOnt: 'l27', 
                 leadOffice: '17 应急管理厅 (归口主导)',
@@ -1520,7 +1522,7 @@
             { 
                 id: 'scen-4', 
                 num: 4, 
-                name: '📍 公路资产数据运营业务',
+                name: ' 公路资产数据运营业务',
                 desc: '"日常巡检桩号与年报标准桩号存在误差，请生成空间校正清单。"', 
                 defaultOnt: 'l21', 
                 leadOffice: '01 规划计划处 (归口主导)',
@@ -1540,7 +1542,7 @@
             { 
                 id: 'scen-2', 
                 num: 2, 
-                name: '🛠️ 结构安全数据运营业务',
+                name: ' 结构安全数据运营业务',
                 desc: '"梳理武汉 G107 沿线长大桥梁，生成本季度结构监测考核总单。"', 
                 defaultOnt: 'l24a', 
                 leadOffice: '03 工程技术处 (归口主导)',
@@ -1564,7 +1566,7 @@
             { 
                 id: 'scen-3', 
                 num: 3, 
-                name: '🔍 行政监管数据运营场景',
+                name: ' 行政监管数据运营场景',
                 desc: '"全省国道年均养护里程与养护资金投入分别是多少？"', 
                 defaultOnt: 'l29a', 
                 leadOffice: '04 养护管理处 (归口主导)',
@@ -1745,7 +1747,7 @@
         const productionKnowledgeBaseScenarioMap = {
             1: {
                 scenNum: 1,
-                name: '🚨 1. 化工/危化品园区特殊作业场景（高效高毛利）',
+                name: ' 1. 化工/危化品园区特殊作业场景（高效高毛利）',
                 desc: '"动火/受限空间作业前 3 分钟动态微课 + 活体考勤卡口"',
                 description: '特种作业(P1) ➔ 风险热力图(P3) ➔ 安责险降费(P0) ➔ 园区数据资产(P2)',
                 ontologies: [
@@ -1765,7 +1767,7 @@
             },
             5: {
                 scenNum: 5,
-                name: '🔍 （应急）防汛预警与应急处置场景',
+                name: ' （应急）防汛预警与应急处置场景',
                 desc: '"暴雨红色预警，请锁定受灾干线桩号，并生成定级报告。"',
                 description: '气象暴雨预警 ➔ 地灾点排查(L27) ➔ 桩号路况封路(L29a) ➔ 应急处置(L32)',
                 ontologies: [
@@ -1787,7 +1789,7 @@
             },
             6: {
                 scenNum: 6,
-                name: '🚨 2. 建筑工程与市政房建场景（危大工程/快速变现）',
+                name: ' 2. 建筑工程与市政房建场景（危大工程/快速变现）',
                 desc: '"塔吊/深基坑/高支模班前交底与微课"',
                 description: '安全费预付划拨(P1) ➔ 动态合规看板(P3) ➔ 建安险下浮(P0) ➔ 施工数据资产授信(P2)',
                 ontologies: [
@@ -1804,7 +1806,7 @@
             },
             7: {
                 scenNum: 7,
-                name: '🚨 3. 交通/应急行政执法与违规企业消案场景（合规催化剂）',
+                name: ' 3. 交通/应急行政执法与违规企业消案场景（合规催化剂）',
                 desc: '"企业扫码进入以培促改与隐患整改消案专区"',
                 description: '动用安全费补课(P1) ➔ 在线消案(P3) ➔ 不冻结折扣(P0) ➔ 企业合规履约信用分(P2)',
                 ontologies: [
@@ -1821,7 +1823,7 @@
             },
             8: {
                 scenNum: 8,
-                name: '🚨 4. 交通基础设施日常养护与检测场景（长线现金流压舱石）',
+                name: ' 4. 交通基础设施日常养护与检测场景（长线现金流压舱石）',
                 desc: '"公路局/交投养护大队班组每日出勤签到 + 占道/高空作业微课"',
                 description: '养护包干预算列支(P1) ➔ 养护作业安全态势看板(P3) ➔ 雇主/公众责任险(P0) ➔ 公路资产健康档案(P2)',
                 ontologies: [
@@ -1838,7 +1840,7 @@
             },
             9: {
                 scenNum: 9,
-                name: '🚨 5. 道路运输与“两客一危一重”场景（高频流速之王）',
+                name: ' 5. 道路运输与“两客一危一重”场景（高频流速之王）',
                 desc: '"车载 ADAS/DMS 预警闭环端 + 运管驾驶员每月例行安培小程序"',
                 description: '按单按月安全费划扣(P1) ➔ 矫正闭环流(P3) ➔ 重卡/危运车险下浮(P0) ➔ 运力安全信用资产(P2)',
                 ontologies: [
@@ -1855,7 +1857,7 @@
             },
             10: {
                 scenNum: 10,
-                name: '🚨 6. 交通基础设施新建与改扩建工程场景（体量与利润天花板）',
+                name: ' 6. 交通基础设施新建与改扩建工程场景（体量与利润天花板）',
                 desc: '"实名制通道 + 进场安全教育 + 进洞/上桥作业前微课交底"',
                 description: '首月预付专项安全费(P1) ➔ 无感监督包(P3) ➔ 共享保司防灾基金(P0) ➔ 基础设施地质档案(P2)',
                 ontologies: [
@@ -1872,7 +1874,7 @@
             },
             2: {
                 scenNum: 2,
-                name: '🛠️ 结构安全数据运营业务',
+                name: ' 结构安全数据运营业务',
                 desc: '"梳理武汉 G107 沿线长大桥梁，生成本季度结构监测考核总单。"',
                 description: '长大桥健康监测(L24a) ➔ 物联高频采样(L28) ➔ 养护工程加固(L30b)',
                 // （2）第二个场景精确定义为 2 个本体：L24a + L30b
@@ -1894,7 +1896,7 @@
             },
             3: {
                 scenNum: 3,
-                name: '🔍 行政监管数据运营场景',
+                name: ' 行政监管数据运营场景',
                 desc: '"全省国道年均养护里程与养护资金投入分别是多少？"',
                 description: '日常路况评定(L29a) ➔ 养护作业(L30a) ➔ AI自动巡检图像物联',
                 ontologies: [
@@ -1912,7 +1914,7 @@
             },
             4: {
                 scenNum: 4,
-                name: '📍 公路资产数据运营业务',
+                name: ' 公路资产数据运营业务',
                 desc: '"日常巡检桩号与年报标准桩号存在误差，请生成空间校正清单。"',
                 description: '路线基本情况(L21) ➔ 排桩数据(L21-Sub) ➔ GIS 空间坐标去噪中枢',
                 ontologies: [
@@ -2029,7 +2031,7 @@
         const scenarioMultiOntologyGovernanceMap = {
             1: {
                 id: 'scen-1',
-                name: '🚨 安全生产责任数据运营业务',
+                name: ' 安全生产责任数据运营业务',
                 desc: '"暴雨红色预警，请锁定受灾干线桩号，并生成定级报告。"',
                 description: '气象暴雨预警 ➔ 地灾点排查(L27) ➔ 桩号路况封路(L29a) ➔ 应急处置(L32)',
                 ontologies: [
@@ -2102,7 +2104,7 @@
             },
             2: {
                 id: 'scen-2',
-                name: '🛠️ 结构安全数据运营业务',
+                name: ' 结构安全数据运营业务',
                 desc: '"梳理武汉 G107 沿线长大桥梁，生成本季度结构监测考核总单。"',
                 description: '长大桥健康监测(L24a) ➔ 物联高频采样(L28/L24a-Sub) ➔ 养护工程加固(L30b/L30b-Sub)',
                 ontologies: [
@@ -2182,7 +2184,7 @@
             },
             3: {
                 id: 'scen-3',
-                name: '🔍 行政监管数据运营场景',
+                name: ' 行政监管数据运营场景',
                 desc: '"全省国道年均养护里程与养护资金投入分别是多少？"',
                 description: '日常路况评定(L29a) ➔ 养护作业(L30a) ➔ AI自动巡检图像物联',
                 ontologies: [
@@ -2224,7 +2226,7 @@
             },
             4: {
                 id: 'scen-4',
-                name: '📍 公路资产数据运营业务',
+                name: ' 公路资产数据运营业务',
                 desc: '"日常巡检桩号与年报标准桩号存在误差，请生成空间校正清单。"',
                 description: '路线基本情况(L21) ➔ 排桩数据(L21-Sub) ➔ GIS 空间坐标去噪中枢',
                 ontologies: [
@@ -2474,14 +2476,14 @@ if (scen.exts && scen.exts.length > 0) {
                 html: `
                     <div class="space-y-1 font-mono text-[11px]">
                         <div class="font-bold text-sky-900"> 动作细节：智能体绑定年报本体对象</div>
-                        <div>• 🎯 锁定目标年报本体: <span class="font-bold text-blue-700">《L29a 公路日常路况评定明细表类》</span></div>
-                        <div>• 🔑 唯一锁定主键 (PK): <span class="font-bold text-emerald-700">HUB-SEC-G318-K420+100_2026</span></div>
-                        <div>• 👑 写权限归口 Agent: <span class="font-bold text-slate-900">🛣️ 04 养护管理处 Agent</span></div>
+                        <div>•  锁定目标年报本体: <span class="font-bold text-blue-700">《L29a 公路日常路况评定明细表类》</span></div>
+                        <div>•  唯一锁定主键 (PK): <span class="font-bold text-emerald-700">HUB-SEC-G318-K420+100_2026</span></div>
+                        <div>•  写权限归口 Agent: <span class="font-bold text-slate-900"> 04 养护管理处 Agent</span></div>
                     </div>
                 `,
                 chatLog: `
                     <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
-                        <div class="font-bold text-slate-900">🤖 [步骤 1/5] 年报本体绑定完成:</div>
+                        <div class="font-bold text-slate-900"> [步骤 1/5] 年报本体绑定完成:</div>
                         <div class="text-slate-700 font-mono">• 锁定年报本体: <code>《L29a 日常路况明细表》</code><br/>• 主键: <code>HUB-SEC-G318-K420+100_2026</code></div>
                     </div>
                 `
@@ -2491,14 +2493,14 @@ if (scen.exts && scen.exts.length > 0) {
                 html: `
                     <div class="space-y-1 font-mono text-[11px]">
                         <div class="font-bold text-sky-900"> 动作细节：底层物理表消除偏移噪音</div>
-                        <div>• 🛢️ 物理底表文件: <span class="font-bold text-slate-900">《12-1 公路技术状况明细表.xlsx》</span></div>
-                        <div>• ⚠️ 原始实测桩号: <span class="text-red-600 font-bold">G241 K12+400 (偏移共线噪音)</span></div>
-                        <div>• 🛠️ 重映射基准桩号: <span class="text-emerald-700 font-bold">G318 K420+100 (年报国标基准桩号)</span></div>
+                        <div>•  物理底表文件: <span class="font-bold text-slate-900">《12-1 公路技术状况明细表.xlsx》</span></div>
+                        <div>• ⚠ 原始实测桩号: <span class="text-red-600 font-bold">G241 K12+400 (偏移共线噪音)</span></div>
+                        <div>•  重映射基准桩号: <span class="text-emerald-700 font-bold">G318 K420+100 (年报国标基准桩号)</span></div>
                     </div>
                 `,
                 chatLog: `
                     <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
-                        <div class="font-bold text-slate-900">🤖 [步骤 2/5] 空间重映射完成:</div>
+                        <div class="font-bold text-slate-900"> [步骤 2/5] 空间重映射完成:</div>
                         <div class="text-slate-700 font-mono">• 消除 G241 共线噪音 ➔ 重定向至 <code>G318 K420+100</code> 年报基准！</div>
                     </div>
                 `
@@ -2508,13 +2510,13 @@ if (scen.exts && scen.exts.length > 0) {
                 html: `
                     <div class="space-y-1 font-mono text-[11px]">
                         <div class="font-bold text-sky-900"> 动作细节：执行年报本体计算红线</div>
-                        <div>• ⚠️ 强制 SQL 注入: <span class="text-amber-900 font-bold">WHERE (col4 LIKE '%双向%' OR col4 LIKE '%上行%')</span></div>
-                        <div>• 📊 路况评定测值: <span class="text-red-600 font-extrabold">PCI = 62.5 (网裂差路段预警)</span></div>
+                        <div>• ⚠ 强制 SQL 注入: <span class="text-amber-900 font-bold">WHERE (col4 LIKE '%双向%' OR col4 LIKE '%上行%')</span></div>
+                        <div>•  路况评定测值: <span class="text-red-600 font-extrabold">PCI = 62.5 (网裂差路段预警)</span></div>
                     </div>
                 `,
                 chatLog: `
                     <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
-                        <div class="font-bold text-slate-900">🤖 [步骤 3/5] 算子去重完成:</div>
+                        <div class="font-bold text-slate-900"> [步骤 3/5] 算子去重完成:</div>
                         <div class="text-slate-700 font-mono">• SQL 注入: <code>WHERE col4 LIKE '%双向%'</code> 剔除下行记录！<br/>• 得分: <strong class="text-red-600">PCI = 62.5 (差路段)</strong></div>
                     </div>
                 `
@@ -2524,14 +2526,14 @@ if (scen.exts && scen.exts.length > 0) {
                 html: `
                     <div class="space-y-1 font-mono text-[11px]">
                         <div class="font-bold text-sky-900"> 动作细节：基于本体 Link 拓扑派发</div>
-                        <div>• 🌳 向上本体拓扑: <span class="font-bold text-blue-700">L29a ➔ Pavement_BelongsTo_Route ➔ L21 G318 国道</span></div>
-                        <div>• 🤝 跨处室派发: <span class="font-bold text-slate-900">下发《G318 K420 段大修申请》给 03 工程处 Agent</span></div>
+                        <div>•  向上本体拓扑: <span class="font-bold text-blue-700">L29a ➔ Pavement_BelongsTo_Route ➔ L21 G318 国道</span></div>
+                        <div>•  跨处室派发: <span class="font-bold text-slate-900">下发《G318 K420 段大修申请》给 03 工程处 Agent</span></div>
                     </div>
                 `,
                 chatLog: `
                     <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
-                        <div class="font-bold text-slate-900">🤖 [步骤 4/5] 拓扑派发完成:</div>
-                        <div class="text-slate-700 font-mono">• 顺着本体树联动 <code>🛠️ 03 工程技术处 Agent</code> 申请大修项目！</div>
+                        <div class="font-bold text-slate-900"> [步骤 4/5] 拓扑派发完成:</div>
+                        <div class="text-slate-700 font-mono">• 顺着本体树联动 <code> 03 工程技术处 Agent</code> 申请大修项目！</div>
                     </div>
                 `
             },
@@ -2540,14 +2542,14 @@ if (scen.exts && scen.exts.length > 0) {
                 html: `
                     <div class="space-y-1 font-mono text-[11px]">
                         <div class="font-bold text-sky-900"> 动作细节：执行 Action 写回沉淀</div>
-                        <div>• 🌿 Git 沙盒校验: <span class="font-bold text-slate-900">dev-hubei-2026 (允许 Merge)</span></div>
-                        <div>• ✍️ 双签审定: <span class="text-emerald-700 font-bold">养护处主管【授权审批通过】</span></div>
+                        <div>•  Git 沙盒校验: <span class="font-bold text-slate-900">dev-hubei-2026 (允许 Merge)</span></div>
+                        <div>• ✍ 双签审定: <span class="text-emerald-700 font-bold">养护处主管【授权审批通过】</span></div>
                         <div>•  物理落库: <span class="text-blue-700 font-bold">l29a_pci_eval_operator() 写入《L29a》数据库</span></div>
                     </div>
                 `,
                 chatLog: `
                     <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
-                        <div class="font-bold text-emerald-900">🎉 [步骤 5/5] 双签物理落库成功！</div>
+                        <div class="font-bold text-emerald-900"> [步骤 5/5] 双签物理落库成功！</div>
                         <div class="text-slate-700 font-mono">• 正式写入物理表 <code>《L29a》</code>，基线版本归档为 <code>v2.1</code>！</div>
                     </div>
                 `
@@ -2686,7 +2688,7 @@ if (scen.exts && scen.exts.length > 0) {
             if (box) {
                 box.innerHTML += `
                     <div class="aip-chat-msg-ai p-2.5 rounded text-[11px] space-y-1">
-                        <div class="font-bold text-sky-900">🤖 AIP 拓扑版本感知响应:</div>
+                        <div class="font-bold text-sky-900"> AIP 拓扑版本感知响应:</div>
                         <div class="text-slate-700 font-mono">${d.chatLog}</div>
                     </div>
                 `;
@@ -2698,65 +2700,65 @@ if (scen.exts && scen.exts.length > 0) {
 
         const schemaEvolutionData = {
             '2025_l24a': [
-                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 🟢' },
-                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
-                { field: 'col62_bci', name: 'BCI 综合评定技术得分', std2015: '未采集该细分列', std2025: 'FLOAT (最新升维)', dict: 'L24a_BCI_Score', status: '2025最新升维 🆕' },
-                { field: 'col15_maintain_dept', name: '管养单位 Agent', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L24a_Maintain_Agent', status: '保持一致 🟢' }
+                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 ' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 ' },
+                { field: 'col62_bci', name: 'BCI 综合评定技术得分', std2015: '未采集该细分列', std2025: 'FLOAT (最新升维)', dict: 'L24a_BCI_Score', status: '2025最新升维 ' },
+                { field: 'col15_maintain_dept', name: '管养单位 Agent', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L24a_Maintain_Agent', status: '保持一致 ' }
             ],
             '2019_l24a': [
-                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 🟢' },
-                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
-                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '未采集', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '2019初步引入 🔄' }
+                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 ' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 ' },
+                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '未采集', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '2019初步引入 ' }
             ],
             '2018_l24a': [
-                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 🟢' },
-                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
-                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '未采集', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '2018过渡期列 🔄' }
+                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 ' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 ' },
+                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '未采集', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '2018过渡期列 ' }
             ],
             '2017_l24a': [
-                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 🟢' },
-                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
-                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '缺失 (未引入)', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '缺失智能降维 ⚠️' }
+                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 ' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 ' },
+                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '缺失 (未引入)', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '缺失智能降维 ⚠' }
             ],
             '2016_l24a': [
-                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 🟢' },
-                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 🟢' },
-                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '缺失 (未引入)', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '缺失智能降维 ⚠️' }
+                { field: 'col1_bridge_code', name: '桥梁代码 (物理PK)', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '保持一致 ' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '保持一致 ' },
+                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '缺失 (未引入)', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '缺失智能降维 ⚠' }
             ],
             '2015_l24a': [
-                { field: 'col1_bridge_code', name: '桥梁编码', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '历史基线 🟢' },
-                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '历史基线 🟢' },
-                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '缺失 (未引入)', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '缺失智能降维 ⚠️' }
+                { field: 'col1_bridge_code', name: '桥梁编码', std2015: 'VARCHAR(32)', std2025: 'VARCHAR(32)', dict: 'L24a_Bridge_PK', status: '历史基线 ' },
+                { field: 'col2_bridge_name', name: '桥梁名称', std2015: 'TEXT', std2025: 'TEXT', dict: 'L24a_Bridge_Name', status: '历史基线 ' },
+                { field: 'col62_bci', name: 'BCI 技术评分', std2015: '缺失 (未引入)', std2025: 'FLOAT', dict: 'L24a_BCI_Score', status: '缺失智能降维 ⚠' }
             ],
             '2025_l29a': [
-                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
-                { field: 'col4_direction', name: '车道方向 (双向/上行)', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '去重必选列 🔴' },
-                { field: 'col12_pci', name: 'PCI 路面状况指数', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 ' },
+                { field: 'col4_direction', name: '车道方向 (双向/上行)', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '去重必选列 ' },
+                { field: 'col12_pci', name: 'PCI 路面状况指数', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 ' }
             ],
             '2019_l29a': [
-                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
-                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 🟢' },
-                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 ' },
+                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 ' },
+                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 ' }
             ],
             '2018_l29a': [
-                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
-                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 🟢' },
-                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 ' },
+                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 ' },
+                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 ' }
             ],
             '2017_l29a': [
-                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
-                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 🟢' },
-                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 ' },
+                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 ' },
+                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 ' }
             ],
             '2016_l29a': [
-                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 🟢' },
-                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 🟢' },
-                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 🟢' }
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '保持一致 ' },
+                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史兼容 ' },
+                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '保持一致 ' }
             ],
             '2015_l29a': [
-                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '历史基线 🟢' },
-                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史基线 🟢' },
-                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '历史基线 🟢' }
+                { field: 'col1_sec_code', name: '100m路段编码 (物理PK)', std2015: 'VARCHAR(64)', std2025: 'VARCHAR(64)', dict: 'L29a_Section_PK', status: '历史基线 ' },
+                { field: 'col4_direction', name: '车道方向', std2015: 'TEXT', std2025: 'TEXT', dict: 'L29a_Direction', status: '历史基线 ' },
+                { field: 'col12_pci', name: 'PCI 路面得分', std2015: 'FLOAT', std2025: 'FLOAT', dict: 'L29a_PCI_Score', status: '历史基线 ' }
             ]
         };
 
@@ -2820,7 +2822,7 @@ if (scen.exts && scen.exts.length > 0) {
                         <div class="p-3 border rounded-lg bg-sky-50/60 space-y-2 border-sky-200">
                             <div class="font-bold text-sky-900 flex justify-between items-center text-xs">
                                 <span>■ L21 公路路线基本情况明细表 - 02 路线明细</span>
-                                <span class="bg-sky-600 text-white px-2 py-0.5 rounded text-[10px] font-mono font-bold">1 个 Tab 物理单表 / 222 行记录 🟢</span>
+                                <span class="bg-sky-600 text-white px-2 py-0.5 rounded text-[10px] font-mono font-bold">1 个 Tab 物理单表 / 222 行记录 </span>
                             </div>
                             <div class="pl-3 text-slate-700 font-mono text-[11px] leading-tight space-y-1">
                                 <div>• <strong>规范系列名称</strong>: <code>L21 公路路线基本情况明细表</code> (属于交通部 17 套年报规范表系列之一)</div>
@@ -2884,7 +2886,7 @@ if (scen.exts && scen.exts.length > 0) {
                             <div class="p-2 border rounded bg-sky-50/50 border-sky-200 space-y-1 col-span-2">
                                 <div class="font-bold text-sky-900 flex justify-between text-[11px]">
                                     <span>■ L21 公路路线基本情况明细表 - 02 路线明细</span>
-                                    <span class="text-blue-700 font-mono font-bold text-[10px]">13,616 行物理数据 🟢</span>
+                                    <span class="text-blue-700 font-mono font-bold text-[10px]">13,616 行物理数据 </span>
                                 </div>
                                 <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】02 路线明细 (SQLite物理表: L21 / 路段.xls / 排桩 / 观测站 / 安防 / 变更表)</div>
                             </div>
@@ -2905,7 +2907,7 @@ if (scen.exts && scen.exts.length > 0) {
                             <div class="p-2 border rounded bg-sky-50/50 border-sky-200 space-y-1 col-span-2">
                                 <div class="font-bold text-sky-900 flex justify-between text-[11px]">
                                     <span>■ L24a 公路桥梁基本情况明细表 - 03 桥梁明细</span>
-                                    <span class="text-blue-700 font-mono font-bold text-[10px]">19,678 行物理数据 🟢</span>
+                                    <span class="text-blue-700 font-mono font-bold text-[10px]">19,678 行物理数据 </span>
                                 </div>
                                 <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】03 桥梁明细 (SQLite物理表: L24a / 桥梁.xls / 农村桥梁.xls)</div>
                             </div>
@@ -2940,7 +2942,7 @@ if (scen.exts && scen.exts.length > 0) {
                             <div class="p-2 border rounded bg-sky-50/50 border-sky-200 space-y-1 col-span-2">
                                 <div class="font-bold text-sky-900 flex justify-between text-[11px]">
                                     <span>■ L29a 公路日常路况评定明细表 - 12-1 100m路况评定明细</span>
-                                    <span class="text-blue-700 font-mono font-bold text-[10px]">40,936 行物理数据 🟢</span>
+                                    <span class="text-blue-700 font-mono font-bold text-[10px]">40,936 行物理数据 </span>
                                 </div>
                                 <div class="pl-3 text-slate-600 text-[10.5px]">↳ 【Tab表】12-1 100m路况评定明细 (SQLite物理表: L29a / 12-1路况明细.xlsx)</div>
                             </div>
@@ -2994,8 +2996,8 @@ if (scen.exts && scen.exts.length > 0) {
             l24a: {
                 title: " 《L24a 公路桥梁基本情况明细表类》",
                 tables: [
-                    { name: "🛢️ 物理底表 1: 《桥梁.xls》", desc: "省干线国省道养护桥梁明细物理文件", rowsCount: "742 行" },
-                    { name: "🛢️ 物理底表 2: 《农村桥梁.xls》", desc: "县乡村道农村三四类桥梁明细物理文件", rowsCount: "150 行" }
+                    { name: " 物理底表 1: 《桥梁.xls》", desc: "省干线国省道养护桥梁明细物理文件", rowsCount: "742 行" },
+                    { name: " 物理底表 2: 《农村桥梁.xls》", desc: "县乡村道农村三四类桥梁明细物理文件", rowsCount: "150 行" }
                 ],
                 rows: [
                     { pk: "HUB-BRG-G318-001", name: "巴河特大桥", route: "G318 沪聂线", len: "1,240m", metric: "BCI = 92.0 (一类健康桥)", lead: "AGENT-工程技术-01" },
@@ -3006,8 +3008,8 @@ if (scen.exts && scen.exts.length > 0) {
             l29a: {
                 title: " 《L29a 公路日常路况评定明细表类》",
                 tables: [
-                    { name: "🛢️ 物理底表 1: 《12-1 公路技术状况明细表一—高速公路、普通国、省道.xlsx》", desc: "国省干线 100m 单元物理文件", rowsCount: "640 行" },
-                    { name: "🛢️ 物理底表 2: 《12-2 公路技术状况明细表.xlsx》", desc: "农村公路路况评定明细物理文件", rowsCount: "202 行" }
+                    { name: " 物理底表 1: 《12-1 公路技术状况明细表一—高速公路、普通国、省道.xlsx》", desc: "国省干线 100m 单元物理文件", rowsCount: "640 行" },
+                    { name: " 物理底表 2: 《12-2 公路技术状况明细表.xlsx》", desc: "农村公路路况评定明细物理文件", rowsCount: "202 行" }
                 ],
                 rows: [
                     { pk: "HUB-SEC-G318-420", name: "G318 K420+100段", route: "G318 沪聂线", len: "0.10km (100m)", metric: "PCI = 62.5 (差路段)", lead: "AGENT-养护管理-02" },
@@ -3018,9 +3020,9 @@ if (scen.exts && scen.exts.length > 0) {
             l21: {
                 title: " 《L21 公路路线基本情况明细表类》",
                 tables: [
-                    { name: "🛢️ 物理底表 1: 《路段.xls》", desc: "全省国省干线路线基础明细文件", rowsCount: "512 行" },
-                    { name: "🛢️ 物理底表 2: 《公路排桩.xls》", desc: "标准空间参考系排桩明细物理文件", rowsCount: "320 行" },
-                    { name: "🛢️ 物理底表 3: 《交通量观测站点.xls》", desc: "自动交调站点观测明细文件", rowsCount: "210 行" }
+                    { name: " 物理底表 1: 《路段.xls》", desc: "全省国省干线路线基础明细文件", rowsCount: "512 行" },
+                    { name: " 物理底表 2: 《公路排桩.xls》", desc: "标准空间参考系排桩明细物理文件", rowsCount: "320 行" },
+                    { name: " 物理底表 3: 《交通量观测站点.xls》", desc: "自动交调站点观测明细文件", rowsCount: "210 行" }
                 ],
                 rows: [
                     { pk: "HUB-RTE-G318", name: "G318 沪聂线湖北段", route: "G318 国道", len: "1,042.8km", metric: "行政等级: 国道 (全线通畅)", lead: "AGENT-规划计划-02" },
@@ -3108,7 +3110,7 @@ if (scen.exts && scen.exts.length > 0) {
                             <div class="text-[10.5px] text-slate-600">${tbl.desc}</div>
                             <div class="text-[9.5px] text-blue-700 font-mono font-bold border-t border-slate-200 pt-1 flex justify-between">
                                 <span>包含记录数: ${tbl.rowsCount}</span>
-                                <span>已挂载本体 🟢</span>
+                                <span>已挂载本体 </span>
                             </div>
                         </div>
                     `;
@@ -3133,7 +3135,7 @@ if (scen.exts && scen.exts.length > 0) {
                                 <th class="gov-table-th">路线编码</th>
                                 <th class="gov-table-th">里程/长度</th>
                                 <th class="gov-table-th">真实物理测值与指标 (Metric)</th>
-                                <th class="gov-table-th">👑 写权限归口 Agent</th>
+                                <th class="gov-table-th"> 写权限归口 Agent</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -3168,7 +3170,7 @@ if (scen.exts && scen.exts.length > 0) {
             if (textarea) {
                 textarea.select();
                 document.execCommand('copy');
-                alert('📋 嵌入代码已成功复制至剪贴板！');
+                alert(' 嵌入代码已成功复制至剪贴板！');
             }
         }
 
@@ -3212,7 +3214,7 @@ if (scen.exts && scen.exts.length > 0) {
 const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                     const pillHtml = `<div id="${ext.id}" onclick="handleLeftElementClick('${ext.ontKey || scenData.defaultOnt}')" onmouseenter="highlightLineage('${ext.ontKey || scenData.defaultOnt}')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border cursor-pointer hover:shadow-xs transition-all ${colorClasses}">
                         <span class="font-bold truncate leading-none">${ext.name.replace(/^(?:src-\d+\s*|\d+\.\s*)/i, '').replace(/\.[a-z]+$/, '')}</span>
-                        <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5 border border-blue-100"><span>🔗</span><span>${ontTag}</span></span>
+                        <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5 border border-blue-100"><span></span><span>${ontTag}</span></span>
                     </div>`;
                     
                     if (isXlsx) bizHtml += pillHtml;
@@ -3261,7 +3263,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 switchWorkspace('main');
                 highlightLineage(['l27', 'l29a', 'l32', 'role-16', 'role-17', 'role-18', 'role-19', 'role-12', 'role-15', 'role-10'], true);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🚨 【应急防汛业务跨委办局协同】15 气象局预警 ➔ 17 自然资源厅地灾点(L27) ➔ 18 公安交管局封路(L29a) ➔ 16 应急管理厅 ↔ 12 应急处置中心(L32)';
+                if (label) label.innerText = ' 【应急防汛业务跨委办局协同】15 气象局预警 ➔ 17 自然资源厅地灾点(L27) ➔ 18 公安交管局封路(L29a) ➔ 16 应急管理厅 ↔ 12 应急处置中心(L32)';
                 
                 const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
@@ -3281,7 +3283,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 switchWorkspace('main');
                 highlightLineage(['l24a', 'l28', 'l30b', 'role-10', 'role-13', 'role-19', 'role-20', 'role-4', 'role-3'], true);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🌉 【场景2：长大桥梁多方协同演进】10 高速企业 ➔ 20 监测设备商(L28) ➔ 13 专检测企业 ➔ 19 设计科研院所复核 ➔ 04 养护处加固(L30b)';
+                if (label) label.innerText = ' 【场景2：长大桥梁多方协同演进】10 高速企业 ➔ 20 监测设备商(L28) ➔ 13 专检测企业 ➔ 19 设计科研院所复核 ➔ 04 养护处加固(L30b)';
                 
                 const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
@@ -3304,7 +3306,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 switchWorkspace('main');
                 highlightLineage(['l29a', 'l30a', 'l30b', 'role-11', 'role-13', 'role-14', 'role-21', 'role-4'], true);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '🛣️ 【场景3：路检桩号AI自动巡检协同】21 AI自动巡检服务商(激光雷达车) ➔ 13 专检测企业标定 ➔  L29a 路况桩号 ➔ 14 养护施工修补(L30a)';
+                if (label) label.innerText = ' 【场景3：路检桩号AI自动巡检协同】21 AI自动巡检服务商(激光雷达车) ➔ 13 专检测企业标定 ➔  L29a 路况桩号 ➔ 14 养护施工修补(L30a)';
                 
                 const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
@@ -3324,7 +3326,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 switchWorkspace('main');
                 highlightLineage(['l21', 'l29a', 'role-5', 'role-0'], true);
                 const label = document.getElementById('activeScenarioLabel');
-                if (label) label.innerText = '📍 【场景4：桩号空间坐标偏差校正】 L21 标准排桩 ↔  L29a 日常检测 · 偏差 >50m 路段 86 处 · 校正落库 ➔ 00数据统筹/05农路处';
+                if (label) label.innerText = ' 【场景4：桩号空间坐标偏差校正】 L21 标准排桩 ↔  L29a 日常检测 · 偏差 >50m 路段 86 处 · 校正落库 ➔ 00数据统筹/05农路处';
                 
                 const infoContent = document.getElementById('multi-combo-info-content');
                 if (infoContent) {
@@ -3359,13 +3361,13 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
             }
 
             if (responseBox) responseBox.classList.remove('hidden');
-            if (responseText) responseText.innerHTML = `🤖 正在穿透检索全域 42 张底表与 17 套 L 码本体...`;
+            if (responseText) responseText.innerHTML = ` 正在穿透检索全域 42 张底表与 17 套 L 码本体...`;
 
             setTimeout(() => {
                 let targetCodes = ['l21'];
                 let targetElementId = 'ont-l21';
                 let replyMsg = '';
-                let aiScenarioTitle = `🤖 【AIP 智能问答】"${query}" ➔ 物理本体图谱解析`;
+                let aiScenarioTitle = ` 【AIP 智能问答】"${query}" ➔ 物理本体图谱解析`;
                 let aiInfoHtml = '';
 
                 // 智能语义识别与血缘解算
@@ -3373,48 +3375,48 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                     targetCodes = ['l24a', 'l28', 'l30b', 'role-10', 'role-13', 'role-19', 'role-20', 'role-4'];
                     targetElementId = 'ont-l24a';
                     replyMsg = `已定位桥梁健康与监测拓扑。穿透物理底表 <span class="font-mono font-bold">src-10/11/43~46</span> ➔ 本体 <span class="font-mono font-bold">L24a(桥梁)/L28(监测)/L30b(工程)</span>。涉及：03工程处/04养护处/20监测设备商/19设计院。`;
-                    aiScenarioTitle = `🤖 【AIP 问答穿透】全省公路桥梁健康检测、监测与加固台账联动`;
+                    aiScenarioTitle = ` 【AIP 问答穿透】全省公路桥梁健康检测、监测与加固台账联动`;
                     aiInfoHtml = `
                         <div class="space-y-0.5 mt-0.5">
                             <div> <span class="font-bold text-slate-900">问答意图解算：</span>穿透 42 张底表中的桥梁健康定检与传感器监测数据</div>
-                            <div>🌉 <span class="font-bold text-sky-800">关联本体节点：</span> [L24a] 桥梁骨架 ↔  [L28] 结构物监测 ↔  [L30b] 养护工程</div>
-                            <div class="text-sky-900 font-bold bg-blue-100/80 p-0.5 rounded border border-sky-200">🤝 <span class="font-bold">协同 Agent：</span>03 工程技术处 · 04 养护处 · 20 监测设备商 · 19 设计科研院所</div>
+                            <div> <span class="font-bold text-sky-800">关联本体节点：</span> [L24a] 桥梁骨架 ↔  [L28] 结构物监测 ↔  [L30b] 养护工程</div>
+                            <div class="text-sky-900 font-bold bg-blue-100/80 p-0.5 rounded border border-sky-200"> <span class="font-bold">协同 Agent：</span>03 工程技术处 · 04 养护处 · 20 监测设备商 · 19 设计科研院所</div>
                         </div>
                     `;
                 } else if (/气象|汛期|暴雨|预警|地灾|应急|灾害|救援|积水|险情/i.test(query)) {
                     targetCodes = ['l27', 'l29a', 'l32', 'role-16', 'role-17', 'role-18', 'role-19', 'role-12'];
                     targetElementId = 'ont-l27';
                     replyMsg = `已启动气象灾害应急响应拓扑。穿透底表 <span class="font-mono font-bold">src-18~21</span> ➔ 应急三链本体 <span class="font-mono font-bold">L27(地灾)/L29a(路况)/L32(队伍)</span>。涉及：15气象局/17资规厅/18交管局/16应急厅/12应急中心。`;
-                    aiScenarioTitle = `🤖 【AIP 问答穿透】跨委办局气象预警、地灾隐患与路况抢通联动`;
+                    aiScenarioTitle = ` 【AIP 问答穿透】跨委办局气象预警、地灾隐患与路况抢通联动`;
                     aiInfoHtml = `
                         <div class="space-y-0.5 mt-0.5">
-                            <div>⛈️ <span class="font-bold text-slate-900">外部气象地灾：</span>16 气象局预警 + 18 自然资源厅  [L27] 地质灾害隐患点</div>
-                            <div>🚧 <span class="font-bold text-rose-800">现场交通管制：</span>18 公安交管局封路管制  [L29a] 路况桩号</div>
-                            <div class="text-rose-900 font-bold bg-rose-50 p-0.5 rounded border border-rose-200">🚨 <span class="font-bold">应急抢通指挥：</span>16 应急管理厅 ↔ 12 应急处置中心  [L32] 抢险队伍</div>
+                            <div>⛈ <span class="font-bold text-slate-900">外部气象地灾：</span>16 气象局预警 + 18 自然资源厅  [L27] 地质灾害隐患点</div>
+                            <div> <span class="font-bold text-rose-800">现场交通管制：</span>18 公安交管局封路管制  [L29a] 路况桩号</div>
+                            <div class="text-rose-900 font-bold bg-rose-50 p-0.5 rounded border border-rose-200"> <span class="font-bold">应急抢通指挥：</span>16 应急管理厅 ↔ 12 应急处置中心  [L32] 抢险队伍</div>
                         </div>
                     `;
                 } else if (/资金|预算|里程|养护费|财务|投入|工程|花费|国道/i.test(query)) {
                     targetCodes = ['l30a', 'l30b', 'l30c', 'role-2', 'role-4'];
                     targetElementId = 'ont-l30b';
                     replyMsg = `已定位养护里程与资金穿透分析。关联底表 <span class="font-mono font-bold">src-25~32</span> ➔ 本体 <span class="font-mono font-bold">L30a(里程)/L30b(工程资金)/L30c(总资金)</span>。涉及：04养护管理处/02财务资产处。`;
-                    aiScenarioTitle = `🤖 【AIP 问答穿透】全省国道养护里程、工程预算与资金穿透`;
+                    aiScenarioTitle = ` 【AIP 问答穿透】全省国道养护里程、工程预算与资金穿透`;
                     aiInfoHtml = `
                         <div class="space-y-0.5 mt-0.5">
-                            <div>💰 <span class="font-bold text-slate-900">资金穿透问答：</span>关联  [L30a] 经常性养护 +  [L30b] 养护工程 +  [L30c] 资金汇总</div>
-                            <div>📊 <span class="font-bold text-emerald-800">业务执行主体：</span>02 财务资产处 (拨款审计) ↔ 04 养护管理处 (工程验收)</div>
-                            <div class="text-emerald-900 font-bold bg-emerald-50 p-0.5 rounded border border-emerald-200">📈 <span class="font-bold">计算结果：</span>普通国道 12,480km 养护投入 41.3 亿元，全流程勾稽一致</div>
+                            <div> <span class="font-bold text-slate-900">资金穿透问答：</span>关联  [L30a] 经常性养护 +  [L30b] 养护工程 +  [L30c] 资金汇总</div>
+                            <div> <span class="font-bold text-emerald-800">业务执行主体：</span>02 财务资产处 (拨款审计) ↔ 04 养护管理处 (工程验收)</div>
+                            <div class="text-emerald-900 font-bold bg-emerald-50 p-0.5 rounded border border-emerald-200"> <span class="font-bold">计算结果：</span>普通国道 12,480km 养护投入 41.3 亿元，全流程勾稽一致</div>
                         </div>
                     `;
                 } else if (/桩号|巡检|日常|参考系|校正|传导|对齐|偏差|路况/i.test(query)) {
                     targetCodes = ['l21', 'l29a', 'role-11', 'role-13', 'role-21', 'role-5', 'role-0'];
                     targetElementId = 'ont-l21';
                     replyMsg = `已检索桩号匹配与空间对齐数据。关联底表 <span class="font-mono font-bold">src-2/23/24</span> ➔ 本体 <span class="font-mono font-bold">L21(标准排桩) ↔ L29a(日常检测)</span>。主责：21AI巡检/13检测/05农路处/00数据统筹。`;
-                    aiScenarioTitle = `🤖 【AIP 问答穿透】AI 自动巡检桩号匹配与空间坐标参考系校正`;
+                    aiScenarioTitle = ` 【AIP 问答穿透】AI 自动巡检桩号匹配与空间坐标参考系校正`;
                     aiInfoHtml = `
                         <div class="space-y-0.5 mt-0.5">
-                            <div>📍 <span class="font-bold text-slate-900">桩号对齐问答：</span>匹配  [L21] 标准排桩参考系与  [L29a] 日常检测桩号</div>
-                            <div>🚗 <span class="font-bold text-indigo-800">巡检数据来源：</span>21 AI自动巡检服务商 (激光车) ➔ 13 专检测企业标定</div>
-                            <div class="text-purple-900 font-bold bg-purple-50 p-0.5 rounded border border-purple-200">🔧 <span class="font-bold">校正与落库：</span>识别偏差 >50m 路段 86 处，自动生成纠偏表并存入 00 数据统筹</div>
+                            <div> <span class="font-bold text-slate-900">桩号对齐问答：</span>匹配  [L21] 标准排桩参考系与  [L29a] 日常检测桩号</div>
+                            <div> <span class="font-bold text-indigo-800">巡检数据来源：</span>21 AI自动巡检服务商 (激光车) ➔ 13 专检测企业标定</div>
+                            <div class="text-purple-900 font-bold bg-purple-50 p-0.5 rounded border border-purple-200"> <span class="font-bold">校正与落库：</span>识别偏差 >50m 路段 86 处，自动生成纠偏表并存入 00 数据统筹</div>
                         </div>
                     `;
                 } else {
@@ -3422,11 +3424,11 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                     targetCodes = ['l21', 'l29a', 'l24a', 'role-0'];
                     targetElementId = 'ont-l29a';
                     replyMsg = `已解算问题 "${query}"。定位关联数据链 <span class="font-mono font-bold">L21/L29a/L24a</span>，已在中间全景拓扑大盘精准高亮呈现血缘条带。`;
-                    aiScenarioTitle = `🤖 【AIP 智能解析】"${query}"`;
+                    aiScenarioTitle = ` 【AIP 智能解析】"${query}"`;
                     aiInfoHtml = `
                         <div class="space-y-0.5 mt-0.5">
                             <div> <span class="font-bold text-slate-900">AI 智能解析：</span>针对检索词 "${query}" 提炼全域数据关系</div>
-                            <div>🔗 <span class="font-bold text-sky-800">本体拓扑高亮：</span>已定位关联本体节点  [L21]、 [L29a]、 [L24a]</div>
+                            <div><span class="font-bold text-sky-800">本体拓扑高亮：</span>已定位关联本体节点  [L21]、 [L29a]、 [L24a]</div>
                             <div class="text-slate-900 font-bold bg-slate-100 p-0.5 rounded border border-slate-300"> <span class="font-bold">数据治理建议：</span>跨部门数据项由 00 数据统筹中枢统一标准后全域共享</div>
                         </div>
                     `;
@@ -3462,7 +3464,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 // 4. 更新顶部状态与气泡
                 const activeLabel = document.getElementById('activeScenarioLabel');
                 if (activeLabel) {
-                    activeLabel.innerHTML = `🤖 AIP 智能解算：【${query}】➔ 关联本体 [${targetCodes.join('/')}] 全流向拓扑已显示`;
+                    activeLabel.innerHTML = ` AIP 智能解算：【${query}】➔ 关联本体 [${targetCodes.join('/')}] 全流向拓扑已显示`;
                 }
 
                 if (statusBadge) {
@@ -3505,7 +3507,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
             const userMsgHTML = `
                 <div class="aip-chat-msg-user p-2.5 rounded text-[11px] space-y-0.5 ml-4">
                     <div class="font-bold flex justify-between">
-                        <span>👤 场景指令:</span>
+                        <span> 场景指令:</span>
                         <span class="text-[9px] text-slate-700 font-mono">17:41</span>
                     </div>
                     <div>${userText}</div>
@@ -3997,7 +3999,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
         <div class="flex items-center justify-between p-3 border-b border-slate-200 bg-slate-50">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded bg-slate-200 flex items-center justify-center text-slate-700 text-lg shadow-inner">
-                    📄
+                    
                 </div>
                 <div>
                     <div class="font-bold text-slate-800 text-sm">L27 地质灾害与险情点明细表</div>
@@ -4034,7 +4036,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
             <!-- Tab 2: 动作 (Actions) -->
             <div id="tab-actions" class="space-y-3 hidden">
                 <div class="bg-slate-100 border border-slate-200 text-slate-700 p-2 rounded text-[10px]">
-                    💡 <b>Action 提示：</b> 这些动作硬绑定在当前 L27 本体上。大模型只能调用这些受规则保护的 Action，不能直接执行原生 SQL 修改数据。
+                     <b>Action 提示：</b> 这些动作硬绑定在当前 L27 本体上。大模型只能调用这些受规则保护的 Action，不能直接执行原生 SQL 修改数据。
                 </div>
                 <div class="bg-white border border-slate-200 rounded p-3 shadow-2xs hover:border-slate-400 cursor-pointer transition-colors group">
                     <div class="flex items-center justify-between mb-1">
@@ -4163,9 +4165,9 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                         if (ontDiv) {
                             const spans = ontDiv.querySelectorAll('span');
                             for (const span of spans) {
-                                if (span.innerText.includes('📚 规则')) {
+                                if (span.innerText.includes('规则')) {
                                     if (count > 0) {
-                                        span.innerText = '📚 规则 x ' + count;
+                                        span.innerText = '规则 x ' + count;
                                         span.style.display = 'inline-block';
                                     } else {
                                         span.style.display = 'none';
@@ -4228,12 +4230,12 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
             if (activeRuleTab === 'universal') {
                 html += `
                 <div class="bg-slate-50 border border-slate-200 text-slate-700 p-2 rounded text-[10px] mb-4">
-                    💡 <b>全局通用规则：</b> 这些是业务基线口径（出自 <code>02_RuleEngine</code>）。只要对该本体发起查询，规则始终强制生效。
+                     <b>全局通用规则：</b> 这些是业务基线口径（出自 <code>02_RuleEngine</code>）。只要对该本体发起查询，规则始终强制生效。
                 </div>`;
             } else {
                 html += `
                 <div class="bg-slate-50 border border-slate-200 text-slate-700 p-2 rounded text-[10px] mb-4">
-                    💡 <b>场景联动规则：</b> 这些是多智能体协同口径（出自 <code>03_WorkflowBuilder</code>）。仅在特定工作流场景中触发。
+                     <b>场景联动规则：</b> 这些是多智能体协同口径（出自 <code>03_WorkflowBuilder</code>）。仅在特定工作流场景中触发。
                 </div>`;
             }
 
@@ -4306,7 +4308,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
             // 2. Render Mock Actions
             document.getElementById('tab-actions').innerHTML = `
                 <div class="bg-slate-100 border border-slate-200 text-slate-700 p-2 rounded text-[10px]">
-                    💡 <b>Action 提示：</b> 以下动作动态绑定至 ${codeUpper} 本体。
+                     <b>Action 提示：</b> 以下动作动态绑定至 ${codeUpper} 本体。
                 </div>
                 <div class="bg-white border border-slate-200 rounded p-3 shadow-2xs hover:border-slate-400 cursor-pointer transition-colors group mt-3">
                     <div class="flex items-center justify-between mb-1">
@@ -4321,7 +4323,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 <div class="bg-white border border-slate-200 rounded p-3 shadow-2xs hover:border-slate-400 cursor-pointer transition-colors group mt-3">
                     <div class="flex items-center justify-between mb-1">
                         <div class="flex items-center gap-2">
-                            <span class="text-slate-600">📊</span>
+                            <span class="text-slate-600"></span>
                             <span class="font-bold text-slate-800 text-xs">生成资产快照报表</span>
                         </div>
                         <span class="text-[8px] bg-slate-100 text-slate-500 px-1 border border-slate-200 rounded">数据统筹</span>
@@ -4391,7 +4393,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
         }
     </script>
 <script>
-const ONTOLOGY_RULES_STATIC = {"l29a": {"universal": [{"file": "跨域协同数据落库规范.md", "section": "数据隔离与安全拦截机制", "snippet": "为了保证交通年报基础数据（如 `L29a`）的绝对准确性与权责清晰，系统对所有大模型智能体执行强制的**“数据隔离审查”与“人工审批授权”**双重门禁机制。\n\n1. **严禁直写（No Direct DB Commits）**：大模型（年报总管智能体）及底层执行方智能体获取到修正字典或计算结果后，**严禁**直接对物理主库执行 `INSERT` 或 `UPDATE` 操作。\n2. **暂存区渲染对比**：所有跨域融合数据必须在安全暂存区中完成映射重组，并在前端 UI 呈现“纠偏前后对比报告”及“明细数据预览盘”。\n3. **人工放行（Manual Verification & Authorization）**：最终的落库动作必须由具有业务权限的人员（如养护处业务专员）在对右侧明细数据进行微观抽验后，显式授权（点击确认/导出审核报告）方可将暂存数据合法并入最终台账。"}, {"file": "里程计算综合业务口径.md", "section": "一、里程三口径定义", "snippet": "**1. 物理在册总里程**\n直接对路线表中的长度求和，包含城建段与重叠段，反映路网在地图上的绝对物理空间延展。\n\n**2. 法定实际管养里程**\n在物理里程基础上，扣除已移交市政的城建段与省域内多线重叠段。这是财务核算与养护经费下拨的唯一真实法人口径。\n- 城建段判定字段：在 L21 表中动态寻找代表“是否城建段”的字段，其值不为“是”\n- 多线重叠段判定字段：在 L21 表中动态寻找代表“重复路线段”或“借线”的字段，过滤掉非空的数据\n\n**3. 检测物理覆盖里程**\n检测车按车道方向独立采集。部分一级及以上公路存在分离式双幅，会产生上下行重复检测。\n- 检测物理覆盖里程 = 双向混合路段长度 + 单向（上行）路段长度\n- 数据源：L29a（公路技术状况明细表）\n- 去重方式：任何基于 L29a 表的查询【必须强制】在 WHERE 条件中对“检测方向”字段过滤，仅保留包含“双向”和“上行”的记录，严格排除“下行”（否则会导致里程翻倍的严重错误！）。\n\n---"}, {"file": "里程计算综合业务口径.md", "section": "三、优良路率口径", "snippet": "**业务定义**（依据 JTG 5210-2018）：\n- 优：MQI ≥ 90\n- 良：80 ≤ MQI < 90\n- 中：70 ≤ MQI < 80\n- 次：60 ≤ MQI < 70\n- 差：MQI < 60\n- **优良路** = MQI ≥ 80 的路段\n- **优良路率** = 优良路里程 / 总检测里程\n\n**数据源**：`L29a`（公路技术状况明细表）\n\n**去重口径**：检测数据存在上下行重复，任何基于 L29a 表的查询【必须强制】在 WHERE 条件中对“检测方向”字段过滤，仅保留包含“双向”和“上行”的记录，严格排除“下行”（否则会导致里程翻倍的严重错误！）。\n\n**答复格式要求**：\n- 必须呈现优、良、中、次、差的具体里程和占比明细\n- 必须说明采用的去重方式\n- 必须标注数据年份\n\n---"}, {"file": "里程计算综合业务口径.md", "section": "四、行政区划汇总里程表格式", "snippet": "当用户要求生成行政区划汇总里程表时，表格必须包含以下三列：\n\n| 行政区域 | 物理在册里程(公里) | 法定实际管养里程(公里) | 检测物理覆盖里程(公里) | 分段数量 |\n| :--- | :--- | :--- | :--- | :--- |\n| [区域A] | [数值] | [数值] | - | [数值] |\n| **合计** | **[数值]** | **[数值]** | **[总检测覆盖]** | **[数值]** |\n\n注：由于 L29a 不含行政区划字段，各分行的检测里程填\"-\"，但合计行必须填入检测总里程。"}], "scenario": [{"file": "场景1_汛期预警防御与应急处置.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【灾前防范阶段】** | | | | |\n| 16 气象局 | 10 执法监督处 | 气象灾害预警/恶劣天气监测推流 | 气象预警信息 / 自然灾害监测预警信息 | 高 |\n| 10 执法监督处 | 00 数据统筹部门 | 空间锚点确权与管辖匹配 | 传递预警坐标要求比对 L21 路线表 | 高 |\n| 00 数据统筹部门 | 04 养护管理处 | 灾前风险点位巡查指令 | 下发\"即刻巡查并设立围挡\"工单 | 高 |\n| 00 数据统筹部门 | 03 工程技术处 | 高位桥隧边坡专项防范 | 提供 L29a/L24a 高风险台账，要求调取传感器 | 高 |\n| 00 数据统筹部门 | 08 农村公路处 | 沿河临崖村道封路避险 | 受灾干线辐射范围及封路指令清单 | 高 |\n| **【灾中应急阶段】** | | | | |\n| 10 执法监督处 | 18 公安交管局 | 警路企气会商与交通分流管控 | 车辆分流、绕行引导和远端交通管控指令 | 高 |\n| 10 执法监督处 | 12 应急处置中心 | 应急资源调度与跨省/区保障 | 盘点方圆50km物资/通信保障调度单 | 高 |\n| 12 应急处置中心 | 15 养护施工企业 | 多方联动公路抢通与装备前置 | 抢修抢通方案建议 / 调度防汛装备物资作业 | 高 |\n| 10 执法监督处 | 02 建设市场处 | 在建工程应急避险 | 暴雨区施工标段清单及强制停工指令 | 高 |\n| 10 执法监督处 | 16 应急管理厅 | 政警路企联合指挥与协同处置 | 跨部门协同处置指令 / 重大事件信息上报 | 高 |\n| **【灾后复盘阶段】** | | | | |\n| 10 执法监督处 | 07 财务资产处 | 抢险资金核算清算 | 抗洪工单汇总及备用金调拨明细 | 中 |\n| 00 数据统筹部门 | 01 规划计划处 | 全年路网受损影响评估 | 灾情期间交通流中断时序数据 | 中 |\n\n\n---"}, {"file": "场景1_汛期预警防御与应急处置.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n**👉 [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "4. 体系文档与免责前置核查 (Item 8 及免责逻辑)", "snippet": "- **指标项**：例行报告情况及不可抗力免责。\n- **唤醒智能体**：【系统核查】`AGENT-数据统筹-01_数据治理（年报主骨架）`\n- **空间扩展与骨架防伪查询**：\n  在考核启动前，禁止做空泛的全库查询。必须将预设问题加入地点约束（如：**武汉市境内 G107 国道**），大模型通过以下 SQL 逻辑进行范围框定，并通过 `JOIN L32` 大修表，自动识别并过滤正处于“封闭施工”期的免责桥梁：\n  ```sql\n  SELECT L29a.桥名, L29a.桩号\n  FROM L29a \n  JOIN L21_路线表 ON L29a.路线编号 = L21.路线编号\n  LEFT JOIN L32_大修表 ON L29a.桥梁ID = L32.桥梁ID\n  WHERE L21.地市 = '武汉市' AND L21.路线编号 LIKE 'G107%' \n    AND (L32.状态 != '封闭施工' OR L32.状态 IS NULL)\n  ```\n  在评分结尾，查阅系统内是否按期提交了相应的分析报告（Item 8）。"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【考核数据拉取与空间锚定】** | | | | |\n| 21 监测设备厂商/产权单位 | 03 工程技术处 | 数据上传质量自动化考核采集 | 设备在线率/完整性/时效性流媒体推送 | 高 |\n| 03 工程技术处 | 00 数据统筹部门 | 空间锚定与底账核实 | 提取 L21 与 L29a 进行管辖权匹配 | 高 |\n| **【全网多智能体交叉取证】** | | | | |\n| 03 工程技术处 | 12 应急处置中心 | 分级预警处置闭环协查 | 调取工单计算 trigger_time 与 ack_time 差值 | 高 |\n| 03 工程技术处 | 04 养护管理处 | 日常运维防伪与现场协查 | 抓取72h修复率及巡检照片真实打卡GPS坐标 | 高 |\n| 03 工程技术处 | 15 养护施工企业 | 下发异常工况超时督办 | 72小时故障修复工单派发 | 高 |\n| **【免责防伪查证与打分闭环】** | | | | |\n| 03 工程技术处 | 06 运营管理处 | 不可抗力断电免责查证 | 穿透机电网关调取市电断电日志 | 中 |\n| 03 工程技术处 | 00 数据统筹部门 | 封闭施工免责扩展核查 | 联合 L32 大修表过滤“封闭施工”期免责桥梁 | 中 |\n| 03 工程技术处 | 交通运输部(外部) | 省级日常监测质量考核报告推送 | 长大桥监测省级汇总质量成绩单(部省双核) | 高 |\n\n\n---"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n**👉 [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景3(专业)_年报业务.md", "section": "4. 人工审批与最终落库防线", "snippet": "在系统确认数据格式无误后，由养护处专员在暂存审核区进行微观抽检。仅当专员点击“授权审批通过”后，“路况检测评定”智能体方可解除最终阻断，将数据正式写入《L29a（公路日常路况评定明细表）》等年报底层核心物理表。\n\n---"}, {"file": "场景3(专业)_年报业务.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n**👉 [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景3(基础)_年报查询.md", "section": "4. 系统级输出约束 (System Prompt Rules)", "snippet": "为实现极致的“主从智能体协同透明化”，大模型在处理任意涉及具体年报表格的数据问答时，**必须严格遵循以下规范**：\n\n1. **思索链（Tool Calls）的精准指派**：\n   - 当大模型针对某一张表（如 L29a）发起查询时，不仅要调用工具，还必须明确在工具上下文中注入该表的**主责智能体**（例如：`AGENT-养护管理-02_路况检测评定`），而不能笼统使用统筹智能体。\n\n---"}, {"file": "场景3(基础)_年报查询.md", "section": "5. 核心业务计算口径 (Business Calculation Rules)", "snippet": "在进行数据查询时，大模型必须严格遵守以下业务规则，防止出现低级数据统计错误（如里程翻倍）：\n\n1. **路况评定明细表 (L29a) 的去重口径**：\n   - **背景**：路况检测车是按车道方向独立采集的，部分一级及以上公路存在分离式双幅，因此 L29a 表中会天然存在大量“上下行”重复检测的数据。\n   - **L29a 关键字段隐式映射**：为防混淆，请严格按照以下字段含义编写 SQL：\n     - `col0`：路线编码（如 G107）\n     - `col4`：检测方向（包含：双向、上行、下行）\n     - `col7`：评定里程 / 长度（单位通常为千米，计算时请 CAST AS REAL）\n     - `col8`：综合评定指标值（PQI / MQI）\n   - **强制动作**：任何涉及 L29a 表的里程汇总查询，【必须强制】在 SQL 的 `WHERE` 条件中对方向字段 (`col4`) 进行过滤去重！\n   - **去重逻辑**：仅保留检测方向包含“双向”或“上行”的记录（严格排除“下行”记录，否则会导致里程翻倍的严重错误）。\n   - **代码示例**：在查询 L29a 表时，WHERE 子句中必须包含类似 `AND (col4 LIKE '%双向%' OR col4 LIKE '%上行%')` 的过滤条件。"}, {"file": "场景3(基础)_年报查询.md", "section": "八、外部协同：1+10+X+Y政企联动与跨域 (External)", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| 22 各地市州交通局 | 00 数据统筹部门 | 年报底表数据逐级汇聚上报 | 42张孤立物理Excel表格包 | 高 |\n| 04 养护管理处 | 07 财务资产处 | 提供养护工程与资金核销业务依据 | L29a / L30b 提取明细视图 | 高 |\n| 01 规划计划处 | 17 自然资源厅 | 路线变更与国土空间规划数据对齐 | L21路线网空间基础基线数据 | 中 |\n| 00 数据统筹部门 | 交通运输部(外部) | 省级路网年报脱敏直报 | L系列综合全库清洗后国标上报数据 | 高 |\n\n\n---"}, {"file": "场景3(基础)_年报查询.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n**👉 [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}], "properties": {"name": "《L29a日常路况评定明细表》", "owner": "AGENT-养护管理-02_路况检测评定", "dataSource": "23. 12-1 路况明细-全省干线.xlsx, 24. 12-2 抽检明细-农路.xlsx", "collaborators": "AGENT-外部-19_公安交管局", "internalSupport": "`AGENT-养护管理-02_路况检测评定`, `AGENT-养护管理-02_路况检测评定`, `AGENT-运营管理-06_路网监督`"}}, "l21": {"universal": [{"file": "里程计算综合业务口径.md", "section": "一、里程三口径定义", "snippet": "**1. 物理在册总里程**\n直接对路线表中的长度求和，包含城建段与重叠段，反映路网在地图上的绝对物理空间延展。\n\n**2. 法定实际管养里程**\n在物理里程基础上，扣除已移交市政的城建段与省域内多线重叠段。这是财务核算与养护经费下拨的唯一真实法人口径。\n- 城建段判定字段：在 L21 表中动态寻找代表“是否城建段”的字段，其值不为“是”\n- 多线重叠段判定字段：在 L21 表中动态寻找代表“重复路线段”或“借线”的字段，过滤掉非空的数据\n\n**3. 检测物理覆盖里程**\n检测车按车道方向独立采集。部分一级及以上公路存在分离式双幅，会产生上下行重复检测。\n- 检测物理覆盖里程 = 双向混合路段长度 + 单向（上行）路段长度\n- 数据源：L29a（公路技术状况明细表）\n- 去重方式：任何基于 L29a 表的查询【必须强制】在 WHERE 条件中对“检测方向”字段过滤，仅保留包含“双向”和“上行”的记录，严格排除“下行”（否则会导致里程翻倍的严重错误！）。\n\n---"}, {"file": "里程计算综合业务口径.md", "section": "二、农村公路总里程口径", "snippet": "**业务定义**：农村公路 = 县道 + 乡道 + 村道\n\n**为何不用 L21 表**：L21 等明细表的农村公路录入率极低，返回结果往往为空或仅有几千公里，不代表真实规模。\n\n**正确数据源**：省级宏观汇总表 `T1a`（公路里程年底到达数表）\n\n**T1a 表结构要点**：\n- T1a 是按年度周期垂直分段的，分为上年年底到达数、本年新建数、本年减少数、本年年底到达数四个板块\n- 查询当年总量时，必须使用《四、本年年底到达数》板块\n- 在路线等级列中：县道对应代码 `29`，乡道对应 `30`，村道对应 `32`\n- 里程数值在对应的里程数据列中\n\n**答复格式要求**：\n- 必须详细列出县道、乡道、村道的里程分类明细\n- 标明数据源为《T1a 湖北省公路年底到达数》\n- 其余两个口径填\"（当前报表不支持计算该项）\"\n\n---"}], "scenario": [{"file": "场景1_汛期预警防御与应急处置.md", "section": "七、前端思维链展示红线", "snippet": "当大模型在执行此场景回答用户提问时：\n1. **必须显式输出被唤醒的智能体名称**（如：`调用：AGENT-运营管理-08_预警`）\n2. **必须说明真实的数据输入**（如：`输入：L21.路线ID = xxxxx`）\n3. **必须引用本文件的层级分工表**（如：`依据：二、分级响应体系 - 2.1红色预警为省级组织`）\n4. **严禁伪造\"检查成功\"进度条**，必须输出真实接口返回值或SQL过滤条数\n5. **严禁自行编造响应时效数字**，如无量化依据，应说明\"本场景架构文件未定义具体时效阈值，如需考核细则请提供《湖北省公路防汛应急预案》量化版本\""}, {"file": "场景1_汛期预警防御与应急处置.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【灾前防范阶段】** | | | | |\n| 16 气象局 | 10 执法监督处 | 气象灾害预警/恶劣天气监测推流 | 气象预警信息 / 自然灾害监测预警信息 | 高 |\n| 10 执法监督处 | 00 数据统筹部门 | 空间锚点确权与管辖匹配 | 传递预警坐标要求比对 L21 路线表 | 高 |\n| 00 数据统筹部门 | 04 养护管理处 | 灾前风险点位巡查指令 | 下发\"即刻巡查并设立围挡\"工单 | 高 |\n| 00 数据统筹部门 | 03 工程技术处 | 高位桥隧边坡专项防范 | 提供 L29a/L24a 高风险台账，要求调取传感器 | 高 |\n| 00 数据统筹部门 | 08 农村公路处 | 沿河临崖村道封路避险 | 受灾干线辐射范围及封路指令清单 | 高 |\n| **【灾中应急阶段】** | | | | |\n| 10 执法监督处 | 18 公安交管局 | 警路企气会商与交通分流管控 | 车辆分流、绕行引导和远端交通管控指令 | 高 |\n| 10 执法监督处 | 12 应急处置中心 | 应急资源调度与跨省/区保障 | 盘点方圆50km物资/通信保障调度单 | 高 |\n| 12 应急处置中心 | 15 养护施工企业 | 多方联动公路抢通与装备前置 | 抢修抢通方案建议 / 调度防汛装备物资作业 | 高 |\n| 10 执法监督处 | 02 建设市场处 | 在建工程应急避险 | 暴雨区施工标段清单及强制停工指令 | 高 |\n| 10 执法监督处 | 16 应急管理厅 | 政警路企联合指挥与协同处置 | 跨部门协同处置指令 / 重大事件信息上报 | 高 |\n| **【灾后复盘阶段】** | | | | |\n| 10 执法监督处 | 07 财务资产处 | 抢险资金核算清算 | 抗洪工单汇总及备用金调拨明细 | 中 |\n| 00 数据统筹部门 | 01 规划计划处 | 全年路网受损影响评估 | 灾情期间交通流中断时序数据 | 中 |\n\n\n---"}, {"file": "场景1_汛期预警防御与应急处置.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n**👉 [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "4. 体系文档与免责前置核查 (Item 8 及免责逻辑)", "snippet": "- **指标项**：例行报告情况及不可抗力免责。\n- **唤醒智能体**：【系统核查】`AGENT-数据统筹-01_数据治理（年报主骨架）`\n- **空间扩展与骨架防伪查询**：\n  在考核启动前，禁止做空泛的全库查询。必须将预设问题加入地点约束（如：**武汉市境内 G107 国道**），大模型通过以下 SQL 逻辑进行范围框定，并通过 `JOIN L32` 大修表，自动识别并过滤正处于“封闭施工”期的免责桥梁：\n  ```sql\n  SELECT L29a.桥名, L29a.桩号\n  FROM L29a \n  JOIN L21_路线表 ON L29a.路线编号 = L21.路线编号\n  LEFT JOIN L32_大修表 ON L29a.桥梁ID = L32.桥梁ID\n  WHERE L21.地市 = '武汉市' AND L21.路线编号 LIKE 'G107%' \n    AND (L32.状态 != '封闭施工' OR L32.状态 IS NULL)\n  ```\n  在评分结尾，查阅系统内是否按期提交了相应的分析报告（Item 8）。"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【考核数据拉取与空间锚定】** | | | | |\n| 21 监测设备厂商/产权单位 | 03 工程技术处 | 数据上传质量自动化考核采集 | 设备在线率/完整性/时效性流媒体推送 | 高 |\n| 03 工程技术处 | 00 数据统筹部门 | 空间锚定与底账核实 | 提取 L21 与 L29a 进行管辖权匹配 | 高 |\n| **【全网多智能体交叉取证】** | | | | |\n| 03 工程技术处 | 12 应急处置中心 | 分级预警处置闭环协查 | 调取工单计算 trigger_time 与 ack_time 差值 | 高 |\n| 03 工程技术处 | 04 养护管理处 | 日常运维防伪与现场协查 | 抓取72h修复率及巡检照片真实打卡GPS坐标 | 高 |\n| 03 工程技术处 | 15 养护施工企业 | 下发异常工况超时督办 | 72小时故障修复工单派发 | 高 |\n| **【免责防伪查证与打分闭环】** | | | | |\n| 03 工程技术处 | 06 运营管理处 | 不可抗力断电免责查证 | 穿透机电网关调取市电断电日志 | 中 |\n| 03 工程技术处 | 00 数据统筹部门 | 封闭施工免责扩展核查 | 联合 L32 大修表过滤“封闭施工”期免责桥梁 | 中 |\n| 03 工程技术处 | 交通运输部(外部) | 省级日常监测质量考核报告推送 | 长大桥监测省级汇总质量成绩单(部省双核) | 高 |\n\n\n---"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n**👉 [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景3(专业)_年报业务.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n**👉 [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景3(基础)_年报查询.md", "section": "6. 跨年份数据结构变动与幻觉防御 (Schema Evolution)", "snippet": "由于交通部的标准会随年份发生变更（例如 2016 年到 2026 年之间，很多底表增加了新字段），因此在跨年穿透查询时，大模型必须严格遵守以下防御规则：\n\n1. **绝对信任 `get_table_schema`**：系统注入的《数据字典》是以最新（2026年）最全的字段为准（如 L21 表可能延展到 `col63`）。但在查历史库（如 2016 年）时，该表可能只有 `col40`。\n2. **禁止盲目使用字典字段**：在生成最终的 SQL 之前，**必须**对比你通过 `get_table_schema` 获取到的真实物理表结构！如果字典中要求的字段（如 `col62 所在区县`）在当前的真实 SQLite 表中不存在，绝对禁止在 `SELECT` 或 `WHERE` 中硬查该列，否则会导致 `no such column` 崩溃。\n3. **降级查询策略**：如果发现所需字段在当年数据库中缺失，请基于存在的字段进行逻辑降级（例如：不按区县分组，改为按路线分组），并在回答中向客户说明：“受限于当年（2016）数据规范，底库尚未采集区县字段，已为您降维汇总如下...”。"}, {"file": "场景3(基础)_年报查询.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n**👉 [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}], "properties": {"name": "《L21（公路路线基本情况明细表）》", "owner": "AGENT-规划计划-02_计划管理", "dataSource": "01. 路段.xls, 02. 公路排桩.xls, 03. 交通量观测站点.xls, 04. 农村公路安防设施.xlsx, 05. 国道路线数据变更.xls", "collaborators": "AGENT-外部-18_自然资源厅, AGENT-外部-19_公安交管局", "internalSupport": "`AGENT-规划计划-02_计划管理`, `AGENT-规划计划-02_计划管理`, `AGENT-规划计划-04_交调年报与奖补融合`, `AGENT-农村公路-01_农村公路养护管理评价`, `AGENT-法规审批-01_大件运输智能选线智能体`"}}, "l24a": {"universal": [], "scenario": [{"file": "场景1_汛期预警防御与应急处置.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【灾前防范阶段】** | | | | |\n| 16 气象局 | 10 执法监督处 | 气象灾害预警/恶劣天气监测推流 | 气象预警信息 / 自然灾害监测预警信息 | 高 |\n| 10 执法监督处 | 00 数据统筹部门 | 空间锚点确权与管辖匹配 | 传递预警坐标要求比对 L21 路线表 | 高 |\n| 00 数据统筹部门 | 04 养护管理处 | 灾前风险点位巡查指令 | 下发\"即刻巡查并设立围挡\"工单 | 高 |\n| 00 数据统筹部门 | 03 工程技术处 | 高位桥隧边坡专项防范 | 提供 L29a/L24a 高风险台账，要求调取传感器 | 高 |\n| 00 数据统筹部门 | 08 农村公路处 | 沿河临崖村道封路避险 | 受灾干线辐射范围及封路指令清单 | 高 |\n| **【灾中应急阶段】** | | | | |\n| 10 执法监督处 | 18 公安交管局 | 警路企气会商与交通分流管控 | 车辆分流、绕行引导和远端交通管控指令 | 高 |\n| 10 执法监督处 | 12 应急处置中心 | 应急资源调度与跨省/区保障 | 盘点方圆50km物资/通信保障调度单 | 高 |\n| 12 应急处置中心 | 15 养护施工企业 | 多方联动公路抢通与装备前置 | 抢修抢通方案建议 / 调度防汛装备物资作业 | 高 |\n| 10 执法监督处 | 02 建设市场处 | 在建工程应急避险 | 暴雨区施工标段清单及强制停工指令 | 高 |\n| 10 执法监督处 | 16 应急管理厅 | 政警路企联合指挥与协同处置 | 跨部门协同处置指令 / 重大事件信息上报 | 高 |\n| **【灾后复盘阶段】** | | | | |\n| 10 执法监督处 | 07 财务资产处 | 抢险资金核算清算 | 抗洪工单汇总及备用金调拨明细 | 中 |\n| 00 数据统筹部门 | 01 规划计划处 | 全年路网受损影响评估 | 灾情期间交通流中断时序数据 | 中 |\n\n\n---"}], "properties": {"name": "《L24a（公路桥梁基本情况明细表）》", "owner": "AGENT-工程技术-01_桥梁结构健康监测", "dataSource": "10. 桥梁.xls, 11. 农村桥梁.xls", "collaborators": "AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-工程技术-01_桥梁结构健康监测`, `AGENT-农村公路-01_农村公路养护管理评价`, `AGENT-建设市场-01_招投标管理`"}}, "l32": {"universal": [], "scenario": [{"file": "场景2_长大桥结构监测数据质量管理.md", "section": "4. 体系文档与免责前置核查 (Item 8 及免责逻辑)", "snippet": "- **指标项**：例行报告情况及不可抗力免责。\n- **唤醒智能体**：【系统核查】`AGENT-数据统筹-01_数据治理（年报主骨架）`\n- **空间扩展与骨架防伪查询**：\n  在考核启动前，禁止做空泛的全库查询。必须将预设问题加入地点约束（如：**武汉市境内 G107 国道**），大模型通过以下 SQL 逻辑进行范围框定，并通过 `JOIN L32` 大修表，自动识别并过滤正处于“封闭施工”期的免责桥梁：\n  ```sql\n  SELECT L29a.桥名, L29a.桩号\n  FROM L29a \n  JOIN L21_路线表 ON L29a.路线编号 = L21.路线编号\n  LEFT JOIN L32_大修表 ON L29a.桥梁ID = L32.桥梁ID\n  WHERE L21.地市 = '武汉市' AND L21.路线编号 LIKE 'G107%' \n    AND (L32.状态 != '封闭施工' OR L32.状态 IS NULL)\n  ```\n  在评分结尾，查阅系统内是否按期提交了相应的分析报告（Item 8）。"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【考核数据拉取与空间锚定】** | | | | |\n| 21 监测设备厂商/产权单位 | 03 工程技术处 | 数据上传质量自动化考核采集 | 设备在线率/完整性/时效性流媒体推送 | 高 |\n| 03 工程技术处 | 00 数据统筹部门 | 空间锚定与底账核实 | 提取 L21 与 L29a 进行管辖权匹配 | 高 |\n| **【全网多智能体交叉取证】** | | | | |\n| 03 工程技术处 | 12 应急处置中心 | 分级预警处置闭环协查 | 调取工单计算 trigger_time 与 ack_time 差值 | 高 |\n| 03 工程技术处 | 04 养护管理处 | 日常运维防伪与现场协查 | 抓取72h修复率及巡检照片真实打卡GPS坐标 | 高 |\n| 03 工程技术处 | 15 养护施工企业 | 下发异常工况超时督办 | 72小时故障修复工单派发 | 高 |\n| **【免责防伪查证与打分闭环】** | | | | |\n| 03 工程技术处 | 06 运营管理处 | 不可抗力断电免责查证 | 穿透机电网关调取市电断电日志 | 中 |\n| 03 工程技术处 | 00 数据统筹部门 | 封闭施工免责扩展核查 | 联合 L32 大修表过滤“封闭施工”期免责桥梁 | 中 |\n| 03 工程技术处 | 交通运输部(外部) | 省级日常监测质量考核报告推送 | 长大桥监测省级汇总质量成绩单(部省双核) | 高 |\n\n\n---"}], "properties": {"name": "《L32（公路应急机具储备库及应急队伍明细表）》", "owner": "AGENT-运营管理-03_出行信息服务", "dataSource": "41. 16-1 高速应急物资.xls, 42. 16-2 普通公路应急.xls", "collaborators": "AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-运营管理-03_出行信息服务`, `AGENT-运营管理-07_救援队伍管理`"}}, "l30b": {"universal": [], "scenario": [{"file": "场景3(基础)_年报查询.md", "section": "八、外部协同：1+10+X+Y政企联动与跨域 (External)", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| 22 各地市州交通局 | 00 数据统筹部门 | 年报底表数据逐级汇聚上报 | 42张孤立物理Excel表格包 | 高 |\n| 04 养护管理处 | 07 财务资产处 | 提供养护工程与资金核销业务依据 | L29a / L30b 提取明细视图 | 高 |\n| 01 规划计划处 | 17 自然资源厅 | 路线变更与国土空间规划数据对齐 | L21路线网空间基础基线数据 | 中 |\n| 00 数据统筹部门 | 交通运输部(外部) | 省级路网年报脱敏直报 | L系列综合全库清洗后国标上报数据 | 高 |\n\n\n---"}], "properties": {"name": "《L30b（公路养护工程统计表）》", "owner": "AGENT-工程技术-02_养护工程智能管控", "dataSource": "26. 13-2 养护工程(季报).xlsx, 27. 13-3 养护工程-高速.xls, 28. 13-4 养护工程-国省道.xlsx, 29. 13-5 养护工程-农路.xlsx", "collaborators": "", "internalSupport": "`AGENT-工程技术-02_养护工程智能管控`, `AGENT-工程技术-02_养护工程智能管控`, `AGENT-工程技术-02_养护工程智能管控`, `AGENT-工程技术-02_养护工程智能管控`, `AGENT-建设市场-02_初步设计审查`"}}, "l22": {"universal": [], "scenario": [], "properties": {"name": "《L22（乡镇/建制村/自然村通达及属性表）》", "owner": "AGENT-农村公路-01_农村公路养护管理评价", "dataSource": "06. 乡镇通达表.xlsx, 07. 建制村通达表.xlsx, 08. 自然村通达表.xlsx", "collaborators": "", "internalSupport": "`AGENT-农村公路-01_农村公路养护管理评价`, `AGENT-农村公路-01_农村公路养护管理评价`, `AGENT-农村公路-01_农村公路养护管理评价`"}}, "l23": {"universal": [], "scenario": [], "properties": {"name": "《L23（亚洲公路网路线明细表）》", "owner": "AGENT-规划计划-02_计划管理", "dataSource": "09. 亚洲公路网路线明细.xls", "collaborators": "AGENT-外部-18_自然资源厅, AGENT-外部-19_公安交管局", "internalSupport": "`AGENT-规划计划-02_计划管理`"}}, "l24b": {"universal": [], "scenario": [], "properties": {"name": "《L24b（公路涵洞明细表）》", "owner": "AGENT-工程技术-02_养护工程智能管控", "dataSource": "12. 公路涵洞.xls", "collaborators": "", "internalSupport": "`AGENT-工程技术-02_养护工程智能管控`"}}, "l25": {"universal": [], "scenario": [], "properties": {"name": "《L25（公路隧道基本情况明细表）》", "owner": "AGENT-工程技术-03_隧道结构健康监测", "dataSource": "13. 隧道.xls", "collaborators": "AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-工程技术-03_隧道结构健康监测`"}}, "l26": {"universal": [], "scenario": [], "properties": {"name": "《L26（公路沿线服务及收费设施明细表）》", "owner": "AGENT-费收-01_收费管理", "dataSource": "14. 沿线服务设施.xls, 15. 收费站.xls, 16. 服务区.xls, 17. 高速公路出入口.xls", "collaborators": "", "internalSupport": "`AGENT-费收-01_收费管理`, `AGENT-运营管理-02_服务区监督整治`, `AGENT-运营管理-02_服务区监督整治`, `AGENT-费收-01_收费管理`"}}, "l27": {"universal": [], "scenario": [], "properties": {"name": "《L27地质灾害点明细表》", "owner": "AGENT-工程技术-04_边坡结构健康监测", "dataSource": "18. 地质灾害表.xls, 19. 11-1 灾毁统计-桥.xls, 20. 11-2 灾毁统计-全省线.xlsx, 21. 11-3 灾毁统计-农路.xlsx", "collaborators": "AGENT-外部-16_气象局, AGENT-外部-17_应急管理厅, AGENT-外部-18_自然资源厅", "internalSupport": "`AGENT-工程技术-04_边坡结构健康监测`, `AGENT-工程技术-05_地灾预警`"}}, "l28": {"universal": [], "scenario": [], "properties": {"name": "《L28交通量及沿线设施汇总表》", "owner": "AGENT-养护管理-03_日常养护", "dataSource": "22. 06 交通设施.xlsx", "collaborators": "", "internalSupport": "`AGENT-养护管理-03_日常养护`"}}, "l30a": {"universal": [], "scenario": [], "properties": {"name": "《L30a（公路养护作业统计表）》", "owner": "AGENT-养护管理-03_日常养护", "dataSource": "25. 13-1 日常养护作业.xlsx", "collaborators": "", "internalSupport": "`AGENT-养护管理-03_日常养护`"}}, "l30c": {"universal": [], "scenario": [], "properties": {"name": "《L30c（公路养护资金统计表）》", "owner": "AGENT-财务资产-01_资金拨付管理", "dataSource": "30. 14-1 养护资金投入.xlsx, 31. 14-2 资金投入-国省道.xlsx, 32. 14-3 资金投入-农路.xlsx", "collaborators": "", "internalSupport": "`AGENT-财务资产-01_资金拨付管理`, `AGENT-财务资产-01_资金拨付管理`, `AGENT-财务资产-01_资金拨付管理`"}}, "l31a": {"universal": [], "scenario": [], "properties": {"name": "《L31a（高速公路管养单位属性表）》", "owner": "AGENT-数据统筹-01_数据治理（年报主骨架）", "dataSource": "33. 15-1 高速管养单位.xls", "collaborators": "AGENT-外部-16_气象局, AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-数据统筹-01_数据治理（年报主骨架）`"}}, "l31b": {"universal": [], "scenario": [], "properties": {"name": "《L31b（国省干线公路管养单位属性表）》", "owner": "AGENT-数据统筹-01_数据治理", "dataSource": "34. 15-2 国省干线管养.xls, 35. 15-3 机构职工表.xls, 36. 15-4 农路岗位表.xls, 37. 乡镇属性表.xls", "collaborators": "AGENT-外部-16_气象局, AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-数据统筹-01_数据治理`, `AGENT-法规审批-02_过桥快速评价智能体`"}}, "l31c": {"universal": [], "scenario": [], "properties": {"name": "《L31c（农村公路管养单位属性表）》", "owner": "AGENT-农村公路-02_农村公路智慧监管监督", "dataSource": "38. 15-5 路长制执行表.xls, 39. 建制村属性.xls, 40. 自然村属性.xls", "collaborators": "AGENT-外部-16_气象局, AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-农村公路-02_农村公路智慧监管监督`, `AGENT-农村公路-02_农村公路智慧监管监督`"}}};
+const ONTOLOGY_RULES_STATIC = {"l29a": {"universal": [{"file": "跨域协同数据落库规范.md", "section": "数据隔离与安全拦截机制", "snippet": "为了保证交通年报基础数据（如 `L29a`）的绝对准确性与权责清晰，系统对所有大模型智能体执行强制的**“数据隔离审查”与“人工审批授权”**双重门禁机制。\n\n1. **严禁直写（No Direct DB Commits）**：大模型（年报总管智能体）及底层执行方智能体获取到修正字典或计算结果后，**严禁**直接对物理主库执行 `INSERT` 或 `UPDATE` 操作。\n2. **暂存区渲染对比**：所有跨域融合数据必须在安全暂存区中完成映射重组，并在前端 UI 呈现“纠偏前后对比报告”及“明细数据预览盘”。\n3. **人工放行（Manual Verification & Authorization）**：最终的落库动作必须由具有业务权限的人员（如养护处业务专员）在对右侧明细数据进行微观抽验后，显式授权（点击确认/导出审核报告）方可将暂存数据合法并入最终台账。"}, {"file": "里程计算综合业务口径.md", "section": "一、里程三口径定义", "snippet": "**1. 物理在册总里程**\n直接对路线表中的长度求和，包含城建段与重叠段，反映路网在地图上的绝对物理空间延展。\n\n**2. 法定实际管养里程**\n在物理里程基础上，扣除已移交市政的城建段与省域内多线重叠段。这是财务核算与养护经费下拨的唯一真实法人口径。\n- 城建段判定字段：在 L21 表中动态寻找代表“是否城建段”的字段，其值不为“是”\n- 多线重叠段判定字段：在 L21 表中动态寻找代表“重复路线段”或“借线”的字段，过滤掉非空的数据\n\n**3. 检测物理覆盖里程**\n检测车按车道方向独立采集。部分一级及以上公路存在分离式双幅，会产生上下行重复检测。\n- 检测物理覆盖里程 = 双向混合路段长度 + 单向（上行）路段长度\n- 数据源：L29a（公路技术状况明细表）\n- 去重方式：任何基于 L29a 表的查询【必须强制】在 WHERE 条件中对“检测方向”字段过滤，仅保留包含“双向”和“上行”的记录，严格排除“下行”（否则会导致里程翻倍的严重错误！）。\n\n---"}, {"file": "里程计算综合业务口径.md", "section": "三、优良路率口径", "snippet": "**业务定义**（依据 JTG 5210-2018）：\n- 优：MQI ≥ 90\n- 良：80 ≤ MQI < 90\n- 中：70 ≤ MQI < 80\n- 次：60 ≤ MQI < 70\n- 差：MQI < 60\n- **优良路** = MQI ≥ 80 的路段\n- **优良路率** = 优良路里程 / 总检测里程\n\n**数据源**：`L29a`（公路技术状况明细表）\n\n**去重口径**：检测数据存在上下行重复，任何基于 L29a 表的查询【必须强制】在 WHERE 条件中对“检测方向”字段过滤，仅保留包含“双向”和“上行”的记录，严格排除“下行”（否则会导致里程翻倍的严重错误！）。\n\n**答复格式要求**：\n- 必须呈现优、良、中、次、差的具体里程和占比明细\n- 必须说明采用的去重方式\n- 必须标注数据年份\n\n---"}, {"file": "里程计算综合业务口径.md", "section": "四、行政区划汇总里程表格式", "snippet": "当用户要求生成行政区划汇总里程表时，表格必须包含以下三列：\n\n| 行政区域 | 物理在册里程(公里) | 法定实际管养里程(公里) | 检测物理覆盖里程(公里) | 分段数量 |\n| :--- | :--- | :--- | :--- | :--- |\n| [区域A] | [数值] | [数值] | - | [数值] |\n| **合计** | **[数值]** | **[数值]** | **[总检测覆盖]** | **[数值]** |\n\n注：由于 L29a 不含行政区划字段，各分行的检测里程填\"-\"，但合计行必须填入检测总里程。"}], "scenario": [{"file": "场景1_汛期预警防御与应急处置.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【灾前防范阶段】** | | | | |\n| 16 气象局 | 10 执法监督处 | 气象灾害预警/恶劣天气监测推流 | 气象预警信息 / 自然灾害监测预警信息 | 高 |\n| 10 执法监督处 | 00 数据统筹部门 | 空间锚点确权与管辖匹配 | 传递预警坐标要求比对 L21 路线表 | 高 |\n| 00 数据统筹部门 | 04 养护管理处 | 灾前风险点位巡查指令 | 下发\"即刻巡查并设立围挡\"工单 | 高 |\n| 00 数据统筹部门 | 03 工程技术处 | 高位桥隧边坡专项防范 | 提供 L29a/L24a 高风险台账，要求调取传感器 | 高 |\n| 00 数据统筹部门 | 08 农村公路处 | 沿河临崖村道封路避险 | 受灾干线辐射范围及封路指令清单 | 高 |\n| **【灾中应急阶段】** | | | | |\n| 10 执法监督处 | 18 公安交管局 | 警路企气会商与交通分流管控 | 车辆分流、绕行引导和远端交通管控指令 | 高 |\n| 10 执法监督处 | 12 应急处置中心 | 应急资源调度与跨省/区保障 | 盘点方圆50km物资/通信保障调度单 | 高 |\n| 12 应急处置中心 | 15 养护施工企业 | 多方联动公路抢通与装备前置 | 抢修抢通方案建议 / 调度防汛装备物资作业 | 高 |\n| 10 执法监督处 | 02 建设市场处 | 在建工程应急避险 | 暴雨区施工标段清单及强制停工指令 | 高 |\n| 10 执法监督处 | 16 应急管理厅 | 政警路企联合指挥与协同处置 | 跨部门协同处置指令 / 重大事件信息上报 | 高 |\n| **【灾后复盘阶段】** | | | | |\n| 10 执法监督处 | 07 财务资产处 | 抢险资金核算清算 | 抗洪工单汇总及备用金调拨明细 | 中 |\n| 00 数据统筹部门 | 01 规划计划处 | 全年路网受损影响评估 | 灾情期间交通流中断时序数据 | 中 |\n\n\n---"}, {"file": "场景1_汛期预警防御与应急处置.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n** [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "4. 体系文档与免责前置核查 (Item 8 及免责逻辑)", "snippet": "- **指标项**：例行报告情况及不可抗力免责。\n- **唤醒智能体**：【系统核查】`AGENT-数据统筹-01_数据治理（年报主骨架）`\n- **空间扩展与骨架防伪查询**：\n  在考核启动前，禁止做空泛的全库查询。必须将预设问题加入地点约束（如：**武汉市境内 G107 国道**），大模型通过以下 SQL 逻辑进行范围框定，并通过 `JOIN L32` 大修表，自动识别并过滤正处于“封闭施工”期的免责桥梁：\n  ```sql\n  SELECT L29a.桥名, L29a.桩号\n  FROM L29a \n  JOIN L21_路线表 ON L29a.路线编号 = L21.路线编号\n  LEFT JOIN L32_大修表 ON L29a.桥梁ID = L32.桥梁ID\n  WHERE L21.地市 = '武汉市' AND L21.路线编号 LIKE 'G107%' \n    AND (L32.状态 != '封闭施工' OR L32.状态 IS NULL)\n  ```\n  在评分结尾，查阅系统内是否按期提交了相应的分析报告（Item 8）。"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【考核数据拉取与空间锚定】** | | | | |\n| 21 监测设备厂商/产权单位 | 03 工程技术处 | 数据上传质量自动化考核采集 | 设备在线率/完整性/时效性流媒体推送 | 高 |\n| 03 工程技术处 | 00 数据统筹部门 | 空间锚定与底账核实 | 提取 L21 与 L29a 进行管辖权匹配 | 高 |\n| **【全网多智能体交叉取证】** | | | | |\n| 03 工程技术处 | 12 应急处置中心 | 分级预警处置闭环协查 | 调取工单计算 trigger_time 与 ack_time 差值 | 高 |\n| 03 工程技术处 | 04 养护管理处 | 日常运维防伪与现场协查 | 抓取72h修复率及巡检照片真实打卡GPS坐标 | 高 |\n| 03 工程技术处 | 15 养护施工企业 | 下发异常工况超时督办 | 72小时故障修复工单派发 | 高 |\n| **【免责防伪查证与打分闭环】** | | | | |\n| 03 工程技术处 | 06 运营管理处 | 不可抗力断电免责查证 | 穿透机电网关调取市电断电日志 | 中 |\n| 03 工程技术处 | 00 数据统筹部门 | 封闭施工免责扩展核查 | 联合 L32 大修表过滤“封闭施工”期免责桥梁 | 中 |\n| 03 工程技术处 | 交通运输部(外部) | 省级日常监测质量考核报告推送 | 长大桥监测省级汇总质量成绩单(部省双核) | 高 |\n\n\n---"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n** [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景3(专业)_年报业务.md", "section": "4. 人工审批与最终落库防线", "snippet": "在系统确认数据格式无误后，由养护处专员在暂存审核区进行微观抽检。仅当专员点击“授权审批通过”后，“路况检测评定”智能体方可解除最终阻断，将数据正式写入《L29a（公路日常路况评定明细表）》等年报底层核心物理表。\n\n---"}, {"file": "场景3(专业)_年报业务.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n** [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景3(基础)_年报查询.md", "section": "4. 系统级输出约束 (System Prompt Rules)", "snippet": "为实现极致的“主从智能体协同透明化”，大模型在处理任意涉及具体年报表格的数据问答时，**必须严格遵循以下规范**：\n\n1. **思索链（Tool Calls）的精准指派**：\n   - 当大模型针对某一张表（如 L29a）发起查询时，不仅要调用工具，还必须明确在工具上下文中注入该表的**主责智能体**（例如：`AGENT-养护管理-02_路况检测评定`），而不能笼统使用统筹智能体。\n\n---"}, {"file": "场景3(基础)_年报查询.md", "section": "5. 核心业务计算口径 (Business Calculation Rules)", "snippet": "在进行数据查询时，大模型必须严格遵守以下业务规则，防止出现低级数据统计错误（如里程翻倍）：\n\n1. **路况评定明细表 (L29a) 的去重口径**：\n   - **背景**：路况检测车是按车道方向独立采集的，部分一级及以上公路存在分离式双幅，因此 L29a 表中会天然存在大量“上下行”重复检测的数据。\n   - **L29a 关键字段隐式映射**：为防混淆，请严格按照以下字段含义编写 SQL：\n     - `col0`：路线编码（如 G107）\n     - `col4`：检测方向（包含：双向、上行、下行）\n     - `col7`：评定里程 / 长度（单位通常为千米，计算时请 CAST AS REAL）\n     - `col8`：综合评定指标值（PQI / MQI）\n   - **强制动作**：任何涉及 L29a 表的里程汇总查询，【必须强制】在 SQL 的 `WHERE` 条件中对方向字段 (`col4`) 进行过滤去重！\n   - **去重逻辑**：仅保留检测方向包含“双向”或“上行”的记录（严格排除“下行”记录，否则会导致里程翻倍的严重错误）。\n   - **代码示例**：在查询 L29a 表时，WHERE 子句中必须包含类似 `AND (col4 LIKE '%双向%' OR col4 LIKE '%上行%')` 的过滤条件。"}, {"file": "场景3(基础)_年报查询.md", "section": "八、外部协同：1+10+X+Y政企联动与跨域 (External)", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| 22 各地市州交通局 | 00 数据统筹部门 | 年报底表数据逐级汇聚上报 | 42张孤立物理Excel表格包 | 高 |\n| 04 养护管理处 | 07 财务资产处 | 提供养护工程与资金核销业务依据 | L29a / L30b 提取明细视图 | 高 |\n| 01 规划计划处 | 17 自然资源厅 | 路线变更与国土空间规划数据对齐 | L21路线网空间基础基线数据 | 中 |\n| 00 数据统筹部门 | 交通运输部(外部) | 省级路网年报脱敏直报 | L系列综合全库清洗后国标上报数据 | 高 |\n\n\n---"}, {"file": "场景3(基础)_年报查询.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n** [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}], "properties": {"name": "《L29a日常路况评定明细表》", "owner": "AGENT-养护管理-02_路况检测评定", "dataSource": "23. 12-1 路况明细-全省干线.xlsx, 24. 12-2 抽检明细-农路.xlsx", "collaborators": "AGENT-外部-19_公安交管局", "internalSupport": "`AGENT-养护管理-02_路况检测评定`, `AGENT-养护管理-02_路况检测评定`, `AGENT-运营管理-06_路网监督`"}}, "l21": {"universal": [{"file": "里程计算综合业务口径.md", "section": "一、里程三口径定义", "snippet": "**1. 物理在册总里程**\n直接对路线表中的长度求和，包含城建段与重叠段，反映路网在地图上的绝对物理空间延展。\n\n**2. 法定实际管养里程**\n在物理里程基础上，扣除已移交市政的城建段与省域内多线重叠段。这是财务核算与养护经费下拨的唯一真实法人口径。\n- 城建段判定字段：在 L21 表中动态寻找代表“是否城建段”的字段，其值不为“是”\n- 多线重叠段判定字段：在 L21 表中动态寻找代表“重复路线段”或“借线”的字段，过滤掉非空的数据\n\n**3. 检测物理覆盖里程**\n检测车按车道方向独立采集。部分一级及以上公路存在分离式双幅，会产生上下行重复检测。\n- 检测物理覆盖里程 = 双向混合路段长度 + 单向（上行）路段长度\n- 数据源：L29a（公路技术状况明细表）\n- 去重方式：任何基于 L29a 表的查询【必须强制】在 WHERE 条件中对“检测方向”字段过滤，仅保留包含“双向”和“上行”的记录，严格排除“下行”（否则会导致里程翻倍的严重错误！）。\n\n---"}, {"file": "里程计算综合业务口径.md", "section": "二、农村公路总里程口径", "snippet": "**业务定义**：农村公路 = 县道 + 乡道 + 村道\n\n**为何不用 L21 表**：L21 等明细表的农村公路录入率极低，返回结果往往为空或仅有几千公里，不代表真实规模。\n\n**正确数据源**：省级宏观汇总表 `T1a`（公路里程年底到达数表）\n\n**T1a 表结构要点**：\n- T1a 是按年度周期垂直分段的，分为上年年底到达数、本年新建数、本年减少数、本年年底到达数四个板块\n- 查询当年总量时，必须使用《四、本年年底到达数》板块\n- 在路线等级列中：县道对应代码 `29`，乡道对应 `30`，村道对应 `32`\n- 里程数值在对应的里程数据列中\n\n**答复格式要求**：\n- 必须详细列出县道、乡道、村道的里程分类明细\n- 标明数据源为《T1a 湖北省公路年底到达数》\n- 其余两个口径填\"（当前报表不支持计算该项）\"\n\n---"}], "scenario": [{"file": "场景1_汛期预警防御与应急处置.md", "section": "七、前端思维链展示红线", "snippet": "当大模型在执行此场景回答用户提问时：\n1. **必须显式输出被唤醒的智能体名称**（如：`调用：AGENT-运营管理-08_预警`）\n2. **必须说明真实的数据输入**（如：`输入：L21.路线ID = xxxxx`）\n3. **必须引用本文件的层级分工表**（如：`依据：二、分级响应体系 - 2.1红色预警为省级组织`）\n4. **严禁伪造\"检查成功\"进度条**，必须输出真实接口返回值或SQL过滤条数\n5. **严禁自行编造响应时效数字**，如无量化依据，应说明\"本场景架构文件未定义具体时效阈值，如需考核细则请提供《湖北省公路防汛应急预案》量化版本\""}, {"file": "场景1_汛期预警防御与应急处置.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【灾前防范阶段】** | | | | |\n| 16 气象局 | 10 执法监督处 | 气象灾害预警/恶劣天气监测推流 | 气象预警信息 / 自然灾害监测预警信息 | 高 |\n| 10 执法监督处 | 00 数据统筹部门 | 空间锚点确权与管辖匹配 | 传递预警坐标要求比对 L21 路线表 | 高 |\n| 00 数据统筹部门 | 04 养护管理处 | 灾前风险点位巡查指令 | 下发\"即刻巡查并设立围挡\"工单 | 高 |\n| 00 数据统筹部门 | 03 工程技术处 | 高位桥隧边坡专项防范 | 提供 L29a/L24a 高风险台账，要求调取传感器 | 高 |\n| 00 数据统筹部门 | 08 农村公路处 | 沿河临崖村道封路避险 | 受灾干线辐射范围及封路指令清单 | 高 |\n| **【灾中应急阶段】** | | | | |\n| 10 执法监督处 | 18 公安交管局 | 警路企气会商与交通分流管控 | 车辆分流、绕行引导和远端交通管控指令 | 高 |\n| 10 执法监督处 | 12 应急处置中心 | 应急资源调度与跨省/区保障 | 盘点方圆50km物资/通信保障调度单 | 高 |\n| 12 应急处置中心 | 15 养护施工企业 | 多方联动公路抢通与装备前置 | 抢修抢通方案建议 / 调度防汛装备物资作业 | 高 |\n| 10 执法监督处 | 02 建设市场处 | 在建工程应急避险 | 暴雨区施工标段清单及强制停工指令 | 高 |\n| 10 执法监督处 | 16 应急管理厅 | 政警路企联合指挥与协同处置 | 跨部门协同处置指令 / 重大事件信息上报 | 高 |\n| **【灾后复盘阶段】** | | | | |\n| 10 执法监督处 | 07 财务资产处 | 抢险资金核算清算 | 抗洪工单汇总及备用金调拨明细 | 中 |\n| 00 数据统筹部门 | 01 规划计划处 | 全年路网受损影响评估 | 灾情期间交通流中断时序数据 | 中 |\n\n\n---"}, {"file": "场景1_汛期预警防御与应急处置.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n** [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "4. 体系文档与免责前置核查 (Item 8 及免责逻辑)", "snippet": "- **指标项**：例行报告情况及不可抗力免责。\n- **唤醒智能体**：【系统核查】`AGENT-数据统筹-01_数据治理（年报主骨架）`\n- **空间扩展与骨架防伪查询**：\n  在考核启动前，禁止做空泛的全库查询。必须将预设问题加入地点约束（如：**武汉市境内 G107 国道**），大模型通过以下 SQL 逻辑进行范围框定，并通过 `JOIN L32` 大修表，自动识别并过滤正处于“封闭施工”期的免责桥梁：\n  ```sql\n  SELECT L29a.桥名, L29a.桩号\n  FROM L29a \n  JOIN L21_路线表 ON L29a.路线编号 = L21.路线编号\n  LEFT JOIN L32_大修表 ON L29a.桥梁ID = L32.桥梁ID\n  WHERE L21.地市 = '武汉市' AND L21.路线编号 LIKE 'G107%' \n    AND (L32.状态 != '封闭施工' OR L32.状态 IS NULL)\n  ```\n  在评分结尾，查阅系统内是否按期提交了相应的分析报告（Item 8）。"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【考核数据拉取与空间锚定】** | | | | |\n| 21 监测设备厂商/产权单位 | 03 工程技术处 | 数据上传质量自动化考核采集 | 设备在线率/完整性/时效性流媒体推送 | 高 |\n| 03 工程技术处 | 00 数据统筹部门 | 空间锚定与底账核实 | 提取 L21 与 L29a 进行管辖权匹配 | 高 |\n| **【全网多智能体交叉取证】** | | | | |\n| 03 工程技术处 | 12 应急处置中心 | 分级预警处置闭环协查 | 调取工单计算 trigger_time 与 ack_time 差值 | 高 |\n| 03 工程技术处 | 04 养护管理处 | 日常运维防伪与现场协查 | 抓取72h修复率及巡检照片真实打卡GPS坐标 | 高 |\n| 03 工程技术处 | 15 养护施工企业 | 下发异常工况超时督办 | 72小时故障修复工单派发 | 高 |\n| **【免责防伪查证与打分闭环】** | | | | |\n| 03 工程技术处 | 06 运营管理处 | 不可抗力断电免责查证 | 穿透机电网关调取市电断电日志 | 中 |\n| 03 工程技术处 | 00 数据统筹部门 | 封闭施工免责扩展核查 | 联合 L32 大修表过滤“封闭施工”期免责桥梁 | 中 |\n| 03 工程技术处 | 交通运输部(外部) | 省级日常监测质量考核报告推送 | 长大桥监测省级汇总质量成绩单(部省双核) | 高 |\n\n\n---"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n** [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景3(专业)_年报业务.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n** [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}, {"file": "场景3(基础)_年报查询.md", "section": "6. 跨年份数据结构变动与幻觉防御 (Schema Evolution)", "snippet": "由于交通部的标准会随年份发生变更（例如 2016 年到 2026 年之间，很多底表增加了新字段），因此在跨年穿透查询时，大模型必须严格遵守以下防御规则：\n\n1. **绝对信任 `get_table_schema`**：系统注入的《数据字典》是以最新（2026年）最全的字段为准（如 L21 表可能延展到 `col63`）。但在查历史库（如 2016 年）时，该表可能只有 `col40`。\n2. **禁止盲目使用字典字段**：在生成最终的 SQL 之前，**必须**对比你通过 `get_table_schema` 获取到的真实物理表结构！如果字典中要求的字段（如 `col62 所在区县`）在当前的真实 SQLite 表中不存在，绝对禁止在 `SELECT` 或 `WHERE` 中硬查该列，否则会导致 `no such column` 崩溃。\n3. **降级查询策略**：如果发现所需字段在当年数据库中缺失，请基于存在的字段进行逻辑降级（例如：不按区县分组，改为按路线分组），并在回答中向客户说明：“受限于当年（2016）数据规范，底库尚未采集区县字段，已为您降维汇总如下...”。"}, {"file": "场景3(基础)_年报查询.md", "section": "附：全局数据字典关联 (L码映射)与查询规范", "snippet": "为了保证知识库中唯一事实来源的纯洁性与可维护性，底层物理表格的主从协同支持关系已提取至全局字典引擎。\n大模型在处理本场景任何涉及表格数据的查询与分析时，请**跨文件跳转**并强制读取以下全局映射字典：\n** [[01_全域L码映射字典_主导与支持部门]]**\n\n大模型需要根据该字典，厘清底层物理Excel与交通部法定L表的 1对N 映射关系。但在查库时，请严格遵守以下流转节点：\n1. **结构智能感知**：调用 get_table_schema 工具探测真实表的列名与数据类型。\n2. **数据穿透查询**：调用 execute_sql 工具，绝对只能使用 L-Code（如 L21, L29a）作为表名，**禁止查 Excel 名**！如果目标列在真实结构中没有，绝对不能强行查询（会报 \no such column），必须利用已有的旧列进行降级查询并向用户说明。"}], "properties": {"name": "《L21（公路路线基本情况明细表）》", "owner": "AGENT-规划计划-02_计划管理", "dataSource": "01. 路段.xls, 02. 公路排桩.xls, 03. 交通量观测站点.xls, 04. 农村公路安防设施.xlsx, 05. 国道路线数据变更.xls", "collaborators": "AGENT-外部-18_自然资源厅, AGENT-外部-19_公安交管局", "internalSupport": "`AGENT-规划计划-02_计划管理`, `AGENT-规划计划-02_计划管理`, `AGENT-规划计划-04_交调年报与奖补融合`, `AGENT-农村公路-01_农村公路养护管理评价`, `AGENT-法规审批-01_大件运输智能选线智能体`"}}, "l24a": {"universal": [], "scenario": [{"file": "场景1_汛期预警防御与应急处置.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【灾前防范阶段】** | | | | |\n| 16 气象局 | 10 执法监督处 | 气象灾害预警/恶劣天气监测推流 | 气象预警信息 / 自然灾害监测预警信息 | 高 |\n| 10 执法监督处 | 00 数据统筹部门 | 空间锚点确权与管辖匹配 | 传递预警坐标要求比对 L21 路线表 | 高 |\n| 00 数据统筹部门 | 04 养护管理处 | 灾前风险点位巡查指令 | 下发\"即刻巡查并设立围挡\"工单 | 高 |\n| 00 数据统筹部门 | 03 工程技术处 | 高位桥隧边坡专项防范 | 提供 L29a/L24a 高风险台账，要求调取传感器 | 高 |\n| 00 数据统筹部门 | 08 农村公路处 | 沿河临崖村道封路避险 | 受灾干线辐射范围及封路指令清单 | 高 |\n| **【灾中应急阶段】** | | | | |\n| 10 执法监督处 | 18 公安交管局 | 警路企气会商与交通分流管控 | 车辆分流、绕行引导和远端交通管控指令 | 高 |\n| 10 执法监督处 | 12 应急处置中心 | 应急资源调度与跨省/区保障 | 盘点方圆50km物资/通信保障调度单 | 高 |\n| 12 应急处置中心 | 15 养护施工企业 | 多方联动公路抢通与装备前置 | 抢修抢通方案建议 / 调度防汛装备物资作业 | 高 |\n| 10 执法监督处 | 02 建设市场处 | 在建工程应急避险 | 暴雨区施工标段清单及强制停工指令 | 高 |\n| 10 执法监督处 | 16 应急管理厅 | 政警路企联合指挥与协同处置 | 跨部门协同处置指令 / 重大事件信息上报 | 高 |\n| **【灾后复盘阶段】** | | | | |\n| 10 执法监督处 | 07 财务资产处 | 抢险资金核算清算 | 抗洪工单汇总及备用金调拨明细 | 中 |\n| 00 数据统筹部门 | 01 规划计划处 | 全年路网受损影响评估 | 灾情期间交通流中断时序数据 | 中 |\n\n\n---"}], "properties": {"name": "《L24a（公路桥梁基本情况明细表）》", "owner": "AGENT-工程技术-01_桥梁结构健康监测", "dataSource": "10. 桥梁.xls, 11. 农村桥梁.xls", "collaborators": "AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-工程技术-01_桥梁结构健康监测`, `AGENT-农村公路-01_农村公路养护管理评价`, `AGENT-建设市场-01_招投标管理`"}}, "l32": {"universal": [], "scenario": [{"file": "场景2_长大桥结构监测数据质量管理.md", "section": "4. 体系文档与免责前置核查 (Item 8 及免责逻辑)", "snippet": "- **指标项**：例行报告情况及不可抗力免责。\n- **唤醒智能体**：【系统核查】`AGENT-数据统筹-01_数据治理（年报主骨架）`\n- **空间扩展与骨架防伪查询**：\n  在考核启动前，禁止做空泛的全库查询。必须将预设问题加入地点约束（如：**武汉市境内 G107 国道**），大模型通过以下 SQL 逻辑进行范围框定，并通过 `JOIN L32` 大修表，自动识别并过滤正处于“封闭施工”期的免责桥梁：\n  ```sql\n  SELECT L29a.桥名, L29a.桩号\n  FROM L29a \n  JOIN L21_路线表 ON L29a.路线编号 = L21.路线编号\n  LEFT JOIN L32_大修表 ON L29a.桥梁ID = L32.桥梁ID\n  WHERE L21.地市 = '武汉市' AND L21.路线编号 LIKE 'G107%' \n    AND (L32.状态 != '封闭施工' OR L32.状态 IS NULL)\n  ```\n  在评分结尾，查阅系统内是否按期提交了相应的分析报告（Item 8）。"}, {"file": "场景2_长大桥结构监测数据质量管理.md", "section": "八、1+10+X+Y 政企联动与跨域协同", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| **【考核数据拉取与空间锚定】** | | | | |\n| 21 监测设备厂商/产权单位 | 03 工程技术处 | 数据上传质量自动化考核采集 | 设备在线率/完整性/时效性流媒体推送 | 高 |\n| 03 工程技术处 | 00 数据统筹部门 | 空间锚定与底账核实 | 提取 L21 与 L29a 进行管辖权匹配 | 高 |\n| **【全网多智能体交叉取证】** | | | | |\n| 03 工程技术处 | 12 应急处置中心 | 分级预警处置闭环协查 | 调取工单计算 trigger_time 与 ack_time 差值 | 高 |\n| 03 工程技术处 | 04 养护管理处 | 日常运维防伪与现场协查 | 抓取72h修复率及巡检照片真实打卡GPS坐标 | 高 |\n| 03 工程技术处 | 15 养护施工企业 | 下发异常工况超时督办 | 72小时故障修复工单派发 | 高 |\n| **【免责防伪查证与打分闭环】** | | | | |\n| 03 工程技术处 | 06 运营管理处 | 不可抗力断电免责查证 | 穿透机电网关调取市电断电日志 | 中 |\n| 03 工程技术处 | 00 数据统筹部门 | 封闭施工免责扩展核查 | 联合 L32 大修表过滤“封闭施工”期免责桥梁 | 中 |\n| 03 工程技术处 | 交通运输部(外部) | 省级日常监测质量考核报告推送 | 长大桥监测省级汇总质量成绩单(部省双核) | 高 |\n\n\n---"}], "properties": {"name": "《L32（公路应急机具储备库及应急队伍明细表）》", "owner": "AGENT-运营管理-03_出行信息服务", "dataSource": "41. 16-1 高速应急物资.xls, 42. 16-2 普通公路应急.xls", "collaborators": "AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-运营管理-03_出行信息服务`, `AGENT-运营管理-07_救援队伍管理`"}}, "l30b": {"universal": [], "scenario": [{"file": "场景3(基础)_年报查询.md", "section": "八、外部协同：1+10+X+Y政企联动与跨域 (External)", "snippet": "| 发起部门 (From) | 接收部门 (To) | 协同动作 (Action) | 数据流转 / 指令 | 优先级 |\n| :--- | :--- | :--- | :--- | :--- |\n| 22 各地市州交通局 | 00 数据统筹部门 | 年报底表数据逐级汇聚上报 | 42张孤立物理Excel表格包 | 高 |\n| 04 养护管理处 | 07 财务资产处 | 提供养护工程与资金核销业务依据 | L29a / L30b 提取明细视图 | 高 |\n| 01 规划计划处 | 17 自然资源厅 | 路线变更与国土空间规划数据对齐 | L21路线网空间基础基线数据 | 中 |\n| 00 数据统筹部门 | 交通运输部(外部) | 省级路网年报脱敏直报 | L系列综合全库清洗后国标上报数据 | 高 |\n\n\n---"}], "properties": {"name": "《L30b（公路养护工程统计表）》", "owner": "AGENT-工程技术-02_养护工程智能管控", "dataSource": "26. 13-2 养护工程(季报).xlsx, 27. 13-3 养护工程-高速.xls, 28. 13-4 养护工程-国省道.xlsx, 29. 13-5 养护工程-农路.xlsx", "collaborators": "", "internalSupport": "`AGENT-工程技术-02_养护工程智能管控`, `AGENT-工程技术-02_养护工程智能管控`, `AGENT-工程技术-02_养护工程智能管控`, `AGENT-工程技术-02_养护工程智能管控`, `AGENT-建设市场-02_初步设计审查`"}}, "l22": {"universal": [], "scenario": [], "properties": {"name": "《L22（乡镇/建制村/自然村通达及属性表）》", "owner": "AGENT-农村公路-01_农村公路养护管理评价", "dataSource": "06. 乡镇通达表.xlsx, 07. 建制村通达表.xlsx, 08. 自然村通达表.xlsx", "collaborators": "", "internalSupport": "`AGENT-农村公路-01_农村公路养护管理评价`, `AGENT-农村公路-01_农村公路养护管理评价`, `AGENT-农村公路-01_农村公路养护管理评价`"}}, "l23": {"universal": [], "scenario": [], "properties": {"name": "《L23（亚洲公路网路线明细表）》", "owner": "AGENT-规划计划-02_计划管理", "dataSource": "09. 亚洲公路网路线明细.xls", "collaborators": "AGENT-外部-18_自然资源厅, AGENT-外部-19_公安交管局", "internalSupport": "`AGENT-规划计划-02_计划管理`"}}, "l24b": {"universal": [], "scenario": [], "properties": {"name": "《L24b（公路涵洞明细表）》", "owner": "AGENT-工程技术-02_养护工程智能管控", "dataSource": "12. 公路涵洞.xls", "collaborators": "", "internalSupport": "`AGENT-工程技术-02_养护工程智能管控`"}}, "l25": {"universal": [], "scenario": [], "properties": {"name": "《L25（公路隧道基本情况明细表）》", "owner": "AGENT-工程技术-03_隧道结构健康监测", "dataSource": "13. 隧道.xls", "collaborators": "AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-工程技术-03_隧道结构健康监测`"}}, "l26": {"universal": [], "scenario": [], "properties": {"name": "《L26（公路沿线服务及收费设施明细表）》", "owner": "AGENT-费收-01_收费管理", "dataSource": "14. 沿线服务设施.xls, 15. 收费站.xls, 16. 服务区.xls, 17. 高速公路出入口.xls", "collaborators": "", "internalSupport": "`AGENT-费收-01_收费管理`, `AGENT-运营管理-02_服务区监督整治`, `AGENT-运营管理-02_服务区监督整治`, `AGENT-费收-01_收费管理`"}}, "l27": {"universal": [], "scenario": [], "properties": {"name": "《L27地质灾害点明细表》", "owner": "AGENT-工程技术-04_边坡结构健康监测", "dataSource": "18. 地质灾害表.xls, 19. 11-1 灾毁统计-桥.xls, 20. 11-2 灾毁统计-全省线.xlsx, 21. 11-3 灾毁统计-农路.xlsx", "collaborators": "AGENT-外部-16_气象局, AGENT-外部-17_应急管理厅, AGENT-外部-18_自然资源厅", "internalSupport": "`AGENT-工程技术-04_边坡结构健康监测`, `AGENT-工程技术-05_地灾预警`"}}, "l28": {"universal": [], "scenario": [], "properties": {"name": "《L28交通量及沿线设施汇总表》", "owner": "AGENT-养护管理-03_日常养护", "dataSource": "22. 06 交通设施.xlsx", "collaborators": "", "internalSupport": "`AGENT-养护管理-03_日常养护`"}}, "l30a": {"universal": [], "scenario": [], "properties": {"name": "《L30a（公路养护作业统计表）》", "owner": "AGENT-养护管理-03_日常养护", "dataSource": "25. 13-1 日常养护作业.xlsx", "collaborators": "", "internalSupport": "`AGENT-养护管理-03_日常养护`"}}, "l30c": {"universal": [], "scenario": [], "properties": {"name": "《L30c（公路养护资金统计表）》", "owner": "AGENT-财务资产-01_资金拨付管理", "dataSource": "30. 14-1 养护资金投入.xlsx, 31. 14-2 资金投入-国省道.xlsx, 32. 14-3 资金投入-农路.xlsx", "collaborators": "", "internalSupport": "`AGENT-财务资产-01_资金拨付管理`, `AGENT-财务资产-01_资金拨付管理`, `AGENT-财务资产-01_资金拨付管理`"}}, "l31a": {"universal": [], "scenario": [], "properties": {"name": "《L31a（高速公路管养单位属性表）》", "owner": "AGENT-数据统筹-01_数据治理（年报主骨架）", "dataSource": "33. 15-1 高速管养单位.xls", "collaborators": "AGENT-外部-16_气象局, AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-数据统筹-01_数据治理（年报主骨架）`"}}, "l31b": {"universal": [], "scenario": [], "properties": {"name": "《L31b（国省干线公路管养单位属性表）》", "owner": "AGENT-数据统筹-01_数据治理", "dataSource": "34. 15-2 国省干线管养.xls, 35. 15-3 机构职工表.xls, 36. 15-4 农路岗位表.xls, 37. 乡镇属性表.xls", "collaborators": "AGENT-外部-16_气象局, AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-数据统筹-01_数据治理`, `AGENT-法规审批-02_过桥快速评价智能体`"}}, "l31c": {"universal": [], "scenario": [], "properties": {"name": "《L31c（农村公路管养单位属性表）》", "owner": "AGENT-农村公路-02_农村公路智慧监管监督", "dataSource": "38. 15-5 路长制执行表.xls, 39. 建制村属性.xls, 40. 自然村属性.xls", "collaborators": "AGENT-外部-16_气象局, AGENT-外部-17_应急管理厅", "internalSupport": "`AGENT-农村公路-02_农村公路智慧监管监督`, `AGENT-农村公路-02_农村公路智慧监管监督`"}}};
 </script>
 </body>
 </html>
