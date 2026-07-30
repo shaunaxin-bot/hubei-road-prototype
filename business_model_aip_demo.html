@@ -426,11 +426,9 @@
 
 <div class="mt-1 mb-1 border-b-2 border-solid border-slate-300 pb-1 flex items-center justify-between">
     <span class="font-bold text-[14px] text-slate-800 flex items-center gap-1">
-        <span>1. 原始数据层</span>
+        <span>1. 物理源表与底座（ODS层）</span>
     </span>
-</div>
-<div class="font-bold text-[12px] text-slate-700 mb-1 flex items-center">
-    <span>静态数据</span>
+    <span class="text-[8px] bg-slate-100 text-slate-500 px-1 rounded">交通部第三版规范</span>
 </div>
 <div class="flex flex-col gap-1.5">
 
@@ -719,9 +717,10 @@
 </div>
 
 <div class="mt-2 mb-1 border-b-2 border-dashed border-amber-400 pb-1 flex items-center justify-between">
-    <span class="font-bold text-[12px] text-amber-900 flex items-center gap-1">
-        <span>动态数据</span>
+    <span class="font-extrabold text-[12px] text-amber-900 flex items-center gap-1">
+        <span>📡 板块二：动态流数据 (Dynamic Data)</span>
     </span>
+    <span class="text-[8px] bg-amber-50 text-amber-600 px-1 rounded">IoT流</span>
 </div>
 
 
@@ -734,9 +733,10 @@
 
 
 <div class="mt-2 mb-1 border-b-2 border-solid border-indigo-400 pb-1 flex items-center justify-between">
-    <span class="font-bold text-[12px] text-indigo-900 flex items-center gap-1">
-        <span>业务数据</span>
+    <span class="font-extrabold text-[12px] text-indigo-900 flex items-center gap-1">
+        <span>💼 板块三：业务管理台账 (Business Data)</span>
     </span>
+    <span class="text-[8px] bg-indigo-50 text-indigo-500 px-1 rounded">业务单据</span>
 </div>
 
 
@@ -751,8 +751,9 @@
                             <!-- Column 2: 17套国标L码年报一套表 (4 col) -->
                             <div class="col-span-4 flex flex-col gap-1">
                                 <div class="font-bold border-b border-slate-200 pb-1 text-slate-700 text-[11.5px] flex items-center justify-between">
-    <span>2. 数据明细层+数据汇总层（本体层）</span>
-</div>
+                                    <span>2. 17套年报本体 (年报基线)</span>
+                                    <span class="text-[8px] bg-slate-100 text-slate-600 px-1 rounded">本体关联中心</span>
+                                </div>
                                 
                                 <!-- 简单推演与变化对比文本框 -->
                                 <div id="multi-combo-info-box" class="hidden bg-slate-50 border border-slate-300 rounded p-1 text-[8.5px] text-slate-800 space-y-0.5 shadow-2xs my-0.5">
@@ -860,10 +861,10 @@
                                 </div>
                             </div>
 
-                            <!-- Column 3: 3. 数据应用层 Agent -->
+                            <!-- Column 3: 1+10+X+Y 政企协同生态 Agent -->
                             <div class="col-span-3 flex flex-col gap-1 pr-1">
                                 <div class="font-bold border-b border-slate-200 pb-1 text-slate-700 text-[11.5px]">
-                                    3. 数据应用层
+                                    1+10+X+Y 政企协同生态
                                 </div>
                                 <div class="space-y-1 flex-1">
                                     <!-- 数据统筹中枢 -->
@@ -2444,7 +2445,7 @@ if (scen.exts && scen.exts.length > 0) {
                         <div class="flex items-center gap-1.5">
                             <input type="checkbox" ${e.checked ? 'checked' : ''} onclick="event.stopPropagation()" class="rounded border-slate-300">
                             <div>
-                                <span class="text-[9px] font-mono font-bold text-slate-900 block group-hover:text-amber-800">${e.name.replace(/^(?:src-\d+\s*|\d+\.\s*)/i, '')}</span>
+                                <span class="text-[9px] font-mono font-bold text-slate-900 block group-hover:text-amber-800">${e.name}</span>
                                 <span class="text-[8px] text-slate-700 font-sans">支持处室: ${e.office}</span>
                             </div>
                         </div>
@@ -3207,7 +3208,7 @@ if (scen.exts && scen.exts.length > 0) {
                         'bg-amber-50 border-amber-300 hover:border-amber-500 text-amber-900';
 const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                     const pillHtml = `<div id="${ext.id}" onclick="handleLeftElementClick('${ext.ontKey || scenData.defaultOnt}')" onmouseenter="highlightLineage('${ext.ontKey || scenData.defaultOnt}')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border cursor-pointer hover:shadow-xs transition-all ${colorClasses}">
-                        <span class="font-bold truncate leading-none">${ext.name.replace(/^(?:src-\d+\s*|\d+\.\s*)/i, '').replace(/\.[a-z]+$/, '')}</span>
+                        <span class="font-bold truncate leading-none">${ext.name.replace(/\.[a-z]+$/, '')}</span>
                         <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5 border border-blue-100"><span>🔗</span><span>${ontTag}</span></span>
                     </div>`;
                     
