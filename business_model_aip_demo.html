@@ -263,10 +263,10 @@
                         </div>
                     </div>
 
-                    <!-- 3. 全量 1+10+X+Y 处室列表 (全量选项，高对比深字) -->
+                    <!-- 3. 数据应用层：1+10+X+Y 政企协同生态 -->
                     <div class="bg-white border border-slate-300 rounded p-1.5 space-y-1 shadow-2xs">
                         <div class="flex items-center justify-between border-b border-slate-200 pb-0.5">
-                            <span class="font-bold text-[10px] text-slate-900">3. 协同处室与角色 (全量1+10+X+Y提供，默认选预置)</span>
+                            <span class="font-bold text-[10px] text-slate-900">3. 数据应用层：1+10+X+Y 政企协同生态 (默认选预置)</span>
                             <span class="text-[8.5px] text-slate-600 font-bold font-mono">全量 22 角色</span>
                         </div>
                         <div id="studioRoleCheckboxes" class="space-y-0.5 text-[9.5px] max-h-36 overflow-y-auto pr-0.5">
@@ -389,7 +389,7 @@
                     <!-- 流线图例 Legend -->
                     <div class="absolute bottom-4 right-4 z-30 flex flex-col items-end gap-2 pointer-events-none">
                         <!-- Legend Content -->
-                        <div id="legendContent" class="bg-white/95 backdrop-blur-md border border-slate-200 rounded shadow-lg p-2.5 text-[10px] text-slate-700 pointer-events-auto flex flex-col gap-1.5 min-w-[180px] transition-all">
+                        <div id="legendContent" class="hidden bg-white/95 backdrop-blur-md border border-slate-200 rounded shadow-lg p-2.5 text-[10px] text-slate-700 pointer-events-auto flex flex-col gap-1.5 min-w-[180px] transition-all">
                             <div class="font-bold border-b border-slate-200 pb-1 mb-0.5 text-slate-800 flex justify-between items-center">
                                 <span>📌 流线溯源图例</span>
                                 <button onclick="document.getElementById('legendContent').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 cursor-pointer text-xs" title="收起">✕</button>
@@ -424,10 +424,12 @@
                             <!-- Column 1: Physical Sources (5 col) -->
                             <div class="col-span-5 flex flex-col gap-1">
 
-<div class="w-full border-b-2 border-solid border-slate-300 pb-2 flex items-center justify-between mb-2">
-    <span class="font-bold text-[14px] text-slate-800">1. 原始数据层</span>
-</div>
-<div class="font-bold text-[12px] text-slate-800 mb-2 pb-1 border-b border-dashed border-slate-300 flex items-center">
+<div class="border-b-2 border-solid border-slate-300 pb-1 flex items-center justify-between">
+                                    <span class="font-bold text-[14px] text-slate-800 flex items-center gap-1">
+                                        <span>1. 原始数据层</span>
+                                    </span>
+                                </div>
+<div class="font-bold text-[12px] text-slate-800 mb-1 mt-2 flex items-center">
     <span>静态数据</span>
 </div>
 <div class="flex flex-col gap-1.5">
@@ -717,7 +719,7 @@
 </div>
 
 <div class="mt-2 mb-1 border-b-2 border-dashed border-amber-400 pb-1 flex items-center justify-between">
-    <span class="font-bold text-[12px] text-amber-900 flex items-center gap-1">
+    <span class="font-bold text-[12px] text-slate-800 flex items-center gap-1">
         <span>动态数据</span>
     </span>
 </div>
@@ -732,7 +734,7 @@
 
 
 <div class="mt-2 mb-1 border-b-2 border-solid border-indigo-400 pb-1 flex items-center justify-between">
-    <span class="font-bold text-[12px] text-indigo-900 flex items-center gap-1">
+    <span class="font-bold text-[12px] text-slate-800 flex items-center gap-1">
         <span>业务数据</span>
     </span>
 </div>
@@ -748,9 +750,11 @@
 </div>
                             <!-- Column 2: 17套国标L码年报一套表 (4 col) -->
                             <div class="col-span-4 flex flex-col gap-1">
-                                <div class="w-full border-b-2 border-solid border-slate-300 pb-2 flex items-center justify-between mb-2">
-    <span class="font-bold text-[14px] text-slate-800">2. 数据明细层+数据汇总层（本体层）</span>
-</div>
+                                <div class="border-b-2 border-solid border-slate-300 pb-1 flex items-center justify-between">
+                                    <span class="font-bold text-[14px] text-slate-800 flex items-center gap-1">
+                                        <span>2. 数据明细层+数据汇总层（本体层）</span>
+                                    </span>
+                                </div>
                                 
                                 <!-- 简单推演与变化对比文本框 -->
                                 <div id="multi-combo-info-box" class="hidden bg-slate-50 border border-slate-300 rounded p-1 text-[8.5px] text-slate-800 space-y-0.5 shadow-2xs my-0.5">
@@ -860,103 +864,104 @@
 
                             <!-- Column 3: 3. 数据应用层 Agent -->
                             <div class="col-span-3 flex flex-col gap-1 pr-1">
-                                <div class="w-full border-b-2 border-solid border-slate-300 pb-2 flex items-center justify-between mb-2">
-                                    <span class="font-bold text-[14px] text-slate-800">3. 数据应用层</span>
+                                <div class="border-b-2 border-solid border-slate-300 pb-1 flex items-center justify-between">
+                                    <span class="font-bold text-[14px] text-slate-800 flex items-center gap-1">
+                                        <span>3. 数据应用层</span>
+                                    </span>
                                 </div>
                                 <div class="space-y-1 flex-1">
-                                    <!-- 数据统筹中枢 -->
-                                    <div class="text-[9.5px] font-bold text-slate-700 pt-0.5 pb-0.5 border-b border-slate-200/60 mb-1 flex items-center justify-between">
-                                        <span>数据统筹中枢</span>
-                                        <span class="text-[8px] font-normal text-slate-400">归口与汇总</span>
+                                    <!-- 1 数据统筹中枢 -->
+                                    <div class="text-[10px] font-extrabold text-slate-800 bg-slate-100 border-l-2 border-blue-500 pl-1.5 pr-1 py-0.5 mb-2 mt-1 flex items-center justify-between">
+                                        <span>1 数据统筹中枢</span>
+                                        <span class="text-[8px] font-normal text-slate-500">归口与汇总</span>
                                     </div>
-                                    <div id="role-0" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-0')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">00 数据统筹中枢</span>
-                                        <span class="text-[8px] bg-slate-100 text-slate-700 px-1 rounded font-bold">年报基线</span>
+                                    <div id="role-0" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-0')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit mb-1">
+                                        <span class="text-slate-900">00 数据统筹中枢</span>
                                     </div>
 
                                     <!-- 10个部门 -->
-                                    <div class="mt-2.5 mb-1 pt-1.5 border-t border-slate-200/80 text-[9.5px] font-bold text-slate-700 flex items-center justify-between">
-                                        <span>10个核心处室</span>
-                                        <span class="text-[8px] font-normal text-slate-400">业务管辖</span>
+                                    <div class="text-[10px] font-extrabold text-slate-800 bg-slate-100 border-l-2 border-blue-500 pl-1.5 pr-1 py-0.5 mb-2 mt-3 flex items-center justify-between">
+                                        <span>10 核心处室</span>
+                                        <span class="text-[8px] font-normal text-slate-500">业务管辖</span>
                                     </div>
 
-                                    <div id="role-1" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-1')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">01 规划计划处</span>
+                                    <div id="role-1" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-1')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">01 规划计划处</span>
                                     </div>
-                                    <div id="role-2" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-2')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">02 建设市场处</span>
+                                    <div id="role-2" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-2')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">02 建设市场处</span>
                                     </div>
-                                    <div id="role-3" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-3')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">03 工程技术处</span>
+                                    <div id="role-3" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-3')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">03 工程技术处</span>
                                     </div>
-                                    <div id="role-4" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-4')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">04 养护管理处</span>
+                                    <div id="role-4" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-4')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">04 养护管理处</span>
                                     </div>
-                                    <div id="role-5" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-5')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">05 费收处</span>
+                                    <div id="role-5" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-5')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">05 费收处</span>
                                     </div>
-                                    <div id="role-6" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-6')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">06 运营管理处</span>
+                                    <div id="role-6" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-6')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">06 运营管理处</span>
                                     </div>
-                                    <div id="role-7" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-7')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">07 财务资产处</span>
+                                    <div id="role-7" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-7')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">07 财务资产处</span>
                                     </div>
-                                    <div id="role-8" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-8')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">08 农村公路处</span>
+                                    <div id="role-8" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-8')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">08 农村公路处</span>
                                     </div>
-                                    <div id="role-9" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-9')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">09 法规审批处</span>
+                                    <div id="role-9" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-9')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">09 法规审批处</span>
                                     </div>
-                                    <div id="role-10" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-10')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">10 执法监督处</span>
+                                    <div id="role-10" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-10')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">10 执法监督处</span>
                                     </div>
 
                                     <!-- 8个企事业单位/服务商 -->
-                                    <div class="mt-2.5 mb-1 pt-1.5 border-t border-slate-200/80 text-[9.5px] font-bold text-slate-700 flex items-center justify-between">
-                                        <span>8个企事业单位/服务商</span>
-                                        <span class="text-[8px] font-normal text-slate-400">协同落库</span>
+                                    <div class="text-[10px] font-extrabold text-slate-800 bg-slate-100 border-l-2 border-emerald-500 pl-1.5 pr-1 py-0.5 mb-2 mt-3 flex items-center justify-between">
+                                        <span>X 企事业单位/服务商</span>
+                                        <span class="text-[8px] font-normal text-slate-500">协同落库</span>
                                     </div>
-                                    <div id="role-11" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-11')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">11 高速运营/管养企业</span>
+                                    <div id="role-11" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-11')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">11 高速运营/管养企业</span>
                                     </div>
-                                    <div id="role-12" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-12')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">12 农路管养企业</span>
+                                    <div id="role-12" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-12')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">12 农路管养企业</span>
                                     </div>
-                                    <div id="role-13" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-13')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">13 应急处置服务中心</span>
+                                    <div id="role-13" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-13')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">13 应急处置服务中心</span>
                                     </div>
-                                    <div id="role-14" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-14')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">14 专业检测企业</span>
+                                    <div id="role-14" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-14')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">14 专业检测企业</span>
                                     </div>
-                                    <div id="role-15" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-15')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">15 养护施工企业</span>
+                                    <div id="role-15" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-15')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">15 养护施工企业</span>
                                     </div>
-                                    <div id="role-20" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-20')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">20 设计与科研院所</span>
+                                    <div id="role-20" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-20')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">20 设计与科研院所</span>
                                     </div>
-                                    <div id="role-21" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">21 监测设备厂商</span>
+                                    <div id="role-21" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">21 监测设备厂商</span>
                                     </div>
-                                    <div id="role-22" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">22 AI自动巡检</span>
+                                    <div id="role-22" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">22 AI自动巡检</span>
                                     </div>
 
-                                    <!-- X个外部委办局 -->
-                                    <div class="mt-2.5 mb-1 pt-1.5 border-t border-slate-200/80 text-[9.5px] font-bold text-slate-700 flex items-center justify-between">
-                                        <span>4个外部委办局</span>
-                                        <span class="text-[8px] font-normal text-slate-400">跨域对接</span>
+                                    <!-- Y个外部委办局 -->
+                                    <div class="text-[10px] font-extrabold text-slate-800 bg-slate-100 border-l-2 border-indigo-500 pl-1.5 pr-1 py-0.5 mb-2 mt-3 flex items-center justify-between">
+                                        <span>Y 外部委办局</span>
+                                        <span class="text-[8px] font-normal text-slate-500">跨域对接</span>
                                     </div>
-                                    <div id="role-16" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-16')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">16 气象局</span>
+                                    <div id="role-16" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-16')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">16 气象局</span>
                                     </div>
-                                    <div id="role-17" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-17')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">17 应急管理厅</span>
+                                    <div id="role-17" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-17')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">17 应急管理厅</span>
                                     </div>
-                                    <div id="role-18" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-18')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">18 自然资源厅</span>
+                                    <div id="role-18" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-18')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">18 自然资源厅</span>
                                     </div>
-                                    <div id="role-19" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-19')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">19 公安交管局</span>
+                                    <div id="role-19" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-19')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">19 公安交管局</span>
                                     </div>
 </div>
                                 </div>
@@ -1715,7 +1720,7 @@
 
         
         // 全量 17 套国标 L 码本体定义库
-                                                                                                                                                                                                                                                                                                                                                                                                        const all17Ontologies = [
+                                                                                                                                                                                                                                                                                                                                                                                                                const all17Ontologies = [
             { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
             { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '08 农村公路处' },
             { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
@@ -2442,7 +2447,7 @@ if (scen.exts && scen.exts.length > 0) {
                         <div class="flex items-center gap-1.5">
                             <input type="checkbox" ${e.checked ? 'checked' : ''} onclick="event.stopPropagation()" class="rounded border-slate-300">
                             <div>
-                                <span class="text-[9px] font-mono font-bold text-slate-900 block group-hover:text-amber-800">${e.name}</span>
+                                <span class="text-[9px] font-mono font-bold text-slate-900 block group-hover:text-amber-800">${e.name.replace(/^(?:src-\d+\s*|\d+\.\s*)/i, '')}</span>
                                 <span class="text-[8px] text-slate-700 font-sans">支持处室: ${e.office}</span>
                             </div>
                         </div>
@@ -3205,7 +3210,7 @@ if (scen.exts && scen.exts.length > 0) {
                         'bg-amber-50 border-amber-300 hover:border-amber-500 text-amber-900';
 const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                     const pillHtml = `<div id="${ext.id}" onclick="handleLeftElementClick('${ext.ontKey || scenData.defaultOnt}')" onmouseenter="highlightLineage('${ext.ontKey || scenData.defaultOnt}')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1 px-1.5 py-[2px] rounded font-mono text-[8px] border cursor-pointer hover:shadow-xs transition-all ${colorClasses}">
-                        <span class="font-bold truncate leading-none">${ext.name.replace(/\.[a-z]+$/, '')}</span>
+                        <span class="font-bold truncate leading-none">${ext.name.replace(/^(?:src-\d+\s*|\d+\.\s*)/i, '').replace(/\.[a-z]+$/, '')}</span>
                         <span class="text-[7px] text-blue-600 bg-blue-50 px-1 py-[1px] rounded leading-none flex items-center gap-0.5 border border-blue-100"><span>🔗</span><span>${ontTag}</span></span>
                     </div>`;
                     
@@ -3550,7 +3555,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 ['src-excel-26', 'ont-l30b', '#2563eb', 'l30b', ''],
                 ['src-excel-27', 'ont-l30b', '#2563eb', 'l30b', ''],
                 ['src-excel-28', 'ont-l30b', '#2563eb', 'l30b', ''],
-                ['src-excel-29', 'ont-l30c', '#2563eb', 'l30c', ''],
+                ['src-excel-29', 'ont-l30b', '#2563eb', 'l30b', ''],
                 ['src-excel-30', 'ont-l30c', '#2563eb', 'l30c', ''],
                 ['src-excel-31', 'ont-l30c', '#2563eb', 'l30c', ''],
                 ['src-excel-32', 'ont-l30c', '#2563eb', 'l30c', ''],
@@ -3558,33 +3563,83 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 ['src-excel-34', 'ont-l31b', '#2563eb', 'l31b', ''],
                 ['src-excel-35', 'ont-l31b', '#2563eb', 'l31b', ''],
                 ['src-excel-36', 'ont-l31b', '#2563eb', 'l31b', ''],
-                ['src-excel-37', 'ont-l31c', '#2563eb', 'l31c', ''],
+                ['src-excel-37', 'ont-l31b', '#2563eb', 'l31b', ''],
                 ['src-excel-38', 'ont-l31c', '#2563eb', 'l31c', ''],
                 ['src-excel-39', 'ont-l31c', '#2563eb', 'l31c', ''],
                 ['src-excel-40', 'ont-l31c', '#2563eb', 'l31c', ''],
                 ['src-excel-41', 'ont-l32', '#2563eb', 'l32', ''],
                 ['src-excel-42', 'ont-l32', '#2563eb', 'l32', ''],
-                
-                // Column 2 (L码套表) -> Column 3 (组织架构)
-                ['ont-l21', 'role-00', '#2563eb', 'l21', '00'],
-                ['ont-l22', 'role-08', '#2563eb', 'l22', '08'],
-                ['ont-l23', 'role-01', '#2563eb', 'l23', '01'],
-                ['ont-l24a', 'role-03', '#2563eb', 'l24a', '03'],
-                ['ont-l24b', 'role-03', '#2563eb', 'l24b', '03'],
-                ['ont-l25', 'role-03', '#2563eb', 'l25', '03'],
-                ['ont-l26', 'role-06', '#2563eb', 'l26', '06'],
-                ['ont-l27', 'role-17', '#2563eb', 'l27', '17'],
-                ['ont-l28', 'role-20', '#2563eb', 'l28', '20'],
-                ['ont-l29a', 'role-10', '#2563eb', 'l29a', '10'],
-                ['ont-l30a', 'role-04', '#2563eb', 'l30a', '04'],
-                ['ont-l30b', 'role-03', '#2563eb', 'l30b', '03'],
-                ['ont-l30c', 'role-07', '#2563eb', 'l30c', '07'],
-                ['ont-l31a', 'role-11', '#2563eb', 'l31a', '11'],
-                ['ont-l31b', 'role-02', '#2563eb', 'l31b', '02'],
-                ['ont-l31c', 'role-08', '#2563eb', 'l31c', '08'],
-                ['ont-l32', 'role-16', '#2563eb', 'l32', '16'],
-                ['ont-l32', 'role-12', '#2563eb', 'l32', '12']
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // Column 2 (L码套表) -> Column 3 (10大业务处室 & 企事业单位 Agent)
+                ['ont-l21', 'role-1', '#ef4444', 'l21', 'role-1'], // 主导
+                ['ont-l21', 'role-8', '#2563eb', 'l21', 'role-8'], // 支持
+                ['ont-l21', 'role-9', '#2563eb', 'l21', 'role-9'], // 支持
+                ['ont-l22', 'role-8', '#ef4444', 'l22', 'role-8'], // 主导
+                ['ont-l23', 'role-1', '#ef4444', 'l23', 'role-1'], // 主导
+                ['ont-l24a', 'role-3', '#ef4444', 'l24a', 'role-3'], // 主导
+                ['ont-l24a', 'role-8', '#2563eb', 'l24a', 'role-8'], // 支持
+                ['ont-l24a', 'role-2', '#2563eb', 'l24a', 'role-2'], // 支持
+                ['ont-l24b', 'role-3', '#ef4444', 'l24b', 'role-3'], // 主导
+                ['ont-l25', 'role-3', '#ef4444', 'l25', 'role-3'], // 主导
+                ['ont-l26', 'role-5', '#ef4444', 'l26', 'role-5'], // 主导
+                ['ont-l27', 'role-3', '#ef4444', 'l27', 'role-3'], // 主导
+                ['ont-l28', 'role-4', '#ef4444', 'l28', 'role-4'], // 主导
+                ['ont-l29a', 'role-4', '#ef4444', 'l29a', 'role-4'], // 主导
+                ['ont-l30a', 'role-4', '#ef4444', 'l30a', 'role-4'], // 主导
+                ['ont-l30b', 'role-3', '#ef4444', 'l30b', 'role-3'], // 主导
+                ['ont-l30b', 'role-2', '#2563eb', 'l30b', 'role-2'], // 支持
+                ['ont-l30c', 'role-7', '#ef4444', 'l30c', 'role-7'], // 主导
+                ['ont-l31a', 'role-0', '#ef4444', 'l31a', 'role-0'], // 主导
+                ['ont-l31b', 'role-0', '#ef4444', 'l31b', 'role-0'], // 主导
+                ['ont-l31b', 'role-9', '#2563eb', 'l31b', 'role-9'], // 支持
+                ['ont-l31c', 'role-8', '#ef4444', 'l31c', 'role-8'], // 主导
+                ['ont-l32', 'role-0', '#ef4444', 'l32', 'role-0'], // 主导
+                ['ont-l32', 'role-13', '#2563eb', 'l32', 'role-13'], // 支持
+
+                // (Removed Sub-Node SVG Branches - redundant as they form a visual tree via HTML layout)
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
+                ['role-16', 'role-10', '#10b981', 'scen', 'role-10', 'high'] /* 16 气象局 -> 10 执法监督处: 气象灾害预警/恶劣天气监测推流 */,
+                ['role-10', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 10 执法监督处 -> 00 数据统筹部门: 空间锚点确权与管辖匹配 */,
+                ['role-0', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 00 数据统筹部门 -> 04 养护管理处: 灾前风险点位巡查指令 */,
+                ['role-0', 'role-3', '#10b981', 'scen', 'role-3', 'high'] /* 00 数据统筹部门 -> 03 工程技术处: 高位桥隧边坡专项防范 */,
+                ['role-0', 'role-8', '#10b981', 'scen', 'role-8', 'high'] /* 00 数据统筹部门 -> 08 农村公路处: 沿河临崖村道封路避险 */,
+                ['role-10', 'role-19', '#10b981', 'scen', 'role-19', 'high'] /* 10 执法监督处 -> 18 公安交管局: 警路企气会商与交通分流管控 */,
+                ['role-10', 'role-13', '#10b981', 'scen', 'role-13', 'high'] /* 10 执法监督处 -> 12 应急处置中心: 应急资源调度与跨省/区保障 */,
+                ['role-13', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 12 应急处置中心 -> 15 养护施工企业: 多方联动公路抢通与装备前置 */,
+                ['role-10', 'role-2', '#10b981', 'scen', 'role-2', 'high'] /* 10 执法监督处 -> 02 建设市场处: 在建工程应急避险 */,
+                ['role-10', 'role-17', '#10b981', 'scen', 'role-17', 'high'] /* 10 执法监督处 -> 16 应急管理厅: 政警路企联合指挥与协同处置 */,
+                ['role-10', 'role-7', '#10b981', 'scen', 'role-7', 'medium'] /* 10 执法监督处 -> 07 财务资产处: 抢险资金核算清算 */,
+                ['role-0', 'role-1', '#10b981', 'scen', 'role-1', 'medium'] /* 00 数据统筹部门 -> 01 规划计划处: 全年路网受损影响评估 */,
+                ['role-21', 'role-3', '#10b981', 'scen', 'role-3', 'high'] /* 21 监测设备厂商/产权单位 -> 03 工程技术处: 数据上传质量自动化考核采集 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 03 工程技术处 -> 00 数据统筹部门: 空间锚定与底账核实 */,
+                ['role-3', 'role-13', '#10b981', 'scen', 'role-13', 'high'] /* 03 工程技术处 -> 12 应急处置中心: 分级预警处置闭环协查 */,
+                ['role-3', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 03 工程技术处 -> 04 养护管理处: 日常运维防伪与现场协查 */,
+                ['role-3', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 03 工程技术处 -> 15 养护施工企业: 下发异常工况超时督办 */,
+                ['role-3', 'role-6', '#10b981', 'scen', 'role-6', 'medium'] /* 03 工程技术处 -> 06 运营管理处: 不可抗力断电免责查证 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'medium'] /* 03 工程技术处 -> 00 数据统筹部门: 封闭施工免责扩展核查 */,
+                ['role-3', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 03 工程技术处 -> 交通运输部(外部): 省级日常监测质量考核报告推送 */,
+                ['role-22', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 22 各地市州交通局 -> 00 数据统筹部门: 年报底表数据逐级汇聚上报 */,
+                ['role-4', 'role-7', '#10b981', 'scen', 'role-7', 'high'] /* 04 养护管理处 -> 07 财务资产处: 提供养护工程与资金核销业务依据 */,
+                ['role-1', 'role-18', '#10b981', 'scen', 'role-18', 'medium'] /* 01 规划计划处 -> 17 自然资源厅: 路线变更与国土空间规划数据对齐 */,
+                ['role-0', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 00 数据统筹部门 -> 交通运输部(外部): 省级路网年报脱敏直报 */,
+                ['role-4', 'role-11', '#10b981', 'scen', 'role-11', 'high'] /* 04 养护管理处 -> 23 交投集团: 发送越界警告与打回指令 */,
+                ['role-11', 'role-20', '#10b981', 'scen', 'role-20', 'medium'] /* 23 交投集团 -> 24 交规院: 分发映射重定向规则 */,
+                ['role-20', 'role-15', '#10b981', 'scen', 'role-15', 'high'] /* 24 交规院 -> 25 路桥公司: 下发数据重构指令 */,
+                ['role-15', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 25 路桥公司 -> 00 数据统筹部门: 数据重构与二次上传 */,
+                ['role-4', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 04 养护管理处 -> 00 数据统筹部门: 人工授权审批落库 */,
+                ['role-10', 'ont-l27', '#10b981', 'scen', 'l27', 'high'] /* 10 执法监督处 -> L27 (场景1联动) */,
+                ['role-10', 'ont-l29a', '#10b981', 'scen', 'l29a', 'high'] /* 10 执法监督处 -> L29a (场景1联动) */,
+                ['role-10', 'ont-l32', '#10b981', 'scen', 'l32', 'high'] /* 10 执法监督处 -> L32 (场景1联动) */,
+                ['role-12', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 12 农路管养企业 -> 04 养护管理处 */,
+                ['role-12', 'role-8', '#10b981', 'scen', 'role-8', 'normal'] /* 12 农路管养企业 -> 08 农村公路处 */,
+                ['role-14', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 14 专检机构 -> 04 养护管理处 */,
+                ['role-21', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 21 监测设备厂商 -> 04 养护管理处 */,
+                ['role-22', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 22 各地市州交通局 -> 04 养护管理处 */,
+                ['role-19', 'role-1', '#10b981', 'scen', 'role-1', 'normal'] /* 19 公安交管局 -> 01 规划计划处 */,
+                ['role-19', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 19 公安交管局 -> 04 养护管理处 */
             ];
+
             
             // Dynamically add lines for the active ODS dynamic pills
             const dynamicContainers = [document.getElementById('ods-iot-container'), document.getElementById('ods-biz-container')];
@@ -3602,16 +3657,29 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 }
             });
 
-            let pathsHTML = '';
-            const isHovering = activeHighlightCode && activeHighlightCode.length > 0;
+            let pathsHTML = `
+                <defs>
+                    <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb" />
+                    </marker>
+                    <marker id="arrowhead-active" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#0284c7" />
+                    </marker>
+                    <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="2" result="blur" />
+                        <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
+            `;
 
-            connections.forEach(conn => {
-                const [fromId, toId, baseColor, code, roleId] = conn;
+            connections.forEach(([fromId, toId, defaultColor, code, roleId, priority]) => {
                 const elFrom = document.getElementById(fromId);
                 const elTo = document.getElementById(toId);
 
-                // Check offsetWidth to safely skip hidden elements (display: none)
-                if (elFrom && elTo && elFrom.offsetWidth > 0 && elTo.offsetWidth > 0) {
+                if (elFrom && elTo) {
                     const r1 = elFrom.getBoundingClientRect();
                     const r2 = elTo.getBoundingClientRect();
 
