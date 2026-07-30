@@ -389,7 +389,7 @@
                     <!-- 流线图例 Legend -->
                     <div class="absolute bottom-4 right-4 z-30 flex flex-col items-end gap-2 pointer-events-none">
                         <!-- Legend Content -->
-                        <div id="legendContent" class="hidden bg-white/95 backdrop-blur-md border border-slate-200 rounded shadow-lg p-2.5 text-[10px] text-slate-700 pointer-events-auto flex flex-col gap-1.5 min-w-[180px] transition-all">
+                        <div id="legendContent" class="bg-white/95 backdrop-blur-md border border-slate-200 rounded shadow-lg p-2.5 text-[10px] text-slate-700 pointer-events-auto flex flex-col gap-1.5 min-w-[180px] transition-all">
                             <div class="font-bold border-b border-slate-200 pb-1 mb-0.5 text-slate-800 flex justify-between items-center">
                                 <span>📌 流线溯源图例</span>
                                 <button onclick="document.getElementById('legendContent').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 cursor-pointer text-xs" title="收起">✕</button>
@@ -424,14 +424,14 @@
                             <!-- Column 1: Physical Sources (5 col) -->
                             <div class="col-span-5 flex flex-col gap-1">
 
-<div class="w-full border-b-2 border-solid border-slate-300 pb-2 flex items-center justify-between">
-                                    <span class="font-bold text-[14px] text-slate-800">
-                                        1. 原始数据层
-                                    </span>
-                                </div>
-<div class="w-full font-bold text-[12px] text-slate-800 mb-2 mt-2 pb-1 border-b border-dashed border-slate-300 flex items-center justify-between">
-                                    <span>静态数据</span>
-                                </div>
+<div class="mt-1 mb-1 border-b-2 border-solid border-slate-300 pb-1 flex items-center justify-between">
+    <span class="font-bold text-[14px] text-slate-800 flex items-center gap-1">
+        <span>1. 原始数据层</span>
+    </span>
+</div>
+<div class="font-bold text-[12px] text-slate-700 mb-1 flex items-center">
+    <span>静态数据</span>
+</div>
 <div class="flex flex-col gap-1.5">
 
 
@@ -719,7 +719,7 @@
 </div>
 
 <div class="mt-2 mb-1 border-b-2 border-dashed border-amber-400 pb-1 flex items-center justify-between">
-    <span class="font-bold text-[12px] text-slate-800 flex items-center gap-1">
+    <span class="font-bold text-[12px] text-amber-900 flex items-center gap-1">
         <span>动态数据</span>
     </span>
 </div>
@@ -734,7 +734,7 @@
 
 
 <div class="mt-2 mb-1 border-b-2 border-solid border-indigo-400 pb-1 flex items-center justify-between">
-    <span class="font-bold text-[12px] text-slate-800 flex items-center gap-1">
+    <span class="font-bold text-[12px] text-indigo-900 flex items-center gap-1">
         <span>业务数据</span>
     </span>
 </div>
@@ -750,11 +750,9 @@
 </div>
                             <!-- Column 2: 17套国标L码年报一套表 (4 col) -->
                             <div class="col-span-4 flex flex-col gap-1">
-                                <div class="w-full border-b-2 border-solid border-slate-300 pb-2 flex items-center justify-between">
-                                    <span class="font-bold text-[14px] text-slate-800">
-                                        2. 数据明细层+数据汇总层（本体层）
-                                    </span>
-                                </div>
+                                <div class="font-bold border-b border-slate-200 pb-1 text-slate-700 text-[11.5px] flex items-center justify-between">
+    <span>2. 数据明细层+数据汇总层（本体层）</span>
+</div>
                                 
                                 <!-- 简单推演与变化对比文本框 -->
                                 <div id="multi-combo-info-box" class="hidden bg-slate-50 border border-slate-300 rounded p-1 text-[8.5px] text-slate-800 space-y-0.5 shadow-2xs my-0.5">
@@ -864,105 +862,103 @@
 
                             <!-- Column 3: 3. 数据应用层 Agent -->
                             <div class="col-span-3 flex flex-col gap-1 pr-1">
-                                <div class="w-full border-b-2 border-solid border-slate-300 pb-2 flex items-center justify-between">
-                                    <span class="font-bold text-[14px] text-slate-800">
-                                        3. 数据应用层
-                                    </span>
+                                <div class="font-bold border-b border-slate-200 pb-1 text-slate-700 text-[11.5px]">
+                                    3. 数据应用层
                                 </div>
                                 <div class="space-y-1 flex-1">
                                     <!-- 数据统筹中枢 -->
-                                    <div class="mt-2 mb-2 pb-1 border-b-2 border-slate-200 text-[10px] font-bold text-slate-800 flex items-center justify-between">
+                                    <div class="text-[9.5px] font-bold text-slate-700 pt-0.5 pb-0.5 border-b border-slate-200/60 mb-1 flex items-center justify-between">
                                         <span>数据统筹中枢</span>
                                         <span class="text-[8px] font-normal text-slate-400">归口与汇总</span>
                                     </div>
-                                    <div id="role-0" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-0')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">00 数据统筹中枢</span>
+                                    <div id="role-0" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-0')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">00 数据统筹中枢</span>
                                         <span class="text-[8px] bg-slate-100 text-slate-700 px-1 rounded font-bold">年报基线</span>
                                     </div>
 
                                     <!-- 10个部门 -->
-                                    <div class="mt-4 mb-2 pb-1 border-b-2 border-slate-200 text-[10px] font-bold text-slate-800 flex items-center justify-between">
+                                    <div class="mt-2.5 mb-1 pt-1.5 border-t border-slate-200/80 text-[9.5px] font-bold text-slate-700 flex items-center justify-between">
                                         <span>10个核心处室</span>
                                         <span class="text-[8px] font-normal text-slate-400">业务管辖</span>
                                     </div>
 
-                                    <div id="role-1" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-1')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">01 规划计划处</span>
+                                    <div id="role-1" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-1')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">01 规划计划处</span>
                                     </div>
-                                    <div id="role-2" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-2')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">02 建设市场处</span>
+                                    <div id="role-2" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-2')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">02 建设市场处</span>
                                     </div>
-                                    <div id="role-3" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-3')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">03 工程技术处</span>
+                                    <div id="role-3" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-3')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">03 工程技术处</span>
                                     </div>
-                                    <div id="role-4" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-4')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">04 养护管理处</span>
+                                    <div id="role-4" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-4')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">04 养护管理处</span>
                                     </div>
-                                    <div id="role-5" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-5')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">05 费收处</span>
+                                    <div id="role-5" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-5')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">05 费收处</span>
                                     </div>
-                                    <div id="role-6" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-6')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">06 运营管理处</span>
+                                    <div id="role-6" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-6')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">06 运营管理处</span>
                                     </div>
-                                    <div id="role-7" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-7')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">07 财务资产处</span>
+                                    <div id="role-7" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-7')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">07 财务资产处</span>
                                     </div>
-                                    <div id="role-8" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-8')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">08 农村公路处</span>
+                                    <div id="role-8" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-8')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">08 农村公路处</span>
                                     </div>
-                                    <div id="role-9" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-9')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">09 法规审批处</span>
+                                    <div id="role-9" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-9')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">09 法规审批处</span>
                                     </div>
-                                    <div id="role-10" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-10')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
-                                        <span class="text-slate-700">10 执法监督处</span>
+                                    <div id="role-10" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-10')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs w-fit">
+                                        <span class="text-slate-900">10 执法监督处</span>
                                     </div>
 
                                     <!-- 8个企事业单位/服务商 -->
-                                    <div class="mt-4 mb-2 pb-1 border-b-2 border-slate-200 text-[10px] font-bold text-slate-800 flex items-center justify-between">
+                                    <div class="mt-2.5 mb-1 pt-1.5 border-t border-slate-200/80 text-[9.5px] font-bold text-slate-700 flex items-center justify-between">
                                         <span>8个企事业单位/服务商</span>
                                         <span class="text-[8px] font-normal text-slate-400">协同落库</span>
                                     </div>
-                                    <div id="role-11" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-11')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">11 高速运营/管养企业</span>
+                                    <div id="role-11" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-11')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">11 高速运营/管养企业</span>
                                     </div>
-                                    <div id="role-12" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-12')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">12 农路管养企业</span>
+                                    <div id="role-12" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-12')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">12 农路管养企业</span>
                                     </div>
-                                    <div id="role-13" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-13')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">13 应急处置服务中心</span>
+                                    <div id="role-13" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-13')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">13 应急处置服务中心</span>
                                     </div>
-                                    <div id="role-14" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-14')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">14 专业检测企业</span>
+                                    <div id="role-14" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-14')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">14 专业检测企业</span>
                                     </div>
-                                    <div id="role-15" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-15')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">15 养护施工企业</span>
+                                    <div id="role-15" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-15')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">15 养护施工企业</span>
                                     </div>
-                                    <div id="role-20" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-20')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">20 设计与科研院所</span>
+                                    <div id="role-20" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-20')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">20 设计与科研院所</span>
                                     </div>
-                                    <div id="role-21" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">21 监测设备厂商</span>
+                                    <div id="role-21" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-21')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">21 监测设备厂商</span>
                                     </div>
-                                    <div id="role-22" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">22 AI自动巡检</span>
+                                    <div id="role-22" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-22')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">22 AI自动巡检</span>
                                     </div>
 
                                     <!-- X个外部委办局 -->
-                                    <div class="mt-4 mb-2 pb-1 border-b-2 border-slate-200 text-[10px] font-bold text-slate-800 flex items-center justify-between">
+                                    <div class="mt-2.5 mb-1 pt-1.5 border-t border-slate-200/80 text-[9.5px] font-bold text-slate-700 flex items-center justify-between">
                                         <span>4个外部委办局</span>
                                         <span class="text-[8px] font-normal text-slate-400">跨域对接</span>
                                     </div>
-                                    <div id="role-16" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-16')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">16 气象局</span>
+                                    <div id="role-16" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-16')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">16 气象局</span>
                                     </div>
-                                    <div id="role-17" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-17')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">17 应急管理厅</span>
+                                    <div id="role-17" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-17')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">17 应急管理厅</span>
                                     </div>
-                                    <div id="role-18" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-18')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">18 自然资源厅</span>
+                                    <div id="role-18" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-18')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">18 自然资源厅</span>
                                     </div>
-                                    <div id="role-19" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-19')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-medium text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
-                                        <span class="text-slate-700">19 公安交管局</span>
+                                    <div id="role-19" onclick="switchWorkspace('writeback')" onmouseenter="highlightLineageRole('role-19')" onmouseleave="resetLineageHighlight()" class="palantir-card inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-[9.5px] cursor-pointer hover:shadow-xs border-slate-300 w-fit">
+                                        <span class="text-slate-900">19 公安交管局</span>
                                     </div>
 </div>
                                 </div>
