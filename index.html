@@ -1896,12 +1896,10 @@
                 desc: '"动火/受限空间作业前 3 分钟动态微课 + 活体考勤卡口"',
                 description: '特种作业(P1) ➔ 风险热力图(P3) ➔ 安责险降费(P0) ➔ 园区数据资产(P2)',
                 ontologies: [
-                    { key: 'l27', name: 'L27 易发地质/安全灾害点明细表 [危化品园区]', leadOffice: '17 应急管理厅' },
-                    { key: 'l29a', name: 'L29a 园区特种作业安培打卡流水账 [企业]', leadOffice: '化工园区' },
-                    { key: 'l32', name: 'L32 安责险保单与预防费统筹池 [保司]', leadOffice: '保险公司' }
+                    { key: 'l33b', name: 'L33b（危险化学品安全监管专题）[危化品园区]', leadOffice: '危险化学品安全监督管理处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '17 应急管理厅',
+                defaultOntKey: 'l33b',
+                leadOffice: '危险化学品安全监督管理处',
                 agents: [
                     { code: '17', name: '17 应急管理厅 Agent', roleType: '监管协同(P3)', sopSkill: '接收热力图并下发电子整改单SOP', checked: true },
                     { code: '91', name: '化工园区企业 Agent', roleType: '执行协同(P1)', sopSkill: '微课活体考勤生成台账冲抵安全费SOP', checked: true },
