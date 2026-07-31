@@ -1641,7 +1641,7 @@
                 leadOffice: '17 应急管理厅 (归口主导)',
                 roles: [
                     { name: '17 应急管理厅', type: '归口主导' },
-                    { name: '06 运营管理处', type: '数据支持' },
+                    { name: '【公路部门】06 运营管理处', type: '数据支持' },
                     { name: '16 气象局', type: '数据支持' },
                     { name: '17 自然资源厅', type: '数据支持' }
                 ],
@@ -1661,13 +1661,13 @@
                 defaultOnt: 'l21', 
                 leadOffice: '01 规划计划处 (归口主导)',
                 roles: [
-                    { name: '01 规划计划处', type: '归口主导' },
+                    { name: '【公路部门】01 规划计划处', type: '归口主导' },
                     { name: '05 法规审批处', type: '数据支持' },
                     { name: '00 数据统筹中枢', type: '数据支持' }
                 ],
                 phys: [
-                    { id: 'src-1', name: 'src-1 (路线基本情况表.xls)', tag: '年报基线', office: '01 规划计划处', checked: true },
-                    { id: 'src-2', name: 'src-2 (公路排桩数据.xls)', tag: '年报基线', office: '01 规划计划处', checked: true }
+                    { id: 'src-1', name: 'src-1 (路线基本情况表.xls)', tag: '年报基线', office: '【公路部门】01 规划计划处', checked: true },
+                    { id: 'src-2', name: 'src-2 (公路排桩数据.xls)', tag: '年报基线', office: '【公路部门】01 规划计划处', checked: true }
                 ],
                 exts: [
                     { id: 'src-45', name: 'src-45 GIS空间数据校正中枢.db', tag: '新增演进', office: '00 数据统筹中枢', checked: true }
@@ -1681,8 +1681,8 @@
                 defaultOnt: 'l24a', 
                 leadOffice: '03 工程技术处 (归口主导)',
                 roles: [
-                    { name: '03 工程技术处', type: '归口主导' },
-                    { name: '04 养护管理处', type: '数据支持' },
+                    { name: '【公路部门】03 工程技术处', type: '归口主导' },
+                    { name: '【公路部门】04 养护管理处', type: '数据支持' },
                     { name: '02 建设市场处', type: '数据支持' },
                     { name: '21 监测设备厂商', type: '数据支持' },
                     { name: '16 气象局', type: '数据支持' },
@@ -1705,16 +1705,16 @@
                 defaultOnt: 'l29a', 
                 leadOffice: '04 养护管理处 (归口主导)',
                 roles: [
-                    { name: '04 养护管理处', type: '归口主导' },
-                    { name: '07 财务资产处', type: '数据支持' },
-                    { name: '03 工程技术处', type: '数据支持' }
+                    { name: '【公路部门】04 养护管理处', type: '归口主导' },
+                    { name: '【公路部门】07 财务资产处', type: '数据支持' },
+                    { name: '【公路部门】03 工程技术处', type: '数据支持' }
                 ],
                 phys: [
-                    { id: 'src-25', name: 'src-25 (日常路况评定表.xls)', tag: '年报基线', office: '04 养护管理处', checked: true },
-                    { id: 'src-26', name: 'src-26 (养护作业统计表.xls)', tag: '年报基线', office: '04 养护管理处', checked: true }
+                    { id: 'src-25', name: 'src-25 (日常路况评定表.xls)', tag: '年报基线', office: '【公路部门】04 养护管理处', checked: true },
+                    { id: 'src-26', name: 'src-26 (养护作业统计表.xls)', tag: '年报基线', office: '【公路部门】04 养护管理处', checked: true }
                 ],
                 exts: [
-                    { id: 'src-47', name: 'src-47 AI巡检路况识别数据流.db', tag: '新增演进', office: '07 财务资产处', checked: true }
+                    { id: 'src-47', name: 'src-47 AI巡检路况识别数据流.db', tag: '新增演进', office: '【公路部门】07 财务资产处', checked: true }
                 ]
             }
         
@@ -1862,30 +1862,30 @@
         
         // 全量 17 套国标 L 码本体定义库
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 const all17Ontologies = [
-            { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
-            { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '04 养护管理处' },
-            { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
-            { key: 'l24a', name: 'L24a（公路桥梁基本情况明细表）', leadOffice: '03 工程技术处' },
-            { key: 'l24b', name: 'L24b（公路涵洞明细表）', leadOffice: '03 工程技术处' },
-            { key: 'l25', name: 'L25（公路隧道基本情况明细表）', leadOffice: '03 工程技术处' },
-            { key: 'l26', name: 'L26（公路沿线服务及收费设施明细表）', leadOffice: '05 费收处' },
-            { key: 'l27', name: 'L27地质灾害点明细表', leadOffice: '03 工程技术处' },
-            { key: 'l28', name: 'L28交通量及沿线设施汇总表', leadOffice: '04 养护管理处' },
-            { key: 'l29a', name: 'L29a日常路况评定明细表', leadOffice: '04 养护管理处' },
-            { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '04 养护管理处' },
-            { key: 'l30b', name: 'L30b（公路养护工程统计表）', leadOffice: '03 工程技术处' },
-            { key: 'l30c', name: 'L30c（公路养护资金统计表）', leadOffice: '07 财务资产处' },
-            { key: 'l31a', name: 'L31a（高速公路管养单位属性表）', leadOffice: '00 数据统筹部门' },
-            { key: 'l31b', name: 'L31b（国省干线公路管养单位属性表）', leadOffice: '00 数据统筹部门' },
-            { key: 'l31c', name: 'L31c（农村公路管养单位属性表）', leadOffice: '08 农村公路处' },
-            { key: 'l32', name: 'L32（公路应急机具储备库及应急队伍明细表）', leadOffice: '06 运营管理处' },
-            { key: 'l33a', name: 'L33a（自然灾害风控与综合减灾专题）', leadOffice: '风险监测和综合减灾处' },
-            { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '危险化学品安全监督管理处' },
-            { key: 'l33c', name: 'L33c（非煤矿山安全监管专题）', leadOffice: '非煤矿山安全监管处' },
-            { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '工贸安全监管处' },
-            { key: 'l33e', name: 'L33e（防汛抗旱专题）', leadOffice: '防汛抗旱处' },
-            { key: 'l33f', name: 'L33f（火灾防治救援专题）', leadOffice: '火灾防治救援管理处' },
-            { key: 'l33g', name: 'L33g（地震和地质灾害救援专题）', leadOffice: '地震和地质灾害救援处' }
+            { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '【公路部门】01 规划计划处' },
+            { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '【公路部门】01 规划计划处' },
+            { key: 'l24a', name: 'L24a（公路桥梁基本情况明细表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l24b', name: 'L24b（公路涵洞明细表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l25', name: 'L25（公路隧道基本情况明细表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l26', name: 'L26（公路沿线服务及收费设施明细表）', leadOffice: '【公路部门】05 费收处' },
+            { key: 'l27', name: 'L27地质灾害点明细表', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l28', name: 'L28交通量及沿线设施汇总表', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l29a', name: 'L29a日常路况评定明细表', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l30b', name: 'L30b（公路养护工程统计表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l30c', name: 'L30c（公路养护资金统计表）', leadOffice: '【公路部门】07 财务资产处' },
+            { key: 'l31a', name: 'L31a（高速公路管养单位属性表）', leadOffice: '【公路部门】00 数据统筹部门' },
+            { key: 'l31b', name: 'L31b（国省干线公路管养单位属性表）', leadOffice: '【公路部门】00 数据统筹部门' },
+            { key: 'l31c', name: 'L31c（农村公路管养单位属性表）', leadOffice: '【公路部门】08 农村公路处' },
+            { key: 'l32', name: 'L32（公路应急机具储备库及应急队伍明细表）', leadOffice: '【公路部门】06 运营管理处' },
+            { key: 'l33a', name: 'L33a（自然灾害风控与综合减灾专题）', leadOffice: '【应急部门】风险监测和综合减灾处' },
+            { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '【应急部门】危险化学品安全监督管理处' },
+            { key: 'l33c', name: 'L33c（非煤矿山安全监管专题）', leadOffice: '【应急部门】非煤矿山安全监管处' },
+            { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '【应急部门】工贸安全监管处' },
+            { key: 'l33e', name: 'L33e（防汛抗旱专题）', leadOffice: '【应急部门】防汛抗旱处' },
+            { key: 'l33f', name: 'L33f（火灾防治救援专题）', leadOffice: '【应急部门】火灾防治救援管理处' },
+            { key: 'l33g', name: 'L33g（地震和地质灾害救援专题）', leadOffice: '【应急部门】地震和地质灾害救援处' }
         ];
 
         // 灵活多智能体与场景-多本体映射库 (场景2精准定义为 2 个本体)
@@ -1896,10 +1896,10 @@
                 desc: '"动火/受限空间作业前 3 分钟动态微课 + 活体考勤卡口"',
                 description: '特种作业(P1) ➔ 风险热力图(P3) ➔ 安责险降费(P0) ➔ 园区数据资产(P2)',
                 ontologies: [
-                    { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '危险化学品安全监督管理处' }
+                    { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '【应急部门】危险化学品安全监督管理处' }
                 ],
                 defaultOntKey: 'l33b',
-                leadOffice: '危险化学品安全监督管理处',
+                leadOffice: '【应急部门】危险化学品安全监督管理处',
                 agents: [
                     { code: '17', name: '17 应急管理厅 Agent', roleType: '监管协同(P3)', sopSkill: '接收热力图并下发电子整改单SOP', checked: true },
                     { code: '91', name: '化工园区企业 Agent', roleType: '执行协同(P1)', sopSkill: '微课活体考勤生成台账冲抵安全费SOP', checked: true },
@@ -1914,9 +1914,9 @@
                 desc: '"暴雨红色预警，请锁定受灾干线桩号，并生成定级报告。"',
                 description: '气象暴雨预警 ➔ 地灾点排查(L27) ➔ 桩号路况封路(L29a) ➔ 应急处置(L32)',
                 ontologies: [
-                    { key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '03 工程技术处' },
-                    { key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处' },
-                    { key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '06 运营管理处' }
+                    { key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '【公路部门】03 工程技术处' },
+                    { key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '【公路部门】04 养护管理处' },
+                    { key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '【公路部门】06 运营管理处' }
                 ],
                 defaultOntKey: 'l27',
                 leadOffice: '10 执法监督处',
@@ -1936,10 +1936,10 @@
                 desc: '"塔吊/深基坑/高支模班前交底与微课"',
                 description: '安全费预付划拨(P1) ➔ 动态合规看板(P3) ➔ 建安险下浮(P0) ➔ 施工数据资产授信(P2)',
                 ontologies: [
-                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '工贸安全监管处' }
+                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '【应急部门】工贸安全监管处' }
                 ],
                 defaultOntKey: 'l33d',
-                leadOffice: '工贸安全监管处',
+                leadOffice: '【应急部门】工贸安全监管处',
                 agents: [
                     { code: '17', name: '住建质监站 Agent', roleType: '监管协同(P3)', sopSkill: '查到隐患在线触发定向安培整改SOP', checked: true },
                     { code: '91', name: '施工方 Agent', roleType: '执行协同(P1)', sopSkill: '从开工首月预付安全费专户划拨服务费SOP', checked: true },
@@ -1953,10 +1953,10 @@
                 desc: '"企业扫码进入以培促改与隐患整改消案专区"',
                 description: '动用安全费补课(P1) ➔ 在线消案(P3) ➔ 不冻结折扣(P0) ➔ 企业合规履约信用分(P2)',
                 ontologies: [
-                    { key: 'l33a', name: 'L33a（自然灾害风控与综合减灾专题）', leadOffice: '风险监测和综合减灾处' }
+                    { key: 'l33a', name: 'L33a（自然灾害风控与综合减灾专题）', leadOffice: '【应急部门】风险监测和综合减灾处' }
                 ],
                 defaultOntKey: 'l33a',
-                leadOffice: '风险监测和综合减灾处',
+                leadOffice: '【应急部门】风险监测和综合减灾处',
                 agents: [
                     { code: '06', name: '执法大队 Agent', roleType: '监管协同(P3)', sopSkill: '免现场复查直接在线消案SOP', checked: true },
                     { code: '91', name: '企业 Agent', roleType: '执行协同(P1)', sopSkill: '24-72小时限期内动用安全费补课整改SOP', checked: true },
@@ -1970,13 +1970,13 @@
                 desc: '"公路局/交投养护大队班组每日出勤签到 + 占道/高空作业微课"',
                 description: '养护包干预算列支(P1) ➔ 养护作业安全态势看板(P3) ➔ 雇主/公众责任险(P0) ➔ 公路资产健康档案(P2)',
                 ontologies: [
-                    { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
-                    { key: 'l24a', name: 'L24a（公路桥梁基本情况明细表）', leadOffice: '03 工程技术处' },
-                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '工贸安全监管处' },
-                    { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '04 养护管理处' }
+                    { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '【公路部门】01 规划计划处' },
+                    { key: 'l24a', name: 'L24a（公路桥梁基本情况明细表）', leadOffice: '【公路部门】03 工程技术处' },
+                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '【应急部门】工贸安全监管处' },
+                    { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '【公路部门】04 养护管理处' }
                 ],
                 defaultOntKey: 'l33d',
-                leadOffice: '工贸安全监管处',
+                leadOffice: '【应急部门】工贸安全监管处',
                 agents: [
                     { code: '04', name: '公路局/交投 Agent', roleType: '监管协同(P3)', sopSkill: '养护作业路段安全态势看板监控SOP', checked: true },
                     { code: '91', name: '养护公司 Agent', roleType: '执行协同(P1)', sopSkill: '按月从养护包干预算中列支划拨SOP', checked: true },
@@ -1990,10 +1990,10 @@
                 desc: '"车载 ADAS/DMS 预警闭环端 + 运管驾驶员每月例行安培小程序"',
                 description: '按单按月安全费划扣(P1) ➔ 矫正闭环流(P3) ➔ 重卡/危运车险下浮(P0) ➔ 运力安全信用资产(P2)',
                 ontologies: [
-                    { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '危险化学品安全监督管理处' }
+                    { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '【应急部门】危险化学品安全监督管理处' }
                 ],
                 defaultOntKey: 'l33b',
-                leadOffice: '危险化学品安全监督管理处',
+                leadOffice: '【应急部门】危险化学品安全监督管理处',
                 agents: [
                     { code: '02', name: '运管/交警 Agent', roleType: '监管协同(P3)', sopSkill: '接收高风险驾驶员矫正闭环流并解除出车限制SOP', checked: true },
                     { code: '91', name: '客货运公司 Agent', roleType: '执行协同(P1)', sopSkill: '按单按月从安全费划扣SOP', checked: true },
@@ -2007,10 +2007,10 @@
                 desc: '"实名制通道 + 进场安全教育 + 进洞/上桥作业前微课交底"',
                 description: '首月预付专项安全费(P1) ➔ 无感监督包(P3) ➔ 共享保司防灾基金(P0) ➔ 基础设施地质档案(P2)',
                 ontologies: [
-                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '工贸安全监管处' }
+                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '【应急部门】工贸安全监管处' }
                 ],
                 defaultOntKey: 'l33d',
-                leadOffice: '工贸安全监管处',
+                leadOffice: '【应急部门】工贸安全监管处',
                 agents: [
                     { code: '17', name: '交质监站 Agent', roleType: '监管协同(P3)', sopSkill: '重大危险源无感监督SOP', checked: true },
                     { code: '91', name: '施工总包 Agent', roleType: '执行协同(P1)', sopSkill: '动用首月预付专项安全费SOP', checked: true },
@@ -2025,11 +2025,11 @@
                 description: '长大桥健康监测(L24a) ➔ 物联高频采样(L28) ➔ 养护工程加固(L30b)',
                 // （2）第二个场景精确定义为 2 个本体：L24a + L30b
                 ontologies: [
-                    { key: 'l24a', name: 'L24a 公路桥梁基本情况明细表 [年报基线]', leadOffice: '03 工程技术处' },
-                    { key: 'l30b', name: 'L30b 养护工程统计表 [新增演进]', leadOffice: '03 工程技术处' }
+                    { key: 'l24a', name: 'L24a 公路桥梁基本情况明细表 [年报基线]', leadOffice: '【公路部门】03 工程技术处' },
+                    { key: 'l30b', name: 'L30b 养护工程统计表 [新增演进]', leadOffice: '【公路部门】03 工程技术处' }
                 ],
                 defaultOntKey: 'l24a',
-                leadOffice: '03 工程技术处',
+                leadOffice: '【公路部门】03 工程技术处',
                 // 场景下灵活组装的多个 Agent 智能体
                 agents: [
                     { code: '03', name: '03 工程技术处 Agent', roleType: '归口主导', sopSkill: '长大桥梁质量考核与加固SOP', checked: true },
@@ -2046,11 +2046,11 @@
                 desc: '"全省国道年均养护里程与养护资金投入分别是多少？"',
                 description: '日常路况评定(L29a) ➔ 养护作业(L30a) ➔ AI自动巡检图像物联',
                 ontologies: [
-                    { key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处' },
-                    { key: 'l30a', name: 'L30a 养护作业统计表 [年报基线]', leadOffice: '04 养护管理处' }
+                    { key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '【公路部门】04 养护管理处' },
+                    { key: 'l30a', name: 'L30a 养护作业统计表 [年报基线]', leadOffice: '【公路部门】04 养护管理处' }
                 ],
                 defaultOntKey: 'l29a',
-                leadOffice: '04 养护管理处',
+                leadOffice: '【公路部门】04 养护管理处',
                 agents: [
                     { code: '04', name: '04 养护管理处 Agent', roleType: '归口主导', sopSkill: '路况评定与养护核销SOP', checked: true },
                     { code: '07', name: '07 财务资产处 Agent', roleType: '数据协同', sopSkill: '养护资金核拨SOP', checked: true },
@@ -2064,10 +2064,10 @@
                 desc: '"日常巡检桩号与年报标准桩号存在误差，请生成空间校正清单。"',
                 description: '路线基本情况(L21) ➔ 排桩数据(L21-Sub) ➔ GIS 空间坐标去噪中枢',
                 ontologies: [
-                    { key: 'l21', name: 'L21 公路路线基本情况明细表 [年报基线]', leadOffice: '01 规划计划处' }
+                    { key: 'l21', name: 'L21 公路路线基本情况明细表 [年报基线]', leadOffice: '【公路部门】01 规划计划处' }
                 ],
                 defaultOntKey: 'l21',
-                leadOffice: '01 规划计划处',
+                leadOffice: '【公路部门】01 规划计划处',
                 agents: [
                     { code: '01', name: '01 规划计划处 Agent', roleType: '归口主导', sopSkill: '全省公路空间坐标清洗SOP', checked: true },
                     { code: '05', name: '05 法规审批处 Agent', roleType: '数据协同', sopSkill: '路线审批与排桩校正SOP', checked: true },
@@ -2183,7 +2183,7 @@
                 description: '气象暴雨预警 ➔ 地灾点排查(L27) ➔ 桩号路况封路(L29a) ➔ 应急处置(L32)',
                 ontologies: [
                     {
-                        key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '03 工程技术处',
+                        key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '【公路部门】03 工程技术处',
                         supports: [
                             {
                                 office: '10 执法监督处',
@@ -2209,10 +2209,10 @@
                         ]
                     },
                     {
-                        key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处',
+                        key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '【公路部门】04 养护管理处',
                         supports: [
                             {
-                                office: '04 养护管理处',
+                                office: '【公路部门】04 养护管理处',
                                 type: '归口主导',
                                 tables: [{ id: 'src-23', name: 'src-23 12-1 路况明细-国道.xls', tag: '年报基线', checked: true }]
                             },
@@ -2229,7 +2229,7 @@
                         ]
                     },
                     {
-                        key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '06 运营管理处',
+                        key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '【公路部门】06 运营管理处',
                         supports: [
                             {
                                 office: '16 应急管理厅',
@@ -2256,7 +2256,7 @@
                 description: '长大桥健康监测(L24a) ➔ 物联高频采样(L28/L24a-Sub) ➔ 养护工程加固(L30b/L30b-Sub)',
                 ontologies: [
                     {
-                        key: 'l24a', name: 'L24a 公路桥梁基本情况明细表 [年报基线]', leadOffice: '03 工程技术处',
+                        key: 'l24a', name: 'L24a 公路桥梁基本情况明细表 [年报基线]', leadOffice: '【公路部门】03 工程技术处',
                         supports: [
                             {
                                 office: '10 高速公路运营企业',
@@ -2286,7 +2286,7 @@
                         ]
                     },
                     {
-                        key: 'l28', name: 'L28 沿线设施汇总表 (含高频监测) [新增演进]', leadOffice: '04 养护管理处',
+                        key: 'l28', name: 'L28 沿线设施汇总表 (含高频监测) [新增演进]', leadOffice: '【公路部门】04 养护管理处',
                         supports: [
                             {
                                 office: '19 设计与科研院所',
@@ -2305,7 +2305,7 @@
                         ]
                     },
                     {
-                        key: 'l30b', name: 'L30b 养护工程统计表 [新增演进]', leadOffice: '03 工程技术处',
+                        key: 'l30b', name: 'L30b 养护工程统计表 [新增演进]', leadOffice: '【公路部门】03 工程技术处',
                         supports: [
                             {
                                 office: '13 专检测企业',
@@ -2336,10 +2336,10 @@
                 description: '日常路况评定(L29a) ➔ 养护作业(L30a) ➔ AI自动巡检图像物联',
                 ontologies: [
                     {
-                        key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处',
+                        key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '【公路部门】04 养护管理处',
                         supports: [
                             {
-                                office: '04 养护管理处',
+                                office: '【公路部门】04 养护管理处',
                                 type: '归口主导',
                                 tables: [{ id: 'src-23', name: 'src-23 12-1 路况明细-国道.xls', tag: '年报基线', checked: true }]
                             },
@@ -2356,7 +2356,7 @@
                         ]
                     },
                     {
-                        key: 'l30a', name: 'L30a 养护作业统计表 [年报基线]', leadOffice: '04 养护管理处',
+                        key: 'l30a', name: 'L30a 养护作业统计表 [年报基线]', leadOffice: '【公路部门】04 养护管理处',
                         supports: [
                             {
                                 office: '11 农路管养企业',
@@ -2378,7 +2378,7 @@
                 description: '路线基本情况(L21) ➔ 排桩数据(L21-Sub) ➔ GIS 空间坐标去噪中枢',
                 ontologies: [
                     {
-                        key: 'l21', name: 'L21 公路路线基本情况明细表 [年报基线]', leadOffice: '01 规划计划处',
+                        key: 'l21', name: 'L21 公路路线基本情况明细表 [年报基线]', leadOffice: '【公路部门】01 规划计划处',
                         supports: [
                             {
                                 office: '05 农村公路处',
