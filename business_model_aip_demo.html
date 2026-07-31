@@ -4344,7 +4344,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
         }
 
         function highlightLineage(code, lock = false) {
-            if (isLineageLocked && !lock) return;
+            if (!lock) isLineageLocked = false;
             activeHighlightCode = Array.isArray(code) ? code : [code];
             if (lock) {
                 isLineageLocked = true;
