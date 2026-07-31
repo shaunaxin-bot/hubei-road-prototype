@@ -3463,7 +3463,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                     }
                 }
             }
-            if (id === 1 || id === 5) {
+            if (id === 5) {
                 // 场景5(或原场景1) 应急业务：气象预警 → L27(灾害点) + L29a(路况桩号) + L32(应急队伍) + 跨委办局协同
                 switchWorkspace('main');
                 highlightLineage(['l27', 'l29a', 'l32', 'role-16', 'role-17', 'role-18', 'role-19', 'role-12', 'role-15', 'role-10'], true);
