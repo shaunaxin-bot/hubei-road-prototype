@@ -4354,7 +4354,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
         }
 
         function highlightLineageRole(roleId, lock = false) {
-            if (isLineageLocked && !lock) return;
+            isLineageLocked = false;
             
             let codes = new Set();
             function collectCodes(id) {
