@@ -3739,19 +3739,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
             svg.setAttribute('width', svgRect.width);
             svg.setAttribute('height', svgRect.height);
 
-            const connections = [];
-                if (typeof currentActiveSubScenNum !== 'undefined' && currentActiveSubScenNum !== 1) {
-                    connections.push(
-                        ['src-excel-43', 'ont-l33a', '#ef4444', 'l33a', ''],
-                        ['src-excel-44', 'ont-l33b', '#ef4444', 'l33b', ''],
-                        ['src-excel-45', 'ont-l33c', '#ef4444', 'l33c', ''],
-                        ['src-excel-46', 'ont-l33d', '#ef4444', 'l33d', ''],
-                        ['src-excel-47', 'ont-l33e', '#ef4444', 'l33e', ''],
-                        ['src-excel-48', 'ont-l33f', '#ef4444', 'l33f', ''],
-                        ['src-excel-49', 'ont-l33g', '#ef4444', 'l33g', '']
-                    );
-                }
-                connections.push(
+            let connections = [
                 // Column 1 (42张Excel) -> Column 2 (L码套表)
                 ['src-excel-1', 'ont-l21', '#2563eb', 'l21', ''],
                 ['src-excel-2', 'ont-l21', '#2563eb', 'l21', ''],
@@ -4080,10 +4068,21 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 ['role-p3-7', 'role-18', '#10b981', 'l33g', 'role-18', 'normal'], // 企事业/协同
                 ['role-p3-7', 'role-3', '#10b981', 'l33g', 'role-3', 'normal'], // 企事业/协同
                 ['role-p3-7', 'role-6', '#10b981', 'l33g', 'role-6', 'normal'], // 企事业/协同
-            );
+];
 
             
             // Dynamically add lines for the active ODS dynamic pills
+            if (typeof currentActiveSubScenNum !== 'undefined' && currentActiveSubScenNum !== 1) {
+                connections.push(
+                    ['src-excel-43', 'ont-l33a', '#ef4444', 'l33a', ''],
+                    ['src-excel-44', 'ont-l33b', '#ef4444', 'l33b', ''],
+                    ['src-excel-45', 'ont-l33c', '#ef4444', 'l33c', ''],
+                    ['src-excel-46', 'ont-l33d', '#ef4444', 'l33d', ''],
+                    ['src-excel-47', 'ont-l33e', '#ef4444', 'l33e', ''],
+                    ['src-excel-48', 'ont-l33f', '#ef4444', 'l33f', ''],
+                    ['src-excel-49', 'ont-l33g', '#ef4444', 'l33g', '']
+                );
+            }
             const dynamicContainers = [document.getElementById('ods-iot-container'), document.getElementById('ods-biz-container')
 ];
             dynamicContainers.forEach(container => {
