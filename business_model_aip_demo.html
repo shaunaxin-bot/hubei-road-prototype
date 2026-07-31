@@ -19,16 +19,7 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Hide scrollbars across the entire application */
-        ::-webkit-scrollbar {
-            display: none !important;
-            width: 0 !important;
-            height: 0 !important;
-        }
-        * {
-            -ms-overflow-style: none !important;
-            scrollbar-width: none !important;
-        }
+        /* Restored scrollbars */
 
         @keyframes activeDashFlow {
             from {
@@ -158,37 +149,37 @@
                                 <span class="text-[10px] text-slate-900">🚨 安全生产责任数据运营业务</span>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-1" checked onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-1" checked onclick="event.stopPropagation(); handleLeftElementClick('l33b');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"1. 化工/危化品园区特殊作业场景（高效高毛利）"</span>
                                     </div>
                                 </label>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-6" onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-6" onclick="event.stopPropagation(); handleLeftElementClick('l33d');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"2. 建筑工程与市政房建场景（危大工程/快速变现）"</span>
                                     </div>
                                 </label>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-7" onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-7" onclick="event.stopPropagation(); handleLeftElementClick('l33a');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"3. 交通/应急行政执法与违规企业消案场景（合规催化剂）"</span>
                                     </div>
                                 </label>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-8" onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-8" onclick="event.stopPropagation(); handleLeftElementClick('l33d');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"4. 交通基础设施日常养护与检测场景（长线现金流压舱石）"</span>
                                     </div>
                                 </label>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-9" onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-9" onclick="event.stopPropagation(); handleLeftElementClick('l33b');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"5. 道路运输与“两客一危一重”场景（高频流速之王）"</span>
                                     </div>
                                 </label>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-10" onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-10" onclick="event.stopPropagation(); handleLeftElementClick('l33d');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"6. 交通基础设施新建与改扩建工程场景（体量与利润天花板）"</span>
                                     </div>
                                 </label>
@@ -1637,21 +1628,16 @@
                 num: 1, 
                 name: '🚨 安全生产责任数据运营业务',
                 desc: '"1. 化工/危化品园区特殊作业场景（高效高毛利）"', 
-                defaultOnt: 'l27', 
+                defaultOnt: 'l33b', 
                 leadOffice: '17 应急管理厅 (归口主导)',
                 roles: [
                     { name: '17 应急管理厅', type: '归口主导' },
-                    { name: '06 运营管理处', type: '数据支持' },
+                    { name: '【公路部门】06 运营管理处', type: '数据支持' },
                     { name: '16 气象局', type: '数据支持' },
                     { name: '17 自然资源厅', type: '数据支持' }
                 ],
-                phys: [
-                    { id: 'src-14', name: 'src-14 (湖北险情隐患.xls)', tag: '年报基线', office: '10 执法监督处', checked: true },
-                    { id: 'src-15', name: 'src-15 (气象防灾数据.xls)', tag: '年报基线', office: '16 气象局', checked: true }
-                ],
-                exts: [
-                    { id: 'src-44', name: 'src-44 交通安全隐患与地灾应急.db', tag: '新增演进', office: '17 自然资源厅', checked: true }
-                ]
+                phys: [],
+                exts: []
             },
             { 
                 id: 'scen-4', 
@@ -1661,13 +1647,13 @@
                 defaultOnt: 'l21', 
                 leadOffice: '01 规划计划处 (归口主导)',
                 roles: [
-                    { name: '01 规划计划处', type: '归口主导' },
+                    { name: '【公路部门】01 规划计划处', type: '归口主导' },
                     { name: '05 法规审批处', type: '数据支持' },
                     { name: '00 数据统筹中枢', type: '数据支持' }
                 ],
                 phys: [
-                    { id: 'src-1', name: 'src-1 (路线基本情况表.xls)', tag: '年报基线', office: '01 规划计划处', checked: true },
-                    { id: 'src-2', name: 'src-2 (公路排桩数据.xls)', tag: '年报基线', office: '01 规划计划处', checked: true }
+                    { id: 'src-1', name: 'src-1 (路线基本情况表.xls)', tag: '年报基线', office: '【公路部门】01 规划计划处', checked: true },
+                    { id: 'src-2', name: 'src-2 (公路排桩数据.xls)', tag: '年报基线', office: '【公路部门】01 规划计划处', checked: true }
                 ],
                 exts: [
                     { id: 'src-45', name: 'src-45 GIS空间数据校正中枢.db', tag: '新增演进', office: '00 数据统筹中枢', checked: true }
@@ -1681,8 +1667,8 @@
                 defaultOnt: 'l24a', 
                 leadOffice: '03 工程技术处 (归口主导)',
                 roles: [
-                    { name: '03 工程技术处', type: '归口主导' },
-                    { name: '04 养护管理处', type: '数据支持' },
+                    { name: '【公路部门】03 工程技术处', type: '归口主导' },
+                    { name: '【公路部门】04 养护管理处', type: '数据支持' },
                     { name: '02 建设市场处', type: '数据支持' },
                     { name: '21 监测设备厂商', type: '数据支持' },
                     { name: '16 气象局', type: '数据支持' },
@@ -1705,16 +1691,16 @@
                 defaultOnt: 'l29a', 
                 leadOffice: '04 养护管理处 (归口主导)',
                 roles: [
-                    { name: '04 养护管理处', type: '归口主导' },
-                    { name: '07 财务资产处', type: '数据支持' },
-                    { name: '03 工程技术处', type: '数据支持' }
+                    { name: '【公路部门】04 养护管理处', type: '归口主导' },
+                    { name: '【公路部门】07 财务资产处', type: '数据支持' },
+                    { name: '【公路部门】03 工程技术处', type: '数据支持' }
                 ],
                 phys: [
-                    { id: 'src-25', name: 'src-25 (日常路况评定表.xls)', tag: '年报基线', office: '04 养护管理处', checked: true },
-                    { id: 'src-26', name: 'src-26 (养护作业统计表.xls)', tag: '年报基线', office: '04 养护管理处', checked: true }
+                    { id: 'src-25', name: 'src-25 (日常路况评定表.xls)', tag: '年报基线', office: '【公路部门】04 养护管理处', checked: true },
+                    { id: 'src-26', name: 'src-26 (养护作业统计表.xls)', tag: '年报基线', office: '【公路部门】04 养护管理处', checked: true }
                 ],
                 exts: [
-                    { id: 'src-47', name: 'src-47 AI巡检路况识别数据流.db', tag: '新增演进', office: '07 财务资产处', checked: true }
+                    { id: 'src-47', name: 'src-47 AI巡检路况识别数据流.db', tag: '新增演进', office: '【公路部门】07 财务资产处', checked: true }
                 ]
             }
         
@@ -1733,16 +1719,22 @@
                 { id: 10, desc: '6. 交通基础设施新建与改扩建工程场景（体量与利润天花板）', isPrimary: false }
             ],
             4: [
-                { id: 4, desc: '日常巡检桩号与年报标准桩号存在误差，请生成空间校正清单。', isPrimary: true },
+                { id: 'scen-4-1', desc: '日常巡检桩号与年报标准桩号存在误差，请生成空间校正清单。', isPrimary: true },
                 { id: 'scen-4-2', desc: '全省国省道沿线交安设施现状摸排与缺损盘点。', isPrimary: false },
                 { id: 'scen-4-3', desc: '服务区资产确权与租赁经营收益智能分析。', isPrimary: false }
             ],
             2: [
-                { id: 2, desc: '梳理武汉 G107 沿线长大桥梁，生成本季度结构监测考核总单。', isPrimary: true }
+                { id: 'scen-2-1', desc: '梳理武汉 G107 沿线长大桥梁，生成本季度结构监测考核总单。', isPrimary: true },
+                { id: 'scen-2-2', desc: '分析三峡库区重点隧道渗漏水情况及处治建议。', isPrimary: false },
+                { id: 'scen-2-3', desc: '基于WIM动态称重数据，评估老旧桥梁承载力衰减风险。', isPrimary: false }
             ],
             3: [
-                { id: 3, desc: '（养护）全省国道年均养护里程与养护资金投入分别是多少？', isPrimary: true },
-                { id: 5, desc: '（应急）暴雨红色预警，请锁定受灾干线桩号，并生成定级报告。', isPrimary: false }
+                { id: 'scen-3-1', desc: '【养护类】全省国道年均养护里程与养护资金投入分别是多少？', isPrimary: true },
+                { id: 'scen-3-2', desc: '【养护类】对比分析近五年各市州路况水平与养护资金分配相关性。', isPrimary: false },
+                { id: 'scen-3-3', desc: '【养护类】高速公路运营企业通行费收入与服务质量考核评价。', isPrimary: false },
+                { id: 5, desc: '【应急类】气象预警联动：刚刚收到省级暴雨红色预警，请立刻跨库比对《L21路线表》与《L27地灾点表》，锁定受灾干线桩号，并生成一份《特级险情影响范围定级报告》。', isPrimary: false },
+                { id: 'scen-1-2', desc: '【应急类】高危结构物熔断排查：针对刚才划定的受灾路线，请穿透查询周边的高边坡及临水临崖路段，并调取相关的物联传感数据。', isPrimary: false },
+                { id: 'scen-1-3', desc: '【应急类】应急资源协同调度：请立刻盘点受灾核心区周边50公里内的抢险机械与防汛物资库存情况，并生成调度单。', isPrimary: false }
             ]
         };
 
@@ -1756,7 +1748,7 @@
 ];
                 
                 const selectHtml = `
-                    <select onchange="handleLeftElementClick('${scen.defaultOnt}'); switchStudioScenario(parseInt(this.value) || ${scen.num})" onclick="if(!${isActiveCategory}) { handleLeftElementClick('${scen.defaultOnt}'); switchStudioScenario(parseInt(this.value) || ${scen.num}); }" class="w-full p-1 py-0.5 ml-1 rounded transition-all border outline-none cursor-pointer ${isActiveCategory ? 'border-slate-700 bg-slate-50 text-slate-900 font-bold shadow-sm' : 'border-slate-200 bg-white text-slate-500 hover:bg-slate-50'} text-[9.5px]">
+                    <select onchange="switchStudioScenario(parseInt(this.value) || ${scen.num})" onclick="if(!${isActiveCategory}) { switchStudioScenario(parseInt(this.value) || ${scen.num}); }" class="w-full p-1 py-0.5 ml-1 rounded transition-all border outline-none cursor-pointer ${isActiveCategory ? 'border-slate-700 bg-slate-50 text-slate-900 font-bold shadow-sm' : 'border-slate-200 bg-white text-slate-500 hover:bg-slate-50'} text-[9.5px]">
                         ${subs.map(sub => {
                             const isSelected = isActiveCategory && (sub.id === currentActiveSubScenNum || (currentActiveSubScenNum === null && sub.isPrimary));
                             return `<option value="${sub.id}" ${isSelected ? 'selected' : ''}>${sub.desc}</option>`;
@@ -1787,12 +1779,18 @@
             currentActiveScenNum = parentScenNum;
             currentActiveSubScenNum = subScenNum;
 
-            const scen = allCoreScenarios.find(s => s.num === parentScenNum) || allCoreScenarios[0
-];
-            const kbScen = productionKnowledgeBaseScenarioMap[subScenNum
-];
+            const scen = allCoreScenarios.find(s => s.num === parentScenNum) || allCoreScenarios[0];
+            const kbScen = productionKnowledgeBaseScenarioMap[subScenNum];
             
             renderStudioScenarios();
+            
+            // Dynamically highlight the correct ontology for this sub-scenario
+            if (kbScen && kbScen.defaultOntKey) {
+                if (typeof highlightLineage === 'function') highlightLineage(kbScen.defaultOntKey, true);
+            } else if (scen && scen.defaultOnt) {
+                if (typeof highlightLineage === 'function') highlightLineage(scen.defaultOnt, true);
+            }
+
             
             if (typeof renderStudioRoles === 'function') {
                 if (kbScen && kbScen.agents) {
@@ -1862,30 +1860,30 @@
         
         // 全量 17 套国标 L 码本体定义库
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 const all17Ontologies = [
-            { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
-            { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '04 养护管理处' },
-            { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
-            { key: 'l24a', name: 'L24a（公路桥梁基本情况明细表）', leadOffice: '03 工程技术处' },
-            { key: 'l24b', name: 'L24b（公路涵洞明细表）', leadOffice: '03 工程技术处' },
-            { key: 'l25', name: 'L25（公路隧道基本情况明细表）', leadOffice: '03 工程技术处' },
-            { key: 'l26', name: 'L26（公路沿线服务及收费设施明细表）', leadOffice: '05 费收处' },
-            { key: 'l27', name: 'L27地质灾害点明细表', leadOffice: '03 工程技术处' },
-            { key: 'l28', name: 'L28交通量及沿线设施汇总表', leadOffice: '04 养护管理处' },
-            { key: 'l29a', name: 'L29a日常路况评定明细表', leadOffice: '04 养护管理处' },
-            { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '04 养护管理处' },
-            { key: 'l30b', name: 'L30b（公路养护工程统计表）', leadOffice: '03 工程技术处' },
-            { key: 'l30c', name: 'L30c（公路养护资金统计表）', leadOffice: '07 财务资产处' },
-            { key: 'l31a', name: 'L31a（高速公路管养单位属性表）', leadOffice: '00 数据统筹部门' },
-            { key: 'l31b', name: 'L31b（国省干线公路管养单位属性表）', leadOffice: '00 数据统筹部门' },
-            { key: 'l31c', name: 'L31c（农村公路管养单位属性表）', leadOffice: '08 农村公路处' },
-            { key: 'l32', name: 'L32（公路应急机具储备库及应急队伍明细表）', leadOffice: '06 运营管理处' },
-            { key: 'l33a', name: 'L33a（自然灾害风控与综合减灾专题）', leadOffice: '风险监测和综合减灾处' },
-            { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '危险化学品安全监督管理处' },
-            { key: 'l33c', name: 'L33c（非煤矿山安全监管专题）', leadOffice: '非煤矿山安全监管处' },
-            { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '工贸安全监管处' },
-            { key: 'l33e', name: 'L33e（防汛抗旱专题）', leadOffice: '防汛抗旱处' },
-            { key: 'l33f', name: 'L33f（火灾防治救援专题）', leadOffice: '火灾防治救援管理处' },
-            { key: 'l33g', name: 'L33g（地震和地质灾害救援专题）', leadOffice: '地震和地质灾害救援处' }
+            { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '【公路部门】01 规划计划处' },
+            { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '【公路部门】01 规划计划处' },
+            { key: 'l24a', name: 'L24a（公路桥梁基本情况明细表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l24b', name: 'L24b（公路涵洞明细表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l25', name: 'L25（公路隧道基本情况明细表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l26', name: 'L26（公路沿线服务及收费设施明细表）', leadOffice: '【公路部门】05 费收处' },
+            { key: 'l27', name: 'L27地质灾害点明细表', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l28', name: 'L28交通量及沿线设施汇总表', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l29a', name: 'L29a日常路况评定明细表', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l30b', name: 'L30b（公路养护工程统计表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l30c', name: 'L30c（公路养护资金统计表）', leadOffice: '【公路部门】07 财务资产处' },
+            { key: 'l31a', name: 'L31a（高速公路管养单位属性表）', leadOffice: '【公路部门】00 数据统筹部门' },
+            { key: 'l31b', name: 'L31b（国省干线公路管养单位属性表）', leadOffice: '【公路部门】00 数据统筹部门' },
+            { key: 'l31c', name: 'L31c（农村公路管养单位属性表）', leadOffice: '【公路部门】08 农村公路处' },
+            { key: 'l32', name: 'L32（公路应急机具储备库及应急队伍明细表）', leadOffice: '【公路部门】06 运营管理处' },
+            { key: 'l33a', name: 'L33a（自然灾害风控与综合减灾专题）', leadOffice: '【应急部门】风险监测和综合减灾处' },
+            { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '【应急部门】危险化学品安全监督管理处' },
+            { key: 'l33c', name: 'L33c（非煤矿山安全监管专题）', leadOffice: '【应急部门】非煤矿山安全监管处' },
+            { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '【应急部门】工贸安全监管处' },
+            { key: 'l33e', name: 'L33e（防汛抗旱专题）', leadOffice: '【应急部门】防汛抗旱处' },
+            { key: 'l33f', name: 'L33f（火灾防治救援专题）', leadOffice: '【应急部门】火灾防治救援管理处' },
+            { key: 'l33g', name: 'L33g（地震和地质灾害救援专题）', leadOffice: '【应急部门】地震和地质灾害救援处' }
         ];
 
         // 灵活多智能体与场景-多本体映射库 (场景2精准定义为 2 个本体)
@@ -1896,17 +1894,19 @@
                 desc: '"动火/受限空间作业前 3 分钟动态微课 + 活体考勤卡口"',
                 description: '特种作业(P1) ➔ 风险热力图(P3) ➔ 安责险降费(P0) ➔ 园区数据资产(P2)',
                 ontologies: [
-                    { key: 'l27', name: 'L27 易发地质/安全灾害点明细表 [危化品园区]', leadOffice: '17 应急管理厅' },
-                    { key: 'l29a', name: 'L29a 园区特种作业安培打卡流水账 [企业]', leadOffice: '化工园区' },
-                    { key: 'l32', name: 'L32 安责险保单与预防费统筹池 [保司]', leadOffice: '保险公司' }
+                    { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '【应急部门】危险化学品安全监督管理处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '17 应急管理厅',
+                defaultOntKey: 'l33b',
+                leadOffice: '【应急部门】危险化学品安全监督管理处',
                 agents: [
-                    { code: '17', name: '17 应急管理厅 Agent', roleType: '监管协同(P3)', sopSkill: '接收热力图并下发电子整改单SOP', checked: true },
-                    { code: '91', name: '化工园区企业 Agent', roleType: '执行协同(P1)', sopSkill: '微课活体考勤生成台账冲抵安全费SOP', checked: true },
-                    { code: '90', name: '安责险保司 Agent', roleType: '金融协同(P0)', sopSkill: '隐患闭环联动续保费率SOP', checked: true },
-                    { code: '00', name: '数据运营 Agent', roleType: '数据协同(P2)', sopSkill: '沉淀安全数据资产与产权登记SOP', checked: true }
+                    { code: '00', name: 'AGENT-执法监督-01_隐患排查整治', roleType: '协同', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-政府-应急管理厅_危险化学品安全监督管理处', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-19_公安交管局', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-数据统筹-安全生产责任数据运营中心', roleType: '核心调度(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-24_危化品运输车队', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-11_高速运营企业', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-25_保险与金融精算机构', roleType: '金融协同(P0)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-26_安全培训机构', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true }
                 ],
                 defaultCheckedTableIds: ['src-14', 'src-15', 'src-18', 'src-44']
             },
@@ -1916,19 +1916,21 @@
                 desc: '"暴雨红色预警，请锁定受灾干线桩号，并生成定级报告。"',
                 description: '气象暴雨预警 ➔ 地灾点排查(L27) ➔ 桩号路况封路(L29a) ➔ 应急处置(L32)',
                 ontologies: [
-                    { key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '03 工程技术处' },
-                    { key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处' },
-                    { key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '06 运营管理处' }
+                    { key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '【公路部门】03 工程技术处' },
+                    { key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '【公路部门】04 养护管理处' },
+                    { key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '【公路部门】06 运营管理处' }
                 ],
                 defaultOntKey: 'l27',
                 leadOffice: '10 执法监督处',
                 agents: [
-                    { code: '06', name: '10 执法监督处 Agent', roleType: '归口主导', sopSkill: '地灾与重大险情应急响应SOP', checked: true },
-                    { code: '15', name: '15 气象局 Agent', roleType: '感知协同', sopSkill: '暴雨红预警实时推流SOP', checked: true },
-                    { code: '17', name: '17 自然资源厅 Agent', roleType: '数据协同', sopSkill: '地质灾害隐患点位空间匹配SOP', checked: true },
-                    { code: '18', name: '18 公安交管局 Agent', roleType: '管控协同', sopSkill: 'G107线封路交通管制SOP', checked: true },
-                    { code: '16', name: '16 应急管理厅 Agent', roleType: '指挥协同', sopSkill: '跨委办局应急响应联动作业SOP', checked: true },
-                    { code: '12', name: '12 应急处置中心 Agent', roleType: '执行协同', sopSkill: '应急队伍与物资调度SOP', checked: true }
+                    { code: '00', name: 'AGENT-企业-13_应急处置服务中心', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-17_应急管理厅', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-14_专检测企业', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-18_自然资源厅', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-工程技术-04_边坡结构健康监测', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-11_高速运营企业', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-16_气象局', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-工程技术-05_地灾预警', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true }
                 ],
                 defaultCheckedTableIds: ['src-14', 'src-15', 'src-18', 'src-19', 'src-41', 'src-42', 'src-44']
             },
@@ -1938,14 +1940,17 @@
                 desc: '"塔吊/深基坑/高支模班前交底与微课"',
                 description: '安全费预付划拨(P1) ➔ 动态合规看板(P3) ➔ 建安险下浮(P0) ➔ 施工数据资产授信(P2)',
                 ontologies: [
-                    { key: 'l29a', name: '危大工程全员安培与隐患闭环报告', leadOffice: '住建局' }
+                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '【应急部门】工贸安全监管处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '住建局',
+                defaultOntKey: 'l33d',
+                leadOffice: '【应急部门】工贸安全监管处',
                 agents: [
-                    { code: '17', name: '住建质监站 Agent', roleType: '监管协同(P3)', sopSkill: '查到隐患在线触发定向安培整改SOP', checked: true },
-                    { code: '91', name: '施工方 Agent', roleType: '执行协同(P1)', sopSkill: '从开工首月预付安全费专户划拨服务费SOP', checked: true },
-                    { code: '90', name: '建筑安责险保司 Agent', roleType: '金融协同(P0)', sopSkill: '输出风控报告争取保费下浮SOP', checked: true }
+                    { code: '00', name: 'AGENT-企业-23_危大工程总包方', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-13_应急处置服务中心', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-数据统筹-安全生产责任数据运营中心', roleType: '核心调度(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-政府-应急管理厅_工贸安全监管处', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-25_保险与金融精算机构', roleType: '金融协同(P0)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-26_安全培训机构', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true }
                 ],
                 defaultCheckedTableIds: ['src-14']
             },
@@ -1955,14 +1960,20 @@
                 desc: '"企业扫码进入以培促改与隐患整改消案专区"',
                 description: '动用安全费补课(P1) ➔ 在线消案(P3) ➔ 不冻结折扣(P0) ➔ 企业合规履约信用分(P2)',
                 ontologies: [
-                    { key: 'l29a', name: '执法隐患整改与安培闭环报告', leadOffice: '交通/应急执法大队' }
+                    { key: 'l33a', name: 'L33a（自然灾害风控与综合减灾专题）', leadOffice: '【应急部门】风险监测和综合减灾处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '10 执法监督处',
+                defaultOntKey: 'l33a',
+                leadOffice: '【应急部门】风险监测和综合减灾处',
                 agents: [
-                    { code: '06', name: '执法大队 Agent', roleType: '监管协同(P3)', sopSkill: '免现场复查直接在线消案SOP', checked: true },
-                    { code: '91', name: '企业 Agent', roleType: '执行协同(P1)', sopSkill: '24-72小时限期内动用安全费补课整改SOP', checked: true },
-                    { code: '90', name: '保司 Agent', roleType: '金融协同(P0)', sopSkill: '企业完成消案保司不冻结折扣SOP', checked: true }
+                    { code: '00', name: 'AGENT-运营管理-08_预警', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-数据统筹-安全生产责任数据运营中心', roleType: '核心调度(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-26_安全培训机构|', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-11_高速运营企业', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-15_养护施工企业', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-25_保险与金融精算机构', roleType: '金融协同(P0)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-政府-应急管理厅_风险监测和综合减灾处', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-16_气象局', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-21_监测设备厂商', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true }
                 ],
                 defaultCheckedTableIds: ['src-14', 'src-44']
             },
@@ -1972,14 +1983,34 @@
                 desc: '"公路局/交投养护大队班组每日出勤签到 + 占道/高空作业微课"',
                 description: '养护包干预算列支(P1) ➔ 养护作业安全态势看板(P3) ➔ 雇主/公众责任险(P0) ➔ 公路资产健康档案(P2)',
                 ontologies: [
-                    { key: 'l29a', name: '财资136号文合规台账', leadOffice: '公路局' }
+                    { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '【公路部门】01 规划计划处' },
+                    { key: 'l24a', name: 'L24a（公路桥梁基本情况明细表）', leadOffice: '【公路部门】03 工程技术处' },
+                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '【应急部门】工贸安全监管处' },
+                    { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '【公路部门】04 养护管理处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '04 养护管理处',
+                defaultOntKey: 'l33d',
+                leadOffice: '【应急部门】工贸安全监管处',
                 agents: [
-                    { code: '04', name: '公路局/交投 Agent', roleType: '监管协同(P3)', sopSkill: '养护作业路段安全态势看板监控SOP', checked: true },
-                    { code: '91', name: '养护公司 Agent', roleType: '执行协同(P1)', sopSkill: '按月从养护包干预算中列支划拨SOP', checked: true },
-                    { code: '90', name: '责任险保司 Agent', roleType: '金融协同(P0)', sopSkill: '凭高频打卡争取保费优惠SOP', checked: true }
+                    { code: '00', name: 'AGENT-规划计划-02_计划管理', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-规划计划-04_交调年报与奖补融合', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-19_公安交管局', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-20_设计与科研院所', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-法规审批-01_大件运输智能选线智能体', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-18_自然资源厅', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-农村公路-01_农村公路养护管理评价', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-17_应急管理厅', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-14_专检测企业', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-建设市场-01_招投标管理', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-工程技术-01_桥梁结构健康监测', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-21_监测设备厂商', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-23_危大工程总包方', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-13_应急处置服务中心', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-数据统筹-安全生产责任数据运营中心', roleType: '核心调度(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-政府-应急管理厅_工贸安全监管处', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-25_保险与金融精算机构', roleType: '金融协同(P0)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-26_安全培训机构', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-15_养护施工企业', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-养护管理-03_日常养护', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true }
                 ],
                 defaultCheckedTableIds: ['src-14', 'src-23', 'src-45']
             },
@@ -1989,14 +2020,19 @@
                 desc: '"车载 ADAS/DMS 预警闭环端 + 运管驾驶员每月例行安培小程序"',
                 description: '按单按月安全费划扣(P1) ➔ 矫正闭环流(P3) ➔ 重卡/危运车险下浮(P0) ➔ 运力安全信用资产(P2)',
                 ontologies: [
-                    { key: 'l29a', name: '驾驶员违法以培促改台账', leadOffice: '运管局' }
+                    { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '【应急部门】危险化学品安全监督管理处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '02 综合运输处',
+                defaultOntKey: 'l33b',
+                leadOffice: '【应急部门】危险化学品安全监督管理处',
                 agents: [
-                    { code: '02', name: '运管/交警 Agent', roleType: '监管协同(P3)', sopSkill: '接收高风险驾驶员矫正闭环流并解除出车限制SOP', checked: true },
-                    { code: '91', name: '客货运公司 Agent', roleType: '执行协同(P1)', sopSkill: '按单按月从安全费划扣SOP', checked: true },
-                    { code: '90', name: '车险保司 Agent', roleType: '金融协同(P0)', sopSkill: '根据消警率给予续保保费直降SOP', checked: true }
+                    { code: '00', name: 'AGENT-执法监督-01_隐患排查整治', roleType: '协同', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-政府-应急管理厅_危险化学品安全监督管理处', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-19_公安交管局', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-数据统筹-安全生产责任数据运营中心', roleType: '核心调度(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-24_危化品运输车队', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-11_高速运营企业', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-25_保险与金融精算机构', roleType: '金融协同(P0)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-26_安全培训机构', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true }
                 ],
                 defaultCheckedTableIds: ['src-14']
             },
@@ -2006,14 +2042,17 @@
                 desc: '"实名制通道 + 进场安全教育 + 进洞/上桥作业前微课交底"',
                 description: '首月预付专项安全费(P1) ➔ 无感监督包(P3) ➔ 共享保司防灾基金(P0) ➔ 基础设施地质档案(P2)',
                 ontologies: [
-                    { key: 'l29a', name: '安全生产费合规列支审计包', leadOffice: '交质监站' }
+                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '【应急部门】工贸安全监管处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '交质监站',
+                defaultOntKey: 'l33d',
+                leadOffice: '【应急部门】工贸安全监管处',
                 agents: [
-                    { code: '17', name: '交质监站 Agent', roleType: '监管协同(P3)', sopSkill: '重大危险源无感监督SOP', checked: true },
-                    { code: '91', name: '施工总包 Agent', roleType: '执行协同(P1)', sopSkill: '动用首月预付专项安全费SOP', checked: true },
-                    { code: '90', name: '建安险保司 Agent', roleType: '金融协同(P0)', sopSkill: '结合PINN模型降低出险率并共享基金SOP', checked: true }
+                    { code: '00', name: 'AGENT-企业-23_危大工程总包方', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-13_应急处置服务中心', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-数据统筹-安全生产责任数据运营中心', roleType: '核心调度(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-政府-应急管理厅_工贸安全监管处', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-25_保险与金融精算机构', roleType: '金融协同(P0)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-26_安全培训机构', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true }
                 ],
                 defaultCheckedTableIds: ['src-14']
             },
@@ -2024,18 +2063,19 @@
                 description: '长大桥健康监测(L24a) ➔ 物联高频采样(L28) ➔ 养护工程加固(L30b)',
                 // （2）第二个场景精确定义为 2 个本体：L24a + L30b
                 ontologies: [
-                    { key: 'l24a', name: 'L24a 公路桥梁基本情况明细表 [年报基线]', leadOffice: '03 工程技术处' },
-                    { key: 'l30b', name: 'L30b 养护工程统计表 [新增演进]', leadOffice: '03 工程技术处' }
+                    { key: 'l24a', name: 'L24a 公路桥梁基本情况明细表 [年报基线]', leadOffice: '【公路部门】03 工程技术处' },
+                    { key: 'l30b', name: 'L30b 养护工程统计表 [新增演进]', leadOffice: '【公路部门】03 工程技术处' }
                 ],
                 defaultOntKey: 'l24a',
-                leadOffice: '03 工程技术处',
+                leadOffice: '【公路部门】03 工程技术处',
                 // 场景下灵活组装的多个 Agent 智能体
                 agents: [
-                    { code: '03', name: '03 工程技术处 Agent', roleType: '归口主导', sopSkill: '长大桥梁质量考核与加固SOP', checked: true },
-                    { code: '04', name: '04 养护管理处 Agent', roleType: '数据协同', sopSkill: '桥梁路况评定数据提供SOP', checked: true },
-                    { code: '13', name: '13 专检测企业 Agent', roleType: '检测协同', sopSkill: '桥梁结构定期检测与评定SOP', checked: true },
-                    { code: '19', name: '19 设计与科研院所 Agent', roleType: '复核协同', sopSkill: '桥梁极限承载力计算SOP', checked: true },
-                    { code: '20', name: '20 监测设备厂商 Agent', roleType: '物联协同', sopSkill: '高频传感器应变力数据流SOP', checked: true }
+                    { code: '00', name: 'AGENT-外部-17_应急管理厅', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-14_专检测企业', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-建设市场-01_招投标管理', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-工程技术-01_桥梁结构健康监测', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-农村公路-01_农村公路养护管理评价', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-21_监测设备厂商', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true }
                 ],
                 defaultCheckedTableIds: ['src-08', 'src-10', 'src-11', 'src-22', 'src-26', 'src-27', 'src-43', 'src-45', 'src-46']
             },
@@ -2045,15 +2085,16 @@
                 desc: '"全省国道年均养护里程与养护资金投入分别是多少？"',
                 description: '日常路况评定(L29a) ➔ 养护作业(L30a) ➔ AI自动巡检图像物联',
                 ontologies: [
-                    { key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处' },
-                    { key: 'l30a', name: 'L30a 养护作业统计表 [年报基线]', leadOffice: '04 养护管理处' }
+                    { key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '【公路部门】04 养护管理处' },
+                    { key: 'l30a', name: 'L30a 养护作业统计表 [年报基线]', leadOffice: '【公路部门】04 养护管理处' }
                 ],
                 defaultOntKey: 'l29a',
-                leadOffice: '04 养护管理处',
+                leadOffice: '【公路部门】04 养护管理处',
                 agents: [
-                    { code: '04', name: '04 养护管理处 Agent', roleType: '归口主导', sopSkill: '路况评定与养护核销SOP', checked: true },
-                    { code: '07', name: '07 财务资产处 Agent', roleType: '数据协同', sopSkill: '养护资金核拨SOP', checked: true },
-                    { code: '03', name: '03 工程技术处 Agent', roleType: '数据协同', sopSkill: '日常养护作业台账归集SOP', checked: true }
+                    { code: '00', name: 'AGENT-运营管理-06_路网监督', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-19_公安交管局', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-养护管理-02_路况检测评定', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-22_AI自动巡检服务商', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true }
                 ],
                 defaultCheckedTableIds: ['src-09', 'src-23', 'src-25', 'src-45']
             },
@@ -2063,14 +2104,18 @@
                 desc: '"日常巡检桩号与年报标准桩号存在误差，请生成空间校正清单。"',
                 description: '路线基本情况(L21) ➔ 排桩数据(L21-Sub) ➔ GIS 空间坐标去噪中枢',
                 ontologies: [
-                    { key: 'l21', name: 'L21 公路路线基本情况明细表 [年报基线]', leadOffice: '01 规划计划处' }
+                    { key: 'l21', name: 'L21 公路路线基本情况明细表 [年报基线]', leadOffice: '【公路部门】01 规划计划处' }
                 ],
                 defaultOntKey: 'l21',
-                leadOffice: '01 规划计划处',
+                leadOffice: '【公路部门】01 规划计划处',
                 agents: [
-                    { code: '01', name: '01 规划计划处 Agent', roleType: '归口主导', sopSkill: '全省公路空间坐标清洗SOP', checked: true },
-                    { code: '05', name: '05 法规审批处 Agent', roleType: '数据协同', sopSkill: '路线审批与排桩校正SOP', checked: true },
-                    { code: '00', name: '00 数据统筹中枢 Agent', roleType: '数据协同', sopSkill: '全省公路GIS数据治理SOP', checked: true }
+                    { code: '00', name: 'AGENT-规划计划-02_计划管理', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-规划计划-04_交调年报与奖补融合', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-19_公安交管局', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-企业-20_设计与科研院所', roleType: '执行协同(P1)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-法规审批-01_大件运输智能选线智能体', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-外部-18_自然资源厅', roleType: '监管协同(P3)', sopSkill: 'SOP指令', checked: true },
+                    { code: '00', name: 'AGENT-农村公路-01_农村公路养护管理评价', roleType: '数据协同(P2)', sopSkill: 'SOP指令', checked: true }
                 ],
                 defaultCheckedTableIds: ['src-01', 'src-02', 'src-09', 'src-45']
             }
@@ -2182,7 +2227,7 @@
                 description: '气象暴雨预警 ➔ 地灾点排查(L27) ➔ 桩号路况封路(L29a) ➔ 应急处置(L32)',
                 ontologies: [
                     {
-                        key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '03 工程技术处',
+                        key: 'l27', name: 'L27 地质灾害与险情点明细表 [年报基线]', leadOffice: '【公路部门】03 工程技术处',
                         supports: [
                             {
                                 office: '10 执法监督处',
@@ -2208,10 +2253,10 @@
                         ]
                     },
                     {
-                        key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处',
+                        key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '【公路部门】04 养护管理处',
                         supports: [
                             {
-                                office: '04 养护管理处',
+                                office: '【公路部门】04 养护管理处',
                                 type: '归口主导',
                                 tables: [{ id: 'src-23', name: 'src-23 12-1 路况明细-国道.xls', tag: '年报基线', checked: true }]
                             },
@@ -2228,7 +2273,7 @@
                         ]
                     },
                     {
-                        key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '06 运营管理处',
+                        key: 'l32', name: 'L32 应急储备库及队伍表 [年报基线]', leadOffice: '【公路部门】06 运营管理处',
                         supports: [
                             {
                                 office: '16 应急管理厅',
@@ -2255,7 +2300,7 @@
                 description: '长大桥健康监测(L24a) ➔ 物联高频采样(L28/L24a-Sub) ➔ 养护工程加固(L30b/L30b-Sub)',
                 ontologies: [
                     {
-                        key: 'l24a', name: 'L24a 公路桥梁基本情况明细表 [年报基线]', leadOffice: '03 工程技术处',
+                        key: 'l24a', name: 'L24a 公路桥梁基本情况明细表 [年报基线]', leadOffice: '【公路部门】03 工程技术处',
                         supports: [
                             {
                                 office: '10 高速公路运营企业',
@@ -2285,7 +2330,7 @@
                         ]
                     },
                     {
-                        key: 'l28', name: 'L28 沿线设施汇总表 (含高频监测) [新增演进]', leadOffice: '04 养护管理处',
+                        key: 'l28', name: 'L28 沿线设施汇总表 (含高频监测) [新增演进]', leadOffice: '【公路部门】04 养护管理处',
                         supports: [
                             {
                                 office: '19 设计与科研院所',
@@ -2304,7 +2349,7 @@
                         ]
                     },
                     {
-                        key: 'l30b', name: 'L30b 养护工程统计表 [新增演进]', leadOffice: '03 工程技术处',
+                        key: 'l30b', name: 'L30b 养护工程统计表 [新增演进]', leadOffice: '【公路部门】03 工程技术处',
                         supports: [
                             {
                                 office: '13 专检测企业',
@@ -2335,10 +2380,10 @@
                 description: '日常路况评定(L29a) ➔ 养护作业(L30a) ➔ AI自动巡检图像物联',
                 ontologies: [
                     {
-                        key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '04 养护管理处',
+                        key: 'l29a', name: 'L29a 日常路况评定明细表 [年报基线]', leadOffice: '【公路部门】04 养护管理处',
                         supports: [
                             {
-                                office: '04 养护管理处',
+                                office: '【公路部门】04 养护管理处',
                                 type: '归口主导',
                                 tables: [{ id: 'src-23', name: 'src-23 12-1 路况明细-国道.xls', tag: '年报基线', checked: true }]
                             },
@@ -2355,7 +2400,7 @@
                         ]
                     },
                     {
-                        key: 'l30a', name: 'L30a 养护作业统计表 [年报基线]', leadOffice: '04 养护管理处',
+                        key: 'l30a', name: 'L30a 养护作业统计表 [年报基线]', leadOffice: '【公路部门】04 养护管理处',
                         supports: [
                             {
                                 office: '11 农路管养企业',
@@ -2377,7 +2422,7 @@
                 description: '路线基本情况(L21) ➔ 排桩数据(L21-Sub) ➔ GIS 空间坐标去噪中枢',
                 ontologies: [
                     {
-                        key: 'l21', name: 'L21 公路路线基本情况明细表 [年报基线]', leadOffice: '01 规划计划处',
+                        key: 'l21', name: 'L21 公路路线基本情况明细表 [年报基线]', leadOffice: '【公路部门】01 规划计划处',
                         supports: [
                             {
                                 office: '05 农村公路处',
@@ -2594,7 +2639,24 @@
 
             if (physContainer) {
                 let html = '';
-if (scen.exts && scen.exts.length > 0) {
+if (scen.phys && scen.phys.length > 0) {
+                    html += scen.phys.map(p => `
+                    <div onclick="handleLeftElementClick('${p.ontKey || scen.defaultOnt}')" class="flex items-center justify-between p-1 bg-slate-50 rounded border border-slate-200 hover:bg-slate-100 cursor-pointer transition-all group">
+                        <div class="flex items-center gap-1.5">
+                            <input type="checkbox" ${p.checked ? 'checked' : ''} onclick="event.stopPropagation()" class="rounded border-slate-300">
+                            <div>
+                                <span class="text-[9px] font-bold text-slate-900 block group-hover:text-blue-800">${p.name.replace(/^(?:src-\d+\s*|\d+\.\s*)/i, '')}</span>
+                                <span class="text-[8px] text-slate-700 font-sans">归口处室: ${p.office}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span class="text-[7.5px] text-blue-600 font-bold opacity-0 group-hover:opacity-100 transition-opacity">关联校验</span>
+                            <span class="text-[8px] px-1 py-0.2 rounded font-bold bg-blue-100 text-blue-800 border border-blue-300">[${p.tag || '年报基线'}]</span>
+                        </div>
+                    </div>
+                    `).join('');
+                }
+                if (scen.exts && scen.exts.length > 0) {
                     html += scen.exts.map(e => `
                     <div onclick="handleLeftElementClick('${e.ontKey || scen.defaultOnt}')" class="flex items-center justify-between p-1 bg-amber-50/60 rounded border border-amber-200 hover:bg-amber-50 hover:border-amber-400 cursor-pointer transition-all group">
                         <div class="flex items-center gap-1.5">
@@ -3413,7 +3475,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                     }
                 }
             }
-            if (id === 1 || id === 5) {
+            if (id === 5) {
                 // 场景5(或原场景1) 应急业务：气象预警 → L27(灾害点) + L29a(路况桩号) + L32(应急队伍) + 跨委办局协同
                 switchWorkspace('main');
                 highlightLineage(['l27', 'l29a', 'l32', 'role-16', 'role-17', 'role-18', 'role-19', 'role-12', 'role-15', 'role-10'], true);
@@ -3496,6 +3558,31 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
 
                 const l21El = document.getElementById('ont-l21');
                 if (l21El) l21El.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else if (id === 1 || (id >= 6 && id <= 10)) {
+                switchWorkspace('main');
+                const kbScen = productionKnowledgeBaseScenarioMap[id];
+                if (kbScen) {
+                    const ontKeys = kbScen.ontologies.map(o => o.key);
+                    const highlightArray = [...ontKeys];
+                    highlightLineage(highlightArray, true);
+                    
+                    const label = document.getElementById('activeScenarioLabel');
+                    if (label) label.innerText = kbScen.name + ' - ' + kbScen.description;
+                    
+                    const infoContent = document.getElementById('multi-combo-info-content');
+                    if (infoContent) {
+                        infoContent.innerHTML = `<div class="space-y-0.5 mt-0.5 text-slate-700">
+                            <div><span class="font-bold">场景说明：</span>${kbScen.desc.replace(/"/g, '')}</div>
+                            <div><span class="font-bold">业务流向：</span><span class="font-bold text-slate-900">${kbScen.description}</span></div>
+                            <div class="font-bold bg-slate-100 p-0.5 rounded border border-slate-200"><span class="font-bold">关联本体：</span> ${kbScen.ontologies.map(o => '[' + o.key.toUpperCase() + '] ' + o.name).join(' ↔ ')}</div>
+                        </div>`;
+                    }
+                    
+                    if (ontKeys.length > 0) {
+                        const el = document.getElementById('ont-' + ontKeys[0]);
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
             }
         }
 
@@ -3689,7 +3776,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
             svg.setAttribute('width', svgRect.width);
             svg.setAttribute('height', svgRect.height);
 
-            const connections = [
+            let connections = [
                 // Column 1 (42张Excel) -> Column 2 (L码套表)
                 ['src-excel-1', 'ont-l21', '#2563eb', 'l21', ''],
                 ['src-excel-2', 'ont-l21', '#2563eb', 'l21', ''],
@@ -3733,13 +3820,6 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 ['src-excel-40', 'ont-l31c', '#2563eb', 'l31c', ''],
                 ['src-excel-41', 'ont-l32', '#2563eb', 'l32', ''],
                 ['src-excel-42', 'ont-l32', '#2563eb', 'l32', ''],
-                ['src-excel-43', 'ont-l33a', '#ef4444', 'l33a', ''],
-                ['src-excel-44', 'ont-l33b', '#ef4444', 'l33b', ''],
-                ['src-excel-45', 'ont-l33c', '#ef4444', 'l33c', ''],
-                ['src-excel-46', 'ont-l33d', '#ef4444', 'l33d', ''],
-                ['src-excel-47', 'ont-l33e', '#ef4444', 'l33e', ''],
-                ['src-excel-48', 'ont-l33f', '#ef4444', 'l33f', ''],
-                ['src-excel-49', 'ont-l33g', '#ef4444', 'l33g', ''],
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 // Column 2 (L码套表) -> Column 3 (组织架构)
                 
@@ -4029,6 +4109,17 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
 
             
             // Dynamically add lines for the active ODS dynamic pills
+            if (typeof currentActiveSubScenNum !== 'undefined') {
+                connections.push(
+                    ['src-excel-43', 'ont-l33a', '#ef4444', 'l33a', ''],
+                    ['src-excel-44', 'ont-l33b', '#ef4444', 'l33b', ''],
+                    ['src-excel-45', 'ont-l33c', '#ef4444', 'l33c', ''],
+                    ['src-excel-46', 'ont-l33d', '#ef4444', 'l33d', ''],
+                    ['src-excel-47', 'ont-l33e', '#ef4444', 'l33e', ''],
+                    ['src-excel-48', 'ont-l33f', '#ef4444', 'l33f', ''],
+                    ['src-excel-49', 'ont-l33g', '#ef4444', 'l33g', '']
+                );
+            }
             const dynamicContainers = [document.getElementById('ods-iot-container'), document.getElementById('ods-biz-container')
 ];
             dynamicContainers.forEach(container => {
@@ -4253,9 +4344,12 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
         }
 
         function highlightLineage(code, lock = false) {
-            isLineageLocked = false;
-            activeHighlightCode = Array.isArray(code) ? code : [code
-];
+            if (isLineageLocked && !lock) return;
+            activeHighlightCode = Array.isArray(code) ? code : [code];
+            if (lock) {
+                isLineageLocked = true;
+                lockedCode = activeHighlightCode;
+            }
             drawConnectorLines();
         }
 
