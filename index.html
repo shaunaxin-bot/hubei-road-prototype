@@ -149,7 +149,7 @@
                                 <span class="text-[10px] text-slate-900">🚨 安全生产责任数据运营业务</span>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-1" checked onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-1" checked onclick="event.stopPropagation(); handleLeftElementClick('l33b');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"1. 化工/危化品园区特殊作业场景（高效高毛利）"</span>
                                     </div>
                                 </label>
@@ -1628,7 +1628,7 @@
                 num: 1, 
                 name: '🚨 安全生产责任数据运营业务',
                 desc: '"1. 化工/危化品园区特殊作业场景（高效高毛利）"', 
-                defaultOnt: 'l27', 
+                defaultOnt: 'l33b', 
                 leadOffice: '17 应急管理厅 (归口主导)',
                 roles: [
                     { name: '17 应急管理厅', type: '归口主导' },
@@ -4307,9 +4307,12 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
         }
 
         function highlightLineage(code, lock = false) {
-            isLineageLocked = false;
-            activeHighlightCode = Array.isArray(code) ? code : [code
-];
+            if (isLineageLocked && !lock) return;
+            activeHighlightCode = Array.isArray(code) ? code : [code];
+            if (lock) {
+                isLineageLocked = true;
+                lockedCode = activeHighlightCode;
+            }
             drawConnectorLines();
         }
 
