@@ -1727,14 +1727,15 @@
                 { id: 'scen-2-1', desc: '梳理武汉 G107 沿线长大桥梁，生成本季度结构监测考核总单。', isPrimary: true },
                 { id: 'scen-2-2', desc: '分析三峡库区重点隧道渗漏水情况及处治建议。', isPrimary: false },
                 { id: 'scen-2-3', desc: '基于WIM动态称重数据，评估老旧桥梁承载力衰减风险。', isPrimary: false }
+            ],
             3: [
-                { id: 3, desc: '（养护）全省国道年均养护里程与养护资金投入分别是多少？', isPrimary: true },
                 { id: 'scen-3-1', desc: '【养护类】全省国道年均养护里程与养护资金投入分别是多少？', isPrimary: true },
                 { id: 'scen-3-2', desc: '【养护类】对比分析近五年各市州路况水平与养护资金分配相关性。', isPrimary: false },
                 { id: 'scen-3-3', desc: '【养护类】高速公路运营企业通行费收入与服务质量考核评价。', isPrimary: false },
                 { id: 5, desc: '【应急类】气象预警联动：刚刚收到省级暴雨红色预警，请立刻跨库比对《L21路线表》与《L27地灾点表》，锁定受灾干线桩号，并生成一份《特级险情影响范围定级报告》。', isPrimary: false },
                 { id: 'scen-1-2', desc: '【应急类】高危结构物熔断排查：针对刚才划定的受灾路线，请穿透查询周边的高边坡及临水临崖路段，并调取相关的物联传感数据。', isPrimary: false },
                 { id: 'scen-1-3', desc: '【应急类】应急资源协同调度：请立刻盘点受灾核心区周边50公里内的抢险机械与防汛物资库存情况，并生成调度单。', isPrimary: false }
+            ]
         };
 
         function renderStudioScenarios() {
@@ -1786,31 +1787,6 @@
             // Dynamically highlight the correct ontology for this sub-scenario
             if (kbScen && kbScen.defaultOntKey) {
                 if (typeof highlightLineage === 'function') highlightLineage(kbScen.defaultOntKey, true);
-            } else if (id === 1 || (id >= 6 && id <= 10)) {
-                switchWorkspace('main');
-                const kbScen = productionKnowledgeBaseScenarioMap[id];
-                if (kbScen) {
-                    const ontKeys = kbScen.ontologies.map(o => o.key);
-                    const highlightArray = [...ontKeys];
-                    highlightLineage(highlightArray, true);
-                    
-                    const label = document.getElementById('activeScenarioLabel');
-                    if (label) label.innerText = kbScen.name + ' - ' + kbScen.description;
-                    
-                    const infoContent = document.getElementById('multi-combo-info-content');
-                    if (infoContent) {
-                        infoContent.innerHTML = `<div class="space-y-0.5 mt-0.5 text-slate-700">
-                            <div><span class="font-bold">场景说明：</span>${kbScen.desc.replace(/"/g, '')}</div>
-                            <div><span class="font-bold">业务流向：</span><span class="font-bold text-slate-900">${kbScen.description}</span></div>
-                            <div class="font-bold bg-slate-100 p-0.5 rounded border border-slate-200"><span class="font-bold">关联本体：</span> ${kbScen.ontologies.map(o => '[' + o.key.toUpperCase() + '] ' + o.name).join(' ↔ ')}</div>
-                        </div>`;
-                    }
-                    
-                    if (ontKeys.length > 0) {
-                        const el = document.getElementById('ont-' + ontKeys[0]);
-                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }
             } else if (scen && scen.defaultOnt) {
                 if (typeof highlightLineage === 'function') highlightLineage(scen.defaultOnt, true);
             }
@@ -3582,6 +3558,31 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
 
                 const l21El = document.getElementById('ont-l21');
                 if (l21El) l21El.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else if (id === 1 || (id >= 6 && id <= 10)) {
+                switchWorkspace('main');
+                const kbScen = productionKnowledgeBaseScenarioMap[id];
+                if (kbScen) {
+                    const ontKeys = kbScen.ontologies.map(o => o.key);
+                    const highlightArray = [...ontKeys];
+                    highlightLineage(highlightArray, true);
+                    
+                    const label = document.getElementById('activeScenarioLabel');
+                    if (label) label.innerText = kbScen.name + ' - ' + kbScen.description;
+                    
+                    const infoContent = document.getElementById('multi-combo-info-content');
+                    if (infoContent) {
+                        infoContent.innerHTML = `<div class="space-y-0.5 mt-0.5 text-slate-700">
+                            <div><span class="font-bold">场景说明：</span>${kbScen.desc.replace(/"/g, '')}</div>
+                            <div><span class="font-bold">业务流向：</span><span class="font-bold text-slate-900">${kbScen.description}</span></div>
+                            <div class="font-bold bg-slate-100 p-0.5 rounded border border-slate-200"><span class="font-bold">关联本体：</span> ${kbScen.ontologies.map(o => '[' + o.key.toUpperCase() + '] ' + o.name).join(' ↔ ')}</div>
+                        </div>`;
+                    }
+                    
+                    if (ontKeys.length > 0) {
+                        const el = document.getElementById('ont-' + ontKeys[0]);
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
             }
         }
 
