@@ -1719,22 +1719,16 @@
                 { id: 10, desc: '6. 交通基础设施新建与改扩建工程场景（体量与利润天花板）', isPrimary: false }
             ],
             4: [
-                { id: 'scen-4-1', desc: '日常巡检桩号与年报标准桩号存在误差，请生成空间校正清单。', isPrimary: true },
+                { id: 4, desc: '日常巡检桩号与年报标准桩号存在误差，请生成空间校正清单。', isPrimary: true },
                 { id: 'scen-4-2', desc: '全省国省道沿线交安设施现状摸排与缺损盘点。', isPrimary: false },
                 { id: 'scen-4-3', desc: '服务区资产确权与租赁经营收益智能分析。', isPrimary: false }
             ],
             2: [
-                { id: 'scen-2-1', desc: '梳理武汉 G107 沿线长大桥梁，生成本季度结构监测考核总单。', isPrimary: true },
-                { id: 'scen-2-2', desc: '分析三峡库区重点隧道渗漏水情况及处治建议。', isPrimary: false },
-                { id: 'scen-2-3', desc: '基于WIM动态称重数据，评估老旧桥梁承载力衰减风险。', isPrimary: false }
+                { id: 2, desc: '梳理武汉 G107 沿线长大桥梁，生成本季度结构监测考核总单。', isPrimary: true }
             ],
             3: [
-                { id: 'scen-3-1', desc: '【养护类】全省国道年均养护里程与养护资金投入分别是多少？', isPrimary: true },
-                { id: 'scen-3-2', desc: '【养护类】对比分析近五年各市州路况水平与养护资金分配相关性。', isPrimary: false },
-                { id: 'scen-3-3', desc: '【养护类】高速公路运营企业通行费收入与服务质量考核评价。', isPrimary: false },
-                { id: 5, desc: '【应急类】气象预警联动：刚刚收到省级暴雨红色预警，请立刻跨库比对《L21路线表》与《L27地灾点表》，锁定受灾干线桩号，并生成一份《特级险情影响范围定级报告》。', isPrimary: false },
-                { id: 'scen-1-2', desc: '【应急类】高危结构物熔断排查：针对刚才划定的受灾路线，请穿透查询周边的高边坡及临水临崖路段，并调取相关的物联传感数据。', isPrimary: false },
-                { id: 'scen-1-3', desc: '【应急类】应急资源协同调度：请立刻盘点受灾核心区周边50公里内的抢险机械与防汛物资库存情况，并生成调度单。', isPrimary: false }
+                { id: 3, desc: '（养护）全省国道年均养护里程与养护资金投入分别是多少？', isPrimary: true },
+                { id: 5, desc: '（应急）暴雨红色预警，请锁定受灾干线桩号，并生成定级报告。', isPrimary: false }
             ]
         };
 
@@ -1859,31 +1853,31 @@
 
         
         // 全量 17 套国标 L 码本体定义库
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        const all17Ontologies = [
-            { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
-            { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '04 养护管理处' },
-            { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
-            { key: 'l24a', name: 'L24a（公路桥梁基本情况明细表）', leadOffice: '03 工程技术处' },
-            { key: 'l24b', name: 'L24b（公路涵洞明细表）', leadOffice: '03 工程技术处' },
-            { key: 'l25', name: 'L25（公路隧道基本情况明细表）', leadOffice: '03 工程技术处' },
-            { key: 'l26', name: 'L26（公路沿线服务及收费设施明细表）', leadOffice: '05 费收处' },
-            { key: 'l27', name: 'L27地质灾害点明细表', leadOffice: '03 工程技术处' },
-            { key: 'l28', name: 'L28交通量及沿线设施汇总表', leadOffice: '04 养护管理处' },
-            { key: 'l29a', name: 'L29a日常路况评定明细表', leadOffice: '04 养护管理处' },
-            { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '04 养护管理处' },
-            { key: 'l30b', name: 'L30b（公路养护工程统计表）', leadOffice: '03 工程技术处' },
-            { key: 'l30c', name: 'L30c（公路养护资金统计表）', leadOffice: '07 财务资产处' },
-            { key: 'l31a', name: 'L31a（高速公路管养单位属性表）', leadOffice: '00 数据统筹部门' },
-            { key: 'l31b', name: 'L31b（国省干线公路管养单位属性表）', leadOffice: '00 数据统筹部门' },
-            { key: 'l31c', name: 'L31c（农村公路管养单位属性表）', leadOffice: '08 农村公路处' },
-            { key: 'l32', name: 'L32（公路应急机具储备库及应急队伍明细表）', leadOffice: '06 运营管理处' },
-            { key: 'l33a', name: 'L33a（自然灾害风控与综合减灾专题）', leadOffice: '风险监测和综合减灾处' },
-            { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '危险化学品安全监督管理处' },
-            { key: 'l33c', name: 'L33c（非煤矿山安全监管专题）', leadOffice: '非煤矿山安全监管处' },
-            { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '工贸安全监管处' },
-            { key: 'l33e', name: 'L33e（防汛抗旱专题）', leadOffice: '防汛抗旱处' },
-            { key: 'l33f', name: 'L33f（火灾防治救援专题）', leadOffice: '火灾防治救援管理处' },
-            { key: 'l33g', name: 'L33g（地震和地质灾害救援专题）', leadOffice: '地震和地质灾害救援处' }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                const all17Ontologies = [
+            { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '【公路部门】01 规划计划处' },
+            { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '【公路部门】01 规划计划处' },
+            { key: 'l24a', name: 'L24a（公路桥梁基本情况明细表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l24b', name: 'L24b（公路涵洞明细表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l25', name: 'L25（公路隧道基本情况明细表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l26', name: 'L26（公路沿线服务及收费设施明细表）', leadOffice: '【公路部门】05 费收处' },
+            { key: 'l27', name: 'L27地质灾害点明细表', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l28', name: 'L28交通量及沿线设施汇总表', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l29a', name: 'L29a日常路况评定明细表', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '【公路部门】04 养护管理处' },
+            { key: 'l30b', name: 'L30b（公路养护工程统计表）', leadOffice: '【公路部门】03 工程技术处' },
+            { key: 'l30c', name: 'L30c（公路养护资金统计表）', leadOffice: '【公路部门】07 财务资产处' },
+            { key: 'l31a', name: 'L31a（高速公路管养单位属性表）', leadOffice: '【公路部门】00 数据统筹部门' },
+            { key: 'l31b', name: 'L31b（国省干线公路管养单位属性表）', leadOffice: '【公路部门】00 数据统筹部门' },
+            { key: 'l31c', name: 'L31c（农村公路管养单位属性表）', leadOffice: '【公路部门】08 农村公路处' },
+            { key: 'l32', name: 'L32（公路应急机具储备库及应急队伍明细表）', leadOffice: '【公路部门】06 运营管理处' },
+            { key: 'l33a', name: 'L33a（自然灾害风控与综合减灾专题）', leadOffice: '【应急部门】风险监测和综合减灾处' },
+            { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '【应急部门】危险化学品安全监督管理处' },
+            { key: 'l33c', name: 'L33c（非煤矿山安全监管专题）', leadOffice: '【应急部门】非煤矿山安全监管处' },
+            { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '【应急部门】工贸安全监管处' },
+            { key: 'l33e', name: 'L33e（防汛抗旱专题）', leadOffice: '【应急部门】防汛抗旱处' },
+            { key: 'l33f', name: 'L33f（火灾防治救援专题）', leadOffice: '【应急部门】火灾防治救援管理处' },
+            { key: 'l33g', name: 'L33g（地震和地质灾害救援专题）', leadOffice: '【应急部门】地震和地质灾害救援处' }
         ];
 
         // 灵活多智能体与场景-多本体映射库 (场景2精准定义为 2 个本体)
@@ -3558,31 +3552,6 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
 
                 const l21El = document.getElementById('ont-l21');
                 if (l21El) l21El.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else if (id === 1 || (id >= 6 && id <= 10)) {
-                switchWorkspace('main');
-                const kbScen = productionKnowledgeBaseScenarioMap[id];
-                if (kbScen) {
-                    const ontKeys = kbScen.ontologies.map(o => o.key);
-                    const highlightArray = [...ontKeys];
-                    highlightLineage(highlightArray, true);
-                    
-                    const label = document.getElementById('activeScenarioLabel');
-                    if (label) label.innerText = kbScen.name + ' - ' + kbScen.description;
-                    
-                    const infoContent = document.getElementById('multi-combo-info-content');
-                    if (infoContent) {
-                        infoContent.innerHTML = `<div class="space-y-0.5 mt-0.5 text-slate-700">
-                            <div><span class="font-bold">场景说明：</span>${kbScen.desc.replace(/"/g, '')}</div>
-                            <div><span class="font-bold">业务流向：</span><span class="font-bold text-slate-900">${kbScen.description}</span></div>
-                            <div class="font-bold bg-slate-100 p-0.5 rounded border border-slate-200"><span class="font-bold">关联本体：</span> ${kbScen.ontologies.map(o => '[' + o.key.toUpperCase() + '] ' + o.name).join(' ↔ ')}</div>
-                        </div>`;
-                    }
-                    
-                    if (ontKeys.length > 0) {
-                        const el = document.getElementById('ont-' + ontKeys[0]);
-                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }
             }
         }
 
@@ -3828,44 +3797,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 
                 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
-                ['ont-l21', 'role-1', '#ef4444', 'l21', 'role-1'], // 主导
-                ['ont-l21', 'role-8', '#2563eb', 'l21', 'role-8'], // 支持
-                ['ont-l21', 'role-9', '#2563eb', 'l21', 'role-9'], // 支持
-                ['ont-l22', 'role-8', '#ef4444', 'l22', 'role-8'], // 主导
-                ['ont-l23', 'role-1', '#ef4444', 'l23', 'role-1'], // 主导
-                ['ont-l24a', 'role-3', '#ef4444', 'l24a', 'role-3'], // 主导
-                ['ont-l24a', 'role-8', '#2563eb', 'l24a', 'role-8'], // 支持
-                ['ont-l24a', 'role-2', '#2563eb', 'l24a', 'role-2'], // 支持
-                ['ont-l24b', 'role-3', '#ef4444', 'l24b', 'role-3'], // 主导
-                ['ont-l25', 'role-3', '#ef4444', 'l25', 'role-3'], // 主导
-                ['ont-l26', 'role-5', '#ef4444', 'l26', 'role-5'], // 主导
-                ['ont-l27', 'role-3', '#ef4444', 'l27', 'role-3'], // 主导
-                ['ont-l28', 'role-4', '#ef4444', 'l28', 'role-4'], // 主导
-                ['ont-l29a', 'role-4', '#ef4444', 'l29a', 'role-4'], // 主导
-                ['ont-l30a', 'role-4', '#ef4444', 'l30a', 'role-4'], // 主导
-                ['ont-l30b', 'role-3', '#ef4444', 'l30b', 'role-3'], // 主导
-                ['ont-l30b', 'role-2', '#2563eb', 'l30b', 'role-2'], // 支持
-                ['ont-l30c', 'role-7', '#ef4444', 'l30c', 'role-7'], // 主导
-                ['ont-l31a', 'role-0', '#ef4444', 'l31a', 'role-0'], // 主导
-                ['ont-l31b', 'role-0', '#ef4444', 'l31b', 'role-0'], // 主导
-                ['ont-l31b', 'role-9', '#2563eb', 'l31b', 'role-9'], // 支持
-                ['ont-l31c', 'role-8', '#ef4444', 'l31c', 'role-8'], // 主导
-                ['ont-l32', 'role-0', '#ef4444', 'l32', 'role-0'], // 主导
-                ['ont-l32', 'role-13', '#2563eb', 'l32', 'role-13'], // 支持
-
-                // 挂载子节点的 SVG 拓扑分支线 (Sub-Node SVG Branches)
-                ['src-excel-43', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
-                ['src-excel-44', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
-                ['src-excel-45', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
-                ['ont-l24a', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
-
-                ['src-excel-46', 'ont-l24a-sub', '#f59e0b', 'l24a', 'role-3'],
-                ['ont-l30b', 'ont-l30b-sub', '#0284c7', 'l30b', 'role-3'],
-                ['ont-l30b', 'ont-l24a-delta', '#10b981', 'l30b', 'role-3'],
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
-                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // 政企协同与监管关联 (Gov-Enterprise Inter-Agent Connections) -> DYNAMICALLY GENERATED FROM KB
                 ['role-16', 'role-10', '#10b981', 'scen', 'role-10', 'high'] /* 16 气象局 -> 10 执法监督处: 气象灾害预警/恶劣天气监测推流 */,
                 ['role-10', 'role-0', '#10b981', 'scen', 'role-0', 'high'] /* 10 执法监督处 -> 00 数据统筹部门: 空间锚点确权与管辖匹配 */,
                 ['role-0', 'role-4', '#10b981', 'scen', 'role-4', 'high'] /* 00 数据统筹部门 -> 04 养护管理处: 灾前风险点位巡查指令 */,
@@ -3904,8 +3836,245 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
                 ['role-21', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 21 监测设备厂商 -> 04 养护管理处 */,
                 ['role-22', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 22 各地市州交通局 -> 04 养护管理处 */,
                 ['role-19', 'role-1', '#10b981', 'scen', 'role-1', 'normal'] /* 19 公安交管局 -> 01 规划计划处 */,
-                ['role-19', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 19 公安交管局 -> 04 养护管理处 */
-            ];
+                ['role-19', 'role-4', '#10b981', 'scen', 'role-4', 'normal'] /* 19 公安交管局 -> 04 养护管理处 */,
+// Column 2 (L码套表) -> Column 3 (组织架构)
+
+,
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构),
+                // Column 2 (L码套表) -> Column 3 (组织架构)
+,
+                // Column 2 (L码套表) -> Column 3 (组织架构)
+,
+                // Column 2 (L码套表) -> Column 3 (组织架构)
+,
+                // Column 2 (L码套表) -> Column 3 (组织架构)
+,
+                // Column 2 (L码套表) -> Column 3 (组织架构)
+,
+                // Column 2 (L码套表) -> Column 3 (组织架构)
+,
+                // Column 2 (L码套表) -> Column 3 (组织架构)
+                ['role-1', 'role-20', '#10b981', 'l21', 'role-20', 'normal'], // 企事业/协同
+                ['role-1', 'role-18', '#10b981', 'l21', 'role-18', 'normal'], // 企事业/协同
+                ['role-1', 'role-19', '#10b981', 'l21', 'role-19', 'normal'], // 企事业/协同
+                ['role-4', 'role-12', '#10b981', 'l22', 'role-12', 'normal'], // 企事业/协同
+                ['role-1', 'role-20', '#10b981', 'l23', 'role-20', 'normal'], // 企事业/协同
+                ['role-1', 'role-18', '#10b981', 'l23', 'role-18', 'normal'], // 企事业/协同
+                ['role-1', 'role-19', '#10b981', 'l23', 'role-19', 'normal'], // 企事业/协同
+                ['role-3', 'role-14', '#10b981', 'l24a', 'role-14', 'normal'], // 企事业/协同
+                ['role-3', 'role-21', '#10b981', 'l24a', 'role-21', 'normal'], // 企事业/协同
+                ['role-3', 'role-17', '#10b981', 'l24a', 'role-17', 'normal'], // 企事业/协同
+                ['role-3', 'role-11', '#10b981', 'l24b', 'role-11', 'normal'], // 企事业/协同
+                ['role-3', 'role-15', '#10b981', 'l24b', 'role-15', 'normal'], // 企事业/协同
+                ['role-3', 'role-14', '#10b981', 'l25', 'role-14', 'normal'], // 企事业/协同
+                ['role-3', 'role-21', '#10b981', 'l25', 'role-21', 'normal'], // 企事业/协同
+                ['role-3', 'role-17', '#10b981', 'l25', 'role-17', 'normal'], // 企事业/协同
+                ['role-5', 'role-11', '#10b981', 'l26', 'role-11', 'normal'], // 企事业/协同
+                ['role-5', 'role-15', '#10b981', 'l26', 'role-15', 'normal'], // 企事业/协同
+                ['role-3', 'role-11', '#10b981', 'l27', 'role-11', 'normal'], // 企事业/协同
+                ['role-3', 'role-13', '#10b981', 'l27', 'role-13', 'normal'], // 企事业/协同
+                ['role-3', 'role-14', '#10b981', 'l27', 'role-14', 'normal'], // 企事业/协同
+                ['role-3', 'role-16', '#10b981', 'l27', 'role-16', 'normal'], // 企事业/协同
+                ['role-3', 'role-17', '#10b981', 'l27', 'role-17', 'normal'], // 企事业/协同
+                ['role-3', 'role-18', '#10b981', 'l27', 'role-18', 'normal'], // 企事业/协同
+                ['role-4', 'role-11', '#10b981', 'l28', 'role-11', 'normal'], // 企事业/协同
+                ['role-4', 'role-14', '#10b981', 'l28', 'role-14', 'normal'], // 企事业/协同
+                ['role-4', 'role-22', '#10b981', 'l29a', 'role-22', 'normal'], // 企事业/协同
+                ['role-4', 'role-19', '#10b981', 'l29a', 'role-19', 'normal'], // 企事业/协同
+                ['role-4', 'role-15', '#10b981', 'l30a', 'role-15', 'normal'], // 企事业/协同
+                ['role-3', 'role-15', '#10b981', 'l30b', 'role-15', 'normal'], // 企事业/协同
+                ['role-7', 'role-15', '#10b981', 'l30c', 'role-15', 'normal'], // 企事业/协同
+                ['role-0', 'role-13', '#10b981', 'l31a', 'role-13', 'normal'], // 企事业/协同
+                ['role-0', 'role-16', '#10b981', 'l31a', 'role-16', 'normal'], // 企事业/协同
+                ['role-0', 'role-17', '#10b981', 'l31a', 'role-17', 'normal'], // 企事业/协同
+                ['role-0', 'role-13', '#10b981', 'l31b', 'role-13', 'normal'], // 企事业/协同
+                ['role-0', 'role-16', '#10b981', 'l31b', 'role-16', 'normal'], // 企事业/协同
+                ['role-0', 'role-17', '#10b981', 'l31b', 'role-17', 'normal'], // 企事业/协同
+                ['role-8', 'role-13', '#10b981', 'l31c', 'role-13', 'normal'], // 企事业/协同
+                ['role-8', 'role-16', '#10b981', 'l31c', 'role-16', 'normal'], // 企事业/协同
+                ['role-8', 'role-17', '#10b981', 'l31c', 'role-17', 'normal'], // 企事业/协同
+                ['role-6', 'role-13', '#10b981', 'l32', 'role-13', 'normal'], // 企事业/协同
+                ['role-6', 'role-17', '#10b981', 'l32', 'role-17', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-25', '#10b981', 'l33a', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-15', '#10b981', 'l33a', 'role-15', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-11', '#10b981', 'l33a', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-21', '#10b981', 'l33a', 'role-21', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-26', '#10b981', 'l33a', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-16', '#10b981', 'l33a', 'role-16', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-6', '#10b981', 'l33a', 'role-6', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-25', '#10b981', 'l33b', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-24', '#10b981', 'l33b', 'role-24', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-11', '#10b981', 'l33b', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-26', '#10b981', 'l33b', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-19', '#10b981', 'l33b', 'role-19', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-10', '#10b981', 'l33b', 'role-10', 'normal'], // 企事业/协同
+                ['role-p3-3', 'role-25', '#10b981', 'l33c', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-3', 'role-23', '#10b981', 'l33c', 'role-23', 'normal'], // 企事业/协同
+                ['role-p3-3', 'role-11', '#10b981', 'l33c', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-3', 'role-26', '#10b981', 'l33c', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-4', 'role-25', '#10b981', 'l33d', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-4', 'role-23', '#10b981', 'l33d', 'role-23', 'normal'], // 企事业/协同
+                ['role-p3-4', 'role-13', '#10b981', 'l33d', 'role-13', 'normal'], // 企事业/协同
+                ['role-p3-4', 'role-26', '#10b981', 'l33d', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-25', '#10b981', 'l33e', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-13', '#10b981', 'l33e', 'role-13', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-11', '#10b981', 'l33e', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-26', '#10b981', 'l33e', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-16', '#10b981', 'l33e', 'role-16', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-18', '#10b981', 'l33e', 'role-18', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-6', '#10b981', 'l33e', 'role-6', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-25', '#10b981', 'l33f', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-15', '#10b981', 'l33f', 'role-15', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-11', '#10b981', 'l33f', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-13', '#10b981', 'l33f', 'role-13', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-26', '#10b981', 'l33f', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-16', '#10b981', 'l33f', 'role-16', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-25', '#10b981', 'l33g', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-14', '#10b981', 'l33g', 'role-14', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-11', '#10b981', 'l33g', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-13', '#10b981', 'l33g', 'role-13', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-26', '#10b981', 'l33g', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-18', '#10b981', 'l33g', 'role-18', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-3', '#10b981', 'l33g', 'role-3', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-6', '#10b981', 'l33g', 'role-6', 'normal'], // 企事业/协同
+,
+                // Column 2 (L码套表) -> Column 3 (组织架构)
+                ['ont-l21', 'role-1', '#ef4444', 'l21', 'role-1'], // 主导
+                ['ont-l21', 'role-4', '#2563eb', 'l21', 'role-4'], // 支持
+                ['ont-l21', 'role-9', '#2563eb', 'l21', 'role-9'], // 支持
+                ['role-1', 'role-20', '#10b981', 'l21', 'role-20', 'normal'], // 企事业/协同
+                ['role-1', 'role-18', '#10b981', 'l21', 'role-18', 'normal'], // 企事业/协同
+                ['role-1', 'role-19', '#10b981', 'l21', 'role-19', 'normal'], // 企事业/协同
+                ['ont-l22', 'role-4', '#ef4444', 'l22', 'role-4'], // 主导
+                ['role-4', 'role-12', '#10b981', 'l22', 'role-12', 'normal'], // 企事业/协同
+                ['ont-l23', 'role-1', '#ef4444', 'l23', 'role-1'], // 主导
+                ['role-1', 'role-20', '#10b981', 'l23', 'role-20', 'normal'], // 企事业/协同
+                ['role-1', 'role-18', '#10b981', 'l23', 'role-18', 'normal'], // 企事业/协同
+                ['role-1', 'role-19', '#10b981', 'l23', 'role-19', 'normal'], // 企事业/协同
+                ['ont-l24a', 'role-3', '#ef4444', 'l24a', 'role-3'], // 主导
+                ['ont-l24a', 'role-4', '#2563eb', 'l24a', 'role-4'], // 支持
+                ['ont-l24a', 'role-2', '#2563eb', 'l24a', 'role-2'], // 支持
+                ['role-3', 'role-14', '#10b981', 'l24a', 'role-14', 'normal'], // 企事业/协同
+                ['role-3', 'role-21', '#10b981', 'l24a', 'role-21', 'normal'], // 企事业/协同
+                ['role-3', 'role-17', '#10b981', 'l24a', 'role-17', 'normal'], // 企事业/协同
+                ['ont-l24b', 'role-3', '#ef4444', 'l24b', 'role-3'], // 主导
+                ['role-3', 'role-11', '#10b981', 'l24b', 'role-11', 'normal'], // 企事业/协同
+                ['role-3', 'role-15', '#10b981', 'l24b', 'role-15', 'normal'], // 企事业/协同
+                ['ont-l25', 'role-3', '#ef4444', 'l25', 'role-3'], // 主导
+                ['role-3', 'role-14', '#10b981', 'l25', 'role-14', 'normal'], // 企事业/协同
+                ['role-3', 'role-21', '#10b981', 'l25', 'role-21', 'normal'], // 企事业/协同
+                ['role-3', 'role-17', '#10b981', 'l25', 'role-17', 'normal'], // 企事业/协同
+                ['ont-l26', 'role-5', '#ef4444', 'l26', 'role-5'], // 主导
+                ['ont-l26', 'role-6', '#2563eb', 'l26', 'role-6'], // 支持
+                ['role-5', 'role-11', '#10b981', 'l26', 'role-11', 'normal'], // 企事业/协同
+                ['role-5', 'role-15', '#10b981', 'l26', 'role-15', 'normal'], // 企事业/协同
+                ['ont-l27', 'role-3', '#ef4444', 'l27', 'role-3'], // 主导
+                ['role-3', 'role-11', '#10b981', 'l27', 'role-11', 'normal'], // 企事业/协同
+                ['role-3', 'role-13', '#10b981', 'l27', 'role-13', 'normal'], // 企事业/协同
+                ['role-3', 'role-14', '#10b981', 'l27', 'role-14', 'normal'], // 企事业/协同
+                ['role-3', 'role-16', '#10b981', 'l27', 'role-16', 'normal'], // 企事业/协同
+                ['role-3', 'role-17', '#10b981', 'l27', 'role-17', 'normal'], // 企事业/协同
+                ['role-3', 'role-18', '#10b981', 'l27', 'role-18', 'normal'], // 企事业/协同
+                ['ont-l28', 'role-4', '#ef4444', 'l28', 'role-4'], // 主导
+                ['role-4', 'role-11', '#10b981', 'l28', 'role-11', 'normal'], // 企事业/协同
+                ['role-4', 'role-14', '#10b981', 'l28', 'role-14', 'normal'], // 企事业/协同
+                ['ont-l29a', 'role-4', '#ef4444', 'l29a', 'role-4'], // 主导
+                ['ont-l29a', 'role-6', '#2563eb', 'l29a', 'role-6'], // 支持
+                ['role-4', 'role-22', '#10b981', 'l29a', 'role-22', 'normal'], // 企事业/协同
+                ['role-4', 'role-19', '#10b981', 'l29a', 'role-19', 'normal'], // 企事业/协同
+                ['ont-l30a', 'role-4', '#ef4444', 'l30a', 'role-4'], // 主导
+                ['role-4', 'role-15', '#10b981', 'l30a', 'role-15', 'normal'], // 企事业/协同
+                ['ont-l30b', 'role-3', '#ef4444', 'l30b', 'role-3'], // 主导
+                ['ont-l30b', 'role-2', '#2563eb', 'l30b', 'role-2'], // 支持
+                ['role-3', 'role-15', '#10b981', 'l30b', 'role-15', 'normal'], // 企事业/协同
+                ['ont-l30c', 'role-7', '#ef4444', 'l30c', 'role-7'], // 主导
+                ['role-7', 'role-15', '#10b981', 'l30c', 'role-15', 'normal'], // 企事业/协同
+                ['ont-l31a', 'role-0', '#ef4444', 'l31a', 'role-0'], // 主导
+                ['role-0', 'role-13', '#10b981', 'l31a', 'role-13', 'normal'], // 企事业/协同
+                ['role-0', 'role-16', '#10b981', 'l31a', 'role-16', 'normal'], // 企事业/协同
+                ['role-0', 'role-17', '#10b981', 'l31a', 'role-17', 'normal'], // 企事业/协同
+                ['ont-l31b', 'role-0', '#ef4444', 'l31b', 'role-0'], // 主导
+                ['ont-l31b', 'role-9', '#2563eb', 'l31b', 'role-9'], // 支持
+                ['role-0', 'role-13', '#10b981', 'l31b', 'role-13', 'normal'], // 企事业/协同
+                ['role-0', 'role-16', '#10b981', 'l31b', 'role-16', 'normal'], // 企事业/协同
+                ['role-0', 'role-17', '#10b981', 'l31b', 'role-17', 'normal'], // 企事业/协同
+                ['ont-l31c', 'role-8', '#ef4444', 'l31c', 'role-8'], // 主导
+                ['role-8', 'role-13', '#10b981', 'l31c', 'role-13', 'normal'], // 企事业/协同
+                ['role-8', 'role-16', '#10b981', 'l31c', 'role-16', 'normal'], // 企事业/协同
+                ['role-8', 'role-17', '#10b981', 'l31c', 'role-17', 'normal'], // 企事业/协同
+                ['ont-l32', 'role-6', '#ef4444', 'l32', 'role-6'], // 主导
+                ['ont-l32', 'role-13', '#2563eb', 'l32', 'role-13'], // 支持
+                ['role-6', 'role-13', '#10b981', 'l32', 'role-13', 'normal'], // 企事业/协同
+                ['role-6', 'role-17', '#10b981', 'l32', 'role-17', 'normal'], // 企事业/协同
+                ['ont-l33a', 'role-p3-1', '#ef4444', 'l33a', 'role-p3-1'], // 主导
+                ['ont-l33a', 'role-p3-0', '#2563eb', 'l33a', 'role-p3-0'], // 支持
+                ['role-p3-1', 'role-25', '#10b981', 'l33a', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-15', '#10b981', 'l33a', 'role-15', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-11', '#10b981', 'l33a', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-21', '#10b981', 'l33a', 'role-21', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-26', '#10b981', 'l33a', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-16', '#10b981', 'l33a', 'role-16', 'normal'], // 企事业/协同
+                ['role-p3-1', 'role-6', '#10b981', 'l33a', 'role-6', 'normal'], // 企事业/协同
+                ['ont-l33b', 'role-p3-2', '#ef4444', 'l33b', 'role-p3-2'], // 主导
+                ['ont-l33b', 'role-p3-0', '#2563eb', 'l33b', 'role-p3-0'], // 支持
+                ['role-p3-2', 'role-25', '#10b981', 'l33b', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-24', '#10b981', 'l33b', 'role-24', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-11', '#10b981', 'l33b', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-26', '#10b981', 'l33b', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-19', '#10b981', 'l33b', 'role-19', 'normal'], // 企事业/协同
+                ['role-p3-2', 'role-10', '#10b981', 'l33b', 'role-10', 'normal'], // 企事业/协同
+                ['ont-l33c', 'role-p3-3', '#ef4444', 'l33c', 'role-p3-3'], // 主导
+                ['ont-l33c', 'role-p3-0', '#2563eb', 'l33c', 'role-p3-0'], // 支持
+                ['role-p3-3', 'role-25', '#10b981', 'l33c', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-3', 'role-23', '#10b981', 'l33c', 'role-23', 'normal'], // 企事业/协同
+                ['role-p3-3', 'role-11', '#10b981', 'l33c', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-3', 'role-26', '#10b981', 'l33c', 'role-26', 'normal'], // 企事业/协同
+                ['ont-l33d', 'role-p3-4', '#ef4444', 'l33d', 'role-p3-4'], // 主导
+                ['ont-l33d', 'role-p3-0', '#2563eb', 'l33d', 'role-p3-0'], // 支持
+                ['role-p3-4', 'role-25', '#10b981', 'l33d', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-4', 'role-23', '#10b981', 'l33d', 'role-23', 'normal'], // 企事业/协同
+                ['role-p3-4', 'role-13', '#10b981', 'l33d', 'role-13', 'normal'], // 企事业/协同
+                ['role-p3-4', 'role-26', '#10b981', 'l33d', 'role-26', 'normal'], // 企事业/协同
+                ['ont-l33e', 'role-p3-5', '#ef4444', 'l33e', 'role-p3-5'], // 主导
+                ['ont-l33e', 'role-p3-0', '#2563eb', 'l33e', 'role-p3-0'], // 支持
+                ['role-p3-5', 'role-25', '#10b981', 'l33e', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-13', '#10b981', 'l33e', 'role-13', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-11', '#10b981', 'l33e', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-26', '#10b981', 'l33e', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-16', '#10b981', 'l33e', 'role-16', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-18', '#10b981', 'l33e', 'role-18', 'normal'], // 企事业/协同
+                ['role-p3-5', 'role-6', '#10b981', 'l33e', 'role-6', 'normal'], // 企事业/协同
+                ['ont-l33f', 'role-p3-6', '#ef4444', 'l33f', 'role-p3-6'], // 主导
+                ['ont-l33f', 'role-p3-0', '#2563eb', 'l33f', 'role-p3-0'], // 支持
+                ['role-p3-6', 'role-25', '#10b981', 'l33f', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-15', '#10b981', 'l33f', 'role-15', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-11', '#10b981', 'l33f', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-13', '#10b981', 'l33f', 'role-13', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-26', '#10b981', 'l33f', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-6', 'role-16', '#10b981', 'l33f', 'role-16', 'normal'], // 企事业/协同
+                ['ont-l33g', 'role-p3-7', '#ef4444', 'l33g', 'role-p3-7'], // 主导
+                ['ont-l33g', 'role-p3-0', '#2563eb', 'l33g', 'role-p3-0'], // 支持
+                ['role-p3-7', 'role-25', '#10b981', 'l33g', 'role-25', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-14', '#10b981', 'l33g', 'role-14', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-11', '#10b981', 'l33g', 'role-11', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-13', '#10b981', 'l33g', 'role-13', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-26', '#10b981', 'l33g', 'role-26', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-18', '#10b981', 'l33g', 'role-18', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-3', '#10b981', 'l33g', 'role-3', 'normal'], // 企事业/协同
+                ['role-p3-7', 'role-6', '#10b981', 'l33g', 'role-6', 'normal'], // 企事业/协同
+];
 
             
             // Dynamically add lines for the active ODS dynamic pills
@@ -4184,7 +4353,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
             drawConnectorLines();
         }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                const ROLE_LINEAGE_MAPPINGS = {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        const ROLE_LINEAGE_MAPPINGS = {
               'role-0': ["role-0", "l31a", "l31b"],
               'role-1': ["role-1", "l21", "l23"],
               'role-2': ["role-2", "l24a", "l30b"],
@@ -4209,13 +4378,17 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
               'role-21': ["role-21", "role-4"],
               'role-22': ["role-22", "role-4"],
               'role-p3-1': ["role-p3-1", "l33a"],
-              'role-p3-0': ["role-p3-0", "l33a", "l33b", "l33c", "l33d", "l33e", "l33f", "l33g"],
+              'role-25': ["role-25"],
+              'role-26': ["role-26"],
               'role-p3-2': ["role-p3-2", "l33b"],
+              'role-24': ["role-24"],
               'role-p3-3': ["role-p3-3", "l33c"],
+              'role-23': ["role-23"],
               'role-p3-4': ["role-p3-4", "l33d"],
               'role-p3-5': ["role-p3-5", "l33e"],
               'role-p3-6': ["role-p3-6", "l33f"],
-              'role-p3-7': ["role-p3-7", "l33g"]
+              'role-p3-7': ["role-p3-7", "l33g"],
+              'role-p3-0': ["role-p3-0", "l33a", "l33b", "l33c", "l33d", "l33e", "l33f", "l33g"]
           };
 
         function traceBackRole(roleId) {
