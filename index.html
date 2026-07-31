@@ -1896,10 +1896,10 @@
                 desc: '"动火/受限空间作业前 3 分钟动态微课 + 活体考勤卡口"',
                 description: '特种作业(P1) ➔ 风险热力图(P3) ➔ 安责险降费(P0) ➔ 园区数据资产(P2)',
                 ontologies: [
-                    { key: 'l33b', name: 'L33b（危险化学品安全监管专题）[危化品园区]', leadOffice: '危险化学品安全监督管理处' }
+                    { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '危险化学品安全监督管理处' }
                 ],
-                defaultOntKey: 'l33b',
-                leadOffice: '危险化学品安全监督管理处',
+                defaultOntKey: \'l33b\',
+                leadOffice: \'危险化学品安全监督管理处\',
                 agents: [
                     { code: '17', name: '17 应急管理厅 Agent', roleType: '监管协同(P3)', sopSkill: '接收热力图并下发电子整改单SOP', checked: true },
                     { code: '91', name: '化工园区企业 Agent', roleType: '执行协同(P1)', sopSkill: '微课活体考勤生成台账冲抵安全费SOP', checked: true },
@@ -1936,10 +1936,10 @@
                 desc: '"塔吊/深基坑/高支模班前交底与微课"',
                 description: '安全费预付划拨(P1) ➔ 动态合规看板(P3) ➔ 建安险下浮(P0) ➔ 施工数据资产授信(P2)',
                 ontologies: [
-                    { key: 'l29a', name: '危大工程全员安培与隐患闭环报告', leadOffice: '住建局' }
+                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '工贸安全监管处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '住建局',
+                defaultOntKey: \'l33d\',
+                leadOffice: \'工贸安全监管处\',
                 agents: [
                     { code: '17', name: '住建质监站 Agent', roleType: '监管协同(P3)', sopSkill: '查到隐患在线触发定向安培整改SOP', checked: true },
                     { code: '91', name: '施工方 Agent', roleType: '执行协同(P1)', sopSkill: '从开工首月预付安全费专户划拨服务费SOP', checked: true },
@@ -1953,10 +1953,10 @@
                 desc: '"企业扫码进入以培促改与隐患整改消案专区"',
                 description: '动用安全费补课(P1) ➔ 在线消案(P3) ➔ 不冻结折扣(P0) ➔ 企业合规履约信用分(P2)',
                 ontologies: [
-                    { key: 'l29a', name: '执法隐患整改与安培闭环报告', leadOffice: '交通/应急执法大队' }
+                    { key: 'l33a', name: 'L33a（自然灾害风控与综合减灾专题）', leadOffice: '风险监测和综合减灾处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '10 执法监督处',
+                defaultOntKey: \'l33a\',
+                leadOffice: \'风险监测和综合减灾处\',
                 agents: [
                     { code: '06', name: '执法大队 Agent', roleType: '监管协同(P3)', sopSkill: '免现场复查直接在线消案SOP', checked: true },
                     { code: '91', name: '企业 Agent', roleType: '执行协同(P1)', sopSkill: '24-72小时限期内动用安全费补课整改SOP', checked: true },
@@ -1970,10 +1970,13 @@
                 desc: '"公路局/交投养护大队班组每日出勤签到 + 占道/高空作业微课"',
                 description: '养护包干预算列支(P1) ➔ 养护作业安全态势看板(P3) ➔ 雇主/公众责任险(P0) ➔ 公路资产健康档案(P2)',
                 ontologies: [
-                    { key: 'l29a', name: '财资136号文合规台账', leadOffice: '公路局' }
+                    { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
+                    { key: 'l24a', name: 'L24a（公路桥梁基本情况明细表）', leadOffice: '03 工程技术处' },
+                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '工贸安全监管处' },
+                    { key: 'l30a', name: 'L30a（公路养护作业统计表）', leadOffice: '04 养护管理处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '04 养护管理处',
+                defaultOntKey: \'l33d\',
+                leadOffice: \'工贸安全监管处\',
                 agents: [
                     { code: '04', name: '公路局/交投 Agent', roleType: '监管协同(P3)', sopSkill: '养护作业路段安全态势看板监控SOP', checked: true },
                     { code: '91', name: '养护公司 Agent', roleType: '执行协同(P1)', sopSkill: '按月从养护包干预算中列支划拨SOP', checked: true },
@@ -1987,10 +1990,10 @@
                 desc: '"车载 ADAS/DMS 预警闭环端 + 运管驾驶员每月例行安培小程序"',
                 description: '按单按月安全费划扣(P1) ➔ 矫正闭环流(P3) ➔ 重卡/危运车险下浮(P0) ➔ 运力安全信用资产(P2)',
                 ontologies: [
-                    { key: 'l29a', name: '驾驶员违法以培促改台账', leadOffice: '运管局' }
+                    { key: 'l33b', name: 'L33b（危险化学品安全监管专题）', leadOffice: '危险化学品安全监督管理处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '02 综合运输处',
+                defaultOntKey: \'l33b\',
+                leadOffice: \'危险化学品安全监督管理处\',
                 agents: [
                     { code: '02', name: '运管/交警 Agent', roleType: '监管协同(P3)', sopSkill: '接收高风险驾驶员矫正闭环流并解除出车限制SOP', checked: true },
                     { code: '91', name: '客货运公司 Agent', roleType: '执行协同(P1)', sopSkill: '按单按月从安全费划扣SOP', checked: true },
@@ -2004,10 +2007,10 @@
                 desc: '"实名制通道 + 进场安全教育 + 进洞/上桥作业前微课交底"',
                 description: '首月预付专项安全费(P1) ➔ 无感监督包(P3) ➔ 共享保司防灾基金(P0) ➔ 基础设施地质档案(P2)',
                 ontologies: [
-                    { key: 'l29a', name: '安全生产费合规列支审计包', leadOffice: '交质监站' }
+                    { key: 'l33d', name: 'L33d（工贸安全监管专题）', leadOffice: '工贸安全监管处' }
                 ],
-                defaultOntKey: 'l29a',
-                leadOffice: '交质监站',
+                defaultOntKey: \'l33d\',
+                leadOffice: \'工贸安全监管处\',
                 agents: [
                     { code: '17', name: '交质监站 Agent', roleType: '监管协同(P3)', sopSkill: '重大危险源无感监督SOP', checked: true },
                     { code: '91', name: '施工总包 Agent', roleType: '执行协同(P1)', sopSkill: '动用首月预付专项安全费SOP', checked: true },
