@@ -155,31 +155,31 @@
                                 </label>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-6" onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-6" onclick="event.stopPropagation(); handleLeftElementClick('l33d');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"2. 建筑工程与市政房建场景（危大工程/快速变现）"</span>
                                     </div>
                                 </label>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-7" onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-7" onclick="event.stopPropagation(); handleLeftElementClick('l33a');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"3. 交通/应急行政执法与违规企业消案场景（合规催化剂）"</span>
                                     </div>
                                 </label>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-8" onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-8" onclick="event.stopPropagation(); handleLeftElementClick('l33d');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"4. 交通基础设施日常养护与检测场景（长线现金流压舱石）"</span>
                                     </div>
                                 </label>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-9" onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-9" onclick="event.stopPropagation(); handleLeftElementClick('l33b');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"5. 道路运输与“两客一危一重”场景（高频流速之王）"</span>
                                     </div>
                                 </label>
                                 <label class="flex items-center justify-between cursor-pointer p-0.5 rounded transition-all hover:bg-slate-200">
                                     <div class="flex items-center gap-1.5">
-                                        <input type="radio" name="studioScenRadio" value="scen-10" onclick="event.stopPropagation(); handleLeftElementClick('l27');">
+                                        <input type="radio" name="studioScenRadio" value="scen-10" onclick="event.stopPropagation(); handleLeftElementClick('l33d');">
                                         <span class="text-[8.5px] text-slate-600 font-normal italic">"6. 交通基础设施新建与改扩建工程场景（体量与利润天花板）"</span>
                                     </div>
                                 </label>
@@ -3739,7 +3739,19 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
             svg.setAttribute('width', svgRect.width);
             svg.setAttribute('height', svgRect.height);
 
-            const connections = [
+            const connections = [];
+                if (typeof currentActiveSubScenNum !== 'undefined' && currentActiveSubScenNum !== 1) {
+                    connections.push(
+                        ['src-excel-43', 'ont-l33a', '#ef4444', 'l33a', ''],
+                        ['src-excel-44', 'ont-l33b', '#ef4444', 'l33b', ''],
+                        ['src-excel-45', 'ont-l33c', '#ef4444', 'l33c', ''],
+                        ['src-excel-46', 'ont-l33d', '#ef4444', 'l33d', ''],
+                        ['src-excel-47', 'ont-l33e', '#ef4444', 'l33e', ''],
+                        ['src-excel-48', 'ont-l33f', '#ef4444', 'l33f', ''],
+                        ['src-excel-49', 'ont-l33g', '#ef4444', 'l33g', '']
+                    );
+                }
+                connections.push(
                 // Column 1 (42张Excel) -> Column 2 (L码套表)
                 ['src-excel-1', 'ont-l21', '#2563eb', 'l21', ''],
                 ['src-excel-2', 'ont-l21', '#2563eb', 'l21', ''],
