@@ -1742,7 +1742,7 @@
 ];
                 
                 const selectHtml = `
-                    <select onchange="handleLeftElementClick('${scen.defaultOnt}'); switchStudioScenario(parseInt(this.value) || ${scen.num})" onclick="if(!${isActiveCategory}) { handleLeftElementClick('${scen.defaultOnt}'); switchStudioScenario(parseInt(this.value) || ${scen.num}); }" class="w-full p-1 py-0.5 ml-1 rounded transition-all border outline-none cursor-pointer ${isActiveCategory ? 'border-slate-700 bg-slate-50 text-slate-900 font-bold shadow-sm' : 'border-slate-200 bg-white text-slate-500 hover:bg-slate-50'} text-[9.5px]">
+                    <select onchange="switchStudioScenario(parseInt(this.value) || ${scen.num})" onclick="if(!${isActiveCategory}) { switchStudioScenario(parseInt(this.value) || ${scen.num}); }" class="w-full p-1 py-0.5 ml-1 rounded transition-all border outline-none cursor-pointer ${isActiveCategory ? 'border-slate-700 bg-slate-50 text-slate-900 font-bold shadow-sm' : 'border-slate-200 bg-white text-slate-500 hover:bg-slate-50'} text-[9.5px]">
                         ${subs.map(sub => {
                             const isSelected = isActiveCategory && (sub.id === currentActiveSubScenNum || (currentActiveSubScenNum === null && sub.isPrimary));
                             return `<option value="${sub.id}" ${isSelected ? 'selected' : ''}>${sub.desc}</option>`;
@@ -1773,12 +1773,18 @@
             currentActiveScenNum = parentScenNum;
             currentActiveSubScenNum = subScenNum;
 
-            const scen = allCoreScenarios.find(s => s.num === parentScenNum) || allCoreScenarios[0
-];
-            const kbScen = productionKnowledgeBaseScenarioMap[subScenNum
-];
+            const scen = allCoreScenarios.find(s => s.num === parentScenNum) || allCoreScenarios[0];
+            const kbScen = productionKnowledgeBaseScenarioMap[subScenNum];
             
             renderStudioScenarios();
+            
+            // Dynamically highlight the correct ontology for this sub-scenario
+            if (kbScen && kbScen.defaultOntKey) {
+                if (typeof highlightLineage === 'function') highlightLineage(kbScen.defaultOntKey, true);
+            } else if (scen && scen.defaultOnt) {
+                if (typeof highlightLineage === 'function') highlightLineage(scen.defaultOnt, true);
+            }
+
             
             if (typeof renderStudioRoles === 'function') {
                 if (kbScen && kbScen.agents) {
@@ -4072,7 +4078,7 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
 
             
             // Dynamically add lines for the active ODS dynamic pills
-            if (typeof currentActiveSubScenNum !== 'undefined' && currentActiveSubScenNum !== 1) {
+            if (typeof currentActiveSubScenNum !== 'undefined') {
                 connections.push(
                     ['src-excel-43', 'ont-l33a', '#ef4444', 'l33a', ''],
                     ['src-excel-44', 'ont-l33b', '#ef4444', 'l33b', ''],
