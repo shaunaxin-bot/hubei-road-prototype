@@ -48824,6 +48824,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     if (tc.name === "query_sql" || tc.name === "execute_sql") return `\u68C0\u7D22\u6210\u529F\uFF1A\u5DF2\u6210\u529F\u7A7F\u900F [${assetText}]\uFF0C\u63D0\u53D6\u51FA\u5173\u4E8E [${routeText}] \u7684\u4E1A\u52A1\u660E\u7EC6\u6570\u636E\u3002`;
     if (tc.name === "get_table_schema") return `\u52A0\u8F7D\u6210\u529F\uFF1A\u5DF2\u4ECE [${assetText}] \u63D0\u53D6\u6570\u636E\u5B57\u5178\uFF0C\u660E\u786E\u8868\u5B57\u6BB5\u7269\u7406\u542B\u4E49\u53CA\u8D44\u4EA7\u5BC6\u7EA7\u3002`;
     if (tc.name === "retrieve_knowledge") return `\u5339\u914D\u6210\u529F\uFF1A\u5DF2\u6210\u529F\u4ECE [${assetText}] \u4E2D\u5339\u914D\u5E76\u63D0\u53D6\u51FA\u9488\u5BF9 [${routeText}] \u7684\u5408\u89C4\u7EA6\u675F\u6761\u6B3E\u3002`;
+    if (tc.name === "dispatch_subagent") return tc.resultSummary || `\u8C03\u5EA6\u6210\u529F\uFF1A\u5782\u76F4\u9886\u57DF\u667A\u80FD\u4F53\u5DF2\u63A5\u7BA1\u5F53\u524D\u63A7\u5236\u6743\u3002`;
     if (tc.name === "thought") return "\u63A8\u6F14\u5B8C\u6BD5\uFF1A\u5F53\u524D\u94FE\u8DEF\u51B3\u7B56\u610F\u56FE\u660E\u786E\uFF0C\u51C6\u5907\u8FDB\u5165\u4E0B\u4E00\u6B65\u8C03\u5EA6\u3002";
     if (tc.name === "verify_data" || tc.name === "data_validation") return `\u6821\u9A8C\u901A\u8FC7\uFF1A[${assetText}] \u4E0E\u5173\u8054\u6570\u636E\u7684\u4EA4\u53C9\u6BD4\u5BF9\u4E00\u81F4\u3002`;
     if (tc.name === "search_internet") {
@@ -48840,6 +48841,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       block: "\u6570\u636E\u7EDF\u7B79\u677F\u5757",
       department: "\u77E5\u8BC6\u89C4\u5219\u90E8\u95E8",
       role: "\u4E13\u57DF\u6570\u636E\u6838\u67E5\u4EBA\u5458"
+    },
+    "AGENT-\u6570\u636E\u7EDF\u7B79-\u5B89\u5168\u751F\u4EA7\u8D23\u4EFB\u6570\u636E\u8FD0\u8425\u4E2D\u5FC3": {
+      block: "\u6570\u636E\u8FD0\u8425\u677F\u5757",
+      department: "\u5B89\u5168\u751F\u4EA7\u8D23\u4EFB\u8FD0\u8425\u4E2D\u5FC3",
+      role: "\u9886\u57DF\u4E13\u73ED\u667A\u80FD\u4F53"
     }
   };
   var parseAgentToRole = (agentString) => {
@@ -51299,6 +51305,22 @@ ${knowledgeBase}
                 kbCitation: "\u6765\u6E90: 01_Dictionary_\u8868\u7ED3\u6784\u5B57\u5178/\u5E74\u62A5\u6570\u636E\u5B57\u5178.md"
               }
             ];
+            const isSafetyQuery = queryText.includes("\u5B89\u5168") || queryText.includes("\u95ED\u73AF") || queryText.includes("\u6D88\u6848") || queryText.includes("\u77EB\u6B63") || queryText.includes("\u5371\u5927\u5DE5\u7A0B") || queryText.includes("\u9AD8\u5371\u4F5C\u4E1A") || queryText.includes("\u5408\u89C4\u53F0\u8D26") || queryText.includes("\u7EDF\u7B79\u4E2D\u5FC3") || queryText.includes("\u5B89\u57F9") || queryText.includes("\u5371\u5316") || queryText.includes("\u7ED3\u6784\u5B89\u5168");
+            if (isSafetyQuery) {
+              sopSteps.push({
+                id: `tc-kb-mock-4-${Date.now()}`,
+                name: "dispatch_subagent",
+                argsStr: JSON.stringify({ action: "\u5782\u76F4\u9886\u57DF\u63A5\u7BA1\u4E0E\u4E13\u63A7" }),
+                status: "success",
+                resultSummary: "\u3010\u9886\u57DF\u63A5\u7BA1\u3011\u5DF2\u63A5\u53D7\u4E3B\u6570\u636E\u7EDF\u7B79\u667A\u80FD\u4F53\u5524\u9192\u6307\u4EE4\uFF0C\u5B89\u5168\u751F\u4EA7\u8D23\u4EFB\u6570\u636E\u8FD0\u8425\u4E2D\u5FC3\u6B63\u5F0F\u63A5\u7BA1\u5E76\u4E3B\u5BFC\u672C\u6B21\u4E1A\u52A1\u8DE8\u57DF\u7EDF\u7B79\u67E5\u8BE2\u3002",
+                agentName: "AGENT-\u6570\u636E\u7EDF\u7B79-\u5B89\u5168\u751F\u4EA7\u8D23\u4EFB\u6570\u636E\u8FD0\u8425\u4E2D\u5FC3",
+                stepDesc: "\u7B2C4\u6B65\uFF1A\u5B89\u5168\u751F\u4EA7\u8D23\u4EFB\u6570\u636E\u8FD0\u8425\u4E2D\u5FC3\u667A\u80FD\u4F53\u5168\u57DF\u63A5\u7BA1",
+                tokens: 50,
+                cost: 1e-4,
+                timeMs: 250,
+                kbCitation: "\u6765\u6E90: 01_\u5168\u57DFL\u7801\u6620\u5C04\u5B57\u5178_\u4E3B\u5BFC\u4E0E\u652F\u6301\u90E8\u95E8.md"
+              });
+            }
             toolCallLog = [...toolCallLog, ...sopSteps];
             updateBot({ toolCalls: [...toolCallLog] });
           }
