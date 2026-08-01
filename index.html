@@ -49153,7 +49153,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   ];
   var StageTreeGraph = ({ availableYears, loadedTablesByYear, selectedYears }) => {
     const [expanded, setExpanded] = React.useState(
-      STAGE_TREE_DATA.reduce((acc, s) => ({ ...acc, [s.stage]: true }), {})
+      STAGE_TREE_DATA.reduce((acc, s) => ({ ...acc, [s.stage]: false }), {})
     );
     const toggle = (stage) => setExpanded((p) => ({ ...p, [stage]: !p[stage] }));
     const activeYears = [...new Set(selectedYears && selectedYears.length > 0 ? selectedYears : availableYears)];
