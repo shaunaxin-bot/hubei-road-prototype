@@ -1859,7 +1859,7 @@
 
         
         // 全量 17 套国标 L 码本体定义库
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                const all17Ontologies = [
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        const all17Ontologies = [
             { key: 'l21', name: 'L21（公路路线基本情况明细表）', leadOffice: '01 规划计划处' },
             { key: 'l22', name: 'L22（乡镇/建制村/自然村通达及属性表）', leadOffice: '04 养护管理处' },
             { key: 'l23', name: 'L23（亚洲公路网路线明细表）', leadOffice: '01 规划计划处' },
@@ -4208,26 +4208,26 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
               'role-0': ["role-0", "l31a", "l31b"],
               'role-1': ["role-1", "l21", "l23"],
               'role-2': ["role-2", "l24a", "l30b"],
-              'role-3': ["role-3", "l24a", "l24b", "l25", "l27", "l30b"],
+              'role-3': ["role-3", "l24a", "l24b", "l25", "l27", "l30b", "l33g"],
               'role-4': ["role-4", "l21", "l22", "l24a", "l28", "l29a", "l30a"],
               'role-5': ["role-5", "l26"],
-              'role-6': ["role-6", "l26", "l29a", "l32"],
+              'role-6': ["role-6", "l26", "l29a", "l32", "l33a", "l33e", "l33g"],
               'role-7': ["role-7", "l30c"],
               'role-8': ["role-8", "l31c"],
               'role-9': ["role-9", "l21", "l31b"],
-              'role-10': ["role-10"],
-              'role-11': ["role-11", "role-6", "role-4"],
-              'role-12': ["role-12", "role-4", "role-8"],
-              'role-13': ["role-13", "role-10", "l32"],
-              'role-14': ["role-14", "role-4"],
-              'role-15': ["role-15", "role-4"],
-              'role-16': ["role-16", "role-13"],
-              'role-17': ["role-17", "role-13"],
-              'role-18': ["role-18", "role-13"],
-              'role-19': ["role-19", "role-1", "role-4"],
-              'role-20': ["role-20", "role-1"],
-              'role-21': ["role-21", "role-4"],
-              'role-22': ["role-22", "role-4"],
+              'role-10': ["role-10", "l33b"],
+              'role-11': ["role-11", "role-6", "role-4", "l24b", "l26", "l27", "l28", "l33a", "l33b", "l33c", "l33e", "l33f", "l33g"],
+              'role-12': ["role-12", "role-4", "role-8", "l22"],
+              'role-13': ["role-13", "role-10", "l27", "l31a", "l31b", "l31c", "l32", "l33d", "l33e", "l33f", "l33g"],
+              'role-14': ["role-14", "role-4", "l24a", "l25", "l27", "l28", "l33g"],
+              'role-15': ["role-15", "role-4", "l24b", "l26", "l30a", "l30b", "l30c", "l33a", "l33f"],
+              'role-16': ["role-16", "role-13", "l27", "l31a", "l31b", "l31c", "l33a", "l33e", "l33f"],
+              'role-17': ["role-17", "role-13", "l24a", "l25", "l27", "l31a", "l31b", "l31c", "l32"],
+              'role-18': ["role-18", "role-13", "l21", "l23", "l27", "l33e", "l33g"],
+              'role-19': ["role-19", "role-1", "role-4", "l21", "l23", "l29a", "l33b"],
+              'role-20': ["role-20", "role-1", "l21", "l23"],
+              'role-21': ["role-21", "role-4", "l24a", "l25", "l33a"],
+              'role-22': ["role-22", "role-4", "l29a"],
               'role-p3-1': ["role-p3-1", "l33a"],
               'role-p3-0': ["role-p3-0", "l33a", "l33b", "l33c", "l33d", "l33e", "l33f", "l33g"],
               'role-p3-2': ["role-p3-2", "l33b"],
@@ -4235,7 +4235,11 @@ const ontTag = (ext.ontKey || scenData.defaultOnt).toUpperCase();
               'role-p3-4': ["role-p3-4", "l33d"],
               'role-p3-5': ["role-p3-5", "l33e"],
               'role-p3-6': ["role-p3-6", "l33f"],
-              'role-p3-7': ["role-p3-7", "l33g"]
+              'role-p3-7': ["role-p3-7", "l33g"],
+              'role-25': ["role-25", "l33a", "l33b", "l33c", "l33d", "l33e", "l33f", "l33g"],
+              'role-26': ["role-26", "l33a", "l33b", "l33c", "l33d", "l33e", "l33f", "l33g"],
+              'role-24': ["role-24", "l33b"],
+              'role-23': ["role-23", "l33c", "l33d"]
           };
 
         function traceBackRole(roleId) {
