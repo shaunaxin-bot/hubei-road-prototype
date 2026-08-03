@@ -17,47 +17,47 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.7;
+            line-height: 1.5; /* 紧凑行高 */
             color: var(--text-main);
             background-color: var(--bg-color);
             max-width: 1280px;
             margin: 0 auto;
-            padding: 20px 20px;
+            padding: 15px 20px; /* 减小页边距 */
         }
 
         header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         h1 {
             color: var(--primary-color);
-            font-size: 2.5em;
-            margin-bottom: 15px;
+            font-size: 2.2em;
+            margin-bottom: 10px;
             letter-spacing: -0.5px;
         }
 
         .highlight-box {
             background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
             border-left: 5px solid var(--secondary-color);
-            padding: 10px 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            margin-bottom: 25px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
         }
 
         .highlight-box p {
-            margin: 8px 0;
-            font-size: 1.05em;
+            margin: 5px 0;
+            font-size: 1em;
             color: #1e293b;
         }
 
         h2 {
             color: var(--primary-color);
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
             border-bottom: 2px solid var(--border-color);
             display: flex;
             align-items: center;
@@ -66,53 +66,53 @@
         h2::before {
             content: "";
             display: inline-block;
-            width: 8px;
-            height: 20px;
+            width: 6px;
+            height: 18px;
             background-color: var(--secondary-color);
-            margin-right: 10px;
-            border-radius: 4px;
+            margin-right: 8px;
+            border-radius: 3px;
         }
 
         p, li {
-            font-size: 1.02em;
-            color: var(--text-main);
+            font-size: 0.98em;
+            margin-bottom: 8px;
         }
 
         ul {
-            padding-left: 24px;
-            margin: 15px 0;
+            padding-left: 20px;
+            margin: 10px 0;
         }
 
         li {
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 15px;
             margin: 15px 0;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 12px 15px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
         }
 
         .card h3 {
             color: var(--secondary-color);
             margin-top: 0;
-            margin-bottom: 12px;
-            font-size: 1.2em;
+            margin-bottom: 8px;
+            font-size: 1.1em;
         }
 
         .table-container {
             background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             overflow-x: auto;
             margin: 15px 0;
             border: 1px solid var(--border-color);
@@ -125,8 +125,8 @@
         }
 
         th, td {
-            padding: 10px 15px;
-            font-size: 0.95em;
+            padding: 8px 12px;
+            font-size: 0.9em;
         }
 
         th {
@@ -140,40 +140,28 @@
             background-color: #f8fafc;
         }
 
-        tr:hover {
-            background-color: #f1f5f9;
-        }
-
         td {
             border-bottom: 1px solid var(--border-color);
-            color: var(--text-main);
-        }
-
-        em {
-            color: var(--text-muted);
-            font-style: normal;
         }
 
         .note {
             text-align: right;
             color: var(--text-muted);
-            font-size: 0.9em;
-            margin-bottom: 10px;
+            font-size: 0.85em;
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>缆索与基础设施结构安全数据运营服务<br><span style="font-size: 0.75em; color: var(--secondary-color);">（CaaS - Cable as a Service，缆索即服务）商业计划书</span></h1>
+        <h1>缆索与基础设施结构安全数据运营服务<br><span style="font-size: 0.7em; color: var(--secondary-color);">（CaaS - Cable as a Service，缆索即服务）商业计划书</span></h1>
     </header>
 
     <div class="highlight-box">
         <p><strong>愿景与口号：</strong>让每一根缆索拥有感知神经，让每一座高危工程具备智慧生命！</p>
         <p><strong>核心定位：</strong>将传统的“卖硬件/卖软件”升级为“卖安全服务”。我们用低成本构建 <strong>AIP（AI-Ready Data Platform，数据质量管理平台）</strong> 作为轻量级AI数据底座，并依托 <strong>FDE（Field Deployment &amp; Edge Expert，现场交付与边缘专家）</strong> 深入一线，将重大高危工程转化为可持续运营的资产，最终向客户交付 RaaS（结果即服务）的安全与降本结果。</p>
     </div>
-
-    
 
     <h2>一、 行业痛点与产品解决方案</h2>
     <p>针对基础设施及高危行业运营面临的严苛环境与传统运维短板，CaaS 体系实现了精准的产品级解决方案：</p>
@@ -566,7 +554,6 @@
             </tbody>
         </table>
     </div>
-
 
     <h2>八、 融资资金用途规划</h2>
     <p>本次融资核心旨在完成 RaaS 模式前期重资产底座的战略性卡位。在 AIP 平台低成本运行的基础上，本次融资主要侧重于 FDE 团队建设与首发项目部署，以期通过前期项目沉淀，逐步建立以长期运营服务费为核心的收益模式。</p>
