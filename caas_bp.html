@@ -17,12 +17,12 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.5; /* 紧凑行高 */
+            line-height: 1.5;
             color: var(--text-main);
             background-color: var(--bg-color);
             max-width: 1280px;
             margin: 0 auto;
-            padding: 15px 20px; /* 减小页边距 */
+            padding: 15px 20px;
         }
 
         header {
@@ -150,6 +150,10 @@
             font-size: 0.85em;
             margin-bottom: 5px;
         }
+
+        .tag-tob { background-color: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+        .tag-tof { background-color: #fef3c7; color: #b45309; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+        .tag-tog { background-color: #d1fae5; color: #065f46; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -221,19 +225,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>1. 基础设施与高危资产方</strong><br>（交投集团、轨道交通、水利枢纽、煤矿企业、高危园区等主体）</td>
+                    <td><strong>1. 基础设施与高危资产方 <span class="tag-tob">ToB</span></strong><br>（交投集团、轨道交通、水利枢纽、煤矿企业、高危园区等主体）</td>
                     <td>落实防灾减灾主体责任、降低极端环境下的结构损毁与高危事故风险、压降长期大修及隐患治理成本。</td>
                     <td>· <strong>安全降本</strong>：延长资产使用寿命，降低恶性事故发生率。<br>· <strong>资产增值</strong>：依托数字化顶层设计实现资产全生命周期管理，提升高危行业资产估值与合规水平。</td>
                 </tr>
                 <tr>
-                    <td><strong>2. 金融保险机构</strong><br>（承保安责险的头部财险公司）</td>
+                    <td><strong>2. 金融保险机构 <span class="tag-tof">ToB / ToF</span></strong><br>（承保安责险的头部财险公司）</td>
                     <td>依据《安全生产责任保险实施办法》（应急〔2025〕27号）执行“风险减量管理”，急需科技手段压降出险率与赔付支出。</td>
                     <td>· <strong>降赔增效</strong>：通过长效监测数据精准预警，大幅降低事故赔付率。<br>· <strong>政策合规</strong>：高效消耗最高百分之二十一的保费事故预防专项资金。</td>
                 </tr>
                 <tr>
-                    <td><strong>3. 政府与行业监管部门</strong><br>（各级交通运输厅/局、应急管理局、水利局、矿监局等）</td>
+                    <td><strong>3. 政府与行业监管部门 <span class="tag-tog">ToG</span></strong><br>（各级交通运输厅/局、应急管理局、水利局、矿监局等）</td>
                     <td>实现对辖区内特大型桥梁、跨海通道、轨道、水坝及高风险隐蔽工程的“零盲区、全天候”动态监管。</td>
-                    <td>· <strong>零成本监管</strong>：以数字化手段穿透监管业务，实现全网重大结构安全风险的“一张图”动态防控。</td>
+                    <td>· <strong>零成本监管</strong>：以数字化手段穿透监管业务，实现全网重大结构安全风险的“数据决策智能体”动态防控。</td>
                 </tr>
             </tbody>
         </table>
@@ -259,7 +263,7 @@
     <ul>
         <li><strong>政策红利：</strong> 紧扣应急管理部《安全生产责任保险实施办法》（应急〔2025〕27号）与财政部《企业安全生产费用提取和使用管理办法》（财资〔2022〕136号），推动安费支出从偏重硬件采购全面拓展至风险监测、数字化治理及持续风险管理。</li>
         <li><strong>商业模式变革（RaaS 结果交付）：</strong> 区别于传统单次交付软硬件由客户自行运营的模式，转向“交付风险降低、交保费优化、交安全提升、持续运营”的 RaaS 结果交付模式。</li>
-        <li><strong>飞轮效应：</strong> 保险机构（降赔付） ➡️ 企业客户（安全提升+保费优化） ➡️ 产业园区（数据资产化） ➡️ 监管部门（零成本监管）。</li>
+        <li><strong>政务 AI 节奏与长周期立项：</strong> 针对政府及监管部门信息化项目立项周期长（通常需 1-3 年）的特点，前三年重点开展 AIP 数据治理试点与立项培育，夯实数据底座；自第 3-4 年起正式推出高价值的“政府数据决策智能体（Agent）”，实现合规政务 SaaS 服务变现。</li>
     </ul>
 
     <h2>五、 标杆案例与工程验证</h2>
@@ -271,56 +275,48 @@
 
     <h2>六、 合作模式、股权结构与制衡机制</h2>
     <ul>
-        <li><strong>商业合作模式：</strong> 采取合资运营与建设-拥有-运营（BOO）模式，技术方负责前端智能硬件及监测系统的投资部署，通过长效 CaaS 数据运营服务费与安责险事故预防分成实现多方共赢。保险机构不参与财务投资，作为业务场景的深度生态合作方。</li>
+        <li><strong>商业合作模式：</strong> 采取合资运营与建设-拥有-运营（BOO）模式，国资/地方交投系与技术团队共同发起设立合资公司。技术方负责前端智能硬件及监测系统的技术授权与交付部署，通过长效 CaaS 数据运营服务费、安责险分成及政府数据决策智能体服务实现多方共赢。</li>
         <li><strong>防守制衡体系（双层架构与 IP 授权模式）：</strong> 
             <ul>
                 <li><strong>核心技术不出壳：</strong> 核心算法、光智融合边缘设备核心专利与 AIP 数据平台知识产权全权保留在技术团队全资拥有的技术主体中。</li>
                 <li><strong>区域运营主体授权运营：</strong> 区域合资公司（初期国资/地方交投控股）仅拥有本区域内的业务签约权和数据运营收益权，并必须向技术主体支付长效技术授权与运维费，确保国资必须深度倚重技术团队。</li>
             </ul>
         </li>
-        <li><strong>初始与多轮稀释后的股权演进架构：</strong>
+        <li><strong>合资公司股权架构与锁定机制：</strong>
             <ul>
-                <li><strong>初期试点阶段（两方合资）：</strong> 国资/地方生态持股 <strong>60%</strong>，技术团队及核心骨干持股 <strong>40%</strong>（维持公司核心决策的参与度与治理主导权）。</li>
-                <li><strong>天使轮融资后（引入 200 万资金，投前 2,000 万，稀释约 9.1%）：</strong> 国资持股 <strong>54.5%</strong>，技术团队持股 <strong>36.4%</strong>（保持稳定比例），天使投资人持股 <strong>9.1%</strong>。</li>
-                <li><strong>终局目标架构（多轮稀释后）：</strong> 国资绝对控股 <strong>51%</strong>，技术团队锚定 <strong>34%</strong>（超过 1/3 的黄金红线，保持核心决策权），战略产业/财务投资人合计占股 <strong>15%</strong>。</li>
+                <li><strong>初始即锁定的 60:40 架构：</strong> 注册资本总额设定为 2000 万元（采用认缴制，结合业务进展分期实缴）。在工商设立时，双方直接锁定终局股权比例：<strong>国资/地方生态持股 60%（认缴 1200 万），技术团队持股 40%（认缴 800 万）</strong>。</li>
+                <li><strong>一票否决权与控制权红线：</strong> 技术团队持股稳居 40%，完美超越法律与公司章程规定的 1/3（33.3%）黄金红线，确保对公司重大技术路线、章程修改及核心资产处置拥有一票否决权与实质控制力。</li>
+                <li><strong>差异化出资安排：</strong> 国资以大头资金及场景资源投入并分期实缴；技术团队以小额现金结合核心技术授权与软硬件交付能力入股，既符合国资合规投审会过会要求，又有效避免了团队前期的现金流压力。</li>
             </ul>
         </li>
         <li><strong>资本退出机制：</strong> 国有产权/股权回购、产业并购整合、资产证券化与数据资产挂牌。</li>
     </ul>
 
-    <h2>七、 5年财务规划与运营指标演进</h2>
+    <h2>七、 5年财务规划与运营指标演进（冲刺年收入过亿）</h2>
     <div class="note">(单位：人民币万元，估值除外)</div>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>财务、估值与融资指标 / 年份</th>
+                    <th>财务、运营与资本指标 / 年份</th>
                     <th>第1年 (试点期)</th>
                     <th>第2年 (推广期)</th>
                     <th>第3年 (成长期)</th>
                     <th>第4年 (成熟期)</th>
-                    <th>第5年 (规模化期)</th>
+                    <th>第5年 (规模化期-过亿)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><strong>团队人员配置（人）</strong></td>
                     <td><strong>6</strong></td>
-                    <td><strong>9</strong></td>
-                    <td><strong>12</strong></td>
-                    <td><strong>16</strong></td>
-                    <td><strong>21</strong></td>
+                    <td><strong>10</strong></td>
+                    <td><strong>15</strong></td>
+                    <td><strong>22</strong></td>
+                    <td><strong>30</strong></td>
                 </tr>
                 <tr>
-                    <td> - 复合型架构与 AI Coding 架构师（固定 1 人）</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td> - AIP 平台代码质量与安全审计工程师（固定 1 人）</td>
+                    <td>- 复合型架构与 AI Coding 架构师（固定 1 人）</td>
                     <td>1</td>
                     <td>1</td>
                     <td>1</td>
@@ -328,191 +324,215 @@
                     <td>1</td>
                 </tr>
                 <tr>
-                    <td> - FDE 现场工程师与边缘 AI 专家</td>
+                    <td>- AIP 平台代码质量与安全审计工程师（固定 1 人）</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>- FDE 现场工程师与边缘 AI 专家</td>
                     <td>2</td>
                     <td>4</td>
-                    <td>5</td>
+                    <td>6</td>
+                    <td>10</td>
+                    <td>14</td>
+                </tr>
+                <tr>
+                    <td>- 保险协同、市场开拓与商务经理</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>6</td>
                     <td>8</td>
-                    <td>11</td>
                 </tr>
                 <tr>
-                    <td> - 保险协同、市场开拓与商务经理</td>
+                    <td>- 政务智能体交付与行政运营专员</td>
                     <td>1</td>
                     <td>2</td>
-                    <td>3</td>
                     <td>3</td>
                     <td>4</td>
-                </tr>
-                <tr>
-                    <td> - 行政、财务与合规运营专员</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>2</td>
+                    <td>6</td>
                 </tr>
                 <tr>
                     <td><strong>覆盖超级工程与高危标的数 (累积)</strong></td>
                     <td><strong>1</strong></td>
-                    <td><strong>6</strong> (+5)</td>
-                    <td><strong>12</strong> (+6)</td>
-                    <td><strong>20</strong> (+8)</td>
-                    <td><strong>30</strong> (+10)</td>
+                    <td><strong>8</strong> (+7)</td>
+                    <td><strong>20</strong> (+12)</td>
+                    <td><strong>40</strong> (+20)</td>
+                    <td><strong>75</strong> (+35)</td>
                 </tr>
                 <tr>
                     <td><strong>全生命周期主营业务收入总计</strong></td>
                     <td><strong>60</strong></td>
-                    <td><strong>380</strong></td>
-                    <td><strong>850</strong></td>
-                    <td><strong>1,500</strong></td>
-                    <td><strong>2,400</strong></td>
+                    <td><strong>580</strong></td>
+                    <td><strong>2,200</strong></td>
+                    <td><strong>5,800</strong></td>
+                    <td><strong>12,800</strong></td>
                 </tr>
                 <tr>
-                    <td> <strong>1. 基础设施与高危资产方（交投/轨道/水利/煤矿/园区等）</strong></td>
+                    <td><strong>1. 基础设施与高危资产方 <span class="tag-tob">ToB</span></strong></td>
                     <td><strong>40</strong></td>
-                    <td><strong>250</strong></td>
-                    <td><strong>560</strong></td>
-                    <td><strong>980</strong></td>
-                    <td><strong>1,560</strong></td>
+                    <td><strong>320</strong></td>
+                    <td><strong>1,200</strong></td>
+                    <td><strong>3,400</strong></td>
+                    <td><strong>7,500</strong></td>
                 </tr>
                 <tr>
-                    <td>  - 桥梁/跨海通道与路网枢纽类</td>
+                    <td>- 桥梁/跨海通道与路网枢纽类</td>
+                    <td>40</td>
+                    <td>200</td>
+                    <td>700</td>
+                    <td>1,800</td>
+                    <td>3,800</td>
+                </tr>
+                <tr>
+                    <td>- 轨道交通与水利工程类（管廊、大坝等）</td>
+                    <td>0</td>
+                    <td>80</td>
+                    <td>320</td>
+                    <td>1,000</td>
+                    <td>2,200</td>
+                </tr>
+                <tr>
+                    <td>- 煤矿、园区与高危能源类</td>
+                    <td>0</td>
                     <td>40</td>
                     <td>180</td>
-                    <td>360</td>
                     <td>600</td>
-                    <td>900</td>
+                    <td>1,500</td>
                 </tr>
                 <tr>
-                    <td>  - 轨道交通与水利工程类（管廊、大坝等）</td>
-                    <td>0</td>
-                    <td>50</td>
-                    <td>120</td>
-                    <td>220</td>
-                    <td>360</td>
+                    <td><strong>2. 金融保险机构 <span class="tag-tof">ToB / ToF</span></strong></td>
+                    <td><strong>20</strong></td>
+                    <td><strong>110</strong></td>
+                    <td><strong>600</strong></td>
+                    <td><strong>1,600</strong></td>
+                    <td><strong>3,600</strong></td>
                 </tr>
                 <tr>
-                    <td>  - 煤矿、园区与高危能源类</td>
-                    <td>0</td>
+                    <td>- 交通行业安责险事故预防及保费分成</td>
                     <td>20</td>
                     <td>80</td>
-                    <td>160</td>
-                    <td>300</td>
+                    <td>400</td>
+                    <td>1,000</td>
+                    <td>2,200</td>
                 </tr>
                 <tr>
-                    <td> <strong>2. 金融保险机构（头部财险安责险共保体）</strong></td>
-                    <td><strong>20</strong></td>
-                    <td><strong>130</strong></td>
-                    <td><strong>290</strong></td>
-                    <td><strong>520</strong></td>
-                    <td><strong>840</strong></td>
-                </tr>
-                <tr>
-                    <td>  - 交通行业安责险事故预防及保费分成</td>
-                    <td>20</td>
-                    <td>100</td>
-                    <td>200</td>
-                    <td>340</td>
-                    <td>520</td>
-                </tr>
-                <tr>
-                    <td>  - 水利、煤矿与园区安责险风险减量服务</td>
+                    <td>- 水利、煤矿与园区安责险风险减量服务</td>
                     <td>0</td>
                     <td>30</td>
-                    <td>90</td>
-                    <td>180</td>
-                    <td>320</td>
+                    <td>200</td>
+                    <td>600</td>
+                    <td>1,400</td>
                 </tr>
                 <tr>
-                    <td> <strong>3. 政府与行业监管部门（直报服务）</strong></td>
-                    <td><strong>0 (免费)</strong></td>
-                    <td><strong>0 (免费)</strong></td>
-                    <td><strong>0 (免费)</strong></td>
-                    <td><strong>0 (免费)</strong></td>
-                    <td><strong>0 (免费)</strong></td>
+                    <td><strong>3. 政府与行业监管部门 <span class="tag-tog">ToG</span></strong></td>
+                    <td><strong>0 (立项培育)</strong></td>
+                    <td><strong>150</strong></td>
+                    <td><strong>400</strong></td>
+                    <td><strong>800</strong></td>
+                    <td><strong>1,700</strong></td>
+                </tr>
+                <tr>
+                    <td>- AIP 数据质量平台治理维保与标准定制</td>
+                    <td>0 (第1-3年立项期)</td>
+                    <td>50</td>
+                    <td>100</td>
+                    <td>200</td>
+                    <td>400</td>
+                </tr>
+                <tr>
+                    <td>- 政府数据决策智能体（Agent）订阅及算力服务费</td>
+                    <td>0 (方案验证期)</td>
+                    <td>100</td>
+                    <td>300</td>
+                    <td>600</td>
+                    <td>1,300</td>
                 </tr>
                 <tr>
                     <td><strong>精细化成本总额</strong></td>
                     <td><strong>75</strong></td>
-                    <td><strong>150</strong></td>
-                    <td><strong>280</strong></td>
-                    <td><strong>460</strong></td>
-                    <td><strong>680</strong></td>
+                    <td><strong>180</strong></td>
+                    <td><strong>620</strong></td>
+                    <td><strong>1,650</strong></td>
+                    <td><strong>3,650</strong></td>
                 </tr>
                 <tr>
-                    <td> - 1. 光纤部署与边缘端设备（硬件铺设与 FDE 成本）</td>
+                    <td>- 1. 光纤部署与边缘端设备（硬件铺设与 FDE 成本）</td>
                     <td>50</td>
-                    <td>110</td>
-                    <td>200</td>
-                    <td>330</td>
-                    <td>480</td>
+                    <td>130</td>
+                    <td>440</td>
+                    <td>1,150</td>
+                    <td>2,500</td>
                 </tr>
                 <tr>
-                    <td> - 2. Token 运营成本（AI 模型推理与算力消耗）</td>
+                    <td>- 2. Token 运营成本（政务AI智能体大模型推理与算力消耗）</td>
                     <td>25</td>
-                    <td>40</td>
-                    <td>80</td>
-                    <td>130</td>
-                    <td>200</td>
+                    <td>50</td>
+                    <td>180</td>
+                    <td>500</td>
+                    <td>1,150</td>
                 </tr>
                 <tr>
                     <td><strong>毛利润 (Gross Profit)</strong></td>
                     <td><strong>-15</strong></td>
-                    <td><strong>230</strong></td>
-                    <td><strong>570</strong></td>
-                    <td><strong>1,040</strong></td>
-                    <td><strong>1,720</strong></td>
+                    <td><strong>400</strong></td>
+                    <td><strong>1,580</strong></td>
+                    <td><strong>4,150</strong></td>
+                    <td><strong>9,150</strong></td>
                 </tr>
                 <tr>
                     <td><strong>毛利率 (%)</strong></td>
                     <td><em>-25.0%</em></td>
-                    <td><em>60.5%</em></td>
-                    <td><em>67.1%</em></td>
-                    <td><em>69.3%</em></td>
-                    <td><em>71.7%</em></td>
+                    <td><em>69.0%</em></td>
+                    <td><em>71.8%</em></td>
+                    <td><em>71.5%</em></td>
+                    <td><em>71.5%</em></td>
                 </tr>
                 <tr>
                     <td><strong>期间费用明细（含薪酬与日常运营）</strong></td>
                     <td><strong>150</strong></td>
-                    <td><strong>185</strong></td>
-                    <td><strong>215</strong></td>
-                    <td><strong>270</strong></td>
-                    <td><strong>330</strong></td>
+                    <td><strong>220</strong></td>
+                    <td><strong>350</strong></td>
+                    <td><strong>550</strong></td>
+                    <td><strong>850</strong></td>
                 </tr>
                 <tr>
-                    <td> - 1. AIP 平台 AI Coding 维护与代码质量审计费用</td>
+                    <td>- 1. AIP 平台 AI Coding 维护与代码质量审计费用</td>
                     <td>75</td>
-                    <td>75</td>
-                    <td>75</td>
-                    <td>75</td>
-                    <td>75</td>
-                </tr>
-                <tr>
-                    <td> - 2. 营销与市场拓展费用 (商务差旅、渠道开销)</td>
-                    <td>45</td>
-                    <td>65</td>
-                    <td>90</td>
-                    <td>120</td>
+                    <td>85</td>
+                    <td>100</td>
                     <td>150</td>
+                    <td>200</td>
                 </tr>
                 <tr>
-                    <td> - 3. 行政与管理费用 (房租、行政、合规与后台薪酬)</td>
-                    <td>30</td>
+                    <td>- 2. 营销与市场拓展费用 (商务差旅、渠道开销)</td>
                     <td>45</td>
-                    <td>50</td>
-                    <td>75</td>
-                    <td>105</td>
+                    <td>80</td>
+                    <td>150</td>
+                    <td>250</td>
+                    <td>400</td>
+                </tr>
+                <tr>
+                    <td>- 3. 行政与管理费用 (房租、行政、合规与后台薪酬)</td>
+                    <td>30</td>
+                    <td>55</td>
+                    <td>100</td>
+                    <td>150</td>
+                    <td>250</td>
                 </tr>
                 <tr>
                     <td><strong>净利润 (Net Profit)</strong></td>
                     <td><strong>-165</strong></td>
-                    <td><strong>45</strong></td>
-                    <td><strong>355</strong></td>
-                    <td><strong>770</strong></td>
-                    <td><strong>1,390</strong></td>
+                    <td><strong>180</strong></td>
+                    <td><strong>1,230</strong></td>
+                    <td><strong>3,600</strong></td>
+                    <td><strong>8,300</strong></td>
                 </tr>
                 <tr>
-                    <td><strong>当年投融资与估值规划</strong></td>
+                    <td><strong>合资公司注册资本实缴规划 (总额 2,000 万)</strong></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -520,67 +540,66 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td> - 股权融资额 (当年新增注入资金)</td>
-                    <td><strong>200</strong> (天使轮)</td>
-                    <td><strong>1,500</strong> (Pre-A轮)</td>
-                    <td><strong>0</strong></td>
-                    <td><strong>3,000</strong> (A轮/战略)</td>
-                    <td><strong>0</strong></td>
+                    <td>- 当年实际资金注入 (按 60:40 比例实缴)</td>
+                    <td><strong>300</strong> (首期启动实缴)</td>
+                    <td><strong>500</strong> (业务放量增资)</td>
+                    <td><strong>400</strong> (项目拓展实缴)</td>
+                    <td><strong>800</strong> (规模化实缴)</td>
+                    <td><strong>0</strong> (实缴完毕)</td>
                 </tr>
                 <tr>
-                    <td> - 投前估值 (Pre-money Valuation)</td>
+                    <td>- 合资公司累计实缴资本总额</td>
+                    <td><strong>300</strong></td>
+                    <td><strong>800</strong></td>
+                    <td><strong>1,200</strong></td>
                     <td><strong>2,000</strong></td>
-                    <td><strong>8,000</strong></td>
-                    <td><strong>15,000</strong></td>
-                    <td><strong>40,000</strong></td>
-                    <td><strong>80,000</strong></td>
+                    <td><strong>2,000</strong></td>
                 </tr>
                 <tr>
-                    <td> - 投后估值 (Post-money Valuation)</td>
-                    <td><strong>2,200</strong></td>
-                    <td><strong>9,500</strong></td>
-                    <td><strong>15,000</strong></td>
-                    <td><strong>43,000</strong></td>
-                    <td><strong>80,000</strong></td>
+                    <td>- 国资累计实缴金额 (占 60%)</td>
+                    <td>180</td>
+                    <td>480</td>
+                    <td>720</td>
+                    <td>1,200</td>
+                    <td>1,200</td>
                 </tr>
                 <tr>
-                    <td> - 当年融资稀释股权比例 (%)</td>
-                    <td><strong>9.1%</strong></td>
-                    <td><strong>15.8%</strong></td>
-                    <td><strong>0%</strong></td>
-                    <td><strong>7.0%</strong></td>
-                    <td><strong>0%</strong></td>
+                    <td>- 技术团队累计对应权益/实缴 (占 40%)</td>
+                    <td>120 (含技术作价)</td>
+                    <td>320</td>
+                    <td>480</td>
+                    <td>800</td>
+                    <td>800</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <h2>八、 融资资金用途规划</h2>
-    <p>本次融资核心旨在完成 RaaS 模式前期重资产底座的战略性卡位。在 AIP 平台低成本运行的基础上，本次融资主要侧重于 FDE 团队建设与首发项目部署，以期通过前期项目沉淀，逐步建立以长期运营服务费为核心的收益模式。</p>
+    <h2>八、 合资公司注册资本金用途与实缴规划</h2>
+    <p>合资公司设立的 2000 万元注册资本（采取认缴制、分期按 60:40 比例实缴）主要用于支撑 RaaS（结果即服务）业务模式的前期重资产底座落地与项目交付。资金投向全面聚焦于合资公司自身的业务运营与市场拓展：</p>
     <div class="card-container">
         <div class="card">
-            <h3>1. 标杆项目先期部署（60%）</h3>
+            <h3>1. 首发标杆项目硬件部署与 FDE 落地（60%）</h3>
             <ul>
-                <li><strong>重资产过桥资金与 FDE 扩充：</strong>充实专家团队，并在核心大桥、煤矿、园区等首发重大工程中进行前期系统部署，推动传统工程向数字化运营资产转化。</li>
+                <li><strong>重资产过桥资金与现场部署：</strong> 用于保障首期实缴资金及后续项目滚动资金，在核心大桥、煤矿、高危园区等首发重大工程中推进光纤阵列及智能感知体的前期系统铺设，加速传统工程向数字化运营资产转化。</li>
             </ul>
         </div>
         <div class="card">
-            <h3>2. 市场拓展与安责险生态（20%）</h3>
+            <h3>2. 市场拓展与安责险生态建设（20%）</h3>
             <ul>
-                <li><strong>渠道生态建设：</strong>打通与平安、人保等头部财险公司安责险共保体的深度业务合作。</li>
-                <li><strong>跨行业复制验证：</strong>快速向轨道交通、水利枢纽、深远海风电等全新蓝海场景进行试点延伸。</li>
+                <li><strong>业务渠道与生态共建：</strong> 专项用于合资公司开拓地方交投、轨道交通、水利及头部财险公司（如人保、平安等）安责险共保体的业务对接与合规渠道建设。</li>
             </ul>
         </div>
         <div class="card">
-            <h3>3. 核心技术攻坚与 AIP 平台迭代（10%）</h3>
+            <h3>3. AIP 平台服务费与本地化迭代（10%）</h3>
             <ul>
-                <li><strong>平台算力与维护：</strong>AIP 平台已足够轻量成熟，仅需极低成本即可覆盖前期的 Token 算力消耗与 AI Coding 日常维护。</li>
+                <li><strong>技术服务与授权运维：</strong> 合资公司向技术团队母公司采购 AIP 平台本地化部署授权、Token 算力消耗及合规升级维护服务，保障数据底座高效运转。</li>
             </ul>
         </div>
         <div class="card">
-            <h3>4. 营运补充与流动资金（10%）</h3>
+            <h3>4. 日常营运与流动资金储备（10%）</h3>
             <ul>
-                <li><strong>抗风险现金流储备：</strong>储备核心团队的常规开销，确保在 RaaS 长周期验收与回款账期波动下维持稳健经营。</li>
+                <li><strong>抗风险现金流支撑：</strong> 用于覆盖合资公司日常管理、人员薪酬及应对 RaaS 长周期项目验收与回款账期波动期间的流动资金需求，保障合资公司稳健经营。</li>
             </ul>
         </div>
     </div>
