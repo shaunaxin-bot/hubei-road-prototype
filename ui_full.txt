@@ -1,0 +1,154 @@
+ | \`AGENT-数据统筹-安全生产责任数据运营中心\`                                                                                                              | \`AGENT-企业-25_保险与金融精算机构\`<br>\`AGENT-企业-15_养护施工企业\`<br>\`AGENT-企业-11_高速运营企业\`<br>AGENT-企业-13_应急处置服务中心<br>AGENT-企业-26_安全培训机构| AGENT-外部-16_气象局                                                   |     |
+| **L33g**        | 《L33g（地震和地质灾害救援专题）》      | \`AGENT-应急-应急管理厅_地震和地质灾害救援处\`   | \`49. 地震地质灾害救援表.xlsx\`                                                                                      | \`AGENT-数据统筹-安全生产责任数据运营中心\`                                                                                                              | \`AGENT-企业-25_保险与金融精算机构\`<br>\`AGENT-企业-14_专检测企业\`<br>\`AGENT-企业-11_高速运营企业\`<br>AGENT-企业-13_应急处置服务中心<br>AGENT-企业-26_安全培训机构| AGENT-外部-18_自然资源厅<br>\`AGENT-工程技术-05_地灾预警\`<br>\`AGENT-运营管理-11_指挥调度\` |     |
+
+
+
+
+=== 【大模型人设与自我认知】 ===
+
+👋 您好！我是 **数据统筹助手 (AGENT-数据统筹-01_数据治理)**。
+目前，我已经深度适配并支持以下跨域协同实战场景：
+*   **【安全生产责任数据运营业务】** **以培促改安培闭环。** 聚焦公路、轨交、房建、化工园区等十大高危业务场景。
+*  **【公路资产数据运营业务】** **公路数据资产更新。** 聚焦公路基础设施规划、建设、养护、运营全生命周期场景。
+*   **【结构安全数据运营业务】** **基于IOT感知的长大桥结构监测数据质量管理。** 借助数据治理 AIP 底座，聚焦运营单位资产风控场景。
+*   **【行政监管数据运营业务】**  **【FREE】向应急管理与交通监管部门免费下发监管直报包。** 聚焦行政监督与执法消案场景。
+
+**全新 1+10+X+Y 智能体架构：**
+*   **1（数据治理AIP）**：也就是您当前正在对话的“总指挥”。
+*   **10（专业执行域）**：包括规划计划、建设市场、工程技术、养护管理、费收、运营管理、财务资产、农村公路、法规审批、执法监督十大核心业务主导部门。
+*   **X（数据运营生态）**：包括高速运营企业、应急处置服务中心、专检测企业、养护施工企业、设计与科研院所、监测设备厂商、财险共管体、施工总包单位、第三方安服机构等。
+*   **Y（外部行政协同域）**：横向与纵向行政联动节点（包括应急管理厅/局、交通运输厅/局、质监站、气象局、自然资源厅、公安交管局等）。
+
+**数据治理AIP（AI-Ready Platform）：**
+数据主权归客户，数据治理效果平台负责！不盲信任何孤立的数据，让每个数据100%可信可溯，实现“宏观可统筹，微观可查证”。
+
+`;
+        window.__UI_TEMPLATES__ = ``;
+        window.__EXCEL_TEMPLATES__ = ``;
+        window.__API_CONFIG__ = `{"API_PROVIDER": "deepseek", "MAX_BUDGET_RMB": 3.5, "OPENAI_API_KEY": "QU1hSEpUOF8wMFpMMlVYTkk3UEw3ZDRTWGRYc1FtN3BhUmo5aEk4YmVlbV9hVzh0UlU4VEQxQ2dxa2w0dDR3d0NZUHdSekt3SzdKRmtibEIzVERSN1VqejdFTXZ0eGJ3RVE2cElRdFRiWWlyTVVia2tjOFZTQ1NaZFpJc1ZqRUJON1d0SlVfeFVUT1dmUDMyY1JJamNkOGZhTkkxLWpvcnAta3M=", "DEEPSEEK_API_KEY": "NjM5N2JhM2Y3NmRkYjI4YTViYjRlYTY4MzA1NWMxMGYta3M=", "GEMINI_API_KEY": "d3p4RWtiQUQtQ2lRVk0xRmdiaFdzRlY2dHo4R0NjNFNJNGJGZ0lkZVJabEo2TlI4YkEuUUE=", "ZHIPU_API_KEY": "bTNTTVRmWE10UTY1QjZJVy5mMTc0ZWMzZWM5YzFjYzFhZTZjNDI5Nzc3NTQyMmYxOQ=="}`;
+        window.__DB_META_BY_YEAR__ = {"2015": {"tableCount": 28, "tables": ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "路段", "L22", "L23", "桥梁", "L24b", "隧道", "L26", "L27", "L28", "12-1 公路技术状况明细表一—高速公路、普通国、省道", "L29b", "L30a", "L30b", "L30c", "L31a", "L31b", "L31c", "L32", "管养单位代码表", "联系方式表", "桥梁数据变更表", "隧道数据变更表"], "rawTables": ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "L21", "L22", "L23", "L24a", "L24b", "L25", "L26", "L27", "L28", "L29a", "L29b", "L30a", "L30b", "L30c", "L31a", "L31b", "L31c", "L32", "管养单位代码表", "联系方式表", "桥梁数据变更表", "隧道数据变更表"], "fileMapping": {}}, "2016": {"tableCount": 28, "tables": ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "路段", "L22", "L23", "桥梁", "L24b", "隧道", "L26", "L27", "L28", "12-1 公路技术状况明细表一—高速公路、普通国、省道", "L29b", "L30a", "L30b", "L30c", "L31a", "L31b", "L31c", "L32", "管养单位代码表", "联系方式表", "桥梁数据变更表", "隧道数据变更表"], "rawTables": ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "L21", "L22", "L23", "L24a", "L24b", "L25", "L26", "L27", "L28", "L29a", "L29b", "L30a", "L30b", "L30c", "L31a", "L31b", "L31c", "L32", "管养单位代码表", "联系方式表", "桥梁数据变更表", "隧道数据变更表"], "fileMapping": {}}, "2017": {"tableCount": 28, "tables": ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "路段", "L22", "L23", "桥梁", "L24b", "隧道", "L26", "L27", "L28", "12-1 公路技术状况明细表一—高速公路、普通国、省道", "L29b", "L30a", "L30b", "L30c", "L31a", "L31b", "L31c", "L32", "管养单位代码表", "联系方式表", "桥梁数据变更表", "隧道数据变更表"], "rawTables": ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "L21", "L22", "L23", "L24a", "L24b", "L25", "L26", "L27", "L28", "L29a", "L29b", "L30a", "L30b", "L30c", "L31a", "L31b", "L31c", "L32", "管养单位代码表", "联系方式表", "桥梁数据变更表", "隧道数据变更表"], "fileMapping": {}}, "2018": {"tableCount": 28, "tables": ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "路段", "L22", "L23", "桥梁", "L24b", "隧道", "L26", "L27", "L28", "12-1 公路技术状况明细表一—高速公路、普通国、省道", "L29b", "L30a", "L30b", "L30c", "L31a", "L31b", "L31c", "L32", "管养单位代码表", "联系方式表", "桥梁数据变更表", "隧道数据变更表"], "rawTables": ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "L21", "L22", "L23", "L24a", "L24b", "L25", "L26", "L27", "L28", "L29a", "L29b", "L30a", "L30b", "L30c", "L31a", "L31b", "L31c", "L32", "管养单位代码表", "联系方式表", "桥梁数据变更表", "隧道数据变更表"], "fileMapping": {}}, "2019": {"tableCount": 28, "tables": ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "路段", "L22", "L23", "桥梁", "L24b", "隧道", "L26", "L27", "L28", "12-1 公路技术状况明细表一—高速公路、普通国、省道", "L29b", "L30a", "L30b", "L30c", "L31a", "L31b", "L31c", "L32", "管养单位代码表", "联系方式表", "桥梁数据变更表", "隧道数据变更表"], "rawTables": ["T001", "T1a", "T1b", "T2a", "T2b", "T3", "L21", "L22", "L23", "L24a", "L24b", "L25", "L26", "L27", "L28", "L29a", "L29b", "L30a", "L30b", "L30c", "L31a", "L31b", "L31c", "L32", "管养单位代码表", "联系方式表", "桥梁数据变更表", "隧道数据变更表"], "fileMapping": {}}, "2025": {"tableCount": 1, "tables": ["路段"], "rawTables": ["L21"], "fileMapping": {}}};
+        console.log("%c[Build Timestamp]%c " + new Date().toISOString(), "color: white; background: #6366f1; padding: 2px 6px; border-radius: 4px;", "color: #6366f1; font-weight: bold;");
+(() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __require = /* @__PURE__ */ ((x2) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x2, {
+    get: (a, b2) => (typeof require !== "undefined" ? require : a)[b2]
+  }) : x2)(function(x2) {
+    if (typeof require !== "undefined") return require.apply(this, arguments);
+    throw Error('Dynamic require of "' + x2 + '" is not supported');
+  });
+  var __esm = (fn, res) => function __init() {
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+  };
+  var __commonJS = (cb, mod) => function __require2() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+
+  // src/db/sqlite.js
+  var sqlite_exports = {};
+  __export(sqlite_exports, {
+    getDB: () => getDB,
+    loadDBByYear: () => loadDBByYear
+  });
+  var getDbCache, setDbCache, dbPromise, loadDBByYear, getDB;
+  var init_sqlite = __esm({
+    "src/db/sqlite.js"() {
+      getDbCache = (key) => {
+        return new Promise((resolve, reject) => {
+          const req = indexedDB.open("RoadDataCacheDB", 1);
+          req.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains("db_files")) {
+              db.createObjectStore("db_files");
+            }
+          };
+          req.onsuccess = (e) => {
+            const db = e.target.result;
+            const tx = db.transaction("db_files", "readonly");
+            const store = tx.objectStore("db_files");
+            const getReq = store.get(key);
+            getReq.onsuccess = () => resolve(getReq.result);
+            getReq.onerror = () => reject(getReq.error);
+          };
+          req.onerror = () => reject(req.error);
+        });
+      };
+      setDbCache = (key, arrayBuffer) => {
+        return new Promise((resolve, reject) => {
+          const req = indexedDB.open("RoadDataCacheDB", 1);
+          req.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains("db_files")) {
+              db.createObjectStore("db_files");
+            }
+          };
+          req.onsuccess = (e) => {
+            const db = e.target.result;
+            const tx = db.transaction("db_files", "readwrite");
+            const store = tx.objectStore("db_files");
+            const putReq = store.put(arrayBuffer, key);
+            putReq.onsuccess = () => resolve();
+            putReq.onerror = () => reject(putReq.error);
+          };
+          req.onerror = () => reject(req.error);
+        });
+      };
+      dbPromise = null;
+      loadDBByYear = (year) => {
+        dbPromise = new Promise(async (resolve, reject) => {
+          console.log(`\u6B63\u5728\u521D\u59CB\u5316 SQLite Wasm \u5F15\u64CE\u5E76\u88C5\u8F7D ${year} \u5E74\u5EA6\u6570\u636E...`);
+          let SQL;
+          try {
+            if (!window.SQL) {
+              SQL = await window.initSqlJs({
+                locateFile: (file) => `./${file}`
+              });
+              window.SQL = SQL;
+            } else {
+              SQL = window.SQL;
+            }
+          } catch (errWasm) {
+            console.error("Wasm engine init failed:", errWasm);
+            reject(errWasm);
+            return;
+          }
+          const cacheKey = `hubei_${year}_db_v5`;
+          try {
+            console.log(`\u6B63\u5728\u68C0\u67E5\u672C\u5730\u7F13\u5B58(IndexedDB)\u4E2D\u662F\u5426\u5B58\u5728 ${year} \u6570\u636E\u5E93...`);
+            const cachedBuffer = await getDbCache(cacheKey);
+            if (cachedBuffer) {
+              console.log(`\u547D\u4E2D\u7F13\u5B58\uFF01\u6781\u901F\u4ECE\u672C\u5730\u6302\u8F7D hubei_${year}.db (\u8017\u65F6\u7EA6\u51E0\u767E\u6BEB\u79D2)...`);
+              const db = new SQL.Database(new Uint8Array(cachedBuffer));
+              resolve(db);
+              return;
+            }
+          } catch (e) {
+            console.warn("\u8BFB\u53D6\u7F13\u5B58\u5931\u8D25\uFF0C\u5C06\u8D70\u7F51\u7EDC\u91CD\u65B0\u4E0B\u8F7D", e);
+          }
+          try {
+            console.log(`\u6B63\u5728\u5C1D\u8BD5\u4ECE\u76F8\u5BF9\u8DEF\u5F84\u81EA\u52A8\u4E0B\u8F7D\u6570\u636E\u5E93 hubei_${year}.db (\u7EA640MB\uFF0C\u9996\u6B21\u52A0\u8F7D\u8BF7\u7A0D\u5019)...`);
+      
