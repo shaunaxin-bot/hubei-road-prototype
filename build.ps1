@@ -31,7 +31,6 @@ Copy-Item $srcHtml $releaseTarget -Force
 Remove-Item (Join-Path $ghRepoDir '*.db') -ErrorAction SilentlyContinue
 Copy-Item (Join-Path $projectDir 'public\*.db') $ghRepoDir -Force
 Copy-Item (Join-Path $projectDir 'public\*.html') $ghRepoDir -Force
-Copy-Item (Join-Path $projectDir 'public\*.md') $ghRepoDir -Force -ErrorAction SilentlyContinue
 Copy-Item (Join-Path $projectDir 'public\sql-wasm.wasm') $ghRepoDir -Force
 Write-Host "Done copying." -ForegroundColor Green
 
