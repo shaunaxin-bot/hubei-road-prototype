@@ -32,6 +32,9 @@ Remove-Item (Join-Path $ghRepoDir '*.db') -ErrorAction SilentlyContinue
 Copy-Item (Join-Path $projectDir 'public\*.db') $ghRepoDir -Force
 Copy-Item (Join-Path $projectDir 'public\*.html') $ghRepoDir -Force
 Copy-Item (Join-Path $projectDir 'public\sql-wasm.wasm') $ghRepoDir -Force
+if (Test-Path (Join-Path $projectDir 'public\images')) {
+    Copy-Item (Join-Path $projectDir 'public\images') $ghRepoDir -Recurse -Force
+}
 Write-Host "Done copying." -ForegroundColor Green
 
 Write-Host "`n[5/5] Pushing to GitHub Pages..." -ForegroundColor Cyan
