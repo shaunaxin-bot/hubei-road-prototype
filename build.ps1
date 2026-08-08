@@ -34,6 +34,9 @@ Copy-Item (Join-Path $projectDir 'public\*.html') $ghRepoDir -Force
 Copy-Item (Join-Path $projectDir 'public\sql-wasm.wasm') $ghRepoDir -Force
 if (Test-Path (Join-Path $projectDir 'public\images')) {
     Copy-Item (Join-Path $projectDir 'public\images') $ghRepoDir -Recurse -Force
+    Remove-Item (Join-Path $ghRepoDir 'images\*.ppt') -ErrorAction SilentlyContinue
+    Remove-Item (Join-Path $ghRepoDir 'images\*.pptx') -ErrorAction SilentlyContinue
+    Remove-Item (Join-Path $ghRepoDir 'images\*.pdf') -ErrorAction SilentlyContinue
 }
 Write-Host "Done copying." -ForegroundColor Green
 
