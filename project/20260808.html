@@ -6,29 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>湖北公路数据治理专项进展汇报</title>
 <!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com">
-    function switchBizTab(tabId) {
-      document.querySelectorAll('.tab-content-biz').forEach(el => {
-        el.classList.add('hidden');
-        el.classList.remove('block');
-      });
-      
-      ['biz-tab-1', 'biz-tab-2', 'biz-tab-3'].forEach(id => {
-        const btn = document.getElementById('btn-' + id);
-        if(btn) {
-          btn.className = "px-4 py-2 font-medium text-slate-500 hover:text-slate-700 hover:bg-slate-50 border-b-2 border-transparent transition-colors focus:outline-none";
-        }
-      });
-      
-      document.getElementById(tabId).classList.remove('hidden');
-      document.getElementById(tabId).classList.add('block');
-      
-      const activeBtn = document.getElementById('btn-' + tabId);
-      if(activeBtn) {
-        activeBtn.className = "px-4 py-2 font-bold text-brand-600 border-b-2 border-brand-600 hover:bg-slate-50 transition-colors focus:outline-none";
-      }
-    }
-</script>
+<script src="https://cdn.tailwindcss.com"></script>
 <!-- FontAwesome Icons CDN -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
 <!-- Tailwind Configuration -->
@@ -836,7 +814,6 @@
 <!-- Commercial Evaluation Table -->
 <div class="space-y-3 scroll-mt-6" id="sec3-1">
 <h2 class="text-lg font-bold text-slate-800 border-l-4 border-brand-600 pl-3">商务评分标准</h2>
-
 <div class="space-y-4">
 <!-- Tabs Navigation -->
 <div class="flex space-x-2 border-b border-slate-200 mt-3">
@@ -1000,7 +977,6 @@
 </div>
 </div>
 </div>
-
 </div>
 <!-- Technical Evaluation Table -->
 <div class="space-y-3 scroll-mt-6" id="sec3-2">
@@ -1191,6 +1167,28 @@
         }
       });
     });
-  </script>
+  
+    function switchBizTab(tabId) {
+      document.querySelectorAll('.tab-content-biz').forEach(el => {
+        el.classList.add('hidden');
+        el.classList.remove('block');
+      });
+      
+      ['biz-tab-1', 'biz-tab-2', 'biz-tab-3'].forEach(id => {
+        const btn = document.getElementById('btn-' + id);
+        if(btn) {
+          btn.className = "px-4 py-2 font-medium text-slate-500 hover:text-slate-700 hover:bg-slate-50 border-b-2 border-transparent transition-colors focus:outline-none";
+        }
+      });
+      
+      document.getElementById(tabId).classList.remove('hidden');
+      document.getElementById(tabId).classList.add('block');
+      
+      const activeBtn = document.getElementById('btn-' + tabId);
+      if(activeBtn) {
+        activeBtn.className = "px-4 py-2 font-bold text-brand-600 border-b-2 border-brand-600 hover:bg-slate-50 transition-colors focus:outline-none";
+      }
+    }
+</script>
 </body>
 </html>
