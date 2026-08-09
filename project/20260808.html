@@ -88,12 +88,12 @@
   <div class="flex-1 flex overflow-hidden max-w-7xl w-full mx-auto my-0 sm:my-3 sm:px-4 lg:px-6 gap-4">
     
     <!-- Left Sidebar Directory Column -->
-    <aside class="w-80 flex-none bg-white sm:rounded-2xl border border-slate-200/80 shadow-sm flex flex-col overflow-hidden">
+    <aside class="w-80 flex-none bg-white sm:rounded-2xl border border-slate-100/80 shadow-sm flex flex-col overflow-hidden">
       <!-- Search Bar -->
       <div class="p-3 border-b border-slate-100 bg-slate-50/50 flex-none">
         <div class="relative">
           <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-base"></i>
-          <input type="text" id="searchInput" oninput="searchDirectory()" placeholder="搜索目录..." class="w-full pl-8 pr-7 py-1.5 bg-white border border-slate-200 rounded-lg text-base focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+          <input type="text" id="searchInput" oninput="searchDirectory()" placeholder="搜索目录..." class="w-full pl-8 pr-7 py-1.5 bg-white border border-slate-100 rounded-lg text-base focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
           <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-base">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -106,12 +106,12 @@
         <!-- Document 1 Tree Directory -->
         <div class="tree-group space-y-1" id="tree-doc1">
           
-          <a href="#sec1-1" class="dir-item flex items-center space-x-2 p-2 rounded-lg bg-white border border-slate-200/60 text-slate-700 hover:bg-slate-50 hover:text-brand-700 transition-all font-medium shadow-xs">
+          <a href="#sec1-1" class="dir-item flex items-center space-x-2 p-2 rounded-lg bg-white border border-slate-100/60 text-slate-700 hover:bg-slate-50 hover:text-brand-700 transition-all font-medium shadow-xs">
             <i class="fa-solid fa-bullseye text-indigo-500 text-base w-4 text-center"></i>
             <span class="truncate">1.1. 数据治理范围</span>
           </a>
 
-          <div class="bg-white rounded-xl p-2 border border-slate-200/60 shadow-xs space-y-1">
+          <div class="bg-white rounded-xl p-2 border border-slate-100/60 shadow-xs space-y-1">
             <div onclick="toggleAccordion('acc-doc1-guides')" class="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50 cursor-pointer text-slate-800 font-bold">
               <span class="flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-caret-down text-slate-400 text-base transition-transform transform" id="acc-doc1-guides-icon"></i>
@@ -135,7 +135,7 @@
             </div>
           </div>
 
-          <div class="bg-white rounded-xl p-2 border border-slate-200/60 shadow-xs space-y-1">
+          <div class="bg-white rounded-xl p-2 border border-slate-100/60 shadow-xs space-y-1">
             <div onclick="toggleAccordion('acc-doc1-process')" class="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50 cursor-pointer text-slate-800 font-bold">
               <span class="flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-caret-down text-slate-400 text-base transition-transform transform" id="acc-doc1-process-icon"></i>
@@ -179,7 +179,7 @@
             </div>
           </div>
 
-          <div class="bg-white rounded-xl p-2 border border-slate-200/60 shadow-xs space-y-1">
+          <div class="bg-white rounded-xl p-2 border border-slate-100/60 shadow-xs space-y-1">
             <div onclick="toggleAccordion('acc-doc1-db')" class="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50 cursor-pointer text-slate-800 font-bold">
               <span class="flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-caret-down text-slate-400 text-base transition-transform transform" id="acc-doc1-db-icon"></i>
@@ -203,17 +203,17 @@
             </div>
           </div>
 
-          <a href="#sec1-5" class="dir-item flex items-center space-x-2 p-2 rounded-lg bg-white border border-slate-200/60 text-slate-700 hover:bg-slate-50 transition-all font-medium shadow-xs">
+          <a href="#sec1-5" class="dir-item flex items-center space-x-2 p-2 rounded-lg bg-white border border-slate-100/60 text-slate-700 hover:bg-slate-50 transition-all font-medium shadow-xs">
             
             <span class="truncate">1.5. 数据资源目录</span>
           </a>
 
-          <a href="#sec1-6" class="dir-item flex items-center space-x-2 p-2 rounded-lg bg-white border border-slate-200/60 text-slate-700 hover:bg-slate-50 transition-all font-medium shadow-xs">
+          <a href="#sec1-6" class="dir-item flex items-center space-x-2 p-2 rounded-lg bg-white border border-slate-100/60 text-slate-700 hover:bg-slate-50 transition-all font-medium shadow-xs">
             
             <span class="truncate">1.6. 数据接口建设</span>
           </a>
 
-          <div class="bg-white rounded-xl p-2 border border-slate-200/60 shadow-xs space-y-1">
+          <div class="bg-white rounded-xl p-2 border border-slate-100/60 shadow-xs space-y-1">
             <div onclick="toggleAccordion('acc-doc1-other')" class="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50 cursor-pointer text-slate-800 font-bold">
               <span class="flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-caret-down text-slate-400 text-base transition-transform transform" id="acc-doc1-other-icon"></i>
@@ -236,13 +236,13 @@
         <!-- Document 2 Tree Directory -->
         <div class="tree-group space-y-1 hidden" id="tree-doc2">
           
-          <a href="#sec2-notice" class="dir-item flex items-center space-x-2 p-2 rounded-lg bg-white border border-slate-200/60 text-slate-700 hover:bg-slate-50 transition-all font-medium shadow-xs">
+          <a href="#sec2-notice" class="dir-item flex items-center space-x-2 p-2 rounded-lg bg-white border border-slate-100/60 text-slate-700 hover:bg-slate-50 transition-all font-medium shadow-xs">
             <i class="fa-solid fa-envelope-open-text text-rose-500 text-base w-4 text-center"></i>
             <span class="truncate">印发通知公文</span>
           </a>
 
           <!-- Accordion 2.1: 一、总体要求 -->
-          <div class="bg-white rounded-xl p-2 border border-slate-200/60 shadow-xs space-y-1">
+          <div class="bg-white rounded-xl p-2 border border-slate-100/60 shadow-xs space-y-1">
             <div onclick="toggleAccordion('acc-doc2-sec1')" class="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50 cursor-pointer text-slate-800 font-bold">
               <span class="flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-caret-down text-slate-400 text-base transition-transform transform" id="acc-doc2-sec1-icon"></i>
@@ -264,7 +264,7 @@
           </div>
 
           <!-- Accordion 2.2: 二、标准化闭环实施流程 -->
-          <div class="bg-white rounded-xl p-2 border border-slate-200/60 shadow-xs space-y-1">
+          <div class="bg-white rounded-xl p-2 border border-slate-100/60 shadow-xs space-y-1">
             <div onclick="toggleAccordion('acc-doc2-sec2')" class="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50 cursor-pointer text-slate-800 font-bold">
               <span class="flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-caret-down text-slate-400 text-base transition-transform transform" id="acc-doc2-sec2-icon"></i>
@@ -289,7 +289,7 @@
           </div>
 
           <!-- Accordion 2.3: 三、分阶段重点工作任务表 -->
-          <div class="bg-white rounded-xl p-2 border border-slate-200/60 shadow-xs space-y-1">
+          <div class="bg-white rounded-xl p-2 border border-slate-100/60 shadow-xs space-y-1">
             <div onclick="toggleAccordion('acc-doc2-sec3')" class="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50 cursor-pointer text-slate-800 font-bold">
               <span class="flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-caret-down text-slate-400 text-base transition-transform transform" id="acc-doc2-sec3-icon"></i>
@@ -311,7 +311,7 @@
           </div>
 
           <!-- Accordion 2.4: 四、各级单位职责分工 -->
-          <div class="bg-white rounded-xl p-2 border border-slate-200/60 shadow-xs space-y-1">
+          <div class="bg-white rounded-xl p-2 border border-slate-100/60 shadow-xs space-y-1">
             <div onclick="toggleAccordion('acc-doc2-sec4')" class="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50 cursor-pointer text-slate-800 font-bold">
               <span class="flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-caret-down text-slate-400 text-base transition-transform transform" id="acc-doc2-sec4-icon"></i>
@@ -333,7 +333,7 @@
           </div>
 
           <!-- Accordion 2.5: 五、保障措施 -->
-          <div class="bg-white rounded-xl p-2 border border-slate-200/60 shadow-xs space-y-1">
+          <div class="bg-white rounded-xl p-2 border border-slate-100/60 shadow-xs space-y-1">
             <div onclick="toggleAccordion('acc-doc2-sec5')" class="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50 cursor-pointer text-slate-800 font-bold">
               <span class="flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-caret-down text-slate-400 text-base transition-transform transform" id="acc-doc2-sec5-icon"></i>
@@ -364,12 +364,12 @@
 
         <!-- Document 3 Tree Directory -->
         <div class="tree-group space-y-1 hidden" id="tree-doc3">
-          <a href="#sec3-1" class="dir-item flex items-center space-x-2 p-2 rounded-lg bg-white border border-slate-200/60 text-slate-700 hover:bg-slate-50 font-medium">
+          <a href="#sec3-1" class="dir-item flex items-center space-x-2 p-2 rounded-lg bg-white border border-slate-100/60 text-slate-700 hover:bg-slate-50 font-medium">
             <i class="fa-solid fa-scale-balanced text-amber-600 text-base w-4 text-center"></i>
             <span class="truncate">商务评分标准</span>
           </a>
 
-          <div class="bg-white rounded-xl p-2 border border-slate-200/60 shadow-xs space-y-1">
+          <div class="bg-white rounded-xl p-2 border border-slate-100/60 shadow-xs space-y-1">
             <div onclick="toggleAccordion('acc-doc3-tech')" class="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50 cursor-pointer text-slate-800 font-bold">
               <span class="flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-caret-down text-slate-400 text-base transition-transform transform" id="acc-doc3-tech-icon"></i>
@@ -399,11 +399,11 @@
     </aside>
 
     <!-- Right Main Content Viewer Container -->
-    <main class="flex-1 bg-white sm:rounded-2xl border border-slate-200/80 shadow-sm overflow-y-auto p-6 md:p-10 relative">
+    <main class="flex-1 bg-white sm:rounded-2xl border border-slate-100/80 shadow-sm overflow-y-auto p-6 md:p-10 relative">
 
       <!-- ================= DOCUMENT 1: 招标技术要求 ================= -->
       <section id="doc1-content" class="doc-view space-y-8">
-        <div class="border-b border-slate-200 pb-4">
+        <div class="border-b border-slate-100 pb-4">
           
           <h1 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">数据治理工程招标技术要求</h1>
         </div>
@@ -548,7 +548,7 @@
         <div id="sec1-3-4" class="space-y-3 scroll-mt-6">
           <h2 class="text-base font-bold text-slate-800 mb-1">1.3.4. 数据仓库治理</h2>
           <div class="space-y-3 text-base">
-            <div id="sec1-3-4-1" class="p-3 border border-slate-200 rounded-lg bg-slate-50 space-y-1 scroll-mt-6">
+            <div id="sec1-3-4-1" class="p-3 border border-slate-100 rounded-lg bg-slate-50 space-y-1 scroll-mt-6">
               <strong class="text-sm font-bold text-slate-700 block mb-1">1.3.4.1. 原始数据层升级建设</strong>
               <p class="text-slate-600 leading-tight">结合数转专项任务及各业务系统建设要求，基于公路综合信息平台现有数据仓库，汇聚接入本次数字化转型新增外场设备设施数据资源，对原始数据层进行扩展升级，主要构建三类汇集库：</p>
               <ul class="list-disc pl-4 text-slate-600 space-y-0.5">
@@ -557,15 +557,15 @@
                 <li><strong>公路业务数据汇集库：</strong>包含应急等业务流程数据。</li>
               </ul>
             </div>
-            <div id="sec1-3-4-2" class="p-3 border border-slate-200 rounded-lg bg-slate-50 space-y-1 scroll-mt-6">
+            <div id="sec1-3-4-2" class="p-3 border border-slate-100 rounded-lg bg-slate-50 space-y-1 scroll-mt-6">
               <strong class="text-sm font-bold text-slate-700 block mb-1">1.3.4.2. 数据明细层升级建设</strong>
               <p class="text-slate-600 leading-tight">结合数转专项任务及各业务系统建设要求，基于全省公路业务实际系统开发情况，构建覆盖本次数字化转型新建的湖北省公路路网运行监测与应急指挥调度系统、湖北省交通流量调查系统、湖北公路服务区管理系统、湖北公路基础设施监测系统的数据明细层。</p>
             </div>
-            <div id="sec1-3-4-3" class="p-3 border border-slate-200 rounded-lg bg-slate-50 space-y-1 scroll-mt-6">
+            <div id="sec1-3-4-3" class="p-3 border border-slate-100 rounded-lg bg-slate-50 space-y-1 scroll-mt-6">
               <strong class="text-sm font-bold text-slate-700 block mb-1">1.3.4.3. 数据汇总层升级建设</strong>
               <p class="text-slate-600 leading-tight">结合数转专项任务及各业务系统建设要求，基于本次数字化转型新建的湖北省公路路网运行监测与应急指挥调度系统、湖北省交通流量调查系统、湖北公路服务区管理系统、湖北公路基础设施监测系统业务数据，完善原有综合信息平台相关专题库与指标库。</p>
             </div>
-            <div id="sec1-3-4-4" class="p-3 border border-slate-200 rounded-lg bg-slate-50 space-y-1 scroll-mt-6">
+            <div id="sec1-3-4-4" class="p-3 border border-slate-100 rounded-lg bg-slate-50 space-y-1 scroll-mt-6">
               <strong class="text-sm font-bold text-slate-700 block mb-1">1.3.4.4. 数据应用层升级</strong>
               <p class="text-slate-600 leading-tight">结合数转专项任务及各业务系统建设要求，基于本次数字化转型新建的湖北省公路路网运行监测与应急指挥调度系统、湖北省交通流量调查系统、湖北公路服务区管理系统、湖北公路基础设施监测系统清洗转换后的数据，构建数据应用层，按需为相关业务系统提供定制化的数据服务支撑。</p>
             </div>
@@ -599,7 +599,7 @@
         <div id="sec1-5" class="space-y-3 scroll-mt-6">
           <h2 class="text-lg font-bold text-slate-800 border-l-4 border-brand-600 pl-3">1.6. 数据接口建设</h2>
           <div class="space-y-2 text-base">
-            <div class="p-3 border border-slate-200 rounded-lg bg-slate-50 space-y-1">
+            <div class="p-3 border border-slate-100 rounded-lg bg-slate-50 space-y-1">
               <p class="text-slate-600 mb-1">本工程按需开发各类数据接口，主要建设内容如下：</p>
               <ul class="list-disc pl-4 text-slate-600 space-y-1">
                 <li><strong>政府侧数据底座对接：</strong>按需开发相应接口，实现与政府侧数据底座数据的接入与共享；</li>
@@ -624,97 +624,97 @@
         <!-- 项目验收成果表 -->
         <div id="sec1-6-2" class="space-y-3 scroll-mt-6">
           <h3 class="text-base font-bold text-slate-800 mb-1">1.7.2. 项目验收成果表</h3>
-          <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-sm">
+          <div class="overflow-x-auto rounded-xl border border-indigo-100 shadow-md bg-white">
             
             <table class="w-full text-left text-base border-collapse">
               <thead>
-                <tr class="bg-slate-100  font-bold border-b border-slate-200 text-slate-700">
-                  <th colspan="2" class="p-2.5 border-r border-slate-200 text-center w-24">验收阶段</th>
-                  <th class="p-2.5 border-r border-slate-200 w-64">交付成果材料名称</th>
-                  <th class="p-2.5 border-r border-slate-200">对应招标技术要求项（精确标号）</th>
+                <tr class="bg-indigo-50/80 text-indigo-900 font-bold border-b-2 border-indigo-200">>
+                  <th colspan="2" class="p-2.5 border-r border-slate-100 text-center w-24">验收阶段</th>
+                  <th class="p-2.5 border-r border-slate-100 w-64">交付成果材料名称</th>
+                  <th class="p-2.5 border-r border-slate-100">对应招标技术要求项（精确标号）</th>
                   <th class="p-2.5">成果交付要求说明</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-200 text-slate-700">
-                <tr class="hover:bg-slate-50/80">
-                  <td rowspan="12" class="p-2.5 font-bold text-slate-800 border-r border-slate-200 text-center align-middle" style="writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 4px;">初步验收</td>
-                  <td rowspan="5" class="p-2.5 font-bold text-slate-800 border-r border-slate-200 text-center align-middle" style="width: 140px;">1. 项目建设与交付类</td>
-                  <td class="p-2.5 border-r border-slate-200 font-medium">《四大核心公路数据指南》（包含基础标准、采集接入、安全管控及AI治理规范四本分册）</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-2" class="text-brand-600 hover:underline">1.2. 数据指南编制</a> 章节<br><span class="font-normal">（包含：<a href="#sec1-2-1" class="text-brand-600 hover:underline">1.2.1. 基础标准与质量管控</a>、<a href="#sec1-2-2" class="text-brand-600 hover:underline">1.2.2. 采集接入与共享规范</a>、<a href="#sec1-2-3" class="text-brand-600 hover:underline">1.2.3. 安全管控</a>、<a href="#sec1-2-4" class="text-brand-600 hover:underline">1.2.4. AI治理工具规范</a>）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td rowspan="12" class="p-2.5 font-bold text-slate-800 border-r border-slate-100 text-center align-middle" style="writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 4px;">初步验收</td>
+                  <td rowspan="5" class="p-2.5 font-bold text-slate-800 border-r border-slate-100 text-center align-middle" style="width: 140px;">1. 项目建设与交付类</td>
+                  <td class="p-2.5 border-r border-slate-100 font-medium">《四大核心公路数据指南》（包含基础标准、采集接入、安全管控及AI治理规范四本分册）</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-2" class="text-brand-600 hover:underline">1.2. 数据指南编制</a> 章节<br><span class="font-normal">（包含：<a href="#sec1-2-1" class="text-brand-600 hover:underline">1.2.1. 基础标准与质量管控</a>、<a href="#sec1-2-2" class="text-brand-600 hover:underline">1.2.2. 采集接入与共享规范</a>、<a href="#sec1-2-3" class="text-brand-600 hover:underline">1.2.3. 安全管控</a>、<a href="#sec1-2-4" class="text-brand-600 hover:underline">1.2.4. AI治理工具规范</a>）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：验证制度资产落地质量</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium">《AI数据治理工具建设方案与需求规格说明书》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-3" class="text-brand-600 hover:underline">1.3. 数据加工与处理</a> 章节<br><span class="font-normal">（对应：<a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 总体要求）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium">《AI数据治理工具建设方案与需求规格说明书》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-3" class="text-brand-600 hover:underline">1.3. 数据加工与处理</a> 章节<br><span class="font-normal">（对应：<a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 总体要求）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：验证架构部署与接口合规性</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium">《AI治理工具操作手册》（管理员与最终用户版）</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-6" class="text-brand-600 hover:underline">1.7. 其他要求</a> 章节<br><span class="font-normal">（对应：<a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 中“运维保障配套工作”）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium">《AI治理工具操作手册》（管理员与最终用户版）</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-6" class="text-brand-600 hover:underline">1.7. 其他要求</a> 章节<br><span class="font-normal">（对应：<a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 中“运维保障配套工作”）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：验证移交及独立运维条件</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium">《项目技术培训交付记录》（含课件、签到、实操记录）</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-6" class="text-brand-600 hover:underline">1.7. 其他要求</a> 章节<br><span class="font-normal">（对应：<a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 中“培训服务配套工作”）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium">《项目技术培训交付记录》（含课件、签到、实操记录）</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-6" class="text-brand-600 hover:underline">1.7. 其他要求</a> 章节<br><span class="font-normal">（对应：<a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 中“培训服务配套工作”）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：验证培训服务实际覆盖率</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium">《驻场维保与大模型持续调优服务承诺书》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-6" class="text-brand-600 hover:underline">1.7. 其他要求</a> 章节<br><span class="font-normal">（对应：<a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 中“长效稳定运行保障”）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium">《驻场维保与大模型持续调优服务承诺书》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-6" class="text-brand-600 hover:underline">1.7. 其他要求</a> 章节<br><span class="font-normal">（对应：<a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 中“长效稳定运行保障”）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：验证长期售后与模型升级承诺</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80 border-t border-slate-200">
-                  <td rowspan="2" class="p-2.5 font-bold text-slate-800 border-r border-slate-200 text-center align-middle">2. 平台功能演示类</td>
-                  <td class="p-2.5 border-r border-slate-200 font-medium ">《AI治理工具核心功能演示确认单及操作录屏》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 章节下详细编号：<br><span class="font-normal">（需求调研）至（知识库管理）详细要求</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors border-t border-slate-100">
+                  <td rowspan="2" class="p-2.5 font-bold text-slate-800 border-r border-slate-100 text-center align-middle">2. 平台功能演示类</td>
+                  <td class="p-2.5 border-r border-slate-100 font-medium ">《AI治理工具核心功能演示确认单及操作录屏》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 章节下详细编号：<br><span class="font-normal">（需求调研）至（知识库管理）详细要求</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：现场验证核心功能完整跑通</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium ">《资产分级合规及按组织架构的流转考核实测报告》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 功能补充要求：<br><span class="font-normal">（按组织架构的场景化资产分级合规和流转考核 - 数据找人）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium ">《资产分级合规及按组织架构的流转考核实测报告》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 功能补充要求：<br><span class="font-normal">（按组织架构的场景化资产分级合规和流转考核 - 数据找人）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：验证数据自动精准推送能力</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80 border-t border-slate-200">
-                  <td rowspan="5" class="p-2.5 font-bold text-slate-800 border-r border-slate-200 text-center align-middle">3. 治理过程与成果类</td>
-                  <td class="p-2.5 border-r border-slate-200 font-medium ">《湖北省公路全局数据资源资产目录》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-5" class="text-brand-600 hover:underline">1.5. 数据资源目录</a> 章节<br>及 <a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 项下：<br><span class="font-normal">（智能资源盘点）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors border-t border-slate-100">
+                  <td rowspan="5" class="p-2.5 font-bold text-slate-800 border-r border-slate-100 text-center align-middle">3. 治理过程与成果类</td>
+                  <td class="p-2.5 border-r border-slate-100 font-medium ">《湖北省公路全局数据资源资产目录》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-5" class="text-brand-600 hover:underline">1.5. 数据资源目录</a> 章节<br>及 <a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 项下：<br><span class="font-normal">（智能资源盘点）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：提交系统生成的电子台账</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium ">《湖北公路智能治理知识基座配置库》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 项下：<br><span class="font-normal">（智能数据标准设计）<br>（数据资产安全管理）<br>（知识库管理）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium ">《湖北公路智能治理知识基座配置库》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 项下：<br><span class="font-normal">（智能数据标准设计）<br>（数据资产安全管理）<br>（知识库管理）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：提交机器规则库及脱敏策略集</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium ">《全链路数仓模型设计蓝图及ER图》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-3-4" class="text-brand-600 hover:underline">1.3.4. 数据仓库治理</a> 章节<br>及 <a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 项下：<br><span class="font-normal">（智能数仓模型设计）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium ">《全链路数仓模型设计蓝图及ER图》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-3-4" class="text-brand-600 hover:underline">1.3.4. 数据仓库治理</a> 章节<br>及 <a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 项下：<br><span class="font-normal">（智能数仓模型设计）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：提交数据架构及本体结构清单</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium ">《公路数据资产质量体检报告》及《数据溯源日志》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 项下：<br><span class="font-normal">（智能数据处理）<br>（主动质量控制）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium ">《公路数据资产质量体检报告》及《数据溯源日志》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 项下：<br><span class="font-normal">（智能数据处理）<br>（主动质量控制）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：提交脏数据排查清单</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium ">《数据资产贡献与处室效能考核月报》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 功能补充要求：<br><span class="font-normal">（按组织架构自动生成用于评价各处室的报表 - 管运营）</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium ">《数据资产贡献与处室效能考核月报》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-3-3" class="text-brand-600 hover:underline">1.3.3. AI治理工具</a> 功能补充要求：<br><span class="font-normal">（按组织架构自动生成用于评价各处室的报表 - 管运营）</span></td>
                   <td class="p-2.5 text-slate-600">初验必备：提交处室效能评价报表</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80 border-t-2 border-slate-300">
-                  <td rowspan="3" class="p-2.5 font-bold text-slate-800 border-r border-slate-200 text-center align-middle" style="writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 4px;">最终验收</td>
-                  <td rowspan="3" class="p-2.5 font-bold text-slate-800 border-r border-slate-200 text-center align-middle">4. 试运行与终验类</td>
-                  <td class="p-2.5 border-r border-slate-200 font-medium ">《AI治理工具系统试运行总结报告》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 章节：<br><span class="font-normal">“项目通过初步验收，进入试运行阶段无重大故障”</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors border-t-2 border-slate-300">
+                  <td rowspan="3" class="p-2.5 font-bold text-slate-800 border-r border-slate-100 text-center align-middle" style="writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 4px;">最终验收</td>
+                  <td rowspan="3" class="p-2.5 font-bold text-slate-800 border-r border-slate-100 text-center align-middle">4. 试运行与终验类</td>
+                  <td class="p-2.5 border-r border-slate-100 font-medium ">《AI治理工具系统试运行总结报告》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 章节：<br><span class="font-normal">“项目通过初步验收，进入试运行阶段无重大故障”</span></td>
                   <td class="p-2.5 text-slate-600">终验必备：证明系统实际连续稳定运行</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium ">《系统整体性能与安全测试报告》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 章节：<br><span class="font-normal">“共同对系统的整体性能进行测试”</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium ">《系统整体性能与安全测试报告》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 章节：<br><span class="font-normal">“共同对系统的整体性能进行测试”</span></td>
                   <td class="p-2.5 text-slate-600">终验必备：提供第三方并发与接口压测证明</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="p-2.5 border-r border-slate-200 font-medium ">《数据治理工程项目最终验收报告》</td>
-                  <td class="p-2.5 border-r border-slate-200"><a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 章节：<br><span class="font-normal">“签署试运行验收报告，进行最终验收按合同支付”</span></td>
+                <tr class="hover:bg-indigo-50/40 transition-colors">
+                  <td class="p-2.5 border-r border-slate-100 font-medium ">《数据治理工程项目最终验收报告》</td>
+                  <td class="p-2.5 border-r border-slate-100"><a href="#sec1-6-1" class="text-brand-600 hover:underline">1.7.1. 验收要求</a> 章节：<br><span class="font-normal">“签署试运行验收报告，进行最终验收按合同支付”</span></td>
                   <td class="p-2.5 text-slate-600">终验必备：三方联合签章作为最终付款凭证</td>
                 </tr>
               </tbody>
@@ -737,7 +737,7 @@
           <div class="my-4 border-t border-red-400"></div>
           
           <div class="space-y-4 text-base md:text-base text-slate-800 leading-tight">
-            <h2 class="text-base md:text-lg font-bold text-center text-slate-900 px-4 py-2 bg-slate-50 rounded-lg border border-slate-200">
+            <h2 class="text-base md:text-lg font-bold text-center text-slate-900 px-4 py-2 bg-slate-50 rounded-lg border border-slate-100">
               湖北省公路事业发展中心关于印发《湖北公路数据治理专项工作实施方案》的通知
             </h2>
             <p class="font-bold text-slate-900">各市、州公路中心（局），各高速公路经营管理单位，机关各处室、应急处置服务中心：</p>
@@ -755,7 +755,7 @@
         </div>
 
         <!-- Document Main Header -->
-        <div class="text-center py-2 border-b border-slate-200">
+        <div class="text-center py-2 border-b border-slate-100">
           <h1 class="text-xl md:text-2xl font-bold text-slate-900">湖北公路数据治理专项工作实施方案</h1>
         </div>
 
@@ -769,29 +769,29 @@
             <p id="sec2-1-2" class="scroll-mt-6"><strong class="text-slate-900 font-bold">（二）总体目标：</strong>建成“1+4+N”湖北公路数据统筹治理体系，实现公路数据全量归集、全生命周期管控、全业务场景赋能，建成公路年报统计智能查询分析功能，构建数据驱动规划研判、行业管理、风险预警长效机制。分阶段目标如下：</p>
             
             <!-- Phase Table -->
-            <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-xs my-3">
+            <div class="overflow-x-auto border border-slate-100 rounded-lg shadow-xs my-3">
               <table class="w-full text-left text-base border-collapse">
                 <thead>
-                  <tr class="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
-                    <th class="p-2.5 border-r border-slate-200 w-32">阶段</th>
-                    <th class="p-2.5 border-r border-slate-200 w-36">时间</th>
+                  <tr class="bg-indigo-50/80 text-indigo-900 font-bold border-b-2 border-indigo-200">>
+                    <th class="p-2.5 border-r border-slate-100 w-32">阶段</th>
+                    <th class="p-2.5 border-r border-slate-100 w-36">时间</th>
                     <th class="p-2.5">核心目标</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-200 text-slate-600">
                   <tr class="hover:bg-slate-50">
-                    <td class="p-2.5 border-r border-slate-200 font-bold text-brand-800 bg-blue-50/30">1. 启动攻坚期</td>
-                    <td class="p-2.5 border-r border-slate-200">2026.8—2026.9</td>
+                    <td class="p-2.5 border-r border-slate-100 font-bold text-brand-800 bg-blue-50/30">1. 启动攻坚期</td>
+                    <td class="p-2.5 border-r border-slate-100">2026.8—2026.9</td>
                     <td class="p-2.5">完成业务、功能、数据三类需求梳理；出台基础数据标准，搭建基础版公路数据仓；归集高速及重点国省道核心数据，编制3个重点场景建设方案。</td>
                   </tr>
                   <tr class="hover:bg-slate-50">
-                    <td class="p-2.5 border-r border-slate-200 font-bold text-brand-800 bg-blue-50/30">2. 全面推进期</td>
-                    <td class="p-2.5 border-r border-slate-200">2026.9—2026.12</td>
+                    <td class="p-2.5 border-r border-slate-100 font-bold text-brand-800 bg-blue-50/30">2. 全面推进期</td>
+                    <td class="p-2.5 border-r border-slate-100">2026.9—2026.12</td>
                     <td class="p-2.5">完善全套数据标准与考核制度，实现全域公路数据全量归集；完成数据全链路功能模块开发，落地5—8个数字化场景，上线年报统计基础查询功能。</td>
                   </tr>
                   <tr class="hover:bg-slate-50">
-                    <td class="p-2.5 border-r border-slate-200 font-bold text-brand-800 bg-blue-50/30">3. 提质深化期</td>
-                    <td class="p-2.5 border-r border-slate-200">2026.12—2027.2</td>
+                    <td class="p-2.5 border-r border-slate-100 font-bold text-brand-800 bg-blue-50/30">3. 提质深化期</td>
+                    <td class="p-2.5 border-r border-slate-100">2026.12—2027.2</td>
                     <td class="p-2.5">建立常态化数据运维机制，数据仓与全部业务系统打通；迭代年报智能分析模型，新增2—3个特色场景并实现市县全覆盖；拓宽跨部门、社会化数据共享渠道，总结推广治理经验。</td>
                   </tr>
                 </tbody>
@@ -813,7 +813,7 @@
           <p class="text-base text-slate-600 leading-tight">全流程贯穿三阶段建设，统一规范需求提报、转化、系统开发全环节工作：</p>
 
           <div class="space-y-4 text-base text-slate-700">
-            <div id="sec2-2-1" class="p-3.5 border border-slate-200 rounded-xl bg-slate-50 space-y-1.5 scroll-mt-6">
+            <div id="sec2-2-1" class="p-3.5 border border-slate-100 rounded-xl bg-slate-50 space-y-1.5 scroll-mt-6">
               <h3 class="text-base font-bold text-slate-800 flex items-center mb-1">
                 <span class="px-2 py-0.5 bg-brand-600 text-white rounded text-[10px] mr-2">第一步</span>各业务处室提报业务要求
               </h3>
@@ -822,7 +822,7 @@
               <p><strong>3. 完成时限：</strong>2026年9月底前。</p>
             </div>
 
-            <div id="sec2-2-2" class="p-3.5 border border-slate-200 rounded-xl bg-slate-50 space-y-1.5 scroll-mt-6">
+            <div id="sec2-2-2" class="p-3.5 border border-slate-100 rounded-xl bg-slate-50 space-y-1.5 scroll-mt-6">
               <h3 class="text-base font-bold text-slate-800 flex items-center mb-1">
                 <span class="px-2 py-0.5 bg-brand-600 text-white rounded text-[10px] mr-2">第二步</span>数转专班转化系统功能需求
               </h3>
@@ -831,7 +831,7 @@
               <p><strong>3. 完成时限：</strong>2026年11月底前定稿，作为平台开发唯一依据。</p>
             </div>
 
-            <div id="sec2-2-3" class="p-3.5 border border-slate-200 rounded-xl bg-slate-50 space-y-1.5 scroll-mt-6">
+            <div id="sec2-2-3" class="p-3.5 border border-slate-100 rounded-xl bg-slate-50 space-y-1.5 scroll-mt-6">
               <h3 class="text-base font-bold text-slate-800 flex items-center mb-1">
                 <span class="px-2 py-0.5 bg-brand-600 text-white rounded text-[10px] mr-2">第三步</span>各业务处室梳理细分数据需求
               </h3>
@@ -840,7 +840,7 @@
               <p><strong>3. 推进安排：</strong>2026年9—12月集中梳理，2026年12—2027年2月动态补充完善。</p>
             </div>
 
-            <div id="sec2-2-4" class="p-3.5 border border-slate-200 rounded-xl bg-slate-50 space-y-2 scroll-mt-6">
+            <div id="sec2-2-4" class="p-3.5 border border-slate-100 rounded-xl bg-slate-50 space-y-2 scroll-mt-6">
               <h3 class="text-base font-bold text-slate-800 flex items-center mb-1">
                 <span class="px-2 py-0.5 bg-brand-600 text-white rounded text-[10px] mr-2">第四步</span>专班统筹承建单位开展全链条系统研发，落地年报智能应用
               </h3>
@@ -848,24 +848,24 @@
               <p><strong>2. 系统建设六大核心模块（依托前三阶段需求成果统一开发）：</strong></p>
               
               <!-- 6 Modules Table -->
-              <div class="overflow-x-auto border border-slate-200 rounded-lg bg-white mt-2">
+              <div class="overflow-x-auto border border-slate-100 rounded-lg bg-white mt-2">
                 <table class="w-full text-left text-base border-collapse">
                   <thead>
-                    <tr class="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
-                      <th class="p-2 border-r border-slate-200 w-12 text-center">序号</th>
-                      <th class="p-2 border-r border-slate-200 w-36">模块名称</th>
+                    <tr class="bg-indigo-50/80 text-indigo-900 font-bold border-b-2 border-indigo-200">>
+                      <th class="p-2 border-r border-slate-100 w-12 text-center">序号</th>
+                      <th class="p-2 border-r border-slate-100 w-36">模块名称</th>
                       <th class="p-2">建设内容</th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-slate-200 text-slate-600">
-                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-200 text-center font-bold">1</td><td class="p-2 border-r border-slate-200 font-medium text-slate-800">一体化数据采集模块</td><td class="p-2">搭建省、市、县、参建企业四级采集渠道，对接公安、气象、导航第三方外部数据</td></tr>
-                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-200 text-center font-bold">2</td><td class="p-2 border-r border-slate-200 font-medium text-slate-800">全域数据盘点模块</td><td class="p-2">完成全省高速、国省道、农村公路数据资产盘点，建立分级分类数据资源目录</td></tr>
-                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-200 text-center font-bold">3</td><td class="p-2 border-r border-slate-200 font-medium text-slate-800">标准数据仓模块</td><td class="p-2">建成统一数据存储中枢，归集整合全行业公路基础、业务、动态数据</td></tr>
-                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-200 text-center font-bold">4</td><td class="p-2 border-r border-slate-200 font-medium text-slate-800">数据清洗加工模块</td><td class="p-2">开发标准化去重、补全、格式转换工具，实现全存量、增量数据标准化治理</td></tr>
-                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-200 text-center font-bold">5</td><td class="p-2 border-r border-slate-200 font-medium text-slate-800">数据质量评估模块</td><td class="p-2">搭建实时校验、监测、预警功能，配套落地数据质量评价、考核机制</td></tr>
-                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-200 text-center font-bold">6</td><td class="p-2 border-r border-slate-200 font-medium text-slate-800">数据共享发布门户</td><td class="p-2">建设跨部门数据共享接口、面向社会的公共数据开放门户，配套数据分级、加密、访问控制安全措施</td></tr>
-                    <tr class="hover:bg-slate-50 bg-blue-50/20"><td class="p-2 border-r border-slate-200 text-center font-bold">7</td><td class="p-2 border-r border-slate-200 font-bold text-brand-800">核心应用成果</td><td class="p-2 text-slate-800">整合养护年报、国省道交通调查、农村公路统计底层数据源，开发公路年报统计智能查询分析功能，实现数据自动汇总、多维度指标对比、趋势研判、异常预警</td></tr>
-                    <tr class="hover:bg-slate-50 bg-blue-50/20"><td class="p-2 border-r border-slate-200 text-center font-bold">8</td><td class="p-2 border-r border-slate-200 font-bold text-brand-800">实施节点</td><td class="p-2 text-slate-800">2026年11—12月完成模块开发试运行，上线年报基础查询；2026年12月—2027年2月迭代优化分析模型，全面推广</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-100 text-center font-bold">1</td><td class="p-2 border-r border-slate-100 font-medium text-slate-800">一体化数据采集模块</td><td class="p-2">搭建省、市、县、参建企业四级采集渠道，对接公安、气象、导航第三方外部数据</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-100 text-center font-bold">2</td><td class="p-2 border-r border-slate-100 font-medium text-slate-800">全域数据盘点模块</td><td class="p-2">完成全省高速、国省道、农村公路数据资产盘点，建立分级分类数据资源目录</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-100 text-center font-bold">3</td><td class="p-2 border-r border-slate-100 font-medium text-slate-800">标准数据仓模块</td><td class="p-2">建成统一数据存储中枢，归集整合全行业公路基础、业务、动态数据</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-100 text-center font-bold">4</td><td class="p-2 border-r border-slate-100 font-medium text-slate-800">数据清洗加工模块</td><td class="p-2">开发标准化去重、补全、格式转换工具，实现全存量、增量数据标准化治理</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-100 text-center font-bold">5</td><td class="p-2 border-r border-slate-100 font-medium text-slate-800">数据质量评估模块</td><td class="p-2">搭建实时校验、监测、预警功能，配套落地数据质量评价、考核机制</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2 border-r border-slate-100 text-center font-bold">6</td><td class="p-2 border-r border-slate-100 font-medium text-slate-800">数据共享发布门户</td><td class="p-2">建设跨部门数据共享接口、面向社会的公共数据开放门户，配套数据分级、加密、访问控制安全措施</td></tr>
+                    <tr class="hover:bg-slate-50 bg-blue-50/20"><td class="p-2 border-r border-slate-100 text-center font-bold">7</td><td class="p-2 border-r border-slate-100 font-bold text-brand-800">核心应用成果</td><td class="p-2 text-slate-800">整合养护年报、国省道交通调查、农村公路统计底层数据源，开发公路年报统计智能查询分析功能，实现数据自动汇总、多维度指标对比、趋势研判、异常预警</td></tr>
+                    <tr class="hover:bg-slate-50 bg-blue-50/20"><td class="p-2 border-r border-slate-100 text-center font-bold">8</td><td class="p-2 border-r border-slate-100 font-bold text-brand-800">实施节点</td><td class="p-2 text-slate-800">2026年11—12月完成模块开发试运行，上线年报基础查询；2026年12月—2027年2月迭代优化分析模型，全面推广</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -876,19 +876,19 @@
         <!-- Chapter III -->
         <div id="sec2-3" class="space-y-4 scroll-mt-6">
           <h2 class="text-lg font-bold text-slate-800 border-l-4 border-brand-600 pl-3">三、分阶段重点工作任务表</h2>
-          <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-xs">
+          <div class="overflow-x-auto border border-slate-100 rounded-lg shadow-xs">
             <table class="w-full text-left text-base border-collapse">
               <thead>
-                <tr class="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
-                  <th class="p-2.5 border-r border-slate-200 w-28">阶段</th>
-                  <th class="p-2.5 border-r border-slate-200 w-32">时间</th>
+                <tr class="bg-indigo-50/80 text-indigo-900 font-bold border-b-2 border-indigo-200">>
+                  <th class="p-2.5 border-r border-slate-100 w-28">阶段</th>
+                  <th class="p-2.5 border-r border-slate-100 w-32">时间</th>
                   <th class="p-2.5">重点工作内容与责任分工</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-200 text-slate-600 leading-tight">
                 <tr id="sec2-3-1" class="hover:bg-slate-50 scroll-mt-6">
-                  <td class="p-2.5 border-r border-slate-200 font-bold text-brand-800 bg-blue-50/30">启动攻坚期</td>
-                  <td class="p-2.5 border-r border-slate-200">2026.8—2026.9</td>
+                  <td class="p-2.5 border-r border-slate-100 font-bold text-brand-800 bg-blue-50/30">启动攻坚期</td>
+                  <td class="p-2.5 border-r border-slate-100">2026.8—2026.9</td>
                   <td class="p-2.5 space-y-1">
                     <p>1. 启动攻坚期：2026.8—2026.9，成立省级数据治理专班，建立省市县联动机制，出台实施细则。</p>
                     <p>2. 完成业务、功能、数据三类需求清单编制审定。</p>
@@ -900,8 +900,8 @@
                   </td>
                 </tr>
                 <tr id="sec2-3-2" class="hover:bg-slate-50 scroll-mt-6">
-                  <td class="p-2.5 border-r border-slate-200 font-bold text-brand-800 bg-blue-50/30">全面推进期</td>
-                  <td class="p-2.5 border-r border-slate-200">2026.9—2026.12</td>
+                  <td class="p-2.5 border-r border-slate-100 font-bold text-brand-800 bg-blue-50/30">全面推进期</td>
+                  <td class="p-2.5 border-r border-slate-100">2026.9—2026.12</td>
                   <td class="p-2.5 space-y-1">
                     <p>1. 完善数据交换、共享规范，出台数据治理考核办法，组织全省实操培训。</p>
                     <p>2. 完成六大系统模块开发，上线标准化数据服务门户。</p>
@@ -914,8 +914,8 @@
                   </td>
                 </tr>
                 <tr id="sec2-3-3" class="hover:bg-slate-50 scroll-mt-6">
-                  <td class="p-2.5 border-r border-slate-200 font-bold text-brand-800 bg-blue-50/30">提质深化期</td>
-                  <td class="p-2.5 border-r border-slate-200">2026.12—2027.2</td>
+                  <td class="p-2.5 border-r border-slate-100 font-bold text-brand-800 bg-blue-50/30">提质深化期</td>
+                  <td class="p-2.5 border-r border-slate-100">2026.12—2027.2</td>
                   <td class="p-2.5 space-y-1">
                     <p>1. 优化数据标准、治理流程、考核机制，建立数据全生命周期常态化运维制度。</p>
                     <p>2. 推动数据仓与所有业务系统深度融合，升级年报智能分析模型。</p>
@@ -938,21 +938,21 @@
           <div class="space-y-3 text-base text-slate-700">
             <div id="sec2-4-1" class="space-y-2 scroll-mt-6">
               <h3 class="text-base font-bold text-slate-800 mb-1">（一）省公路事业发展中心内设机构</h3>
-              <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-xs">
+              <div class="overflow-x-auto border border-slate-100 rounded-lg shadow-xs">
                 <table class="w-full text-left text-base border-collapse">
                   <thead>
-                    <tr class="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
-                      <th class="p-2.5 border-r border-slate-200 w-48">单位/处室</th>
+                    <tr class="bg-indigo-50/80 text-indigo-900 font-bold border-b-2 border-indigo-200">>
+                      <th class="p-2.5 border-r border-slate-100 w-48">单位/处室</th>
                       <th class="p-2.5">核心职责</th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-slate-200 text-slate-600">
-                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-200 font-bold text-slate-800">办公室</td><td class="p-2.5">统筹公文、宣传、成果归集，参与专班综合协调，组织方案宣贯与工作总结。</td></tr>
-                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-200 font-bold text-slate-800">综合计划处</td><td class="p-2.5">牵头公路基础数据、固定资产投资、行业年报统计梳理，统筹顶层机制、数据分级分类管理。</td></tr>
-                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-200 font-bold text-slate-800">工程/建设/养护/农村公路/费收/安全监督处</td><td class="p-2.5">提报本领域业务、数据需求；负责分管业务数据归集、质量审核；支撑配套数字化场景、年报数据源建设。</td></tr>
-                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-200 font-bold text-slate-800">信息技术处</td><td class="p-2.5">统筹数据仓建设、平台技术研发、跨部门数据共享技术对接，配合专班完成需求转化落地。</td></tr>
-                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-200 font-bold text-slate-800">应急处置服务中心</td><td class="p-2.5">归集路网监测、应急物资、抢险事件数据；提报应急领域业务及数据需求，建设安全应急智控场景。</td></tr>
-                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-200 font-bold text-slate-800">数据统筹工作专班</td><td class="p-2.5">统筹全流程需求梳理，协调跨处室分歧；对接承建单位推进系统研发；统筹项目调度、阶段性验收。</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-100 font-bold text-slate-800">办公室</td><td class="p-2.5">统筹公文、宣传、成果归集，参与专班综合协调，组织方案宣贯与工作总结。</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-100 font-bold text-slate-800">综合计划处</td><td class="p-2.5">牵头公路基础数据、固定资产投资、行业年报统计梳理，统筹顶层机制、数据分级分类管理。</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-100 font-bold text-slate-800">工程/建设/养护/农村公路/费收/安全监督处</td><td class="p-2.5">提报本领域业务、数据需求；负责分管业务数据归集、质量审核；支撑配套数字化场景、年报数据源建设。</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-100 font-bold text-slate-800">信息技术处</td><td class="p-2.5">统筹数据仓建设、平台技术研发、跨部门数据共享技术对接，配合专班完成需求转化落地。</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-100 font-bold text-slate-800">应急处置服务中心</td><td class="p-2.5">归集路网监测、应急物资、抢险事件数据；提报应急领域业务及数据需求，建设安全应急智控场景。</td></tr>
+                    <tr class="hover:bg-slate-50"><td class="p-2.5 border-r border-slate-100 font-bold text-slate-800">数据统筹工作专班</td><td class="p-2.5">统筹全流程需求梳理，协调跨处室分歧；对接承建单位推进系统研发；统筹项目调度、阶段性验收。</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -976,27 +976,27 @@
           <h2 class="text-lg font-bold text-slate-800 border-l-4 border-brand-600 pl-3">五、保障措施</h2>
           
           <div class="space-y-3 text-base text-slate-700 leading-tight">
-            <div id="sec2-5-1" class="p-3 border border-slate-200 rounded-lg bg-white space-y-1 scroll-mt-6">
+            <div id="sec2-5-1" class="p-3 border border-slate-100 rounded-lg bg-white space-y-1 scroll-mt-6">
               <strong class="text-slate-900 block font-bold text-base">（一）强化组织领导，专班实体化运转</strong>
               <p>成立由中心主要领导任组长、各处室负责人为成员的数据治理工作专班，固定实体办公；按月召开调度会，协调解决需求对接、平台建设堵点；建立省市县三级工作通报机制，定期晾晒工作进度。</p>
             </div>
 
-            <div id="sec2-5-2" class="p-3 border border-slate-200 rounded-lg bg-white space-y-1 scroll-mt-6">
+            <div id="sec2-5-2" class="p-3 border border-slate-100 rounded-lg bg-white space-y-1 scroll-mt-6">
               <strong class="text-slate-900 block font-bold text-base">（二）健全制度体系，规范全流程管理</strong>
               <p>配套出台《湖北省公路数据统筹工作实施细则》《公路数据共享开放管理规定》《公路数据质量考核办法》，统一规范需求提报、功能确认、数据采集、平台运维、年报数据使用全流程管理，将数据治理纳入行业常态化管理。</p>
             </div>
 
-            <div id="sec2-5-3" class="p-3 border border-slate-200 rounded-lg bg-white space-y-1 scroll-mt-6">
+            <div id="sec2-5-3" class="p-3 border border-slate-100 rounded-lg bg-white space-y-1 scroll-mt-6">
               <strong class="text-slate-900 block font-bold text-base">（三）夯实技术支撑，组建专业工作队伍</strong>
               <p>整合内部业务骨干、行业专家，联动高校、科研机构、数字化服务商组建技术攻坚团队；针对数据仓、年报智能分析系统开展专项攻关；常态化组织数据标准、平台操作、年报分析实操培训，提升从业人员数据业务能力。</p>
             </div>
 
-            <div id="sec2-5-4" class="p-3 border border-slate-200 rounded-lg bg-white space-y-1 scroll-mt-6">
+            <div id="sec2-5-4" class="p-3 border border-slate-100 rounded-lg bg-white space-y-1 scroll-mt-6">
               <strong class="text-slate-900 block font-bold text-base">（四）落实资金保障，拓宽多元投入渠道</strong>
               <p>将数据仓建设、标准编制、数据治理、系统研发、业务培训经费纳入年度专项预算；建立资金跟踪审计机制，确保专款专用；鼓励市县财政、高速运营企业配套投入，构建多方协同资金保障体系。</p>
             </div>
 
-            <div id="sec2-5-5" class="p-3 border border-slate-200 rounded-lg bg-white space-y-2 scroll-mt-6">
+            <div id="sec2-5-5" class="p-3 border border-slate-100 rounded-lg bg-white space-y-2 scroll-mt-6">
               <strong class="text-slate-900 block font-bold text-base">（五）完善考核激励，实行赛马督办机制</strong>
               <p>分类设置量化考核指标，建立正向激励、滞后单位限期整改、书面通报的赛马机制：</p>
               <ul class="list-disc pl-5 space-y-1 text-slate-600">
@@ -1012,7 +1012,7 @@
 
       <!-- ================= DOCUMENT 3: 评分标准（已剔除具体分值） ================= -->
       <section id="doc3-content" class="doc-view space-y-8 hidden">
-        <div class="border-b border-slate-200 pb-4">
+        <div class="border-b border-slate-100 pb-4">
           
           <h1 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">数据治理工程评分标准</h1>
         </div>
@@ -1020,12 +1020,12 @@
         <!-- Commercial Evaluation Table -->
         <div id="sec3-1" class="space-y-3 scroll-mt-6">
           <h2 class="text-lg font-bold text-slate-800 border-l-4 border-brand-600 pl-3">商务评分标准</h2>
-          <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-sm">
+          <div class="overflow-x-auto rounded-xl border border-indigo-100 shadow-md bg-white">
             <table class="w-full text-left text-base border-collapse">
               <thead>
-                <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
-                  <th class="p-2.5 border-r border-slate-200 w-36">评审维度</th>
-                  <th class="p-2.5 border-r border-slate-200">评分标准要点</th>
+                <tr class="bg-indigo-50/80 text-indigo-900 font-bold border-b-2 border-indigo-200">>
+                  <th class="p-2.5 border-r border-slate-100 w-36">评审维度</th>
+                  <th class="p-2.5 border-r border-slate-100">评分标准要点</th>
                   <th class="p-2.5 w-48">核验说明</th>
                 </tr>
               </thead>
@@ -1044,82 +1044,82 @@
         <!-- Technical Evaluation Table -->
         <div id="sec3-2" class="space-y-3 scroll-mt-6">
           <h2 class="text-lg font-bold text-slate-800 border-l-4 border-brand-600 pl-3">技术评分标准</h2>
-          <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-sm">
+          <div class="overflow-x-auto rounded-xl border border-indigo-100 shadow-md bg-white">
             <table class="w-full text-left text-base border-collapse">
               <thead>
-                <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
-                  <th class="p-2.5 border-r border-slate-200 w-44">评估维度</th>
+                <tr class="bg-indigo-50/80 text-indigo-900 font-bold border-b-2 border-indigo-200">>
+                  <th class="p-2.5 border-r border-slate-100 w-44">评估维度</th>
                   <th class="p-2.5">评分标准及详细细则要点</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-200 text-slate-600">
                 
                 <!-- Dimension 1: 数据治理案例实力 -->
-                <tr id="sec3-2-1" class="hover:bg-slate-50/80 scroll-mt-6">
-                  <td rowspan="4" class="p-3 font-bold text-brand-800 bg-blue-50/40 border-r border-slate-200 align-top">一、数据治理案例实力</td>
+                <tr id="sec3-2-1" class="hover:bg-indigo-50/40 transition-colors scroll-mt-6">
+                  <td rowspan="4" class="p-3 font-bold text-brand-800 bg-blue-50/40 border-r border-slate-100 align-top">一、数据治理案例实力</td>
                   <td class="p-2.5"><strong class="font-medium text-slate-800">1. 省级大数据治理落地案例：</strong>具备省级交通、公路行业大数据治理成熟落地案例，熟悉公路多源异构台账、年报数据、桥隧资产数据治理业务。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">2. 完整实施案例经验：</strong>具备存量数据整合、数据差异比对、数据清洗整改、数据标准化、数据资源目录建设完整实施案例经验。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">3. 敏感受控数据合规治理：</strong>具备公路敏感重要数据分级分类、桥隧坐标及结构参数受控共享合规治理落地案例。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">4. 历史数据归一化治理实战：</strong>具备多部门、多台账、多年份历史数据校核、纠错、归一化治理实战案例，可解决行业数据冗余、冲突、口径不一等痛点。</td>
                 </tr>
 
                 <!-- Dimension 2: 数据治理成熟经验 -->
-                <tr id="sec3-2-2" class="hover:bg-slate-50/80 border-t border-slate-200 scroll-mt-6">
-                  <td rowspan="6" class="p-3 font-bold text-brand-800 bg-blue-50/40 border-r border-slate-200 align-top">二、数据治理成熟经验</td>
+                <tr id="sec3-2-2" class="hover:bg-indigo-50/40 transition-colors border-t border-slate-100 scroll-mt-6">
+                  <td rowspan="6" class="p-3 font-bold text-brand-800 bg-blue-50/40 border-r border-slate-100 align-top">二、数据治理成熟经验</td>
                   <td class="p-2.5"><strong class="font-medium text-slate-800">1. 全域数据盘点经验：</strong>可对计划、养护、建设、收费、工程、安全、农路、路网运行多业务域数据全面梳理、归口确权、厘清数据流转与统计口径。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">2. 数据标准化治理经验：</strong>熟悉公路行业数据元、编码、指标、台账规范，可统一字段、口径、单位、编码，实现一数一源。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">3. 数据质量管控经验：</strong>具备海量台账批量比对、去重、补全、纠错、差异校核能力，保障账账一致、账实相符。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">4. 数据分级安全治理经验：</strong>可精准区分一般共享数据、重要有条件共享数据，对桥梁经纬度、结构参数等敏感数据实现分级管控、合规开放。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">5. 数据建模关联经验：</strong>具备公路业务 ER 模型构建能力，打通路线、桥隧、路面、养护、项目数据关联关系，破除数据孤岛。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">6. 常态化治理运维经验：</strong>可建立动态更新、年度校核、持续迭代的数据长效治理机制。</td>
                 </tr>
 
                 <!-- Dimension 3: 数据治理业务场景应用能力 -->
-                <tr id="sec3-2-3" class="hover:bg-slate-50/80 border-t border-slate-200 scroll-mt-6">
-                  <td rowspan="8" class="p-3 font-bold text-brand-800 bg-blue-50/40 border-r border-slate-200 align-top">三、数据治理业务场景应用能力</td>
+                <tr id="sec3-2-3" class="hover:bg-indigo-50/40 transition-colors border-t border-slate-100 scroll-mt-6">
+                  <td rowspan="8" class="p-3 font-bold text-brand-800 bg-blue-50/40 border-r border-slate-100 align-top">三、数据治理业务场景应用能力</td>
                   <td class="p-2.5"><strong class="font-medium text-slate-800">1. 支撑计划统计决策：</strong>可通过治理数据支撑路网分析、年度计划编制、资金测算、行业统计、绩效评价。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">2. 支撑养护精细管理：</strong>可支撑路况分析、病害治理、桥隧评级、危桥管控、养护考核、预防性养护决策。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">3. 支撑建设项目研判：</strong>可支撑路网短板识别、改扩建需求分析、建养数据追溯对比。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">4. 支撑工程技术研判：</strong>可支撑路况指标统计、结构安全分析、养护技术成效评估、路网性能趋势分析。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">5. 支撑路网运行与收费管理：</strong>可支撑资产统计、运营分析、车流与养护匹配、保通保畅研判。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">6. 支撑安全应急管控：</strong>可支撑隐患治理、风险分级、灾毁统计、应急保障分析。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">7. 支撑农村公路提质增效：</strong>可支撑农路统计、路况评价、短板项目储备、乡村振兴交通数据分析。</td>
                 </tr>
-                <tr class="hover:bg-slate-50/80">
+                <tr class="hover:bg-indigo-50/40 transition-colors">
                   <td class="p-2.5"><strong class="font-medium text-slate-800">8. 支撑合规数据共享：</strong>实现一般数据无条件共享、重要敏感数据有条件共享，满足政务数据开放与安全管控双重要求。</td>
                 </tr>
 
                 <!-- Dimension 4: 综合实力遴选标准 -->
-                <tr id="sec3-2-4" class="hover:bg-slate-50/80 border-t border-slate-200 bg-slate-50/30 scroll-mt-6">
-                  <td class="p-3 font-bold text-brand-800 border-r border-slate-200 align-top">四、综合实力遴选标准</td>
+                <tr id="sec3-2-4" class="hover:bg-indigo-50/40 transition-colors border-t border-slate-100 bg-slate-50/30 scroll-mt-6">
+                  <td class="p-3 font-bold text-brand-800 border-r border-slate-100 align-top">四、综合实力遴选标准</td>
                   <td class="p-2.5 leading-tight text-slate-700">
                     投标单位具备省级公路行业多源异构数据整合、年报数据治理、台账差异校核、数据标准化建设的成熟实施经验，掌握数据盘点、标准规范、质量治理、建模关联、分级安全管控全流程治理体系。可精准支撑综合计划、养护管理、建设管理、工程技术、安全应急、路网运行、农村公路等多部门业务统计分析与决策应用，能够有效解决行业数据口径不一、台账割裂、数据冲突、共享不规范等痛点，具备独立完成本项目建设、落地应用及长效运维的综合技术实力。
                   </td>
