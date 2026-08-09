@@ -1,0 +1,48 @@
+<div class="tab-content-biz block" id="biz-tab-1">
+<div class="overflow-x-auto rounded-xl border border-indigo-100 shadow-md bg-white">
+<table class="w-full text-left text-base border-collapse">
+<thead class="border border-slate-200">
+<tr class="bg-indigo-50/80 text-indigo-900 font-bold border-b-2 border-indigo-200 border-x border-x-indigo-100">
+<th class="p-2.5 border border-slate-200 w-32 text-center">评审维度</th>
+<th class="p-2.5 border border-slate-200">评分标准</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 text-slate-600">
+<!-- Dimension 1: 企业综合实力 -->
+<tr class="hover:bg-indigo-50/40 transition-colors scroll-mt-6" id="sec3-1-1">
+<td class="p-3 font-bold text-brand-800 bg-blue-50/40 border border-slate-200 align-top text-center align-middle">企业<br/>综合实力</td>
+<td class="p-2.5 border border-slate-200 space-y-3">
+<div><span class="text-rose-600 font-bold">1. 高企与专精特新组合：投标人同时具有国家高新技术企业证书及“专精特新”中小企业认定的，予以加分</span>；仅具备其中一项的适当加分，均不具备不加分。</div>
+<div><span class="text-blue-600 font-bold">2. 数据管理能力成熟度（DCMM）：投标人具有 DCMM 数据管理能力成熟度（乙方）3级及以上证书的，予以加分</span>；2级适当加分；其余不加分。</div>
+<div><span class="text-rose-600 font-bold">3. 综合管理体系：投标人同时具有 ISO9001 质量管理体系、ISO14001 环境管理体系、ISO45001 职业健康安全管理体系认证证书的，予以满分加分；少一项则扣减</span>，最低不加分。</div>
+<div><span class="text-rose-600 font-bold">4. 数据资产运营能力凭证：投标人具备数据交易所出具的数据产品挂牌/交易凭证，或数据资产评估/确权/运营能力相关证明材料的，予以加分，不具备不加分。</span></div>
+</td>
+</tr>
+<!-- Dimension 2: 类似案例 -->
+<tr class="hover:bg-indigo-50/40 transition-colors border-t border-slate-100 scroll-mt-6" id="sec3-1-2">
+<td class="p-3 font-bold text-brand-800 bg-blue-50/40 border border-slate-200 align-top text-center align-middle">类似案例</td>
+<td class="p-2.5 border border-slate-200 space-y-3">
+<div>1. 数据治理与数据资产入表全链条业绩：2020年1月1日至今，投标人每提供一个交通/基础设施领域<span class="text-rose-600 font-bold">包含“数据采集 + 数据治理 + 数据资产确权/入表登记”全流程实施内容的业绩予以加分。</span><br/><span class="text-sm text-slate-500 mt-1 block">评审依据：提供合同关键页及第三方机构出具的数据资产登记/入表凭证。</span></div>
+<div>2. 交通基础设施节点管控与数据运营平台业绩：2020年1月1日至今，投标人每提供一个<span class="text-rose-600 font-bold">“交通基础设施节点智能化管控/数据运营平台系统”自主研发及实施业绩予以加分。</span><br/><span class="text-sm text-slate-500 mt-1 block">评审依据：提供自主软著及对应平台实施/运营合同。</span></div>
+</td>
+</tr>
+<!-- Dimension 3: 技术实力 -->
+<tr class="hover:bg-indigo-50/40 transition-colors border-t border-slate-100 scroll-mt-6" id="sec3-1-3">
+<td class="p-3 font-bold text-brand-800 bg-blue-50/40 border border-slate-200 align-top text-center align-middle">技术实力</td>
+<td class="p-2.5 border border-slate-200">
+<div>投标人具备软件著作权登记证书，且<span class="text-rose-600 font-bold">软著名称必须精准包含以下数据治理与资产类关键词（限定为：“数据采集”、“数据标准管理”、“数据质量管理”、“数据资产管理”、“数据标注”、“数据治理”、“数据资源目录”），每提供相关证书予以加分。</span><br/><span class="text-sm text-slate-500 mt-1 block">评审依据：附国家版权局颁发的软著扫描件（加盖公章）。</span></div>
+</td>
+</tr>
+<!-- Dimension 4: 项目团队 -->
+<tr class="hover:bg-indigo-50/40 transition-colors border-t border-slate-100 scroll-mt-6" id="sec3-1-4">
+<td class="p-3 font-bold text-brand-800 bg-blue-50/40 border border-slate-200 align-top text-center align-middle">项目团队</td>
+<td class="p-2.5 border border-slate-200 space-y-3">
+<div><strong class="font-medium text-slate-800 block mb-1">1. 项目负责人/项目经理：</strong>投标人拟派的项目经理<span class="text-blue-600 font-bold">具有信息系统项目管理师（高级）资质证书或项目管理师（PMP）资质证书，予以加分。</span><br/><span class="text-sm text-slate-500 mt-1 block">评审依据：提供证书复印件及近半年内任意一个月社保证明。</span></div>
+<div><strong class="font-medium text-slate-800 block mb-1 mt-2">2. 技术负责人：</strong>投标人拟派的技术负责人<span class="text-rose-600 font-bold">同时具有“数据资产管理师”以及“高级软件工程师或系统架构设计师”资质证书的，予以全额加分</span>；仅具备其中一项的部分加分，否则不加分。</div>
+<div class="mt-2"><strong class="font-medium text-slate-800 block mb-1 mt-2">3. 项目团队成员：</strong>投标人拟派的项目团队成员<span class="text-rose-600 font-bold">具备数据资产管理师、数据库工程师、高级软件工程师</span>或交通/计算机相关专业中级及以上职称的，按人数予以加分。</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
