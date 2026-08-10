@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>基础设施隐蔽结构安全数据运营服务（FaaS- Fiber Optic as a Service，光纤即服务）商业计划书</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础设施隐蔽结构安全数据运营服务（FaaS- Fiber Optic as a Service）商业计划书</title>
     <style>
         :root {
             --primary-color: #1e3a8a;
@@ -17,47 +18,48 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.35;
+            line-height: 1.45;
             color: var(--text-main);
             background-color: var(--bg-color);
             max-width: 1280px;
             margin: 0 auto;
-            padding: 10px 15px;
+            padding: 12px 20px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         h1 {
             color: var(--primary-color);
-            font-size: 1.8em;
-            margin-bottom: 6px;
+            font-size: 1.75em;
+            margin-bottom: 8px;
             letter-spacing: -0.5px;
+            line-height: 1.3;
         }
 
         .highlight-box {
             background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
             border-left: 4px solid var(--secondary-color);
-            padding: 8px 14px;
-            border-radius: 4px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-            margin-bottom: 12px;
+            padding: 14px 18px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 16px;
         }
 
         .highlight-box p {
-            margin: 3px 0;
+            margin: 5px 0;
             font-size: 0.92em;
             color: #1e293b;
         }
 
         h2 {
             color: var(--primary-color);
-            font-size: 1.2em;
-            margin-top: 14px;
-            margin-bottom: 6px;
-            padding-bottom: 3px;
+            font-size: 1.25em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
             border-bottom: 2px solid var(--border-color);
             display: flex;
             align-items: center;
@@ -67,61 +69,61 @@
             content: "";
             display: inline-block;
             width: 4px;
-            height: 14px;
+            height: 16px;
             background-color: var(--secondary-color);
-            margin-right: 6px;
+            margin-right: 8px;
             border-radius: 2px;
         }
 
         p, li {
             font-size: 0.9em;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         ul {
-            padding-left: 18px;
-            margin: 4px 0;
+            padding-left: 20px;
+            margin: 6px 0;
         }
 
         li {
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 10px;
-            margin: 8px 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 12px;
+            margin: 10px 0;
         }
 
-        .card-container-4 {
+        .card-container-5 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 10px;
-            margin: 8px 0;
+            margin: 10px 0;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 10px 12px;
+            padding: 12px 16px;
             border-radius: 6px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
         }
 
         .card h3 {
             color: var(--secondary-color);
             margin-top: 0;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-size: 1.05em;
         }
 
         .table-container {
             background: var(--card-bg);
             border-radius: 6px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             overflow-x: auto;
-            margin: 8px 0;
+            margin: 10px 0;
             border: 1px solid var(--border-color);
         }
 
@@ -132,7 +134,7 @@
         }
 
         th, td {
-            padding: 6px 10px;
+            padding: 8px 12px;
             font-size: 0.85em;
         }
 
@@ -158,34 +160,47 @@
             margin-bottom: 4px;
         }
 
-        .tag-tob { background-color: #dbeafe; color: #1e40af; padding: 1px 4px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
-        .tag-tof { background-color: #fef3c7; color: #b45309; padding: 1px 4px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
-        .tag-tog { background-color: #d1fae5; color: #065f46; padding: 1px 4px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
+        .tag-tob { background-color: #dbeafe; color: #1e40af; padding: 1px 5px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
+        .tag-tof { background-color: #fef3c7; color: #b45309; padding: 1px 5px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
+        .tag-tog { background-color: #d1fae5; color: #065f46; padding: 1px 5px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
+        
+        .deceased-tag {
+            background-color: #f1f5f9;
+            color: #64748b;
+            font-size: 0.75em;
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin-left: 4px;
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>基础设施隐蔽结构安全数据运营服务（FaaS- Fiber Optic as a Service，光纤即服务）<br>
-        <span style="font-size: 0.65em; color: var(--secondary-color);">—— 天使轮硬科技商业计划书（超级工程实战落地后的全国复制推广阶段）</span></h1>
+        <span style="font-size: 0.62em; color: var(--secondary-color);">—— 天使轮硬科技商业计划书（超级工程实战落地后的全国复制推广阶段）</span></h1>
     </header>
 
     <div class="highlight-box">
         <p><strong>愿景：</strong>让每一根光纤拥有感知神经，让每一座结构工程具备智慧生命。</p>
-        <p><strong>定位：</strong>在大长桥梁及地下工程等高危基础设施领域，业主与保险机构对隐蔽结构“不可见、难预警、高赔付”存在强烈的风险减量与合规刚需；我们依托光纤光栅阵列技术与 AIP/FDE 交付体系，能够以可控成本将静态工程转化为可持续运营的数据资产，实现 FaaS（光纤即服务）商业变现。本轮天使轮融资 500 万元（投后估值 2,000 万元），将用于验证该模式在全国 75 个重点标的资产中的快速复制能力与高毛利长效运营转化</p>
+        <p><strong>定位：</strong>在大长桥梁及地下工程等高危基础设施领域，业主与保险机构对隐蔽结构“不可见、难预警、高赔付”存在强烈的风险减量与合规刚需；我们依托光纤光栅阵列技术与自研 AIP（AI-ready Data Platform 数据运营平台）及 FDE（Forward Deployed Engineer 前沿部署工程师）现场交付体系，能够以可控成本将静态工程转化为可持续运营的数据资产，实现 FaaS（光纤即服务）商业变现。本轮天使轮融资 500 万元（投后估值 2,000 万元），将用于验证该模式在全国 75 个重点标的资产中的快速复制能力与高毛利长效运营转化。</p>
     </div>
 
     <h2>一、 公司与团队介绍</h2>
     <div class="card-container">
         <div class="card">
             <h3>交大为达（北京）科技有限公司简介</h3>
-            <p>交大为达（北京）科技有限公司成立于2022年，是一家由北京交通大学教授和博士团队联合创立的高新技术企业，其中北京交通大学资产经营管理有限责任公司持股9.5%。公司依托“全光网络与现代通信网教育部重点实验室”以及“隧道及地下工程教育部工程研究中心”的前沿科研成果，致力于前沿光电传感技术的产业化转化。</p>
-            <p><strong>核心技术优势：</strong></p>
+            <p>交大为达（北京）科技有限公司成立于2022年，是一家由北京交通大学教授和博士团队联合创立的高新技术企业，其中北京交通大学资产经营管理有限责任公司持股9.5%。公司依托“全光网络与现代通信网教育部重点实验室”（由简水生院士创立）以及“隧道及地下工程教育部工程研究中心”的前沿科研成果，致力于前沿光电传感与光子计算技术的产业化转化。</p>
+            <p><strong>核心技术优势（源自教育部重点实验室突破）：</strong></p>
             <ul>
-                <li><strong>光纤光栅阵列技术：</strong>通过在线连续拉丝成栅工艺，在单根光纤上实现万点级传感器集成，以厘米级感知密度覆盖十公里级范围，实现低成本、规模化生产。</li>
-                <li><strong>声波级微振动解调仪：</strong>具备超微应变感知能力，作为模块化分布式声波传感（DAS）架构，突破了分布式光纤监测的灵敏度限制。</li>
+                <li><strong>超高密度光纤光栅阵列感知：</strong>突破在线连续拉丝成栅工艺与特种光纤研制，在单根光纤上实现万点级传感器集成与厘米级分辨率，覆盖十公里级范围，具备低成本大面积植入与结构同寿命优势。</li>
+                <li><strong>亚纳米级悬臂光波导与超灵敏解调：</strong>具备突破性的亚纳米级悬臂光波导位移测量与声波级微振动/超微应变解调技术，整体达国际先进水平（获2023年中国计量测试学会科技进步二等奖），并主导/参与国家标准制定（GB/T 43256）。</li>
+                <li><strong>国产自主智能光子AI芯片与光引擎：</strong>实现光子芯片设计-加工-封装-测试全流程国产化，自研感存算一体光子芯片与光引擎加速卡，实测任务处理能力提升5-6倍，功耗节约60%以上。</li>
+                <li><strong>微波-光波融合与通感算一体系统：</strong>融合三维集成多波束毫米波天线与大容量光纤通信/感知，构建光电混合与通感传一体化架构（获2024年中国通信学会科技进步二等奖），为重大隐蔽结构安全提供高可靠智能诊断与数据治理能力。</li>
             </ul>
         </div>
+        
         <div class="card">
             <h3>发展历程</h3>
             <p>公司核心技术已在多项国家重点工程与交通枢纽建设中完成实战落地验证：</p>
@@ -206,7 +221,7 @@
         <h3>博士团队介绍</h3>
         <p>公司汇聚了全员均为博士的高管团队，涵盖经营管理、市场拓展与科研攻关：</p>
         
-        <h4 style="color: var(--primary-color); margin-top: 8px; margin-bottom: 4px; border-left: 3px solid var(--secondary-color); padding-left: 6px; font-size: 0.95em;">运营团队</h4>
+        <h4 style="color: var(--primary-color); margin-top: 10px; margin-bottom: 6px; border-left: 3px solid var(--secondary-color); padding-left: 6px; font-size: 0.95em;">运营团队</h4>
         <div class="card-container" style="margin: 6px 0;">
             <div class="card" style="background: var(--bg-color);">
                 <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">范文孝 Ph.D.</h5>
@@ -218,23 +233,27 @@
             </div>
         </div>
 
-        <h4 style="color: var(--primary-color); margin-top: 10px; margin-bottom: 4px; border-left: 3px solid var(--secondary-color); padding-left: 6px; font-size: 0.95em;">科学家团队</h4>
-        <div class="card-container-4" style="margin: 6px 0;">
+        <h4 style="color: var(--primary-color); margin-top: 12px; margin-bottom: 6px; border-left: 3px solid var(--secondary-color); padding-left: 6px; font-size: 0.95em;">科学家团队</h4>
+        <div class="card-container-5" style="margin: 6px 0;">
+            <div class="card" style="background: #f8fafc; border: 1px dashed #cbd5e1;">
+                <h5 style="color: var(--primary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">简水生 院士 <span class="deceased-tag">已故</span></h5>
+                <p style="font-size: 0.82em; color: #475569;">中国科学院院士，北京交通大学光波技术研究所及全光网络与现代通信网教育部重点实验室创始人。国家级有突出贡献科技专家、全国五一劳动奖章、茅以升铁道科技奖、詹天佑大奖获得者，是我国光纤通信与光纤传感领域的奠基人之一。</p>
+            </div>
             <div class="card" style="background: var(--bg-color);">
                 <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">裴丽 Ph.D.</h5>
-                <p>北京交通大学教授、博士生导师，教育部新世纪优秀人才支持计划入选者、国家杰出青年科学基金获得者。担任北京通信学会光通信委员会主任、北京通信委员会理事及青年专家委员会委员，美国光学学会、中国光学学会、中国通信学会高级会员；主持国家和省部级项目10余项，发表高水平论文160余篇，授权专利70余项。</p>
+                <p style="font-size: 0.82em;">北京交通大学教授、博士生导师，实验室主任，国家杰出青年科学基金获得者、国务院政府特殊津贴专家。担任北京通信学会光通信委员会主任，中国通信学会会士，获得詹天佑铁道科技奖贡献奖；主持国家863重大、国自然重点等项目，授权专利70余项。</p>
             </div>
             <div class="card" style="background: var(--bg-color);">
                 <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">宁提纲 Ph.D.</h5>
-                <p>北京交通大学教授、博士生导师，教育部新世纪优秀人才。研究方向涵盖新型特种光纤与光电器件、光纤传感与物联网技术融合、电磁场与微波技术、光子芯片与人工智能协同匹配等，拥有70余项发明专利。</p>
+                <p style="font-size: 0.82em;">北京交通大学教授、博士生导师，教育部新世纪优秀人才。研究方向涵盖新型特种光纤与光电器件、光纤传感与物联网技术融合、光子芯片与人工智能协同匹配等，研究成果在高铁周界防范等领域广泛应用，拥有100余项发明专利。</p>
             </div>
             <div class="card" style="background: var(--bg-color);">
                 <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">李晶 Ph.D.</h5>
-                <p>北京交通大学副教授，2015年入选北京交通大学青年英才计划。长期致力于微波光子学器件以及 RoF 通信技术方面的研究，主持国家自然科学基金和北京市自然科学基金，以第一作者发表 SCI 检索期刊论文25篇，授权发明专利4项。</p>
+                <p style="font-size: 0.82em;">北京交通大学副教授，入选北京交通大学青年英才计划。长期致力于微波光子学器件以及 RoF 通信技术方面的研究，主持国家自然科学基金和北京市自然科学基金，发表 SCI 检索期刊论文25篇，授权发明专利4项。</p>
             </div>
             <div class="card" style="background: var(--bg-color);">
                 <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">刘胜春 Ph.D.</h5>
-                <p>北京交通大学土建学院研究员，武汉理工大学姜德生院士团队主要成员。拥有20年以上光纤光栅传感材料与基础设施结构安全监测经验，主导花江峡谷大桥、中海油陆丰新能源、张靖皋长江大桥等多项重大工程智慧缆索项目。</p>
+                <p style="font-size: 0.82em;">北京交通大学土建学院研究员，武汉理工大学姜德生院士团队主要成员。拥有20年以上光纤光栅传感材料与基础设施结构安全监测经验，主导花江峡谷大桥、中海油陆丰新能源、张靖皋长江大桥等多项重大工程智慧缆索项目。</p>
             </div>
         </div>
     </div>
@@ -253,7 +272,7 @@
             <tbody>
                 <tr>
                     <td><strong>0. 缺乏可持续的商业盈利模式</strong><br>（重表面建设、轻内部运营，项目建成后资金依赖财政或国企输血）</td>
-                    <td><strong>低成本数据质量管理平台 + FDE 专家深度介入</strong><br>（结合安责险与安全生产责任费用及 FaaS结果交付模式）</td>
+                    <td><strong>低成本 AIP 数据运营平台 + FDE 专家深度介入</strong><br>（结合安责险与安全生产责任费用及 FaaS结果交付模式）</td>
                     <td>· <strong>长效运营创收</strong>：将偏重一次性建设的传统工程，转化为具备长效隐蔽结构服务收益与数据增值的运营资产。</td>
                 </tr>
                 <tr>
@@ -273,7 +292,7 @@
                 </tr>
                 <tr>
                     <td><strong>4. 海量数据多但决策少</strong><br>（多源监测数据呈孤岛状态，缺乏统一治理标准）</td>
-                    <td><strong>数据质量管理平台</strong><br>（实现隐蔽结构多源数据采集、治理、校验、融合与资产化一体化）</td>
+                    <td><strong>AIP 数据运营平台</strong><br>（实现隐蔽结构多源数据采集、治理、校验、融合与资产化一体化）</td>
                     <td>· <strong>数据资产化</strong>：打破多方数据孤岛，建立统一标准，为数字化转型提供决策支撑。</td>
                 </tr>
                 <tr>
@@ -373,8 +392,8 @@
         <li><strong>核心技术与专利无条件转让：</strong> 为保障合资公司的独立资产所有权与合规审计要求，技术公司将其核心光纤感知及隐蔽结构监测相关专利和技术资产无条件转让至合资公司体内，确保合资公司具备自主知识产权。</li>
         <li><strong>优势互补与协同机制：</strong>
             <ul>
-                <li><strong>背景与场景契合：</strong> 交大为达由北京交通大学教授和博士创立，拥有光纤光栅阵列与声波级微振动解调等核心技术，在花江峡谷大桥、中海油浮式风电、张靖皋长江大桥等工程中成功实战验证；宁波交投拥有长三角海量的长大桥梁、跨海通道、高速路网与港航设施，面临高湿、高盐、重载环境，对内部资产安全有刚需。</li>
-                <li><strong>团队与要素结合：</strong> 技术公司无条件转让专利并注入 FaaS产品及 AIP 平台；通过 <strong>2000万元真实投后估值</strong>（第三方财务出资500万占25%）与国资形成资本闭环，承载国家级超级工程落地。</li>
+                <li><strong>背景与场景契合：</strong> 交大为达由北京交通大学教授和博士创立，传承简水生院士在光通信与传感领域的深厚积淀，拥有光纤光栅阵列、亚纳米悬臂波导、光子AI芯片与微波光子融合等核心技术，在花江峡谷大桥、中海油浮式风电、张靖皋长江大桥等工程中成功实战验证；宁波交投拥有长三角海量的长大桥梁、跨海通道、高速路网与港航设施，面临高湿、高盐、重载环境，对内部资产安全有刚需。</li>
+                <li><strong>团队与要素结合：</strong> 技术公司无条件转让专利并注入 FaaS产品及 AIP 数据运营平台；通过 <strong>2000万元真实投后估值</strong>（第三方财务出资500万占25%）与国资形成资本闭环，承载国家级超级工程落地。</li>
                 <li><strong>生态大闭环：</strong> 以技术赋能场景，将重资产工程升级为具备持续收益的运营资产；以场景赋能品牌，实现从标杆向全国复制；打通安责险与安全生产责任费用的合规变现通道，形成商业大闭环。</li>
             </ul>
         </li>
@@ -398,7 +417,6 @@
     <h2>八、 5年财务规划与运营指标演进（冲刺年收入过亿）</h2>
     <p><strong>财务与运营专项说明：</strong>遵循基础设施行业规律，项目初期（第1-2年）由于业主付费习惯及拓展壁垒，硬件直接变现较难，将初期光纤传感系统与智能感知光缆铺设界定为构筑壁垒的战略性重资产投入，前期呈现阶段性承压。随着硬件底座成型，中后期（第3-5年）转向高毛利的长效 FaaS数据运营、安责险分成及政务服务订阅，驱动主营业务收入突破亿元。</p>
     
-    <!-- 投资视角与核心概念解释区块 -->
     <div class="highlight-box" style="margin: 10px 0; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left-color: var(--accent-color);">
         <p><strong>【核心资本概念深度解析：注册资本、市场估值与财务份额】</strong></p>
         <p><strong>1. 注册资本（1,000万元，分两期实缴）：</strong> 
@@ -444,7 +462,7 @@
                     <td>1</td>
                 </tr>
                 <tr>
-                    <td>- AIP 平台代码质量与信息安全审计工程师（固定核心 1 人）</td>
+                    <td>- AIP 代码质量与信息安全审计工程师（固定核心 1 人）</td>
                     <td>1</td>
                     <td>1</td>
                     <td>1</td>
@@ -556,7 +574,7 @@
                     <td><strong>1,700</strong></td>
                 </tr>
                 <tr>
-                    <td>- AIP 数据质量平台内部治理维保与标准定制服务</td>
+                    <td>- AIP 数据治理维保与标准定制服务</td>
                     <td>0 (立项培育)</td>
                     <td>50</td>
                     <td>100</td>
@@ -620,7 +638,7 @@
                     <td><strong>850</strong></td>
                 </tr>
                 <tr>
-                    <td>- 1. AIP 平台系统日常维护与第三方代码安全审计费用</td>
+                    <td>- 1. AIP 日常维护与第三方代码安全审计费用</td>
                     <td>75</td>
                     <td>85</td>
                     <td>100</td>
