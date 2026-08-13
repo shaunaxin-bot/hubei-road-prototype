@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>基础设施内部结构安全数据运营服务（FOS - Fiber Optic as a Service，光纤即服务）商业计划书</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础设施隐蔽结构安全数据运营服务（FaaS- Fiber Optic as a Service）商业计划书</title>
     <style>
         :root {
             --primary-color: #1e3a8a;
@@ -17,47 +18,48 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.35;
+            line-height: 1.45;
             color: var(--text-main);
             background-color: var(--bg-color);
             max-width: 1280px;
             margin: 0 auto;
-            padding: 10px 15px;
+            padding: 12px 20px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         h1 {
             color: var(--primary-color);
-            font-size: 1.8em;
-            margin-bottom: 6px;
+            font-size: 1.75em;
+            margin-bottom: 8px;
             letter-spacing: -0.5px;
+            line-height: 1.3;
         }
 
         .highlight-box {
             background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
             border-left: 4px solid var(--secondary-color);
-            padding: 8px 14px;
-            border-radius: 4px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-            margin-bottom: 12px;
+            padding: 14px 18px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 16px;
         }
 
         .highlight-box p {
-            margin: 3px 0;
+            margin: 5px 0;
             font-size: 0.92em;
             color: #1e293b;
         }
 
         h2 {
             color: var(--primary-color);
-            font-size: 1.2em;
-            margin-top: 14px;
-            margin-bottom: 6px;
-            padding-bottom: 3px;
+            font-size: 1.25em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
             border-bottom: 2px solid var(--border-color);
             display: flex;
             align-items: center;
@@ -67,61 +69,61 @@
             content: "";
             display: inline-block;
             width: 4px;
-            height: 14px;
+            height: 16px;
             background-color: var(--secondary-color);
-            margin-right: 6px;
+            margin-right: 8px;
             border-radius: 2px;
         }
 
         p, li {
             font-size: 0.9em;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         ul {
-            padding-left: 18px;
-            margin: 4px 0;
+            padding-left: 20px;
+            margin: 6px 0;
         }
 
         li {
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 10px;
-            margin: 8px 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 12px;
+            margin: 10px 0;
         }
 
         .card-container-4 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 10px;
-            margin: 8px 0;
+            margin: 10px 0;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 10px 12px;
+            padding: 12px 16px;
             border-radius: 6px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
         }
 
         .card h3 {
             color: var(--secondary-color);
             margin-top: 0;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-size: 1.05em;
         }
 
         .table-container {
             background: var(--card-bg);
             border-radius: 6px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             overflow-x: auto;
-            margin: 8px 0;
+            margin: 10px 0;
             border: 1px solid var(--border-color);
         }
 
@@ -132,7 +134,7 @@
         }
 
         th, td {
-            padding: 6px 10px;
+            padding: 8px 12px;
             font-size: 0.85em;
         }
 
@@ -158,36 +160,37 @@
             margin-bottom: 4px;
         }
 
-        .tag-tob { background-color: #dbeafe; color: #1e40af; padding: 1px 4px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
-        .tag-tof { background-color: #fef3c7; color: #b45309; padding: 1px 4px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
-        .tag-tog { background-color: #d1fae5; color: #065f46; padding: 1px 4px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
+        .tag-tob { background-color: #dbeafe; color: #1e40af; padding: 1px 5px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
+        .tag-tof { background-color: #fef3c7; color: #b45309; padding: 1px 5px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
+        .tag-tog { background-color: #d1fae5; color: #065f46; padding: 1px 5px; border-radius: 3px; font-size: 0.8em; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>基础设施内部结构安全数据运营服务（FOS - Fiber Optic as a Service，光纤即服务）<br>
-        <span style="font-size: 0.65em; color: var(--secondary-color);">—— 天使轮硬科技商业计划书（超级工程实战落地后的全国复制推广阶段）</span></h1>
+        <h1>基础设施隐蔽结构安全数据运营服务（FaaS- Fiber Optic as a Service，光纤即服务）<br>
+        <span style="font-size: 0.62em; color: var(--secondary-color);">—— 天使轮硬科技商业计划书（超级工程实战落地后的全国复制推广阶段）</span></h1>
     </header>
 
     <div class="highlight-box">
-        <p><strong>愿景与口号：</strong>让每一根光纤拥有感知神经，让每一座结构工程具备智慧生命。</p>
-        <p><strong>核心定位与当前使命：</strong>核心技术已在国家级超级工程中完成实战落地验证。当前正处于<strong>超级工程实战落地后的全国复制推广阶段</strong>。我们将依托 AIP（数据质量管理平台）与 FDE（现场交付专家团队），全面开启全国 75 个重点高危标的资产的规模化推广，将静态重大工程转化为可持续运营的内部结构数据资产与 FOS 结果服务收益。</p>
+        <p><strong>愿景：</strong>让每一根光纤拥有感知神经，让每一座结构工程具备智慧生命。</p>
+        <p><strong>定位：</strong>在大长桥梁及地下工程等高危基础设施领域，业主与保险机构对隐蔽结构“不可见、难预警、高赔付”存在强烈的风险减量与合规刚需；我们依托光纤光栅阵列技术与自研 AIP（AI-ready Data Platform 数据运营平台）及 FDE（Forward Deployed Engineer 前沿部署工程师）现场交付体系，能够以可控成本将静态工程转化为可持续运营的数据资产，实现 FaaS（光纤即服务）商业变现。本轮天使轮融资 500 万元（投后估值 2,000 万元），将用于验证该模式在全国 75 个重点标的资产中的快速复制能力与高毛利长效运营转化。</p>
     </div>
 
-    <h2>一、 公司介绍</h2>
+    <h2>一、 公司与团队介绍</h2>
     <div class="card-container">
         <div class="card">
             <h3>交大为达（北京）科技有限公司简介</h3>
-            <p>交大为达（北京）科技有限公司成立于2022年，总部坐落于北京，是一家由北京交通大学教授和博士团队联合创立的高新技术企业，其中北京交通大学资产经营管理有限责任公司持股9.5%。公司依托“全光网络与现代通信网教育部重点实验室”以及“隧道及地下工程教育部工程研究中心”的前沿科研成果，致力于前沿光电传感技术的产业化转化。</p>
+            <p>交大为达（北京）科技有限公司成立于2022年，是一家由北京交通大学教授和博士团队联合创立的高新技术企业，其中北京交通大学资产经营管理有限责任公司持股9.5%。公司依托“全光网络与现代通信网教育部重点实验室”以及“隧道及地下工程教育部工程研究中心”的前沿科研成果，致力于前沿光电传感与光子计算技术的产业化转化。</p>
             <p><strong>核心技术优势：</strong></p>
             <ul>
-                <li><strong>光纤光栅阵列技术：</strong>通过在线连续拉丝成栅工艺，在单根光纤上实现万点级传感器集成，以厘米级感知密度覆盖十公里级范围，实现低成本、规模化生产。</li>
-                <li><strong>声波级微振动解调仪：</strong>具备超微应变感知能力，作为模块化分布式声波传感（DAS）架构，突破了分布式光纤监测的灵敏度限制。</li>
+                <li><strong>超高密度光纤光栅阵列感知：</strong>突破在线连续拉丝成栅工艺与特种光纤研制，在单根光纤上实现万点级传感器集成与厘米级分辨率，覆盖十公里级范围，具备低成本大面积植入与结构同寿命优势。</li>
+                <li><strong>微波-光波融合与通感算一体系统：</strong>融合三维集成多波束毫米波天线与大容量光纤通信/感知，构建光电混合与通感传一体化架构（获2024年中国通信学会科技进步二等奖），为重大隐蔽结构安全提供高可靠智能诊断与数据治理能力。</li>
             </ul>
         </div>
+        
         <div class="card">
-            <h3>发展历程与超级工程实战足迹</h3>
+            <h3>发展历程</h3>
             <p>公司核心技术已在多项国家重点工程与交通枢纽建设中完成实战落地验证：</p>
             <ul>
                 <li><strong>2019.12：</strong>联合交通运输部建设全国公路水运工程试验检测机构检测数据直报平台。</li>
@@ -197,27 +200,72 @@
                 <li><strong>2024.7：</strong>服务世界第一高桥——贵州“花江峡谷大桥”智慧缆索项目，圆满完成首发实战落地。</li>
                 <li><strong>2025.7：</strong>注册成立贵州子公司，常态化部署智慧缆索团队；同年10月服务全球首个16兆瓦深远海浮式风电平台“中海油陆丰新能源”海洋平台系泊缆智能监测。</li>
                 <li><strong>2025.11：</strong>注册成立宁波公司，深耕长三角交通一体化与基础设施安全运营。</li>
-                <li><strong>2026.1：</strong>服务世界第一跨度悬索桥——张靖皋长江大桥智慧缆索内部结构监测项目。</li>
+                <li><strong>2026.1：</strong>服务世界第一跨度悬索桥——张靖皋长江大桥智慧缆索隐蔽结构监测项目。</li>
             </ul>
         </div>
     </div>
 
+    <div class="card" style="margin-top: 10px;">
+        <h3>核心团队介绍</h3>
+        <p>公司汇聚了由交通工程资深专家、高级管理人才与知名高校博士专家组成的复合型团队，涵盖经营管理、资本运作、渠道拓展与科研攻关：</p>
+        
+        <h4 style="color: var(--primary-color); margin-top: 10px; margin-bottom: 6px; border-left: 3px solid var(--secondary-color); padding-left: 6px; font-size: 0.95em;">运营团队</h4>
+        <div class="card-container" style="margin: 6px 0;">
+            <div class="card" style="background: var(--bg-color);">
+                <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">范文孝 Ph.D. <span style="font-size: 0.85em; font-weight: normal; color: var(--text-main);">（运营负责人）</span></h5>
+                <p>现任交大为达（北京）科技有限公司法人兼执行董事，大连理工大学博士。拥有35年交通行业履历，曾任职于交通运输部安全质量监督管理司、中铁亚太（新加坡）、中交第四公路工程局、辽宁省交通厅和辽宁省路桥建设总公司等。精通高速公路工程建设管理、政府安全质量监管及智慧公路与BIM技术应用的实战落地。</p>
+            </div>
+            <div class="card" style="background: var(--bg-color);">
+                <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">周海斌 <span style="font-size: 0.85em; font-weight: normal; color: var(--text-main);">（投资负责人）</span></h5>
+                <p>现任交大为达（宁波）科技有限公司总经理。拥有30年交通基础设施建设、大型国央企及实业投资运营经验。曾任宁波交通工程建设集团路面公司常务副经理、宁波绕城高速项目经理、宁波中海实业投资公司总经理及实业发展公司董事长等职。精通交通工程投融资、政企合作、商业模式设计及项目全生命周期运营。</p>
+            </div>
+            <div class="card" style="background: var(--bg-color);">
+                <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">姚东晔 <span style="font-size: 0.85em; font-weight: normal; color: var(--text-main);">（渠道负责人）</span></h5>
+                <p>现任交大为达（宁波）科技有限公司副总经理。拥有30年工程建设、质量检测、监理及新材料企业管理经验。曾任宁波交通工程建设集团中心试验室主任、宁波绕城高速项目总工、龙元建设与宁波中海实业高管及多家新材料与工程管理公司总经理/副总经理。深谙工程技术规范，在政企渠道搭建与安责险业务落地方面具备丰富资源。</p>
+            </div>
+            <div class="card" style="background: var(--bg-color);">
+                <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">辛晓红 Ph.D. <span style="font-size: 0.85em; font-weight: normal; color: var(--text-main);">（技术负责人）</span></h5>
+                <p>美国田纳西大学博士，深圳市高层次人才，智能交通与建筑信息工程专家。曾任职于美国橡树岭国家实验室、佛罗里达州交通署、香港中文大学及同济大学交通工程系。有20年交通科技企业创业及顺丰集团专家销售经验，曾主导顺丰政企高速与城市交通AI感知产品的商业化落地，精通时空数据治理及政企标品产业化。</p>
+            </div>
+        </div>
+
+        <h4 style="color: var(--primary-color); margin-top: 12px; margin-bottom: 6px; border-left: 3px solid var(--secondary-color); padding-left: 6px; font-size: 0.95em;">科学家团队</h4>
+        <div class="card-container-4" style="margin: 6px 0;">
+            <div class="card" style="background: var(--bg-color);">
+                <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">宁提纲 Ph.D.</h5>
+                <p style="font-size: 0.82em;">北京交通大学教授、博士生导师，教育部新世纪优秀人才。研究方向涵盖新型特种光纤与光电器件、光纤传感与物联网技术融合、光子芯片与人工智能协同匹配等，研究成果在高铁周界防范等领域广泛应用，拥有100余项发明专利。</p>
+            </div>
+            <div class="card" style="background: var(--bg-color);">
+                <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">刘胜春 Ph.D.</h5>
+                <p style="font-size: 0.82em;">北京交通大学土建学院研究员，武汉理工大学姜德生院士团队主要成员。拥有20年以上光纤光栅传感材料与基础设施结构安全监测经验，主导花江峡谷大桥、中海油陆丰新能源、张靖皋长江大桥等多项重大工程智慧缆索项目。</p>
+            </div>
+            <div class="card" style="background: var(--bg-color);">
+                <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">裴丽 Ph.D.</h5>
+                <p style="font-size: 0.82em;">北京交通大学教授、博士生导师，实验室主任，国家杰出青年科学基金获得者、国务院政府特殊津贴专家。担任北京通信学会光通信委员会主任，中国通信学会会士，获得詹天佑铁道科技奖贡献奖；主持国家863重大、国自然重点等项目，授权专利70余项。</p>
+            </div>
+            <div class="card" style="background: var(--bg-color);">
+                <h5 style="color: var(--secondary-color); margin-top: 0; margin-bottom: 4px; font-size: 0.95em;">李晶 Ph.D.</h5>
+                <p style="font-size: 0.82em;">北京交通大学副教授，入选北京交通大学青年英才计划。长期致力于微波光子学器件以及 RoF 通信技术方面的研究，主持国家自然科学基金和北京市自然科学基金，发表 SCI 检索期刊论文25篇，授权发明专利4项。</p>
+            </div>
+        </div>
+    </div>
+
     <h2>二、 行业痛点与产品解决方案</h2>
-    <p>针对基础设施及高危行业内部运营面临的复杂环境与传统运维短板，FOS 体系提供系统化的产品解决方案：</p>
+    <p>针对基础设施及高危行业内部运营面临的复杂环境与传统运维短板，FaaS体系提供系统化的产品解决方案：</p>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
                     <th style="width: 28%;">传统运维痛点剖析</th>
-                    <th style="width: 38%;">FOS 核心产品与技术解决方案</th>
+                    <th style="width: 38%;">FaaS核心产品与技术解决方案</th>
                     <th style="width: 34%;">为客户创造的明确商业价值</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><strong>0. 缺乏可持续的商业盈利模式</strong><br>（重表面建设、轻内部运营，项目建成后资金依赖财政或国企输血）</td>
-                    <td><strong>低成本数据质量管理平台 + FDE 专家深度介入</strong><br>（结合安责险与安全生产责任费用及 FOS 结果交付模式）</td>
-                    <td>· <strong>长效运营创收</strong>：将偏重一次性建设的传统工程，转化为具备长效内部结构服务收益与数据增值的运营资产。</td>
+                    <td><strong>低成本 AIP 数据运营平台 + FDE 专家深度介入</strong><br>（结合安责险与安全生产责任费用及 FaaS结果交付模式）</td>
+                    <td>· <strong>长效运营创收</strong>：将偏重一次性建设的传统工程，转化为具备长效隐蔽结构服务收益与数据增值的运营资产。</td>
                 </tr>
                 <tr>
                     <td><strong>1. 内部隐性衰变风险难觉察</strong><br>（结构内部损伤与隐患看不见、摸不着，事后排查滞后）</td>
@@ -226,7 +274,7 @@
                 </tr>
                 <tr>
                     <td><strong>2. 内部监测设备寿命短</strong><br>（百年设计寿命 vs 传统易损坏的电子传感器）</td>
-                    <td><strong>内置式智能感知光缆（新型智慧筋）</strong><br>（传感单元与内部结构有机融合，同步设计、同步服役）</td>
+                    <td><strong>内置式智能感知光缆（新型智慧筋）</strong><br>（传感单元与隐蔽结构有机融合，同步设计、同步服役）</td>
                     <td>· <strong>寿命同周期</strong>：解决传感器易损需频繁更换的痛点，实现结构与感知系统长效同寿命。</td>
                 </tr>
                 <tr>
@@ -236,13 +284,13 @@
                 </tr>
                 <tr>
                     <td><strong>4. 海量数据多但决策少</strong><br>（多源监测数据呈孤岛状态，缺乏统一治理标准）</td>
-                    <td><strong>数据质量管理平台</strong><br>（实现内部结构多源数据采集、治理、校验、融合与资产化一体化）</td>
+                    <td><strong>AIP 数据运营平台</strong><br>（实现隐蔽结构多源数据采集、治理、校验、融合与资产化一体化）</td>
                     <td>· <strong>数据资产化</strong>：打破多方数据孤岛，建立统一标准，为数字化转型提供决策支撑。</td>
                 </tr>
                 <tr>
                     <td><strong>5. 缺乏一体化商业产品</strong><br>（市场上缺乏打通底层硬件到顶层结果交付的产业级产品）</td>
                     <td><strong>轻资产联合运营与结果交付模式</strong><br>（通过轻量化端节点部署与长效运营服务收费分成）</td>
-                    <td>· <strong>商业大闭环</strong>: 通过 FOS 结果服务与安责险分成，将硬件采购转化为长效服务与持续运营收益。</td>
+                    <td>· <strong>商业大闭环</strong>: 通过 FaaS结果服务与安责险分成，将硬件采购转化为长效服务与持续运营收益。</td>
                 </tr>
             </tbody>
         </table>
@@ -279,7 +327,7 @@
     </div>
 
     <h2>四、 市场规模评估</h2>
-    <p>基于基础设施存量资产基数、国家安全运营政策红利及跨行业应用场景，本章对 FOS 体系的市场空间进行评估：</p>
+    <p>基于基础设施存量资产基数、国家安全运营政策红利及跨行业应用场景，本章对 FaaS体系的市场空间进行评估：</p>
     <div class="card-container">
         <div class="card">
             <h3>1. 宁波本地首发主阵地市场</h3>
@@ -291,7 +339,7 @@
         </div>
         <div class="card">
             <h3>3. 跨行业多场景横向拓展潜力</h3>
-            <p>FOS 技术模式向城市轨道交通、水利水电大坝、煤矿巷道、化工园区及深远海风电系泊缆等高危安全运营市场稳步推广，形成多维行业数据沉淀。</p>
+            <p>FaaS技术模式向城市轨道交通、水利水电大坝、煤矿巷道、化工园区及深远海风电系泊缆等高危安全运营市场稳步推广，形成多维行业数据沉淀。</p>
         </div>
     </div>
 
@@ -314,30 +362,34 @@
     <h2>五、 政策双轮驱动与商业模式创新</h2>
     <ul>
         <li><strong>政策双轮驱动：</strong> 紧密契合应急管理部安全生产责任保险相关政策及财政部企业安全生产费用管理办法，推动安全生产责任费用支出从偏重表面硬件采购拓展至内部风险监测与数字化治理。</li>
-        <li><strong>商业模式创新（FOS 结果交付）：</strong> 告别传统软硬件买断模式，转向“交付内部风险降低、保费优化、安全提升与长效运营” FOS 结果交付模式。</li>
-        <li><strong>政务信息化节奏与立项策略：</strong> 适应政府项目立项周期长的特点，前三年重点开展 AIP 数据治理试点与标杆培育，夯实数据底座；自第 3-4 年起推出政府内部结构数据分析与决策支持系统订阅，实现服务变现。</li>
+        <li><strong>商业模式创新（FaaS结果交付）：</strong> 告别传统软硬件买断模式，转向“交付内部风险降低、保费优化、安全提升与长效运营” FaaS结果交付模式。</li>
+        <li><strong>政务信息化节奏与立项策略：</strong> 适应政府项目立项周期长的特点，前三年重点开展 AIP 数据治理试点与标杆培育，夯实数据底座；自第 3-4 年起推出政府隐蔽结构数据分析与决策支持系统订阅，实现服务变现。</li>
     </ul>
 
     <h2>六、 标杆案例与重大工程验证</h2>
-    <p>FOS 体系已在多项国家级超级工程中得到实战检验：</p>
+    <p>FaaS体系已在多项国家级超级工程中得到实战检验：</p>
     <ul>
-        <li><strong>贵州花江峡谷大桥：</strong> 世界首座山区超高悬索桥内部结构光纤感知示范工程（主跨1420米，谷底高差625米），实现多参数全生命周期连续监测。</li>
+        <li><strong>贵州花江峡谷大桥：</strong> 世界首座山区超高悬索桥隐蔽结构光纤感知示范工程（主跨1420米，谷底高差625米），实现多参数全生命周期连续监测。</li>
         <li><strong>张靖皋长江大桥：</strong> 服务世界级超大跨度悬索桥内部光纤监测项目，为跨海通道安全运营构筑科技屏障。</li>
-        <li><strong>多场景横向延伸验证：</strong> 推进深远海风电平台系泊缆及内部结构监测（如中海油陆丰新能源项目），并逐步在地下轨道管廊形变监测、水利大坝应力监测及煤矿巷道支护安全评估等领域开展试点。</li>
+        <li><strong>多场景横向延伸验证：</strong> 推进深远海风电平台系泊缆及隐蔽结构监测（如中海油陆丰新能源项目），并逐步在地下轨道管廊形变监测、水利大坝应力监测及煤矿巷道支护安全评估等领域开展试点。</li>
     </ul>
+
+    <div style="margin: 20px 0; text-align: center;">
+        <img src="./images/3mainprojects.png" alt="核心标杆超级工程实战展示" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e2e8f0;" />
+    </div>
 
     <h2>七、 合作模式、股权结构与制衡机制</h2>
     <ul>
         <li><strong>商业合作模式：</strong> 采取合资运营与 BOO 模式，由地方国资、技术公司与第三方财务投资方共同发起设立合资公司。</li>
-        <li><strong>核心技术与专利无条件转让：</strong> 为保障合资公司的独立资产所有权与合规审计要求，技术公司将其核心光纤感知及内部结构监测相关专利和技术资产无条件转让至合资公司体内，确保合资公司具备自主知识产权。</li>
+        <li><strong>核心技术与专利无条件转让：</strong> 为保障合资公司的独立资产所有权与合规审计要求，技术公司将其核心光纤感知及隐蔽结构监测相关专利和技术资产无条件转让至合资公司体内，确保合资公司具备自主知识产权。</li>
         <li><strong>优势互补与协同机制：</strong>
             <ul>
-                <li><strong>背景与场景契合：</strong> 交大为达由北京交通大学教授和博士创立，拥有光纤光栅阵列与声波级微振动解调等核心技术，在花江峡谷大桥、中海油浮式风电、张靖皋长江大桥等工程中成功实战验证；宁波交投拥有长三角海量的长大桥梁、跨海通道、高速路网与港航设施，面临高湿、高盐、重载环境，对内部资产安全有刚需。</li>
-                <li><strong>团队与要素结合：</strong> 技术公司无条件转让专利并注入 FOS 产品及 AIP 平台；通过 <strong>2000万元真实投后估值</strong>（第三方财务出资500万占25%）与国资形成资本闭环，承载国家级超级工程落地。</li>
+                <li><strong>背景与场景契合：</strong> 交大为达由北京交通大学教授和博士创立，传承在光通信与传感领域的深厚积淀，拥有光纤光栅阵列、亚纳米悬臂波导、光子AI芯片与微波光子融合等核心技术，在花江峡谷大桥、中海油浮式风电、张靖皋长江大桥等工程中成功实战验证；宁波交投拥有长三角海量的长大桥梁、跨海通道、高速路网与港航设施，面临高湿、高盐、重载环境，对内部资产安全有刚需。</li>
+                <li><strong>团队与要素结合：</strong> 技术公司无条件转让专利并注入 FaaS产品及 AIP 数据运营平台；通过 <strong>2000万元真实投后估值</strong>（第三方财务出资500万占25%）与国资形成资本闭环，承载国家级超级工程落地。</li>
                 <li><strong>生态大闭环：</strong> 以技术赋能场景，将重资产工程升级为具备持续收益的运营资产；以场景赋能品牌，实现从标杆向全国复制；打通安责险与安全生产责任费用的合规变现通道，形成商业大闭环。</li>
             </ul>
         </li>
-        <li><strong>技术与要素输入：</strong> 技术公司向合资公司输入 FOS 产品、RaaS/FOS 商业模式，导入跨区域、跨行业的关键工程项目资源。</li>
+        <li><strong>技术与要素输入：</strong> 技术公司向合资公司输入 FaaS产品、RaaS/FaaS商业模式，导入跨区域、跨行业的关键工程项目资源。</li>
         <li><strong>合资公司注册资本底盘与股权架构（注册资本 1000万，估值 2000万）：</strong>
             <ul>
                 <li><strong>终局股权比例：</strong> 交投持股 35%（认缴 350 万），技术公司持股 40%（认缴 400 万），第三方财务投资方持股 25%（认缴 250 万）。</li>
@@ -355,9 +407,8 @@
     </ul>
 
     <h2>八、 5年财务规划与运营指标演进（冲刺年收入过亿）</h2>
-    <p><strong>财务与运营专项说明：</strong>遵循基础设施行业规律，项目初期（第1-2年）由于业主付费习惯及拓展壁垒，硬件直接变现较难，将初期光纤传感系统与智能感知光缆铺设界定为构筑壁垒的战略性重资产投入，前期呈现阶段性承压。随着硬件底座成型，中后期（第3-5年）转向高毛利的长效 FOS 数据运营、安责险分成及政务服务订阅，驱动主营业务收入突破亿元。</p>
+    <p><strong>财务与运营专项说明：</strong>遵循基础设施行业规律，项目初期（第1-2年）由于业主付费习惯及拓展壁垒，硬件直接变现较难，将初期光纤传感系统与智能感知光缆铺设界定为构筑壁垒的战略性重资产投入，前期呈现阶段性承压。随着硬件底座成型，中后期（第3-5年）转向高毛利的长效 FaaS数据运营、安责险分成及政务服务订阅，驱动主营业务收入突破亿元。</p>
     
-    <!-- 投资视角与核心概念解释区块 -->
     <div class="highlight-box" style="margin: 10px 0; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left-color: var(--accent-color);">
         <p><strong>【核心资本概念深度解析：注册资本、市场估值与财务份额】</strong></p>
         <p><strong>1. 注册资本（1,000万元，分两期实缴）：</strong> 
@@ -368,17 +419,21 @@
            财务投资方持有 25% 权益。锁定第 5 年冲刺年收入 12,800万元、净利润超 7,000万元的成熟期，通过科创板/北交所上市、数据资产挂牌、产业大厂并购或管理层回购实现 10 倍以上回报的多元退出。</p>
     </div>
 
+    <div style="margin: 20px 0; text-align: center;">
+        <img src="./images/financials_evolution_cn.png" alt="5年财务规划与运营指标演进" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e2e8f0;" />
+    </div>
+
     <div class="note">(单位：人民币万元，估值除外)</div>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
                     <th style="width: 32%;">财务、运营与资本核心指标 / 发展年份</th>
-                    <th style="width: 13.6%;">第1年<br>(试点投入期)</th>
-                    <th style="width: 13.6%;">第2年<br>(推广破局期)</th>
-                    <th style="width: 13.6%;">第3年<br>(成长期)</th>
-                    <th style="width: 13.6%;">第4年<br>(成熟期)</th>
-                    <th style="width: 13.6%;">第5年<br>(规模化期-过亿)</th>
+                    <th style="width: 13.6%;">第1年<br>(试点)</th>
+                    <th style="width: 13.6%;">第2年<br>(扩展)</th>
+                    <th style="width: 13.6%;">第3年<br>(增长)</th>
+                    <th style="width: 13.6%;">第4年<br>(成熟)</th>
+                    <th style="width: 13.6%;">第5年<br>(规模化-过亿)</th>
                 </tr>
             </thead>
             <tbody>
@@ -399,7 +454,7 @@
                     <td>1</td>
                 </tr>
                 <tr>
-                    <td>- AIP 平台代码质量与信息安全审计工程师（固定核心 1 人）</td>
+                    <td>- AIP 代码质量与信息安全审计工程师（固定核心 1 人）</td>
                     <td>1</td>
                     <td>1</td>
                     <td>1</td>
@@ -407,7 +462,7 @@
                     <td>1</td>
                 </tr>
                 <tr>
-                    <td>- FDE 现场内部结构植入工程专家与边缘计算专家</td>
+                    <td>- FDE 现场隐蔽结构植入工程专家与边缘计算专家</td>
                     <td>2</td>
                     <td>4</td>
                     <td>6</td>
@@ -447,7 +502,7 @@
                     <td><strong>12,800</strong></td>
                 </tr>
                 <tr>
-                    <td><strong>1. 基础设施与高危资产方 <span class="tag-tob">ToB</span>（含 FOS 服务及内部硬件底座运营转化）</strong></td>
+                    <td><strong>1. 基础设施与高危资产方 <span class="tag-tob">ToB</span>（含 FaaS服务及内部硬件底座运营转化）</strong></td>
                     <td><strong>40</strong></td>
                     <td><strong>320</strong></td>
                     <td><strong>1,200</strong></td>
@@ -455,7 +510,7 @@
                     <td><strong>7,500</strong></td>
                 </tr>
                 <tr>
-                    <td>- 大型桥梁/跨海通道内部结构安全运营类</td>
+                    <td>- 大型桥梁/跨海通道隐蔽结构安全运营类</td>
                     <td>40</td>
                     <td>200</td>
                     <td>700</td>
@@ -463,7 +518,7 @@
                     <td>3,800</td>
                 </tr>
                 <tr>
-                    <td>- 轨道交通与大中型水利工程内部结构类</td>
+                    <td>- 轨道交通与大中型水利工程隐蔽结构类</td>
                     <td>0</td>
                     <td>80</td>
                     <td>320</td>
@@ -471,7 +526,7 @@
                     <td>2,200</td>
                 </tr>
                 <tr>
-                    <td>- 煤矿、高危园区与能源内部结构安全类</td>
+                    <td>- 煤矿、高危园区与能源隐蔽结构安全类</td>
                     <td>0</td>
                     <td>40</td>
                     <td>180</td>
@@ -511,7 +566,7 @@
                     <td><strong>1,700</strong></td>
                 </tr>
                 <tr>
-                    <td>- AIP 数据质量平台内部治理维保与标准定制服务</td>
+                    <td>- AIP 数据治理维保与标准定制服务</td>
                     <td>0 (立项培育)</td>
                     <td>50</td>
                     <td>100</td>
@@ -519,7 +574,7 @@
                     <td>400</td>
                 </tr>
                 <tr>
-                    <td>- 政府内部结构数据分析与决策支持系统软件订阅及服务费</td>
+                    <td>- 政府隐蔽结构数据分析与决策支持系统软件订阅及服务费</td>
                     <td>0 (方案验证)</td>
                     <td>100</td>
                     <td>300</td>
@@ -575,7 +630,7 @@
                     <td><strong>850</strong></td>
                 </tr>
                 <tr>
-                    <td>- 1. AIP 平台系统日常维护与第三方代码安全审计费用</td>
+                    <td>- 1. AIP 日常维护与第三方代码安全审计费用</td>
                     <td>75</td>
                     <td>85</td>
                     <td>100</td>
