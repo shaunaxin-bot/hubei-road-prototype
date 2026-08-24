@@ -941,6 +941,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1369,6 +1370,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -17217,19 +17219,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
         depts: "",
         docs: "",
         icon: portalMode === "G" ? "Cpu" : "Settings",
-        extra: /* @__PURE__ */ React.createElement("div", { className: "flex gap-2 items-center" }, /* @__PURE__ */ React.createElement(
-          "button",
-          {
-            onClick: () => {
-              setShowWizard(true);
-              setWizardStep(0);
-              setActiveStep(0);
-            },
-            className: `flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 transform active:scale-95 ${showWizard ? "bg-red-800 text-white shadow-inner border border-red-900" : "bg-gradient-to-r from-rose-500 to-red-600 text-white shadow-md shadow-rose-100 hover:shadow-lg hover:shadow-rose-200 hover:-translate-y-0.5 border border-rose-500 ring-2 ring-rose-500/20"}`
-          },
-          /* @__PURE__ */ React.createElement(HelpCircle, { size: 14 }),
-          "\u{1F9ED} \u4F7F\u7528\u5411\u5BFC"
-        ), !isStandalone && /* @__PURE__ */ React.createElement(
+        extra: /* @__PURE__ */ React.createElement("div", { className: "flex gap-2 items-center" }, !isStandalone && /* @__PURE__ */ React.createElement(
           "button",
           {
             onClick: () => {
@@ -17482,47 +17472,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
         },
         "\u{1F680} \u53D1\u5E03\u6B63\u5F0F\u7248\u672C"
       )));
-    })))), /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-3 border-t border-slate-100 flex flex-col gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] font-bold text-slate-400 uppercase tracking-wider" }, "\u9636\u6BB5\u4EA4\u4ED8\u6210\u679C\u5F52\u6863"), /* @__PURE__ */ React.createElement("div", { className: "space-y-1.5" }, activeData.boardDocs.map((doc, di) => /* @__PURE__ */ React.createElement("div", { key: di, className: "flex flex-col gap-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded p-2 text-xs transition-colors group" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-start" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-start gap-1.5 min-w-0 pr-2" }, /* @__PURE__ */ React.createElement(FileText, { size: 12, className: `mt-0.5 shrink-0 ${doc.name.endsWith(".xlsx") ? "text-emerald-500" : doc.name.endsWith(".json") ? "text-amber-500" : "text-blue-500"}` }), /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-700 font-bold leading-tight break-all" }, doc.name)), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" }, /* @__PURE__ */ React.createElement(Eye, { size: 12, className: "text-slate-400 hover:text-blue-600 cursor-pointer" }), /* @__PURE__ */ React.createElement(Download, { size: 12, className: "text-slate-400 hover:text-blue-600 cursor-pointer" }))), /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center mt-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-400" }, "12.5KB | \u521A\u521A"), /* @__PURE__ */ React.createElement("span", { className: `text-[9.5px] font-bold flex items-center gap-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity ${doc.targetType === "kb" ? "text-blue-600" : "text-emerald-600"}` }, /* @__PURE__ */ React.createElement(Plus, { size: 10 }), doc.targetType === "kb" ? `\u77E5\u8BC6\u5E93: ${doc.targetName}` : `BD-OS: ${doc.targetName}`))))))))), showWizard && /* @__PURE__ */ React.createElement("div", { className: "absolute bottom-4 right-4 w-96 wizard-panel rounded-2xl border p-5 shadow-2xl z-50 flex flex-col gap-2 fade-in" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center border-b border-slate-100 pb-2 shrink-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2.5" }, /* @__PURE__ */ React.createElement("div", { className: "relative" }, /* @__PURE__ */ React.createElement("div", { className: "w-10 h-10 rounded-full bg-red-50 border border-red-200 flex items-center justify-center font-bold text-red-600 text-lg shadow-sm" }, "\u8DEF"), /* @__PURE__ */ React.createElement("span", { className: "absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-slate-500 border-2 border-white rounded-full" })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h4", { className: "font-black text-slate-800 text-xs" }, "\u4E1A\u52A1\u52A9\u624B\uFF1A\u5C0F\u8DEF"), /* @__PURE__ */ React.createElement("span", { className: "bg-red-50 text-red-600 px-1.5 py-0.5 rounded text-[9px] font-bold border border-red-100" }, "\u516C\u8DEF\u5E74\u62A5\u534F\u540C\u6CBB\u7406"))), /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        onClick: () => setShowWizard(false),
-        className: "text-slate-400 hover:text-slate-600 transition-colors p-1.5 hover:bg-slate-100 rounded-lg"
-      },
-      /* @__PURE__ */ React.createElement("svg", { className: "w-4 h-4", fill: "none", stroke: "currentColor", strokeWidth: "2.5", viewBox: "0 0 24 24" }, /* @__PURE__ */ React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M6 18L18 6M6 6l12 12" }))
-    )), /* @__PURE__ */ React.createElement("div", { className: "flex-1 flex flex-col gap-2 min-h-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center text-[10px] text-slate-400 font-bold shrink-0" }, /* @__PURE__ */ React.createElement("span", null, wizardTexts[wizardStep].title), /* @__PURE__ */ React.createElement("span", null, "\u6B65\u9AA4 ", wizardStep + 1, " / 7")), /* @__PURE__ */ React.createElement("div", { className: "text-xs text-slate-600 leading-relaxed font-semibold bg-white/70 p-3.5 rounded-xl border border-slate-100 shadow-inner overflow-y-auto max-h-48 custom-scroll" }, wizardTexts[wizardStep].content)), /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between border-t border-slate-100 pt-3 shrink-0" }, /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        onClick: () => setShowWizard(false),
-        className: "text-slate-400 hover:text-slate-600 text-xs font-bold transition-colors"
-      },
-      "\u7ED3\u675F\u5F15\u5BFC"
-    ), /* @__PURE__ */ React.createElement("div", { className: "flex gap-2" }, wizardStep > 0 && /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        onClick: () => {
-          const prev = wizardStep - 1;
-          setWizardStep(prev);
-          setActiveStep(prev);
-        },
-        className: "px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 bg-white transition-all shadow-sm"
-      },
-      "\u4E0A\u4E00\u6B65"
-    ), /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        onClick: () => {
-          if (wizardStep < 6) {
-            const next = wizardStep + 1;
-            setWizardStep(next);
-            setActiveStep(next);
-          } else {
-            setShowWizard(false);
-          }
-        },
-        className: "px-4 py-1.5 rounded-lg text-xs font-bold bg-gradient-to-r from-rose-500 to-red-600 text-white hover:opacity-90 active:scale-95 transform transition-all shadow-md shadow-rose-100"
-      },
-      wizardStep === 6 ? "\u5B8C\u6210" : "\u4E0B\u4E00\u6B65"
-    )))), activeReqModalId && renderCalibrationSalonModal(), toastMsg && /* @__PURE__ */ React.createElement("div", { className: "fixed bottom-10 right-10 bg-slate-900 text-white px-5 py-3.5 rounded-xl shadow-2xl border border-slate-700 flex items-center gap-2.5 z-[100] animate-bounce" }, /* @__PURE__ */ React.createElement("div", { className: "w-2.5 h-2.5 rounded-full bg-green-400 animate-ping" }), /* @__PURE__ */ React.createElement("span", { className: "text-xs font-bold" }, toastMsg)))))));
+    })))), /* @__PURE__ */ React.createElement("div", { className: "mt-4 pt-3 border-t border-slate-100 flex flex-col gap-2" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] font-bold text-slate-400 uppercase tracking-wider" }, "\u9636\u6BB5\u4EA4\u4ED8\u6210\u679C\u5F52\u6863"), /* @__PURE__ */ React.createElement("div", { className: "space-y-1.5" }, activeData.boardDocs.map((doc, di) => /* @__PURE__ */ React.createElement("div", { key: di, className: "flex flex-col gap-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded p-2 text-xs transition-colors group" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-start" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-start gap-1.5 min-w-0 pr-2" }, /* @__PURE__ */ React.createElement(FileText, { size: 12, className: `mt-0.5 shrink-0 ${doc.name.endsWith(".xlsx") ? "text-emerald-500" : doc.name.endsWith(".json") ? "text-amber-500" : "text-blue-500"}` }), /* @__PURE__ */ React.createElement("span", { className: "text-[11px] text-slate-700 font-bold leading-tight break-all" }, doc.name)), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" }, /* @__PURE__ */ React.createElement(Eye, { size: 12, className: "text-slate-400 hover:text-blue-600 cursor-pointer" }), /* @__PURE__ */ React.createElement(Download, { size: 12, className: "text-slate-400 hover:text-blue-600 cursor-pointer" }))), /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center mt-1" }, /* @__PURE__ */ React.createElement("span", { className: "text-[9px] text-slate-400" }, "12.5KB | \u521A\u521A"), /* @__PURE__ */ React.createElement("span", { className: `text-[9.5px] font-bold flex items-center gap-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity ${doc.targetType === "kb" ? "text-blue-600" : "text-emerald-600"}` }, /* @__PURE__ */ React.createElement(Plus, { size: 10 }), doc.targetType === "kb" ? `\u77E5\u8BC6\u5E93: ${doc.targetName}` : `BD-OS: ${doc.targetName}`))))))))), activeReqModalId && renderCalibrationSalonModal(), toastMsg && /* @__PURE__ */ React.createElement("div", { className: "fixed bottom-10 right-10 bg-slate-900 text-white px-5 py-3.5 rounded-xl shadow-2xl border border-slate-700 flex items-center gap-2.5 z-[100] animate-bounce" }, /* @__PURE__ */ React.createElement("div", { className: "w-2.5 h-2.5 rounded-full bg-green-400 animate-ping" }), /* @__PURE__ */ React.createElement("span", { className: "text-xs font-bold" }, toastMsg)))))));
   };
   var ToBWorkspace2 = ({ req01Status, setReq01Status, calibrating, setCalibrating, calibrationProgress, setCalibrationProgress, showToast }) => {
     const [tobRoadCode, setTobRoadCode] = useState3("S306");
