@@ -1004,6 +1004,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1432,6 +1433,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -13553,10 +13555,6 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
     action: { bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-700", dot: "bg-emerald-500" }
   };
   var AgentGraph = ({ graph }) => {
-    const containerRef = (0, import_react4.useRef)(null);
-    const nodeRefs = (0, import_react4.useRef)({});
-    const [lines, setLines] = (0, import_react4.useState)([]);
-    const edgeKey = graph.edges.map((e) => e.from + e.to).join("|");
     const layers = {};
     graph.nodes.forEach((n) => {
       const l3 = n.layer || 0;
@@ -13564,56 +13562,20 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
       layers[l3].push(n);
     });
     const layerKeys = Object.keys(layers).sort((a, b2) => +a - +b2);
-    (0, import_react4.useEffect)(() => {
-      const t = setTimeout(() => {
-        if (!containerRef.current) return;
-        const cRect = containerRef.current.getBoundingClientRect();
-        const nl = [];
-        graph.edges.forEach((e) => {
-          const fe2 = nodeRefs.current[e.from];
-          const te = nodeRefs.current[e.to];
-          if (!fe2 || !te) return;
-          const fr = fe2.getBoundingClientRect();
-          const tr = te.getBoundingClientRect();
-          nl.push({
-            x1: fr.right - cRect.left,
-            y1: fr.top + fr.height / 2 - cRect.top,
-            x2: tr.left - cRect.left,
-            y2: tr.top + tr.height / 2 - cRect.top,
-            label: e.label,
-            alert: e.alert
-          });
-        });
-        setLines(nl);
-      }, 80);
-      return () => clearTimeout(t);
-    }, [edgeKey]);
-    return /* @__PURE__ */ import_react4.default.createElement("div", { ref: containerRef, className: "relative flex gap-4 items-stretch justify-center p-4 min-h-[220px] bg-slate-50/60 rounded-xl border border-slate-100" }, /* @__PURE__ */ import_react4.default.createElement("svg", { className: "absolute inset-0 w-full h-full pointer-events-none", style: { zIndex: 0 } }, /* @__PURE__ */ import_react4.default.createElement("defs", null, /* @__PURE__ */ import_react4.default.createElement("marker", { id: "pa-arr", markerWidth: "7", markerHeight: "7", refX: "5", refY: "3", orient: "auto" }, /* @__PURE__ */ import_react4.default.createElement("path", { d: "M0,0 L0,6 L7,3 z", fill: "#94a3b8" })), /* @__PURE__ */ import_react4.default.createElement("marker", { id: "pa-arr-alert", markerWidth: "7", markerHeight: "7", refX: "5", refY: "3", orient: "auto" }, /* @__PURE__ */ import_react4.default.createElement("path", { d: "M0,0 L0,6 L7,3 z", fill: "#f43f5e" }))), lines.map((l3, i) => /* @__PURE__ */ import_react4.default.createElement("g", { key: i }, /* @__PURE__ */ import_react4.default.createElement(
-      "path",
-      {
-        d: `M${l3.x1},${l3.y1} C${(l3.x1 + l3.x2) / 2},${l3.y1} ${(l3.x1 + l3.x2) / 2},${l3.y2} ${l3.x2},${l3.y2}`,
-        fill: "none",
-        stroke: l3.alert ? "#f43f5e" : "#94a3b8",
-        strokeWidth: l3.alert ? 2 : 1.5,
-        strokeDasharray: l3.alert ? "5 3" : "none",
-        markerEnd: l3.alert ? "url(#pa-arr-alert)" : "url(#pa-arr)",
-        opacity: 0.8
-      }
-    ), l3.label && /* @__PURE__ */ import_react4.default.createElement("text", { x: (l3.x1 + l3.x2) / 2, y: (l3.y1 + l3.y2) / 2 - 5, textAnchor: "middle", fontSize: "8", fill: l3.alert ? "#f43f5e" : "#94a3b8", fontFamily: "sans-serif" }, l3.label)))), layerKeys.map((lk) => /* @__PURE__ */ import_react4.default.createElement("div", { key: lk, className: "flex flex-col gap-3 justify-center", style: { zIndex: 1 } }, layers[lk].map((node) => {
+    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-stretch justify-between p-4 bg-slate-50/60 rounded-xl border border-slate-100 shadow-sm overflow-x-auto min-h-[220px]" }, layerKeys.map((lk, i) => /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, { key: lk }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex flex-col gap-3 justify-center z-10 shrink-0 min-w-[120px]" }, layers[lk].map((node) => {
       const s = TYPE_STYLE[node.type] || TYPE_STYLE.data;
       return /* @__PURE__ */ import_react4.default.createElement(
         "div",
         {
           key: node.id,
-          ref: (el) => nodeRefs.current[node.id] = el,
-          className: `relative flex flex-col items-center text-center border rounded-xl px-2.5 py-2 w-[110px] shadow-sm ${s.bg} ${s.border} ${s.ring ? "ring-2 ring-indigo-400 ring-offset-1" : ""}`
+          className: `relative flex flex-col items-center text-center border rounded-xl px-2.5 py-2.5 bg-white shadow-sm transition-all hover:scale-105 hover:shadow-md ${s.border} ${s.ring ? "ring-2 ring-indigo-400 ring-offset-2" : ""}`
         },
-        s.pulse && /* @__PURE__ */ import_react4.default.createElement("span", { className: "absolute top-1 right-1 flex h-2 w-2" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" }), /* @__PURE__ */ import_react4.default.createElement("span", { className: "relative inline-flex rounded-full h-2 w-2 bg-rose-500" })),
-        /* @__PURE__ */ import_react4.default.createElement(Bot, { size: 12, className: `mb-1 ${s.text} opacity-70` }),
+        s.pulse && /* @__PURE__ */ import_react4.default.createElement("span", { className: "absolute top-1.5 right-1.5 flex h-2 w-2" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" }), /* @__PURE__ */ import_react4.default.createElement("span", { className: "relative inline-flex rounded-full h-2 w-2 bg-rose-500" })),
+        /* @__PURE__ */ import_react4.default.createElement("div", { className: `w-6 h-6 rounded-full flex items-center justify-center mb-1.5 ${s.bg}` }, /* @__PURE__ */ import_react4.default.createElement(Bot, { size: 12, className: `${s.text}` })),
         /* @__PURE__ */ import_react4.default.createElement("div", { className: `text-[9.5px] font-bold leading-snug ${s.text} whitespace-pre-line` }, node.label),
-        node.action && /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[8px] text-slate-500 mt-0.5 leading-snug" }, node.action)
+        node.action && /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[8px] text-slate-500 mt-1 leading-tight line-clamp-2 px-1" }, node.action)
       );
-    }))));
+    })), i < layerKeys.length - 1 && /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex flex-col items-center justify-center shrink-0 mx-2 text-slate-300 relative" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "w-8 h-[2px] bg-slate-200" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "absolute right-0 -mr-[1px] w-0 h-0 border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent border-l-[6px] border-l-slate-200" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[7.5px] font-mono text-slate-400 mt-1 uppercase tracking-wider" }, "Flow")))));
   };
   var AgentLogTable = ({ rows }) => /* @__PURE__ */ import_react4.default.createElement("div", { className: "overflow-x-auto" }, /* @__PURE__ */ import_react4.default.createElement("table", { className: "w-full text-[10px] border-collapse" }, /* @__PURE__ */ import_react4.default.createElement("thead", null, /* @__PURE__ */ import_react4.default.createElement("tr", { className: "bg-slate-100" }, ["\u9636\u6BB5", "\u5524\u9192\u667A\u80FD\u4F53\u77E9\u9635", "\u6267\u884C\u52A8\u4F5C", "\u8F93\u51FA\u6458\u8981"].map((h) => /* @__PURE__ */ import_react4.default.createElement("th", { key: h, className: "text-left px-2 py-1.5 font-bold text-slate-600 border-b border-slate-200 whitespace-nowrap" }, h)))), /* @__PURE__ */ import_react4.default.createElement("tbody", null, rows.map((row, i) => /* @__PURE__ */ import_react4.default.createElement("tr", { key: i, className: i % 2 === 0 ? "bg-white" : "bg-slate-50/60" }, /* @__PURE__ */ import_react4.default.createElement("td", { className: "px-2 py-1.5 border-b border-slate-100 text-slate-600 font-bold whitespace-nowrap align-top" }, row.phase), /* @__PURE__ */ import_react4.default.createElement("td", { className: "px-2 py-1.5 border-b border-slate-100 align-top" }, row.agents.map((a, j2) => /* @__PURE__ */ import_react4.default.createElement("div", { key: j2, className: "font-mono text-indigo-700 bg-indigo-50 rounded px-1 mb-0.5 text-[9px] leading-snug" }, a))), /* @__PURE__ */ import_react4.default.createElement("td", { className: "px-2 py-1.5 border-b border-slate-100 text-slate-600 align-top" }, row.action), /* @__PURE__ */ import_react4.default.createElement("td", { className: "px-2 py-1.5 border-b border-slate-100 text-slate-600 align-top" }, row.output))))));
   var PalantirDecisionView = () => {
