@@ -1002,6 +1002,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1430,6 +1431,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -13769,7 +13771,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
       const match = a.match(/AGENT-(.*?)-\d+_(.*)/);
       const display = match ? `${match[1]} \xB7 ${match[2]}` : a.replace("AGENT-", "");
       return /* @__PURE__ */ import_react4.default.createElement("div", { key: j2, className: "text-[8.5px] font-mono text-indigo-600 bg-indigo-50 border border-indigo-100 rounded px-1.5 py-1 leading-snug truncate", title: a }, display);
-    }))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "border-t border-slate-100 pt-3 mt-1 space-y-1.5" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[9px] text-slate-400 mb-1" }, "\u5927\u6A21\u578B\u57FA\u5EA7\u53CC\u5411\u6C89\u6DC0\u4E0E\u56FA\u5316"), /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded border border-emerald-200 bg-emerald-50 text-[9.5px] font-bold flex items-center justify-center gap-1.5 text-emerald-700 hover:bg-emerald-100 transition-colors" }, /* @__PURE__ */ import_react4.default.createElement(CircleCheckBig, { size: 10 }), " \u7F16\u8BD1\u4E3A Agent \u8BAD\u7EC3\u8BED\u6599\uFF0C\u5199\u5165 05_Wiki_\u6A21\u578B\u8BAD\u7EC3\u8BED\u6599\u5E93 (\u5173\u8054 ", (selected.label.match(/REQ-\d+/) || ["\u901A\u7528"])[0], ")"), (selected.agents || []).some((a) => a.includes("\u4EA4\u7BA1\u5C40") || a.includes("\u5C01\u8DEF") || a.includes("\u8054\u52A8")) && /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded bg-rose-500 text-[10px] font-bold flex items-center justify-center gap-1.5 text-white hover:bg-rose-600 transition-colors mt-1.5" }, /* @__PURE__ */ import_react4.default.createElement(TriangleAlert, { size: 10 }), " \u7B7E\u53D1\u4EA4\u901A\u7BA1\u5236\u4EE4"), (selected.agents || []).some((a) => a.includes("\u9AD8\u5FB7") || a.includes("\u4E92\u8054\u7F51") || a.includes("\u8054\u52A8")) && /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded bg-blue-600 text-[10px] font-bold flex items-center justify-center gap-1.5 text-white hover:bg-blue-700 transition-colors mt-1.5" }, /* @__PURE__ */ import_react4.default.createElement(Wifi, { size: 10 }), " API \u5E7F\u53D1\u4E92\u8054\u7F51\u5730\u56FE"))))));
+    }))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "border-t border-slate-100 pt-3 mt-1 space-y-1.5" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[9px] text-slate-400 mb-1" }, "\u5927\u6A21\u578B\u57FA\u5EA7\u53CC\u5411\u6C89\u6DC0\u4E0E\u56FA\u5316"), /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded border border-emerald-200 bg-emerald-50 text-[9.5px] font-bold flex items-center justify-center gap-1.5 text-emerald-700 hover:bg-emerald-100 transition-colors" }, /* @__PURE__ */ import_react4.default.createElement(CircleCheckBig, { size: 10 }), " \u7F16\u8BD1\u4E3A\u8BED\u6599\uFF0C\u5199\u5165 [1.\u9AD8\u8D28\u91CF\u6570\u636E\u96C6 / 02.\u6A21\u578B\u4E0E\u6570\u636E\u4EA7\u54C1\u8BED\u6599] (", (selected.label.match(/REQ-\d+/) || ["\u901A\u7528"])[0], ")"), (selected.agents || []).some((a) => a.includes("\u4EA4\u7BA1\u5C40") || a.includes("\u5C01\u8DEF") || a.includes("\u8054\u52A8")) && /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded bg-rose-500 text-[10px] font-bold flex items-center justify-center gap-1.5 text-white hover:bg-rose-600 transition-colors mt-1.5" }, /* @__PURE__ */ import_react4.default.createElement(TriangleAlert, { size: 10 }), " \u7B7E\u53D1\u4EA4\u901A\u7BA1\u5236\u4EE4"), (selected.agents || []).some((a) => a.includes("\u9AD8\u5FB7") || a.includes("\u4E92\u8054\u7F51") || a.includes("\u8054\u52A8")) && /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded bg-blue-600 text-[10px] font-bold flex items-center justify-center gap-1.5 text-white hover:bg-blue-700 transition-colors mt-1.5" }, /* @__PURE__ */ import_react4.default.createElement(Wifi, { size: 10 }), " API \u5E7F\u53D1\u4E92\u8054\u7F51\u5730\u56FE"))))));
   };
   var PalantirDecisionView_default = PalantirDecisionView;
 
