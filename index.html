@@ -953,6 +953,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1381,6 +1382,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -17063,7 +17065,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
         const modelName = apiProvider === "zhipu" || apiProvider === "glm" ? "glm-4-flash" : apiProvider === "openai" ? "gpt-4o-mini" : "deepseek-reasoner";
         const sysPrompt = `\u4F60\u662F\u6E56\u5317\u7701\u516C\u8DEF\u4E8B\u4E1A\u53D1\u5C55\u4E2D\u5FC3\u6570\u636E\u6CBB\u7406\u4E13\u5BB6\u3002\u8BF7\u6839\u636E\u95EE\u9898\u7ED9\u51FA\u7B80\u660E\u4E13\u4E1A\u7684\u56DE\u7B54\uFF0C\u63A7\u5236\u5728100\u5B57\u4EE5\u5185\uFF0C\u8BED\u8A00\u7B80\u6D01\uFF0C\u53EF\u9644\u5173\u952E\u6570\u636E\u3002\u7ED3\u5C3E\u7528\u4E00\u53E5\u8BDD\u63D0\u793A"\u5982\u9700\u6DF1\u5EA6\u5206\u6790\u53EF\u70B9\u51FB\u53F3\u4E0B\u89D2\u6309\u94AE"\u3002`;
         const headers = { "Content-Type": "application/json", "Authorization": "Bearer " + apiKey };
-        const body = JSON.stringify({ model: modelName, messages: [{ role: "system", content: sysPrompt }, { role: "user", content: question }], max_tokens: 300, stream: true });
+        const body = JSON.stringify({ model: modelName, messages: [{ role: "system", content: sysPrompt }, { role: "user", content: question }], max_tokens: 2048, stream: true });
         let fetchUrl = url;
         if (apiProvider === "gemini") {
           fetchUrl = url + "?key=" + apiKey;
