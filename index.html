@@ -979,6 +979,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1407,6 +1408,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -18002,7 +18004,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
             key: idx,
             onClick: () => {
               if (idx === 8) {
-                window.open("?mode=standalone&view=deepqa", "_blank");
+                window.open("?mode=standalone&view=palantir", "_blank");
                 return;
               }
               setActiveStep(idx);
@@ -67966,6 +67968,9 @@ ${msg.views.view3}
     const urlParams = new URLSearchParams(window.location.search);
     const isStandalone = urlParams.get("mode") === "standalone";
     if (isStandalone) {
+      if (urlParams.get("view") === "palantir") {
+        return /* @__PURE__ */ React.createElement("div", { className: "w-screen h-screen bg-slate-50 overflow-hidden" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, /* @__PURE__ */ React.createElement(PalantirDecisionView_default, { isStandalone: true })));
+      }
       if (urlParams.get("view") === "deepqa") {
         return /* @__PURE__ */ React.createElement("div", { className: "w-screen h-screen bg-slate-50 overflow-hidden" }, /* @__PURE__ */ React.createElement(ErrorBoundary, null, /* @__PURE__ */ React.createElement(DeepQAAnnualReportAgentView, { isStandalone: true })));
       }
