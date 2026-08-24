@@ -989,6 +989,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1417,6 +1418,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -13042,13 +13044,13 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
   ];
   var FileText = createLucideIcon("file-text", __iconNode8);
 
-  // node_modules/lucide-react/dist/esm/icons/git-merge.mjs
+  // node_modules/lucide-react/dist/esm/icons/git-branch.mjs
   var __iconNode9 = [
-    ["circle", { cx: "18", cy: "18", r: "3", key: "1xkwt0" }],
-    ["circle", { cx: "6", cy: "6", r: "3", key: "1lh9wr" }],
-    ["path", { d: "M6 21V9a9 9 0 0 0 9 9", key: "7kw0sc" }]
+    ["path", { d: "M15 6a9 9 0 0 0-9 9V3", key: "1cii5b" }],
+    ["circle", { cx: "18", cy: "6", r: "3", key: "1h7g24" }],
+    ["circle", { cx: "6", cy: "18", r: "3", key: "fqmcym" }]
   ];
-  var GitMerge = createLucideIcon("git-merge", __iconNode9);
+  var GitBranch = createLucideIcon("git-branch", __iconNode9);
 
   // node_modules/lucide-react/dist/esm/icons/layers.mjs
   var __iconNode10 = [
@@ -13238,42 +13240,101 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
 
   // src/components/PalantirDecisionView.jsx
   var SCENARIOS = [
-    { id: "SC-03-04", dept: "\u79D1\u6280\u4FE1\u606F\u5904", label: "[SC-03-04] \u5206\u7C7B\u5206\u7EA7\u9501\u5B9ARouteCode\u4E3B\u952E (REQ-03)", q: "\u8BF7\u5206\u6790\u5206\u7C7B\u5206\u7EA7\u9501\u5B9ARouteCode\u4E3B\u952E\u7684\u667A\u80FD\u4F53\u534F\u540C\u65B9\u6848\uFF0C\u5217\u51FA\u53C2\u4E0E\u7684\u4E1A\u52A1\u90E8\u95E8\u3001\u6570\u636E\u6D41\u548C\u5173\u952E\u51B3\u7B56\u8282\u70B9\u3002" },
-    { id: "SC-03-05", dept: "\u79D1\u6280\u4FE1\u606F\u5904", label: "[SC-03-05] \u4E0A\u4F20\u56FD\u6807\u884C\u6807\u89C4\u8303\u4E0E\u672C\u5730\u6BD4\u5BF9 (REQ-04)", q: "\u8BF7\u7ED9\u51FA\u56FD\u6807\u884C\u6807\u89C4\u8303\u4E0E\u672C\u5730\u516C\u8DEF\u6570\u636E\u6BD4\u5BF9\u7684\u667A\u80FD\u4F53\u534F\u540C\u6D41\u7A0B\uFF0C\u91CD\u70B9\u8BF4\u660E\u5DEE\u5F02\u53D1\u73B0\u4E0E\u4FEE\u6B63\u7684\u51B3\u7B56\u94FE\u8DEF\u3002" },
-    { id: "SC-03-03", dept: "\u7EFC\u5408\u8BA1\u5212\u5904", label: "[SC-03-03] \u5E72\u7EBF\u516C\u8DEF\u91CC\u7A0B\u53E3\u5F84\u51B2\u7A81\u67E5\u8BE2 (REQ-02)", q: "\u5E72\u7EBF\u516C\u8DEF\u91CC\u7A0B\u53E3\u5F84\u51B2\u7A81\u5982\u4F55\u901A\u8FC7\u591A\u667A\u80FD\u4F53\u534F\u540C\u89E3\u51B3\uFF1F\u8BF7\u5206\u6790\u6D89\u53CA\u90E8\u95E8\u3001\u6570\u636E\u6BD4\u5BF9\u7B56\u7565\u548C\u6700\u7EC8\u88C1\u51B3\u673A\u5236\u3002" },
-    { id: "SC-01-03", dept: "\u7EFC\u5408\u8BA1\u5212\u5904", label: "[SC-01-03] \u65B0\u8001\u8DEFGIS\u53E0\u52A0\u53CA\u65AD\u5934\u8DEF\u5206\u6790 (REQ-07)", q: "\u8BF7\u63CF\u8FF0\u65B0\u8001\u8DEFGIS\u53E0\u52A0\u53CA\u65AD\u5934\u8DEF\u5206\u6790\u7684\u667A\u80FD\u4F53\u534F\u540C\u65B9\u6848\uFF0C\u5305\u62EC\u5730\u56FE\u6570\u636E\u878D\u5408\u3001\u65AD\u5934\u8DEF\u8BC6\u522B\u548C\u6574\u6539\u5EFA\u8BAE\u751F\u6210\u7684\u5B8C\u6574\u6D41\u7A0B\u3002" },
-    { id: "SC-01-02", dept: "\u5EFA\u8BBE\u7BA1\u7406\u5904", label: "[SC-01-02] \u5EFA\u517B\u4EA4\u63A5\u8D28\u91CF\u5BF9\u6807 (REQ-06)", q: "\u5EFA\u517B\u4EA4\u63A5\u8D28\u91CF\u5BF9\u6807\u7684\u667A\u80FD\u4F53\u534F\u540C\u6D41\u7A0B\u662F\u4EC0\u4E48\uFF1F\u5217\u51FA\u5EFA\u8BBE\u5904\u3001\u517B\u62A4\u5904\u3001\u5DE5\u7A0B\u5904\u7684\u534F\u540C\u89D2\u8272\u548C\u6570\u636E\u6821\u9A8C\u8282\u70B9\u3002" },
-    { id: "SC-02-01", dept: "\u5DE5\u7A0B\u6280\u672F\u5904", label: "[SC-02-01] \u6865\u96A7\u5361\u7247\u7EFC\u5408\u5065\u5EB7\u72B6\u6001\u8BC4\u4F30", q: "\u6865\u96A7\u5361\u7247\u7EFC\u5408\u5065\u5EB7\u72B6\u6001\u8BC4\u4F30\u5982\u4F55\u901A\u8FC7\u591A\u667A\u80FD\u4F53\u534F\u540C\u5B8C\u6210\uFF1F\u5206\u6790\u5DE5\u7A0B\u5904\u4E3B\u63A7\u667A\u80FD\u4F53\u4E0E\u5404\u68C0\u6D4B\u6570\u636E\u667A\u80FD\u4F53\u7684\u8C03\u7528\u5173\u7CFB\u3002" },
-    { id: "SC-02-02", dept: "\u5DE5\u7A0B\u6280\u672F\u5904", label: "[SC-02-02] \u90E8CBMS\u6865\u6881\u7CFB\u7EDF\u4E0E\u5E74\u62A5\u9884\u6821\u9A8C (REQ-05)", q: "\u90E8CBMS\u6865\u6881\u7CFB\u7EDF\u6570\u636E\u4E0E\u7701\u7EA7\u5E74\u62A5\u9884\u6821\u9A8C\u7684\u667A\u80FD\u4F53\u534F\u540C\u94FE\u8DEF\u662F\u4EC0\u4E48\uFF1F\u91CD\u70B9\u5206\u6790\u6570\u636E\u5DEE\u5F02\u81EA\u52A8\u6807\u6CE8\u548C\u5BA1\u6838\u6D41\u7A0B\u3002" },
-    { id: "SC-03-02", dept: "\u517B\u62A4\u7BA1\u7406\u5904", label: "[SC-03-02] \u65E5\u5E38\u68C0\u6D4B\u4E0E\u5E74\u62A5\u6869\u53F7\u5BF9\u9F50 (REQ-01)", q: "\u65E5\u5E38\u68C0\u6D4B\u6570\u636E\u4E0E\u5E74\u62A5\u6807\u51C6\u6869\u53F7\u5982\u4F55\u901A\u8FC7\u667A\u80FD\u4F53\u534F\u540C\u5B9E\u73B0\u81EA\u52A8\u5BF9\u9F50\uFF1F\u63CF\u8FF0\u517B\u62A4\u5904\u667A\u80FD\u4F53\u7684\u6838\u5FC3\u8C03\u7528\u94FE\u8DEF\u3002" },
-    { id: "SC-01-04", dept: "\u517B\u62A4\u7BA1\u7406\u5904", label: "[SC-01-04] \u8DEF\u9762\u957F\u6548\u8870\u51CF\u9884\u6D4B\u65F6\u5E8F (REQ-08)", q: "\u8DEF\u9762\u957F\u6548\u8870\u51CF\u9884\u6D4B\u7684\u667A\u80FD\u4F53\u534F\u540C\u65B9\u6848\u662F\u4EC0\u4E48\uFF1F\u5206\u6790\u5386\u53F2\u6570\u636E\u667A\u80FD\u4F53\u3001\u6C14\u8C61\u667A\u80FD\u4F53\u548C\u517B\u62A4\u51B3\u7B56\u667A\u80FD\u4F53\u7684\u534F\u540C\u8C03\u7528\u3002" },
-    { id: "SC-03-07", dept: "\u519C\u6751\u516C\u8DEF\u5904", label: "[SC-03-07] \u519C\u6751\u516C\u8DEF\u4E0E\u5EFA\u517B\u5927\u7EDF\u8BA1\u4E13\u680F (REQ-11)", q: "\u519C\u6751\u516C\u8DEF\u4E0E\u5EFA\u517B\u5927\u7EDF\u8BA1\u4E13\u680F\u7684\u591A\u667A\u80FD\u4F53\u534F\u540C\u6570\u636E\u5F52\u96C6\u65B9\u6848\uFF0C\u6D89\u53CA\u54EA\u4E9B\u6570\u636E\u6E90\u548C\u90E8\u95E8\u534F\u540C\u89D2\u8272\uFF1F" },
-    { id: "SC-04-04", dept: "\u5B89\u5168\u76D1\u7763\u5904", label: "[SC-04-04] \u5B89\u9632\u9690\u60A3\u6392\u67E5\u9500\u53F7\u8FFD\u8E2A (REQ-10)", q: "\u5B89\u9632\u9690\u60A3\u6392\u67E5\u9500\u53F7\u8FFD\u8E2A\u7684\u667A\u80FD\u4F53\u534F\u540C\u95ED\u73AF\u5982\u4F55\u8BBE\u8BA1\uFF1F\u5206\u6790\u95EE\u9898\u53D1\u73B0\u3001\u4E0B\u5355\u8FFD\u8E2A\u3001\u9500\u53F7\u786E\u8BA4\u4E09\u4E2A\u9636\u6BB5\u7684\u667A\u80FD\u4F53\u8C03\u7528\u94FE\u8DEF\u3002" },
-    { id: "SC-01-01", dept: "\u5E94\u6025\u4FDD\u969C\u5904", label: "[SC-01-01] \u6C5B\u671F\u76D1\u6D4B\u9884\u8B66\u4E0E\u8DE8\u57DF\u5E94\u6025\u8054\u52A8 (\u6885\u5927\u9AD8\u901F)", q: "\u4EE5\u6885\u5927\u9AD8\u901F\u8DEF\u57FA\u6C89\u964D\u4E3A\u573A\u666F\uFF0C\u8BF7\u5206\u6790\u6C5B\u671F\u76D1\u6D4B\u9884\u8B66\u7684\u591A\u667A\u80FD\u4F53\u534F\u540C\u65B9\u6848\uFF1A\u6D89\u53CA\u54EA\u4E9B\u6570\u636E\u667A\u80FD\u4F53\uFF08\u6C14\u8C61\u3001\u4F20\u611F\u5668\u3001\u5386\u53F2\u75C5\u5BB3\uFF09\uFF1F\u4E3B\u63A7\u667A\u80FD\u4F53\u5982\u4F55\u51B3\u7B56\uFF1F\u5982\u4F55\u8054\u52A8\u4EA4\u7BA1\u5C40\u3001\u5E94\u6025\u5385\u7B49\u5916\u90E8\u95E8\uFF1F\u5982\u4F55\u901A\u8FC7\u9AD8\u5FB7\u767E\u5EA6API\u5E7F\u64AD\u4E92\u8054\u7F51\u516C\u57DF\uFF1F\u8BF7\u7ED9\u51FA\u5B8C\u6574\u7684\u667A\u80FD\u4F53\u8C03\u7528\u94FE\u8DEF\u3002", active: true },
-    { id: "SC-04-05", dept: "\u5E94\u6025\u4FDD\u969C\u5904", label: "[SC-04-05] \u707E\u6BC1\u963B\u65AD\u70B9\u4F4D\u7CBE\u51C6\u5B9A\u6807\u4E0E\u62A2\u901A\u7EDF\u8BA1 (REQ-13)", q: "\u707E\u6BC1\u963B\u65AD\u70B9\u4F4D\u7CBE\u51C6\u5B9A\u6807\u4E0E\u62A2\u901A\u7EDF\u8BA1\u7684\u591A\u667A\u80FD\u4F53\u534F\u540C\u65B9\u6848\u662F\u4EC0\u4E48\uFF1F\u5206\u6790\u5E94\u6025\u5904\u3001\u517B\u62A4\u5904\u3001\u8DEF\u653F\u5904\u7B49\u667A\u80FD\u4F53\u7684\u534F\u540C\u89D2\u8272\u3002" },
-    { id: "SC-01-05", dept: "\u8FD0\u8425\u7BA1\u7406\u5904", label: "[SC-01-05] \u5927\u4EF6\u8FD0\u8F93\u8D85\u8F7D\u8F68\u8FF9\u6EAF\u6E90 (REQ-12)", q: "\u5927\u4EF6\u8FD0\u8F93\u8D85\u8F7D\u8F68\u8FF9\u6EAF\u6E90\u7684\u667A\u80FD\u4F53\u534F\u540C\u65B9\u6848\uFF1A\u6D89\u53CA\u54EA\u4E9B\u6570\u636E\u667A\u80FD\u4F53\uFF1F\u5982\u4F55\u4E0E\u6267\u6CD5\u667A\u80FD\u4F53\u8054\u52A8\u4E0B\u53D1\u5904\u7F5A\uFF1F" },
-    { id: "SC-01-06", dept: "\u8FD0\u8425\u7BA1\u7406\u5904", label: "[SC-01-06] \u91CD\u70B980\u9879\u65E5\u5E38\u5DE1\u67E5\u6307\u6807\u7B5B\u9009 (REQ-15)", q: "\u91CD\u70B980\u9879\u65E5\u5E38\u5DE1\u67E5\u6307\u6807\u7B5B\u9009\u7684\u667A\u80FD\u4F53\u534F\u540C\u65B9\u6848\u662F\u4EC0\u4E48\uFF1F\u5206\u6790\u8FD0\u8425\u5904\u5982\u4F55\u8C03\u7528\u5404\u4E13\u4E1A\u667A\u80FD\u4F53\u751F\u6210\u7EFC\u5408\u62A5\u544A\u3002" },
-    { id: "SC-03-06", dept: "\u8D22\u52A1\u5904", label: "[SC-03-06] \u71C3\u6CB9\u7A0E\u6295\u8D44-\u5B9E\u7269\u8D44\u4EA7\u5BA1\u8BA1\u6821\u9A8C (REQ-09)", q: "\u71C3\u6CB9\u7A0E\u6295\u8D44\u4E0E\u5B9E\u7269\u8D44\u4EA7\u5BA1\u8BA1\u6821\u9A8C\u7684\u591A\u667A\u80FD\u4F53\u534F\u540C\u65B9\u6848\uFF1A\u8D22\u52A1\u5904\u667A\u80FD\u4F53\u5982\u4F55\u4E0E\u8DEF\u7F51\u667A\u80FD\u4F53\u3001\u5DE5\u7A0B\u667A\u80FD\u4F53\u8054\u52A8\u505A\u4E09\u7EF4\u52FE\u7A3D\uFF1F" },
-    { id: "SC-03-01", dept: "\u529E\u516C\u5BA4", label: "[SC-03-01] \u673A\u5173\u653F\u52A1\u7763\u529E\u4E0E\u6587\u6863\u667A\u80FD\u68C0\u9605", q: "\u673A\u5173\u653F\u52A1\u7763\u529E\u4E0E\u6587\u6863\u667A\u80FD\u68C0\u9605\u7684\u667A\u80FD\u4F53\u534F\u540C\u6D41\u7A0B\uFF1A\u6D89\u53CA\u54EA\u4E9B\u6587\u6863\u667A\u80FD\u4F53\u3001\u4EFB\u52A1\u8FFD\u8E2A\u667A\u80FD\u4F53\uFF1F\u7763\u529E\u94FE\u8DEF\u5982\u4F55\u8BBE\u8BA1\uFF1F" }
+    { id: "SC-03-04", dept: "\u79D1\u6280\u4FE1\u606F\u5904", label: "[SC-03-04] \u5206\u7C7B\u5206\u7EA7\u9501\u5B9ARouteCode\u4E3B\u952E (REQ-03)" },
+    { id: "SC-03-05", dept: "\u79D1\u6280\u4FE1\u606F\u5904", label: "[SC-03-05] \u4E0A\u4F20\u56FD\u6807\u884C\u6807\u89C4\u8303\u4E0E\u672C\u5730\u6BD4\u5BF9 (REQ-04)" },
+    { id: "SC-03-03", dept: "\u7EFC\u5408\u8BA1\u5212\u5904", label: "[SC-03-03] \u5E72\u7EBF\u516C\u8DEF\u91CC\u7A0B\u53E3\u5F84\u51B2\u7A81\u67E5\u8BE2 (REQ-02)" },
+    { id: "SC-01-03", dept: "\u7EFC\u5408\u8BA1\u5212\u5904", label: "[SC-01-03] \u65B0\u8001\u8DEFGIS\u53E0\u52A0\u53CA\u65AD\u5934\u8DEF\u5206\u6790 (REQ-07)" },
+    { id: "SC-01-02", dept: "\u5EFA\u8BBE\u7BA1\u7406\u5904", label: "[SC-01-02] \u5EFA\u517B\u4EA4\u63A5\u8D28\u91CF\u5BF9\u6807 (REQ-06)" },
+    { id: "SC-02-01", dept: "\u5DE5\u7A0B\u6280\u672F\u5904", label: "[SC-02-01] \u6865\u96A7\u5361\u7247\u7EFC\u5408\u5065\u5EB7\u72B6\u6001\u8BC4\u4F30" },
+    { id: "SC-02-02", dept: "\u5DE5\u7A0B\u6280\u672F\u5904", label: "[SC-02-02] \u90E8CBMS\u6865\u6881\u7CFB\u7EDF\u4E0E\u5E74\u62A5\u9884\u6821\u9A8C (REQ-05)" },
+    { id: "SC-03-02", dept: "\u517B\u62A4\u7BA1\u7406\u5904", label: "[SC-03-02] \u65E5\u5E38\u68C0\u6D4B\u4E0E\u5E74\u62A5\u6869\u53F7\u5BF9\u9F50 (REQ-01)" },
+    { id: "SC-01-04", dept: "\u517B\u62A4\u7BA1\u7406\u5904", label: "[SC-01-04] \u8DEF\u9762\u957F\u6548\u8870\u51CF\u9884\u6D4B\u65F6\u5E8F (REQ-08)" },
+    { id: "SC-03-07", dept: "\u519C\u6751\u516C\u8DEF\u5904", label: "[SC-03-07] \u519C\u6751\u516C\u8DEF\u4E0E\u5EFA\u517B\u5927\u7EDF\u8BA1\u4E13\u680F (REQ-11)" },
+    { id: "SC-04-04", dept: "\u5B89\u5168\u76D1\u7763\u5904", label: "[SC-04-04] \u5B89\u9632\u9690\u60A3\u6392\u67E5\u9500\u53F7\u8FFD\u8E2A (REQ-10)" },
+    { id: "SC-01-01", dept: "\u5E94\u6025\u4FDD\u969C\u5904", label: "[SC-01-01] \u6C5B\u671F\u76D1\u6D4B\u9884\u8B66\u4E0E\u8DE8\u57DF\u5E94\u6025\u8054\u52A8 (\u6885\u5927\u9AD8\u901F)", active: true },
+    { id: "SC-04-05", dept: "\u5E94\u6025\u4FDD\u969C\u5904", label: "[SC-04-05] \u707E\u6BC1\u963B\u65AD\u70B9\u4F4D\u7CBE\u51C6\u5B9A\u6807\u4E0E\u62A2\u901A\u7EDF\u8BA1 (REQ-13)" },
+    { id: "SC-01-05", dept: "\u8FD0\u8425\u7BA1\u7406\u5904", label: "[SC-01-05] \u5927\u4EF6\u8FD0\u8F93\u8D85\u8F7D\u8F68\u8FF9\u6EAF\u6E90 (REQ-12)" },
+    { id: "SC-01-06", dept: "\u8FD0\u8425\u7BA1\u7406\u5904", label: "[SC-01-06] \u91CD\u70B980\u9879\u65E5\u5E38\u5DE1\u67E5\u6307\u6807\u7B5B\u9009 (REQ-15)" },
+    { id: "SC-03-06", dept: "\u8D22\u52A1\u5904", label: "[SC-03-06] \u71C3\u6CB9\u7A0E\u6295\u8D44-\u5B9E\u7269\u8D44\u4EA7\u5BA1\u8BA1\u6821\u9A8C (REQ-09)" },
+    { id: "SC-03-01", dept: "\u529E\u516C\u5BA4", label: "[SC-03-01] \u673A\u5173\u653F\u52A1\u7763\u529E\u4E0E\u6587\u6863\u667A\u80FD\u68C0\u9605" }
   ];
-  var AGENT_FLOWS = {
-    default: [
-      { id: "data", label: "\u9AD8\u8D28\u91CF\u6570\u636E\u96C6", sub: "\u672C\u4F53\u6620\u5C04\u5C42", color: "bg-blue-50 border-blue-200 text-blue-700" },
-      { id: "main", label: "\u4E3B\u63A7\u667A\u80FD\u4F53", sub: "\u4E1A\u52A1\u89C4\u5219\u5F15\u64CE", color: "bg-indigo-50 border-indigo-300 text-indigo-700", main: true },
-      { id: "action", label: "\u51B3\u7B56\u6267\u884C\u5C42", sub: "\u5199\u56DE\u4E0E\u901A\u77E5", color: "bg-emerald-50 border-emerald-200 text-emerald-700" }
-    ],
-    "SC-01-01": [
-      { id: "weather", label: "\u6C14\u8C61\u6570\u636E\u667A\u80FD\u4F53", sub: "\u4E92\u8054\u7F51API/\u6C14\u8C61\u5C40", color: "bg-blue-50 border-blue-200 text-blue-700" },
-      { id: "sensor", label: "\u4F20\u611F\u5668\u667A\u80FD\u4F53", sub: "\u8DEF\u57FA\u6C89\u964D/\u8FB9\u5761\u4F4D\u79FB", color: "bg-amber-50 border-amber-200 text-amber-700" },
-      { id: "main", label: "\u8DEF\u7F51\u8FD0\u884C\u5904\n\u4E3B\u63A7\u667A\u80FD\u4F53", sub: "\u672C\u4F53\u77E5\u8BC6\u6620\u5C04", color: "bg-indigo-50 border-indigo-300 text-indigo-700", main: true },
-      { id: "yh", label: "\u517B\u62A4\u5904\n\u75C5\u5BB3\u8BC4\u4F30\u667A\u80FD\u4F53", sub: "\u8DEF\u57FA\u75C5\u5BB3SOP\u5E93", color: "bg-purple-50 border-purple-200 text-purple-700" },
-      { id: "yj", label: "\u5E94\u6025\u5904\n\u8C03\u5EA6\u6307\u6325\u667A\u80FD\u4F53", sub: "\u7194\u65AD\u4E0E\u5206\u6D41\u89C4\u5219", color: "bg-rose-50 border-rose-300 text-rose-700", alert: true },
-      { id: "ext", label: "\u8DE8\u57DF\u8054\u52A8\n\u4EA4\u7BA1/\u5E94\u6025/\u4E92\u8054\u7F51", sub: "\u9AD8\u5FB7\xB7\u767E\u5EA6\xB712122", color: "bg-emerald-50 border-emerald-200 text-emerald-700" }
-    ]
+  var DEPT_ORDER = ["\u79D1\u6280\u4FE1\u606F\u5904", "\u7EFC\u5408\u8BA1\u5212\u5904", "\u5EFA\u8BBE\u7BA1\u7406\u5904", "\u5DE5\u7A0B\u6280\u672F\u5904", "\u517B\u62A4\u7BA1\u7406\u5904", "\u519C\u6751\u516C\u8DEF\u5904", "\u5B89\u5168\u76D1\u7763\u5904", "\u5E94\u6025\u4FDD\u969C\u5904", "\u8FD0\u8425\u7BA1\u7406\u5904", "\u8D22\u52A1\u5904", "\u529E\u516C\u5BA4"];
+  var TYPE_STYLE = {
+    data: { bg: "bg-blue-50", border: "border-blue-300", text: "text-blue-700", dot: "bg-blue-400" },
+    hub: { bg: "bg-indigo-50", border: "border-indigo-400", text: "text-indigo-700", dot: "bg-indigo-500", ring: true },
+    domain: { bg: "bg-purple-50", border: "border-purple-300", text: "text-purple-700", dot: "bg-purple-400" },
+    alert: { bg: "bg-rose-50", border: "border-rose-400", text: "text-rose-700", dot: "bg-rose-500", pulse: true },
+    action: { bg: "bg-emerald-50", border: "border-emerald-300", text: "text-emerald-700", dot: "bg-emerald-500" }
   };
-  var AgentFlow = ({ scenarioId }) => {
-    const nodes = AGENT_FLOWS[scenarioId] || AGENT_FLOWS.default;
-    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-2 flex-wrap justify-center py-2" }, nodes.map((n, i) => /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, { key: n.id }, /* @__PURE__ */ import_react4.default.createElement("div", { className: `flex flex-col items-center border rounded-lg px-3 py-2 text-center min-w-[80px] shadow-sm ${n.color} ${n.main ? "ring-2 ring-indigo-400 ring-offset-1" : ""} ${n.alert ? "animate-pulse" : ""}` }, /* @__PURE__ */ import_react4.default.createElement(Bot, { size: 13, className: "mb-1 opacity-60" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[10px] font-bold leading-tight whitespace-pre-line" }, n.label), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[8px] opacity-60 mt-0.5" }, n.sub)), i < nodes.length - 1 && /* @__PURE__ */ import_react4.default.createElement(ChevronRight, { size: 13, className: "text-slate-400 flex-shrink-0" }))));
+  var AgentGraph = ({ graph }) => {
+    const containerRef = (0, import_react4.useRef)(null);
+    const nodeRefs = (0, import_react4.useRef)({});
+    const [lines, setLines] = (0, import_react4.useState)([]);
+    const layers = {};
+    graph.nodes.forEach((n) => {
+      const l3 = n.layer || 0;
+      if (!layers[l3]) layers[l3] = [];
+      layers[l3].push(n);
+    });
+    const layerKeys = Object.keys(layers).sort((a, b2) => +a - +b2);
+    (0, import_react4.useLayoutEffect)(() => {
+      if (!containerRef.current) return;
+      const cRect = containerRef.current.getBoundingClientRect();
+      const newLines = [];
+      graph.edges.forEach((e) => {
+        const fromEl = nodeRefs.current[e.from];
+        const toEl = nodeRefs.current[e.to];
+        if (!fromEl || !toEl) return;
+        const fr = fromEl.getBoundingClientRect();
+        const tr = toEl.getBoundingClientRect();
+        newLines.push({
+          x1: fr.right - cRect.left,
+          y1: fr.top + fr.height / 2 - cRect.top,
+          x2: tr.left - cRect.left,
+          y2: tr.top + tr.height / 2 - cRect.top,
+          label: e.label,
+          alert: e.alert
+        });
+      });
+      setLines(newLines);
+    });
+    return /* @__PURE__ */ import_react4.default.createElement("div", { ref: containerRef, className: "relative flex gap-6 items-stretch justify-center p-4 min-h-[260px]" }, /* @__PURE__ */ import_react4.default.createElement("svg", { className: "absolute inset-0 w-full h-full pointer-events-none", style: { zIndex: 0 } }, /* @__PURE__ */ import_react4.default.createElement("defs", null, /* @__PURE__ */ import_react4.default.createElement("marker", { id: "arrow", markerWidth: "8", markerHeight: "8", refX: "6", refY: "3", orient: "auto" }, /* @__PURE__ */ import_react4.default.createElement("path", { d: "M0,0 L0,6 L8,3 z", fill: "#94a3b8" })), /* @__PURE__ */ import_react4.default.createElement("marker", { id: "arrow-alert", markerWidth: "8", markerHeight: "8", refX: "6", refY: "3", orient: "auto" }, /* @__PURE__ */ import_react4.default.createElement("path", { d: "M0,0 L0,6 L8,3 z", fill: "#f43f5e" }))), lines.map((l3, i) => /* @__PURE__ */ import_react4.default.createElement("g", { key: i }, /* @__PURE__ */ import_react4.default.createElement(
+      "path",
+      {
+        d: `M${l3.x1},${l3.y1} C${(l3.x1 + l3.x2) / 2},${l3.y1} ${(l3.x1 + l3.x2) / 2},${l3.y2} ${l3.x2},${l3.y2}`,
+        fill: "none",
+        stroke: l3.alert ? "#f43f5e" : "#94a3b8",
+        strokeWidth: l3.alert ? 2 : 1.5,
+        strokeDasharray: l3.alert ? "5 3" : "none",
+        markerEnd: l3.alert ? "url(#arrow-alert)" : "url(#arrow)",
+        opacity: 0.8
+      }
+    ), l3.label && /* @__PURE__ */ import_react4.default.createElement(
+      "text",
+      {
+        x: (l3.x1 + l3.x2) / 2,
+        y: (l3.y1 + l3.y2) / 2 - 4,
+        textAnchor: "middle",
+        fontSize: "8",
+        fill: l3.alert ? "#f43f5e" : "#94a3b8",
+        fontFamily: "sans-serif"
+      },
+      l3.label
+    )))), layerKeys.map((lk) => /* @__PURE__ */ import_react4.default.createElement("div", { key: lk, className: "flex flex-col gap-3 justify-center", style: { zIndex: 1 } }, layers[lk].map((node) => {
+      const s = TYPE_STYLE[node.type] || TYPE_STYLE.data;
+      return /* @__PURE__ */ import_react4.default.createElement(
+        "div",
+        {
+          key: node.id,
+          ref: (el) => nodeRefs.current[node.id] = el,
+          className: `relative flex flex-col items-center text-center border rounded-xl px-3 py-2 w-[130px] shadow-sm ${s.bg} ${s.border} ${s.ring ? "ring-2 ring-indigo-400 ring-offset-1" : ""}`
+        },
+        s.pulse && /* @__PURE__ */ import_react4.default.createElement("span", { className: "absolute top-1.5 right-1.5 flex h-2 w-2" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" }), /* @__PURE__ */ import_react4.default.createElement("span", { className: "relative inline-flex rounded-full h-2 w-2 bg-rose-500" })),
+        /* @__PURE__ */ import_react4.default.createElement(Bot, { size: 14, className: `mb-1 ${s.text} opacity-70` }),
+        /* @__PURE__ */ import_react4.default.createElement("div", { className: `text-[10px] font-bold leading-snug ${s.text}` }, node.label),
+        node.action && /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[8.5px] text-slate-500 mt-1 leading-snug" }, node.action)
+      );
+    }))));
   };
   var WhatIfPanel = () => {
     const [rainfall, setRainfall] = (0, import_react4.useState)(150);
@@ -13283,22 +13344,18 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
     const riskLevel = isCritical ? "\u{1F534} \u6781\u9AD8\u98CE\u9669" : isWarning ? "\u{1F7E0} \u4E2D\u9AD8\u98CE\u9669" : "\u{1F7E2} \u5B89\u5168";
     const riskColor = isCritical ? "text-rose-600" : isWarning ? "text-amber-600" : "text-emerald-600";
     const riskBg = isCritical ? "bg-rose-50 border-rose-200" : isWarning ? "bg-amber-50 border-amber-200" : "bg-emerald-50 border-emerald-200";
-    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex justify-between text-[10px] mb-1" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-slate-500" }, "\u8FDE\u7EED\u964D\u96E8\u91CF (mm)"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "font-bold text-indigo-600 font-mono" }, rainfall)), /* @__PURE__ */ import_react4.default.createElement("input", { type: "range", min: "0", max: "300", value: rainfall, onChange: (e) => setRainfall(Number(e.target.value)), className: "w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex justify-between text-[8px] text-slate-400 mt-0.5" }, /* @__PURE__ */ import_react4.default.createElement("span", null, "\u6674\u5929"), /* @__PURE__ */ import_react4.default.createElement("span", null, "\u5927\u66B4\u96E8"))), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex justify-between text-[10px] mb-1" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-slate-500" }, "\u8DEF\u57FA\u7D2F\u8BA1\u6C89\u964D (mm)"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "font-bold text-indigo-600 font-mono" }, settlement)), /* @__PURE__ */ import_react4.default.createElement("input", { type: "range", min: "0", max: "50", value: settlement, onChange: (e) => setSettlement(Number(e.target.value)), className: "w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex justify-between text-[8px] text-slate-400 mt-0.5" }, /* @__PURE__ */ import_react4.default.createElement("span", null, "\u6B63\u5E38"), /* @__PURE__ */ import_react4.default.createElement("span", null, "\u6781\u9650\u584C\u9677"))), /* @__PURE__ */ import_react4.default.createElement("div", { className: `p-2 rounded border text-center ${riskBg}` }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[9px] text-slate-500 mb-0.5" }, "\u667A\u80FD\u4F53\u63A8\u6F14\u98CE\u9669\u7B49\u7EA7"), /* @__PURE__ */ import_react4.default.createElement("div", { className: `text-[13px] font-black ${riskColor}` }, riskLevel)));
+    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex justify-between text-[10px] mb-1" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-slate-500" }, "\u8FDE\u7EED\u964D\u96E8\u91CF (mm)"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "font-bold text-indigo-600 font-mono" }, rainfall)), /* @__PURE__ */ import_react4.default.createElement("input", { type: "range", min: "0", max: "300", value: rainfall, onChange: (e) => setRainfall(+e.target.value), className: "w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex justify-between text-[8px] text-slate-400 mt-0.5" }, /* @__PURE__ */ import_react4.default.createElement("span", null, "\u6674\u5929"), /* @__PURE__ */ import_react4.default.createElement("span", null, "\u5927\u66B4\u96E8"))), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex justify-between text-[10px] mb-1" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-slate-500" }, "\u8DEF\u57FA\u7D2F\u8BA1\u6C89\u964D (mm)"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "font-bold text-indigo-600 font-mono" }, settlement)), /* @__PURE__ */ import_react4.default.createElement("input", { type: "range", min: "0", max: "50", value: settlement, onChange: (e) => setSettlement(+e.target.value), className: "w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex justify-between text-[8px] text-slate-400 mt-0.5" }, /* @__PURE__ */ import_react4.default.createElement("span", null, "\u6B63\u5E38"), /* @__PURE__ */ import_react4.default.createElement("span", null, "\u6781\u9650\u584C\u9677"))), /* @__PURE__ */ import_react4.default.createElement("div", { className: `p-2 rounded border text-center ${riskBg}` }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[9px] text-slate-500 mb-0.5" }, "\u667A\u80FD\u4F53\u63A8\u6F14\u98CE\u9669\u7B49\u7EA7"), /* @__PURE__ */ import_react4.default.createElement("div", { className: `text-[13px] font-black ${riskColor}` }, riskLevel)));
   };
   var PalantirDecisionView = () => {
-    const [selectedScenario, setSelectedScenario] = (0, import_react4.useState)(null);
-    const [aiAnswer, setAiAnswer] = (0, import_react4.useState)("");
-    const [isLoading, setIsLoading] = (0, import_react4.useState)(false);
-    const [hasAsked, setHasAsked] = (0, import_react4.useState)(false);
-    const callAI = async (scenario) => {
-      setIsLoading(true);
-      setAiAnswer("");
-      setHasAsked(true);
-      let apiKey = "";
-      let apiProvider = "deepseek";
+    const [selected, setSelected] = (0, import_react4.useState)(null);
+    const [graph, setGraph] = (0, import_react4.useState)(null);
+    const [status, setStatus] = (0, import_react4.useState)("idle");
+    const [errMsg, setErrMsg] = (0, import_react4.useState)("");
+    const getApiKey = () => {
+      let apiKey = "", apiProvider = "deepseek";
       const savedProvider = localStorage.getItem("NIANBAO_USER_PROVIDER") || "deepseek";
       const savedKeys = JSON.parse(localStorage.getItem("NIANBAO_USER_KEYS") || "{}");
-      const deobfuscate = (s) => {
+      const deobf = (s) => {
         if (!s) return "";
         try {
           return atob(s).split("").reverse().join("");
@@ -13307,7 +13364,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
         }
       };
       if (savedKeys[savedProvider]) {
-        apiKey = deobfuscate(savedKeys[savedProvider]);
+        apiKey = deobf(savedKeys[savedProvider]);
         apiProvider = savedProvider;
       }
       if (!apiKey && window.__API_CONFIG__) {
@@ -13315,90 +13372,135 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
           const cfg = JSON.parse(window.__API_CONFIG__);
           const prov = cfg.API_PROVIDER || "deepseek";
           apiProvider = prov;
-          if (prov === "deepseek") apiKey = deobfuscate(cfg.DEEPSEEK_API_KEY) || "";
-          else if (prov === "zhipu" || prov === "glm") apiKey = deobfuscate(cfg.ZHIPU_API_KEY) || "";
-          else if (prov === "gemini") apiKey = deobfuscate(cfg.GEMINI_API_KEY) || "";
+          if (prov === "deepseek") apiKey = deobf(cfg.DEEPSEEK_API_KEY) || "";
+          else if (prov === "zhipu" || prov === "glm") apiKey = deobf(cfg.ZHIPU_API_KEY) || "";
+          else if (prov === "gemini") apiKey = deobf(cfg.GEMINI_API_KEY) || "";
         } catch (e) {
         }
       }
+      return { apiKey, apiProvider };
+    };
+    const callAI = async (sc) => {
+      setSelected(sc);
+      setStatus("loading");
+      setGraph(null);
+      const { apiKey, apiProvider } = getApiKey();
+      const systemPrompt = `\u4F60\u662F\u6E56\u5317\u7701\u516C\u8DEF\u6570\u636E\u6CBB\u7406AI\u4E13\u5BB6\u3002\u7528\u6237\u7ED9\u51FA\u4E00\u4E2A\u4E1A\u52A1\u573A\u666F\u7F16\u53F7\u548C\u540D\u79F0\uFF0C\u4F60\u9700\u8981\u8BBE\u8BA1\u8BE5\u573A\u666F\u7684\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u7528\u56FE\u3002
+\u8BF7\u4E25\u683C\u8FD4\u56DE\u5982\u4E0B JSON \u683C\u5F0F\uFF0C\u4E0D\u8981\u6709\u4EFB\u4F55\u5176\u4ED6\u6587\u5B57\uFF1A
+{
+  "nodes": [
+    {"id": "n1", "label": "\u667A\u80FD\u4F53\u540D\u79F0", "action": "\u6267\u884C\u7684\u52A8\u4F5C\uFF0810\u5B57\u5185\uFF09", "type": "data|hub|domain|alert|action", "layer": 0}
+  ],
+  "edges": [
+    {"from": "n1", "to": "n2", "label": "\u8FDE\u7EBF\u6807\u6CE8\uFF08\u53EF\u7A7A\uFF09", "alert": false}
+  ]
+}
+type\u8BF4\u660E\uFF1Adata=\u6570\u636E\u6E90\u667A\u80FD\u4F53, hub=\u4E3B\u63A7/\u67A2\u7EBD\u667A\u80FD\u4F53(ring\u9AD8\u4EAE), domain=\u9886\u57DF\u4E13\u4E1A\u667A\u80FD\u4F53, alert=\u544A\u8B66/\u5E94\u6025\u667A\u80FD\u4F53(\u7EA2\u8272\u95EA\u70C1), action=\u6267\u884C/\u8F93\u51FA\u667A\u80FD\u4F53
+layer\u8BF4\u660E\uFF1A0=\u6570\u636E\u8F93\u5165\u5C42, 1=\u4E3B\u63A7\u5C42, 2=\u4E13\u4E1A\u5904\u7406\u5C42, 3=\u6267\u884C\u8F93\u51FA\u5C42
+\u6BCF\u5C42\u8282\u70B9\u6570\u63A7\u5236\u57281~4\u4E2A\uFF0C\u6574\u4F53\u8282\u70B9\u603B\u6570\u63A7\u5236\u57285~10\u4E2A\uFF0Cedge\u603B\u6570\u63A7\u5236\u57284~10\u4E2A\u3002
+\u667A\u80FD\u4F53\u540D\u79F0\u683C\u5F0F\uFF1A\u90E8\u95E8\u540D+\u804C\u80FD\uFF08\u5982"\u8DEF\u7F51\u8FD0\u884C\u5904\xB7\u4E3B\u63A7"\u3001"\u6C14\u8C61\u6570\u636E\xB7API"\u3001"\u517B\u62A4\u5904\xB7\u75C5\u5BB3\u8BC4\u4F30"\uFF09`;
+      const userMsg = `\u573A\u666F\uFF1A[${sc.id}] ${sc.dept} \u2014 ${sc.label}
+\u8BF7\u8BBE\u8BA1\u8BE5\u573A\u666F\u7684\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u7528\u56FE\uFF0C\u8FD4\u56DEJSON\u3002`;
       if (!apiKey) {
-        setAiAnswer("> \u26A0\uFE0F \u6F14\u793A\u6A21\u5F0F\uFF1A\u672A\u914D\u7F6E API Key\u3002\n\n**[" + scenario.id + "] " + scenario.dept + " \u667A\u80FD\u4F53\u534F\u540C\u65B9\u6848\uFF08\u793A\u4F8B\uFF09**\n\n\u672C\u573A\u666F\u6D89\u53CA\u591A\u4E2A\u667A\u80FD\u4F53\u534F\u540C\u5DE5\u4F5C\uFF1A\n\n1. **\u6570\u636E\u91C7\u96C6\u5C42**\uFF1A\u9AD8\u8D28\u91CF\u6570\u636E\u96C6\u901A\u8FC7\u672C\u4F53\uFF08Ontology\uFF09\u6620\u5C04\u5230\u5177\u4F53\u4E1A\u52A1\u5B9E\u4F53\n2. **\u4E3B\u63A7\u667A\u80FD\u4F53**\uFF1A" + scenario.dept + "\u7684\u4E1A\u52A1\u89C4\u5219\u5F15\u64CE\u8D1F\u8D23\u8C03\u5EA6\u548C\u51B3\u7B56\n3. **\u6267\u884C\u5C42**\uFF1A\u5199\u56DE\u4E1A\u52A1\u7CFB\u7EDF\uFF0C\u8054\u52A8\u5916\u90E8\u95E8\uFF0C\u5B8C\u6210\u51B3\u7B56\u95ED\u73AF\n\n\u8BF7\u5728\u300C\u5F15\u64CE\u8BBE\u7F6E\u300D\u914D\u7F6E API Key \u4EE5\u83B7\u53D6\u771F\u5B9E AI \u63A8\u6F14\u3002");
-        setIsLoading(false);
+        setGraph(getDemoGraph(sc.id));
+        setStatus("done");
         return;
       }
-      const systemPrompt = "\u4F60\u662F\u6E56\u5317\u7701\u516C\u8DEF\u4E8B\u4E1A\u53D1\u5C55\u4E2D\u5FC3\u7684\u516C\u8DEF\u6570\u636E\u6CBB\u7406AI\u4E13\u5BB6\u3002\u7528\u6237\u8BE2\u95EE\u5177\u4F53\u4E1A\u52A1\u573A\u666F\u7684\u591A\u667A\u80FD\u4F53\u534F\u540C\u65B9\u6848\u3002\u8BF7\u7528\u7B80\u6D01\u4E13\u4E1A\u7684\u4E2D\u6587\u56DE\u7B54\uFF0C\u91CD\u70B9\u7A81\u51FA\uFF1A1)\u6D89\u53CA\u7684\u667A\u80FD\u4F53\u89D2\u8272\u548C\u90E8\u95E8 2)\u6570\u636E\u6D41\u548C\u8C03\u7528\u94FE\u8DEF 3)\u5173\u952E\u51B3\u7B56\u8282\u70B9\u3002\u683C\u5F0F\u7528Markdown\uFF0C\u9002\u5F53\u7528\u5217\u8868\u548C\u7C97\u4F53\u3002\u56DE\u7B54\u4E0D\u8D85\u8FC7400\u5B57\u3002";
       try {
         let url, body, headers;
         if (apiProvider === "deepseek") {
           url = "https://api.deepseek.com/v1/chat/completions";
-          body = JSON.stringify({ model: "deepseek-chat", messages: [{ role: "system", content: systemPrompt }, { role: "user", content: scenario.q }], stream: true, max_tokens: 600 });
+          body = JSON.stringify({ model: "deepseek-chat", messages: [{ role: "system", content: systemPrompt }, { role: "user", content: userMsg }], stream: false, max_tokens: 1200, response_format: { type: "json_object" } });
           headers = { "Content-Type": "application/json", "Authorization": "Bearer " + apiKey };
         } else if (apiProvider === "zhipu" || apiProvider === "glm") {
           url = "https://open.bigmodel.cn/api/paas/v4/chat/completions";
-          body = JSON.stringify({ model: "glm-4-flash", messages: [{ role: "system", content: systemPrompt }, { role: "user", content: scenario.q }], stream: true, max_tokens: 600 });
+          body = JSON.stringify({ model: "glm-4-flash", messages: [{ role: "system", content: systemPrompt }, { role: "user", content: userMsg }], stream: false, max_tokens: 1200 });
           headers = { "Content-Type": "application/json", "Authorization": "Bearer " + apiKey };
         } else {
-          throw new Error("Unsupported provider");
+          setGraph(getDemoGraph(sc.id));
+          setStatus("done");
+          return;
         }
         const resp = await fetch(url, { method: "POST", headers, body });
         if (!resp.ok) throw new Error("HTTP " + resp.status);
-        const reader = resp.body.getReader();
-        const decoder = new TextDecoder();
-        let buffer = "";
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buffer += decoder.decode(value, { stream: true });
-          const lines = buffer.split("\n");
-          buffer = lines.pop();
-          for (const line of lines) {
-            if (line.startsWith("data: ")) {
-              const data = line.slice(6).trim();
-              if (data === "[DONE]") continue;
-              try {
-                const json = JSON.parse(data);
-                const delta = json.choices?.[0]?.delta?.content || "";
-                if (delta) setAiAnswer((prev) => prev + delta);
-              } catch {
-              }
-            }
-          }
-        }
+        const data = await resp.json();
+        const content = data.choices?.[0]?.message?.content || "";
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) throw new Error("AI\u672A\u8FD4\u56DE\u6709\u6548JSON");
+        const parsed = JSON.parse(jsonMatch[0]);
+        if (!parsed.nodes || !parsed.edges) throw new Error("JSON\u7ED3\u6784\u4E0D\u6B63\u786E");
+        setGraph(parsed);
+        setStatus("done");
       } catch (e) {
-        setAiAnswer("> \u8C03\u7528\u5931\u8D25: " + e.message);
+        console.error(e);
+        setErrMsg(e.message);
+        setGraph(getDemoGraph(sc.id));
+        setStatus("done");
       }
-      setIsLoading(false);
     };
-    const handleSelect = (sc) => {
-      setSelectedScenario(sc);
-      callAI(sc);
-    };
-    const renderMd = (text) => {
-      if (!text) return null;
-      return text.split("\n").map((line, i) => {
-        const bold = (s) => s.replace(/\*\*(.*?)\*\*/g, "\xA7$1\xA7").split("\xA7").map((t, j2) => j2 % 2 === 1 ? /* @__PURE__ */ import_react4.default.createElement("strong", { key: j2, className: "text-slate-800" }, t) : t);
-        if (line.startsWith("> ")) return /* @__PURE__ */ import_react4.default.createElement("div", { key: i, className: "bg-amber-50 border-l-2 border-amber-400 pl-2 py-0.5 text-amber-700 text-[11px] my-1" }, line.slice(2));
-        if (line.startsWith("## ")) return /* @__PURE__ */ import_react4.default.createElement("div", { key: i, className: "font-bold text-slate-700 text-[12px] mt-2 mb-1" }, bold(line.slice(3)));
-        if (line.startsWith("# ")) return /* @__PURE__ */ import_react4.default.createElement("div", { key: i, className: "font-bold text-slate-800 text-[13px] mt-2 mb-1" }, bold(line.slice(2)));
-        if (/^\d+\.\s/.test(line)) return /* @__PURE__ */ import_react4.default.createElement("div", { key: i, className: "text-[11px] text-slate-600 ml-2 my-0.5" }, bold(line));
-        if (line.startsWith("- ") || line.startsWith("\u2022 ")) return /* @__PURE__ */ import_react4.default.createElement("div", { key: i, className: "text-[11px] text-slate-600 ml-2 my-0.5" }, "\u2022 ", bold(line.slice(2)));
-        if (line.trim() === "") return /* @__PURE__ */ import_react4.default.createElement("div", { key: i, className: "h-1.5" });
-        return /* @__PURE__ */ import_react4.default.createElement("div", { key: i, className: "text-[11px] text-slate-600 my-0.5 leading-relaxed" }, bold(line));
-      });
-    };
-    const DEPT_ORDER = ["\u79D1\u6280\u4FE1\u606F\u5904", "\u7EFC\u5408\u8BA1\u5212\u5904", "\u5EFA\u8BBE\u7BA1\u7406\u5904", "\u5DE5\u7A0B\u6280\u672F\u5904", "\u517B\u62A4\u7BA1\u7406\u5904", "\u519C\u6751\u516C\u8DEF\u5904", "\u5B89\u5168\u76D1\u7763\u5904", "\u5E94\u6025\u4FDD\u969C\u5904", "\u8FD0\u8425\u7BA1\u7406\u5904", "\u8D22\u52A1\u5904", "\u529E\u516C\u5BA4"];
-    const grouped = DEPT_ORDER.map((dept) => ({ dept, items: SCENARIOS.filter((s) => s.dept === dept) })).filter((g2) => g2.items.length > 0);
-    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "h-full min-h-0 flex gap-2 text-slate-800 p-2 font-sans bg-slate-50/50" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "w-56 min-h-0 bg-white border border-slate-200 rounded-xl flex flex-col shadow-sm overflow-hidden flex-shrink-0" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "p-2.5 border-b border-slate-200 bg-slate-50 flex items-center gap-2 shrink-0" }, /* @__PURE__ */ import_react4.default.createElement(Layers, { size: 14, className: "text-indigo-600" }), /* @__PURE__ */ import_react4.default.createElement("h3", { className: "font-bold text-slate-700 text-[12px]" }, "\u4E1A\u52A1\u5C97\u4F4D\u672C\u4F53\u573A\u666F\u6C60")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex-1 min-h-0 overflow-y-auto p-2 custom-scroll" }, grouped.map((g2, gi) => /* @__PURE__ */ import_react4.default.createElement("div", { key: gi, className: "mb-2" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "px-1.5 py-1 flex items-center gap-1.5 text-[10px] font-bold text-slate-500" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "w-3.5 h-3.5 rounded bg-indigo-600 text-white flex items-center justify-center text-[8px] flex-shrink-0" }, gi + 1), g2.dept), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ml-3 border-l-2 border-slate-100 pl-2 space-y-0.5" }, g2.items.map((sc) => /* @__PURE__ */ import_react4.default.createElement(
+    const grouped = DEPT_ORDER.map((dept) => ({
+      dept,
+      items: SCENARIOS.filter((s) => s.dept === dept)
+    })).filter((g2) => g2.items.length > 0);
+    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "h-full min-h-0 flex gap-2 text-slate-800 p-2 font-sans bg-slate-50/50" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "w-56 min-h-0 bg-white border border-slate-200 rounded-xl flex flex-col shadow-sm overflow-hidden flex-shrink-0" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "p-2.5 border-b border-slate-200 bg-slate-50 flex items-center gap-2 shrink-0" }, /* @__PURE__ */ import_react4.default.createElement(Layers, { size: 14, className: "text-indigo-600" }), /* @__PURE__ */ import_react4.default.createElement("h3", { className: "font-bold text-slate-700 text-[12px]" }, "\u4E1A\u52A1\u5C97\u4F4D\u672C\u4F53\u573A\u666F\u6C60")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex-1 min-h-0 overflow-y-auto p-2 custom-scroll" }, grouped.map((g2, gi) => /* @__PURE__ */ import_react4.default.createElement("div", { key: gi, className: "mb-2" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "px-1.5 py-1 flex items-center gap-1.5 text-[10px] font-bold text-slate-400" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "w-3.5 h-3.5 rounded bg-indigo-600 text-white flex items-center justify-center text-[8px] flex-shrink-0" }, gi + 1), g2.dept), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ml-3 border-l-2 border-slate-100 pl-2 space-y-0.5" }, g2.items.map((sc) => /* @__PURE__ */ import_react4.default.createElement(
       "div",
       {
         key: sc.id,
-        onClick: () => handleSelect(sc),
-        className: "text-[10px] py-1 px-1.5 rounded cursor-pointer leading-snug transition-colors " + (selectedScenario?.id === sc.id ? "bg-indigo-50 text-indigo-700 font-bold border border-indigo-200" : "text-slate-500 hover:bg-slate-50 hover:text-slate-700")
+        onClick: () => callAI(sc),
+        className: "text-[10px] py-1 px-1.5 rounded cursor-pointer leading-snug transition-colors " + (selected?.id === sc.id ? "bg-indigo-50 text-indigo-700 font-bold border border-indigo-200" : "text-slate-500 hover:bg-slate-50 hover:text-slate-700")
       },
       sc.active && /* @__PURE__ */ import_react4.default.createElement("span", { className: "inline-block w-1.5 h-1.5 rounded-full bg-rose-500 mr-1 animate-pulse align-middle" }),
       sc.label
-    ))))))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex-1 min-h-0 bg-white border border-slate-200 rounded-xl flex flex-col shadow-sm overflow-hidden" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "p-2.5 border-b border-slate-200 bg-slate-50 flex items-center justify-between shrink-0" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react4.default.createElement(Network, { size: 14, className: "text-indigo-600" }), /* @__PURE__ */ import_react4.default.createElement("span", { className: "font-bold text-slate-700 text-[12px]" }, "\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u5EA6\u63A8\u6F14"), selectedScenario && /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-[10px] bg-indigo-50 text-indigo-600 border border-indigo-200 px-2 py-0.5 rounded-full font-mono" }, selectedScenario.id)), isLoading && /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-1.5 text-[10px] text-slate-500" }, /* @__PURE__ */ import_react4.default.createElement(Loader, { size: 12, className: "animate-spin" }), "\u63A8\u6F14\u4E2D...")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "border-b border-slate-100 bg-slate-50/60 px-3 shrink-0" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[9px] text-slate-400 font-bold uppercase tracking-wide pt-1.5 flex items-center gap-1" }, /* @__PURE__ */ import_react4.default.createElement(GitMerge, { size: 9, className: "text-slate-400" }), " \u667A\u80FD\u4F53\u8C03\u7528\u94FE\u8DEF"), /* @__PURE__ */ import_react4.default.createElement(AgentFlow, { scenarioId: selectedScenario?.id })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex-1 min-h-0 overflow-y-auto p-4 custom-scroll" }, !hasAsked && /* @__PURE__ */ import_react4.default.createElement("div", { className: "h-full flex flex-col items-center justify-center text-center text-slate-400" }, /* @__PURE__ */ import_react4.default.createElement(Bot, { size: 36, className: "mb-3 text-slate-200" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[13px] font-bold text-slate-400 mb-1" }, "\u70B9\u51FB\u5DE6\u4FA7\u4EFB\u610F\u573A\u666F\uFF0C\u542F\u52A8\u667A\u80FD\u4F53\u534F\u540C\u63A8\u6F14"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[11px] text-slate-300" }, "AI \u5C06\u5B9E\u65F6\u5206\u6790\u8BE5\u573A\u666F\u7684\u5B8C\u6574\u667A\u80FD\u4F53\u8C03\u7528\u94FE\u8DEF\u4E0E\u51B3\u7B56\u903B\u8F91")), hasAsked && /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[11px] font-bold text-slate-500 mb-2 flex items-center gap-1.5" }, /* @__PURE__ */ import_react4.default.createElement(Bot, { size: 13, className: "text-indigo-500" }), "\u516C\u8DEF\u6CBB\u7406AI \xB7 \u667A\u80FD\u4F53\u534F\u540C\u5206\u6790", isLoading && /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-slate-400 font-normal" }, "\u6B63\u5728\u751F\u6210...")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "leading-relaxed" }, renderMd(aiAnswer), isLoading && /* @__PURE__ */ import_react4.default.createElement("span", { className: "inline-block w-1 h-3.5 bg-indigo-500 animate-pulse ml-0.5 align-text-bottom" }))))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "w-[220px] min-h-0 bg-white border border-slate-200 rounded-xl flex flex-col shadow-sm flex-shrink-0 overflow-hidden" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "p-2.5 border-b border-slate-200 bg-slate-50 flex items-center gap-2 shrink-0" }, /* @__PURE__ */ import_react4.default.createElement(Settings, { size: 13, className: "text-slate-500" }), /* @__PURE__ */ import_react4.default.createElement("h3", { className: "font-bold text-slate-700 text-[12px]" }, "\u6C99\u76D8\u53C2\u6570\u4E0E\u51B3\u7B56\u4E0B\u53D1")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex-1 min-h-0 overflow-y-auto p-3 flex flex-col gap-3 custom-scroll" }, /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[10px] font-bold text-slate-500 mb-2 border-l-2 border-indigo-400 pl-1.5" }, "What-If \u4EFF\u771F\u53C2\u6570\u6CE8\u5165"), /* @__PURE__ */ import_react4.default.createElement(WhatIfPanel, null)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "border-t border-slate-100 pt-3" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[10px] font-bold text-slate-500 mb-2 border-l-2 border-emerald-400 pl-1.5" }, "\u8DE8\u57DF\u8054\u52A8\u6267\u884C (Write-back)"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded text-[10px] font-bold flex items-center justify-center gap-1.5 bg-rose-500 text-white hover:bg-rose-600 transition-colors" }, /* @__PURE__ */ import_react4.default.createElement(TriangleAlert, { size: 11 }), " \u7B7E\u53D1\u5C01\u8DEF\u4E0E\u4EA4\u901A\u7BA1\u5236\u4EE4"), /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded text-[10px] font-bold flex items-center justify-center gap-1.5 bg-blue-600 text-white hover:bg-blue-700 transition-colors" }, /* @__PURE__ */ import_react4.default.createElement(Wifi, { size: 11 }), " API \u5E7F\u53D1\u4E92\u8054\u7F51\u5730\u56FE\u5C01\u8DEF"), /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded text-[10px] font-bold flex items-center justify-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-100 transition-colors" }, /* @__PURE__ */ import_react4.default.createElement(CircleCheckBig, { size: 11 }), " \u51B3\u7B56\u5199\u56DE\u672C\u4F53\u77E5\u8BC6\u56FE\u8C31")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[9px] text-slate-400 text-center mt-2" }, "\u6240\u6709\u6307\u4EE4\u901A\u8FC7 API \u7F51\u5173\u7A7F\u900F\u5E95\u5C42\u4E1A\u52A1\u7CFB\u7EDF")))));
+    ))))))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex-1 min-h-0 bg-white border border-slate-200 rounded-xl flex flex-col shadow-sm overflow-hidden" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "p-2.5 border-b border-slate-200 bg-slate-50 flex items-center justify-between shrink-0" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react4.default.createElement(Network, { size: 14, className: "text-indigo-600" }), /* @__PURE__ */ import_react4.default.createElement("span", { className: "font-bold text-slate-700 text-[12px]" }, "\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u7528\u56FE"), selected && /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-[10px] bg-indigo-50 text-indigo-600 border border-indigo-200 px-2 py-0.5 rounded-full font-mono" }, selected.id)), status === "loading" && /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-1.5 text-[10px] text-slate-500" }, /* @__PURE__ */ import_react4.default.createElement(Loader, { size: 12, className: "animate-spin text-indigo-500" }), "AI \u6B63\u5728\u8BBE\u8BA1\u667A\u80FD\u4F53\u534F\u540C\u56FE...")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex-1 min-h-0 overflow-y-auto custom-scroll" }, status === "idle" && /* @__PURE__ */ import_react4.default.createElement("div", { className: "h-full flex flex-col items-center justify-center text-center p-6" }, /* @__PURE__ */ import_react4.default.createElement(GitBranch, { size: 40, className: "mb-4 text-slate-200" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[14px] font-bold text-slate-400 mb-1" }, "\u70B9\u51FB\u5DE6\u4FA7\u573A\u666F"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[11px] text-slate-300" }, "AI \u5C06\u81EA\u52A8\u8BBE\u8BA1\u8BE5\u573A\u666F\u7684\u591A\u667A\u80FD\u4F53\u534F\u540C\u8C03\u7528\u56FE")), status === "loading" && /* @__PURE__ */ import_react4.default.createElement("div", { className: "h-full flex flex-col items-center justify-center gap-3" }, /* @__PURE__ */ import_react4.default.createElement(Loader, { size: 28, className: "animate-spin text-indigo-400" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[12px] text-slate-500" }, "\u6B63\u5728\u5524\u9192\u667A\u80FD\u4F53\u77E9\u9635...")), status === "done" && graph && /* @__PURE__ */ import_react4.default.createElement("div", { className: "p-2" }, errMsg && /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[10px] text-amber-600 bg-amber-50 border border-amber-200 rounded px-2 py-1 mb-2 flex items-center gap-1" }, /* @__PURE__ */ import_react4.default.createElement(TriangleAlert, { size: 10 }), " \u6F14\u793A\u6A21\u5F0F\uFF08", errMsg, "\uFF09"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex gap-3 mb-3 px-2 flex-wrap" }, [
+      { type: "data", label: "\u6570\u636E\u6E90\u667A\u80FD\u4F53" },
+      { type: "hub", label: "\u4E3B\u63A7\u667A\u80FD\u4F53" },
+      { type: "domain", label: "\u9886\u57DF\u4E13\u4E1A\u667A\u80FD\u4F53" },
+      { type: "alert", label: "\u5E94\u6025/\u544A\u8B66\u667A\u80FD\u4F53" },
+      { type: "action", label: "\u6267\u884C/\u8F93\u51FA\u667A\u80FD\u4F53" }
+    ].map((l3) => {
+      const s = TYPE_STYLE[l3.type];
+      return /* @__PURE__ */ import_react4.default.createElement("div", { key: l3.type, className: "flex items-center gap-1" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: `w-2 h-2 rounded-full ${s.dot}` }), /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-[9px] text-slate-500" }, l3.label));
+    })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[9px] text-slate-400 mb-1 px-2" }, "\u2190 \u6570\u636E\u8F93\u5165\u5C42 \xA0\u2192\xA0 \u4E3B\u63A7\u5C42 \xA0\u2192\xA0 \u4E13\u4E1A\u5904\u7406\u5C42 \xA0\u2192\xA0 \u6267\u884C\u8F93\u51FA\u5C42"), /* @__PURE__ */ import_react4.default.createElement(AgentGraph, { graph })))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "w-[210px] min-h-0 bg-white border border-slate-200 rounded-xl flex flex-col shadow-sm flex-shrink-0 overflow-hidden" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "p-2.5 border-b border-slate-200 bg-slate-50 flex items-center gap-2 shrink-0" }, /* @__PURE__ */ import_react4.default.createElement(Settings, { size: 13, className: "text-slate-500" }), /* @__PURE__ */ import_react4.default.createElement("h3", { className: "font-bold text-slate-700 text-[12px]" }, "\u6C99\u76D8\u53C2\u6570\u4E0E\u51B3\u7B56\u4E0B\u53D1")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex-1 min-h-0 overflow-y-auto p-3 flex flex-col gap-3 custom-scroll" }, /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[10px] font-bold text-slate-500 mb-2 border-l-2 border-indigo-400 pl-1.5" }, "What-If \u4EFF\u771F\u53C2\u6570\u6CE8\u5165"), /* @__PURE__ */ import_react4.default.createElement(WhatIfPanel, null)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "border-t border-slate-100 pt-3" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[10px] font-bold text-slate-500 mb-2 border-l-2 border-emerald-400 pl-1.5" }, "\u8DE8\u57DF\u8054\u52A8\u6267\u884C (Write-back)"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded text-[10px] font-bold flex items-center justify-center gap-1.5 bg-rose-500 text-white hover:bg-rose-600 transition-colors" }, /* @__PURE__ */ import_react4.default.createElement(TriangleAlert, { size: 11 }), " \u7B7E\u53D1\u5C01\u8DEF\u4E0E\u4EA4\u901A\u7BA1\u5236\u4EE4"), /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded text-[10px] font-bold flex items-center justify-center gap-1.5 bg-blue-600 text-white hover:bg-blue-700 transition-colors" }, /* @__PURE__ */ import_react4.default.createElement(Wifi, { size: 11 }), " API \u5E7F\u53D1\u4E92\u8054\u7F51\u5730\u56FE\u5C01\u8DEF"), /* @__PURE__ */ import_react4.default.createElement("button", { className: "w-full py-2 rounded text-[10px] font-bold flex items-center justify-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-100 transition-colors" }, /* @__PURE__ */ import_react4.default.createElement(CircleCheckBig, { size: 11 }), " \u51B3\u7B56\u5199\u56DE\u672C\u4F53\u77E5\u8BC6\u56FE\u8C31")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[9px] text-slate-400 text-center mt-2" }, "\u6240\u6709\u6307\u4EE4\u901A\u8FC7 API \u7F51\u5173\u7A7F\u900F\u5E95\u5C42\u4E1A\u52A1\u7CFB\u7EDF")))));
   };
+  function getDemoGraph(scId) {
+    if (scId === "SC-01-01") {
+      return {
+        nodes: [
+          { id: "n1", label: "\u6C14\u8C61\u6570\u636E\xB7API", action: "\u83B7\u53D624h\u964D\u96E8\u91CF\u9884\u62A5", type: "data", layer: 0 },
+          { id: "n2", label: "\u4F20\u611F\u5668\xB7\u8DEF\u57FA\u6C89\u964D", action: "\u8BFB\u53D6\u8FB9\u5761\u4F4D\u79FB\u6570\u636E", type: "data", layer: 0 },
+          { id: "n3", label: "\u5386\u53F2\u75C5\u5BB3\xB7\u77E5\u8BC6\u5E93", action: "\u5339\u914D\u5F80\u5E74\u707E\u635F\u8BB0\u5F55", type: "data", layer: 0 },
+          { id: "n4", label: "\u8DEF\u7F51\u8FD0\u884C\u5904\xB7\u4E3B\u63A7", action: "\u7EFC\u5408\u7814\u5224\u98CE\u9669\u7B49\u7EA7", type: "hub", layer: 1 },
+          { id: "n5", label: "\u517B\u62A4\u5904\xB7\u75C5\u5BB3\u8BC4\u4F30", action: "\u8DEF\u57FA\u7A7A\u6D1E\u4E13\u9879\u8BC4\u4F30", type: "domain", layer: 2 },
+          { id: "n6", label: "\u5E94\u6025\u5904\xB7\u6307\u6325\u8C03\u5EA6", action: "\u89E6\u53D1\u7194\u65AD\u4E0E\u5206\u6D41\u4EE4", type: "alert", layer: 2 },
+          { id: "n7", label: "\u4EA4\u7BA1\u5C40\xB7\u5C01\u8DEF\u6267\u884C", action: "\u4E0B\u53D1\u4E34\u65F6\u5C01\u95ED\u6307\u4EE4", type: "action", layer: 3 },
+          { id: "n8", label: "\u9AD8\u5FB7/\u767E\u5EA6\xB7\u516C\u57DF\u64AD\u62A5", action: "\u4E92\u8054\u7F51\u5730\u56FE\u5C01\u8DEF\u5E7F\u64AD", type: "action", layer: 3 }
+        ],
+        edges: [
+          { from: "n1", to: "n4", label: "\u5B9E\u65F6\u6C14\u8C61" },
+          { from: "n2", to: "n4", label: "\u4F20\u611F\u6570\u636E" },
+          { from: "n3", to: "n4", label: "\u5386\u53F2\u5173\u8054" },
+          { from: "n4", to: "n5", label: "\u75C5\u5BB3\u6838\u67E5" },
+          { from: "n4", to: "n6", label: "\u5E94\u6025\u89E6\u53D1", alert: true },
+          { from: "n5", to: "n6", label: "\u8BC4\u4F30\u7ED3\u679C" },
+          { from: "n6", to: "n7", label: "\u5C01\u8DEF\u4EE4", alert: true },
+          { from: "n6", to: "n8", label: "\u516C\u57DF\u5E7F\u64AD", alert: true }
+        ]
+      };
+    }
+    return {
+      nodes: [
+        { id: "n1", label: "\u4E1A\u52A1\u6570\u636E\u6E90", action: "\u8BFB\u53D6\u76F8\u5173\u4E1A\u52A1\u8868", type: "data", layer: 0 },
+        { id: "n2", label: "\u4E3B\u63A7\u667A\u80FD\u4F53", action: "\u534F\u8C03\u5404\u65B9\u8D44\u6E90", type: "hub", layer: 1 },
+        { id: "n3", label: "\u4E13\u4E1A\u5904\u7406\u667A\u80FD\u4F53", action: "\u4E1A\u52A1\u89C4\u5219\u6821\u9A8C", type: "domain", layer: 2 },
+        { id: "n4", label: "\u7ED3\u679C\u8F93\u51FA\u667A\u80FD\u4F53", action: "\u5199\u56DE\u5E76\u901A\u77E5", type: "action", layer: 3 }
+      ],
+      edges: [
+        { from: "n1", to: "n2", label: "\u6570\u636E\u8F93\u5165" },
+        { from: "n2", to: "n3", label: "\u4EFB\u52A1\u5206\u53D1" },
+        { from: "n3", to: "n4", label: "\u5904\u7406\u7ED3\u679C" }
+      ]
+    };
+  }
   var PalantirDecisionView_default = PalantirDecisionView;
 
   // src/components/PageHeader.jsx
@@ -13466,7 +13568,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
   var Activity2 = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "Activity", ...p });
   var LayoutDashboard = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "LayoutDashboard", ...p });
   var Database2 = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "Database", ...p });
-  var GitBranch = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "GitBranch", ...p });
+  var GitBranch2 = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "GitBranch", ...p });
   var Layers2 = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "Layers", ...p });
   var ShieldCheck2 = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "ShieldCheck", ...p });
   var FileText2 = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "FileText", ...p });
@@ -13513,7 +13615,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
   };
 
   // src/components/AnnualReportAgentView.jsx
-  var { useState: useState2, useEffect: useEffect2 } = React;
+  var { useState: useState2, useEffect } = React;
   var AnnualReportAgentView = () => {
     const [activeStep, setActiveStep] = useState2(0);
     const INITIAL_REQUIREMENTS2 = [
@@ -13935,7 +14037,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
       return INITIAL_REQUIREMENTS2;
     });
     const [hoverChangelog, setHoverChangelog] = useState2(false);
-    useEffect2(() => {
+    useEffect(() => {
       if (sessionStorage.getItem("highlightChangelog") === "true") {
         setHoverChangelog(true);
         sessionStorage.removeItem("highlightChangelog");
@@ -13963,7 +14065,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
       }
       window.open(targetPath, "_blank");
     };
-    useEffect2(() => {
+    useEffect(() => {
       localStorage.setItem("yearly_backlog_reqs", JSON.stringify(requirements2));
     }, [requirements2]);
     const [activeReqModalId, setActiveReqModalId] = useState2(null);
@@ -14096,7 +14198,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
     const [microsegmentMode, setMicrosegmentMode] = useState2("annual");
     const [placeNameMatchStatus, setPlaceNameMatchStatus] = useState2("idle");
     const [placeNameEntriesConfirmed, setPlaceNameEntriesConfirmed] = useState2(false);
-    useEffect2(() => {
+    useEffect(() => {
       let timer;
       if (rectifyStatus === "loading") {
         setRectifyProgress(0);
@@ -16136,7 +16238,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
   }
 
   // src/components/AnnualReportAgentViewV2.jsx
-  var { useState: useState4, useEffect: useEffect3 } = React;
+  var { useState: useState4, useEffect: useEffect2 } = React;
   var AnnualReportAgentView2 = () => {
     const [showMappings, setShowMappings] = React.useState(true);
     const [activeStep, setActiveStep] = useState4(0);
@@ -16566,7 +16668,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
       return INITIAL_REQUIREMENTS2;
     });
     const [hoverChangelog, setHoverChangelog] = useState4(false);
-    useEffect3(() => {
+    useEffect2(() => {
       if (sessionStorage.getItem("highlightChangelog") === "true") {
         setHoverChangelog(true);
         sessionStorage.removeItem("highlightChangelog");
@@ -16594,7 +16696,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
       }
       window.open(targetPath, "_blank");
     };
-    useEffect3(() => {
+    useEffect2(() => {
       localStorage.setItem("yearly_backlog_reqs", JSON.stringify(requirements2));
     }, [requirements2]);
     const [activeReqModalId, setActiveReqModalId] = useState4(null);
@@ -16744,7 +16846,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
     const [microsegmentMode, setMicrosegmentMode] = useState4("annual");
     const [placeNameMatchStatus, setPlaceNameMatchStatus] = useState4("idle");
     const [placeNameEntriesConfirmed, setPlaceNameEntriesConfirmed] = useState4(false);
-    useEffect3(() => {
+    useEffect2(() => {
       let timer;
       if (rectifyStatus === "loading") {
         setRectifyProgress(0);
@@ -52969,7 +53071,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   };
 
   // src/components/DeepQAAnnualReportAgentView.jsx
-  var { useState: useState5, useEffect: useEffect4, useRef: useRef2 } = React;
+  var { useState: useState5, useEffect: useEffect3, useRef: useRef2 } = React;
   var SCENARIOS2 = [
     {
       title: "REQ-01",
@@ -53486,7 +53588,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     const [isEditing, setIsEditing] = useState5(false);
     const initialArgs = typeof (tc.argsStr || tc.args || tc.arguments) === "string" ? tc.argsStr || tc.args || tc.arguments : JSON.stringify(tc.args || tc.arguments, null, 2);
     const [editValue, setEditValue] = useState5(initialArgs || "");
-    useEffect4(() => {
+    useEffect3(() => {
       setIsOpen(tc.status === "running");
     }, [tc.status]);
     const isEnterprise = tc.name.startsWith("enterprise_");
@@ -54290,7 +54392,7 @@ ${code}
     const [db, setDb] = useState5(null);
     const [loadedTablesByYear, setLoadedTablesByYear] = useState5({});
     const [nianbaoSchema, setNianbaoSchema] = useState5("");
-    useEffect4(() => {
+    useEffect3(() => {
       if (window.__NIANBAO_SCHEMA__) {
         setNianbaoSchema(window.__NIANBAO_SCHEMA__);
       } else {
@@ -54299,7 +54401,7 @@ ${code}
         }).catch((e) => console.warn("[NianbaoSkill] failed:", e));
       }
     }, []);
-    useEffect4(() => {
+    useEffect3(() => {
       fetchYearsData();
     }, []);
     const fetchYearsData = async () => {
@@ -54330,7 +54432,7 @@ ${code}
       setHasMultiYearData(true);
       setLoadedTablesByYear(loaded);
     };
-    useEffect4(() => {
+    useEffect3(() => {
       if (!selectedYears || selectedYears.length === 0) return;
       Promise.resolve().then(() => (init_sqlite(), sqlite_exports)).then(async ({ loadDBByYear: loadDBByYear2 }) => {
         if (!window.__DBs__) window.__DBs__ = {};
@@ -54390,7 +54492,7 @@ ${code}
       setShowSettingsModal(false);
       alert("API \u914D\u7F6E\u4FDD\u5B58\u6210\u529F\uFF01\u5DF2\u7ACB\u5373\u751F\u6548\u3002");
     };
-    useEffect4(() => {
+    useEffect3(() => {
       let inlineConfig = {};
       if (window.__API_CONFIG__) {
         try {
@@ -54505,10 +54607,10 @@ ${code}
     const [currentRoundToolCalls, setCurrentRoundToolCalls] = useState5([]);
     const [currentRoundThought, setCurrentRoundThought] = useState5("");
     const messagesRef = useRef2(messages);
-    useEffect4(() => {
+    useEffect3(() => {
       messagesRef.current = messages;
     }, [messages]);
-    useEffect4(() => {
+    useEffect3(() => {
       const handleShowFullData = () => {
         if (window.__currentDataItems) {
           setGeneratedArtifacts((prev) => [...prev.filter((a) => a.name !== "\u660E\u7EC6\u6570\u636E\u5E95\u8868"), { name: "\u660E\u7EC6\u6570\u636E\u5E95\u8868", sourceQuery: "\u5168\u91CF\u660E\u7EC6\u8F93\u51FA" }]);
@@ -54521,7 +54623,7 @@ ${code}
       document.addEventListener("SHOW_FULL_DATA", handleShowFullData);
       return () => document.removeEventListener("SHOW_FULL_DATA", handleShowFullData);
     }, []);
-    useEffect4(() => {
+    useEffect3(() => {
       const handleExportEvent = (e) => {
         const msgId = e.detail;
         const targetMsg = messagesRef.current.find((m2) => m2.id === msgId);
@@ -54532,7 +54634,7 @@ ${code}
       document.addEventListener("EXPORT_DOC", handleExportEvent);
       return () => document.removeEventListener("EXPORT_DOC", handleExportEvent);
     }, []);
-    useEffect4(() => {
+    useEffect3(() => {
       const handleDownloadDiagram = async (e) => {
         const id = e.detail;
         const el = document.getElementById(id);
@@ -54575,14 +54677,14 @@ ${code}
         }
       }
     };
-    useEffect4(() => {
+    useEffect3(() => {
       const handleFullscreenChange = () => {
         setIsFullscreen(!!document.fullscreenElement);
       };
       document.addEventListener("fullscreenchange", handleFullscreenChange);
       return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
     }, []);
-    useEffect4(() => {
+    useEffect3(() => {
       const handleMouseMove = (e) => {
         if (!isDragging) return;
         const newWidth = document.body.clientWidth - e.clientX;
@@ -54605,7 +54707,7 @@ ${code}
         document.body.style.cursor = "default";
       };
     }, [isDragging]);
-    useEffect4(() => {
+    useEffect3(() => {
       const handleLeftMouseMove = (e) => {
         if (!isLeftDragging) return;
         const newWidth = e.clientX;
@@ -54628,14 +54730,14 @@ ${code}
         document.body.style.cursor = "default";
       };
     }, [isLeftDragging]);
-    useEffect4(() => {
+    useEffect3(() => {
       if (isFirstRender.current) {
         isFirstRender.current = false;
         return;
       }
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
-    useEffect4(() => {
+    useEffect3(() => {
       const handleGlobalClick = (e) => {
         const btn = e.target.closest(".export-excel-btn");
         if (btn) {
@@ -59520,7 +59622,7 @@ ${msg.views.view3}
   };
 
   // src/components/RoadDigitalRequirementsView.jsx
-  var { useState: useState6, useEffect: useEffect5 } = React;
+  var { useState: useState6, useEffect: useEffect4 } = React;
   var react_shim_default = React;
   var FILE_MAP = { "AGENT-\u5DE5\u7A0B\u6280\u672F-01": "\u300A(\u7701\u516C\u8DEF\u4E2D\u5FC3)\u6E56\u5317\u516C\u8DEF\u6570\u5B57\u5316\u8F6C\u578B\u5347\u7EA7\u884C\u4E1A\u4E1A\u52A1\u8981\u6C42\u62A5\u9001\u6A21\u677F.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-03": "\u300A\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-04": "\u300A\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-01": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-02": "\u300A\u666E\u901A\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u7CFB\u7EDF\u67B6\u6784\u56FE.jpg\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-03": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-02": "\u300A\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-01": "\u300A\u6E56\u5317\u7701\u516C\u8DEF\u8BA1\u5212\u6267\u884C\u8BC4\u4F30\u8F6F\u4EF6\u5347\u7EA7\u6539\u9020\u8D39\u7528\u6D4B\u7B97-\u8F6F\u4EF6\u529F\u80FD\u70B9\u4F30\u503C\u6CD5-v2.xlsx\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-02": "\u300A0528\u2014\u4EA4\u8C03\u7CFB\u7EDF\u4FEE\u6539\u7248.xlsx\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-03": "\u300A\u4EE5\u5956\u4EE3\u8865\u9884\u7B97.xlsx\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-04": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u517B\u62A4\u7BA1\u7406-01": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u517B\u62A4\u7BA1\u7406-02": "\u300A\u666E\u901A\u56FD\u7701\u5E72\u7EBF\u517B\u62A4\u7BA1\u7406\u7CFB\u7EDF\u529F\u80FD\u67B6\u6784(1).pdf\u300B", "AGENT-\u8FD0\u8425\u7BA1\u7406-08": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u8FD0\u8425\u7BA1\u7406-09": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u8FD0\u8425\u7BA1\u7406-10": "\u300A0520-\u516C\u8DEF\u8DEF\u7F51\u8FD0\u884C\u76D1\u6D4B\u4E0E\u5E94\u6025\u6307\u6325\u8C03\u5EA6\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848(3)(1).docx\u300B" };
   var readiness_config_default = {
@@ -59985,7 +60087,7 @@ ${msg.views.view3}
         return { ...req, docs };
       });
     });
-    useEffect5(() => {
+    useEffect4(() => {
       if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
         Promise.all([
           fetch("/api/get_master_materials?t=" + Date.now()).then((r) => r.ok ? r.json() : null),
@@ -66766,7 +66868,7 @@ ${msg.views.view3}
   };
 
   // src/app.jsx
-  var { useState: useState9, useEffect: useEffect7, Component, useRef: useRef4 } = React;
+  var { useState: useState9, useEffect: useEffect6, Component, useRef: useRef4 } = React;
   var ErrorBoundary = class extends Component {
     constructor(props) {
       super(props);
@@ -67509,13 +67611,13 @@ ${msg.views.view3}
       `[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] [\u5BC6\u7EA7\u786E\u8BA4] \u4F9D\u636E JT/T 1434-2022\uFF0C\u8BE5\u901A\u9053\u5B9A\u7EA7\u4E3A [L3 \u654F\u611F\u7EA7]\uFF0C\u542F\u7528\u56FD\u5BC6SM4\u786C\u4EF6\u52A0\u5BC6\u5957\u4EF6\u3002`
     ]);
     const [phase, setPhase] = useState9(0);
-    useEffect7(() => {
+    useEffect6(() => {
       const interval = setInterval(() => {
         setPhase((prev) => (prev + 1) % 360);
       }, 100);
       return () => clearInterval(interval);
     }, []);
-    useEffect7(() => {
+    useEffect6(() => {
       const logTemplates = [
         "\u6865\u6881\u5E94\u53D8\u8BA1 #01 \u632F\u52A8\u5E94\u529B\u6B63\u5E38\uFF0C\u76D1\u6D4B\u503C: 12.5 MPa\uFF0C\u672A\u8D85\u5B89\u5168\u5305\u7EDC\u7EBF\u3002",
         "\u767D\u6C99\u6D32\u5927\u6865\u76D1\u6D4B\u70B9 K15+200 \u4E0E\u90E8\u6807 JC2_MX \u6869\u53F7\u5BF9\u9F50\u6821\u9A8C\u6210\u529F\uFF0C\u9006\u5411\u504F\u89D2\u6821\u51C6\u5B8C\u6210\u3002",
@@ -67779,7 +67881,7 @@ ${msg.views.view3}
   };
   var BusinessAgentView = ({ section }) => {
     const [activeAgentIdx, setActiveAgentIdx] = useState9(0);
-    useEffect7(() => {
+    useEffect6(() => {
       setActiveAgentIdx(0);
     }, [section]);
     const sectionMeta = {
@@ -67900,7 +68002,7 @@ ${msg.views.view3}
         }
         if (docsList.length === 0) return null;
         return /* @__PURE__ */ React.createElement("div", { className: "bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm mt-3 space-y-2" }, /* @__PURE__ */ React.createElement("h4", { className: "text-[13px] font-bold text-slate-800 flex items-center gap-1.5 mb-2" }, /* @__PURE__ */ React.createElement("span", { className: "text-blue-500" }, "\u{1F4C4}"), " \u8D44\u6599\u6E05\u5355"), /* @__PURE__ */ React.createElement("p", { className: "text-[12px] text-slate-600 leading-relaxed pl-1" }, docsList.join("\u3001")));
-      })(), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-6" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3" }, /* @__PURE__ */ React.createElement("h4", { className: "font-bold text-slate-800 border-b pb-2 text-sm flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "p-1 bg-blue-50 text-blue-600 rounded" }, /* @__PURE__ */ React.createElement(GitBranch, { size: 14 })), "\u6838\u5FC3\u5DE5\u4F5C\u6D41\u4E0E\u6B65\u9AA4"), /* @__PURE__ */ React.createElement("div", { className: "pl-4 border-l border-slate-200 space-y-5 relative py-1 text-xs mt-3" }, (currentAgent.steps || []).map((step, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: "relative" }, /* @__PURE__ */ React.createElement("span", { className: "absolute -left-[21px] top-0.5 bg-blue-500 text-white w-4 h-4 rounded-full text-[10px] flex items-center justify-center font-bold" }, idx + 1), /* @__PURE__ */ React.createElement("span", { className: "flex-1 flex items-center justify-between min-w-0" }, /* @__PURE__ */ React.createElement("span", { className: "truncate" }, step.title), step.badge && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded font-bold shrink-0 ml-2 border border-blue-200" }, step.badge)), /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-700 leading-relaxed" }, step))))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3" }, /* @__PURE__ */ React.createElement("h4", { className: "font-bold text-slate-800 border-b pb-2 text-sm flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "p-1 bg-emerald-50 text-emerald-600 rounded" }, /* @__PURE__ */ React.createElement(Database2, { size: 14 })), "\u65F6\u7A7A\u3001\u4E1A\u52A1\u4E0E\u7BA1\u7406\u8BCD\u5143\u6620\u5C04"), /* @__PURE__ */ React.createElement("div", { className: "text-xs space-y-3 mt-3" }, currentAgent.tokens && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "p-3 bg-blue-50 rounded-lg border border-blue-200" }, /* @__PURE__ */ React.createElement("span", { className: "font-bold text-blue-800 block mb-1" }, "\u65F6\u7A7A\u6280\u672F\u8BCD\u5143"), /* @__PURE__ */ React.createElement("code", { className: "text-[11px] font-mono text-slate-900" }, currentAgent.tokens.tech)), /* @__PURE__ */ React.createElement("div", { className: "p-3 bg-emerald-50 rounded-lg border border-emerald-200" }, /* @__PURE__ */ React.createElement("span", { className: "font-bold text-emerald-800 block mb-1" }, "\u4E1A\u52A1\u5B9E\u7269\u8BCD\u5143"), /* @__PURE__ */ React.createElement("code", { className: "text-[11px] font-mono text-slate-900" }, currentAgent.tokens.biz)), /* @__PURE__ */ React.createElement("div", { className: "p-3 bg-purple-50 rounded-lg border border-purple-200" }, /* @__PURE__ */ React.createElement("span", { className: "font-bold text-purple-800 block mb-1" }, "\u7BA1\u7406\u8D44\u91D1\u8BCD\u5143"), /* @__PURE__ */ React.createElement("code", { className: "text-[11px] font-mono text-slate-900" }, currentAgent.tokens.mgt))))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4 text-xs" }, /* @__PURE__ */ React.createElement("h4", { className: "font-bold text-slate-800 border-b pb-2 text-sm flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "p-1 bg-orange-50 text-orange-600 rounded" }, /* @__PURE__ */ React.createElement(Activity2, { size: 14 })), "\u667A\u80FD\u4F53\u6D41\u8F6C\u98CE\u63A7\u5BA1\u8BA1"), /* @__PURE__ */ React.createElement("div", { className: "space-y-3 mt-3 leading-relaxed" }, /* @__PURE__ */ React.createElement("div", { className: "p-3 rounded-lg border bg-yellow-50 border-yellow-200 text-yellow-800" }, /* @__PURE__ */ React.createElement("strong", null, "\u6570\u636E\u6D41\u5411\u4FA6\u542C\uFF1A"), " \u667A\u80FD\u4F53\u6BCF\u5206\u949F\u5BA1\u8BA1\u4E1A\u52A1\u72B6\u6001\uFF0C\u5F53\u53D1\u751F\u5F02\u5E38\u53D8\u66F4\u65F6\u89E6\u53D1\u98CE\u63A7\u673A\u5236\u3002"), /* @__PURE__ */ React.createElement("div", { className: "p-3 rounded-lg border bg-slate-50 border-slate-200 text-slate-600" }, /* @__PURE__ */ React.createElement("p", { className: "font-bold mb-1" }, "\u5BA1\u8BA1\u843D\u6807\u52A8\u4F5C\u793A\u4F8B\uFF1A"), /* @__PURE__ */ React.createElement("p", { className: "text-[11px] bg-white p-2 border rounded" }, "\u5339\u914D\u8BE5\u5BF9\u8C61\u7684\u3010", currentAgent.tokens ? currentAgent.tokens.mgt : "\u7BA1\u7406\u8D44\u91D1\u8BCD\u5143", "\u3011\uFF0C\u8C03\u7528\u5E95\u5C42\u9632\u4F2A\u673A\u5236\u3002\u4E00\u65E6\u6307\u6807\u6570\u636E\u5012\u6302\uFF0C\u7ACB\u5373\u6267\u884C\u7CFB\u7EDF\u5F3A\u529B\u9501\u5B9A\u3002")), /* @__PURE__ */ React.createElement("div", { className: "border-t border-slate-100 pt-3 mt-3 text-xs leading-relaxed space-y-2" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", { className: "text-slate-700 block font-bold" }, "\u9AD8\u8D28\u91CF\u6570\u636E\u96C6\uFF1A"), /* @__PURE__ */ React.createElement("p", { className: "text-slate-600 pl-2" }, currentAgent.matchedDatasets && currentAgent.matchedDatasets.length > 0 ? currentAgent.matchedDatasets.join("\uFF1B") : "\u6682\u65E0\u6302\u8F7D\u6807\u51C6\u6570\u636E\u96C6")), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", { className: "text-slate-700 block font-bold" }, "\u6570\u636E\u4EA7\u54C1\uFF1A"), /* @__PURE__ */ React.createElement("p", { className: "text-slate-600 pl-2" }, currentAgent.matchedProducts && currentAgent.matchedProducts.length > 0 ? currentAgent.matchedProducts.join("\uFF1B") : "\u6682\u65E0\u6302\u8F7D\u6807\u51C6\u5E94\u7528\u4EA7\u54C1")))))));
+      })(), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-6" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3" }, /* @__PURE__ */ React.createElement("h4", { className: "font-bold text-slate-800 border-b pb-2 text-sm flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "p-1 bg-blue-50 text-blue-600 rounded" }, /* @__PURE__ */ React.createElement(GitBranch2, { size: 14 })), "\u6838\u5FC3\u5DE5\u4F5C\u6D41\u4E0E\u6B65\u9AA4"), /* @__PURE__ */ React.createElement("div", { className: "pl-4 border-l border-slate-200 space-y-5 relative py-1 text-xs mt-3" }, (currentAgent.steps || []).map((step, idx) => /* @__PURE__ */ React.createElement("div", { key: idx, className: "relative" }, /* @__PURE__ */ React.createElement("span", { className: "absolute -left-[21px] top-0.5 bg-blue-500 text-white w-4 h-4 rounded-full text-[10px] flex items-center justify-center font-bold" }, idx + 1), /* @__PURE__ */ React.createElement("span", { className: "flex-1 flex items-center justify-between min-w-0" }, /* @__PURE__ */ React.createElement("span", { className: "truncate" }, step.title), step.badge && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded font-bold shrink-0 ml-2 border border-blue-200" }, step.badge)), /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-700 leading-relaxed" }, step))))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3" }, /* @__PURE__ */ React.createElement("h4", { className: "font-bold text-slate-800 border-b pb-2 text-sm flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "p-1 bg-emerald-50 text-emerald-600 rounded" }, /* @__PURE__ */ React.createElement(Database2, { size: 14 })), "\u65F6\u7A7A\u3001\u4E1A\u52A1\u4E0E\u7BA1\u7406\u8BCD\u5143\u6620\u5C04"), /* @__PURE__ */ React.createElement("div", { className: "text-xs space-y-3 mt-3" }, currentAgent.tokens && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "p-3 bg-blue-50 rounded-lg border border-blue-200" }, /* @__PURE__ */ React.createElement("span", { className: "font-bold text-blue-800 block mb-1" }, "\u65F6\u7A7A\u6280\u672F\u8BCD\u5143"), /* @__PURE__ */ React.createElement("code", { className: "text-[11px] font-mono text-slate-900" }, currentAgent.tokens.tech)), /* @__PURE__ */ React.createElement("div", { className: "p-3 bg-emerald-50 rounded-lg border border-emerald-200" }, /* @__PURE__ */ React.createElement("span", { className: "font-bold text-emerald-800 block mb-1" }, "\u4E1A\u52A1\u5B9E\u7269\u8BCD\u5143"), /* @__PURE__ */ React.createElement("code", { className: "text-[11px] font-mono text-slate-900" }, currentAgent.tokens.biz)), /* @__PURE__ */ React.createElement("div", { className: "p-3 bg-purple-50 rounded-lg border border-purple-200" }, /* @__PURE__ */ React.createElement("span", { className: "font-bold text-purple-800 block mb-1" }, "\u7BA1\u7406\u8D44\u91D1\u8BCD\u5143"), /* @__PURE__ */ React.createElement("code", { className: "text-[11px] font-mono text-slate-900" }, currentAgent.tokens.mgt))))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4 text-xs" }, /* @__PURE__ */ React.createElement("h4", { className: "font-bold text-slate-800 border-b pb-2 text-sm flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("span", { className: "p-1 bg-orange-50 text-orange-600 rounded" }, /* @__PURE__ */ React.createElement(Activity2, { size: 14 })), "\u667A\u80FD\u4F53\u6D41\u8F6C\u98CE\u63A7\u5BA1\u8BA1"), /* @__PURE__ */ React.createElement("div", { className: "space-y-3 mt-3 leading-relaxed" }, /* @__PURE__ */ React.createElement("div", { className: "p-3 rounded-lg border bg-yellow-50 border-yellow-200 text-yellow-800" }, /* @__PURE__ */ React.createElement("strong", null, "\u6570\u636E\u6D41\u5411\u4FA6\u542C\uFF1A"), " \u667A\u80FD\u4F53\u6BCF\u5206\u949F\u5BA1\u8BA1\u4E1A\u52A1\u72B6\u6001\uFF0C\u5F53\u53D1\u751F\u5F02\u5E38\u53D8\u66F4\u65F6\u89E6\u53D1\u98CE\u63A7\u673A\u5236\u3002"), /* @__PURE__ */ React.createElement("div", { className: "p-3 rounded-lg border bg-slate-50 border-slate-200 text-slate-600" }, /* @__PURE__ */ React.createElement("p", { className: "font-bold mb-1" }, "\u5BA1\u8BA1\u843D\u6807\u52A8\u4F5C\u793A\u4F8B\uFF1A"), /* @__PURE__ */ React.createElement("p", { className: "text-[11px] bg-white p-2 border rounded" }, "\u5339\u914D\u8BE5\u5BF9\u8C61\u7684\u3010", currentAgent.tokens ? currentAgent.tokens.mgt : "\u7BA1\u7406\u8D44\u91D1\u8BCD\u5143", "\u3011\uFF0C\u8C03\u7528\u5E95\u5C42\u9632\u4F2A\u673A\u5236\u3002\u4E00\u65E6\u6307\u6807\u6570\u636E\u5012\u6302\uFF0C\u7ACB\u5373\u6267\u884C\u7CFB\u7EDF\u5F3A\u529B\u9501\u5B9A\u3002")), /* @__PURE__ */ React.createElement("div", { className: "border-t border-slate-100 pt-3 mt-3 text-xs leading-relaxed space-y-2" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", { className: "text-slate-700 block font-bold" }, "\u9AD8\u8D28\u91CF\u6570\u636E\u96C6\uFF1A"), /* @__PURE__ */ React.createElement("p", { className: "text-slate-600 pl-2" }, currentAgent.matchedDatasets && currentAgent.matchedDatasets.length > 0 ? currentAgent.matchedDatasets.join("\uFF1B") : "\u6682\u65E0\u6302\u8F7D\u6807\u51C6\u6570\u636E\u96C6")), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", { className: "text-slate-700 block font-bold" }, "\u6570\u636E\u4EA7\u54C1\uFF1A"), /* @__PURE__ */ React.createElement("p", { className: "text-slate-600 pl-2" }, currentAgent.matchedProducts && currentAgent.matchedProducts.length > 0 ? currentAgent.matchedProducts.join("\uFF1B") : "\u6682\u65E0\u6302\u8F7D\u6807\u51C6\u5E94\u7528\u4EA7\u54C1")))))));
     })(), /* @__PURE__ */ React.createElement(DocumentList, { files: data.pdfs, title: "\u4E1A\u52A1\u6D41\u8F6C\u6307\u5BFC\u6807\u51C6\u4E0E\u6D41\u7A0B\u56FE\u6302\u63A5" }));
   };
   var SmartQAView = ({ type }) => {
@@ -67946,7 +68048,7 @@ ${msg.views.view3}
         setMessages((prev) => [...prev, { id: Date.now() + 1, text: answer, sender: "ai" }]);
       }, 800);
     };
-    useEffect7(() => {
+    useEffect6(() => {
       if (chatEndRef.current) chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
     const titleMap = {
@@ -68180,7 +68282,7 @@ lucide-react/dist/esm/icons/database.mjs:
 lucide-react/dist/esm/icons/external-link.mjs:
 lucide-react/dist/esm/icons/file-archive.mjs:
 lucide-react/dist/esm/icons/file-text.mjs:
-lucide-react/dist/esm/icons/git-merge.mjs:
+lucide-react/dist/esm/icons/git-branch.mjs:
 lucide-react/dist/esm/icons/layers.mjs:
 lucide-react/dist/esm/icons/loader.mjs:
 lucide-react/dist/esm/icons/maximize.mjs:
