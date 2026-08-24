@@ -990,6 +990,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1418,6 +1419,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -13270,6 +13272,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
     const containerRef = (0, import_react4.useRef)(null);
     const nodeRefs = (0, import_react4.useRef)({});
     const [lines, setLines] = (0, import_react4.useState)([]);
+    const edgeKey = graph.edges.map((e) => e.from + e.to).join("|");
     const layers = {};
     graph.nodes.forEach((n) => {
       const l3 = n.layer || 0;
@@ -13277,27 +13280,30 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
       layers[l3].push(n);
     });
     const layerKeys = Object.keys(layers).sort((a, b2) => +a - +b2);
-    (0, import_react4.useLayoutEffect)(() => {
-      if (!containerRef.current) return;
-      const cRect = containerRef.current.getBoundingClientRect();
-      const newLines = [];
-      graph.edges.forEach((e) => {
-        const fromEl = nodeRefs.current[e.from];
-        const toEl = nodeRefs.current[e.to];
-        if (!fromEl || !toEl) return;
-        const fr = fromEl.getBoundingClientRect();
-        const tr = toEl.getBoundingClientRect();
-        newLines.push({
-          x1: fr.right - cRect.left,
-          y1: fr.top + fr.height / 2 - cRect.top,
-          x2: tr.left - cRect.left,
-          y2: tr.top + tr.height / 2 - cRect.top,
-          label: e.label,
-          alert: e.alert
+    (0, import_react4.useEffect)(() => {
+      const timer = setTimeout(() => {
+        if (!containerRef.current) return;
+        const cRect = containerRef.current.getBoundingClientRect();
+        const newLines = [];
+        graph.edges.forEach((e) => {
+          const fromEl = nodeRefs.current[e.from];
+          const toEl = nodeRefs.current[e.to];
+          if (!fromEl || !toEl) return;
+          const fr = fromEl.getBoundingClientRect();
+          const tr = toEl.getBoundingClientRect();
+          newLines.push({
+            x1: fr.right - cRect.left,
+            y1: fr.top + fr.height / 2 - cRect.top,
+            x2: tr.left - cRect.left,
+            y2: tr.top + tr.height / 2 - cRect.top,
+            label: e.label,
+            alert: e.alert
+          });
         });
-      });
-      setLines(newLines);
-    });
+        setLines(newLines);
+      }, 50);
+      return () => clearTimeout(timer);
+    }, [edgeKey]);
     return /* @__PURE__ */ import_react4.default.createElement("div", { ref: containerRef, className: "relative flex gap-6 items-stretch justify-center p-4 min-h-[260px]" }, /* @__PURE__ */ import_react4.default.createElement("svg", { className: "absolute inset-0 w-full h-full pointer-events-none", style: { zIndex: 0 } }, /* @__PURE__ */ import_react4.default.createElement("defs", null, /* @__PURE__ */ import_react4.default.createElement("marker", { id: "arrow", markerWidth: "8", markerHeight: "8", refX: "6", refY: "3", orient: "auto" }, /* @__PURE__ */ import_react4.default.createElement("path", { d: "M0,0 L0,6 L8,3 z", fill: "#94a3b8" })), /* @__PURE__ */ import_react4.default.createElement("marker", { id: "arrow-alert", markerWidth: "8", markerHeight: "8", refX: "6", refY: "3", orient: "auto" }, /* @__PURE__ */ import_react4.default.createElement("path", { d: "M0,0 L0,6 L8,3 z", fill: "#f43f5e" }))), lines.map((l3, i) => /* @__PURE__ */ import_react4.default.createElement("g", { key: i }, /* @__PURE__ */ import_react4.default.createElement(
       "path",
       {
@@ -13615,7 +13621,7 @@ layer\u8BF4\u660E\uFF1A0=\u6570\u636E\u8F93\u5165\u5C42, 1=\u4E3B\u63A7\u5C42, 2
   };
 
   // src/components/AnnualReportAgentView.jsx
-  var { useState: useState2, useEffect } = React;
+  var { useState: useState2, useEffect: useEffect2 } = React;
   var AnnualReportAgentView = () => {
     const [activeStep, setActiveStep] = useState2(0);
     const INITIAL_REQUIREMENTS2 = [
@@ -14037,7 +14043,7 @@ layer\u8BF4\u660E\uFF1A0=\u6570\u636E\u8F93\u5165\u5C42, 1=\u4E3B\u63A7\u5C42, 2
       return INITIAL_REQUIREMENTS2;
     });
     const [hoverChangelog, setHoverChangelog] = useState2(false);
-    useEffect(() => {
+    useEffect2(() => {
       if (sessionStorage.getItem("highlightChangelog") === "true") {
         setHoverChangelog(true);
         sessionStorage.removeItem("highlightChangelog");
@@ -14065,7 +14071,7 @@ layer\u8BF4\u660E\uFF1A0=\u6570\u636E\u8F93\u5165\u5C42, 1=\u4E3B\u63A7\u5C42, 2
       }
       window.open(targetPath, "_blank");
     };
-    useEffect(() => {
+    useEffect2(() => {
       localStorage.setItem("yearly_backlog_reqs", JSON.stringify(requirements2));
     }, [requirements2]);
     const [activeReqModalId, setActiveReqModalId] = useState2(null);
@@ -14198,7 +14204,7 @@ layer\u8BF4\u660E\uFF1A0=\u6570\u636E\u8F93\u5165\u5C42, 1=\u4E3B\u63A7\u5C42, 2
     const [microsegmentMode, setMicrosegmentMode] = useState2("annual");
     const [placeNameMatchStatus, setPlaceNameMatchStatus] = useState2("idle");
     const [placeNameEntriesConfirmed, setPlaceNameEntriesConfirmed] = useState2(false);
-    useEffect(() => {
+    useEffect2(() => {
       let timer;
       if (rectifyStatus === "loading") {
         setRectifyProgress(0);
@@ -16238,7 +16244,7 @@ layer\u8BF4\u660E\uFF1A0=\u6570\u636E\u8F93\u5165\u5C42, 1=\u4E3B\u63A7\u5C42, 2
   }
 
   // src/components/AnnualReportAgentViewV2.jsx
-  var { useState: useState4, useEffect: useEffect2 } = React;
+  var { useState: useState4, useEffect: useEffect3 } = React;
   var AnnualReportAgentView2 = () => {
     const [showMappings, setShowMappings] = React.useState(true);
     const [activeStep, setActiveStep] = useState4(0);
@@ -16668,7 +16674,7 @@ layer\u8BF4\u660E\uFF1A0=\u6570\u636E\u8F93\u5165\u5C42, 1=\u4E3B\u63A7\u5C42, 2
       return INITIAL_REQUIREMENTS2;
     });
     const [hoverChangelog, setHoverChangelog] = useState4(false);
-    useEffect2(() => {
+    useEffect3(() => {
       if (sessionStorage.getItem("highlightChangelog") === "true") {
         setHoverChangelog(true);
         sessionStorage.removeItem("highlightChangelog");
@@ -16696,7 +16702,7 @@ layer\u8BF4\u660E\uFF1A0=\u6570\u636E\u8F93\u5165\u5C42, 1=\u4E3B\u63A7\u5C42, 2
       }
       window.open(targetPath, "_blank");
     };
-    useEffect2(() => {
+    useEffect3(() => {
       localStorage.setItem("yearly_backlog_reqs", JSON.stringify(requirements2));
     }, [requirements2]);
     const [activeReqModalId, setActiveReqModalId] = useState4(null);
@@ -16846,7 +16852,7 @@ layer\u8BF4\u660E\uFF1A0=\u6570\u636E\u8F93\u5165\u5C42, 1=\u4E3B\u63A7\u5C42, 2
     const [microsegmentMode, setMicrosegmentMode] = useState4("annual");
     const [placeNameMatchStatus, setPlaceNameMatchStatus] = useState4("idle");
     const [placeNameEntriesConfirmed, setPlaceNameEntriesConfirmed] = useState4(false);
-    useEffect2(() => {
+    useEffect3(() => {
       let timer;
       if (rectifyStatus === "loading") {
         setRectifyProgress(0);
@@ -53071,7 +53077,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   };
 
   // src/components/DeepQAAnnualReportAgentView.jsx
-  var { useState: useState5, useEffect: useEffect3, useRef: useRef2 } = React;
+  var { useState: useState5, useEffect: useEffect4, useRef: useRef2 } = React;
   var SCENARIOS2 = [
     {
       title: "REQ-01",
@@ -53588,7 +53594,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     const [isEditing, setIsEditing] = useState5(false);
     const initialArgs = typeof (tc.argsStr || tc.args || tc.arguments) === "string" ? tc.argsStr || tc.args || tc.arguments : JSON.stringify(tc.args || tc.arguments, null, 2);
     const [editValue, setEditValue] = useState5(initialArgs || "");
-    useEffect3(() => {
+    useEffect4(() => {
       setIsOpen(tc.status === "running");
     }, [tc.status]);
     const isEnterprise = tc.name.startsWith("enterprise_");
@@ -54392,7 +54398,7 @@ ${code}
     const [db, setDb] = useState5(null);
     const [loadedTablesByYear, setLoadedTablesByYear] = useState5({});
     const [nianbaoSchema, setNianbaoSchema] = useState5("");
-    useEffect3(() => {
+    useEffect4(() => {
       if (window.__NIANBAO_SCHEMA__) {
         setNianbaoSchema(window.__NIANBAO_SCHEMA__);
       } else {
@@ -54401,7 +54407,7 @@ ${code}
         }).catch((e) => console.warn("[NianbaoSkill] failed:", e));
       }
     }, []);
-    useEffect3(() => {
+    useEffect4(() => {
       fetchYearsData();
     }, []);
     const fetchYearsData = async () => {
@@ -54432,7 +54438,7 @@ ${code}
       setHasMultiYearData(true);
       setLoadedTablesByYear(loaded);
     };
-    useEffect3(() => {
+    useEffect4(() => {
       if (!selectedYears || selectedYears.length === 0) return;
       Promise.resolve().then(() => (init_sqlite(), sqlite_exports)).then(async ({ loadDBByYear: loadDBByYear2 }) => {
         if (!window.__DBs__) window.__DBs__ = {};
@@ -54492,7 +54498,7 @@ ${code}
       setShowSettingsModal(false);
       alert("API \u914D\u7F6E\u4FDD\u5B58\u6210\u529F\uFF01\u5DF2\u7ACB\u5373\u751F\u6548\u3002");
     };
-    useEffect3(() => {
+    useEffect4(() => {
       let inlineConfig = {};
       if (window.__API_CONFIG__) {
         try {
@@ -54607,10 +54613,10 @@ ${code}
     const [currentRoundToolCalls, setCurrentRoundToolCalls] = useState5([]);
     const [currentRoundThought, setCurrentRoundThought] = useState5("");
     const messagesRef = useRef2(messages);
-    useEffect3(() => {
+    useEffect4(() => {
       messagesRef.current = messages;
     }, [messages]);
-    useEffect3(() => {
+    useEffect4(() => {
       const handleShowFullData = () => {
         if (window.__currentDataItems) {
           setGeneratedArtifacts((prev) => [...prev.filter((a) => a.name !== "\u660E\u7EC6\u6570\u636E\u5E95\u8868"), { name: "\u660E\u7EC6\u6570\u636E\u5E95\u8868", sourceQuery: "\u5168\u91CF\u660E\u7EC6\u8F93\u51FA" }]);
@@ -54623,7 +54629,7 @@ ${code}
       document.addEventListener("SHOW_FULL_DATA", handleShowFullData);
       return () => document.removeEventListener("SHOW_FULL_DATA", handleShowFullData);
     }, []);
-    useEffect3(() => {
+    useEffect4(() => {
       const handleExportEvent = (e) => {
         const msgId = e.detail;
         const targetMsg = messagesRef.current.find((m2) => m2.id === msgId);
@@ -54634,7 +54640,7 @@ ${code}
       document.addEventListener("EXPORT_DOC", handleExportEvent);
       return () => document.removeEventListener("EXPORT_DOC", handleExportEvent);
     }, []);
-    useEffect3(() => {
+    useEffect4(() => {
       const handleDownloadDiagram = async (e) => {
         const id = e.detail;
         const el = document.getElementById(id);
@@ -54677,14 +54683,14 @@ ${code}
         }
       }
     };
-    useEffect3(() => {
+    useEffect4(() => {
       const handleFullscreenChange = () => {
         setIsFullscreen(!!document.fullscreenElement);
       };
       document.addEventListener("fullscreenchange", handleFullscreenChange);
       return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
     }, []);
-    useEffect3(() => {
+    useEffect4(() => {
       const handleMouseMove = (e) => {
         if (!isDragging) return;
         const newWidth = document.body.clientWidth - e.clientX;
@@ -54707,7 +54713,7 @@ ${code}
         document.body.style.cursor = "default";
       };
     }, [isDragging]);
-    useEffect3(() => {
+    useEffect4(() => {
       const handleLeftMouseMove = (e) => {
         if (!isLeftDragging) return;
         const newWidth = e.clientX;
@@ -54730,14 +54736,14 @@ ${code}
         document.body.style.cursor = "default";
       };
     }, [isLeftDragging]);
-    useEffect3(() => {
+    useEffect4(() => {
       if (isFirstRender.current) {
         isFirstRender.current = false;
         return;
       }
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
-    useEffect3(() => {
+    useEffect4(() => {
       const handleGlobalClick = (e) => {
         const btn = e.target.closest(".export-excel-btn");
         if (btn) {
@@ -59622,7 +59628,7 @@ ${msg.views.view3}
   };
 
   // src/components/RoadDigitalRequirementsView.jsx
-  var { useState: useState6, useEffect: useEffect4 } = React;
+  var { useState: useState6, useEffect: useEffect5 } = React;
   var react_shim_default = React;
   var FILE_MAP = { "AGENT-\u5DE5\u7A0B\u6280\u672F-01": "\u300A(\u7701\u516C\u8DEF\u4E2D\u5FC3)\u6E56\u5317\u516C\u8DEF\u6570\u5B57\u5316\u8F6C\u578B\u5347\u7EA7\u884C\u4E1A\u4E1A\u52A1\u8981\u6C42\u62A5\u9001\u6A21\u677F.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-03": "\u300A\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-04": "\u300A\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-01": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-02": "\u300A\u666E\u901A\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u7CFB\u7EDF\u67B6\u6784\u56FE.jpg\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-03": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-02": "\u300A\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-01": "\u300A\u6E56\u5317\u7701\u516C\u8DEF\u8BA1\u5212\u6267\u884C\u8BC4\u4F30\u8F6F\u4EF6\u5347\u7EA7\u6539\u9020\u8D39\u7528\u6D4B\u7B97-\u8F6F\u4EF6\u529F\u80FD\u70B9\u4F30\u503C\u6CD5-v2.xlsx\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-02": "\u300A0528\u2014\u4EA4\u8C03\u7CFB\u7EDF\u4FEE\u6539\u7248.xlsx\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-03": "\u300A\u4EE5\u5956\u4EE3\u8865\u9884\u7B97.xlsx\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-04": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u517B\u62A4\u7BA1\u7406-01": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u517B\u62A4\u7BA1\u7406-02": "\u300A\u666E\u901A\u56FD\u7701\u5E72\u7EBF\u517B\u62A4\u7BA1\u7406\u7CFB\u7EDF\u529F\u80FD\u67B6\u6784(1).pdf\u300B", "AGENT-\u8FD0\u8425\u7BA1\u7406-08": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u8FD0\u8425\u7BA1\u7406-09": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u8FD0\u8425\u7BA1\u7406-10": "\u300A0520-\u516C\u8DEF\u8DEF\u7F51\u8FD0\u884C\u76D1\u6D4B\u4E0E\u5E94\u6025\u6307\u6325\u8C03\u5EA6\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848(3)(1).docx\u300B" };
   var readiness_config_default = {
@@ -60087,7 +60093,7 @@ ${msg.views.view3}
         return { ...req, docs };
       });
     });
-    useEffect4(() => {
+    useEffect5(() => {
       if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
         Promise.all([
           fetch("/api/get_master_materials?t=" + Date.now()).then((r) => r.ok ? r.json() : null),
@@ -66868,7 +66874,7 @@ ${msg.views.view3}
   };
 
   // src/app.jsx
-  var { useState: useState9, useEffect: useEffect6, Component, useRef: useRef4 } = React;
+  var { useState: useState9, useEffect: useEffect7, Component, useRef: useRef4 } = React;
   var ErrorBoundary = class extends Component {
     constructor(props) {
       super(props);
@@ -67611,13 +67617,13 @@ ${msg.views.view3}
       `[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] [\u5BC6\u7EA7\u786E\u8BA4] \u4F9D\u636E JT/T 1434-2022\uFF0C\u8BE5\u901A\u9053\u5B9A\u7EA7\u4E3A [L3 \u654F\u611F\u7EA7]\uFF0C\u542F\u7528\u56FD\u5BC6SM4\u786C\u4EF6\u52A0\u5BC6\u5957\u4EF6\u3002`
     ]);
     const [phase, setPhase] = useState9(0);
-    useEffect6(() => {
+    useEffect7(() => {
       const interval = setInterval(() => {
         setPhase((prev) => (prev + 1) % 360);
       }, 100);
       return () => clearInterval(interval);
     }, []);
-    useEffect6(() => {
+    useEffect7(() => {
       const logTemplates = [
         "\u6865\u6881\u5E94\u53D8\u8BA1 #01 \u632F\u52A8\u5E94\u529B\u6B63\u5E38\uFF0C\u76D1\u6D4B\u503C: 12.5 MPa\uFF0C\u672A\u8D85\u5B89\u5168\u5305\u7EDC\u7EBF\u3002",
         "\u767D\u6C99\u6D32\u5927\u6865\u76D1\u6D4B\u70B9 K15+200 \u4E0E\u90E8\u6807 JC2_MX \u6869\u53F7\u5BF9\u9F50\u6821\u9A8C\u6210\u529F\uFF0C\u9006\u5411\u504F\u89D2\u6821\u51C6\u5B8C\u6210\u3002",
@@ -67881,7 +67887,7 @@ ${msg.views.view3}
   };
   var BusinessAgentView = ({ section }) => {
     const [activeAgentIdx, setActiveAgentIdx] = useState9(0);
-    useEffect6(() => {
+    useEffect7(() => {
       setActiveAgentIdx(0);
     }, [section]);
     const sectionMeta = {
@@ -68048,7 +68054,7 @@ ${msg.views.view3}
         setMessages((prev) => [...prev, { id: Date.now() + 1, text: answer, sender: "ai" }]);
       }, 800);
     };
-    useEffect6(() => {
+    useEffect7(() => {
       if (chatEndRef.current) chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
     const titleMap = {
