@@ -1020,6 +1020,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1448,6 +1449,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -17097,7 +17099,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     };
     const [dataTab, setDataTab] = useState4("report");
     const [selectedCat, setSelectedCat] = useState4(0);
-    const [expandedQ, setExpandedQ] = useState4(0);
+    const [expandedQ, setExpandedQ] = useState4(null);
     const [qaAiAnswer, setQaAiAnswer] = useState4("");
     const [qaAiReasoning, setQaAiReasoning] = useState4("");
     const [qaIsLoading, setQaIsLoading] = useState4(false);
@@ -18015,6 +18017,15 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         dataInputs: ["\u516C\u8DEF\u57FA\u7840\u7A7A\u95F4\u8DEF\u7F51\u5E93", "\u76F8\u5173\u4E1A\u52A1\u6D41\u6C34\u53F0\u8D26", "\u5386\u53F2\u5E74\u5EA6\u62A5\u9001\u5F52\u6863\u5E93"]
       }
     ];
+    useEffect3(() => {
+      if (activeStep === 7 && expandedQ === null) {
+        setExpandedQ(0);
+        setQaAiAnswer("");
+        setQaAiReasoning("");
+        setIsLongAnswer(false);
+        callLightLLM("107 \u56FD\u9053\u5728\u6E56\u5317\u7701\u5883\u5185\u603B\u91CC\u7A0B\u662F\u591A\u5C11\u516C\u91CC\uFF1F");
+      }
+    }, [activeStep, expandedQ]);
     const renderAgentDecision = () => {
       return /* @__PURE__ */ React.createElement(PalantirDecisionView_default, null);
     };
