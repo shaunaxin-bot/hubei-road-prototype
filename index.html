@@ -1022,6 +1022,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1450,6 +1451,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -17228,7 +17230,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
       { label: "\u6807\u51C6\u8BBE\u8BA1" },
       { label: "\u8D44\u6E90\u76D8\u70B9" },
       { label: "\u6570\u636E\u63A5\u5165" },
-      { label: "\u6838\u5FC3\u6570\u4ED3" },
+      { label: "AI-Ready \u6570\u4ED3" },
       { label: "\u6570\u636E\u5904\u7406" },
       { label: "\u8D28\u91CF\u7A3D\u6838" },
       { label: "\u516C\u8DEF\u667A\u641C" },
@@ -17322,7 +17324,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         ]
       },
       {
-        title: "\u6838\u5FC3\u6570\u4ED3\u5EFA\u8BBE\u6210\u679C",
+        title: "AI-Ready \u6570\u4ED3\u5EFA\u8BBE\u6210\u679C",
         desc: "\u57FA\u4E8E15\u9879\u4E1A\u52A1\u9700\u6C42\uFF08REQ\uFF09\u9A71\u52A8\u7684 1+10+X+Y \u6838\u5FC3\u6570\u4ED3\u7269\u7406\u5EFA\u6A21\u6210\u679C\u3002",
         metrics: [
           { label: "\u660E\u7EC6\u6A21\u578B(DWD)", val: "15 \u5F20" },
@@ -18434,14 +18436,14 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     ) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "flex items-center w-full bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm shrink-0 overflow-x-auto gap-1" }, [
       { title: "\u4E1A\u52A1\u9A71\u52A8", color: "emerald", steps: [0, 1] },
       { title: "\u6570\u636E\u5E95\u5EA7", color: "slate", steps: [2, 3] },
-      { title: "\u6838\u5FC3\u6570\u4ED3", color: "indigo", steps: [4] },
+      { title: "\u6838\u5FC3\u8D44\u4EA7", color: "indigo", steps: [4] },
       { title: "\u6570\u636E\u6CBB\u7406", color: "slate", steps: [5, 6] },
       { title: "\u6570\u636E\u5E94\u7528", color: "emerald", steps: [7, 8] }
     ].map((group, gIdx, arr) => /* @__PURE__ */ React.createElement(React.Fragment, { key: gIdx }, /* @__PURE__ */ React.createElement(
       "div",
       {
         className: `flex flex-col gap-1.5 rounded-xl p-1.5 border min-w-0 ${group.color === "emerald" ? "bg-slate-50/40 border-emerald-100" : group.color === "indigo" ? "bg-blue-50/40 border-blue-100" : "bg-slate-50/40 border-slate-100"}`,
-        style: { flex: group.steps.length }
+        style: { flex: group.steps.length === 1 ? 1.4 : group.steps.length }
       },
       /* @__PURE__ */ React.createElement("div", { className: `text-[9px] font-black tracking-widest text-center uppercase ${group.color === "emerald" ? "text-slate-600" : group.color === "indigo" ? "text-blue-600" : "text-slate-400"}` }, "\u2014 ", group.title, " \u2014"),
       /* @__PURE__ */ React.createElement("div", { className: "flex gap-1.5 h-full" }, group.steps.map((idx) => {
