@@ -1037,6 +1037,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1465,6 +1466,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -16552,8 +16554,8 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         setPreviewContent("\u8BE5\u6587\u4EF6\u7684\u7269\u7406\u5185\u5BB9\u672A\u88AB\u79BB\u7EBF\u6253\u5305\uFF0C\u6216\u6682\u65E0\u5185\u5BB9\u3002");
       }
     };
-    const [expandedIds, setExpandedIds] = useState3([]);
-    const [activeNode, setActiveNode] = useState3(null);
+    const [expandedIds, setExpandedIds] = useState3(["4"]);
+    const [activeNode, setActiveNode] = useState3(TREE_DATA.find((n) => n.id === "4") || null);
     const toggleExpand = (id) => {
       setExpandedIds((prev) => prev.includes(id) ? prev.filter((x2) => x2 !== id) : [...prev, id]);
     };
