@@ -1051,6 +1051,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1479,6 +1481,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
+    
     
     
     
@@ -13655,16 +13659,18 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
       const isAlert = row.phase.includes("\u5E94\u6025") || row.phase.includes("\u544A\u8B66") || row.phase.includes("\u9884\u8B66") || row.action.includes("\u5C01\u8DEF") || row.action.includes("\u7194\u65AD");
       const isAction = ri === rows.length - 1;
       row.agents.forEach((agentName) => {
-        if (agentNodeMap[agentName]) return;
-        nodeIdx++;
-        const nid = "n" + nodeIdx;
         const isHub = ri === 0;
         const layer = isHub ? 1 : isAction ? 3 : 2;
+        const uniqueKey = agentName + "_" + layer;
+        if (agentNodeMap[uniqueKey]) return;
+        nodeIdx++;
+        const nid = "n" + nodeIdx;
         const type = isHub ? "hub" : layer === 3 ? "action" : isAlert ? "alert" : "domain";
         nodes.push({ id: nid, label: agentName, action: row.action.slice(0, 15), type, layer });
-        agentNodeMap[agentName] = nid;
+        agentNodeMap[uniqueKey] = nid;
       });
     });
+    return { nodes, edges };
     return { nodes, edges };
   };
   var TYPE_STYLE = {
