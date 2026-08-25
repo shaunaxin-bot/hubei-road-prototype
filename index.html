@@ -1055,6 +1055,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1483,6 +1484,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -13674,6 +13676,11 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
         agentNodeMap[uniqueKey] = nid;
       });
     });
+    const hasAlert = nodes.some((n) => n.type === "alert");
+    if (!hasAlert) {
+      const targetNode = nodes.find((n) => n.layer === 2) || nodes.find((n) => n.layer === 3);
+      if (targetNode) targetNode.customPulse = true;
+    }
     return { nodes, edges };
     return { nodes, edges };
   };
@@ -13700,7 +13707,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
           key: node.id,
           className: `relative flex flex-col items-center text-center border rounded-xl px-2.5 py-2.5 bg-white shadow-sm transition-all hover:scale-105 hover:shadow-md ${s.border} ${s.ring ? "ring-2 ring-blue-400 ring-offset-2" : ""}`
         },
-        s.pulse && /* @__PURE__ */ import_react4.default.createElement("span", { className: "absolute top-1.5 right-1.5 flex h-2 w-2" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" }), /* @__PURE__ */ import_react4.default.createElement("span", { className: "relative inline-flex rounded-full h-2 w-2 bg-rose-500" })),
+        (s.pulse || node.customPulse) && /* @__PURE__ */ import_react4.default.createElement("span", { className: "absolute top-1.5 right-1.5 flex h-2 w-2" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" }), /* @__PURE__ */ import_react4.default.createElement("span", { className: "relative inline-flex rounded-full h-2 w-2 bg-rose-500" })),
         /* @__PURE__ */ import_react4.default.createElement("div", { className: `w-6 h-6 rounded-full flex items-center justify-center mb-1.5 ${s.bg}` }, /* @__PURE__ */ import_react4.default.createElement(Bot, { size: 12, className: `${s.text}` })),
         /* @__PURE__ */ import_react4.default.createElement("div", { className: `text-[9.5px] font-bold leading-snug ${s.text} whitespace-pre-line` }, node.label),
         node.action && /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[8px] text-slate-500 mt-1 leading-tight line-clamp-2 px-1" }, node.action)
@@ -13874,7 +13881,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         onClick: () => callStream(sc),
         className: "text-[10px] py-1.5 px-2 rounded-md cursor-pointer leading-snug transition-all " + (selected?.id === sc.id ? "bg-blue-50 text-blue-700 font-bold border border-blue-200 shadow-sm" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-transparent")
       },
-      sc.active && /* @__PURE__ */ import_react4.default.createElement("span", { className: "inline-block w-1.5 h-1.5 rounded-full bg-rose-500 mr-1 animate-pulse align-middle" }),
+      (sc.active || selected?.id === sc.id) && /* @__PURE__ */ import_react4.default.createElement("span", { className: "inline-block w-1.5 h-1.5 rounded-full bg-rose-500 mr-1 animate-pulse align-middle" }),
       sc.label
     ))))))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex-1 min-h-0 bg-white border border-slate-200 rounded-xl flex flex-col shadow-sm overflow-hidden" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "p-2.5 border-b border-slate-200 bg-slate-50 flex items-center justify-between shrink-0" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react4.default.createElement(Network, { size: 14, className: "text-blue-600" }), /* @__PURE__ */ import_react4.default.createElement("span", { className: "font-bold text-slate-700 text-[12px]" }, "\u6570\u636E\u7EDF\u7B79\u52A9\u624B \xB7 \u534F\u540C\u6267\u884C\u65E5\u5FD7"), selected && /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-[10px] bg-blue-50 text-blue-600 border border-blue-200 px-2 py-0.5 rounded-full font-mono" }, selected.id))), selected && /* @__PURE__ */ import_react4.default.createElement("div", { className: "bg-amber-50/70 border-b border-amber-100/80 px-4 py-3 shrink-0 flex gap-2.5 items-start" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "bg-amber-100 p-1 rounded mt-0.5 shrink-0" }, /* @__PURE__ */ import_react4.default.createElement(TriangleAlert, { size: 12, className: "text-amber-700" })), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-[10px] font-bold text-amber-900 mb-1 flex items-center gap-3" }, /* @__PURE__ */ import_react4.default.createElement("span", null, "\u4E1A\u52A1\u573A\u666F\u5177\u4F53\u63CF\u8FF0\uFF08\u75DB\u70B9\u4E0E\u6838\u5FC3\u9700\u6C42\uFF09"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-1.5" }, (() => {
       const reqMatch = selected.label.match(/REQ-\d+/);
