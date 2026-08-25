@@ -1049,6 +1049,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1477,6 +1478,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -13648,7 +13650,7 @@ o such column），必须利用已有的旧列进行降级查询并向用户说�
     const agentNodeMap = {};
     let nodeIdx = 0;
     const hubId = "hub0";
-    nodes.push({ id: hubId, label: "\u6570\u636E\u7EDF\u7B79\n\u4E3B\u63A7\u667A\u80FD\u4F53", action: "\u7EDF\u7B79\u8C03\u5EA6\u67A2\u7EBD", type: "hub", layer: 1 });
+    nodes.push({ id: hubId, label: "AI\u6570\u636E\u6CBB\u7406\u7EDF\u7B79", action: "\u4FE1\u606F\u6280\u672F\u5904 (\u4E3B\u63A7\u8C03\u5EA6)", type: "hub", layer: 1 });
     agentNodeMap["__hub__"] = hubId;
     rows.forEach((row, ri) => {
       const isAlert = row.phase.includes("\u5E94\u6025") || row.phase.includes("\u544A\u8B66") || row.phase.includes("\u9884\u8B66") || row.action.includes("\u5C01\u8DEF") || row.action.includes("\u7194\u65AD");
