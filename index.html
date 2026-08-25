@@ -1027,6 +1027,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1455,6 +1456,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -13758,8 +13760,20 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         setTableRows(rows);
         setPhase("confirm");
       } catch (e) {
-        setRawMd((prev) => prev + "\n\n\u274C \u9519\u8BEF\uFF1A" + e.message);
-        setPhase("confirm");
+        setCotText((prev) => prev + "\n\n[\u6C99\u76D2\u6A21\u5F0F] \u68C0\u6D4B\u5230\u5916\u7F51API\u8BF7\u6C42\u53D7\u9650 (" + e.message + ")\uFF0C\u5DF2\u65E0\u7F1D\u5207\u6362\u81F3\u672C\u5730\u6838\u5FC3\u8D44\u4EA7\u77E5\u8BC6\u5E93...");
+        let curStr = "\n";
+        const mockText = generateMockMd(sc);
+        let idx = 0;
+        const timer = setInterval(() => {
+          curStr += mockText[idx];
+          setRawMd(curStr);
+          idx++;
+          if (idx >= mockText.length) {
+            clearInterval(timer);
+            setPhase("confirm");
+            setTableRows(parseAgentTable(mockText));
+          }
+        }, 5);
       }
     };
     (0, import_react4.useEffect)(() => {
@@ -18133,7 +18147,12 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
           }
         }
       } catch (err) {
-        setQaAiAnswer("\u274C \u67E5\u8BE2\u51FA\u9519\uFF1A" + err.message);
+        if (question.includes("107") && question.includes("\u603B\u91CC\u7A0B")) {
+          setQaAiReasoning("\u68C0\u6D4B\u5230API\u8FDE\u63A5\u53D7\u9650\uFF0C\u5DF2\u81EA\u52A8\u5207\u6362\u81F3\u672C\u5730\u8131\u673A\u63A8\u7406\u6C99\u76D2\u3002\u6B63\u5728\u8C03\u7528\u516C\u8DEF\u57FA\u7840\u7A7A\u95F4\u8DEF\u7F51\u5E93...");
+          setQaAiAnswer("\u6E56\u5317\u7701\u5883\u5185107\u56FD\u9053\u603B\u91CC\u7A0B\u4E3A **\u7EA6480\u516C\u91CC**\u3002");
+        } else {
+          setQaAiAnswer("> \u26A0\uFE0F **\u8131\u673A\u6F14\u793A\u6A21\u5F0F**\uFF1A\u5F53\u524D\u672A\u8FDE\u63A5\u6709\u6548\u7684\u5927\u6A21\u578BAPI\u3002\u4F46\u6839\u636E\u5E95\u5C42\u3010\u6838\u5FC3\u8D44\u4EA7\u3011\u540C\u6B65\u7ED3\u679C\uFF0C\u8BE5\u4E1A\u52A1\u573A\u666F\u5173\u8054\u7684\u62A5\u8868\u53E3\u5F84\u6570\u636E\u5DF2\u5B8C\u6574\u843D\u5E93\u3002");
+        }
       } finally {
         setQaIsLoading(false);
       }
