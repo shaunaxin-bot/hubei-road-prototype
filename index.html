@@ -1093,6 +1093,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1521,6 +1522,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -16725,6 +16727,301 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     }))) : /* @__PURE__ */ React.createElement("div", { className: "flex flex-col items-center justify-center h-full text-slate-400 pb-12" }, /* @__PURE__ */ React.createElement("div", { className: "bg-slate-50/50 p-6 rounded-full mb-4 border border-slate-100 shadow-sm" }, /* @__PURE__ */ React.createElement(Layers2, { size: 48, className: "text-slate-300" })), /* @__PURE__ */ React.createElement("p", { className: "font-bold text-slate-600 text-[14px]" }, "\u8BE5\u6570\u636E\u8D44\u4EA7\u76EE\u5F55\u4E0B\u6682\u65E0\u6587\u4EF6"), /* @__PURE__ */ React.createElement("p", { className: "text-[13px] mt-1.5 text-slate-400 font-medium" }, "\u8BF7\u5C1D\u8BD5\u5728\u5DE6\u4FA7\u67B6\u6784\u56FE\u4E2D\u9009\u62E9\u5E26\u6709\u6570\u5B57\u6807\u8BC6\u7684\u8282\u70B9"))), activeNode && activeNode.files && activeNode.files.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "px-6 py-3 border-t border-slate-100 flex items-center justify-between text-[13px] text-slate-500 bg-white z-10 shrink-0 font-medium" }, /* @__PURE__ */ React.createElement("span", null, "\u5171 ", activeNode.files.length, " \u9879\u8D44\u4EA7"), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1" }, /* @__PURE__ */ React.createElement("button", { className: "w-7 h-7 flex items-center justify-center rounded hover:bg-slate-100 text-slate-400 transition-colors" }, "<"), /* @__PURE__ */ React.createElement("button", { className: "w-7 h-7 flex items-center justify-center rounded bg-blue-50 text-blue-600 font-bold" }, "1"), /* @__PURE__ */ React.createElement("button", { className: "w-7 h-7 flex items-center justify-center rounded hover:bg-slate-100 text-slate-400 transition-colors" }, ">")), /* @__PURE__ */ React.createElement("select", { className: "border border-slate-200 rounded-md p-1 outline-none text-slate-600 bg-white focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-all cursor-pointer" }, /* @__PURE__ */ React.createElement("option", null, "10 \u9879/\u9875"), /* @__PURE__ */ React.createElement("option", null, "20 \u9879/\u9875"))))), previewContent !== null && /* @__PURE__ */ React.createElement("div", { className: "fixed inset-0 z-[999] flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white w-[800px] h-[80vh] rounded-xl shadow-2xl flex flex-col overflow-hidden animate-fade-in-up" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between items-center px-6 py-4 border-b border-slate-100 bg-slate-50" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement(FileText2, { size: 18, className: "text-blue-600" }), /* @__PURE__ */ React.createElement("h3", { className: "font-bold text-slate-800 text-[15px]" }, previewTitle)), /* @__PURE__ */ React.createElement("button", { onClick: () => setPreviewContent(null), className: "text-slate-400 hover:text-red-500 transition-colors" }, /* @__PURE__ */ React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ React.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), /* @__PURE__ */ React.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" })))), /* @__PURE__ */ React.createElement("div", { className: "flex-1 overflow-y-auto p-8 custom-scroll bg-white prose prose-sm max-w-none prose-headings:text-slate-700 prose-a:text-blue-600 whitespace-pre-wrap" }, previewContent))));
   }
 
+  // src/utils/deepQAEngine.js
+  var fetchWithTimeout = async (url, options, timeout = 1500) => {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    try {
+      const res = await fetch(url, { ...options, signal: controller.signal });
+      clearTimeout(id);
+      return res;
+    } catch (err) {
+      clearTimeout(id);
+      throw err;
+    }
+  };
+  function execGetAvailableDatabases(selectedYears, loadedTablesByYear) {
+    const result = (selectedYears || []).map((y2) => ({
+      year: y2,
+      tables: Object.keys(loadedTablesByYear?.[y2] || {}).filter((t) => loadedTablesByYear[y2][t])
+    }));
+    return JSON.stringify(result);
+  }
+  async function execGetTableSchema(tableName, year, selectedYears) {
+    let targetYears = year ? Array.isArray(year) ? year : String(year).split(",").map((y2) => {
+      const m3 = String(y2).match(/\d{4}/);
+      return m3 ? parseInt(m3[0]) : 2025;
+    }) : selectedYears || [2025];
+    let rt2 = tableName || "";
+    const m2 = rt2.match(/([TL][0-9a-zA-Z]+)/);
+    if (m2) rt2 = m2[1];
+    else if (rt2.includes("G207") || rt2.includes("G247")) rt2 = "L21";
+    else if (rt2 === "\u8DEF\u6BB5") rt2 = "L21";
+    else rt2 = rt2.split(" ")[0].replace(/[^a-zA-Z0-9_]/g, "");
+    if (!rt2) return JSON.stringify({ error: "\u8868\u540D\u4E0D\u80FD\u4E3A\u7A7A" });
+    const dbs = window.__DBs__;
+    if (dbs && Object.keys(dbs).length > 0) {
+      try {
+        let cols = null;
+        let sample = [];
+        for (const ty of targetYears) {
+          const db = dbs[ty];
+          if (!db) continue;
+          const p = db.exec(`PRAGMA table_info("${rt2}")`);
+          if (!p || !p.length) continue;
+          if (!cols) cols = p[0].values.map((r) => ({ cid: r[0], name: r[1], type: r[2] }));
+          const s = db.exec(`SELECT * FROM "${rt2}" LIMIT 5`);
+          if (s && s.length) {
+            const rows = s[0].values.map((ra) => {
+              const o = { "_\u6570\u636E\u5E74\u4EFD_": ty };
+              cols.forEach((c, i) => {
+                o[c.name] = ra[i];
+              });
+              return o;
+            });
+            sample = sample.concat(rows);
+          }
+        }
+        let schema = "";
+        if (window.__NIANBAO_SCHEMA__) {
+          const rx = new RegExp(`## ${rt2}[\\s\\S]*?(?=\\n## |\\n---$)`, "i");
+          const h = window.__NIANBAO_SCHEMA__.match(rx);
+          if (h) schema = h[0];
+        }
+        if (!cols) return JSON.stringify({ error: `\u8868 ${rt2} \u5728\u6240\u9009\u5E74\u4EFD\u5747\u4E0D\u5B58\u5728` });
+        return JSON.stringify({ table: rt2, years: targetYears, schema_dict: schema, columns: cols, sample_rows: sample });
+      } catch (err) {
+        return JSON.stringify({ error: "Local SQLite Error: " + err.message });
+      }
+    }
+    try {
+      const pr = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sql: `PRAGMA table_info("${rt2}")`, year: targetYears[0] })
+      });
+      if (!pr.ok) throw new Error("Backend PRAGMA error");
+      const pd = await pr.json();
+      if (pd.error) return JSON.stringify({ error: pd.error });
+      const cols = (pd.rows || []).map((r) => ({ cid: r[0], name: r[1], type: r[2] }));
+      if (!cols.length) return JSON.stringify({ error: `\u8868 ${rt2} \u4E0D\u5B58\u5728` });
+      let schema = "";
+      if (window.__NIANBAO_SCHEMA__) {
+        const rx = new RegExp(`## ${rt2}[\\s\\S]*?(?=\\n## |\\n---$)`, "i");
+        const h = window.__NIANBAO_SCHEMA__.match(rx);
+        if (h) schema = h[0];
+      }
+      return JSON.stringify({ table: rt2, year: targetYears[0], schema_dict: schema, columns: cols });
+    } catch (e) {
+      return JSON.stringify({ error: e.message });
+    }
+  }
+  async function execExecuteSql(sql, year, selectedYears) {
+    let targetYears = year ? Array.isArray(year) ? year : String(year).split(",").map((y2) => {
+      const m2 = String(y2).match(/\d{4}/);
+      return m2 ? parseInt(m2[0]) : 2025;
+    }) : selectedYears || [2025];
+    const dbs = window.__DBs__;
+    if (dbs && Object.keys(dbs).length > 0) {
+      try {
+        let cols = null;
+        let rows = [];
+        let total = 0;
+        for (const ty of targetYears) {
+          const db = dbs[ty];
+          if (!db) continue;
+          let r;
+          try {
+            r = db.exec(sql);
+          } catch (e) {
+            console.warn(`SQL failed on year ${ty}`, e);
+            continue;
+          }
+          if (r && r.length) {
+            if (!cols) cols = ["_\u6570\u636E\u5E74\u4EFD_"].concat(r[0].columns);
+            total += r[0].values.length;
+            rows = rows.concat(r[0].values.map((row) => [ty].concat(row)).slice(0, 30));
+          }
+        }
+        if (cols) return JSON.stringify({ columns: cols, rows: rows.slice(0, 50), row_count: total, years: targetYears, data_source: `\u672C\u5730 SQLite Wasm (${targetYears.join(",")})` });
+        return JSON.stringify({ columns: [], rows: [], row_count: 0, years: targetYears, data_source: "\u672C\u5730 SQLite Wasm" });
+      } catch (err) {
+        return JSON.stringify({ error: "Local SQLite Error: " + err.message, sql_attempted: sql });
+      }
+    }
+    try {
+      const res = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sql, year: targetYears[0] })
+      });
+      if (res.ok) {
+        const d2 = await res.json();
+        if (!d2.error) return JSON.stringify({ ...d2, rows: (d2.rows || []).slice(0, 30), year: targetYears[0], data_source: `\u670D\u52A1\u5668\u6570\u636E\u5E93(${targetYears[0]}\u5E74)` });
+        return JSON.stringify({ error: d2.error, sql_attempted: sql });
+      }
+      return JSON.stringify({ error: "Server returned non-ok status" });
+    } catch (e) {
+      return JSON.stringify({ error: "Failed to fetch execute_sql: " + e.message, sql_attempted: sql });
+    }
+  }
+  var TOOLS = [
+    { type: "function", function: { name: "get_available_databases", description: "\u83B7\u53D6\u5F53\u524D\u5DF2\u52A0\u8F7D\u7684\u6240\u6709\u6570\u636E\u5E93\u5217\u8868\uFF0C\u5305\u62EC\u5E74\u4EFD\u548C\u5404\u5E74\u4EFD\u53EF\u7528\u7684\u8868\u540D\u5217\u8868", parameters: { type: "object", properties: { step_desc: { type: "string", description: "\u7528\u4E00\u53E5\u7B80\u77ED\u7684\u4E1A\u52A1\u5927\u767D\u8BDD\u603B\u7ED3\u672C\u6B21\u64CD\u4F5C" } }, required: ["step_desc"] } } },
+    { type: "function", function: { name: "get_table_schema", description: "\u83B7\u53D6\u6307\u5B9A\u8868\u7684\u5217\u540D\u4FE1\u606F\u548C3\u884C\u793A\u4F8B\u6570\u636E\uFF0C\u5E2E\u52A9\u4E86\u89E3\u6570\u636E\u7ED3\u6784\u540E\u518D\u5199SQL", parameters: { type: "object", properties: { table_name: { type: "string" }, year: { type: "number" }, step_desc: { type: "string" } }, required: ["table_name", "step_desc"] } } },
+    { type: "function", function: { name: "execute_sql", description: '\u5BF9\u6E56\u5317\u7701\u516C\u8DEF\u5E74\u62A5SQLite\u6570\u636E\u5E93\u6267\u884CSQL\u67E5\u8BE2\uFF0C\u8FD4\u56DE\u771F\u5B9E\u7ED3\u679C\u3002\u4E0D\u586Byear\u53C2\u6570\u65F6\u81EA\u52A8\u5BF9\u6240\u6709\u5DF2\u52A0\u8F7D\u5E74\u4EFD\u6267\u884C\u5E76\u5408\u5E76\u8FD4\u56DE\uFF08\u542B"\u6570\u636E\u5E74\u4EFD"\u5217\uFF09\u3002\u9700\u8981\u7EDF\u8BA1\u603B\u548C\u65F6\u5FC5\u987B\u4F7F\u7528SUM()\u7B49\u805A\u5408\u51FD\u6570\u3002', parameters: { type: "object", properties: { sql: { type: "string" }, year: { type: "number" }, step_desc: { type: "string" } }, required: ["sql", "step_desc"] } } }
+  ];
+  var MODEL_ENDPOINTS = {
+    openai: "https://api.openai.com/v1/chat/completions",
+    deepseek: "https://api.deepseek.com/v1/chat/completions",
+    zhipu: "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+    glm: "https://open.bigmodel.cn/api/paas/v4/chat/completions"
+  };
+  async function runDeepQAQuery(question, config, callbacks = {}) {
+    const { apiKey, apiProvider = "deepseek", maxBudget = 2, selectedYears = [], loadedTablesByYear = {} } = config;
+    const { onReasoning, onAnswer, onToolCall, onError } = callbacks;
+    const nianbaoHeaderMatch = window.__NIANBAO_SCHEMA__ ? window.__NIANBAO_SCHEMA__.match(/^[\s\S]*?(?=\n---)/) : null;
+    const nianbaoHeader = nianbaoHeaderMatch ? nianbaoHeaderMatch[0] : "";
+    const knowledgeBase = (window.__ER_MAPPING__ || "") + "\n\n" + nianbaoHeader;
+    const systemPrompt = `\u4F60\u662F\u516C\u8DEF\u6570\u636E\u7EDF\u7B79\u4E13\u5BB6\u3002
+
+\u3010\u63A5\u5165\u72B6\u6001\u58F0\u660E\u3011\u76EE\u524D\u7CFB\u7EDF\u5DF2\u5168\u91CF\u76F4\u8FDE\u5E76\u63A5\u7BA1\u300E\u516C\u8DEF\u517B\u62A4\u7EDF\u8BA1\u5E74\u62A5\u300F\u6570\u636E\uFF1B\u5176\u4ED6\u4E0A\u62A5\u6570\u636E\u6B63\u5728\u89C4\u5212\u6392\u671F\uFF0C\u7B49\u5F85\u540E\u7EED\u5206\u6279\u63A5\u5165\u3002
+
+\u3010\u6838\u5FC3\u4E1A\u52A1\u5B9A\u4E49\u3011
+${knowledgeBase}
+
+\u3010\u5DE5\u4F5C\u65B9\u5F0F\u3011
+1. \u5148\u8C03\u7528 get_available_databases \u4E86\u89E3\u52A0\u8F7D\u4E86\u54EA\u4E9B\u5E74\u4EFD\u7684\u6570\u636E\u3002
+2. \u8C03\u7528 get_table_schema \u4E86\u89E3\u76F8\u5173\u8868\u7684\u7ED3\u6784\uFF0C\u518D\u5199SQL\u3002
+3. \u8C03\u7528 execute_sql \u6267\u884C\u67E5\u8BE2\uFF0C\u67E5\u770B\u771F\u5B9E\u7ED3\u679C\u3002\u4E0D\u586B\u5199year\u53C2\u6570\u65F6\uFF0C\u7CFB\u7EDF\u4F1A\u81EA\u52A8\u5BF9\u6240\u6709\u5DF2\u52A0\u8F7D\u5E74\u4EFD\u6267\u884CSQL\u5E76\u5408\u5E76\u8FD4\u56DE\uFF08\u542B"\u6570\u636E\u5E74\u4EFD"\u5217\uFF09\u3002
+4. \u5982\u679C\u7ED3\u679C\u4E3A\u7A7A\u6216\u5F02\u5E38\uFF0C\u8C03\u6574SQL\u91CD\u65B0\u67E5\u8BE2\uFF08\u6700\u591A3\u6B21\uFF09\u3002
+5. \u6839\u636E\u771F\u5B9E\u6570\u636E\u5F97\u51FA\u7ED3\u8BBA\uFF0C\u5FC5\u987B\u5728\u56DE\u7B54\u4E2D\u6E05\u6670\u6807\u6CE8\u6BCF\u4E2A\u6570\u503C\u6240\u5C5E\u7684\u6570\u636E\u5E74\u4EFD\u3002
+6. \u7981\u6B62\u51ED\u7A7A\u63A8\u65AD\u3001\u4F30\u7B97\u6216\u7F16\u9020\u4EFB\u4F55\u6570\u503C\u3002\u6CA1\u6709\u67E5\u5230\u7684\u6570\u636E\u5199"\uFF08\u672A\u67E5\u5230\uFF0C\u5F85\u6838\u5B9E\uFF09"\u3002
+7. execute_sql \u6700\u591A\u8FD4\u56DE 30 \u884C\u6570\u636E\u3002\u9700\u8981\u7EDF\u8BA1\u603B\u548C\u3001\u5E73\u5747\u503C\u65F6\uFF0C\u5FC5\u987B\u4F7F\u7528 SUM()\u3001COUNT()\u3001GROUP BY \u7B49\u805A\u5408\u51FD\u6570\u3002`;
+    const url = MODEL_ENDPOINTS[apiProvider] || MODEL_ENDPOINTS["deepseek"];
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` };
+    let modelName = "deepseek-v4-pro";
+    if (apiProvider === "openai") modelName = "gpt-4o-mini";
+    else if (apiProvider === "zhipu" || apiProvider === "glm") modelName = "glm-4-flash";
+    let messages = [{ role: "system", content: systemPrompt }, { role: "user", content: question }];
+    let totalCost = 0, iterCount = 0;
+    const MAX_ITER = 10;
+    let reasoningAccum = "";
+    try {
+      while (iterCount < MAX_ITER) {
+        iterCount++;
+        const reqBody = { model: modelName, messages, tools: TOOLS, tool_choice: "auto", max_tokens: 4096 };
+        const controller = new AbortController();
+        const tid = setTimeout(() => controller.abort(), 12e4);
+        let res;
+        try {
+          res = await fetch(url, { method: "POST", headers, body: JSON.stringify(reqBody), signal: controller.signal });
+        } finally {
+          clearTimeout(tid);
+        }
+        if (!res.ok) {
+          const et2 = await res.text();
+          throw new Error(`API Error ${res.status}: ${et2.substring(0, 200)}`);
+        }
+        const data = await res.json();
+        if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+        if (data.usage) {
+          const p = data.usage.prompt_tokens || 0, c = data.usage.completion_tokens || 0;
+          if (modelName.includes("deepseek")) totalCost += p * 1e-6 + c * 2e-6;
+          else if (modelName.includes("gpt")) totalCost += (p * 15e-8 + c * 6e-7) * 7.25;
+          else totalCost += p * 1e-7 + c * 1e-7;
+        }
+        if (totalCost > maxBudget) {
+          onAnswer && onAnswer("\n\n\u26A0\uFE0F \u5DF2\u8FBE\u5230\u5355\u6B21\u67E5\u8BE2\u9632\u8D85\u652F\u7EA2\u7EBF\uFF0C\u5DF2\u81EA\u52A8\u7194\u65AD\u3002");
+          break;
+        }
+        const choice = data.choices?.[0];
+        if (!choice) throw new Error("API returned no choices");
+        const msg = choice.message;
+        if (msg.reasoning_content) {
+          reasoningAccum += msg.reasoning_content;
+          onReasoning && onReasoning(reasoningAccum);
+        }
+        if (!msg.tool_calls || !msg.tool_calls.length) {
+          onAnswer && onAnswer(msg.content || "\u5206\u6790\u5B8C\u6210\uFF0C\u4F46\u672A\u751F\u6210\u6587\u5B57\u56DE\u7B54\u3002");
+          break;
+        }
+        if (msg.content) {
+          reasoningAccum += (reasoningAccum ? "\n" : "") + msg.content;
+          onReasoning && onReasoning(reasoningAccum);
+        }
+        messages.push({ role: "assistant", content: msg.content || null, tool_calls: msg.tool_calls });
+        for (const tc of msg.tool_calls) {
+          const fnName = tc.function.name;
+          let args = {};
+          try {
+            args = JSON.parse(tc.function.arguments || "{}");
+          } catch (e) {
+          }
+          onToolCall && onToolCall({ name: fnName, stepDesc: args.step_desc || fnName });
+          let result = "";
+          if (fnName === "get_available_databases") result = execGetAvailableDatabases(selectedYears, loadedTablesByYear);
+          else if (fnName === "get_table_schema") result = await execGetTableSchema(args.table_name, args.year, selectedYears);
+          else if (fnName === "execute_sql") result = await execExecuteSql(args.sql, args.year, selectedYears);
+          else if (fnName === "mount_database_by_year") {
+            const yr = args.year;
+            result = window.__DBs__ && window.__DBs__[yr] ? JSON.stringify({ success: true, message: `\u5E74\u4EFD ${yr} \u6570\u636E\u5E93\u5DF2\u5C31\u7EEA` }) : JSON.stringify({ error: `\u5E74\u4EFD ${yr} \u672A\u52A0\u8F7D\uFF0C\u8BF7\u5148\u5728\u6570\u636E\u7EDF\u7B79\u52A9\u624B\u4E2D\u52A0\u8F7D\u8BE5\u5E74\u4EFD` });
+          } else result = JSON.stringify({ error: `\u5DE5\u5177 ${fnName} \u5728\u6B64\u4E0A\u4E0B\u6587\u4E2D\u4E0D\u53EF\u7528` });
+          messages.push({ role: "tool", tool_call_id: tc.id, content: result });
+        }
+      }
+    } catch (err) {
+      onError && onError(err);
+    }
+  }
+  function resolveApiConfig() {
+    const deobfuscate = (s) => {
+      if (!s) return "";
+      try {
+        return atob(s).split("").reverse().join("");
+      } catch (e) {
+        return s;
+      }
+    };
+    let apiKey = "", apiProvider = "deepseek";
+    const savedProvider = localStorage.getItem("NIANBAO_USER_PROVIDER") || "deepseek";
+    const savedKeys = JSON.parse(localStorage.getItem("NIANBAO_USER_KEYS") || "{}");
+    if (savedKeys[savedProvider]) {
+      apiKey = deobfuscate(savedKeys[savedProvider]);
+      apiProvider = savedProvider;
+    }
+    if (!apiKey && window.__API_CONFIG__) {
+      try {
+        const cfg = JSON.parse(window.__API_CONFIG__);
+        const prov = cfg.API_PROVIDER || "deepseek";
+        apiProvider = prov;
+        if (prov === "deepseek") apiKey = deobfuscate(cfg.DEEPSEEK_API_KEY) || "";
+        else if (prov === "zhipu" || prov === "glm") apiKey = deobfuscate(cfg.ZHIPU_API_KEY) || "";
+        else if (prov === "openai") apiKey = deobfuscate(cfg.OPENAI_API_KEY) || "";
+        else if (prov === "gemini") apiKey = deobfuscate(cfg.GEMINI_API_KEY) || "";
+      } catch (e) {
+      }
+    }
+    return { apiKey, apiProvider };
+  }
+  function resolveDbContext() {
+    const dbs = window.__DBs__ || {};
+    const selectedYears = Object.keys(dbs).map(Number).filter((y2) => y2 > 0);
+    const loadedTablesByYear = {};
+    for (const yr of selectedYears) {
+      const db = dbs[yr];
+      if (!db) continue;
+      try {
+        const t = db.exec("SELECT name FROM sqlite_master WHERE type='table'");
+        loadedTablesByYear[yr] = {};
+        if (t.length) t[0].values.forEach(([n]) => {
+          loadedTablesByYear[yr][n] = true;
+        });
+      } catch (e) {
+      }
+    }
+    return { selectedYears, loadedTablesByYear };
+  }
+
   // src/components/DataExchangeView.jsx
   var import_react7 = __toESM(__require("react"));
   var DataExchangeView = () => {
@@ -18366,94 +18663,37 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
       setQaAiAnswer("");
       setQaAiReasoning("");
       try {
-        let apiKey = "";
-        let apiProvider = "deepseek";
-        const savedProvider = localStorage.getItem("NIANBAO_USER_PROVIDER") || "deepseek";
-        const savedKeys = JSON.parse(localStorage.getItem("NIANBAO_USER_KEYS") || "{}");
-        const deobfuscate = (s) => {
-          if (!s) return "";
-          try {
-            return atob(s).split("").reverse().join("");
-          } catch (e) {
-            return s;
-          }
-        };
-        if (savedKeys[savedProvider]) {
-          apiKey = deobfuscate(savedKeys[savedProvider]);
-          apiProvider = savedProvider;
-        }
-        if (!apiKey && window.__API_CONFIG__) {
-          try {
-            const cfg = JSON.parse(window.__API_CONFIG__);
-            const prov = cfg.API_PROVIDER || "deepseek";
-            apiProvider = prov;
-            if (prov === "deepseek") apiKey = deobfuscate(cfg.DEEPSEEK_API_KEY) || "";
-            else if (prov === "zhipu" || prov === "glm") apiKey = deobfuscate(cfg.ZHIPU_API_KEY) || "";
-            else if (prov === "gemini") apiKey = deobfuscate(cfg.GEMINI_API_KEY) || "";
-          } catch (e) {
-          }
-        }
-        if (!apiKey) {
-          setQaAiAnswer("> \u26A0\uFE0F \u6F14\u793A\u6A21\u5F0F\uFF1A\u672A\u914D\u7F6E API Key\uFF0C\u8BF7\u5728\u300C\u5F15\u64CE\u8BBE\u7F6E\u300D\u4E2D\u586B\u5199\u540E\u4F7F\u7528\u771F\u5B9E\u667A\u641C\u3002");
-          setQaIsLoading(false);
+        const dbs = window.__DBs__ || {};
+        if (Object.keys(dbs).length === 0) {
+          setQaAiAnswer("> \u26A0\uFE0F **\u6570\u636E\u5E93\u672A\u52A0\u8F7D**\uFF1A\u8BF7\u5148\u5728\u300C\u6570\u636E\u7EDF\u7B79\u52A9\u624B\u300D\u9875\u9762\u4E2D\u52A0\u8F7D\u6570\u636E\u5E74\u4EFD\uFF0C\u7136\u540E\u518D\u63D0\u95EE\u3002");
           return;
         }
-        const ENDPOINTS = {
-          deepseek: "https://api.deepseek.com/v1/chat/completions",
-          zhipu: "https://open.bigmodel.cn/api/paas/v4/chat/completions",
-          glm: "https://open.bigmodel.cn/api/paas/v4/chat/completions",
-          openai: "https://api.openai.com/v1/chat/completions",
-          gemini: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
-        };
-        const url = ENDPOINTS[apiProvider] || ENDPOINTS["deepseek"];
-        const modelName = apiProvider === "zhipu" || apiProvider === "glm" ? "glm-4-flash" : apiProvider === "openai" ? "gpt-4o-mini" : "deepseek-chat";
-        const sysPrompt = isLong ? `\u4F60\u662F\u6E56\u5317\u7701\u516C\u8DEF\u4E8B\u4E1A\u53D1\u5C55\u4E2D\u5FC3\u6570\u636E\u6CBB\u7406\u4E13\u5BB6\u3002
-\u3010\u4E25\u683C\u6307\u4EE4\u3011
-1. \u8BF7\u7ED9\u51FA\u53EF\u4FE1\u7684\u6570\u636E\u63A8\u7406\u8FC7\u7A0B\u548C\u6700\u7EC8\u7ED3\u8BBA\u3002
-2. \u575A\u51B3\u4E0D\u8981\u7A7A\u6D1E\u7684\u957F\u7BC7\u5927\u8BBA\uFF0C\u5FC5\u987B\u4E25\u8C28\u52A1\u5B9E\u3002
-3. \u4EE5\u6E05\u6670\u7684\u6B65\u9AA4\u6216\u903B\u8F91\u94FE\u6761\uFF0C\u5C55\u73B0\u6570\u636E\u6765\u6E90\u3001\u63A8\u5BFC/\u8BA1\u7B97\u8FC7\u7A0B\u53CA\u6700\u7EC8\u7ED3\u679C\u3002
-4. \u5FC5\u987B\u5728\u63A8\u7406\u8FC7\u7A0B\u4E2D\uFF0C\u5F3A\u8C03\u5E76\u51F8\u663E\u672C\u201CAI\u6570\u636E\u6CBB\u7406\u5DE5\u4F5C\u53F0\u201D\uFF08\u6216\u5927\u6A21\u578B\u6CBB\u7406\u5DE5\u5177\uFF09\u5728\u591A\u6E90\u5F02\u6784\u6570\u636E\u6E05\u6D17\u3001\u6807\u51C6\u6821\u9A8C\u3001\u667A\u80FD\u5F52\u56E0\u7B49\u65B9\u9762\u7684\u5173\u952E\u4F5C\u7528\u3002
-5. \u5FC5\u987B\u5728\u56DE\u7B54\u672B\u5C3E\uFF0C\u5355\u72EC\u8F9F\u51FA\u4E00\u4E2A\u6BB5\u843D\uFF0C\u660E\u786E\u70B9\u9898\u5E76\u603B\u7ED3\u51FA\u8FD9\u6761\u6838\u5FC3\u4E1A\u52A1\u903B\u8F91\u94FE\u6761\uFF1A\u201C\u672C\u667A\u80FD\u56DE\u7B54\u5E76\u975E\u51ED\u7A7A\u751F\u6210\uFF0C\u800C\u662F\u4F9D\u6258\u5B8C\u6574\u7684\u95ED\u73AF\u4F53\u7CFB\uFF1A\u3010\u6570\u636E\u6CBB\u7406\u3011 -> \u3010\u9AD8\u8D28\u91CF\u6570\u636E\u96C6\u3011 -> \u3010\u5927\u6A21\u578BAI\u5F97\u51FA\u7684\u516C\u8DEF\u667A\u641C\u3011\u201D\u3002\u5E76\u987A\u52BF\u5217\u4E3E\u6240\u8C03\u7528\u7684\u5177\u4F53\u9AD8\u8D28\u91CF\u6570\u636E\u96C6\u6210\u679C\uFF08\u5982\u591A\u6E90\u8D44\u4EA7\u5E95\u5E93\u3001SOP\u6821\u9A8C\u5B57\u6BB5\u7B49\uFF09\uFF0C\u4EE5\u6B64\u4F50\u8BC1\u56DE\u7B54\u7684\u7EDD\u5BF9\u6743\u5A01\u6027\u3002` : `\u4F60\u662F\u6E56\u5317\u7701\u516C\u8DEF\u4E8B\u4E1A\u53D1\u5C55\u4E2D\u5FC3\u6570\u636E\u6CBB\u7406\u4E13\u5BB6\u3002
-\u3010\u4E25\u683C\u6307\u4EE4\u3011
-\u8BF7\u76F4\u63A5\u7ED9\u51FA\u6838\u5FC3\u6570\u636E\u7ED3\u8BBA\uFF0C\u575A\u51B3\u4E0D\u8981\u4EFB\u4F55\u94FA\u57AB\u3001\u5E9F\u8BDD\u548C\u63A8\u5BFC\u8FC7\u7A0B\u3002`;
-        const headers = { "Content-Type": "application/json", "Authorization": "Bearer " + apiKey };
-        const body = JSON.stringify({ model: modelName, messages: [{ role: "system", content: sysPrompt }, { role: "user", content: question }], max_tokens: 2048, stream: true });
-        let fetchUrl = url;
-        if (apiProvider === "gemini") {
-          fetchUrl = url + "?key=" + apiKey;
-          delete headers["Authorization"];
+        const { apiKey, apiProvider } = resolveApiConfig();
+        if (!apiKey) {
+          setQaAiAnswer("> \u26A0\uFE0F \u6F14\u793A\u6A21\u5F0F\uFF1A\u672A\u914D\u7F6E API Key\uFF0C\u8BF7\u5728\u300C\u5F15\u64CE\u8BBE\u7F6E\u300D\u4E2D\u586B\u5199\u540E\u4F7F\u7528\u771F\u5B9E\u667A\u641C\u3002");
+          return;
         }
-        const resp = await fetch(fetchUrl, { method: "POST", headers, body });
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const reader = resp.body.getReader();
-        const decoder = new TextDecoder();
-        let buf = "";
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buf += decoder.decode(value, { stream: true });
-          const parts = buf.split("\n");
-          buf = parts.pop();
-          for (const line of parts) {
-            const l3 = line.trim();
-            if (!l3.startsWith("data:")) continue;
-            const data = l3.slice(5).trim();
-            if (data === "[DONE]") break;
-            try {
-              const obj = JSON.parse(data);
-              const delta = obj.choices?.[0]?.delta?.content || "";
-              if (delta) {
-                setQaAiAnswer((prev) => prev + delta);
-              } else if (obj.choices?.[0]?.delta?.reasoning_content) {
-                const r = obj.choices[0].delta.reasoning_content;
-                setQaAiReasoning((prev) => prev + r);
-              }
-            } catch (e) {
-            }
+        const { selectedYears, loadedTablesByYear } = resolveDbContext();
+        await runDeepQAQuery(question, {
+          apiKey,
+          apiProvider,
+          maxBudget: 2,
+          selectedYears,
+          loadedTablesByYear
+        }, {
+          onReasoning: (text) => setQaAiReasoning(text),
+          onAnswer: (text) => setQaAiAnswer(text),
+          onToolCall: ({ name, stepDesc }) => {
+            setQaAiReasoning((prev) => (prev ? prev + "\n" : "") + "\u2699\uFE0F \u6B63\u5728\u6267\u884C\uFF1A" + stepDesc);
+          },
+          onError: (err) => {
+            console.error("DeepQA Engine Error:", err);
+            setQaAiAnswer("> \u26A0\uFE0F \u67E5\u8BE2\u51FA\u9519\uFF1A" + err.message);
           }
-        }
+        });
       } catch (err) {
-        console.error("LLM Error:", err);
+        console.error("callLightLLM Error:", err);
+        setQaAiAnswer("> \u26A0\uFE0F \u67E5\u8BE2\u51FA\u9519\uFF1A" + err.message);
       } finally {
         setQaIsLoading(false);
       }
@@ -55651,14 +55891,14 @@ ${code}
       setRightPanelTab(tableName);
       setGeneratedArtifacts((prev) => prev.find((a) => a.name === tableName) ? prev : [...prev, { name: tableName, sourceQuery: "\u6570\u636E\u5E95\u5EA7\u4EA4\u4E92\u5F0F\u4E0B\u94BB" }]);
     };
-    const execGetAvailableDatabases = () => {
+    const execGetAvailableDatabases2 = () => {
       const result = (selectedYears || [2015, 2025]).map((y2) => ({
         year: y2,
         tables: Object.keys(loadedTablesByYear?.[y2] || {}).filter((t) => loadedTablesByYear[y2][t])
       }));
       return JSON.stringify(result);
     };
-    const fetchWithTimeout = async (url, options, timeout = 1500) => {
+    const fetchWithTimeout2 = async (url, options, timeout = 1500) => {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeout);
       try {
@@ -55670,7 +55910,7 @@ ${code}
         throw err;
       }
     };
-    const execGetTableSchema = async (tableName, year) => {
+    const execGetTableSchema2 = async (tableName, year) => {
       let targetYears = [];
       if (year) {
         targetYears = Array.isArray(year) ? year : String(year).split(",").map((y2) => {
@@ -55732,7 +55972,7 @@ ${code}
         }
       }
       try {
-        const pragmaRes = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
+        const pragmaRes = await fetchWithTimeout2("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sql: `PRAGMA table_info("${cleanTableName}")`, year: targetYears[0] })
@@ -55742,7 +55982,7 @@ ${code}
         if (pragmaData.error) return JSON.stringify({ error: pragmaData.error });
         const cols = (pragmaData.rows || []).map((r) => ({ cid: r[0], name: r[1], type: r[2] }));
         if (cols.length === 0) return JSON.stringify({ error: `\u8868 ${cleanTableName} \u4E0D\u5B58\u5728` });
-        const sampleRes = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
+        const sampleRes = await fetchWithTimeout2("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sql: `SELECT * FROM "${cleanTableName}" LIMIT 15`, year: targetYears[0] })
@@ -55773,7 +56013,7 @@ ${code}
         return JSON.stringify({ error: e.message || "Failed to fetch schema from server" });
       }
     };
-    const execExecuteSql = async (sql, year) => {
+    const execExecuteSql2 = async (sql, year) => {
       let targetYears = [];
       if (year) {
         targetYears = Array.isArray(year) ? year : String(year).split(",").map((y2) => {
@@ -55831,7 +56071,7 @@ ${code}
         }
       }
       try {
-        const res = await fetchWithTimeout("http://127.0.0.1:8000/api/execute_sql", {
+        const res = await fetchWithTimeout2("http://127.0.0.1:8000/api/execute_sql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sql, year: targetYears[0] })
@@ -55943,7 +56183,7 @@ ${code}
           setMessages((prev) => prev.map((m2) => m2.id === msg.id ? { ...m2, actionPrompt: { ...m2.actionPrompt, resolvingStep: 4 } } : m2));
           await new Promise((r) => setTimeout(r, 200));
           setMessages((prev) => prev.map((m2) => m2.id === msg.id ? { ...m2, actionPrompt: { ...m2.actionPrompt, resolvingStep: 5 } } : m2));
-          const resultStr = await execExecuteSql(sql, targetYear);
+          const resultStr = await execExecuteSql2(sql, targetYear);
           const data = JSON.parse(resultStr);
           if (!data.error && data.rows) {
             if (isGeneric) {
@@ -56323,7 +56563,7 @@ ${knowledgeBase}
         time: (/* @__PURE__ */ new Date()).toLocaleTimeString(),
         isStreaming: true
       }]);
-      const TOOLS = [
+      const TOOLS2 = [
         {
           type: "function",
           function: {
@@ -56418,12 +56658,12 @@ ${knowledgeBase}
           }
         }
       ];
-      const MODEL_ENDPOINTS = {
+      const MODEL_ENDPOINTS2 = {
         openai: "https://api.openai.com/v1/chat/completions",
         deepseek: "https://api.deepseek.com/v1/chat/completions",
         zhipu: "https://open.bigmodel.cn/api/paas/v4/chat/completions"
       };
-      const url = MODEL_ENDPOINTS[apiProvider] || MODEL_ENDPOINTS["deepseek"];
+      const url = MODEL_ENDPOINTS2[apiProvider] || MODEL_ENDPOINTS2["deepseek"];
       const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` };
       let modelName = "deepseek-v4-pro";
       if (apiProvider === "openai") modelName = "gpt-4o-mini";
@@ -56509,7 +56749,7 @@ ${knowledgeBase}
           const reqBody = {
             model: modelName,
             messages: messages2,
-            tools: TOOLS,
+            tools: TOOLS2,
             tool_choice: "auto",
             max_tokens: 8192
           };
@@ -56960,7 +57200,7 @@ ${knowledgeBase}
                 tcEntry.resultSummary = resultStr;
               } else if (fnName === "get_table_schema") {
                 const targetYear = args.year || (selectedYears?.[0] || 2025);
-                resultStr = await execGetTableSchema(args.table_name, targetYear);
+                resultStr = await execGetTableSchema2(args.table_name, targetYear);
               } else if (fnName === "search_internet") {
                 const q2 = args.query || "";
                 let mockRes = "";
@@ -56981,10 +57221,10 @@ ${knowledgeBase}
               } else if (fnName === "execute_sql") {
                 const yearsToQuery = args.year ? [args.year] : selectedYears && selectedYears.length > 0 ? [...selectedYears] : [2015, 2025];
                 if (yearsToQuery.length === 1) {
-                  resultStr = await execExecuteSql(args.sql, yearsToQuery[0]);
+                  resultStr = await execExecuteSql2(args.sql, yearsToQuery[0]);
                 } else {
                   const perYearResults = await Promise.all(
-                    yearsToQuery.map((yr) => execExecuteSql(args.sql, yr))
+                    yearsToQuery.map((yr) => execExecuteSql2(args.sql, yr))
                   );
                   let mergedColumns = null;
                   let mergedRows = [];
