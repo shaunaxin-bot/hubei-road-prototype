@@ -1131,6 +1131,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1559,6 +1560,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -56570,7 +56572,9 @@ ${knowledgeBase}
             max_tokens: 8192
           };
           if (messages2.length > 0 && messages2[messages2.length - 1].role === "tool") {
-            updateBot({ isGeneratingReport: true });
+            const lastTc = toolCallLog[toolCallLog.length - 1];
+            const lastThought = lastTc?.resultSummary ? `\u{1F4A1} ${lastTc.resultSummary}` : lastTc?.name ? `\u{1F4A1} \u5DF2\u5B8C\u6210 ${lastTc.name}\uFF0C\u6B63\u5728\u7EFC\u5408\u7814\u5224...` : "\u{1F4A1} \u6570\u636E\u8C03\u53D6\u5B8C\u6210\uFF0C\u6B63\u5728\u7EFC\u5408\u7814\u5224...";
+            updateBot({ isGeneratingReport: true, thought: lastThought });
           }
           const controller = new AbortController();
           const timeoutId = setTimeout(() => controller.abort(), 12e4);
