@@ -1121,6 +1121,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1549,6 +1550,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -56807,7 +56809,16 @@ ${knowledgeBase}
             max_tokens: 8192
           };
           if (messages2.length > 0 && messages2[messages2.length - 1].role === "tool") {
-            updateBot({ isGeneratingReport: true });
+            const lastTcName = toolCallLog[toolCallLog.length - 1]?.name || "";
+            const genThought = (q2) => {
+              if (q2.includes("107") || q2.includes("\u56FD\u9053") || q2.includes("\u7701\u9053") || q2.includes("\u9AD8\u901F")) return "\u{1F4A1} \u5DF2\u6210\u529F\u83B7\u53D6\u8DEF\u7F51\u6570\u636E\uFF0C\u6B63\u5728\u6BD4\u5BF9\u5E74\u62A5\u57FA\u7EBF\u4E0E\u8DEF\u7EBF\u4EE3\u7801\u5173\u8054\u5173\u7CFB\uFF0C\u7EFC\u5408\u7814\u5224\u4E2D...";
+              if (q2.includes("\u6865\u6881") || q2.includes("\u957F\u5927\u6865") || q2.includes("CBMS")) return "\u{1F4A1} \u5DF2\u5B8C\u6210\u6865\u6881\u68C0\u6D4B\u6570\u636E\u8C03\u53D6\uFF0C\u6B63\u5728\u6267\u884C\u8DE8\u6E90\u6570\u636E\u6BD4\u5BF9\u4E0E\u7B49\u7EA7\u8BC4\u5B9A...";
+              if (q2.includes("\u91CC\u7A0B") || q2.includes("\u516C\u91CC") || q2.includes("\u901A\u8F66")) return "\u{1F4A1} \u5DF2\u83B7\u53D6\u8DEF\u6BB5\u7EDF\u8BA1\u6570\u636E\uFF0C\u6B63\u5728\u6C47\u603B\u8BA1\u7B97\u91CC\u7A0B\u5206\u7C7B\u5206\u7EA7\u6570\u636E...";
+              if (q2.includes("\u517B\u62A4") || q2.includes("\u7EF4\u4FEE") || q2.includes("\u75C5\u5BB3")) return "\u{1F4A1} \u5DF2\u83B7\u53D6\u517B\u62A4\u53F0\u8D26\u6570\u636E\uFF0C\u6B63\u5728\u7EFC\u5408\u8BC4\u4F30\u8DEF\u51B5\u6307\u6807\u4E0E\u7EF4\u62A4\u9700\u6C42...";
+              if (lastTcName) return "\u{1F4A1} \u5DF2\u5B8C\u6210 " + lastTcName + " \u6570\u636E\u67E5\u8BE2\uFF0C\u6B63\u5728\u7EFC\u5408\u7814\u5224\u5206\u6790...";
+              return "\u{1F4A1} \u6570\u636E\u8C03\u53D6\u5B8C\u6210\uFF0C\u6B63\u5728\u6267\u884C\u591A\u6E90\u6570\u636E\u878D\u5408\u4E0E\u7EFC\u5408\u5206\u6790...";
+            };
+            updateBot({ isGeneratingReport: true, thought: genThought(queryText) });
           }
           const controller = new AbortController();
           const timeoutId = setTimeout(() => controller.abort(), 12e4);
