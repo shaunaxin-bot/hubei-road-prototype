@@ -1134,6 +1134,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1562,6 +1563,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -56637,9 +56639,11 @@ ${knowledgeBase}
           const choice = data.choices?.[0];
           if (!choice) throw new Error("API returned no choices");
           const msg = choice.message;
-          const reasoningText = msg.reasoning_content || msg.content;
-          if (reasoningText) {
-            updateBot({ thought: reasoningText, toolCalls: [...toolCallLog] });
+          const rawReasoning = msg.reasoning_content || msg.content;
+          if (rawReasoning) {
+            const hasChinese = /[\u4e00-\u9fff]/.test(rawReasoning);
+            const thoughtText = hasChinese ? rawReasoning : "\u6570\u636E\u7A7F\u900F\u4E0E\u8BA1\u7B97\u5B8C\u6210\uFF0C\u6B63\u5728\u7EFC\u5408\u7814\u5224\u5206\u6790...";
+            updateBot({ thought: thoughtText, toolCalls: [...toolCallLog] });
           }
           if (!msg.tool_calls || msg.tool_calls.length === 0) {
             const elapsed = ((Date.now() - startTime) / 1e3).toFixed(1);
