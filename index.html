@@ -1102,6 +1102,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1530,6 +1531,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -58284,6 +58286,29 @@ ${msg.views.view3}
           className: "hover:text-slate-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-slate-400"
         },
         "\u91CD\u65B0\u751F\u6210\u7ED3\u8BBA"
+      ), /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          onClick: () => {
+            let userQuery = "";
+            if (idx > 0 && messages[idx - 1].role === "user") {
+              userQuery = messages[idx - 1].content;
+            }
+            if (!userQuery) return;
+            const el = document.getElementById("deepqa-msg-" + msg.id);
+            if (!el) {
+              alert("\u65E0\u6CD5\u627E\u5230\u5BF9\u5E94DOM\u5143\u7D20");
+              return;
+            }
+            let html = el.innerHTML;
+            const presets = JSON.parse(localStorage.getItem("node08_presets") || "{}");
+            presets[userQuery] = html;
+            localStorage.setItem("node08_presets", JSON.stringify(presets));
+            alert("\u5DF2\u6210\u529F\u5C06\u6B64\u56DE\u7B54\u7684\u539F\u7248\u683C\u5F0F\u548C\u6570\u636E\u56FA\u5316\u4FDD\u5B58\u4E3A 08 \u9884\u8BBE\uFF01\u8BF7\u53BB 08 \u9875\u9762\u6D4B\u8BD5\u3002");
+          },
+          className: "hover:text-blue-600 transition-colors cursor-pointer bg-blue-50 border border-blue-200 px-2 py-1 rounded text-blue-500 font-bold ml-2 flex items-center gap-1"
+        },
+        "\u{1F4BE} \u5B58\u4E3A 08 \u6F14\u793A\u9884\u8BBE"
       )), (msg.role === "agent" || msg.role === "assistant") && (msg.sqlResult || msg.isMock) && !msg.reportPromptDismissed && /* @__PURE__ */ React.createElement("div", { className: "mt-2 flex items-center gap-2 bg-slate-50/80 border border-slate-200/70 rounded-lg px-3 py-2 text-[11px]" }, /* @__PURE__ */ React.createElement("span", { className: "text-slate-500" }, "\u{1F4C4} \u662F\u5426\u751F\u6210\u672C\u6B21\u5206\u6790\u62A5\u544A\uFF1F"), /* @__PURE__ */ React.createElement(
         "button",
         {
