@@ -1098,6 +1098,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1526,6 +1527,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -18683,12 +18685,22 @@ ${knowledgeBase}
           setQaAiAnswer("> \u26A0\uFE0F \u6F14\u793A\u6A21\u5F0F\uFF1A\u672A\u914D\u7F6E API Key\uFF0C\u8BF7\u5728\u300C\u5F15\u64CE\u8BBE\u7F6E\u300D\u4E2D\u586B\u5199\u540E\u4F7F\u7528\u771F\u5B9E\u667A\u641C\u3002");
           return;
         }
-        const dbs = window.__DBs__ || {};
+        let dbs = window.__DBs__ || {};
         if (Object.keys(dbs).length === 0) {
-          setQaAiAnswer("> \u26A0\uFE0F **\u6570\u636E\u5E93\u672A\u52A0\u8F7D**\uFF1A\u8BF7\u5148\u5728\u300C\u6570\u636E\u7EDF\u7C79\u52A9\u624B\u300D\u9875\u9762\u4E2D\u52A0\u8F7D\u6570\u636E\u5E74\u4EFD\u3002");
-          return;
+          setQaAiReasoning("\u23F3 \u6B63\u5728\u81EA\u52A8\u6302\u8F7D 2025 \u5E74\u5EA6\u6570\u636E\u5E93...");
+          try {
+            const { loadDBByYear: loadDBByYear2 } = await Promise.resolve().then(() => (init_sqlite(), sqlite_exports));
+            if (!window.__DBs__) window.__DBs__ = {};
+            window.__DBs__[2025] = await loadDBByYear2(2025);
+            dbs = window.__DBs__;
+            setQaAiReasoning("\u2705 \u6570\u636E\u5E93\u81EA\u52A8\u6302\u8F7D\u5B8C\u6210\uFF0C\u5F00\u59CB\u63A8\u7406...\n");
+          } catch (e) {
+            setQaAiAnswer("> \u26A0\uFE0F **\u6570\u636E\u5E93\u52A0\u8F7D\u5931\u8D25**\uFF1A" + e.message);
+            return;
+          }
         }
-        const { selectedYears, loadedTablesByYear } = resolveDbContext();
+        let { selectedYears, loadedTablesByYear } = resolveDbContext();
+        if (!selectedYears || selectedYears.length === 0) selectedYears = [2025];
         const modePrompt = isLong ? "\n\n\u3010\u6DF1\u5EA6\u63A8\u7406\u6A21\u5F0F\u3011\u8BF7\u8BE6\u7EC8\u8BF4\u660E\u6570\u636E\u6765\u6E90\u3001\u8BA1\u7B97\u8FC7\u7A0B\u548C\u63A8\u7406\u4F9D\u636E\u3002" : "\n\n\u3010\u7B80\u7B54\u6A21\u5F0F\u3011\u8BF7\u76F4\u63A5\u7ED9\u51FA\u6700\u7EC8\u7684\u6570\u636E\u7ED3\u8BBA\uFF0C\u5C3D\u91CF\u7B80\u77ED\uFF0C\u4E0D\u9700\u8981\u89E3\u91CA\u5206\u6790\u8FC7\u7A0B\u3002";
         await runDeepQAQuery(question + modePrompt, {
           apiKey,
