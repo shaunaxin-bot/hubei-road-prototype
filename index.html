@@ -1154,6 +1154,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1582,6 +1583,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -56296,6 +56298,16 @@ ${knowledgeBase}
             tool_choice: "auto",
             max_tokens: 8192
           };
+          if (iterCount >= 4) {
+            delete reqBody.tools;
+            delete reqBody.tool_choice;
+            if (messages2[messages2.length - 1].role !== "system" || !messages2[messages2.length - 1].content.includes("\u6700\u7EC8Markdown\u62A5\u544A")) {
+              messages2.push({
+                role: "system",
+                content: "\u3010\u5F3A\u5236\u7CFB\u7EDF\u6307\u4EE4\u3011\u4E3A\u4FDD\u8BC1\u54CD\u5E94\u901F\u5EA6\uFF0C\u4F60\u4E0D\u80FD\u518D\u8C03\u7528\u4EFB\u4F55\u5DE5\u5177\u3002\u8BF7\u7ACB\u5373\u6839\u636E\u76EE\u524D\u6536\u96C6\u5230\u7684\u6240\u6709\u6570\u636E\uFF0C\u6309\u7167\u8981\u6C42\u8F93\u51FA\u6700\u7EC8\u7684Markdown\u62A5\u544A\u3002\u5982\u679C\u6570\u636E\u4E0D\u8DB3\uFF0C\u8BF7\u57FA\u4E8E\u73B0\u6709\u6570\u636E\u5C3D\u529B\u63A8\u65AD\u6216\u8BF4\u660E\u60C5\u51B5\u3002"
+              });
+            }
+          }
           if (messages2.length > 0 && messages2[messages2.length - 1].role === "tool") {
             updateBot({ isGeneratingReport: true });
           }
@@ -56864,7 +56876,6 @@ ${knowledgeBase}
           messages2.push(...toolResults);
         }
         if (iterCount >= MAX_ITER) {
-          updateBot({ content: (updateBot.content || "") + "\n\n\u26A0\uFE0F \u5DF2\u8FBE\u5230\u6700\u5927\u67E5\u8BE2\u8F6E\u6570\uFF0C\u4EE5\u4E0A\u4E3A\u5F53\u524D\u5206\u6790\u7ED3\u679C\u3002" });
         }
       } catch (err) {
         if (fetchTimerId) clearInterval(fetchTimerId);
