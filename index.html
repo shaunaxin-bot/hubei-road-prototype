@@ -1167,6 +1167,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1595,6 +1596,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -18634,7 +18636,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
           className: "text-[10px] text-indigo-500 hover:text-indigo-700 border border-indigo-200 hover:border-indigo-400 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded-full transition-all flex items-center gap-1"
         },
         "\u{1F4CA} \u67E5\u770B\u6570\u636E\u63A8\u7406\u8FC7\u7A0B \u2192"
-      )))))), /* @__PURE__ */ React.createElement("div", { className: "mt-auto shrink-0 border-t border-slate-100 pt-3" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-wrap items-center gap-1.5 mb-2 pb-1" }, filteredQuestions.map((item, idx) => /* @__PURE__ */ React.createElement(
+      )))))), /* @__PURE__ */ React.createElement("div", { className: "mt-auto shrink-0 border-t border-slate-100 pt-3" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 mb-2 overflow-hidden w-full" }, filteredQuestions.slice(0, 4).map((item, idx) => /* @__PURE__ */ React.createElement(
         "button",
         {
           key: idx,
@@ -18646,7 +18648,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
             setIsLongAnswer(false);
             callLightLLM(item.q);
           },
-          className: "shrink-0 bg-slate-50/80 border border-slate-200/50 hover:bg-slate-100 hover:border-slate-300 text-slate-400 hover:text-slate-600 px-2.5 py-1 rounded-full text-[9px] transition-colors whitespace-nowrap"
+          className: "truncate flex-1 max-w-[200px] bg-slate-50/80 border border-slate-200/50 hover:bg-slate-100 hover:border-slate-300 text-slate-400 hover:text-slate-600 px-2.5 py-1 rounded-full text-[10px] transition-colors"
         },
         item.q
       ))), /* @__PURE__ */ React.createElement("div", { className: "relative" }, /* @__PURE__ */ React.createElement(
