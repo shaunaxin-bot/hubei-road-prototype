@@ -1227,6 +1227,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1655,6 +1656,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -14320,6 +14322,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
   var Zap = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "Zap", ...p });
   var Server = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "Server", ...p });
   var RefreshCw2 = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "RefreshCw", ...p });
+  var GitMerge = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "GitMerge", ...p });
   var Activity = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "Activity", ...p });
   var LayoutDashboard = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "LayoutDashboard", ...p });
   var Database2 = (p) => /* @__PURE__ */ import_react5.default.createElement(Icon2, { name: "Database", ...p });
@@ -17002,6 +17005,15 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     const handleChannelChange = (channel) => {
       setActiveChannel(channel);
       setAnimKey((prev) => prev + 1);
+      if (channel === "external") {
+        setActiveTab("social");
+      } else if (channel === "municipal") {
+        setActiveTab("economic");
+      }
+    };
+    const handleTabChange = (tab) => {
+      setActiveTab(tab);
+      setAnimKey((prev) => prev + 1);
     };
     const channelData = {
       municipal: {
@@ -17017,6 +17029,10 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
           { label: "\u51CF\u5C11\u516C\u4F17\u62E5\u5835\u65F6\u95F4", value: "40%", trend: "down", detail: "\u7EDF\u7B79\u5168\u7701\u65BD\u5DE5\u8BA1\u5212\uFF0C\u964D\u4F4E\u65AD\u4EA4\u5C01\u8DEF\u9891\u7387" },
           { label: "\u4E00\u7EBF\u4F5C\u4E1A\u5B89\u5168\u6307\u6570", value: "99.9%", trend: "up", detail: "\u57FA\u4E8EAI\u73AF\u5883\u611F\u77E5\uFF0C\u9884\u8B66\u65BD\u5DE5\u4F5C\u4E1A\u98CE\u9669" }
         ],
+        receipts: [
+          { icon: "RefreshCw", name: "\u3010\u8282\u70B909\u3011\u9000\u5316\u5927\u6A21\u578B\u8DE8\u5C42\u7EA7\u5171\u4EAB\u8C03\u7528\u6388\u6743\u5355.pdf", color: "text-blue-500" },
+          { icon: "CheckCircle", name: "\u9EC4\u77F3\u5E02\u516C\u8DEF\u5C40\u4E00\u7EBF\u5DE1\u67E5\u6570\u636E\u6E05\u6D17\u5165\u5E93\u56DE\u6267.pdf", color: "text-emerald-500" }
+        ],
         activeNodes: ["hub", "top", "bottom", "left"]
       },
       internal: {
@@ -17030,6 +17046,10 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         social: [
           { label: "\u591A\u8DE8\u534F\u540C\u4E8B\u4EF6\u6D41\u8F6C", value: "2.3 \u79D2", trend: "down", detail: "\u517B\u62A4\u4E0E\u5E94\u6025\u5904\u5BA4\u95F4\u7684\u6570\u636E\u6D41\u8F6C\u4ECE\u6309\u5929\u7EA7\u7F29\u77ED\u81F3\u79D2\u7EA7" },
           { label: "\u5408\u5E76\u5BA1\u6279\u538B\u7F29\u5EA6", value: "60%", trend: "up", detail: "\u57FA\u4E8E\u5E95\u5C42\u4E00\u5957\u5B57\u5178\uFF0C\u5B9E\u73B0\u4E1A\u52A1\u6D41\u7EBF\u4E0A\u65E0\u7F1D\u4E32\u8054" }
+        ],
+        receipts: [
+          { icon: "GitMerge", name: "\u3010\u8282\u70B901-05\u3011\u591A\u5904\u5BA4\u5E95\u5C42\u5BBD\u8868\u8054\u90A6\u67E5\u8BE2\u8C03\u7528\u65E5\u5FD7.csv", color: "text-indigo-500" },
+          { icon: "Layers", name: "\u517B\u62A4\u5904\u4E0E\u5E94\u6025\u5904\u534F\u540C\u6392\u73ED\u5904\u7406\u8DE8\u57DF\u51ED\u8BC1.pdf", color: "text-blue-500" }
         ],
         activeNodes: ["hub", "top", "bottom"]
       },
@@ -17045,6 +17065,10 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
           { label: "\u8DE8\u5385\u5C40\u9632\u707E\u6551\u547D\u8054\u52A8", value: "143 \u6B21", trend: "up", detail: "\u5171\u4EAB\u3010\u8282\u70B909\uFF1A\u707E\u635F\u65AD\u4EA4\u9884\u8B66\u3011\u81F3\u516C\u5B89\u4EA4\u7BA1\u4E0E\u5E94\u6025\u5385\uFF0C\u633D\u6551\u751F\u547D\u8D22\u4EA7" },
           { label: "\u9633\u5149\u8D22\u653F\u5BA1\u8BA1\u900F\u660E\u5EA6", value: "100%", trend: "up", detail: "\u4F9D\u6258\u3010\u8282\u70B904/05\uFF1A\u8D44\u91D1\u6D4B\u7B97\u6A21\u578B\u3011\u4EA4\u53C9\u9A8C\u8BC1\uFF0C\u5927\u4E2D\u4FEE\u62E8\u6B3E\u544A\u522B\u9ED1\u7BB1" }
         ],
+        receipts: [
+          { icon: "Lock", name: "\u3010\u8282\u70B901\u3011\u653F\u52A1\u4EA4\u6362\u5E73\u53F0\u8131\u654F\u6570\u636E\u6D41\u76F4\u63A8\u51ED\u8BC1.pdf", color: "text-emerald-500" },
+          { icon: "Shield", name: "\u3010\u8282\u70B909\u3011\u707E\u635F\u9884\u8B66\u8DE8\u5385\u5C40\u63A5\u6536\u786E\u8BA4\u5B89\u5168\u51FD.pdf", color: "text-amber-500" }
+        ],
         activeNodes: ["hub", "bottom", "right"]
       }
     };
@@ -17056,6 +17080,20 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     };
     const checkLineActive = (source, target) => {
       return currentData.activeNodes.includes(source) && currentData.activeNodes.includes(target);
+    };
+    const IconComponent = ({ name, className }) => {
+      const icons = {
+        RefreshCw: RefreshCw2,
+        CheckCircle,
+        GitMerge,
+        Layers: Layers2,
+        Lock,
+        Shield: Shield2,
+        Activity,
+        Network: Network2
+      };
+      const Comp = icons[name] || CheckCircle;
+      return /* @__PURE__ */ import_react7.default.createElement(Comp, { className });
     };
     return /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex h-full w-full bg-slate-50 text-slate-800 overflow-hidden font-sans" }, /* @__PURE__ */ import_react7.default.createElement("style", null, `
                 @keyframes highlight-pop {
@@ -17139,28 +17177,28 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         className: `transition-all duration-500 ${checkLineActive("hub", "right") ? "stroke-blue-600 drop-shadow-[0_0_10px_rgba(37,99,235,1)]" : "stroke-slate-300 opacity-40"}`,
         markerEnd: checkLineActive("hub", "right") ? "url(#arrow-blue)" : "url(#arrow-slate)"
       }
-    )), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute top-4 left-1/2 -translate-x-1/2 w-64 rounded-xl border-2 p-3 transition-all duration-500 flex flex-col items-center ${getNodeClass("top")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mb-1.5 shadow-sm" }, /* @__PURE__ */ import_react7.default.createElement(Layers2, { className: "w-6 h-6 text-indigo-600" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-extrabold text-slate-800 text-center text-sm" }, "\u301010\u3011\u5341\u5927\u76D1\u7BA1\u4E0E\u4E1A\u52A1\u5904\u5BA4"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1 font-medium" }, "\u6309\u4E1A\u52A1\u6761\u7EBF\u5BF9\u53E3\u6307\u5BFC X \u7AEF\u8FD0\u8425", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u5DE5\u7A0B / \u517B\u62A4 / \u5E94\u6025 / \u519C\u8DEF\u7B49)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute bottom-4 left-1/2 -translate-x-1/2 w-64 rounded-xl border-2 p-3 transition-all duration-500 flex flex-col items-center ${getNodeClass("bottom")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center mb-1.5 shadow-sm" }, /* @__PURE__ */ import_react7.default.createElement(Database2, { className: "w-6 h-6 text-sky-600" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-extrabold text-slate-800 text-center text-sm" }, "\u30101\u3011\u5168\u7701\u516C\u8DEF\u5927\u5E95\u5EA7"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1 font-medium" }, "\u7EDF\u4E00\u6807\u51C6\u4E0E\u57FA\u7840\u6570\u636E\u8D44\u6E90\u5E93", /* @__PURE__ */ import_react7.default.createElement("br", null), "(L21\u5BBD\u8868 / \u9690\u79C1\u8131\u654F / \u5F52\u6863)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute left-4 top-1/2 -translate-y-1/2 w-64 rounded-xl border-2 p-3 transition-all duration-500 flex flex-col items-center ${getNodeClass("left")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mb-1.5 shadow-sm" }, /* @__PURE__ */ import_react7.default.createElement(Activity, { className: "w-6 h-6 text-emerald-600" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-extrabold text-slate-800 text-center text-sm" }, "\u3010X\u3011\u533A\u53BF\u53CA\u4E00\u7EBF\u4E1A\u52A1\u8FD0\u8425\u4F01\u4E1A"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1 font-medium" }, "\u4E0E10\u5927\u5904\u5BA4\u4E1A\u52A1\u65B9\u5411\u7CBE\u51C6\u5339\u914D", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u627F\u63A5\u5BF9\u5E94\u6761\u7EBF\u7684\u8D4B\u80FD\u4E0E\u76D1\u7BA1)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute right-4 top-1/2 -translate-y-1/2 w-64 rounded-xl border-2 p-3 transition-all duration-500 flex flex-col items-center ${getNodeClass("right")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mb-1.5 shadow-sm" }, /* @__PURE__ */ import_react7.default.createElement(Network2, { className: "w-6 h-6 text-amber-600" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-extrabold text-slate-800 text-center text-sm" }, "\u3010Y\u3011\u6A2A\u5411\u653F\u52A1\u4E0E\u793E\u4F1A\u751F\u6001"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1 font-medium" }, "\u8DE8\u754C\u534F\u540C\u4E0E\u4EF7\u503C\u653E\u5927\u5668", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u516C\u5B89 / \u5E94\u6025 / \u8D22\u653F / \u5BA1\u8BA1)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 bg-gradient-to-br from-blue-600 to-indigo-800 rounded-2xl border-4 border-white shadow-[0_0_30px_rgba(37,99,235,0.6)] p-6 transition-all duration-500 z-30 flex flex-col items-center` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "absolute -inset-2 bg-blue-400 rounded-2xl blur-xl opacity-50 animate-pulse pointer-events-none" }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "relative z-10 flex flex-col items-center" }, /* @__PURE__ */ import_react7.default.createElement(Cpu, { className: "w-12 h-12 text-white mb-3 drop-shadow-md" }), /* @__PURE__ */ import_react7.default.createElement("h2", { className: "font-black text-xl text-white text-center tracking-wide drop-shadow-lg" }, "\u6E56\u5317\u516C\u8DEF AI \u6CBB\u7406\u5E73\u53F0"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-3 text-blue-50 text-xs text-center font-bold bg-white/20 px-4 py-1.5 rounded-full backdrop-blur-md shadow-sm border border-white/20" }, "\u5168\u7701\u6570\u636E\u8D44\u6E90\u4E0E\u4E1A\u52A1\u534F\u540C\u4E2D\u67A2"))))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-[420px] bg-white border-l border-slate-200 shadow-2xl flex flex-col z-40 relative" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "p-6 pb-4 border-b border-slate-100 bg-slate-50" }, /* @__PURE__ */ import_react7.default.createElement("h3", { className: "text-lg font-black text-slate-800 mb-4 flex items-center" }, /* @__PURE__ */ import_react7.default.createElement(Sparkles2, { className: "w-5 h-5 text-amber-500 mr-2" }), "\u653F\u52A1\u8F6C\u578B\u4E0E ROI \u4EF7\u503C\u770B\u677F"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex p-1 bg-slate-200/80 rounded-xl border border-slate-300 shadow-inner" }, /* @__PURE__ */ import_react7.default.createElement(
+    )), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute top-4 left-1/2 -translate-x-1/2 w-64 rounded-xl border-2 p-3 transition-all duration-500 flex flex-col items-center ${getNodeClass("top")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mb-1.5 shadow-sm" }, /* @__PURE__ */ import_react7.default.createElement(Layers2, { className: "w-6 h-6 text-indigo-600" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-extrabold text-slate-800 text-center text-sm" }, "\u301010\u3011\u5341\u5927\u76D1\u7BA1\u4E0E\u4E1A\u52A1\u5904\u5BA4"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1 font-medium" }, "\u6309\u4E1A\u52A1\u6761\u7EBF\u5BF9\u53E3\u6307\u5BFC X \u7AEF\u8FD0\u8425", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u5DE5\u7A0B / \u517B\u62A4 / \u5E94\u6025 / \u519C\u8DEF\u7B49)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute bottom-4 left-1/2 -translate-x-1/2 w-64 rounded-xl border-2 p-3 transition-all duration-500 flex flex-col items-center ${getNodeClass("bottom")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center mb-1.5 shadow-sm" }, /* @__PURE__ */ import_react7.default.createElement(Database2, { className: "w-6 h-6 text-sky-600" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-extrabold text-slate-800 text-center text-sm" }, "\u30101\u3011\u5168\u7701\u516C\u8DEF\u5927\u5E95\u5EA7"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1 font-medium" }, "\u7EDF\u4E00\u6807\u51C6\u4E0E\u57FA\u7840\u6570\u636E\u8D44\u6E90\u5E93", /* @__PURE__ */ import_react7.default.createElement("br", null), "(L21\u5BBD\u8868 / \u9690\u79C1\u8131\u654F / \u5F52\u6863)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute left-4 top-1/2 -translate-y-1/2 w-64 rounded-xl border-2 p-3 transition-all duration-500 flex flex-col items-center ${getNodeClass("left")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mb-1.5 shadow-sm" }, /* @__PURE__ */ import_react7.default.createElement(Activity, { className: "w-6 h-6 text-emerald-600" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-extrabold text-slate-800 text-center text-sm" }, "\u3010X\u3011\u533A\u53BF\u53CA\u4E00\u7EBF\u4E1A\u52A1\u8FD0\u8425\u4F01\u4E1A"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1 font-medium" }, "\u4E0E10\u5927\u5904\u5BA4\u4E1A\u52A1\u65B9\u5411\u7CBE\u51C6\u5339\u914D", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u627F\u63A5\u5BF9\u5E94\u6761\u7EBF\u7684\u8D4B\u80FD\u4E0E\u76D1\u7BA1)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute right-4 top-1/2 -translate-y-1/2 w-64 rounded-xl border-2 p-3 transition-all duration-500 flex flex-col items-center ${getNodeClass("right")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mb-1.5 shadow-sm" }, /* @__PURE__ */ import_react7.default.createElement(Network2, { className: "w-6 h-6 text-amber-600" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-extrabold text-slate-800 text-center text-sm" }, "\u3010Y\u3011\u6A2A\u5411\u653F\u52A1\u4E0E\u793E\u4F1A\u751F\u6001"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1 font-medium" }, "\u8DE8\u754C\u534F\u540C\u4E0E\u4EF7\u503C\u653E\u5927\u5668", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u516C\u5B89 / \u5E94\u6025 / \u8D22\u653F / \u5BA1\u8BA1)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 bg-gradient-to-br from-blue-600 to-indigo-800 rounded-2xl border-4 border-white shadow-[0_0_30px_rgba(37,99,235,0.6)] p-6 transition-all duration-500 z-30 flex flex-col items-center` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "absolute -inset-2 bg-blue-400 rounded-2xl blur-xl opacity-50 animate-pulse pointer-events-none" }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "relative z-10 flex flex-col items-center" }, /* @__PURE__ */ import_react7.default.createElement(Cpu, { className: "w-12 h-12 text-white mb-3 drop-shadow-md" }), /* @__PURE__ */ import_react7.default.createElement("h2", { className: "font-black text-xl text-white text-center tracking-wide drop-shadow-lg" }, "\u6E56\u5317\u516C\u8DEF AI \u6CBB\u7406\u5E73\u53F0"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-3 text-blue-50 text-xs text-center font-bold bg-white/20 px-4 py-1.5 rounded-full backdrop-blur-md shadow-sm border border-white/20" }, "\u5168\u7701\u6570\u636E\u8D44\u6E90\u4E0E\u4E1A\u52A1\u534F\u540C\u4E2D\u67A2"))))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-[420px] bg-white border-l border-slate-200 shadow-2xl flex flex-col z-40 relative" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "p-6 pb-4 border-b border-slate-100 bg-slate-50" }, /* @__PURE__ */ import_react7.default.createElement("h3", { className: "text-lg font-black text-slate-800 mb-4 flex items-center" }, /* @__PURE__ */ import_react7.default.createElement(Sparkles2, { className: "w-5 h-5 text-amber-500 mr-2" }), "\u653F\u52A1\u8F6C\u578B\u4E0E ROI \u4EF7\u503C\u770B\u677F"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex p-1.5 bg-slate-200/80 rounded-xl border border-slate-300 shadow-inner" }, /* @__PURE__ */ import_react7.default.createElement(
       "button",
       {
-        onClick: () => setActiveTab("economic"),
-        className: `flex-1 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 flex items-center justify-center ${activeTab === "economic" ? "bg-white text-amber-600 shadow-md ring-1 ring-slate-200" : "text-slate-500 hover:text-slate-800"}`
+        onClick: () => handleTabChange("economic"),
+        className: `flex-1 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 flex items-center justify-center ${activeTab === "economic" ? "bg-amber-100 text-amber-700 shadow-md ring-1 ring-amber-300/50" : "text-slate-500 hover:text-slate-800 hover:bg-white/50"}`
       },
       /* @__PURE__ */ import_react7.default.createElement(Activity, { className: "w-4 h-4 mr-2" }),
       "\u7ECF\u6D4E\u5EFA\u8BBE\u8D26\u672C"
     ), /* @__PURE__ */ import_react7.default.createElement(
       "button",
       {
-        onClick: () => setActiveTab("social"),
-        className: `flex-1 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 flex items-center justify-center ${activeTab === "social" ? "bg-white text-emerald-600 shadow-md ring-1 ring-slate-200" : "text-slate-500 hover:text-slate-800"}`
+        onClick: () => handleTabChange("social"),
+        className: `flex-1 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 flex items-center justify-center ${activeTab === "social" ? "bg-emerald-100 text-emerald-700 shadow-md ring-1 ring-emerald-300/50" : "text-slate-500 hover:text-slate-800 hover:bg-white/50"}`
       },
       /* @__PURE__ */ import_react7.default.createElement(Shield2, { className: "w-4 h-4 mr-2" }),
       "\u793E\u4F1A\u6548\u76CA\u8D26\u672C"
-    ))), /* @__PURE__ */ import_react7.default.createElement("div", { key: `metrics-${animKey}-${activeTab}`, className: "anim-pop flex-1 overflow-y-auto p-6 bg-slate-50/50" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "mb-6 flex items-center bg-white py-2 px-3 rounded-lg border border-slate-200 shadow-sm" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-2 h-6 bg-blue-500 rounded-full mr-3" }), /* @__PURE__ */ import_react7.default.createElement("h4", { className: "font-extrabold text-slate-700 text-sm tracking-wide" }, currentData.title, " \xB7 \u5F53\u524D\u6536\u76CA\u6982\u89C8")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "space-y-4" }, metrics.map((metric, idx) => /* @__PURE__ */ import_react7.default.createElement("div", { key: idx, className: "bg-white rounded-xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute left-0 top-0 w-1 h-full ${activeTab === "economic" ? "bg-amber-400" : "bg-emerald-400"}` }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "text-sm font-bold text-slate-500 mb-1 ml-2" }, metric.label), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex items-end justify-between mb-3 ml-2" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `text-2xl font-black tracking-tight ${activeTab === "economic" ? "text-amber-600" : "text-emerald-600"}` }, metric.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: `flex items-center text-xs font-bold px-2.5 py-1 rounded-md shadow-sm ${metric.trend === "up" ? "text-emerald-700 bg-emerald-100 border border-emerald-200" : "text-indigo-700 bg-indigo-100 border border-indigo-200"}` }, metric.trend === "up" ? "\u2197 \u663E\u8457\u63D0\u5347" : "\u2198 \u5927\u5E45\u538B\u964D")), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-[11px] text-slate-500 font-medium leading-relaxed border-t border-slate-100 pt-3 ml-2" }, metric.detail)))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-8 pt-6 border-t-2 border-dashed border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement("h4", { className: "text-[11px] font-black text-slate-400 mb-3 uppercase tracking-widest" }, "\u6700\u8FD1\u53D1\u5E03\u4E0E\u4EA4\u6362\u56DE\u6267"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "bg-white border border-slate-200 rounded-lg p-3.5 flex items-center text-xs font-bold text-slate-600 mb-3 shadow-sm hover:border-blue-300 transition-colors cursor-pointer" }, /* @__PURE__ */ import_react7.default.createElement(Lock, { className: "w-4 h-4 mr-3 text-emerald-500" }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 truncate" }, "\u3010\u8282\u70B901\u3011\u653F\u52A1\u4EA4\u6362\u5E73\u53F0\u8131\u654F\u6570\u636E\u6D41\u76F4\u63A8\u51ED\u8BC1.pdf"), /* @__PURE__ */ import_react7.default.createElement(ChevronRight2, { className: "w-4 h-4 text-slate-300" })), /* @__PURE__ */ import_react7.default.createElement("div", { className: "bg-white border border-slate-200 rounded-lg p-3.5 flex items-center text-xs font-bold text-slate-600 shadow-sm hover:border-blue-300 transition-colors cursor-pointer" }, /* @__PURE__ */ import_react7.default.createElement(RefreshCw2, { className: "w-4 h-4 mr-3 text-blue-500" }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 truncate" }, "\u3010\u8282\u70B909\u3011\u9000\u5316\u5927\u6A21\u578B\u8DE8\u5C42\u7EA7\u5171\u4EAB\u8C03\u7528\u6388\u6743\u5355.pdf"), /* @__PURE__ */ import_react7.default.createElement(ChevronRight2, { className: "w-4 h-4 text-slate-300" }))))));
+    ))), /* @__PURE__ */ import_react7.default.createElement("div", { key: `metrics-${animKey}`, className: "anim-pop flex-1 overflow-y-auto p-6 bg-slate-50/50" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "mb-6 flex items-center bg-white py-2.5 px-4 rounded-lg border border-slate-200 shadow-sm" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `w-2.5 h-6 rounded-full mr-3 ${activeTab === "economic" ? "bg-amber-500" : "bg-emerald-500"}` }), /* @__PURE__ */ import_react7.default.createElement("h4", { className: "font-extrabold text-slate-700 text-sm tracking-wide" }, currentData.title, " \xB7 ", activeTab === "economic" ? "\u7ECF\u6D4E\u6570\u636E\u660E\u7EC6" : "\u793E\u4F1A\u6548\u76CA\u660E\u7EC6")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "space-y-4" }, metrics.map((metric, idx) => /* @__PURE__ */ import_react7.default.createElement("div", { key: idx, className: "bg-white rounded-xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute left-0 top-0 w-1.5 h-full ${activeTab === "economic" ? "bg-amber-400" : "bg-emerald-400"}` }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "text-sm font-bold text-slate-500 mb-1 ml-2" }, metric.label), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex items-end justify-between mb-3 ml-2" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `text-2xl font-black tracking-tight ${activeTab === "economic" ? "text-amber-600" : "text-emerald-600"}` }, metric.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: `flex items-center text-xs font-bold px-2.5 py-1 rounded-md shadow-sm ${metric.trend === "up" ? "text-emerald-700 bg-emerald-100 border border-emerald-200" : "text-indigo-700 bg-indigo-100 border border-indigo-200"}` }, metric.trend === "up" ? "\u2197 \u663E\u8457\u63D0\u5347" : "\u2198 \u5927\u5E45\u538B\u964D")), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-[11px] text-slate-500 font-medium leading-relaxed border-t border-slate-100 pt-3 ml-2" }, metric.detail)))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-8 pt-6 border-t-2 border-dashed border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement("h4", { className: "text-[11px] font-black text-slate-400 mb-4 uppercase tracking-widest" }, "\u5F53\u524D\u901A\u9053: \u6700\u8FD1\u53D1\u5E03\u4E0E\u4EA4\u6362\u56DE\u6267"), currentData.receipts.map((receipt, idx) => /* @__PURE__ */ import_react7.default.createElement("div", { key: idx, className: "bg-white border border-slate-200 rounded-lg p-3.5 flex items-center text-xs font-bold text-slate-600 mb-3 shadow-sm hover:border-blue-300 transition-colors cursor-pointer" }, /* @__PURE__ */ import_react7.default.createElement(IconComponent, { name: receipt.icon, className: `w-4 h-4 mr-3 ${receipt.color}` }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 truncate", title: receipt.name }, receipt.name), /* @__PURE__ */ import_react7.default.createElement(ChevronRight2, { className: "w-4 h-4 text-slate-300" })))))));
   };
   var DataExchangeView_default = DataExchangeView;
 
   // src/components/AnnualReportAgentViewV2.jsx
-  var { useState: useState5, useEffect: useEffect3 } = React;
+  var { useState: useState5, useEffect: useEffect4 } = React;
   var AnnualReportAgentView2 = () => {
     const getArchitectureTitle = (step) => {
       const titles = [
@@ -17605,7 +17643,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
       return INITIAL_REQUIREMENTS2;
     });
     const [hoverChangelog, setHoverChangelog] = useState5(false);
-    useEffect3(() => {
+    useEffect4(() => {
       if (sessionStorage.getItem("highlightChangelog") === "true") {
         setHoverChangelog(true);
         sessionStorage.removeItem("highlightChangelog");
@@ -17633,7 +17671,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
       }
       window.open(targetPath, "_blank");
     };
-    useEffect3(() => {
+    useEffect4(() => {
       localStorage.setItem("yearly_backlog_reqs", JSON.stringify(requirements2));
     }, [requirements2]);
     const [activeReqModalId, setActiveReqModalId] = useState5(null);
@@ -17863,7 +17901,7 @@ ${code}
     const [microsegmentMode, setMicrosegmentMode] = useState5("annual");
     const [placeNameMatchStatus, setPlaceNameMatchStatus] = useState5("idle");
     const [placeNameEntriesConfirmed, setPlaceNameEntriesConfirmed] = useState5(false);
-    useEffect3(() => {
+    useEffect4(() => {
       let timer;
       if (rectifyStatus === "loading") {
         setRectifyProgress(0);
@@ -18757,7 +18795,7 @@ ${code}
         dataInputs: ["\u516C\u8DEF\u57FA\u7840\u7A7A\u95F4\u8DEF\u7F51\u5E93", "\u76F8\u5173\u4E1A\u52A1\u6D41\u6C34\u53F0\u8D26", "\u5386\u53F2\u5E74\u5EA6\u62A5\u9001\u5F52\u6863\u5E93"]
       }
     ];
-    useEffect3(() => {
+    useEffect4(() => {
       if (activeStep === 7 && expandedQ === null) {
         setExpandedQ(0);
         setQaAiAnswer("");
@@ -54323,7 +54361,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   };
 
   // src/components/DeepQAAnnualReportAgentView.jsx
-  var { useState: useState6, useEffect: useEffect4, useRef: useRef2 } = React;
+  var { useState: useState6, useEffect: useEffect5, useRef: useRef2 } = React;
   var SCENARIOS2 = [
     {
       title: "REQ-01",
@@ -54840,7 +54878,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     const [isEditing, setIsEditing] = useState6(false);
     const initialArgs = typeof (tc.argsStr || tc.args || tc.arguments) === "string" ? tc.argsStr || tc.args || tc.arguments : JSON.stringify(tc.args || tc.arguments, null, 2);
     const [editValue, setEditValue] = useState6(initialArgs || "");
-    useEffect4(() => {
+    useEffect5(() => {
       setIsOpen(tc.status === "running");
     }, [tc.status]);
     const isEnterprise = tc.name.startsWith("enterprise_");
@@ -55644,7 +55682,7 @@ ${code}
     const [db, setDb] = useState6(null);
     const [loadedTablesByYear, setLoadedTablesByYear] = useState6({});
     const [nianbaoSchema, setNianbaoSchema] = useState6("");
-    useEffect4(() => {
+    useEffect5(() => {
       if (window.__NIANBAO_SCHEMA__) {
         setNianbaoSchema(window.__NIANBAO_SCHEMA__);
       } else {
@@ -55653,7 +55691,7 @@ ${code}
         }).catch((e) => console.warn("[NianbaoSkill] failed:", e));
       }
     }, []);
-    useEffect4(() => {
+    useEffect5(() => {
       fetchYearsData();
     }, []);
     const fetchYearsData = async () => {
@@ -55684,7 +55722,7 @@ ${code}
       setHasMultiYearData(true);
       setLoadedTablesByYear(loaded);
     };
-    useEffect4(() => {
+    useEffect5(() => {
       if (!selectedYears || selectedYears.length === 0) return;
       Promise.resolve().then(() => (init_sqlite(), sqlite_exports)).then(async ({ loadDBByYear: loadDBByYear2 }) => {
         if (!window.__DBs__) window.__DBs__ = {};
@@ -55744,7 +55782,7 @@ ${code}
       setShowSettingsModal(false);
       alert("API \u914D\u7F6E\u4FDD\u5B58\u6210\u529F\uFF01\u5DF2\u7ACB\u5373\u751F\u6548\u3002");
     };
-    useEffect4(() => {
+    useEffect5(() => {
       let inlineConfig = {};
       if (window.__API_CONFIG__) {
         try {
@@ -55859,10 +55897,10 @@ ${code}
     const [currentRoundToolCalls, setCurrentRoundToolCalls] = useState6([]);
     const [currentRoundThought, setCurrentRoundThought] = useState6("");
     const messagesRef = useRef2(messages);
-    useEffect4(() => {
+    useEffect5(() => {
       messagesRef.current = messages;
     }, [messages]);
-    useEffect4(() => {
+    useEffect5(() => {
       const handleShowFullData = () => {
         if (window.__currentDataItems) {
           setGeneratedArtifacts((prev) => [...prev.filter((a) => a.name !== "\u660E\u7EC6\u6570\u636E\u5E95\u8868"), { name: "\u660E\u7EC6\u6570\u636E\u5E95\u8868", sourceQuery: "\u5168\u91CF\u660E\u7EC6\u8F93\u51FA" }]);
@@ -55875,7 +55913,7 @@ ${code}
       document.addEventListener("SHOW_FULL_DATA", handleShowFullData);
       return () => document.removeEventListener("SHOW_FULL_DATA", handleShowFullData);
     }, []);
-    useEffect4(() => {
+    useEffect5(() => {
       const handleExportEvent = (e) => {
         const msgId = e.detail;
         const targetMsg = messagesRef.current.find((m2) => m2.id === msgId);
@@ -55886,7 +55924,7 @@ ${code}
       document.addEventListener("EXPORT_DOC", handleExportEvent);
       return () => document.removeEventListener("EXPORT_DOC", handleExportEvent);
     }, []);
-    useEffect4(() => {
+    useEffect5(() => {
       const handleDownloadDiagram = async (e) => {
         const id = e.detail;
         const el = document.getElementById(id);
@@ -55929,14 +55967,14 @@ ${code}
         }
       }
     };
-    useEffect4(() => {
+    useEffect5(() => {
       const handleFullscreenChange = () => {
         setIsFullscreen(!!document.fullscreenElement);
       };
       document.addEventListener("fullscreenchange", handleFullscreenChange);
       return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
     }, []);
-    useEffect4(() => {
+    useEffect5(() => {
       const handleMouseMove = (e) => {
         if (!isDragging) return;
         const newWidth = document.body.clientWidth - e.clientX;
@@ -55959,7 +55997,7 @@ ${code}
         document.body.style.cursor = "default";
       };
     }, [isDragging]);
-    useEffect4(() => {
+    useEffect5(() => {
       const handleLeftMouseMove = (e) => {
         if (!isLeftDragging) return;
         const newWidth = e.clientX;
@@ -55982,14 +56020,14 @@ ${code}
         document.body.style.cursor = "default";
       };
     }, [isLeftDragging]);
-    useEffect4(() => {
+    useEffect5(() => {
       if (isFirstRender.current) {
         isFirstRender.current = false;
         return;
       }
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
-    useEffect4(() => {
+    useEffect5(() => {
       const handleGlobalClick = (e) => {
         const btn = e.target.closest(".export-excel-btn");
         if (btn) {
@@ -60876,7 +60914,7 @@ ${msg.views.view3}
   };
 
   // src/components/RoadDigitalRequirementsView.jsx
-  var { useState: useState7, useEffect: useEffect5 } = React;
+  var { useState: useState7, useEffect: useEffect6 } = React;
   var react_shim_default = React;
   var FILE_MAP = { "AGENT-\u5DE5\u7A0B\u6280\u672F-01": "\u300A(\u7701\u516C\u8DEF\u4E2D\u5FC3)\u6E56\u5317\u516C\u8DEF\u6570\u5B57\u5316\u8F6C\u578B\u5347\u7EA7\u884C\u4E1A\u4E1A\u52A1\u8981\u6C42\u62A5\u9001\u6A21\u677F.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-03": "\u300A\u6E56\u5317\u7701CBMS\u6865\u96A7\u6570\u5B57\u5316\u7BA1\u517B\u5E73\u53F0\u5347\u7EA7\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-04": "\u300A\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-01": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-02": "\u300A\u666E\u901A\u56FD\u7701\u9053\u5EFA\u8BBE\u9879\u76EE\u5168\u6D41\u7A0B\u7BA1\u7406\u7CFB\u7EDF\u67B6\u6784\u56FE.jpg\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-03": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u5DE5\u7A0B\u6280\u672F-02": "\u300A\uFF08\u8F6C\u6362\uFF09\u9AD8\u901F\u516C\u8DEF\u517B\u62A4\u7EFC\u5408\u7BA1\u7406\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848\u6C47\u62A5-0521-v4\u4FEE\uFF08\u4F7F\u7528\uFF09.doc\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-01": "\u300A\u6E56\u5317\u7701\u516C\u8DEF\u8BA1\u5212\u6267\u884C\u8BC4\u4F30\u8F6F\u4EF6\u5347\u7EA7\u6539\u9020\u8D39\u7528\u6D4B\u7B97-\u8F6F\u4EF6\u529F\u80FD\u70B9\u4F30\u503C\u6CD5-v2.xlsx\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-02": "\u300A0528\u2014\u4EA4\u8C03\u7CFB\u7EDF\u4FEE\u6539\u7248.xlsx\u300B", "AGENT-\u89C4\u5212\u8BA1\u5212-03": "\u300A\u4EE5\u5956\u4EE3\u8865\u9884\u7B97.xlsx\u300B", "AGENT-\u5EFA\u8BBE\u5E02\u573A-04": "\u300A\u5173\u4E8E\u5229\u7528\u7EFC\u5408\u4FE1\u606F\u5316\u624B\u6BB5\u5B9E\u73B0\u9879\u76EE\u5EFA\u8BBE\u5168\u6D41\u7A0B\u7BA1\u7406\u6709\u5173\u5DE5\u4F5C\u60C5\u51B5\u7684\u6C47\u62A55.21.docx\u300B", "AGENT-\u517B\u62A4\u7BA1\u7406-01": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u517B\u62A4\u7BA1\u7406-02": "\u300A\u666E\u901A\u56FD\u7701\u5E72\u7EBF\u517B\u62A4\u7BA1\u7406\u7CFB\u7EDF\u529F\u80FD\u67B6\u6784(1).pdf\u300B", "AGENT-\u8FD0\u8425\u7BA1\u7406-08": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u8FD0\u8425\u7BA1\u7406-09": "\u300A\u6E56\u5317\u7701\u6C5B\u671F\u5DE1\u67E5\u5E73\u53F0\u5EFA\u8BBE\u5B9E\u65BD\u65B9\u6848.docx\u300B", "AGENT-\u8FD0\u8425\u7BA1\u7406-10": "\u300A0520-\u516C\u8DEF\u8DEF\u7F51\u8FD0\u884C\u76D1\u6D4B\u4E0E\u5E94\u6025\u6307\u6325\u8C03\u5EA6\u7CFB\u7EDF\u5EFA\u8BBE\u65B9\u6848(3)(1).docx\u300B" };
   var readiness_config_default = {
@@ -61341,7 +61379,7 @@ ${msg.views.view3}
         return { ...req, docs };
       });
     });
-    useEffect5(() => {
+    useEffect6(() => {
       if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
         Promise.all([
           fetch("/api/get_master_materials?t=" + Date.now()).then((r) => r.ok ? r.json() : null),
@@ -68122,7 +68160,7 @@ ${msg.views.view3}
   };
 
   // src/app.jsx
-  var { useState: useState10, useEffect: useEffect7, Component, useRef: useRef4 } = React;
+  var { useState: useState10, useEffect: useEffect8, Component, useRef: useRef4 } = React;
   var ErrorBoundary = class extends Component {
     constructor(props) {
       super(props);
@@ -68865,13 +68903,13 @@ ${msg.views.view3}
       `[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] [\u5BC6\u7EA7\u786E\u8BA4] \u4F9D\u636E JT/T 1434-2022\uFF0C\u8BE5\u901A\u9053\u5B9A\u7EA7\u4E3A [L3 \u654F\u611F\u7EA7]\uFF0C\u542F\u7528\u56FD\u5BC6SM4\u786C\u4EF6\u52A0\u5BC6\u5957\u4EF6\u3002`
     ]);
     const [phase, setPhase] = useState10(0);
-    useEffect7(() => {
+    useEffect8(() => {
       const interval = setInterval(() => {
         setPhase((prev) => (prev + 1) % 360);
       }, 100);
       return () => clearInterval(interval);
     }, []);
-    useEffect7(() => {
+    useEffect8(() => {
       const logTemplates = [
         "\u6865\u6881\u5E94\u53D8\u8BA1 #01 \u632F\u52A8\u5E94\u529B\u6B63\u5E38\uFF0C\u76D1\u6D4B\u503C: 12.5 MPa\uFF0C\u672A\u8D85\u5B89\u5168\u5305\u7EDC\u7EBF\u3002",
         "\u767D\u6C99\u6D32\u5927\u6865\u76D1\u6D4B\u70B9 K15+200 \u4E0E\u90E8\u6807 JC2_MX \u6869\u53F7\u5BF9\u9F50\u6821\u9A8C\u6210\u529F\uFF0C\u9006\u5411\u504F\u89D2\u6821\u51C6\u5B8C\u6210\u3002",
@@ -69135,7 +69173,7 @@ ${msg.views.view3}
   };
   var BusinessAgentView = ({ section }) => {
     const [activeAgentIdx, setActiveAgentIdx] = useState10(0);
-    useEffect7(() => {
+    useEffect8(() => {
       setActiveAgentIdx(0);
     }, [section]);
     const sectionMeta = {
@@ -69302,7 +69340,7 @@ ${msg.views.view3}
         setMessages((prev) => [...prev, { id: Date.now() + 1, text: answer, sender: "ai" }]);
       }, 800);
     };
-    useEffect7(() => {
+    useEffect8(() => {
       if (chatEndRef.current) chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
     const titleMap = {
