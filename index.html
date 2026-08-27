@@ -1158,6 +1158,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1586,6 +1587,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -56535,7 +56537,7 @@ ${knowledgeBase}
       };
       const url = MODEL_ENDPOINTS[apiProvider] || MODEL_ENDPOINTS["deepseek"];
       const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` };
-      let modelName = "deepseek-v4-pro";
+      let modelName = "deepseek-chat";
       if (apiProvider === "openai") modelName = "gpt-4o-mini";
       else if (apiProvider === "zhipu") modelName = "glm-4-flash";
       const nianbaoHeaderMatch = window.__NIANBAO_SCHEMA__ ? window.__NIANBAO_SCHEMA__.match(/^[\\s\\S]*?(?=\\n---)/) : null;
