@@ -1232,6 +1232,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1660,6 +1661,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -17020,56 +17022,56 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     const channelData = {
       municipal: {
         title: "\u7701\u5E02\u7EB5\u5411\u8054\u52A8\u7F51",
-        desc: "\u57FA\u4E8E\u5341\u5927\u5904\u5BA4\u6761\u7EBF\uFF0C\u5B9E\u73B0\u7701/\u533A\u53BF\u76D1\u7BA1\u65B9\u4E0E X \u7AEF\u8FD0\u8425\u4F01\u4E1A\u4E1A\u52A1\u65B9\u5411\u7684\u7CBE\u51C6\u5BF9\u53E3\u4E0E\u53CC\u5411\u534F\u540C",
-        techMeans: "\u4EA4\u4ED8\u6280\u672F\uFF1A\u5B89\u5168 API \u7F51\u5173\u76F4\u8FDE / Webhook \u589E\u91CF\u8BA2\u9605\u56DE\u8C03 / \u8FB9\u7F18\u8282\u70B9\u516C\u8DEF\u6570\u636E\u540C\u6B65",
+        desc: "\u57FA\u4E8E\u5904\u5BA4\u6761\u7EBF\uFF0C\u7701\u5E02\u76D1\u7BA1\u4E0EX\u7AEF\u4F01\u4E1A\u4E1A\u52A1\u65B9\u5411\u7CBE\u51C6\u5BF9\u53E3\u4E0E\u53CC\u5411\u534F\u540C",
+        techMeans: "\u5B89\u5168 API \u7F51\u5173 / Webhook \u56DE\u8C03 / \u8FB9\u7F18\u8282\u70B9\u540C\u6B65",
         economic: [
-          { label: "\u9690\u6027\u5927\u4FEE\u964D\u672C\u9884\u4F30", value: "\xA53,200 \u4E07", trend: "up", detail: "\u901A\u8FC7\u8C03\u7528\u3010\u8282\u70B909\uFF1A\u9000\u5316\u9884\u6D4B\u5927\u6A21\u578B\u3011\u63D0\u524D\u9884\u5224\uFF0C\u5C06\u88AB\u52A8\u91CD\u5EFA\u8F6C\u4E3A\u4E3B\u52A8\u5FAE\u521B\u4FDD\u517B" },
-          { label: "\u57FA\u5C42\u4F5C\u4E1A\u63D0\u6548", value: "35%", trend: "up", detail: "X\u7AEF\u6D88\u8D39\u8C03\u7528\u3010\u8282\u70B908\uFF1A\u516C\u8DEF\u667A\u641CAgent\u3011\u6307\u5BFC\u4E1A\u52A1\u6392\u73ED\uFF0C\u964D\u4F4E\u65E0\u6548\u5DE1\u67E5\u4E0E\u7269\u6599\u7A7A\u8017" },
-          { label: "\u9AD8\u8D28\u91CF\u516C\u8DEF\u6570\u636E\u8D21\u732E\u5EA6", value: "98.5 \u5206", trend: "up", detail: "\u5BF9 X \u7AEF\u5411\u4E0A\u5171\u4EAB\u53CD\u54FA\u9AD8\u8D28\u91CF\u539F\u59CB\u8282\u70B9\u516C\u8DEF\u6570\u636E\u7684\u4E1A\u52A1\u8003\u6838\u8BC4\u7EA7" }
+          { label: "\u9690\u6027\u5927\u4FEE\u964D\u672C\u9884\u4F30", value: "\xA53,200 \u4E07", trend: "up", detail: "\u8C03\u7528\u3010\u8282\u70B909\uFF1A\u9000\u5316\u9884\u6D4B\u5927\u6A21\u578B\u3011\u63D0\u524D\u9884\u5224\uFF0C\u88AB\u52A8\u91CD\u5EFA\u8F6C\u4E3B\u52A8\u5FAE\u521B\u4FDD\u517B" },
+          { label: "\u57FA\u5C42\u4F5C\u4E1A\u63D0\u6548", value: "35%", trend: "up", detail: "X\u7AEF\u8C03\u7528\u3010\u8282\u70B908\uFF1A\u516C\u8DEF\u667A\u641CAgent\u3011\u6392\u73ED\uFF0C\u964D\u65E0\u6548\u5DE1\u67E5\u4E0E\u7A7A\u8017" },
+          { label: "\u9AD8\u8D28\u91CF\u6570\u636E\u8D21\u732E\u5EA6", value: "98.5 \u5206", trend: "up", detail: "\u5BF9 X \u7AEF\u5411\u4E0A\u5171\u4EAB\u53CD\u54FA\u9AD8\u8D28\u91CF\u539F\u59CB\u8282\u70B9\u516C\u8DEF\u6570\u636E\u7684\u8003\u6838\u8BC4\u7EA7" }
         ],
         social: [
           { label: "\u51CF\u5C11\u516C\u4F17\u62E5\u5835\u65F6\u95F4", value: "40%", trend: "down", detail: "\u7EDF\u7B79\u5168\u7701\u65BD\u5DE5\u8BA1\u5212\uFF0C\u964D\u4F4E\u65AD\u4EA4\u5C01\u8DEF\u9891\u7387" },
           { label: "\u4E00\u7EBF\u4F5C\u4E1A\u5B89\u5168\u6307\u6570", value: "99.9%", trend: "up", detail: "\u57FA\u4E8EAI\u73AF\u5883\u611F\u77E5\uFF0C\u9884\u8B66\u65BD\u5DE5\u4F5C\u4E1A\u98CE\u9669" }
         ],
         receipts: [
-          { icon: "RefreshCw", name: "\u3010\u8282\u70B909\u3011\u9000\u5316\u5927\u6A21\u578B\u8DE8\u5C42\u7EA7\u5171\u4EAB\u8C03\u7528\u6388\u6743\u5355.pdf" },
-          { icon: "CheckCircle", name: "\u9EC4\u77F3\u5E02\u516C\u8DEF\u5C40\u4E00\u7EBF\u5DE1\u67E5\u516C\u8DEF\u6570\u636E\u6E05\u6D17\u5165\u5E93\u56DE\u6267.pdf" }
+          { icon: "RefreshCw", name: "\u3010\u8282\u70B909\u3011\u9000\u5316\u5927\u6A21\u578B\u8C03\u7528\u6388\u6743\u5355.pdf" },
+          { icon: "CheckCircle", name: "\u9EC4\u77F3\u516C\u8DEF\u5C40\u6E05\u6D17\u5165\u5E93\u56DE\u6267.pdf" }
         ],
         activeNodes: ["hub", "top", "bottom", "left"]
       },
       internal: {
-        title: "\u8DE8\u5185\u90E8\u90E8\u95E8\u534F\u540C\u7F51",
-        desc: "\u4F9D\u6258\u3010\u8282\u70B908/09\u3011\u667A\u80FD\u4F53\u4E0E\u5E95\u5C42\u8282\u70B9\u5BBD\u8868\uFF0C\u5904\u5BA4\u6A2A\u5411\u6253\u901A\u4E0E\u667A\u529B\u5171\u4EAB",
-        techMeans: "\u4EA4\u4ED8\u6280\u672F\uFF1AMCP \u667A\u80FD\u4F53\u5FAE\u670D\u52A1\u603B\u7EBF / \u96F6\u62F7\u8D1D(Zero-Copy)\u516C\u8DEF\u6570\u636E\u8054\u90A6\u4EA4\u6362 / \u5E93\u8868\u7EA7\u5B9E\u65F6\u955C\u50CF",
+        title: "\u8DE8\u5185\u90E8\u5904\u5BA4\u534F\u540C\u7F51",
+        desc: "\u4F9D\u6258\u3010\u8282\u70B908/09\u3011\u667A\u80FD\u4F53\u4E0E\u5E95\u8868\uFF0C\u5904\u5BA4\u6A2A\u5411\u6253\u901A\u4E0E\u667A\u529B\u5171\u4EAB",
+        techMeans: "MCP \u5FAE\u670D\u52A1\u603B\u7EBF / \u96F6\u62F7\u8D1D\u6570\u636E\u8054\u90A6\u4EA4\u6362",
         economic: [
-          { label: "\u6D88\u9664\u91CD\u590D\u91C7\u8D2D\u6210\u672C", value: "\xA51,500 \u4E07", trend: "down", detail: "\u5404\u5904\u5BA4\u8054\u5408\u6C89\u6DC0\u3010\u8282\u70B901-05\u3011\u9AD8\u8D28\u91CF\u5E95\u8868\uFF0C\u907F\u514D\u91CD\u590D\u91C7\u8D2D\u540C\u7C7B\u516C\u8DEF\u6570\u636E" },
-          { label: "\u7B97\u529B\u95F2\u7F6E\u7387\u964D\u4F4E", value: "85%", trend: "down", detail: "\u7EDF\u7B79\u8C03\u5EA6\u5E95\u5EA7\u7B97\u529B\u6C60\uFF0C\u5CF0\u8C37\u4E92\u8865\uFF0C\u63D0\u5347\u8BBE\u5907\u4F7F\u7528\u7387" }
+          { label: "\u6D88\u9664\u91CD\u590D\u91C7\u8D2D\u6210\u672C", value: "\xA51,500 \u4E07", trend: "down", detail: "\u8054\u5408\u6C89\u6DC0\u3010\u8282\u70B901-05\u3011\u9AD8\u8D28\u91CF\u5E95\u8868\uFF0C\u907F\u514D\u91CD\u590D\u91C7\u8D2D" },
+          { label: "\u7B97\u529B\u95F2\u7F6E\u7387\u964D\u4F4E", value: "85%", trend: "down", detail: "\u7EDF\u7B79\u8C03\u5EA6\u5E95\u5EA7\u7B97\u529B\u6C60\uFF0C\u5CF0\u8C37\u4E92\u8865\uFF0C\u63D0\u5347\u4F7F\u7528\u7387" }
         ],
         social: [
-          { label: "\u591A\u8DE8\u534F\u540C\u4E8B\u4EF6\u6D41\u8F6C", value: "2.3 \u79D2", trend: "down", detail: "\u517B\u62A4\u4E0E\u5E94\u6025\u5904\u5BA4\u95F4\u7684\u516C\u8DEF\u6570\u636E\u6D41\u8F6C\u4ECE\u6309\u5929\u7EA7\u7F29\u77ED\u81F3\u79D2\u7EA7" },
-          { label: "\u5408\u5E76\u5BA1\u6279\u538B\u7F29\u5EA6", value: "60%", trend: "up", detail: "\u57FA\u4E8E\u5E95\u5C42\u4E00\u5957\u5B57\u5178\uFF0C\u5B9E\u73B0\u4E1A\u52A1\u6D41\u7EBF\u4E0A\u65E0\u7F1D\u4E32\u8054" }
+          { label: "\u8DE8\u5904\u534F\u540C\u6D41\u8F6C", value: "2.3 \u79D2", trend: "down", detail: "\u517B\u62A4\u4E0E\u5E94\u6025\u5904\u5BA4\u95F4\u7684\u6570\u636E\u6D41\u8F6C\u4ECE\u5929\u7EA7\u7F29\u81F3\u79D2\u7EA7" },
+          { label: "\u5BA1\u6279\u6D41\u7A0B\u538B\u7F29", value: "60%", trend: "up", detail: "\u57FA\u4E8E\u5E95\u5C42\u4E00\u5957\u5B57\u5178\uFF0C\u5B9E\u73B0\u4E1A\u52A1\u6D41\u7EBF\u4E0A\u65E0\u7F1D\u4E32\u8054" }
         ],
         receipts: [
-          { icon: "GitMerge", name: "\u3010\u8282\u70B901-05\u3011\u591A\u5904\u5BA4\u5E95\u5C42\u5BBD\u8868\u8054\u90A6\u67E5\u8BE2\u8C03\u7528\u65E5\u5FD7.csv" },
-          { icon: "Layers", name: "\u517B\u62A4\u5904\u4E0E\u5E94\u6025\u5904\u534F\u540C\u6392\u73ED\u5904\u7406\u8DE8\u57DF\u51ED\u8BC1.pdf" }
+          { icon: "GitMerge", name: "\u3010\u8282\u70B901-05\u3011\u8054\u90A6\u67E5\u8BE2\u8C03\u7528\u65E5\u5FD7.csv" },
+          { icon: "Layers", name: "\u5E94\u6025\u5904\u534F\u540C\u6392\u73ED\u5904\u7406\u8DE8\u57DF\u51ED\u8BC1.pdf" }
         ],
         activeNodes: ["hub", "top", "bottom"]
       },
       external: {
         title: "\u5BF9\u5916\u653F\u52A1\u5916\u6EA2\u7F51",
-        desc: "\u5C06\u3010\u5408\u89C4\u8282\u70B9\u8D44\u4EA7\u3011\u4E00\u952E\u53D1\u5E03\u76F4\u63A8\uFF0C\u91CA\u653E\u516C\u8DEF\u653F\u52A1\u6570\u636E\u4E58\u6570\u6548\u5E94\uFF0C\u9633\u5149\u900F\u660E\u76D1\u7BA1",
-        techMeans: "\u4EA4\u4ED8\u6280\u672F\uFF1A\u516C\u8DEF\u6570\u636E\u8131\u654F\u8131\u5BC6\u6D41\u6C34\u7EBF / \u53EF\u7528\u4E0D\u53EF\u89C1\u9690\u79C1\u6C99\u7BB1 / G2G\u653F\u52A1\u524D\u7F6E\u673A\u4E92\u8054",
+        desc: "\u5C06\u3010\u5408\u89C4\u8282\u70B9\u8D44\u4EA7\u3011\u53D1\u5E03\u76F4\u63A8\uFF0C\u91CA\u653E\u516C\u8DEF\u653F\u52A1\u6570\u636E\u4E58\u6570\u6548\u5E94",
+        techMeans: "\u516C\u8DEF\u6570\u636E\u8131\u654F\u6D41\u6C34\u7EBF / \u9690\u79C1\u6C99\u7BB1 / G2G\u653F\u52A1\u76F4\u8FDE",
         economic: [
-          { label: "\u793E\u4F1A\u5316\u8D4B\u80FD\u6548\u7528\u4F30\u503C", value: "\xA5500 \u4E07+", trend: "up", detail: "\u3010\u8282\u70B901/02\uFF1A\u9AD8\u8D28\u91CF\u8131\u654F\u5E95\u8868\u3011\u5411\u516C\u5171\u51FA\u884C\u3001\u9632\u707E\u51CF\u707E\u7B49\u9886\u57DF\u5F00\u653E\u7684\u7EFC\u5408\u8D4B\u80FD\u4EF7\u503C" },
-          { label: "\u5E26\u52A8\u5730\u65B9\u6570\u5B57GDP", value: "12%", trend: "up", detail: "\u516C\u8DEF\u6570\u5B57\u8D44\u4EA7\u5411\u793E\u4F1A\u5F00\u6E90\uFF0C\u50AC\u751F\u4E0B\u6E38\u8DEF\u6865\u79D1\u6280\u4F01\u4E1A\u53D1\u5C55" }
+          { label: "\u793E\u4F1A\u5316\u8D4B\u80FD\u4F30\u503C", value: "\xA5500 \u4E07+", trend: "up", detail: "\u3010\u8282\u70B901/02\uFF1A\u8131\u654F\u5E95\u8868\u3011\u5411\u51FA\u884C\u3001\u9632\u707E\u9886\u57DF\u7684\u8D4B\u80FD\u4EF7\u503C" },
+          { label: "\u5E26\u52A8\u5730\u65B9\u6570\u5B57GDP", value: "12%", trend: "up", detail: "\u516C\u8DEF\u6570\u5B57\u8D44\u4EA7\u5411\u793E\u4F1A\u5F00\u6E90\uFF0C\u50AC\u751F\u4E0B\u6E38\u79D1\u6280\u4F01\u4E1A\u53D1\u5C55" }
         ],
         social: [
-          { label: "\u8DE8\u5385\u5C40\u9632\u707E\u6551\u547D\u8054\u52A8", value: "143 \u6B21", trend: "up", detail: "\u5171\u4EAB\u3010\u8282\u70B909\uFF1A\u707E\u635F\u65AD\u4EA4\u9884\u8B66\u3011\u81F3\u516C\u5B89\u4EA4\u7BA1\u4E0E\u5E94\u6025\u5385\uFF0C\u633D\u6551\u751F\u547D\u8D22\u4EA7" },
-          { label: "\u9633\u5149\u8D22\u653F\u5BA1\u8BA1\u900F\u660E\u5EA6", value: "100%", trend: "up", detail: "\u4F9D\u6258\u3010\u8282\u70B904/05\uFF1A\u8D44\u91D1\u6D4B\u7B97\u6A21\u578B\u3011\u4EA4\u53C9\u9A8C\u8BC1\uFF0C\u5927\u4E2D\u4FEE\u62E8\u6B3E\u544A\u522B\u9ED1\u7BB1" }
+          { label: "\u8DE8\u5385\u5C40\u9632\u707E\u6551\u547D", value: "143 \u6B21", trend: "up", detail: "\u5171\u4EAB\u3010\u8282\u70B909\uFF1A\u707E\u635F\u65AD\u4EA4\u9884\u8B66\u3011\u81F3\u516C\u5B89\u4E0E\u5E94\u6025\u5385\uFF0C\u633D\u6551\u751F\u547D" },
+          { label: "\u9633\u5149\u5BA1\u8BA1\u900F\u660E\u5EA6", value: "100%", trend: "up", detail: "\u4F9D\u6258\u3010\u8282\u70B904/05\uFF1A\u8D44\u91D1\u6A21\u578B\u3011\u4EA4\u53C9\u9A8C\u8BC1\uFF0C\u62E8\u6B3E\u544A\u522B\u9ED1\u7BB1" }
         ],
         receipts: [
-          { icon: "Lock", name: "\u3010\u8282\u70B901\u3011\u653F\u52A1\u4EA4\u6362\u5E73\u53F0\u8131\u654F\u516C\u8DEF\u6570\u636E\u6D41\u76F4\u63A8\u51ED\u8BC1.pdf" },
-          { icon: "Shield", name: "\u3010\u8282\u70B909\u3011\u707E\u635F\u9884\u8B66\u8DE8\u5385\u5C40\u63A5\u6536\u786E\u8BA4\u5B89\u5168\u51FD.pdf" }
+          { icon: "Lock", name: "\u3010\u8282\u70B901\u3011\u653F\u52A1\u5E73\u53F0\u8131\u654F\u6570\u636E\u76F4\u63A8\u51ED\u8BC1.pdf" },
+          { icon: "Shield", name: "\u3010\u8282\u70B909\u3011\u707E\u635F\u9884\u8B66\u8DE8\u5385\u5C40\u63A5\u6536\u786E\u8BA4.pdf" }
         ],
         activeNodes: ["hub", "bottom", "right"]
       }
@@ -17078,7 +17080,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     const metrics = activeTab === "economic" ? currentData.economic : currentData.social;
     const getNodeClass = (nodeId) => {
       const isActive = currentData.activeNodes.includes(nodeId);
-      return isActive ? "border-blue-600 bg-white shadow z-20" : "border-slate-200 bg-slate-50 opacity-60 z-0";
+      return isActive ? "border-blue-600 bg-white shadow-sm z-20" : "border-slate-200 bg-slate-50 opacity-60 z-0";
     };
     const getIconClass = (nodeId) => {
       const isActive = currentData.activeNodes.includes(nodeId);
@@ -17092,38 +17094,38 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
       const Comp = icons[name] || CheckCircle;
       return /* @__PURE__ */ import_react7.default.createElement(Comp, { className });
     };
-    return /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex h-full w-full bg-white text-slate-800 overflow-hidden font-sans" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 flex flex-col relative overflow-hidden bg-slate-50/50" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "pt-6 pb-4 flex flex-col items-center justify-center z-30 border-b border-slate-200 bg-white" }, /* @__PURE__ */ import_react7.default.createElement("h2", { className: "text-xl font-bold text-slate-800 mb-5 tracking-wide" }, "\u6E56\u5317\u7701\u516C\u8DEF\u6570\u636E\u8D44\u6E90\u5171\u4EAB\u4E0E\u534F\u540C\u8C03\u5EA6\u5927\u5385"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex bg-slate-100 p-1 rounded border border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement(
+    return /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex h-full w-full bg-white text-slate-800 overflow-hidden font-sans" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 flex flex-col relative overflow-hidden bg-slate-50/50" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "pt-4 pb-3 flex flex-col items-center justify-center z-30 border-b border-slate-200 bg-white" }, /* @__PURE__ */ import_react7.default.createElement("h2", { className: "text-base font-bold text-slate-800 mb-3 tracking-wide" }, "\u6E56\u5317\u7701\u516C\u8DEF\u6570\u636E\u8D44\u6E90\u5171\u4EAB\u4E0E\u534F\u540C\u8C03\u5EA6\u5927\u5385"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex bg-slate-100 p-0.5 rounded border border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement(
       "button",
       {
         onClick: () => handleChannelChange("municipal"),
-        className: `px-8 py-2 text-sm font-medium rounded transition-colors ${activeChannel === "municipal" ? "bg-blue-600 text-white shadow-sm" : "text-slate-600 hover:bg-slate-200"}`
+        className: `px-5 py-1.5 text-xs font-medium rounded transition-colors ${activeChannel === "municipal" ? "bg-blue-600 text-white shadow-sm" : "text-slate-600 hover:bg-slate-200"}`
       },
-      /* @__PURE__ */ import_react7.default.createElement(Network2, { className: "w-4 h-4 inline-block mr-2 -mt-0.5" }),
+      /* @__PURE__ */ import_react7.default.createElement(Network2, { className: "w-3.5 h-3.5 inline-block mr-1.5 -mt-0.5" }),
       "\u5782\u76F4\u7BA1\u8FD0\u534F\u540C (X\u7AEF)"
     ), /* @__PURE__ */ import_react7.default.createElement(
       "button",
       {
         onClick: () => handleChannelChange("internal"),
-        className: `px-8 py-2 text-sm font-medium rounded transition-colors ${activeChannel === "internal" ? "bg-blue-600 text-white shadow-sm" : "text-slate-600 hover:bg-slate-200"}`
+        className: `px-5 py-1.5 text-xs font-medium rounded transition-colors ${activeChannel === "internal" ? "bg-blue-600 text-white shadow-sm" : "text-slate-600 hover:bg-slate-200"}`
       },
-      /* @__PURE__ */ import_react7.default.createElement(Layers2, { className: "w-4 h-4 inline-block mr-2 -mt-0.5" }),
+      /* @__PURE__ */ import_react7.default.createElement(Layers2, { className: "w-3.5 h-3.5 inline-block mr-1.5 -mt-0.5" }),
       "\u8DE8\u5185\u90E8\u5904\u5BA4\u534F\u540C (10\u7AEF)"
     ), /* @__PURE__ */ import_react7.default.createElement(
       "button",
       {
         onClick: () => handleChannelChange("external"),
-        className: `px-8 py-2 text-sm font-medium rounded transition-colors ${activeChannel === "external" ? "bg-blue-600 text-white shadow-sm" : "text-slate-600 hover:bg-slate-200"}`
+        className: `px-5 py-1.5 text-xs font-medium rounded transition-colors ${activeChannel === "external" ? "bg-blue-600 text-white shadow-sm" : "text-slate-600 hover:bg-slate-200"}`
       },
-      /* @__PURE__ */ import_react7.default.createElement(Share2, { className: "w-4 h-4 inline-block mr-2 -mt-0.5" }),
+      /* @__PURE__ */ import_react7.default.createElement(Share2, { className: "w-3.5 h-3.5 inline-block mr-1.5 -mt-0.5" }),
       "\u5BF9\u5916\u653F\u52A1\u5916\u6EA2 (Y\u7AEF)"
-    )), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-4 text-sm text-slate-700 font-medium bg-slate-50 px-6 py-2 rounded border border-slate-200" }, currentData.desc), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-2 text-xs text-slate-500 font-medium flex items-center" }, /* @__PURE__ */ import_react7.default.createElement(Server, { className: "w-3.5 h-3.5 mr-1.5" }), currentData.techMeans)), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 relative flex items-center justify-center" }, /* @__PURE__ */ import_react7.default.createElement("svg", { className: "absolute inset-0 w-full h-full pointer-events-none", style: { zIndex: 0 } }, /* @__PURE__ */ import_react7.default.createElement("defs", null, /* @__PURE__ */ import_react7.default.createElement("marker", { id: "arrow-blue", viewBox: "0 0 10 10", refX: "5", refY: "5", markerWidth: "6", markerHeight: "6", orient: "auto-start-reverse" }, /* @__PURE__ */ import_react7.default.createElement("path", { d: "M 0 0 L 10 5 L 0 10 z", fill: "#2563eb" })), /* @__PURE__ */ import_react7.default.createElement("marker", { id: "arrow-slate", viewBox: "0 0 10 10", refX: "5", refY: "5", markerWidth: "4", markerHeight: "4", orient: "auto-start-reverse" }, /* @__PURE__ */ import_react7.default.createElement("path", { d: "M 0 0 L 10 5 L 0 10 z", fill: "#cbd5e1" }))), /* @__PURE__ */ import_react7.default.createElement(
+    )), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-3 text-xs text-slate-700 bg-slate-50 px-4 py-1.5 rounded border border-slate-200" }, currentData.desc), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-1.5 text-[10px] text-slate-500 flex items-center" }, /* @__PURE__ */ import_react7.default.createElement(Server, { className: "w-3 h-3 mr-1" }), currentData.techMeans)), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 relative flex items-center justify-center overflow-hidden" }, /* @__PURE__ */ import_react7.default.createElement("svg", { className: "absolute inset-0 w-full h-full pointer-events-none", style: { zIndex: 0 } }, /* @__PURE__ */ import_react7.default.createElement("defs", null, /* @__PURE__ */ import_react7.default.createElement("marker", { id: "arrow-blue", viewBox: "0 0 10 10", refX: "5", refY: "5", markerWidth: "4", markerHeight: "4", orient: "auto-start-reverse" }, /* @__PURE__ */ import_react7.default.createElement("path", { d: "M 0 0 L 10 5 L 0 10 z", fill: "#2563eb" })), /* @__PURE__ */ import_react7.default.createElement("marker", { id: "arrow-slate", viewBox: "0 0 10 10", refX: "5", refY: "5", markerWidth: "3", markerHeight: "3", orient: "auto-start-reverse" }, /* @__PURE__ */ import_react7.default.createElement("path", { d: "M 0 0 L 10 5 L 0 10 z", fill: "#cbd5e1" }))), /* @__PURE__ */ import_react7.default.createElement(
       "line",
       {
         x1: "50%",
         y1: "50%",
         x2: "50%",
-        y2: "15%",
-        strokeWidth: checkLineActive("hub", "top") ? "3" : "1",
+        y2: "20%",
+        strokeWidth: checkLineActive("hub", "top") ? "2" : "1",
         className: `transition-colors duration-300 ${checkLineActive("hub", "top") ? "stroke-blue-600" : "stroke-slate-300"}`,
         markerEnd: checkLineActive("hub", "top") ? "url(#arrow-blue)" : "url(#arrow-slate)"
       }
@@ -17133,8 +17135,8 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         x1: "50%",
         y1: "50%",
         x2: "50%",
-        y2: "85%",
-        strokeWidth: checkLineActive("hub", "bottom") ? "3" : "1",
+        y2: "80%",
+        strokeWidth: checkLineActive("hub", "bottom") ? "2" : "1",
         className: `transition-colors duration-300 ${checkLineActive("hub", "bottom") ? "stroke-blue-600" : "stroke-slate-300"}`,
         markerEnd: checkLineActive("hub", "bottom") ? "url(#arrow-blue)" : "url(#arrow-slate)"
       }
@@ -17143,9 +17145,9 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
       {
         x1: "50%",
         y1: "50%",
-        x2: "15%",
+        x2: "20%",
         y2: "50%",
-        strokeWidth: checkLineActive("hub", "left") ? "3" : "1",
+        strokeWidth: checkLineActive("hub", "left") ? "2" : "1",
         className: `transition-colors duration-300 ${checkLineActive("hub", "left") ? "stroke-blue-600" : "stroke-slate-300"}`,
         markerStart: checkLineActive("hub", "left") ? "url(#arrow-blue)" : "url(#arrow-slate)",
         markerEnd: checkLineActive("hub", "left") ? "url(#arrow-blue)" : "url(#arrow-slate)"
@@ -17155,29 +17157,29 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
       {
         x1: "50%",
         y1: "50%",
-        x2: "85%",
+        x2: "80%",
         y2: "50%",
-        strokeWidth: checkLineActive("hub", "right") ? "3" : "1",
+        strokeWidth: checkLineActive("hub", "right") ? "2" : "1",
         className: `transition-colors duration-300 ${checkLineActive("hub", "right") ? "stroke-blue-600" : "stroke-slate-300"}`,
         markerEnd: checkLineActive("hub", "right") ? "url(#arrow-blue)" : "url(#arrow-slate)"
       }
-    )), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute top-4 left-1/2 -translate-x-1/2 w-64 rounded bg-white border p-4 transition-colors duration-300 flex flex-col items-center ${getNodeClass("top")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `w-10 h-10 rounded flex items-center justify-center mb-2 ${getIconClass("top")}` }, /* @__PURE__ */ import_react7.default.createElement(Layers2, { className: "w-5 h-5" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-bold text-slate-800 text-center text-sm" }, "\u301010\u3011\u5341\u5927\u76D1\u7BA1\u4E0E\u4E1A\u52A1\u5904\u5BA4"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1" }, "\u6309\u4E1A\u52A1\u6761\u7EBF\u5BF9\u53E3\u6307\u5BFC X \u7AEF\u8FD0\u8425", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u5DE5\u7A0B / \u517B\u62A4 / \u5E94\u6025 / \u519C\u8DEF\u7B49)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute bottom-4 left-1/2 -translate-x-1/2 w-64 rounded bg-white border p-4 transition-colors duration-300 flex flex-col items-center ${getNodeClass("bottom")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `w-10 h-10 rounded flex items-center justify-center mb-2 ${getIconClass("bottom")}` }, /* @__PURE__ */ import_react7.default.createElement(Database2, { className: "w-5 h-5" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-bold text-slate-800 text-center text-sm" }, "\u30101\u3011\u5168\u7701\u516C\u8DEF\u57FA\u7840\u6570\u636E\u5E93"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1" }, "\u7EDF\u4E00\u5168\u7701\u6807\u51C6\u4E0E\u516C\u8DEF\u5927\u5E95\u5EA7", /* @__PURE__ */ import_react7.default.createElement("br", null), "(L21\u5BBD\u8868 / \u9690\u79C1\u8131\u654F / \u5F52\u6863)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute left-4 top-1/2 -translate-y-1/2 w-64 rounded bg-white border p-4 transition-colors duration-300 flex flex-col items-center ${getNodeClass("left")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `w-10 h-10 rounded flex items-center justify-center mb-2 ${getIconClass("left")}` }, /* @__PURE__ */ import_react7.default.createElement(Activity, { className: "w-5 h-5" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-bold text-slate-800 text-center text-sm" }, "\u3010X\u3011\u533A\u53BF\u53CA\u4E00\u7EBF\u4E1A\u52A1\u8FD0\u8425\u4F01\u4E1A"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1" }, "\u4E0E10\u5927\u5904\u5BA4\u4E1A\u52A1\u65B9\u5411\u7CBE\u51C6\u5339\u914D", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u627F\u63A5\u5BF9\u5E94\u6761\u7EBF\u7684\u8D4B\u80FD\u4E0E\u76D1\u7BA1)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute right-4 top-1/2 -translate-y-1/2 w-64 rounded bg-white border p-4 transition-colors duration-300 flex flex-col items-center ${getNodeClass("right")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `w-10 h-10 rounded flex items-center justify-center mb-2 ${getIconClass("right")}` }, /* @__PURE__ */ import_react7.default.createElement(Network2, { className: "w-5 h-5" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-bold text-slate-800 text-center text-sm" }, "\u3010Y\u3011\u6A2A\u5411\u653F\u52A1\u4E0E\u793E\u4F1A\u751F\u6001"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-xs text-slate-500 text-center mt-1" }, "\u8DE8\u754C\u534F\u540C\u4E0E\u4EF7\u503C\u653E\u5927\u5668", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u516C\u5B89 / \u5E94\u6025 / \u8D22\u653F / \u5BA1\u8BA1)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 bg-blue-800 rounded-lg shadow-md p-6 z-30 flex flex-col items-center` }, /* @__PURE__ */ import_react7.default.createElement(Cpu, { className: "w-10 h-10 text-white mb-3" }), /* @__PURE__ */ import_react7.default.createElement("h2", { className: "font-bold text-lg text-white text-center tracking-wide" }, "\u6E56\u5317\u516C\u8DEF AI \u6CBB\u7406\u5E73\u53F0"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-3 text-blue-100 text-xs text-center border border-blue-600/50 bg-blue-900/50 px-3 py-1 rounded" }, "\u5168\u7701\u516C\u8DEF\u6570\u636E\u8D44\u6E90\u4E0E\u4E1A\u52A1\u534F\u540C\u4E2D\u67A2")))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-[360px] bg-white border-l border-slate-200 flex flex-col z-40" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "p-5 pb-3 border-b border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement("h3", { className: "text-sm font-bold text-slate-800 mb-3" }, "\u653F\u52A1\u8F6C\u578B\u4E0E ROI \u4EF7\u503C\u770B\u677F"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex bg-slate-100 p-1 rounded border border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement(
+    )), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute top-[8%] left-1/2 -translate-x-1/2 w-48 rounded bg-white border p-2.5 transition-colors duration-300 flex flex-col items-center ${getNodeClass("top")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `w-8 h-8 rounded flex items-center justify-center mb-1.5 ${getIconClass("top")}` }, /* @__PURE__ */ import_react7.default.createElement(Layers2, { className: "w-4 h-4" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-bold text-slate-800 text-center text-xs" }, "\u301010\u3011\u76D1\u7BA1\u4E0E\u4E1A\u52A1\u5904\u5BA4"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-[10px] text-slate-500 text-center mt-1 leading-tight" }, "\u5BF9\u53E3\u6307\u5BFC X \u7AEF\u8FD0\u8425", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u5DE5\u7A0B/\u517B\u62A4/\u5E94\u6025\u7B49)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute bottom-[8%] left-1/2 -translate-x-1/2 w-48 rounded bg-white border p-2.5 transition-colors duration-300 flex flex-col items-center ${getNodeClass("bottom")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `w-8 h-8 rounded flex items-center justify-center mb-1.5 ${getIconClass("bottom")}` }, /* @__PURE__ */ import_react7.default.createElement(Database2, { className: "w-4 h-4" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-bold text-slate-800 text-center text-xs" }, "\u30101\u3011\u516C\u8DEF\u57FA\u7840\u6570\u636E\u5E93"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-[10px] text-slate-500 text-center mt-1 leading-tight" }, "\u5168\u7701\u7EDF\u4E00\u6570\u636E\u5E95\u5EA7", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u5BBD\u8868/\u8131\u654F/\u5F52\u6863)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute left-[6%] top-1/2 -translate-y-1/2 w-48 rounded bg-white border p-2.5 transition-colors duration-300 flex flex-col items-center ${getNodeClass("left")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `w-8 h-8 rounded flex items-center justify-center mb-1.5 ${getIconClass("left")}` }, /* @__PURE__ */ import_react7.default.createElement(Activity, { className: "w-4 h-4" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-bold text-slate-800 text-center text-xs" }, "\u3010X\u3011\u533A\u53BF\u4E1A\u52A1\u8FD0\u8425\u4F01\u4E1A"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-[10px] text-slate-500 text-center mt-1 leading-tight" }, "10\u5927\u5904\u5BA4\u65B9\u5411\u7CBE\u51C6\u5339\u914D", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u627F\u63A5\u8D4B\u80FD\u4E0E\u76D1\u7BA1)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute right-[6%] top-1/2 -translate-y-1/2 w-48 rounded bg-white border p-2.5 transition-colors duration-300 flex flex-col items-center ${getNodeClass("right")}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: `w-8 h-8 rounded flex items-center justify-center mb-1.5 ${getIconClass("right")}` }, /* @__PURE__ */ import_react7.default.createElement(Network2, { className: "w-4 h-4" })), /* @__PURE__ */ import_react7.default.createElement("h3", { className: "font-bold text-slate-800 text-center text-xs" }, "\u3010Y\u3011\u653F\u52A1\u4E0E\u793E\u4F1A\u751F\u6001"), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-[10px] text-slate-500 text-center mt-1 leading-tight" }, "\u8DE8\u754C\u534F\u540C\u653E\u5927\u5668", /* @__PURE__ */ import_react7.default.createElement("br", null), "(\u516C\u5B89/\u5E94\u6025/\u5BA1\u8BA1)")), /* @__PURE__ */ import_react7.default.createElement("div", { className: `absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-56 bg-blue-800 rounded shadow-sm p-4 z-30 flex flex-col items-center` }, /* @__PURE__ */ import_react7.default.createElement(Cpu, { className: "w-8 h-8 text-white mb-2" }), /* @__PURE__ */ import_react7.default.createElement("h2", { className: "font-bold text-sm text-white text-center tracking-wide" }, "\u516C\u8DEF AI \u6CBB\u7406\u5E73\u53F0"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-2 text-blue-100 text-[10px] text-center border border-blue-600/50 bg-blue-900/50 px-2 py-0.5 rounded" }, "\u6570\u636E\u8D44\u6E90\u4E0E\u4E1A\u52A1\u534F\u540C\u4E2D\u67A2")))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "w-[280px] bg-white border-l border-slate-200 flex flex-col z-40" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "p-4 pb-3 border-b border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement("h3", { className: "text-xs font-bold text-slate-800 mb-2" }, "\u653F\u52A1\u8F6C\u578B\u4E0E ROI \u770B\u677F"), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex bg-slate-100 p-0.5 rounded border border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement(
       "button",
       {
         onClick: () => setActiveTab("economic"),
-        className: `flex-1 py-1.5 rounded text-xs font-medium transition-colors flex items-center justify-center ${activeTab === "economic" ? "bg-white text-blue-700 shadow-sm border border-slate-200" : "text-slate-600 hover:bg-slate-200"}`
+        className: `flex-1 py-1 rounded text-[11px] font-medium transition-colors flex items-center justify-center ${activeTab === "economic" ? "bg-white text-blue-700 shadow-sm border border-slate-200" : "text-slate-600 hover:bg-slate-200"}`
       },
-      /* @__PURE__ */ import_react7.default.createElement(Activity, { className: "w-3.5 h-3.5 mr-1.5" }),
-      "\u7ECF\u6D4E\u5EFA\u8BBE\u8D26\u672C"
+      /* @__PURE__ */ import_react7.default.createElement(Activity, { className: "w-3 h-3 mr-1" }),
+      "\u7ECF\u6D4E\u5EFA\u8BBE"
     ), /* @__PURE__ */ import_react7.default.createElement(
       "button",
       {
         onClick: () => setActiveTab("social"),
-        className: `flex-1 py-1.5 rounded text-xs font-medium transition-colors flex items-center justify-center ${activeTab === "social" ? "bg-white text-blue-700 shadow-sm border border-slate-200" : "text-slate-600 hover:bg-slate-200"}`
+        className: `flex-1 py-1 rounded text-[11px] font-medium transition-colors flex items-center justify-center ${activeTab === "social" ? "bg-white text-blue-700 shadow-sm border border-slate-200" : "text-slate-600 hover:bg-slate-200"}`
       },
-      /* @__PURE__ */ import_react7.default.createElement(Shield2, { className: "w-3.5 h-3.5 mr-1.5" }),
-      "\u793E\u4F1A\u6548\u76CA\u8D26\u672C"
-    ))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 overflow-y-auto p-5 bg-slate-50" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "mb-3 flex items-center border-b border-slate-200 pb-2" }, /* @__PURE__ */ import_react7.default.createElement("h4", { className: "font-bold text-slate-800 text-xs" }, currentData.title, " \xB7 ", activeTab === "economic" ? "\u7ECF\u6D4E\u4E1A\u52A1\u660E\u7EC6" : "\u793E\u4F1A\u6548\u76CA\u660E\u7EC6")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "space-y-3" }, metrics.map((metric, idx) => /* @__PURE__ */ import_react7.default.createElement("div", { key: idx, className: "bg-white rounded p-3 border border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "text-[11px] text-slate-500 mb-1" }, metric.label), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex items-end justify-between mb-1.5" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "text-lg font-bold text-slate-800" }, metric.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: "text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded" }, metric.trend === "up" ? "\u2197 \u63D0\u5347" : "\u2198 \u538B\u964D")), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-[11px] text-slate-500 leading-relaxed pt-1.5 border-t border-slate-100" }, metric.detail)))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-6 pt-3 border-t border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement("h4", { className: "text-[11px] font-bold text-slate-500 mb-2" }, "\u6700\u8FD1\u53D1\u5E03\u4E0E\u4EA4\u6362\u56DE\u6267"), currentData.receipts.map((receipt, idx) => /* @__PURE__ */ import_react7.default.createElement("div", { key: idx, className: "bg-white border border-slate-200 rounded p-2.5 flex items-center text-[11px] text-slate-700 mb-1.5" }, /* @__PURE__ */ import_react7.default.createElement(IconComponent, { name: receipt.icon, className: "w-3.5 h-3.5 mr-2 text-slate-400" }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 truncate", title: receipt.name }, receipt.name)))))));
+      /* @__PURE__ */ import_react7.default.createElement(Shield2, { className: "w-3 h-3 mr-1" }),
+      "\u793E\u4F1A\u6548\u76CA"
+    ))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 overflow-y-auto p-4 bg-slate-50" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "mb-2 flex items-center border-b border-slate-200 pb-1.5" }, /* @__PURE__ */ import_react7.default.createElement("h4", { className: "font-bold text-slate-800 text-[11px]" }, currentData.title, " \xB7 ", activeTab === "economic" ? "\u7ECF\u6D4E\u6570\u636E\u660E\u7EC6" : "\u793E\u4F1A\u6548\u76CA\u660E\u7EC6")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "space-y-2" }, metrics.map((metric, idx) => /* @__PURE__ */ import_react7.default.createElement("div", { key: idx, className: "bg-white rounded p-2.5 border border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "text-[10px] text-slate-500 mb-0.5" }, metric.label), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex items-end justify-between mb-1" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "text-sm font-bold text-slate-800" }, metric.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: "text-[9px] text-slate-500 bg-slate-100 px-1 py-0.5 rounded" }, metric.trend === "up" ? "\u2197 \u63D0\u5347" : "\u2198 \u538B\u964D")), /* @__PURE__ */ import_react7.default.createElement("p", { className: "text-[10px] text-slate-500 leading-tight pt-1 border-t border-slate-100" }, metric.detail)))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "mt-4 pt-2 border-t border-slate-200" }, /* @__PURE__ */ import_react7.default.createElement("h4", { className: "text-[10px] font-bold text-slate-500 mb-1.5" }, "\u6700\u8FD1\u53D1\u5E03\u4E0E\u4EA4\u6362\u56DE\u6267"), currentData.receipts.map((receipt, idx) => /* @__PURE__ */ import_react7.default.createElement("div", { key: idx, className: "bg-white border border-slate-200 rounded p-2 flex items-center text-[10px] text-slate-700 mb-1" }, /* @__PURE__ */ import_react7.default.createElement(IconComponent, { name: receipt.icon, className: "w-3 h-3 mr-1.5 text-slate-400 shrink-0" }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 truncate", title: receipt.name }, receipt.name)))))));
   };
   var DataExchangeView_default = DataExchangeView;
 
