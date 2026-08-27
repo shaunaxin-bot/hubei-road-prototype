@@ -1152,6 +1152,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1580,6 +1581,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -56852,12 +56854,10 @@ ${knowledgeBase}
               }
             }
             updateBot({ toolCalls: [...toolCallLog] });
-            const maxLen = fnName === "get_table_schema" ? 8e3 : fnName === "execute_sql" ? 3e3 : 4e3;
-            const truncatedResult = resultStr.length > maxLen ? resultStr.slice(0, maxLen) + "\n...[\u5DF2\u622A\u65AD]" : resultStr;
             toolResults.push({
               role: "tool",
               tool_call_id: tc.id,
-              content: truncatedResult
+              content: resultStr
             });
           }
           messages2.push(...toolResults);
