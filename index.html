@@ -1162,6 +1162,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1590,6 +1591,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -18544,7 +18546,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
           gemini: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
         };
         const url = ENDPOINTS[apiProvider] || ENDPOINTS["deepseek"];
-        const modelName = apiProvider === "zhipu" || apiProvider === "glm" ? "glm-4-flash" : apiProvider === "openai" ? "gpt-4o-mini" : "deepseek-chat";
+        const modelName = apiProvider === "zhipu" || apiProvider === "glm" ? "glm-4-flash" : apiProvider === "openai" ? "gpt-4o-mini" : "deepseek-v4-flash";
         const sysPrompt = isLong ? `\u4F60\u662F\u6E56\u5317\u7701\u516C\u8DEF\u4E8B\u4E1A\u53D1\u5C55\u4E2D\u5FC3\u6570\u636E\u6CBB\u7406\u4E13\u5BB6\u3002
 \u3010\u4E25\u683C\u6307\u4EE4\u3011
 1. \u8BF7\u7ED9\u51FA\u53EF\u4FE1\u7684\u6570\u636E\u63A8\u7406\u8FC7\u7A0B\u548C\u6700\u7EC8\u7ED3\u8BBA\u3002
