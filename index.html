@@ -1164,6 +1164,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1592,6 +1593,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -18628,7 +18630,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
           className: "text-[10px] text-indigo-500 hover:text-indigo-700 border border-indigo-200 hover:border-indigo-400 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded-full transition-all flex items-center gap-1"
         },
         "\u{1F4CA} \u67E5\u770B\u6570\u636E\u63A8\u7406\u8FC7\u7A0B \u2192"
-      )))))), /* @__PURE__ */ React.createElement("div", { className: "mt-auto shrink-0 border-t border-slate-100 pt-3" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-1.5 mb-3 max-h-[140px] overflow-y-auto custom-scroll pr-1" }, filteredQuestions.map((item, idx) => /* @__PURE__ */ React.createElement(
+      )))))), /* @__PURE__ */ React.createElement("div", { className: "mt-auto shrink-0 border-t border-slate-100 pt-3" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5 mb-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden" }, filteredQuestions.map((item, idx) => /* @__PURE__ */ React.createElement(
         "button",
         {
           key: idx,
@@ -18640,10 +18642,9 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
             setIsLongAnswer(false);
             callLightLLM(item.q);
           },
-          className: "w-full bg-slate-50 hover:bg-blue-50/80 border border-slate-100 hover:border-blue-200 text-slate-600 hover:text-blue-700 px-3 py-2 rounded-lg text-[10.5px] transition-all text-left flex items-start gap-2"
+          className: "shrink-0 bg-slate-50/80 border border-slate-200/50 hover:bg-slate-100 hover:border-slate-300 text-slate-400 hover:text-slate-600 px-2.5 py-1 rounded-full text-[9px] transition-colors whitespace-nowrap"
         },
-        /* @__PURE__ */ React.createElement("span", { className: "text-blue-400/70 mt-0.5 shrink-0" }, "\u{1F4A1}"),
-        /* @__PURE__ */ React.createElement("span", { className: "leading-snug break-words whitespace-normal" }, item.q)
+        item.q
       ))), /* @__PURE__ */ React.createElement("div", { className: "relative" }, /* @__PURE__ */ React.createElement(
         "input",
         {
