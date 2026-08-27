@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 $date = Get-Date -Format 'yyyyMMdd'
 $projectDir = (Get-ChildItem -Path 'C:\AIprojects\roaddata\hubei' -Directory | Where-Object { $_.Name -match '^\d{8}$' } | Sort-Object Name -Descending | Select-Object -First 1).FullName
 $repoDir = 'C:\AIprojects\roaddata'
@@ -7,23 +7,32 @@ $projectDirName = Split-Path $projectDir -Leaf
 
 $srcHtml = Join-Path $projectDir "$projectDirName-hubei-prototype.html"
 
-Write-Host "`n[1/4] Compiling Knowledge Base Schemas & AIP Linkages..." -ForegroundColor Cyan
+function Run-Cmd {
+    param([string]$Cmd)
+    Invoke-Expression $Cmd
+    if ($LASTEXITCODE -ne 0 -and $LASTEXITCODE -ne $null) {
+        Write-Host "Error: Command '$Cmd' failed with exit code $LASTEXITCODE" -ForegroundColor Red
+        exit $LASTEXITCODE
+    }
+}
+
+Write-Host "`n[1/4] Compiling Knowledge Base Schemas & AIP Linkages in $projectDirName..." -ForegroundColor Cyan
 Set-Location $projectDir
-python compile_public_schema.py
-python compile_linkages.py
-python compile_internal_linkages.py
-python compile_ontology_lines.py
+Run-Cmd "python compile_public_schema.py"
+Run-Cmd "python compile_linkages.py"
+Run-Cmd "python compile_internal_linkages.py"
+Run-Cmd "python compile_ontology_lines.py"
 
 Write-Host "`n[2/4] Building Frontend and Generating Offline HTML..." -ForegroundColor Cyan
-npm run build
-python bundle_offline.py
+Run-Cmd "npm run build"
+Run-Cmd "python bundle_offline.py"
 
-Write-Host "`n[3/5] Committing to Git..." -ForegroundColor Cyan
+Write-Host "`n[3/5] Committing to Git (Source Repo)..." -ForegroundColor Cyan
 Set-Location $repoDir
-git add -A
+Run-Cmd "git add -A"
 $msg = Read-Host 'Enter commit message (will add release: prefix)'
 if ([string]::IsNullOrWhiteSpace($msg)) { $msg = 'auto release' }
-git commit -m "release: hubei $date baseline - $msg"
+Run-Cmd "git commit -m `"release: hubei $date baseline - $msg`""
 
 Write-Host "`n[4/5] Copying to release directory..." -ForegroundColor Cyan
 $releaseTarget = Join-Path $ghRepoDir 'index.html'
@@ -40,11 +49,11 @@ if (Test-Path (Join-Path $projectDir 'public\images')) {
 }
 Write-Host "Done copying." -ForegroundColor Green
 
-Write-Host "`n[5/5] Pushing to GitHub Pages..." -ForegroundColor Cyan
+Write-Host "`n[5/5] Pushing to GitHub Pages (Release Repo)..." -ForegroundColor Cyan
 Set-Location $ghRepoDir
-git add -A
-git commit -m "Update Hubei release ($date)"
+Run-Cmd "git add -A"
+Run-Cmd "git commit -m `"Update Hubei release ($date) - $msg`""
 $env:GIT_TERMINAL_PROMPT = 0
-git push origin main
+Run-Cmd "git push origin main"
 
 Write-Host "`nRelease Finished Successfully!" -ForegroundColor Green
