@@ -17420,7 +17420,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     )), /* @__PURE__ */ import_react7.default.createElement(
       "div",
       {
-        className: "absolute z-30 flex items-center bg-white border border-slate-200 shadow-sm px-2 py-0.5 rounded-full whitespace-nowrap",
+        className: `absolute z-30 flex items-center bg-white border shadow-sm px-2 py-0.5 rounded-full whitespace-nowrap transition-all duration-500 ${checkLineActive("hub", "top") ? "opacity-100 border-blue-300 ring-2 ring-blue-100" : "opacity-0 pointer-events-none"}`,
         style: { top: "77px", left: "50%", transform: "translate(-50%, -50%)" }
       },
       /* @__PURE__ */ import_react7.default.createElement(GitMerge, { className: "w-2.5 h-2.5 text-blue-600 mr-1" }),
@@ -17436,7 +17436,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     ), /* @__PURE__ */ import_react7.default.createElement(
       "div",
       {
-        className: "absolute z-30 flex items-center bg-white border border-slate-200 shadow-sm px-1.5 py-0.5 rounded-full whitespace-nowrap",
+        className: `absolute z-30 flex items-center bg-white border shadow-sm px-1.5 py-0.5 rounded-full whitespace-nowrap transition-all duration-500 ${checkLineActive("hub", "left") ? "opacity-100 border-blue-300 ring-2 ring-blue-100" : "opacity-0 pointer-events-none"}`,
         style: { top: "185px", left: "calc(31% - 42px)", transform: "translate(-50%, -50%)" }
       },
       /* @__PURE__ */ import_react7.default.createElement(Activity, { className: "w-2.5 h-2.5 text-blue-600 mr-1" }),
@@ -17444,7 +17444,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     ), /* @__PURE__ */ import_react7.default.createElement(
       "div",
       {
-        className: "absolute z-30 flex items-center bg-white border border-slate-200 shadow-sm px-1.5 py-0.5 rounded-full whitespace-nowrap",
+        className: `absolute z-30 flex items-center bg-white border shadow-sm px-1.5 py-0.5 rounded-full whitespace-nowrap transition-all duration-500 ${checkLineActive("hub", "right") ? "opacity-100 border-blue-300 ring-2 ring-blue-100" : "opacity-0 pointer-events-none"}`,
         style: { top: "185px", left: "calc(69% + 42px)", transform: "translate(-50%, -50%)" }
       },
       /* @__PURE__ */ import_react7.default.createElement(Shield2, { className: "w-2.5 h-2.5 text-blue-600 mr-1" }),
