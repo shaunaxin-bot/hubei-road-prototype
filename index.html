@@ -1347,6 +1347,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1775,6 +1776,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -17324,7 +17326,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
           { icon: "Lock", name: "\u3010\u6570\u4EA4\u6240\u3011\u8DEF\u4FA7\u611F\u77E5\u591A\u6A21\u6001\u6570\u636E\u96C6\u6302\u724C\u4E0E\u786E\u6743\u8BC1\u4E66" },
           { icon: "Activity", name: "\u3010\u4EA7\u4E1A\u4E70\u5355\u3011X\u8F66\u4F01\u81EA\u52A8\u9A7E\u9A76\u8BAD\u7EC3\u8BED\u6599\u7B97\u529B\u5238\u6838\u9500\u6E05\u7B97\u5355" }
         ],
-        activeNodes: ["hub", "top-right"]
+        activeNodes: ["hub", "right", "top-right"]
       }
     };
     const currentData = stepData[activeStep];
@@ -17433,7 +17435,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     ), /* @__PURE__ */ import_react7.default.createElement(
       "path",
       {
-        d: "M 60% 220 L 69% 220",
+        d: "M 60% 220 L 74% 220",
         fill: "none",
         stroke: "#94a3b8",
         strokeWidth: "2",
@@ -17443,12 +17445,12 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     ), /* @__PURE__ */ import_react7.default.createElement(
       "path",
       {
-        d: "M 60% 180 Q 75% 180 75% 110",
+        d: "M 82% 170 L 82% 110",
         fill: "none",
         stroke: "#fbbf24",
         strokeWidth: "2",
         strokeDasharray: "4 4",
-        className: currentData.activeNodes.includes("top-right") ? "animate-flowRight stroke-amber-500" : "opacity-0"
+        className: currentData.activeNodes.includes("top-right") ? "animate-flowUp stroke-amber-500" : "opacity-0"
       }
     ), /* @__PURE__ */ import_react7.default.createElement(
       "path",
@@ -17494,29 +17496,29 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
       "div",
       {
         className: `absolute z-20 flex flex-col items-center transition-all duration-700 ease-in-out ${currentData.activeNodes.includes("right") ? "scale-110 opacity-100" : "scale-100 opacity-60"}`,
-        style: { top: "220px", left: "calc(69% + 80px)", transform: "translate(-50%, -50%)" }
+        style: { top: "220px", left: "82%", transform: "translate(-50%, -50%)" }
       },
       /* @__PURE__ */ import_react7.default.createElement("div", { className: "bg-slate-50/90 border-2 border-slate-300 rounded-lg shadow-md p-2.5 flex flex-col items-center w-[160px] text-center" }, /* @__PURE__ */ import_react7.default.createElement("h3", { className: "text-[11px] font-black text-slate-700 flex items-center justify-center" }, /* @__PURE__ */ import_react7.default.createElement(Share2, { className: "w-4 h-4 mr-1 text-slate-500" }), "\u3010Y\u5916\u90E8\u76D1\u7BA1\u3011"), /* @__PURE__ */ import_react7.default.createElement("span", { className: "text-[8.5px] text-slate-500 mt-1 font-bold bg-slate-200/60 px-1.5 py-0.5 rounded leading-tight" }, "(\u7ECF\u653F\u6570\u5C40\u6570\u636E\u5171\u4EAB\u901A\u9053)"))
     ), /* @__PURE__ */ import_react7.default.createElement(
       "div",
       {
         className: `absolute z-30 flex flex-col items-center justify-center bg-white/95 border shadow-sm px-2 py-1.5 rounded-lg whitespace-nowrap transition-all duration-500 ${currentData.activeNodes.includes("right") ? "opacity-100 border-blue-300 ring-2 ring-blue-100" : "opacity-0 pointer-events-none"}`,
-        style: { top: "220px", left: "calc(69% + 25px)", transform: "translate(-50%, -50%)" }
+        style: { top: "220px", left: "68%", transform: "translate(-50%, -50%)" }
       },
-      /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex items-center mb-1" }, /* @__PURE__ */ import_react7.default.createElement(Shield2, { className: "w-2.5 h-2.5 text-blue-600 mr-1" }), /* @__PURE__ */ import_react7.default.createElement("span", { className: "text-[8.5px] font-bold text-slate-700" }, "\u8DE8\u884C\u4E1A\u8054\u7B97/\u5171\u4EAB")),
+      /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex items-center mb-1" }, /* @__PURE__ */ import_react7.default.createElement(Shield2, { className: "w-2.5 h-2.5 text-blue-600 mr-1" }), /* @__PURE__ */ import_react7.default.createElement("span", { className: "text-[8.5px] font-bold text-slate-700" }, "\u653F\u6570\u5C40\u901A\u9053/\u8DE8\u57DF\u8054\u7B97")),
       /* @__PURE__ */ import_react7.default.createElement("span", { className: "text-[7.5px] font-bold text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded border border-amber-300 shadow-sm" }, "\u2728 \u9AD8\u8D28\u91CF\u6570\u636E\uFF1A\u8DE8\u57DF\u534F\u540C\u8BED\u6599")
     ), /* @__PURE__ */ import_react7.default.createElement(
       "div",
       {
         className: `absolute z-20 flex flex-col items-center transition-all duration-700 ease-in-out ${currentData.activeNodes.includes("top-right") ? "scale-110 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`,
-        style: { top: "60px", left: "calc(75% + 40px)", transform: "translate(-50%, -50%)" }
+        style: { top: "60px", left: "82%", transform: "translate(-50%, -50%)" }
       },
       /* @__PURE__ */ import_react7.default.createElement("div", { className: "bg-amber-50 border-2 border-amber-400 rounded-lg shadow-lg p-2.5 flex flex-col items-center w-[160px] text-center" }, /* @__PURE__ */ import_react7.default.createElement("h3", { className: "text-[12px] font-black text-amber-800 flex items-center justify-center" }, /* @__PURE__ */ import_react7.default.createElement(Database2, { className: "w-4 h-4 mr-1 text-amber-600" }), "\u3010\u6570\u636E\u4EA4\u6613\u6240\u3011"), /* @__PURE__ */ import_react7.default.createElement("span", { className: "text-[8.5px] text-amber-700 mt-1 font-bold bg-amber-100 px-1.5 py-0.5 rounded leading-tight" }, "\u4EA7\u4E1A\u4E70\u5355\u751F\u6001"))
     ), /* @__PURE__ */ import_react7.default.createElement(
       "div",
       {
         className: `absolute z-30 flex flex-col items-center justify-center bg-white/95 border shadow-sm px-2 py-1.5 rounded-lg whitespace-nowrap transition-all duration-500 ${currentData.activeNodes.includes("top-right") ? "opacity-100 border-amber-400 ring-2 ring-amber-100" : "opacity-0 pointer-events-none"}`,
-        style: { top: "140px", left: "calc(75% - 20px)", transform: "translate(-50%, -50%)" }
+        style: { top: "140px", left: "82%", transform: "translate(-50%, -50%)" }
       },
       /* @__PURE__ */ import_react7.default.createElement("span", { className: "text-[8.5px] font-bold text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded border border-amber-300 shadow-sm" }, "\u{1F4B0} \u8BED\u6599\u7B97\u529B\u5238\uFF1A\u9053\u8DEF\u6570\u636E\u4E0A\u8F66")
     ), /* @__PURE__ */ import_react7.default.createElement(
