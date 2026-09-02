@@ -1364,6 +1364,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 
 
+
         body { 
 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; 
@@ -1792,6 +1793,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     
 
+    
     
     
     
@@ -17305,7 +17307,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
     const [activeStep, setActiveStep] = (0, import_react7.useState)("step1");
     const stepData = {
       step1: {
-        title: "\u7B2C\u4E00\u6B65\uFF1A\u9AD8\u8D28\u91CF\u6570\u636E\u6B63\u5411\u4F9B\u7ED9",
+        title: "[\u7B2C\u4E00\u6B65] \u9AD8\u8D28\u91CF\u6570\u636E\u6B63\u5411\u4F9B\u7ED9",
         desc: "\u7ACB\u8DB3\u516C\u8DEF\u8DE8\u90E8\u95E8\u653F\u4F01\u534F\u540C\u573A\u666F\uFF0C\u6C47\u805A\u591A\u6E90\u53F0\u8D26\uFF0C\u4F9D\u6258\u6CBB\u7406\u5E73\u53F0\u6E05\u6D17\u4E3A\u9AD8\u8D28\u91CF\u4E13\u8BC6\u8BED\u6599\uFF0C\u5B9E\u73B0\u9AD8\u8D28\u91CF\u6570\u636E\u7684\u6B63\u5411\u4F9B\u7ED9\uFF0C\u5168\u9762\u8D4B\u80FD\u4E09\u7F51\u56DB\u6A21\u578B\u3002",
         techMeans: "\u5B89\u5168 API \u7F51\u5173\u76F4\u8FDE / \u5FAE\u670D\u52A1\u7F16\u6392\u603B\u7EBF",
         cards: [
@@ -17319,7 +17321,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         activeNodes: ["hub", "top", "left", "bottom"]
       },
       step2: {
-        title: "\u7B2C\u4E8C\u6B65\uFF1A\u4E1A\u52A1\u667A\u80FD\u4F53\u5FAA\u73AF\u53CD\u54FA",
+        title: "[\u7B2C\u4E8C\u6B65] \u4E1A\u52A1\u667A\u80FD\u4F53\u5FAA\u73AF\u53CD\u54FA",
         desc: "\u4E1A\u52A1\u667A\u80FD\u4F53\u5728\u4E00\u7EBF\u5904\u7406\u590D\u6742\u51B3\u7B56\u65F6\u66B4\u9732\u6DF1\u5EA6\u96BE\u9898\uFF0C\u89E6\u53D1\u4E13\u5BB6\u5DE5\u7A0B\u6807\u6CE8\u7EA0\u504F\uFF0C\u751F\u6210\u65B0\u8BED\u6599\u5E76\u95ED\u73AF\u56DE\u6D41\uFF0C\u5B9E\u73B0\u7CFB\u7EDF\u7684\u6301\u7EED\u5FAA\u73AF\u53CD\u54FA\u4E0E\u8BA4\u77E5\u8FDB\u5316\u3002",
         techMeans: "RLHF(\u4EBA\u7C7B\u53CD\u9988\u5F3A\u5316\u5B66\u4E60) / \u4E13\u5BB6\u5DE5\u7A0B\u8BC4\u6D4B",
         cards: [
@@ -17333,7 +17335,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         activeNodes: ["hub", "feedback-loop"]
       },
       step3: {
-        title: "\u7B2C\u4E09\u6B65\uFF1A\u7ECF\u653F\u6570\u5C40\u901A\u9053\u8DE8\u754C\u8D4B\u80FD",
+        title: "[\u7B2C\u4E09\u6B65] \u7ECF\u653F\u6570\u5C40\u901A\u9053\u8DE8\u754C\u8D4B\u80FD",
         desc: "\u5F3A\u8C03\u653F\u52A1\u6570\u636E\u7684\u8DE8\u754C\u5FC5\u987B\u7ECF\u8FC7\u653F\u6570\u5C40\u5408\u89C4\u901A\u9053\u3002\u63A5\u5165\u653F\u6570\u5C40\u6570\u636E\u5171\u4EAB\u5E73\u53F0\u540E\uFF0C\u6CDB\u5316\u81F3\u8DE8\u884C\u4E1A\u573A\u666F\uFF08\u5BF9\u63A5\u4EA4\u7BA1\u3001\u5E94\u6025\u7B49\uFF09\uFF0C\u5B9E\u73B0\u5168\u5C40\u653F\u52A1\u8054\u7B97\u3002",
         techMeans: "\u96F6\u4FE1\u4EFB\u8DE8\u57DF\u4EA4\u6362 / \u9690\u79C1\u8BA1\u7B97\u53EF\u4FE1\u6C99\u7BB1",
         cards: [
@@ -17347,7 +17349,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         activeNodes: ["hub", "right"]
       },
       step4: {
-        title: "\u7B2C\u56DB\u6B65\uFF1A\u6570\u4EA4\u6240\u6302\u724C\u9053\u8DEF\u6570\u636E\u4E0A\u8F66",
+        title: "[\u7B2C\u56DB\u6B65] \u9053\u8DEF\u6570\u636E\u4E0A\u8F66\u4EA7\u4E1A\u4E70\u5355",
         desc: "\u9AD8\u51C0\u503C\u5782\u57DF\u4E13\u8BC6\u8BED\u6599\u5C01\u88C5\u4E3A\u201C\u8BED\u6599\u7B97\u529B\u5238\u201D\uFF0C\u901A\u8FC7\u6570\u636E\u4EA4\u6613\u6240\u6302\u724C\u6D41\u901A\uFF0C\u5F7B\u5E95\u6253\u901A\u201C\u9053\u8DEF\u6570\u636E\u4E0A\u8F66\u201D\u7684\u6838\u5FC3\u8DEF\u5F84\uFF0C\u9762\u5411\u81EA\u52A8\u9A7E\u9A76\u7B49\u4EA7\u4E1A\u5F00\u653E\uFF0C\u6700\u7EC8\u88AB\u4EA7\u4E1A\u4E70\u5355\u5B9E\u73B0\u5546\u4E1A\u95ED\u73AF\u3002",
         techMeans: "\u533A\u5757\u94FE\u5B58\u8BC1\u786E\u6743 / \u8BED\u6599\u7B97\u529B\u5238\u5316\u5C01\u88C5",
         cards: [
@@ -17419,7 +17421,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         className: `px-4 py-2 rounded-md text-xs font-bold transition-all whitespace-nowrap flex items-center ${activeStep === "step1" ? "bg-blue-600 text-white shadow-md" : "text-slate-600 hover:bg-white hover:shadow-sm"}`
       },
       /* @__PURE__ */ import_react7.default.createElement(Network2, { className: "w-4 h-4 mr-2" }),
-      "\u7B2C\u4E00\u6B65: \u6570\u636E\u6B63\u5411\u4F9B\u7ED9"
+      "[\u7B2C\u4E00\u6B65] \u9AD8\u8D28\u91CF\u6570\u636E\u6B63\u5411\u4F9B\u7ED9"
     ), /* @__PURE__ */ import_react7.default.createElement(
       "button",
       {
@@ -17427,7 +17429,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         className: `px-4 py-2 rounded-md text-xs font-bold transition-all whitespace-nowrap flex items-center ${activeStep === "step2" ? "bg-blue-600 text-white shadow-md" : "text-slate-600 hover:bg-white hover:shadow-sm"}`
       },
       /* @__PURE__ */ import_react7.default.createElement(RefreshCw2, { className: "w-4 h-4 mr-2" }),
-      "\u7B2C\u4E8C\u6B65: \u667A\u80FD\u5FAA\u73AF\u53CD\u54FA"
+      "[\u7B2C\u4E8C\u6B65] \u4E1A\u52A1\u667A\u80FD\u4F53\u5FAA\u73AF\u53CD\u54FA"
     ), /* @__PURE__ */ import_react7.default.createElement(
       "button",
       {
@@ -17435,7 +17437,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         className: `px-4 py-2 rounded-md text-xs font-bold transition-all whitespace-nowrap flex items-center ${activeStep === "step3" ? "bg-blue-600 text-white shadow-md" : "text-slate-600 hover:bg-white hover:shadow-sm"}`
       },
       /* @__PURE__ */ import_react7.default.createElement(Share2, { className: "w-4 h-4 mr-2" }),
-      "\u7B2C\u4E09\u6B65: \u8DE8\u754C\u8054\u5408\u653F\u7B97"
+      "[\u7B2C\u4E09\u6B65] \u7ECF\u653F\u6570\u5C40\u901A\u9053\u8DE8\u754C\u8D4B\u80FD"
     ), /* @__PURE__ */ import_react7.default.createElement(
       "button",
       {
@@ -17443,7 +17445,7 @@ ${sc.agents ? sc.agents.slice(0, 3).join("\n") : "AGENT-\u6570\u636E\u7EDF\u7B79
         className: `px-4 py-2 rounded-md text-xs font-bold transition-all whitespace-nowrap flex items-center ${activeStep === "step4" ? "bg-blue-600 text-white shadow-md" : "text-slate-600 hover:bg-white hover:shadow-sm"}`
       },
       /* @__PURE__ */ import_react7.default.createElement(Activity, { className: "w-4 h-4 mr-2" }),
-      "\u7B2C\u56DB\u6B65: \u6570\u636E\u4E0A\u8F66\u4EA7\u4E1A\u4E70\u5355"
+      "[\u7B2C\u56DB\u6B65] \u9053\u8DEF\u6570\u636E\u4E0A\u8F66\u4EA7\u4E1A\u4E70\u5355"
     ))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "flex-1 relative bg-slate-50 overflow-y-auto overflow-x-hidden flex flex-col" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "relative w-full flex-1 min-h-[500px]" }, /* @__PURE__ */ import_react7.default.createElement("svg", { className: "absolute inset-0 w-full h-full pointer-events-none z-10", preserveAspectRatio: "none" }, /* @__PURE__ */ import_react7.default.createElement("defs", null, /* @__PURE__ */ import_react7.default.createElement("linearGradient", { id: "blueGradient", x1: "0%", y1: "0%", x2: "100%", y2: "0%" }, /* @__PURE__ */ import_react7.default.createElement("stop", { offset: "0%", stopColor: "#3b82f6" }), /* @__PURE__ */ import_react7.default.createElement("stop", { offset: "100%", stopColor: "#8b5cf6" }))), /* @__PURE__ */ import_react7.default.createElement("line", { x1: "50%", y1: "70", x2: "50%", y2: "130", fill: "none", stroke: "#94a3b8", strokeWidth: "2", strokeDasharray: "4 4", className: currentData.activeNodes.includes("top") ? "animate-flowDown stroke-blue-500" : "opacity-10" }), /* @__PURE__ */ import_react7.default.createElement("line", { x1: "170px", y1: "215", x2: "calc(50% - 160px)", y2: "215", fill: "none", stroke: "#94a3b8", strokeWidth: "2", strokeDasharray: "4 4", className: currentData.activeNodes.includes("left") ? "animate-flowRight stroke-blue-500" : "opacity-10" }), /* @__PURE__ */ import_react7.default.createElement("line", { x1: "calc(50% + 160px)", y1: "215", x2: "calc(100% - 170px)", y2: "215", fill: "none", stroke: "#94a3b8", strokeWidth: "2", strokeDasharray: "4 4", className: currentData.activeNodes.includes("right") ? "animate-flowRight stroke-blue-500" : "opacity-10" }), /* @__PURE__ */ import_react7.default.createElement("line", { x1: "calc(100% - 90px)", y1: "180", x2: "calc(100% - 90px)", y2: "80", fill: "none", stroke: "#fbbf24", strokeWidth: "2", strokeDasharray: "4 4", className: currentData.activeNodes.includes("top-right") ? "animate-flowUp stroke-amber-500" : "opacity-0" }), /* @__PURE__ */ import_react7.default.createElement("line", { x1: "50%", y1: "365", x2: "50%", y2: "290", fill: "none", stroke: "#94a3b8", strokeWidth: "2", strokeDasharray: "4 4", className: currentData.activeNodes.includes("bottom") ? "animate-flowUp stroke-emerald-500" : "opacity-100" })), /* @__PURE__ */ import_react7.default.createElement(
       "div",
       {
