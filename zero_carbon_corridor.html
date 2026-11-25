@@ -131,6 +131,50 @@
             border-radius: 0 6px 6px 0;
             font-size: 12.5px;
             color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        .thesis-box {
+            background: linear-gradient(135deg, #0a355c 0%, #125894 100%);
+            color: #ffffff;
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+        }
+        .thesis-quote {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fde68a;
+            margin-bottom: 8px;
+            letter-spacing: 0.2px;
+        }
+        .thesis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .thesis-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 5px;
+            padding: 7px 9px;
+            font-size: 11.8px;
+            line-height: 1.48;
+            color: #e2e8f0;
+        }
+        .thesis-item strong {
+            display: block;
+            color: #ffffff;
+            font-size: 12.2px;
+            margin-bottom: 2px;
+        }
+        .ext-callout {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 5px;
+            padding: 7px 11px;
+            font-size: 12px;
+            color: var(--text-main);
+            margin-bottom: 10px;
         }
 
         /* 梅大复盘三短板紧凑条 */
@@ -224,7 +268,7 @@
         .rb-ctrl { background: #e0e7ff; color: #3730a3; }
 
         @media (max-width: 820px) {
-            .grid-3, .gap-grid, .grid-2 { grid-template-columns: 1fr; }
+            .grid-3, .gap-grid, .grid-2, .thesis-grid { grid-template-columns: 1fr; }
             .content { padding: 16px; }
             .hero { padding: 18px 16px; }
         }
@@ -247,8 +291,8 @@
         <h1>《零碳走廊路桥隧深层灾变感知赋能重货主动安全与交能增效运营示范》</h1>
         <div class="meta-strip">
             <span><strong>实施周期：</strong>2027年1月 至 2028年12月（24个月）</span>
-            <span><strong>总经费预算：</strong>100 万元（自筹与资助统筹）</span>
-            <span><strong>示范工程：</strong>沈海高速（G15）开阳重载段及大槐服务区（3.7MW光伏 + 3MWh储能 + 超充群）</span>
+            <span><strong>共同研究课题经费：</strong>100 万元</span>
+            <span><strong>示范工程：</strong>沈海高速（G15）开阳重载段及大槐服务区（3.7MW光伏 + 3MWh储能 + 奇瑞绿能超充群）</span>
         </div>
     </div>
 
@@ -275,7 +319,24 @@
             </div>
         </div>
         <div class="core-callout">
-            <strong>核心攻关出发点：</strong> 单靠<strong>【一筋】</strong>光纤应变或单靠日常养护巡查记录，均不足以做出可靠预警。必须由<strong>【一机】</strong>统筹调用路、桥、隧、涵<strong>“规-建-管-养”全生命周期数据</strong>（规划地质、竣工结构、历年台账、实时车流气象）耦合研判，推进【一机】硬件固化及与百度地图、奇瑞车端的跨端联动，解决误漏报、响应滞后与场站安全问题。
+            <strong>核心攻关出发点：</strong> 单靠<strong>【一筋】</strong>光纤应变或单靠日常养护巡查记录，均不足以做出可靠预警。必须由<strong>【一机】</strong>统筹调用路、桥、隧、涵<strong>“规-建-管-养”全生命周期数据</strong>（规划地质、竣工结构、历年台账、实时车流气象）耦合研判，推进【一机】硬件固化及与百度地图、奇瑞绿能充储微网的跨端联动，解决误漏报、响应滞后与场站安全问题。
+        </div>
+        <div class="thesis-box">
+            <div class="thesis-quote">交能融合核心逻辑：交通感知是微网的大脑，能源微网是防灾的钱包和避险港</div>
+            <div class="thesis-grid">
+                <div class="thesis-item">
+                    <strong>1. 物理与荷载强关联（能冲击交、一筋两用）</strong>
+                    49吨电动重卡高频充放与大功率超充直接冲击高填方路基与场坪；【一筋】同步监测“路基/场坪深层微应变”与“高压电缆温升”，一条光纤同时管住路塌与电网火灾。
+                </div>
+                <div class="thesis-item">
+                    <strong>2. 数据与调度强关联（以交调能、防止盲调）</strong>
+                    【一机】将路网实时车流、气象暴雨与灾变预警输入微网 EMS；灾前 20 分钟自动指令储能“只留不卖”、预留应急功率池接纳避险重卡，平时按车流动态削峰，需量电费降 15%～20%。
+                </div>
+                <div class="thesis-item">
+                    <strong>3. 商业与造血强关联（以能养交、以交促能）</strong>
+                    传统路基监测只投入不产出；大槐 3.7MW 光伏+3MWh 储能+奇瑞绿能超充微网通过绿电消纳、需量降费与避险导流产生现金流，反哺路桥隧感知运维，实现防灾不贴钱、微网有收益。
+                </div>
+            </div>
         </div>
 
         <!-- 第一部分 -->
@@ -324,13 +385,13 @@
                 <tr>
                     <td><strong>事发前 34 分</strong><span class="sub">01:25:10 跨端阻断</span></td>
                     <td class="col-old">内部未发预警，百度地图显示正常通行，车辆保持高速行驶。</td>
-                    <td class="col-new"><strong>【一机】</strong>10 秒内向百度地图推送阻断信息（全屏标红提示），并联动奇瑞重卡车端平台下发避险警示与减速诱导指令。</td>
+                    <td class="col-new"><strong>【一机】</strong>10 秒内向百度地图推送阻断信息（全屏标红提示），同步向服务区微网与奇瑞绿能调度端下发险情预警与避险引导指令。</td>
                     <td>硬件化<span class="tag">【一机】</span>+百度API<span class="sub">子课题三</span></td>
                 </tr>
                 <tr>
                     <td><strong>事发前 20 分</strong><span class="sub">01:40:00 避险保供</span></td>
-                    <td class="col-old">雨夜视线受阻，缺乏车端干预手段，车辆继续驶向危险路段。</td>
-                    <td class="col-new">在途车辆经百度导航改道与车端预警配合提前减速，就近驶入大槐服务区避险，微网进入保供状态。</td>
+                    <td class="col-old">雨夜视线受阻，缺乏车端与服务区协同引导手段，车辆继续驶向危险路段。</td>
+                    <td class="col-new">在途车辆经百度导航改道提前减速，就近驶入大槐服务区避险；<strong>【一机】</strong>指令奇瑞绿能“驯龙鸟巢”充储微网切换至应急保供模式，暂停普通对外售电并预留应急功率池，保障避险重卡集中补能与场站不断电。</td>
                     <td><span class="tag">【一机】</span>微网调度<span class="sub">子课题四</span></td>
                 </tr>
                 <tr>
@@ -358,28 +419,28 @@
             <tbody>
                 <tr>
                     <td><strong>牵头应用方（交通业主）</strong></td>
-                    <td>省属公路投资运营龙头（粤通）</td>
-                    <td>提供沈海路段资产与大槐微网调度条件，协调公路养护大中修工程衔接。</td>
+                    <td>广东省交通集团有限公司<span class="sub">统筹下属开阳高速路段公司及通驿服务区运营主体</span></td>
+                    <td>提供沈海高速开阳路段资产与大槐服务区微网调度条件，协调公路养护大中修工程衔接及数据合规出域授权。</td>
                 </tr>
                 <tr>
                     <td><strong>感知与 AIP 建设运营方</strong></td>
-                    <td>光纤传感与数字化运营商</td>
-                    <td>负责【一筋】工程实施与【一机】软件向硬件的集成移植及运维，承担第三方运营与清分服务。</td>
+                    <td>交大为达<span class="sub">光纤传感与数字化运营商（依托姜德生院士团队技术）</span></td>
+                    <td>负责【一筋】工程实施与【一机】软件向边缘硬件的集成移植及运维，承担“以交调能”调度策略部署与场站运营协同。</td>
                 </tr>
                 <tr>
                     <td><strong>科研机构（理论大脑）</strong></td>
                     <td>土木交通重点实验室依托</td>
-                    <td>负责路桥隧及高填方路基水致灾变机理研究，构建业务知识库。</td>
+                    <td>负责路桥隧及高填方路基水致灾变机理研究，构建“规-建-管-养”全生命周期因果知识库。</td>
                 </tr>
                 <tr>
-                    <td><strong>重卡主机厂（车侧联动）</strong></td>
-                    <td>奇瑞</td>
-                    <td>提供在途重卡数据接入，配合开展车载终端预警提示、避险诱导联动及大槐充储微网调度。</td>
+                    <td><strong>零碳充储基础设施与生态协同方</strong></td>
+                    <td>奇瑞绿能</td>
+                    <td>依托其在大槐服务区落地的“驯龙鸟巢”充储微网系统（45天垫资交钥匙快建模式）及重卡生态，提供服务区超充/储能硬件可控负荷接口与场坪缆沟“一纤两用”测试条件，配合【一机】开展需量削峰、灾前应急保供功率预留及避险重卡集中补能。</td>
                 </tr>
                 <tr>
                     <td><strong>图商（全域触达）</strong></td>
                     <td>百度地图</td>
-                    <td>开放应急事件对接通道，支持货车导航端险情实时标红与路径重算。</td>
+                    <td>开放应急事件对接通道，支持货车导航端险情实时标红、路径重算与大槐服务区避险补能引导。</td>
                 </tr>
             </tbody>
         </table>
@@ -400,42 +461,42 @@
             </div>
             <div class="task-card">
                 <div class="task-title">子课题三：【一机】硬件集成固化与跨域响应引擎研发</div>
-                <p>完成 AIP 软件集成版本向边缘智算硬件移植及光纤/微网设备直连测试；开发“规建管养+巡查+光纤”融合预警算法与 10 秒直连百度 API 接口，打通奇瑞车队运营平台避险预警与大槐微网调度联动。</p>
+                <p>完成 AIP 软件集成版本向边缘智算硬件移植及光纤/微网设备直连测试；开发“规建管养+巡查+光纤”融合预警算法与 10 秒直连百度 API 接口，打通【一机】对奇瑞绿能“驯龙鸟巢”充储微网的动态削峰与灾前保供调度接口。</p>
             </div>
             <div class="task-card">
                 <div class="task-title">子课题四：沈海高速大槐示范区工程验证与运营试点</div>
-                <p>在示范路段及大槐服务区部署硬件化【一机】与【一筋】，开展“档案联动—巡查触发—光纤核验—导航叫停—车队避险—进站补能”全流程实景演练，跑通各买单方结算逻辑。</p>
+                <p>在示范路段及大槐服务区部署硬件化【一机】与【一筋】，开展“档案联动—巡查触发—光纤核验—导航叫停—进站避险—微网保供”全流程实景演练，验证“以能养交”节电降费与大中修闭环。</p>
             </div>
         </div>
 
         <!-- 第四部分 -->
         <div class="sec-head">
             <span class="sec-num">04</span>
-            <span class="sec-title">核心考核指标与市场空间</span>
+            <span class="sec-title">核心考核指标与市场空间（聚焦交通口直接关联）</span>
         </div>
         <table class="tbl">
             <thead>
                 <tr>
-                    <th style="width: 17%;">买单用户</th>
-                    <th style="width: 18%;">买单理由</th>
-                    <th style="width: 22%;">出资与客单价</th>
-                    <th style="width: 25%;">核心考核指标</th>
-                    <th style="width: 18%;">市场空间</th>
+                    <th style="width: 19%;">直接关联主体</th>
+                    <th style="width: 19%;">核心业务痛点与价值</th>
+                    <th style="width: 21%;">出资与客单价</th>
+                    <th style="width: 24%;">课题直接考核指标</th>
+                    <th style="width: 17%;">市场空间</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>1. 高速业主</strong><span class="sub">粤通 / 场站方</span></td>
-                    <td>不封路、防停站、省电费、一体机即插即用</td>
+                    <td><strong>1. 交通业主与服务区</strong><span class="sub">广东省交通集团有限公司 / 通驿</span></td>
+                    <td>大中修不封路、场站防停运、微网省电费、一体机免运维</td>
                     <td>
                         <p class="bp">• 大中修：50 至 150万/处</p>
-                        <p class="bp">• 一体机：38万 / 75.52万</p>
+                        <p class="bp">• 【一机】：38万 / 75.52万</p>
                         <p class="bp">• 节电分成：10 至 20万/站/年</p>
                     </td>
                     <td>
                         <p class="bp">• 【一机】硬件定型 1 套</p>
-                        <p class="bp">• 封闭 0%；快充停运降 ≥90%</p>
-                        <p class="bp">• 需量电费降 15% 至 20%</p>
+                        <p class="bp">• 施工封道 0%；快充停运降 ≥90%</p>
+                        <p class="bp">• 微网需量电费降 15% 至 20%</p>
                     </td>
                     <td>
                         <p class="bp">广东大中修 20亿+/年</p>
@@ -443,45 +504,31 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>2. 重货车队与保司</strong><span class="sub">车险生态联合</span></td>
-                    <td>10 秒保命降赔付，平时省电省保费</td>
+                    <td><strong>2. 零碳充储微网方</strong><span class="sub">奇瑞绿能（大槐场站）</span></td>
+                    <td>以交调能提升单站消纳与避险引流，保障重卡超充安全</td>
                     <td>
-                        <p class="bp">• 清分：0.03 至 0.05元/度</p>
-                        <p class="bp">• 减量费：200 至 400元/车/年</p>
+                        <p class="bp">• 45天垫资快建充储微网</p>
+                        <p class="bp">• 绿电消纳与场站运营增效</p>
                     </td>
                     <td>
-                        <p class="bp">• 阻断 ≤10秒；避险补能 ≥60%</p>
-                        <p class="bp">• 单车年省电 2万+、保费降 10% 至 20%</p>
-                        <p class="bp">• 险企赔付率降 ≥15%</p>
+                        <p class="bp">• 【一机】直连“驯龙鸟巢”EMS</p>
+                        <p class="bp">• 灾前 20 分钟完成应急功率池预留</p>
+                        <p class="bp">• 场坪电缆温升/沉降同步监测 100%</p>
                     </td>
                     <td>
-                        <p class="bp">30对站清分 1,500万/年</p>
-                        <p class="bp">全国清分/减量各 <span class="num-hi">20亿/年</span></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>3. 重卡主机厂</strong><span class="sub">奇瑞</span></td>
-                    <td>依托车端预警与绿电补能服务，提升重卡安全运营竞争力</td>
-                    <td>
-                        <p class="bp">• 车端防灾预警及微网运营生态合作分成</p>
-                    </td>
-                    <td>
-                        <p class="bp">• 完成奇瑞重卡运营平台与【一机】接口对接，实现高危路段车载终端实时弹窗与语音避险提醒（触达率 100%）</p>
-                    </td>
-                    <td>
-                        <p class="bp">万台级车队安全生态联动</p>
-                        <p class="bp">全国 <span class="num-hi">1.5 至 2亿/年</span></p>
+                        <p class="bp">大槐示范微网 3.7MW+3MWh</p>
+                        <p class="bp">省内走廊复制 <span class="num-hi">30对站+</span></p>
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>4. 百度地图</strong><span class="sub">数字图商</span></td>
-                    <td>接入地下 30 分前兆，提升防灾导航能力</td>
+                    <td><strong>3. 公众导航图商</strong><span class="sub">百度地图</span></td>
+                    <td>接入地下 30 分前兆，提升高速防灾阻断与服务区避险导流</td>
                     <td>
                         <p class="bp">• API 采购：300 至 500万/省/年</p>
                     </td>
                     <td>
                         <p class="bp">• 预警提前 ≥30分钟；标红推送 ≤10秒</p>
-                        <p class="bp">• 快充利用率升 10 至 15%</p>
+                        <p class="bp">• 避险导流提升快充利用率 10 至 15%</p>
                     </td>
                     <td>
                         <p class="bp">3年合作预期 1,200万</p>
@@ -490,6 +537,9 @@
                 </tr>
             </tbody>
         </table>
+        <div class="ext-callout">
+            <strong>远期商业拓展（课题外延生态，不纳入交通口本期硬考核）：</strong> 课题跑通交通内网与服务区微网闭环后，可由交大为达与奇瑞绿能另行对接<strong>重货车队及保险公司</strong>（开展 0.03～0.05 元/度绿电清分与 200～400 元/车/年风险减量服务）及<strong>重卡主机厂车端直连</strong>，进一步放大“以能养交”商业空间。
+        </div>
 
         <!-- 第五部分 -->
         <div class="sec-head">
@@ -507,18 +557,18 @@
             <tbody>
                 <tr>
                     <td><strong>1. 公共数据合规出域</strong><br><span class="risk-badge rb-high">最大核心风险</span></td>
-                    <td>日常养护巡查记录、“规-建-管-养”底表及桥隧结构安全状态均属<strong>交通公共敏感数据</strong>，直接推向百度地图及车端存在数据安全与授权红线，原始数据严禁直接出内网。</td>
+                    <td>日常养护巡查记录、“规-建-管-养”底表及桥隧结构安全状态均属<strong>交通公共敏感数据</strong>，直接推向百度地图及外部充储场站存在数据安全与授权红线，原始数据严禁直接出内网。</td>
                     <td>
-                        <p class="bp">• <strong>“原始数据不出域，结果指令脱敏出”：</strong>依托<strong>【一机】</strong>在粤通内网本地计算推理，原始图纸与巡查原文不离内网；</p>
-                        <p class="bp">• 仅将脱敏后的“高危桩号阻断状态与电子围栏指令”，经粤通授权通道合规分发至<strong>百度地图 API 与奇瑞重卡车端平台</strong>。</p>
+                        <p class="bp">• <strong>“原始数据不出域，结果指令脱敏出”：</strong>依托<strong>【一机】</strong>在广东省交通集团有限公司内网本地计算推理，原始图纸与巡查原文不离内网；</p>
+                        <p class="bp">• 仅将脱敏后的“高危桩号阻断状态、电子围栏及微网保供调度指令”，经授权通道合规分发至<strong>百度地图 API 与奇瑞绿能微网调度端</strong>。</p>
                     </td>
                 </tr>
                 <tr>
                     <td><strong>2. 研发成本控制与商业协同风险</strong><br><span class="risk-badge rb-ctrl">100万预算与多方约束</span></td>
-                    <td>课题总经费仅 100 万元，若重造底层平台或单独土建易导致超支；同时涉及高速业主、车队、保司与图商多方联动，商务分润协议落地周期较长。</td>
+                    <td>共同研究课题经费仅 100 万元，若重造底层平台或单独土建易导致超支；同时涉及高速业主、微网运营与图商多方联动，商务分润协议落地周期较长。</td>
                     <td>
-                        <p class="bp">• <strong>全链路复用降本：</strong>【一机】直接复用已定型 AIP 软件内核做边缘硬件移植，【一筋】借力粤通大中修队伍与大槐既有微网，省去重资产土建开支；</p>
-                        <p class="bp">• <strong>分步试点跑通闭环：</strong>先依托大槐示范区签署试点协议，优先跑通“大中修植入 + 需量削峰省电费”及百度 API 联调，再以真实减损与导流数据推进保司风险减量及图商数据采购。</p>
+                        <p class="bp">• <strong>全链路复用降本：</strong>【一机】直接复用已定型 AIP 软件内核做边缘硬件移植，【一筋】借力集团大中修队伍与奇瑞绿能大槐既有充储微网，省去重资产土建开支；</p>
+                        <p class="bp">• <strong>分步试点跑通闭环：</strong>先依托大槐示范区签署试点协议，优先跑通“大中修植入 + 需量削峰省电费”及百度 API 联调，再逐步拓展车队清分与保司风险减量合作。</p>
                     </td>
                 </tr>
             </tbody>
