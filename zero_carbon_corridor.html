@@ -239,6 +239,30 @@
             gap: 10px;
             margin-bottom: 10px;
         }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .pos-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 6px;
+            padding: 8px 10px;
+        }
+        .pos-tag {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 3px;
+        }
+        .pos-card p {
+            font-size: 11.8px;
+            line-height: 1.45;
+            color: var(--text-main);
+        }
         .task-card {
             border: 1px solid var(--border);
             border-left: 3px solid var(--primary);
@@ -268,7 +292,7 @@
         .rb-ctrl { background: #e0e7ff; color: #3730a3; }
 
         @media (max-width: 820px) {
-            .grid-3, .gap-grid, .grid-2, .thesis-grid { grid-template-columns: 1fr; }
+            .grid-3, .gap-grid, .grid-2, .grid-4, .thesis-grid { grid-template-columns: 1fr; }
             .content { padding: 16px; }
             .hero { padding: 18px 16px; }
         }
@@ -297,6 +321,26 @@
     </div>
 
     <div class="content">
+        <!-- 题目关联定位 -->
+        <div class="grid-4">
+            <div class="pos-card">
+                <div class="pos-tag">① 零碳走廊（工程底座）</div>
+                <p>依托沈海高速（G15）开阳重载段及大槐服务区 3.7MW 光伏 + 3MWh 储能 + 奇瑞绿能超充构成的零碳充储微网。</p>
+            </div>
+            <div class="pos-card">
+                <div class="pos-tag">② 深层灾变感知（技术核心）</div>
+                <p>以【一筋】+【一机】融合“规-建-管-养”全周期数据，提前 ≥30 分钟识破路基/桥隧深层失稳与场坪电缆温升前兆。</p>
+            </div>
+            <div class="pos-card">
+                <div class="pos-tag">③ 重货主动安全（管控抓手）</div>
+                <p>【一机】10 秒推送百度货车导航标红阻断并联动路段管控，引导在途重货提前减速分流、进服务区避险补能。</p>
+            </div>
+            <div class="pos-card">
+                <div class="pos-tag">④ 交能增效运营（造血闭环）</div>
+                <p>以交通态势调零碳充储微网，平时削峰降需量电费 15%～20%、灾前预留应急功率池，以充储收益反哺防灾运维。</p>
+            </div>
+        </div>
+
         <!-- 开篇 -->
         <div class="sec-head">
             <span class="sec-num">00</span>
