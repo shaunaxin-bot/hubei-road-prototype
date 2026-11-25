@@ -147,6 +147,31 @@
             margin-bottom: 8px;
             letter-spacing: 0.2px;
         }
+        .mode-strip {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .mode-pill {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(253, 230, 138, 0.45);
+            border-radius: 5px;
+            padding: 7px 10px;
+            font-size: 12px;
+            line-height: 1.48;
+            color: #f8fafc;
+        }
+        .mode-pill .mp-title {
+            display: inline-block;
+            background: #fde68a;
+            color: #0a355c;
+            font-weight: 700;
+            font-size: 11.5px;
+            padding: 1px 7px;
+            border-radius: 3px;
+            margin-bottom: 4px;
+        }
         .thesis-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -319,7 +344,7 @@
         .rb-ctrl { background: #e0e7ff; color: #3730a3; }
 
         @media (max-width: 820px) {
-            .grid-3, .gap-grid, .grid-2, .grid-4, .thesis-grid { grid-template-columns: 1fr; }
+            .grid-3, .gap-grid, .grid-2, .grid-4, .thesis-grid, .mode-strip { grid-template-columns: 1fr; }
             .content { padding: 16px; }
             .hero { padding: 18px 16px; }
         }
@@ -340,6 +365,7 @@
     <div class="hero">
         <div class="hero-badge">广东省交通运输厅科技创新重大专项 · 课题实施方案</div>
         <h1>《重载零碳走廊深层灾变感知与交能微网协同防灾运营示范》</h1>
+        <div style="font-size: 12.5px; color: #fde68a; font-weight: 600; margin: -6px 0 10px;">核心示范模式：平时以电养灾（充储降费增收反哺防灾运维） · 灾时微网保供（提前 30 分预警、重货避险不断电）</div>
         <div class="meta-strip">
             <span><strong>实施周期：</strong>2027年1月 至 2028年12月（24个月）</span>
             <span><strong>共同研究课题经费：</strong>100 万元</span>
@@ -393,7 +419,17 @@
             <strong>核心攻关出发点：</strong> 一方面，单靠<strong>【一筋】</strong>光纤应变或日常人工巡查均不足以可靠预警，须由<strong>【一机】</strong>统筹公路基础设施“建管养”全寿命周期数据耦合研判，解决误漏报与响应滞后问题；另一方面，针对传统公路数字化项目纯投入、基础设施防灾感知长效运维资金承压的共性难题，课题依托【一机】联动百度、高德等图商 AI 引擎与奇瑞绿能零碳充储微网，将路网感知转化为需量降费与避险导流运营增量，探索以交能融合收益反哺防灾运维的可持续路径。
         </div>
         <div class="thesis-box">
-            <div class="thesis-quote">交能融合核心：以交通感知调零碳充储微网，以充储收益养防灾</div>
+            <div class="thesis-quote">交能融合核心亮点：平时以电养灾，灾时微网保供</div>
+            <div class="mode-strip">
+                <div class="mode-pill">
+                    <span class="mp-title">平时态 · 以电养灾（解决造血与运维经费）</span><br>
+                    【一机】按车流预测调零碳充储微网削峰降费（需量电费降 15%～20%），叠加重货充电分润（30对站年增收节支 1,000～1,500 万），以能源收益反哺路桥隧感知长效运维。
+                </div>
+                <div class="mode-pill">
+                    <span class="mp-title">灾时态 · 微网保供（解决重货安全与防停运）</span><br>
+                    【一筋】+【一机】提前 ≥30 分钟识破深层前兆，10 秒联动百度、高德等图商 AI 导航分流重货进大槐服务区；微网立即预留应急功率池，保障避险重卡集中补能与场站不断电。
+                </div>
+            </div>
             <div class="thesis-grid">
                 <div class="thesis-item">
                     <strong>1. 物理与荷载耦合（一筋两用、同步设防）</strong>
