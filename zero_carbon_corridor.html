@@ -283,6 +283,32 @@
         .bp { margin-bottom: 3px; }
         .bp:last-child { margin-bottom: 0; }
         .num-hi { color: var(--primary); font-weight: 700; }
+        .loop-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 5px;
+            background: #f0f6fc;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            padding: 7px 10px;
+            margin-bottom: 8px;
+            font-size: 11.6px;
+            color: var(--primary-dark);
+        }
+        .loop-node {
+            background: #ffffff;
+            border: 1px solid #93c5fd;
+            border-radius: 4px;
+            padding: 2px 7px;
+            font-weight: 600;
+        }
+        .loop-node.loop-end {
+            background: #0f4c81;
+            color: #fde68a;
+            border-color: #0a355c;
+        }
+        .loop-arrow { color: #0369a1; font-weight: 700; }
 
         /* 2x2 子课题网格 */
         .grid-2 {
@@ -467,6 +493,16 @@
             </div>
         </div>
 
+        <div class="loop-bar">
+            <strong>全流程双态闭环：</strong>
+            <span class="loop-node">① 巡查触发档案+光纤核验</span><span class="loop-arrow">→</span>
+            <span class="loop-node">② AI因果长链定性</span><span class="loop-arrow">→</span>
+            <span class="loop-node">③ 图商10秒阻断</span><span class="loop-arrow">→</span>
+            <span class="loop-node">④ 进站避险微网保供</span><span class="loop-arrow">→</span>
+            <span class="loop-node">⑤ 零伤亡验证</span><span class="loop-arrow">→</span>
+            <span class="loop-node loop-end">⑥ 以电养灾反哺运维 ↺ 回到①</span>
+        </div>
+
         <table class="tbl">
             <thead>
                 <tr>
@@ -478,39 +514,39 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>前日 17:30</strong><span class="sub">线索与档案联动</span></td>
+                    <td><strong>① 前日 17:30</strong><span class="sub">线索与档案联动</span></td>
                     <td class="col-old">手写“路基局部积水”按常规小修处理，工单与规划建设、竣工图纸及历年养护割裂。</td>
                     <td class="col-new">巡查工单同步接入<strong>【一机】</strong>，自动匹配该桩号<strong>“建管养”全寿命周期档案</strong>（识别深谷高填方、基底暗涵及近3年修补史），将表面积水定性为高危诱因，并定向加密对应桩号地下<strong>【一筋】</strong>的应变监测频次，靶向核验是否引发深层变形。</td>
                     <td>已有<span class="tag">【一筋】</span>+硬件化<span class="tag">【一机】</span><span class="sub">子课题一</span></td>
                 </tr>
                 <tr>
-                    <td><strong>事发前 35 分</strong><span class="sub">01:25:00 耦合研判</span></td>
+                    <td><strong>② 事发前 35 分</strong><span class="sub">01:25:00 耦合研判</span></td>
                     <td class="col-old">暴雨潜蚀基底，地表无明显变形；即便有孤立传感数值也难区分正常扰动与结构失稳。</td>
                     <td class="col-new"><strong>【一筋】</strong>测得基底 28 με 微应变异常，<strong>【一机】</strong>触发<strong>生成式 AI 因果长链条推理</strong>（串联“深谷高填方地质→基底暗涵渗流→积水→49吨重货动载→接触带剪切贯通”），排除正常扰动，精准判定深层失稳风险。</td>
                     <td>已有<span class="tag">【一筋】</span>+硬件化<span class="tag">【一机】</span><span class="sub">子课题二</span></td>
                 </tr>
                 <tr>
-                    <td><strong>事发前 34 分</strong><span class="sub">01:25:10 跨端阻断</span></td>
+                    <td><strong>③ 事发前 34 分</strong><span class="sub">01:25:10 跨端阻断</span></td>
                     <td class="col-old">内部未发预警，百度、高德等地图显示正常通行，车辆保持高速行驶。</td>
                     <td class="col-new"><strong>【一机】</strong>10 秒内通过标准 API 向百度、高德等图商交通大模型与 AI 实时导航引擎推送阻断事件（触发全屏标红与 AI 语音警示），同步联动路段情报板与服务区微网调度端，对在途重货实施主动减速与分流管控。</td>
                     <td>硬件化<span class="tag">【一机】</span>+图商AI API<span class="sub">子课题三</span></td>
                 </tr>
                 <tr>
-                    <td><strong>事发前 20 分</strong><span class="sub">01:40:00 避险保供</span></td>
+                    <td><strong>④ 事发前 20 分</strong><span class="sub">01:40:00 避险保供</span></td>
                     <td class="col-old">雨夜视线受阻，缺乏车端与服务区协同引导手段，车辆继续驶向危险路段。</td>
                     <td class="col-new">在途重货经图商 AI 动态算路改道与路段管控提前减速，被智能引导就近驶入大槐服务区避险；<strong>【一机】</strong>指令奇瑞绿能零碳充储微网切换至应急保供模式，暂停普通对外售电并预留应急功率池，保障避险重卡集中补能与安全停靠不断电。</td>
                     <td><span class="tag">【一机】</span>微网调度<span class="sub">子课题四</span></td>
                 </tr>
                 <tr>
-                    <td><strong>事发时刻</strong><span class="sub">02:00:00 结果对比</span></td>
+                    <td><strong>⑤ 事发时刻</strong><span class="sub">02:00:00 结果对比</span></td>
                     <td class="col-old">17.9 米路基坍塌，23 辆车坠落，48 人遇难。</td>
                     <td class="col-new">路基同样坍塌，但危险路段前方已提前清空，<strong>无车辆坠落，无人员伤亡</strong>。</td>
                     <td><strong>系统全流程验证</strong></td>
                 </tr>
                 <tr>
-                    <td><strong>常态与灾后闭环</strong><span class="sub">以电养灾 · 造血运维</span></td>
+                    <td><strong>⑥ 常态与灾后闭环</strong><span class="sub">以电养灾 · 造血运维 ↺</span></td>
                     <td class="col-old">防灾监测纯靠养护经费投入，“只花钱不赚钱”，设备长期运维资金难以为继。</td>
-                    <td class="col-new">常态下<strong>【一机】</strong>按车流动态调度大槐零碳充储微网削峰降费（需量电费降 15%～20%），叠加避险导流充电增收，以微网运营利润反哺<strong>【一筋】</strong>与<strong>【一机】</strong>长效防灾运维，形成<strong>“平时以电养灾、灾时微网保供”</strong>闭环。</td>
+                    <td class="col-new">常态下<strong>【一机】</strong>按车流动态调度大槐零碳充储微网削峰降费（需量电费降 15%～20%），叠加避险导流充电增收，以微网运营利润反哺<strong>【一筋】</strong>与<strong>【一机】</strong>长效防灾运维并自动更新该桩号“建管养”档案，形成<strong>“平时以电养灾、灾时微网保供”</strong>闭环 ↺ 回到①常态监测。</td>
                     <td><span class="tag">【一机】</span>以电养灾闭环<span class="sub">子课题四</span></td>
                 </tr>
             </tbody>
