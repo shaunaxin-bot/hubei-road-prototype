@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【一筋】【一机】产品形态与本地算力配置说明</title>
+    <style>
+        :root {
+            --primary: #0f4c81;
+            --primary-dark: #0a355c;
+            --primary-light: #eff6ff;
+            --border: #dbe3ed;
+            --text-dark: #0f172a;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --bg-page: #f1f5f9;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: var(--text-main);
+            background: var(--bg-page);
+            padding: 18px 12px;
+        }
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+            overflow: hidden;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: #ffffff;
+            padding: 20px 30px 16px;
+        }
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            font-size: 11.5px;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .back-link {
+            color: #fde68a;
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 600;
+            border: 1px solid rgba(253, 230, 138, 0.45);
+            padding: 3px 10px;
+            border-radius: 5px;
+        }
+        .back-link:hover { background: rgba(255, 255, 255, 0.12); }
+        .hero h1 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+        .hero p { font-size: 12.5px; color: #e2e8f0; }
+
+        .content { padding: 20px 30px 28px; }
+        .sec-head {
+            display: flex; align-items: center; gap: 8px;
+            margin: 18px 0 10px; padding-bottom: 5px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        .sec-head:first-child { margin-top: 0; }
+        .sec-num {
+            background: var(--primary); color: #fff; font-size: 11px;
+            font-weight: 700; padding: 1px 7px; border-radius: 4px;
+        }
+        .sec-title { font-size: 15.5px; font-weight: 700; color: var(--text-dark); }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 12px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            background: #fafcff;
+        }
+        .card-title { font-weight: 700; font-size: 14px; color: var(--primary-dark); margin-bottom: 6px; }
+        .tag {
+            display: inline-block; font-size: 11px; font-weight: 600;
+            padding: 1px 6px; border-radius: 4px; margin-left: 6px;
+            background: #dcfce7; color: #166534;
+        }
+        .tag.blue { background: #dbeafe; color: #1e40af; }
+        ul.clean { list-style: none; }
+        ul.clean li {
+            position: relative; padding: 3px 0 3px 14px; font-size: 12.6px; line-height: 1.55;
+        }
+        ul.clean li::before {
+            content: "•"; position: absolute; left: 2px; color: var(--primary); font-weight: 700;
+        }
+
+        .arch-bar {
+            display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+            background: #f0f6fc; border: 1px solid #bfdbfe; border-radius: 6px;
+            padding: 10px 12px; margin-bottom: 12px; font-size: 12.2px;
+        }
+        .arch-node {
+            background: #ffffff; border: 1px solid #93c5fd; border-radius: 5px;
+            padding: 5px 9px; font-weight: 600; color: var(--text-dark);
+        }
+        .arch-node.hi { background: var(--primary); color: #ffffff; border-color: var(--primary-dark); }
+        .arch-arrow { color: var(--primary); font-weight: 700; }
+
+        table.tbl { width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 12.5px; }
+        table.tbl th {
+            background: #f1f5f9; color: var(--text-dark); font-weight: 600;
+            text-align: left; padding: 7px 10px; border: 1px solid var(--border);
+        }
+        table.tbl td { padding: 7px 10px; border: 1px solid var(--border); vertical-align: top; }
+        table.tbl tr:nth-child(even) td { background: #fcfdff; }
+
+        .callout {
+            background: #f8fafc; border-left: 3px solid var(--primary);
+            padding: 9px 12px; border-radius: 0 6px 6px 0; font-size: 12.5px;
+        }
+
+        @media (max-width: 820px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .content, .hero { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="hero">
+        <div class="hero-top">
+            <span class="hero-badge">技术载体附件 · 产品形态与算力模型配置</span>
+            <a class="back-link" href="./zero_carbon_corridor.html">← 返回课题实施方案主页</a>
+        </div>
+        <h1>【一筋】【一机】产品形态、硬件拓扑与本地 AI 算力配置说明</h1>
+        <p>面向《重卡零碳走廊深层灾变感知与交能微网协同防灾运营示范》—— 100万经费约束与交通内网不出域架构</p>
+    </div>
+
+    <div class="content">
+        <!-- 物理拓扑 -->
+        <div class="sec-head">
+            <span class="sec-num">01</span>
+            <span class="sec-title">端到端物理拓扑关系（外接独立光纤解调 + 内网 AI硬件一体机）</span>
+        </div>
+        <div class="arch-bar">
+            <span class="arch-node">①【一筋】地下/场坪无源传感筋材</span>
+            <span class="arch-arrow">→</span>
+            <span class="arch-node">② 外部 1 台光纤调制解调设备</span>
+            <span class="arch-arrow">→</span>
+            <span class="arch-node hi">③【一机】内网 AI硬件（14B行业微调+图谱+时序）</span>
+            <span class="arch-arrow">→</span>
+            <span class="arch-node">④ 安全隔离网闸 + 固定 Schema 白名单 OpenAPI</span>
+            <span class="arch-arrow">→</span>
+            <span class="arch-node">⑤ 图商 AI 引擎 / 奇瑞绿能微网及边端控能芯片</span>
+        </div>
+
+        <!-- 一筋与一机 -->
+        <div class="sec-head">
+            <span class="sec-num">02</span>
+            <span class="sec-title">核心载体产品形态拆解</span>
+        </div>
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-title">【一筋】光纤智慧筋 <span class="tag">已有成熟基础</span></div>
+                <ul class="clean">
+                    <li><strong>物理形态：</strong>将高精度传感光纤与耐腐蚀高强复合材料一体封装，呈工程用复合筋材/特种传感光缆形态。</li>
+                    <li><strong>物理特性：</strong>地下全无源（无需供电）、耐水浸、抗超充站高压强电磁干扰；设计寿命 <strong>≥30 年</strong>，应变分辨率 <strong>≤1 με</strong>。</li>
+                    <li><strong>路基/桥隧部署：</strong>借集团年度大中修免封道顺带植入（高填方马道钻进、箱梁内腔布设、隧道管沟借道）。</li>
+                    <li><strong>“一筋两用”场站部署：</strong>敷设于大槐等服务区超充场坪及高压电缆沟内，同步监测<strong>场坪沉降微应变</strong>与<strong>高压电缆异常温升</strong>。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">【一机】交能 AIP AI硬件 <span class="tag blue">软件完成·AI硬件集成</span></div>
+                <ul class="clean">
+                    <li><strong>物理定位：</strong>标准 2U 机架式边缘智算一体机，直接上架部署在广东省交通集团/路段公司内网机房，通电接网即用、机房免运维。</li>
+                    <li><strong>外接解调设备：</strong>【一机】不内置光学解调模块，配置<strong>外部 1 台独立光纤调制解调设备</strong>，将光信号转为数字微应变与温度序列后接入【一机】。</li>
+                    <li><strong>行业底座内核：</strong>基础版（38万）含 17 套国标本体 + 多年度公路养护统计年报 + 10,000 条 SFT 语料 + 1,500 份图谱 + OpenAPI；高级版（75.52万）融合 CBMS/CPMS/交调 + 5,000 份因果图谱 + 30,000 条 SFT 语料 + LRS 空间平差。</li>
+                    <li><strong>双向安全边界：</strong>内网原始底表不出机房；车端高频 BMS 波形不出场站边端控能芯片（仅回传分钟级聚合状态）。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 模型与算力配置 -->
+        <div class="sec-head">
+            <span class="sec-num">03</span>
+            <span class="sec-title">【一机】本地 AI 模型栈与单机算力配置（匹配 100 万课题预算）</span>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-title">1. 主推理通用模型（14B 级量化）</div>
+                <ul class="clean">
+                    <li><strong>选型：</strong>Qwen2.5-14B-Instruct 或 DeepSeek-R1-Distill-Qwen-14B（可降至 7B/9B），纯私有化部署、零外网依赖。</li>
+                    <li><strong>优势：</strong>结合 30,000 条行业 SFT 语料与 5,000 份因果图谱 RAG，比千亿大模型幻觉更少、JSON 指令更稳。</li>
+                    <li><strong>性能：</strong>INT4/FP8 量化仅占 10～14GB 显存，单次因果链推理 <strong>1～2 秒</strong>。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">2. 专用轻量时序预测模型</div>
+                <ul class="clean">
+                    <li><strong>选型：</strong>LightGBM / 轻量时序预测 + 运筹调度求解器，跑在同机 CPU 上。</li>
+                    <li><strong>任务：</strong>根据上游门架与在途重卡车流，毫秒级预测未来 30～60 分钟大槐服务区充电功率曲线。</li>
+                    <li><strong>成效：</strong>驱动奇瑞绿能微网提前削峰填谷，压低刚性需量电费 <strong>15%～20%</strong>。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">3. 10 秒推送时延拆解</div>
+                <ul class="clean">
+                    <li>外部光纤调制解调：毫秒级；</li>
+                    <li>【一机】本地 14B 推理 + 图谱核验：1～2 秒；</li>
+                    <li>网闸固定 Schema 白名单 OpenAPI 推送：1～2 秒；</li>
+                    <li>为图商 AI 引擎下发留足余量，支撑 ≤10 秒指标。</li>
+                </ul>
+            </div>
+        </div>
+
+        <table class="tbl">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">硬件组件</th>
+                    <th style="width: 30%;">通用高性价比配置（X86 + 推理卡）</th>
+                    <th style="width: 30%;">国产信创合规配置（若内网要求信创）</th>
+                    <th style="width: 20%;">配置说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>AI 推理加速卡</strong></td>
+                    <td>1～2 张 24GB 推理卡（如 NVIDIA L4 / A10 24GB）</td>
+                    <td>1 张 华为昇腾 Atlas 300I Duo（96GB 显存）</td>
+                    <td>支撑 14B 量化模型 + 向量库常驻显存</td>
+                </tr>
+                <tr>
+                    <td><strong>主机 CPU 与内存</strong></td>
+                    <td>32 核服务器 CPU + <strong>128GB 内存</strong></td>
+                    <td>鲲鹏 920 / 海光 CPU + <strong>128GB 内存</strong></td>
+                    <td>支撑 LRS 空间平差、17 套本体与年报秒级检索</td>
+                </tr>
+                <tr>
+                    <td><strong>存储与系统冗余</strong></td>
+                    <td>2×2TB NVMe SSD（RAID 1 冗余）</td>
+                    <td>2×2TB 国产 NVMe SSD（RAID 1）+ 银河麒麟/欧拉</td>
+                    <td>防单盘故障，保障内网台账与权重高可靠</td>
+                </tr>
+                <tr>
+                    <td><strong>网络与外设接口</strong></td>
+                    <td colspan="2">双万兆/千兆网口（分别接内网业务库与安全隔离网闸）+ 独立接口外接 1 台光纤调制解调设备</td>
+                    <td>单机硬件成本约 <strong>5～10 万元级</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout">
+            <strong>总结：</strong>【一筋】是埋在地下与电缆沟里的长寿命无源复合传感筋材；【一机】是外接 1 台光纤解调器、驻留交通内网机房的免运维 AI硬件（14B 行业微调模型 + 轻量时序模型 + 单机 24GB/信创算力），通过固定 Schema 白名单安全网闸与外部图商及奇瑞微网/边端控能芯片实现双向不出域协同。
+        </div>
+    </div>
+</div>
+</body>
+</html>
