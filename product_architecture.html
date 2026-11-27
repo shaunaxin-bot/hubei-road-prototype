@@ -202,15 +202,86 @@
                 <tr>
                     <td><strong>单机硬件配置</strong></td>
                     <td><strong>1～2 张 24G 显存推理卡</strong>（或 1 张华为昇腾国产卡）+ 32 核 CPU + <strong>128G 内存</strong> + 双硬盘备份</td>
-                    <td>整台一体机约 <strong>5～10 万元级</strong>（加上外接 1 台光纤解调箱也不超预算），上架通电就能跑，路段公司不用养专门的 AI 运维团队。</td>
-                </tr>
-                <tr>
-                    <td><strong>商业定价与课题预算关系</strong></td>
-                    <td><strong>【一机】标准版一体机 45～50 万/套</strong>（38万基础软件 + 5～10万硬件；高级版 85～90万）<br><strong>【一筋】按延米/公里计价</strong> + 解调箱按台/通道配套 + 节电分成 10～20 万/站/年</td>
-                    <td>整个课题总经费共 100 万元。软件底座自带入组不重收开发费，【一机】单机硬件控制在 <strong>5～10 万元级</strong>、解调箱数万元级（硬件合计仅占总经费小头，把大部分经费留给模型固化、图商/微网联调与实景测试）。</td>
+                    <td>整台一体机约 <strong>5～10 万元级</strong>（加上外接 1 台光纤解调箱仅约 12～13 万），上架通电就能跑，路段公司不用养专门的 AI 运维团队。</td>
                 </tr>
             </tbody>
         </table>
+
+        <!-- 04 课题预算分配与商业报价 -->
+        <div class="sec-head">
+            <span class="sec-num">04</span>
+            <span class="sec-title">100 万课题经费分配与课题外商业推广报价对照</span>
+        </div>
+        <div class="grid-2">
+            <div class="card" style="padding: 12px 14px;">
+                <div class="card-title" style="font-size: 14.5px;">A. 本课题 100 万元共同经费分配（示范期）</div>
+                <table class="tbl" style="margin-bottom: 6px; font-size: 12.4px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 34%;">费用科目</th>
+                            <th style="width: 18%;">预算</th>
+                            <th style="width: 48%;">支出内容（软件底座自带入组不重收）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>硬件与示范材料</strong></td>
+                            <td><strong>15 万</strong><br>(15%)</td>
+                            <td>【一机】AI硬件单机（7～8万）+ 外部 1 台 4～8 通道解调箱（4～5万）+ 几百米示范【一筋】（2～3万）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>机理与算法固化</strong></td>
+                            <td><strong>45 万</strong><br>(45%)</td>
+                            <td>高填方/重卡耦合机理与图谱深化（15万）+ 14B/时序模型本地固化、解调驱动与一纤两用解耦（30万）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>跨域联调与演练</strong></td>
+                            <td><strong>25 万</strong><br>(25%)</td>
+                            <td>内网网闸 OpenAPI 与安全测评（8万）+ 图商白名单通道联调（7万）+ 大槐微网/控能芯片演练（10万）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>测试与验收管理</strong></td>
+                            <td><strong>15 万</strong><br>(15%)</td>
+                            <td>第三方检测报告、免封道工法指南/标准草案、审计与交通厅中期/结题评审验收</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card" style="padding: 12px 14px;">
+                <div class="card-title" style="font-size: 14.5px;">B. 课题外全省商业推广报价口径（复制期）</div>
+                <table class="tbl" style="margin-bottom: 6px; font-size: 12.4px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">产品/服务项</th>
+                            <th style="width: 30%;">商业参考报价</th>
+                            <th style="width: 40%;">计价说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>【一机】标准版一体机</strong></td>
+                            <td><strong>45～50 万元/套</strong></td>
+                            <td>38万基础版软件 + 5～10万 AI硬件（全要素高级版一体机约 <strong>85～90 万元/套</strong>）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>【一筋】光纤智慧筋</strong></td>
+                            <td><strong>按延米/公里计价</strong></td>
+                            <td>用多少米算多少钱，借大中修顺带植入，免单独重资产土建</td>
+                        </tr>
+                        <tr>
+                            <td><strong>外部光纤解调箱</strong></td>
+                            <td><strong>按台/通道配套</strong></td>
+                            <td>1 台紧凑型 4～8 通道解调箱（数万元级）可同时带多处断面与电缆沟</td>
+                        </tr>
+                        <tr>
+                            <td><strong>微网运营分成</strong></td>
+                            <td><strong>10～20 万元/站/年</strong></td>
+                            <td>以大槐等服务区需量降费（15%～20%）与导流增收反哺防灾运维</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <div class="callout">
             <strong>核心架构总结：</strong> <strong>【一筋】</strong>是埋在地下和电缆沟里的无源复合传感筋材；<strong>【一机】</strong>是放在高速内网机房里的 5～10 万级 AI硬件（外接 1 台紧凑型光纤解调箱）。它不把高速敏感数据传到外网，依靠本地 14B 行业模型和车流预测小模型，1～2 秒完成推理，对外仅输出图商绕行与微网功率调度两类脱敏指令。
